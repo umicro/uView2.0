@@ -9,6 +9,11 @@ App.mpType = 'app'
 import uView from 'uview-ui'
 Vue.use(uView)
 
+// 路由拦截
+// uni.$u.routeIntercept = (config, next) => {
+// 	next(false)
+// }
+
 const app = new Vue({
     ...App
 })

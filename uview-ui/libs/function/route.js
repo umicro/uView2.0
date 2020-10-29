@@ -45,7 +45,7 @@ function route(options = {}, params = false) {
 		}
 	}
 	// 判断是否一个字符串，如果是，直接跳转(简写法)
-	// 如果是中情形，默认第二个参数为对象形式的参数
+	// 如果是这种情形，默认第二个参数为对象形式的参数
 	if (typeof options === 'string') {
 		if (options[0] != '/') options = '/' + options;
 		return uni.navigateTo({

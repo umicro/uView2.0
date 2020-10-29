@@ -1,0 +1,41 @@
+<template>
+	<view class="">
+		<u-transition mode="slide-down" :show="show" :custom-style="style">
+			<view class="transition"></view>
+		</u-transition>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				show: false,
+				style: {
+				    position: 'fixed',
+				    top: `${uni.$u.sys().windowHeight / 2 - 50}px`,
+				    left: `${uni.$u.sys().windowWidth / 2 - 50}px`,
+				    width: '100px',
+				    height: '100px',
+				    backgroundColor: '#1989fa'
+				},
+			}
+		},
+		mixins: [uni.$u.mixin],
+		onLoad() {
+			this.show = true;
+			setTimeout(() => {
+				this.show = false;
+			}, 1000)
+		},
+		methods: {
+			
+		}
+	}
+</script>
+
+<style lang="scss" scoped>
+	.transition {
+		background-color: blue;
+	}
+</style>

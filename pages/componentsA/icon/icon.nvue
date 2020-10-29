@@ -1,0 +1,23 @@
+<template>
+	<view class="u-page">
+		<u-icon name="level" label="年后"></u-icon> 
+		<u-icon name="map" size="100rpx" label="年后" color="primary"></u-icon>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				
+			}
+		},
+		methods: {
+			
+		}
+	}
+</script>
+
+<style lang="scss">
+	
+</style>

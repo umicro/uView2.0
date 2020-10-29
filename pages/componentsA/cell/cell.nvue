@@ -1,0 +1,26 @@
+<template>
+	<view>
+		<u-cell-group>
+			<u-cell title="你好" value="更多" isLink @click="click" large></u-cell>
+		</u-cell-group>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				
+			}
+		},
+		methods: {
+			click() {
+				console.log('Cell is clicked.');
+			}
+		}
+	}
+</script>
+
+<style>
+
+</style>

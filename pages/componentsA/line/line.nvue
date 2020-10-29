@@ -1,0 +1,22 @@
+<template>
+	<view class="u-page">
+		<u-line color="red"></u-line>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				
+			}
+		},
+		methods: {
+			
+		}
+	}
+</script>
+
+<style lang="scss">
+	
+</style>

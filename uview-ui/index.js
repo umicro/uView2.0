@@ -26,7 +26,7 @@ function wranning(str) {
 // post类型对象参数转为get类型url参数
 import queryParams from './libs/function/queryParams.js'
 // 路由封装
-import route from './libs/function/route.js'
+import route from './libs/util/route.js'
 // 时间格式化
 import timeFormat from './libs/function/timeFormat.js'
 // 时间戳格式化,返回多久之前
@@ -72,6 +72,8 @@ import throttle from './libs/function/throttle.js'
 
 // 配置信息
 import config from './libs/config/config.js'
+// props配置信息
+import props from './libs/config/props.js'
 // 各个需要fixed的地方的z-index配置文件
 import zIndex from './libs/config/zIndex.js'
 
@@ -111,14 +113,16 @@ const $u = {
 	debounce,
 	throttle,
 	mixin,
+	props,
 }
 
+// $u挂载到uni对象上
+uni.$u = $u
+
 const install = Vue => {
-	// Vue.mixin(mixin) 
 	// if (Vue.prototype.openShare) {
 	// 	Vue.mixin(mpShare);
 	// }
-	// Vue.mixin(vuexStore);
 	// 时间格式化，同时两个名称，date和timeFormat
 	Vue.filter('timeFormat', (timestamp, format) => {
 		return timeFormat(timestamp, format)
@@ -131,8 +135,12 @@ const install = Vue => {
 		return timeFrom(timestamp, format)
 	})
 	// 同时挂载到uni和Vue.prototype中
+	// #ifndef APP-NVUE
+	// 只有vue，挂载到Vue.prototype才有意义，因为nvue中全局Vue.prototype和Vue.mixin是无效的
 	Vue.prototype.$u = $u
-	uni.$u = $u
+	Vue.mixin(mixin)
+	//Vue.mixin(vuexStore);
+	// #endif
 }
 
 export default {

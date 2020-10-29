@@ -1,0 +1,22 @@
+<template>
+	<view class="">
+		<u-link href="http://www.baidu.com" text="点击我进行跳转"></u-link>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				
+			}
+		},
+		methods: {
+			
+		}
+	}
+</script>
+
+<style>
+
+</style>

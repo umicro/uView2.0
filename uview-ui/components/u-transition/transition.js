@@ -4,85 +4,19 @@ const nextTick = () => new Promise(resolve => setTimeout(resolve, 1000 / 30));
 // #ifndef APP-NVUE
 // 定义类名，通过给元素动态切换类名，赋予元素一定的css动画样式
 const getClassNames = (name) => ({
-	enter: `u-${name}-enter u-${name}-enter-active enter-class enter-active-class`,
-	'enter-to': `u-${name}-enter-to u-${name}-enter-active enter-to-class enter-active-class`,
-	leave: `u-${name}-leave u-${name}-leave-active leave-class leave-active-class`,
-	'leave-to': `u-${name}-leave-to u-${name}-leave-active leave-to-class leave-active-class`
+	enter: `u-${name}-enter u-${name}-enter-active`,
+	'enter-to': `u-${name}-enter-to u-${name}-enter-active`,
+	leave: `u-${name}-leave u-${name}-leave-active`,
+	'leave-to': `u-${name}-leave-to u-${name}-leave-active`
 })
 // #endif
 
 // #ifdef APP-NVUE
 // 引入nvue(weex)的animation动画模块，文档见：
 // https://weex.apache.org/zh/docs/modules/animation.html#transition
-const animation = uni.requireNativePlugin('animation');
-const animationMap = {
-    'fade': {
-        enter: { opacity: 0 },
-        'enter-to': { opacity: 1 },
-        leave: { opacity: 1 },
-        'leave-to': { opacity: 0 }
-    },
-    'fade-up': {
-        enter: { opacity: 0, transform: `translateY(100%)` },
-        'enter-to': { opacity: 1, transform: `translateY(0)` },
-        leave: { opacity: 1, transform: `translateY(0)` },
-        'leave-to': { opacity: 0, transform: `translateY(100%)` }
-    },
-    'fade-down': {
-        enter: { opacity: 0, transform: `translateY(-100%)` },
-        'enter-to': { opacity: 1, transform: `translateY(0)` },
-        leave: { opacity: 1, transform: `translateY(0)` },
-        'leave-to': { opacity: 0, transform: `translateY(-100%)` }
-    },
-    'fade-left': {
-        enter: { opacity: 0, transform: `translateX(-100%)` },
-        'enter-to': { opacity: 1, transform: `translateY(0)` },
-        leave: { opacity: 1, transform: `translateY(0)` },
-        'leave-to': { opacity: 0, transform: `translateX(-100%)` }
-    },
-    'fade-right': {
-        enter: { opacity: 0, transform: `translateX(100%)` },
-        'enter-to': { opacity: 1, transform: `translateY(0)` },
-        leave: { opacity: 1, transform: `translateY(0)` },
-        'leave-to': { opacity: 0, transform: `translateX(100%)` }
-    },
-    'slide-up': {
-        enter: { transform: `translateY(100%)` },
-        'enter-to': { transform: `translateY(0)` },
-        leave: { transform: `translateY(0)` },
-        'leave-to': { transform: `translateY(100%)` }
-    },
-    'slide-down': {
-        enter: { transform: `translateY(-100%)` },
-        'enter-to': { transform: `translateY(0)` },
-        leave: { transform: `translateY(0)` },
-        'leave-to': { transform: `translateY(-100%)` }
-    },
-    'slide-left': {
-        enter: { transform: `translateX(-100%)` },
-        'enter-to': { transform: `translateY(0)` },
-        leave: { transform: `translateY(0)` },
-        'leave-to': { transform: `translateX(-100%)` }
-    },
-    'slide-right': {
-        enter: { transform: `translateX(100%)` },
-        'enter-to': { transform: `translateY(0)` },
-        leave: { transform: `translateY(0)` },
-        'leave-to': { transform: `translateX(100%)` }
-    },
-    'zoom-in': {
-        enter: { opacity: 0, transform: `scale(0.8)` },
-        'enter-to': { opacity: 1, transform: `scale(1)` },
-        leave: { opacity: 1, transform: `scale(1)` },
-        'leave-to': { opacity: 0, transform: `scale(0.8)` }
-    },
-    'zoom-out': {
-        enter: { opacity: 0, transform: `scale(1.2)` },
-        'enter-to': { opacity: 1, transform: `scale(1)` },
-        leave: { opacity: 1, transform: `scale(1)` },
-        'leave-to': { opacity: 0, transform: `scale(1.2)` }
-    }
-}
+const animation = uni.requireNativePlugin('animation')
+// nvue动画模块实现细节抽离在外部文件
+import animationMap from './nvue.ani-map.js'
 const getStyle = (name) => animationMap[name]
 // #endif
 
@@ -95,8 +29,8 @@ export default {
 		// #ifndef APP-NVUE
 		// vue版本的组件进场处理
 		vueEnter() {
-			// 动画进入时的类名
-			cosnt classNames = getClassNames(this.mode);
+			// // 动画进入时的类名
+			const classNames = getClassNames(this.mode);
 			// 定义状态和发出动画进入前事件
 			this.status = 'enter';
 			this.$emit('before-enter');
@@ -147,13 +81,13 @@ export default {
 		// nvue版本动画进场
 		nvueEnter() {
 			// 获得样式的名称
-			const currentStyle = getStyle(this.name);
+			const currentStyle = getStyle(this.mode);
 			// 组件动画状态和发出事件
 			this.status = 'enter'
 			this.$emit('before-enter')
 			// 展示生成组件元素
 			this.inited = true
-			this.display = true
+			this.display = true 
 			// 合并样式
 			this.viewStyle = Object.assign({}, this.viewStyle, currentStyle.enter)
 			Promise.resolve()
@@ -161,12 +95,12 @@ export default {
 				.then(() => {
 					// 组件开始进入前的事件
 					this.$emit('enter')
-					// nvue的transition动画模块需要通过ref调用组件
+					// nvue的transition动画模块需要通过ref调用组件，注意此处的ref不同于vue的this.$refs['u-ani']用法
 					// 此模块具体用法，可参考：https://weex.apache.org/zh/docs/modules/animation.html#transition
 					animation.transition(this.$refs['u-ani'].ref, {
 						styles: currentStyle['enter-to'],
 						duration: this.duration,
-						timingFunction: 'ease',
+						timingFunction: this.timingFunction,
 						needLayout: false,
 						delay: 0
 					}, () => {
@@ -180,7 +114,7 @@ export default {
 		    if (!this.display) {
 		        return
 		    }
-		    const currentStyle = getStyle(this.name)
+		    const currentStyle = getStyle(this.mode)
 			// 定义状态和事件
 		    this.status = 'leave'
 		    this.$emit('before-leave')
@@ -193,10 +127,10 @@ export default {
 		            this.transitionEnded = false
 					// 动画正在离场的状态
 		            this.$emit('leave-to')
-		            animation.transition(this.$refs['ani'].ref, {
+		            animation.transition(this.$refs['u-ani'].ref, {
 		                styles: currentStyle['leave-to'],
 		                duration: this.duration,
-		                timingFunction: 'ease',
+		                timingFunction: this.timingFunction,
 		                needLayout: false,
 		                delay: 0
 		            }, () => {
@@ -217,7 +151,7 @@ export default {
 				this.display = false
 				// #ifdef APP-NVUE
 				this.inited = false
-				// #endif
+				// #endif  
 			}
 		}
 	}

@@ -1,0 +1,15 @@
+<template>
+	<div>
+		<u-loading-icon text="你好" vertical></u-loading-icon>
+	</div>
+</template>
+
+<script>
+	export default {
+		
+	}
+</script>
+
+<style>
+
+</style>

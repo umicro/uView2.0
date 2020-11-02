@@ -96,5 +96,15 @@ export default {
 		mpTips: '链接已复制，请在浏览器打开',
 		lineColor: '',
 		text: ''
+	},
+	
+	// loading-icon加载中图标组件
+	loadingIcon: {
+		color: color['u-tips-color'],
+		vertical: false,
+		mode: 'spinner',
+		size: 30,
+		textSize: 15,
+		text: ''
 	}
 }

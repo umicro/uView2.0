@@ -18,7 +18,7 @@ export default [{
 			title: 'Image 图片',
 			title_en: 'Image',
 		}, {
-			path: '/pages/componentsC/button/index',
+			path: '/pages/componentsA/button/button',
 			icon: 'button',
 			title: 'Button 按钮',
 			title_en: 'Button',
@@ -210,7 +210,7 @@ export default [{
 			title: 'Line 线条',
 			title_en: 'Line',
 		}, {
-			path: '/pages/componentsB/card/index',
+			path: '/pages/componentsA/card/card',
 			icon: 'card',
 			title: 'Card 卡片',
 			title_en: 'Card',

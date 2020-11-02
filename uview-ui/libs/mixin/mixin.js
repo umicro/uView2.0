@@ -80,7 +80,9 @@ module.exports = {
 		// 阻止事件冒泡
 		preventEvent(e) {
 			e && e.stopPropagation && e.stopPropagation()
-		}
+		},
+		// 空操作
+		noop() {},
 	},
 	onReachBottom() {
 		uni.$emit('uOnReachBottom')

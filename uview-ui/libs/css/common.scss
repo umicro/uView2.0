@@ -1,0 +1,113 @@
+// 超出行数，自动显示行尾省略号，最多12行
+@for $i from 1 through 12 {
+	.u-line-#{$i} {
+		/* #ifdef APP-NVUE */
+		// nvue下，可以直接使用lines属性，这是weex特有样式
+		lines: $i;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		/* #endif */
+		
+		/* #ifndef APP-NVUE */
+		// vue下，单行和多行显示省略号需要单独处理
+		@if $i == 1 {
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		} @else {
+			display: -webkit-box;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			word-break: break-all;
+			-webkit-line-clamp: $i;
+			-webkit-box-orient: vertical;
+		}
+		/* #endif */
+	}
+}
+ 
+ 
+// /* #ifdef APP-NVUE */
+// 此处加上!important并非随意乱用，而是因为目前*.nvue页面编译到H5时，
+// App.vue的样式会被uni-app的view元素的自带border属性覆盖，导致无效
+// 综上，这是uni-app的缺陷导致我们为了多端兼容，而必须要加上!important
+// 移动端兼容性较好，直接使用0.5px去实现细边框，不使用伪元素形式实现
+.u-border {
+	border-width: 0.5px!important;
+	border-color: $u-border-color!important; 
+}
+ 
+.u-border-top {
+	border-top-width: 0.5px!important; 
+	border-color: $u-border-color!important; 
+}
+ 
+.u-border-bottom {
+	border-bottom-width: 0.5px!important; 
+	border-color: $u-border-color!important; 
+}
+
+.u-border-top-bottom {
+	border-top-width: 0.5px!important; 
+	border-bottom-width: 0.5px!important; 
+	border-color: $u-border-color!important; 
+}
+// /* #endif */
+ 
+
+/* #ifndef APP-NVUE */
+// .u-border,
+// .u-border-bottom,
+// .u-border-left,
+// .u-border-right,
+// .u-border-top,
+// .u-border-top-bottom {
+// 	position: relative
+// }
+
+// .u-border-bottom:after,
+// .u-border-left:after,
+// .u-border-right:after,
+// .u-border-top-bottom:after,
+// .u-border-top:after,
+// .u-border:after {
+// 	position: absolute;
+// 	box-sizing: border-box;
+// 	-webkit-transform-origin: center;
+// 	transform-origin: center;
+// 	content: " ";
+// 	pointer-events: none;
+// 	top: -50%;
+// 	right: -50%;
+// 	bottom: -50%;
+// 	left: -50%;
+// 	border: 0 solid #eee;
+// 	-webkit-transform: scale(.5);
+// 	transform: scale(.5)
+// }
+
+// .u-border-top:after {
+// 	border-top-width: 1px
+// }
+
+// .u-border-left:after {
+// 	border-left-width: 1px
+// }
+
+// .u-border-right:after {
+// 	border-right-width: 1px
+// }
+
+// .u-border-bottom:after {
+// 	border-bottom-width: 1px
+// }
+
+// .u-border-top-bottom:after {
+// 	border-width: 1px 0
+// }
+
+// .u-border:after {
+// 	border-width: 1px
+// }
+/* #endif */
+

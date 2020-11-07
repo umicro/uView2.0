@@ -63,7 +63,7 @@
 			// 模式选择，circle-圆形，spinner-花朵形，semicircle-半圆形
 			mode: {
 				type: String,
-				default: 'spinner'
+				default: uni.$u.props.loadingIcon.mode
 			},
 			// 图标大小，单位默认px
 			size: {
@@ -92,32 +92,41 @@
 			}
 		},
 		created() {
-			// #ifdef APP-NVUE
-			// nvue下，非spinner类型时才需要旋转，因为nvue的spinner类型，使用了weex的
-			// loading-indicator组件，自带旋转功能
-			this.mode !== 'spinner' && this.startAnimate()
-			// #endif
-		},
-		mounted() {
-		    // #ifdef APP-PLUS
-			// webview的堆栈
-			var pages = getCurrentPages()
-			// 当前页面
-			var page = pages[pages.length - 1]
-			// 当前页面的webview实例
-			var currentWebview = page.$getAppWebview()
-			// 监听webview的显示与隐藏，从而停止或者开始动画(为了性能)
-			currentWebview.addEventListener('hide', () => {
-				this.webviewHide = true
-			})
-			currentWebview.addEventListener('show', () => {
-				this.webviewHide = false
-			})
-		    // #endif
+			this.init()
 		},
 		methods: {
+			init() {
+				// #ifdef APP-NVUE
+				this.nvueAnimate()
+				// #endif
+				// #ifdef APP-PLUS
+				this.addEventListenerToWebview()
+				// #endif
+			},
+			nvueAnimate() {
+				// nvue下，非spinner类型时才需要旋转，因为nvue的spinner类型，使用了weex的
+				// loading-indicator组件，自带旋转功能
+				this.mode !== 'spinner' && this.startAnimate()
+			},
+			// 监听webview的显示与隐藏
+			addEventListenerToWebview() {
+				// webview的堆栈
+				const pages = getCurrentPages()
+				// 当前页面
+				const page = pages[pages.length - 1]
+				// 当前页面的webview实例
+				const currentWebview = page.$getAppWebview()
+				// 监听webview的显示与隐藏，从而停止或者开始动画(为了性能)
+				currentWebview.addEventListener('hide', () => {
+					this.webviewHide = true
+				})
+				currentWebview.addEventListener('show', () => {
+					this.webviewHide = false
+				})
+			},
+			// 执行nvue的animate模块动画
 			startAnimate() {
-				let ani = this.$refs.ani;
+				const ani = this.$refs.ani;
 				animation.transition(ani, {
 					// 进行角度旋转
 					styles: {

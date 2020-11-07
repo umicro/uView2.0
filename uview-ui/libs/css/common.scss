@@ -111,3 +111,23 @@
 // }
 /* #endif */
 
+
+// 去除button的所有默认样式，让其表现跟普通的view、text元素一样
+.u-reset-button {
+	padding: 0;
+	background-color: transparent;
+	/* #ifndef APP-PLUS */
+	font-size: inherit;
+	line-height: inherit;
+	color: inherit;
+	/* #endif */
+	/* #ifdef APP-NVUE */
+	border-width: 0;
+	/* #endif */
+}
+
+/* #ifndef APP-NVUE */
+.u-reset-button::after {
+   border: none;
+}
+/* #endif */

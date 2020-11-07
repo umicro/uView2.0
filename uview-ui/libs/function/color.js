@@ -34,4 +34,4 @@ let color = {
 	borderColor: "#e4e7ed"
 }
 
-export default color;
+export default color

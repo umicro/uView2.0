@@ -47,6 +47,8 @@ import deepClone from './libs/function/deepClone.js'
 import deepMerge from './libs/function/deepMerge.js'
 // 添加单位
 import addUnit from './libs/function/addUnit.js'
+// 添加bem风格类名
+import bem from './libs/function/bem.js'
 
 // 规则检验
 import test from './libs/function/test.js'
@@ -114,6 +116,7 @@ const $u = {
 	throttle,
 	mixin,
 	props,
+	bem,
 }
 
 // $u挂载到uni对象上

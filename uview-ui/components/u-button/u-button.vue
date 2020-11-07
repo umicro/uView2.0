@@ -1,15 +1,20 @@
 <template>
 	<button 
 		hover-class="u-button--active"  
-		class="u-button" 
+		class="u-button u-reset-button" 
 		:lang="lang"
 		@tap="clickHandler"
+		:class="bemClass"
 	>
 		<block v-if="loading">
-			
+			<u-loading-icon :mode="loadMode" :size="loadSize"></u-loading-icon>
+			<text class="u-button__loading-text">{{ loadingText }}</text>
 		</block>
 		<block v-else>
-			
+			<u-icon v-if="icon"></u-icon>
+			<slot>
+				<text class="u-button__text">{{text}}</text>
+			</slot>
 		</block>
 	</button>
 </template>
@@ -128,10 +133,31 @@ export default {
 		hoverStayTime: {
 			type: [String, Number],
 			default: 150
+		},
+		// 按钮文字，之所以通过props传入，是因为slot传入的话
+		// nvue中无法控制文字的样式
+		text: {
+			type: [String, Number],
+			default: ''
+		},
+		icon: {
+			type: String,
+			default: ''
 		}
 	},
+	mixins: [uni.$u.mixin],
 	data() {
 		return {};
+	},
+	computed: {
+		bemClass() {
+			return this.bem('button', ['type'], ['disabled'])
+		},
+		
+	},
+	created() {
+		// this.$u.bem('button', ['primary'], ['disabled'])
+		// this.bem('button', ['primary'], ['disabled'])
 	},
 	methods: {
 		clickHandler() {
@@ -139,9 +165,119 @@ export default {
 			if(!this.disabled && !this.loading) {
 				this.$emit('click');
 			}
-		}
+		},
 	}
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+	@import "../../libs/css/components.scss";
+	
+	.u-button {
+		height: 44px;
+		position: relative;
+		align-items: center;
+		justify-content: center;
+		@include flex;
+		/* #ifndef APP-NVUE */
+		box-sizing: border-box;
+		/* #endif */
+		
+		/* #ifndef APP-NVUE */
+		// nvue下hover-class无效
+		&:before {
+		    position: absolute;
+		    top: 50%;
+		    left: 50%;
+		    width: 100%;
+		    height: 100%;
+		    border: inherit;
+		    border-radius: inherit;
+		    transform: translate(-50%, -50%);
+		    opacity: 0;
+		    content: " ";
+		    background-color: #000;
+		    border-color: #000;
+		}
+		
+		&--active {
+			&:before {
+			    opacity: .15
+			}
+		}
+		/* #endif */
+		
+		&__text {
+			font-size: 15px;
+		}
+		
+		&--large {
+		    width: 100%;
+		    height: 50px;
+		}
+		
+		&--normal {
+		    padding: 0 15px;
+		    font-size: 14px;
+		}
+		
+		&--small {
+			/* #ifndef APP-NVUE */
+			min-width: 60px;
+			/* #endif */
+		    height: 30px;
+		    padding: 0 8px;
+		    font-size: 12px;
+		}
+		
+		&--mini {
+		    height: 22px;
+		    font-size: 10px;
+			/* #ifndef APP-NVUE */
+			min-width: 50px;
+			display: inline-block;
+			/* #endif */
+		}
+		
+		&--default {
+		    color: #323233;
+		    background-color: #fff;
+			border-color: #ebedf0;
+			border-width: 1px;
+			border-style: solid;
+		}
+		
+		&--primary {
+		    color: #fff;
+		    background-color: #07c160;
+			border-color: #07c160;
+			border-width: 1px;
+			border-style: solid;
+		}
+		
+		&--info {
+		    color: #fff;
+		    background-color: #1989fa;
+			border-color: #1989fa;
+			border-width: 1px;
+			border-style: solid;
+		}
+		
+		&--danger {
+		    color: #fff;
+		    background-color: #ee0a24;
+			border-color: #ee0a24;
+			border-width: 1px;
+			border-style: solid;
+		}
+		
+		&--warning {
+		    color: #fff;
+		    background-color: #ff976a;
+			border-color: #ff976a;
+			border-width: 1px;
+			border-style: solid;
+		}
+		
+	}
+</style>

@@ -32,6 +32,31 @@ module.exports = {
 		// 所以这里通过computed计算属性将其附加到this.$u上，就可以在模板或者js中使用this.$u.xxx
 		$u() {
 			return uni.$u;
+		},
+		/**
+		 * 生成bem规则类名
+		 * 由于微信小程序，H5，nvue之间绑定class的差异，无法通过:class="[bem()]"的形式进行同用
+		 * 故采用如下折中做法，最后返回的是数组，类似['a', 'b', 'c']的形式
+		 * @param {String} name 组件名称
+		 * @param {Array} fixed 一直会存在的类名
+		 * @param {Array} change 会根据变量值为true或者false而出现或者隐藏的类名
+		 * @return String
+		 */
+		bem() {
+			return function(name, fixed, change) {
+				// 类名前缀
+				const prefix = `u-${name}--`
+				const classes = {}
+				fixed.map(item => {
+					// 这里的类名，会一直存在
+					classes[prefix + this[item]] = true 
+				})
+				change.map(item => {
+					// 这里的类名，会根据this[item]的值为true或者false，而进行添加或者移除某一个类
+					this[item] ? (classes[prefix + item] = this[item] ) : (delete classes[prefix + item])
+				})
+				return Object.keys(classes)
+			}
 		}
 	},
 	methods: {

@@ -51,10 +51,14 @@ class Router {
 			// 如果options为字符串，则为route(url, params)的形式
 			mergeConfig.url = this.mixinParam(options, params)
 			mergeConfig.type = 'navigateTo'
+			// 合并参数
+			mergeConfig.params = params
 		} else {
 			mergeConfig = uni.$u.deepClone(options, this.config)
 			// 否则正常使用mergeConfig中的url和params进行拼接
 			mergeConfig.url = this.mixinParam(options.url, options.params)
+			// 合并参数
+			mergeConfig.params = options.params
 		}
 		// 合并内外部参数
 		mergeConfig = uni.$u.deepMerge(this.config, mergeConfig)

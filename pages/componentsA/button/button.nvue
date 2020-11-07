@@ -1,12 +1,25 @@
 <template>
 	<div>
-		<button type="primary">按钮</button>
+		<u-button text="按钮1" size="normal"></u-button>
+		<u-button text="按钮1" size="normal" :type="type" :disabled="disabled"></u-button>
+		<button style="background-color: #19BE6B;">原生按钮</button>
 	</div>
 </template>
 
 <script>
 	export default {
-		
+		data() {
+			return {
+				type: 'default',
+				disabled: false
+			}
+		},
+		onLoad() {
+			setTimeout(()=> {
+				this.type = 'primary'
+				this.disabled = true
+			}, 2000)
+		}
 	}
 </script>
 

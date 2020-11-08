@@ -99,6 +99,7 @@ const $u = {
 	'delete': http.delete,
 	hexToRgb: colorGradient.hexToRgb,
 	rgbToHex: colorGradient.rgbToHex,
+	colorToRgba: colorGradient.colorToRgba,
 	test,
 	random,
 	deepClone,

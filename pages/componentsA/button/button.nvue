@@ -1,17 +1,62 @@
 <template>
-	<div>
-		<u-button text="按钮1" size="normal"></u-button>
-		<u-button text="按钮1" size="normal" :type="type" :disabled="disabled"></u-button>
-		<button style="background-color: #19BE6B;">原生按钮</button>
-	</div>
+	<view class="u-page">
+		<view class="">
+			普通按钮
+		</view>
+		<u-button text="成功按钮" size="normal"  type="success"></u-button>
+		<u-button text="默认按钮" size="normal"  type="info"></u-button>
+		<u-button text="危险按钮" size="normal"  type="error"></u-button>
+		<u-button text="主要按钮" size="normal"  type="primary"></u-button>
+		<u-button text="警告按钮" size="normal"  type="warning"></u-button>
+		<view class="">
+			镂空按钮
+		</view>
+		<u-button text="镂空按钮" size="normal"  type="success" plain></u-button>
+		<u-button text="镂空按钮" size="normal"  type="info" plain></u-button>
+		<u-button text="镂空按钮" size="normal"  type="error" plain></u-button>
+		<u-button text="镂空按钮" size="normal"  type="primary" plain></u-button>
+		<u-button text="镂空按钮" size="normal"  type="warning" plain></u-button>
+		<view class="">
+			细边按钮
+		</view>
+		<u-button text="细边按钮" size="normal"  type="success" plain hairline></u-button>
+		<u-button text="细边按钮" size="normal"  type="info" plain hairline></u-button>
+		<u-button text="细边按钮" size="normal"  type="error" plain hairline></u-button>
+		<u-button text="细边按钮" size="normal"  type="primary" plain hairline></u-button>
+		<u-button text="细边按钮" size="normal"  type="warning" plain hairline></u-button>
+		<view class="">
+			禁用按钮
+		</view>
+		<u-button text="禁用按钮" size="normal"  type="success" disabled></u-button>
+		<u-button text="禁用按钮" size="normal"  type="primary" disabled></u-button>
+		<view class="">
+			加载中
+		</view>
+		<u-button text="加载中" size="normal"  color="#7232dd" plain type="success" loading loadingMode="spinner" loadingText=""></u-button>
+		<u-button text="加载中" size="normal"  icon="map" type="success" loading loadingMode="spinner" plain></u-button>
+		<u-button text="加载中" size="normal"  type="error" loading loadingMode="circle"></u-button>
+		<u-button text="加载中" size="normal"  type="primary" loading loadingMode="semicircle"></u-button>
+		<view class="">
+			按钮图标
+		</view>  
+		<u-button size="normal"  type="success"  color="#7232dd" plain icon="map"></u-button>
+		<u-button icon="map" text="加载中" size="normal"  type="success"></u-button>
+		<u-button text="加载中" size="normal"  type="error" plain icon="map"></u-button>
+		<view class="">
+			自定义颜色
+		</view>
+		<u-button icon="map" text="加载中" color="#7232dd" size="normal"></u-button>
+		<u-button icon="map" text="加载中" size="normal" color="#7232dd" plain></u-button>
+		<u-button icon="map" text="加载中" size="normal" color="linear-gradient(to right, #4bb0ff, #6149f6)"></u-button>
+	</view>
 </template>
 
 <script>
 	export default {
 		data() {
 			return {
-				type: 'default',
-				disabled: false
+				// type: 'default',
+				// disabled: false
 			}
 		},
 		onLoad() {
@@ -23,6 +68,8 @@
 	}
 </script>
 
-<style>
-
+<style lang="scss">
+	.u-page {
+		padding: 12px;
+	}
 </style>

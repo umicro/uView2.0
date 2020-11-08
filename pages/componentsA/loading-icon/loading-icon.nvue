@@ -1,6 +1,8 @@
 <template>
 	<div>
-		<u-loading-icon text="你好" vertical></u-loading-icon>
+		<u-loading-icon text="你好" ></u-loading-icon>
+		<u-loading-icon text="你好"  mode="semicircle"></u-loading-icon>
+		<u-loading-icon text="你好"  mode="circle"></u-loading-icon>
 	</div>
 </template>
 

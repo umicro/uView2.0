@@ -227,7 +227,7 @@
 	$u-icon-success: $u-success!default;
 	$u-icon-info: $u-info!default;
 	$u-icon-warning: $u-warning!default;
-	$u-icon-error: $u-danger!default;
+	$u-icon-error: $u-error!default;
 	
 	/* #ifndef APP-NVUE */
 	// 非nvue下加载字体

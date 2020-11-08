@@ -40,7 +40,7 @@ module.exports = {
 		 * @param {String} name 组件名称
 		 * @param {Array} fixed 一直会存在的类名
 		 * @param {Array} change 会根据变量值为true或者false而出现或者隐藏的类名
-		 * @return String
+		 * @return Array
 		 */
 		bem() {
 			return function(name, fixed, change) {

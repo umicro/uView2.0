@@ -103,8 +103,40 @@ export default {
 		color: color['u-tips-color'],
 		vertical: false,
 		mode: 'spinner',
-		size: 30,
+		size: 24,
 		textSize: 15,
-		text: ''
+		text: '',
+		type: ''
+	},
+	
+	// button组件
+	button: {
+		hairline: false,
+		type: 'info',
+		size: 'normal',
+		shape: 'square',
+		plain: false,
+		disabled: false,
+		loading: false,
+		loadingText: '',
+		loadingMode: 'spinner',
+		loadingSize: 18,
+		openType: '',
+		formType: '',
+		appParameter: '',
+		hoverStopPropagation: '',
+		lang: 'en',
+		sessionFrom: '',
+		sendMessageTitle: '',
+		sendMessagePath: '',
+		sendMessageImg: '',
+		showMessageCard: '',
+		dataName: '',
+		throttleTime: 0,
+		hoverStartTime: '',
+		hoverStayTime: '',
+		text: '',
+		icon: '',
+		color: ''
 	}
 }

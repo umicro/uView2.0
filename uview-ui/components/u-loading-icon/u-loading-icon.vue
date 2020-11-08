@@ -12,7 +12,10 @@
 				color: color,
 				width: $u.addUnit(size),
 				height: $u.addUnit(size),
-				borderTopColor: color
+				borderTopColor: color,
+				borderBottomColor: otherBorderColor,
+				borderLeftColor: otherBorderColor,
+				borderRightColor: otherBorderColor,
 			}"
 		>
 			<block v-if="mode === 'spinner'">
@@ -35,6 +38,7 @@
 			</block>
 		</view>
 		<text
+			v-if="text"
 			class="u-loading-icon__text"
 			:style="{
 				fontSize: $u.addUnit(textSize),
@@ -91,6 +95,12 @@
 				webviewHide: false, // 监听webview的状态，如果隐藏了页面，则停止动画，以免性能消耗
 			}
 		},
+		computed: {
+			// 当为circle类型时，给其另外三边设置一个rgba透明度值
+			otherBorderColor() {
+				return this.mode === 'circle' ? this.$u.colorToRgba(this.color, '0.25') : 'transparent'
+			}
+		},
 		created() {
 			this.init()
 		},
@@ -133,7 +143,7 @@
 						transform: `rotate(${this.aniAngel}deg)`,
 						transformOrigin: 'center center'
 					},
-					duration: 800,
+					duration: 1000,
 					timingFunction: 'linear',
 					delay: 0
 				}, () => {
@@ -174,7 +184,7 @@
 			box-sizing: border-box;
 			max-width: 100%;
 			max-height: 100%;
-			animation: u-rotate .8s linear infinite;
+			animation: u-rotate 1s linear infinite;
 			/* #endif */
 		}
 		
@@ -185,6 +195,7 @@
 			border-top-left-radius: 100px;
 			border-bottom-left-radius: 100px;
 			border-bottom-right-radius: 100px;
+			border-style: solid;
 		}
 		
 		&__spinner--circle {
@@ -197,6 +208,7 @@
 			border-right-color: #e5e5e5;
 			border-bottom-color: #e5e5e5;
 			border-left-color: #e5e5e5;
+			border-style: solid;
 		}
 		
 		&--vertical {

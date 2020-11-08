@@ -1,0 +1,58 @@
+// nvue下hover-class无效
+.u-button {
+	&:before {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 100%;
+		height: 100%;
+		border: inherit;
+		border-radius: inherit;
+		transform: translate(-50%, -50%);
+		opacity: 0;
+		content: " ";
+		background-color: #000;
+		border-color: #000;
+	}
+	
+	&--active {
+		&:before {
+			opacity: .15
+		}
+	}
+	
+	&__icon+&__text:not(:empty),
+	&__loading-text {
+		margin-left: 4px
+	}
+	
+	&--plain {
+		&.u-button--primary {
+			color: $u-primary;
+		}
+	}
+	
+	&--plain {
+		&.u-button--info {
+			color: $u-info;
+		}
+	}
+	
+	&--plain {
+		&.u-button--success {
+			color: $u-success;
+		}
+	}
+	
+	&--plain {
+		&.u-button--error {
+			color: $u-error;
+		}
+	}
+	
+	&--plain {
+		&.u-button--warning {
+			color: #ff976a;
+		}
+	}
+}

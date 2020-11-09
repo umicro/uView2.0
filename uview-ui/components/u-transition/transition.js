@@ -95,9 +95,9 @@ export default {
 				.then(() => {
 					// 组件开始进入前的事件
 					this.$emit('enter')
-					// nvue的transition动画模块需要通过ref调用组件，注意此处的ref不同于vue的this.$refs['u-ani']用法
+					// nvue的transition动画模块需要通过ref调用组件，注意此处的ref不同于vue的this.$refs['u-transition']用法
 					// 此模块具体用法，可参考：https://weex.apache.org/zh/docs/modules/animation.html#transition
-					animation.transition(this.$refs['u-ani'].ref, {
+					animation.transition(this.$refs['u-transition'].ref, {
 						styles: currentStyle['enter-to'],
 						duration: this.duration,
 						timingFunction: this.timingFunction,
@@ -127,14 +127,14 @@ export default {
 		            this.transitionEnded = false
 					// 动画正在离场的状态
 		            this.$emit('leave-to')
-		            animation.transition(this.$refs['u-ani'].ref, {
+		            animation.transition(this.$refs['u-transition'].ref, {
 		                styles: currentStyle['leave-to'],
 		                duration: this.duration,
 		                timingFunction: this.timingFunction,
 		                needLayout: false,
 		                delay: 0
 		            }, () => {
-		                this.onTransitionEnd()
+		                this.onTransitionEnd() 
 		            })
 		        })
 		        .catch(() => {})

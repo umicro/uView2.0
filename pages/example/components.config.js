@@ -215,7 +215,7 @@ export default [{
 			title: 'Card 卡片',
 			title_en: 'Card',
 		}, {
-			path: '/pages/componentsC/mask/index',
+			path: '/pages/componentsA/overlay/overlay',
 			icon: 'mask',
 			title: 'Mask 遮罩层',
 			title_en: 'Mask',

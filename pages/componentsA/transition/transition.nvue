@@ -1,6 +1,6 @@
 <template>
 	<view class="">
-		<u-transition mode="slide-down" :show="show" :custom-style="style">
+		<u-transition mode="fade" :show="show" :custom-style="style">
 			<view class="transition"></view>
 		</u-transition>
 	</view>

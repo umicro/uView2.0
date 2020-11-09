@@ -3,6 +3,7 @@
 		<view class="">
 			普通按钮
 		</view>
+		<block>33</block>
 		<u-button text="成功按钮" size="normal"  type="success"></u-button>
 		<u-button text="默认按钮" size="normal"  type="info"></u-button>
 		<u-button text="危险按钮" size="normal"  type="error"></u-button>
@@ -32,22 +33,22 @@
 		<view class="">
 			加载中
 		</view>
-		<u-button text="加载中" size="normal"  color="#7232dd" plain type="success" loading loadingMode="spinner" loadingText=""></u-button>
-		<u-button text="加载中" size="normal"  icon="map" type="success" loading loadingMode="spinner" plain></u-button>
-		<u-button text="加载中" size="normal"  type="error" loading loadingMode="circle"></u-button>
-		<u-button text="加载中" size="normal"  type="primary" loading loadingMode="semicircle"></u-button>
+		<u-button loadingText="加载中" size="normal"  color="#7232dd" plain type="success" loading loadingMode="spinner"></u-button>
+		<u-button loadingText="加载中" size="normal"  icon="map" type="success" loading loadingMode="spinner" plain></u-button>
+		<u-button loadingText="加载中" size="normal"  type="error" loading loadingMode="circle"></u-button>
+		<u-button loadingText="加载中" size="normal"  type="primary" loading loadingMode="semicircle"></u-button>
 		<view class="">
 			按钮图标
 		</view>  
 		<u-button size="normal"  type="success"  color="#7232dd" plain icon="map"></u-button>
-		<u-button icon="map" text="加载中" size="normal"  type="success"></u-button>
-		<u-button text="加载中" size="normal"  type="error" plain icon="map"></u-button>
+		<u-button icon="map" text="按钮图标" size="normal"  type="success"></u-button>
+		<u-button text="按钮图标" size="normal"  type="error" plain icon="map"></u-button>
 		<view class="">
 			自定义颜色
 		</view>
-		<u-button icon="map" text="加载中" color="#7232dd" size="normal"></u-button>
-		<u-button icon="map" text="加载中" size="normal" color="#7232dd" plain></u-button>
-		<u-button icon="map" text="加载中" size="normal" color="linear-gradient(to right, #4bb0ff, #6149f6)"></u-button>
+		<u-button icon="map" text="自定义颜色" color="#7232dd" size="normal"></u-button>
+		<u-button icon="map" text="自定义颜色" size="normal" color="#7232dd" plain></u-button>
+		<u-button icon="map" text="自定义颜色" size="normal" color="linear-gradient(to right, #4bb0ff, #6149f6)"></u-button>
 	</view>
 </template>
 

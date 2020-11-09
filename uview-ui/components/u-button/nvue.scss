@@ -1,0 +1,35 @@
+.u-button {
+	
+	&--active {
+		opacity: 0.75;
+	}
+	
+	&__loading-text {
+		margin-left: 4px;
+	}
+	
+	&__text,
+	&__loading-text {
+		color: #FFFFFF;
+	}
+	
+	&__text--plain--error {
+		color: $u-error;
+	}
+	
+	&__text--plain--warning {
+		color: $u-warning;
+	}
+	
+	&__text--plain--success{
+		color: $u-success;
+	}
+	
+	&__text--plain--info {
+		color: $u-info;
+	}
+	
+	&__text--plain--primary {
+		color: $u-primary;
+	}
+}

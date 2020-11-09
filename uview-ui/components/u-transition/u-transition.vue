@@ -2,7 +2,7 @@
 	<view 
 		v-if="inited"
 		class="u-transition" 
-		ref="u-ani" 
+		ref="u-transition" 
 		@tap.stop.prevent="clickHandler"
 		:class="classes"
 		:style="[mergeStyle]"
@@ -31,13 +31,6 @@
 			duration: {
 				type: [String, Number],
 				default: uni.$u.props.transition.duration
-			},
-			// 自定义样式，对象形式
-			customStyle: {
-				type: Object, 
-				default() {
-					return uni.$u.props.transition.customStyle
-				}
 			},
 			// 使用的动画过渡函数
 			timingFunction: {

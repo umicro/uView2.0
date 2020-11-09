@@ -24,16 +24,16 @@
 	 :style="[baseColor, customStyle]"
 	 @tap="clickHandler"
 	 :class="bemClass">
-		<block v-if="loading">
+		<template v-if="loading">
 			<u-loading-icon :mode="loadingMode" :size="loadingSize" :color="loadingColor"></u-loading-icon>
 			<text class="u-button__loading-text">{{ loadingText }}</text>
-		</block>
-		<block v-else>
+		</template>
+		<template v-else>
 			<u-icon v-if="icon" :name="icon" :color="iconColor"></u-icon>
 			<slot>
 				<text class="u-button__text">{{text}}</text>
 			</slot>
-		</block>
+		</template>
 	</button>
 	<!-- #endif -->
 
@@ -41,20 +41,21 @@
 	<view
 	 :hover-start-time="Number(hoverStartTime)"
 	 :hover-stay-time="Number(hoverStayTime)"
-	 hover-class="u-button--active"
 	 class="u-button"
+	 hover-class="u-button--active"
 	 :style="[baseColor, customStyle]"
-	 @tap="clickHandler">
-		<block v-if="loading">
+	 @tap="clickHandler"
+	 :class="bemClass">
+		<template v-if="loading">
 			<u-loading-icon :mode="loadingMode" :size="loadingSize" :color="loadingColor"></u-loading-icon>
-			<text class="u-button__loading-text">{{ loadingText }}</text>
-		</block>
-		<block v-else>
-			<u-icon v-if="icon" :name="icon" :color="iconColor"></u-icon>
-			<slot>
-				<text class="u-button__text">{{text}}</text>
-			</slot>
-		</block>
+			<text class="u-button__loading-text" :style="[nvueTextStyle]" :class="[plain && `u-button__text--plain--${type}`]">{{ loadingText }}</text>
+		</template>
+		<template v-else>
+			<u-icon v-if="icon" :name="icon" :color="iconColor" size="18"></u-icon>
+			<text class="u-button__text" :style="[{
+				marginLeft: icon ? '2px' : 0
+			}, nvueTextStyle]" :class="[plain && `u-button__text--plain--${type}`]">{{text}}</text>
+		</template>
 	</view>
 	<!-- #endif -->
 </template>
@@ -258,6 +259,18 @@
 					}
 				}
 				return style
+			},
+			// nvue版本按钮的字体不会继承父组件的颜色，需要对每一个text组件进行单独的设置
+			nvueTextStyle() {
+				let style = {}
+				// 针对自定义了color颜色的情况，镂空状态下，就是用自定义的颜色
+				if (this.type === 'info') {
+					style.color = '#323233';
+				}
+				if(this.color) {
+					style.color = this.plain ? this.color : 'white'
+				}
+				return style
 			}
 		},
 		created() {
@@ -296,6 +309,10 @@
 	/* #ifndef APP-NVUE */
 	@import "./vue.scss";
 	/* #endif */
+	
+	/* #ifdef APP-NVUE */
+	@import "./nvue.scss";
+	/* #endif */
 
 	.u-button {
 		height: 44px;
@@ -306,9 +323,15 @@
 		/* #ifndef APP-NVUE */
 		box-sizing: border-box;
 		/* #endif */
+		flex-direction: row;
 
 		&__text {
 			font-size: 15px;
+		}
+		
+		&__loading-text {
+			font-size: 15px;
+			margin-left: 4px;
 		}
 
 		&--large {
@@ -396,7 +419,10 @@
 		}
 
 		&--square {
-			border-radius: 3px
+			border-bottom-left-radius: 3px;
+			border-bottom-right-radius: 3px;
+			border-top-left-radius: 3px;
+			border-top-right-radius: 3px;
 		}
 
 		&__icon {

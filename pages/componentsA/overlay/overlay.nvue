@@ -1,0 +1,49 @@
+<template>
+	<view>
+		<u-button text="打开Overlay" @click="show = !show"></u-button>
+		<u-overlay :show="show" @click="clickHandler"></u-overlay>
+		<u-button text="嵌入内容" @click="showSlot = !showSlot">
+		</u-button>
+		<u-overlay :show="showSlot" @click="showSlot = !showSlot">
+			<view class="overlay-wrap">
+				<view class="overlay-wrap__box"></view>
+			</view>
+		</u-overlay>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				show: false,
+				showSlot: true
+			}
+		},
+		onLoad() {
+			// this.show = true;
+		},
+		methods: {
+			clickHandler() {
+				this.show = !this.show;
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+	.overlay-wrap {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		justify-content: center;
+		align-items: center;
+		flex: 1;
+		
+		&__box {
+			width: 100px;
+			height: 100px;
+			background-color: $u-primary;
+		}
+	}
+</style>

@@ -16,6 +16,7 @@
 				borderBottomColor: otherBorderColor,
 				borderLeftColor: otherBorderColor,
 				borderRightColor: otherBorderColor,
+				'animation-timing-function': mode === 'semicircle' || mode === 'circle' ? timingFunction : 'linear'
 			}"
 		>
 			<block v-if="mode === 'spinner'">
@@ -83,6 +84,11 @@
 			text: {
 				type: [String, Number],
 				default: uni.$u.props.loadingIcon.text
+			},
+			// 动画模式
+			timingFunction: {
+				type: String,
+				default: uni.$u.props.loadingIcon.timingFunction
 			}
 		},
 		mixins: [uni.$u.mixin],
@@ -144,7 +150,7 @@
 						transformOrigin: 'center center'
 					},
 					duration: 1000,
-					timingFunction: 'linear',
+					timingFunction: this.timingFunction,
 					delay: 0
 				}, () => {
 					// 每次增加360deg，为了让其重新旋转一周

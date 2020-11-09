@@ -1,0 +1,24 @@
+<template>
+	<view>
+		<u-loading-page loadingText="uView UI" :loading="loading"></u-loading-page>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				loading: true
+			}
+		},
+		onLoad() {
+			setTimeout(() => {
+				this.loading = false
+			}, 3000)
+		}
+	}
+</script>
+
+<style>
+
+</style>

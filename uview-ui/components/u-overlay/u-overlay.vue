@@ -64,6 +64,8 @@
 </script>
 
 <style lang="scss">
+	@import "../../libs/css/components.scss";
+	
 	.u-overlay {
 		position: fixed;
 		top: 0;

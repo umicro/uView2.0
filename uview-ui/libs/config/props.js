@@ -106,7 +106,8 @@ export default {
 		size: 24,
 		textSize: 15,
 		text: '',
-		type: ''
+		type: '',
+		timingFunction: 'ease-in-out'
 	},
 	
 	// button组件

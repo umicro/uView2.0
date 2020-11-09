@@ -42,6 +42,16 @@ export default [{
 			icon: 'tag',
 			title: 'Tag 标签',
 			title_en: 'Tag',
+		}, {
+			path: '/pages/componentsA/loading-icon/loading-icon',
+			icon: 'loading-icon',
+			title: 'Loading 加载动画',
+			title_en: 'loading Icon',
+		}, {
+			path: '/pages/componentsA/loading-page/loading-page',
+			icon: 'loading-page',
+			title: 'Loading page 加载页',
+			title_en: 'Loading Page',
 		}]
 	},
 	{
@@ -379,11 +389,6 @@ export default [{
 			icon: 'link',
 			title: 'Link 超链接',
 			title_en: 'Link',
-		}, {
-			path: '/pages/componentsB/loading/index',
-			icon: 'loading',
-			title: 'Loading 加载动画',
-			title_en: 'Loading',
 		}]
 	},
 ]

@@ -1,6 +1,9 @@
 <template>
 	<view>
-		<u-loading-page loadingText="uView UI" :loading="loading"></u-loading-page>
+		<u-button @click="loading = !loading" type="primary" text="加载"></u-button>
+		<u-loading-page loadingText="uView UI" :loading="loading">
+			<n-image src="/static/uview/common/gray-logo.png" width="125" height="25"></n-image>
+		</u-loading-page>
 	</view>
 </template>
 

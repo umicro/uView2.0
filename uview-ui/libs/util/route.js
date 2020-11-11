@@ -4,17 +4,17 @@
  */
 
 class Router {
-	// 原始属性定义
-	config = {
-		type: 'navigateTo',
-		url: '',
-		delta: 1, // navigateBack页面后退时,回退的层数
-		params: {}, // 传递的参数
-		animationType: 'pop-in', // 窗口动画,只在APP有效
-		animationDuration: 300, // 窗口动画持续时间,单位毫秒,只在APP有效
-	}
-
 	constructor() {
+		// 原始属性定义
+		this.config = {
+			type: 'navigateTo',
+			url: '',
+			delta: 1, // navigateBack页面后退时,回退的层数
+			params: {}, // 传递的参数
+			animationType: 'pop-in', // 窗口动画,只在APP有效
+			animationDuration: 300, // 窗口动画持续时间,单位毫秒,只在APP有效
+			intercept: false, // 是否需要拦截
+		}
 		// 因为route方法是需要对外赋值给另外的对象使用，同时route内部有使用this，会导致route失去上下文
 		// 这里在构造函数中进行this绑定
 		this.route = this.route.bind(this)
@@ -51,15 +51,17 @@ class Router {
 			// 如果options为字符串，则为route(url, params)的形式
 			mergeConfig.url = this.mixinParam(options, params)
 			mergeConfig.type = 'navigateTo'
-			// 合并参数
-			mergeConfig.params = params
 		} else {
 			mergeConfig = uni.$u.deepClone(options, this.config)
 			// 否则正常使用mergeConfig中的url和params进行拼接
 			mergeConfig.url = this.mixinParam(options.url, options.params)
-			// 合并参数
-			mergeConfig.params = options.params
 		}
+		
+		if(params.intercept) {
+			this.config.intercept = params.intercept
+		}
+		// params参数也带给拦截器
+		mergeConfig.params = params
 		// 合并内外部参数
 		mergeConfig = uni.$u.deepMerge(this.config, mergeConfig)
 		

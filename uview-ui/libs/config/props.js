@@ -139,5 +139,14 @@ export default {
 		text: '',
 		icon: '',
 		color: ''
+	},
+	
+	// loading-page组件
+	loadingPage: {
+		loadingText: '正在加载',
+		image: '',
+		loadingMode: 'circle',
+		loading: false,
+		bgColor: '#ffffff'
 	}
 }

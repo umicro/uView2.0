@@ -1,0 +1,53 @@
+<template>
+	<view>
+		<u-button @click="openPopup('top')" text="顶部弹窗"></u-button>
+		<u-button @click="openPopup('bottom')" text="底部弹窗"></u-button>
+		<u-button @click="openPopup('left')" text="左边弹窗"></u-button>
+		<u-button @click="openPopup('right')" text="右边弹窗"></u-button>
+		<u-button @click="openPopup('center')" text="中部弹窗"></u-button>
+		<u-popup :position="position" :show="show" @close="show = !show">
+			<view class="popup">
+				撒旦
+			</view>
+			<view class="popup">
+				撒旦
+			</view>
+			<view class="popup">
+				撒旦
+			</view>
+			<view class="popup">
+				撒旦
+			</view>
+			<view class="popup">
+				撒旦
+			</view>
+			<view class="popup">
+				撒旦
+			</view>
+		</u-popup>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				show: false,
+				position: 'left'
+			}
+		},
+		methods: {
+			openPopup(position) {
+				this.position = position
+				this.show = !this.show
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+.popup {
+	background-color: $u-primary;
+	width: 200px;
+}
+</style>

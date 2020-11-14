@@ -36,7 +36,7 @@
 			timingFunction: {
 				type: String,
 				default: uni.$u.props.transition.timingFunction
-			}
+			},
 		},
 		data() {
 			return {

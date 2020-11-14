@@ -36,6 +36,7 @@ export default {
 			this.$emit('before-enter');
 			// 此处nextTick等待了几十ms，是为了等待元素创建完成
 			Promise.resolve().then(nextTick).then(() => {
+				console.log(Number(new Date()));
 				// 组件正在进入中的事件
 				this.$emit('enter');
 				this.inited = true;
@@ -149,9 +150,7 @@ export default {
 			this.$emit(`after-${this.status}`)
 			if (!this.show && this.display) {
 				this.display = false
-				// #ifdef APP-NVUE
 				this.inited = false
-				// #endif  
 			}
 		}
 	}

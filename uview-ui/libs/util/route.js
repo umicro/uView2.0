@@ -22,11 +22,13 @@ class Router {
 
 	// 判断url前面是否有"/"，如果没有则加上，否则无法跳转
 	addRootPath(url) {
-		return String(url).indexOf('/') >= 0 ? url : `/${url}`
+		return url[0] === '/' ? url : `/${url}`
 	}
 
 	// 整合路由参数
 	mixinParam(url, params) {
+		url = url && this.addRootPath(url)
+		
 		// 使用正则匹配，主要依据是判断是否有"/","?","="等，如“/page/index/index?name=mary"
 		// 如果有url中有get参数，转换后无需带上"?"
 		let query = ''
@@ -64,7 +66,6 @@ class Router {
 		mergeConfig.params = params
 		// 合并内外部参数
 		mergeConfig = uni.$u.deepMerge(this.config, mergeConfig)
-		
 		// 判断用户是否定义了拦截器
 		if (typeof uni.$u.routeIntercept === 'function') {
 			// 定一个promise，根据用户执行resolve(true)或者resolve(false)来决定是否进行路由跳转

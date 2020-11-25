@@ -148,5 +148,15 @@ export default {
 		loadingMode: 'circle',
 		loading: false,
 		bgColor: '#ffffff'
+	},
+	
+	// swipe-action组件
+	swipeAction: {
+		show: 'none',
+		disabled: false,
+		autoClose: false,
+		threshold: 20,
+		leftOptions: [],
+		rightOptions
 	}
 }

@@ -1,11 +1,18 @@
 <template>
-	<view class="u-swipe-action">
-		<slot />
+	<view>
+		<slot></slot>
 	</view>
 </template>
 
 <script>
+	/**
+	 * SwipeAction 滑动操作
+	 * @description 通过滑动触发选项的容器
+	 */
 	export default {
+		data() {
+			return {};
+		},
 		provide() {
 			return {
 				swipeaction: this
@@ -15,25 +22,20 @@
 			this.children = [];
 		},
 		methods: {
-			// 关闭其他所有的展开项
 			closeOther(vm) {
 				if (this.openItem && this.openItem !== vm) {
 					// #ifdef APP-VUE || H5 || MP-WEIXIN
-					// wxs平台设置show为none
 					this.openItem.button.show = 'none'
 					// #endif
 
 					// #ifndef APP-VUE || H5 || MP-WEIXIN
-					// 非wxs平台，用的是close方法
 					this.openItem.close()
 					// #endif
 				}
 				this.openItem = vm
 			}
-		},
-	}
+		}
+	};
 </script>
 
-<style lang="scss">
-
-</style>
+<style></style>

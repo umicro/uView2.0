@@ -2,8 +2,12 @@ export default {
 	data() {
 		return {
 			position: [],
-			button: {},
-			btn: "[]"
+			buttonGroup: [],
+			buttonLeft: {},
+			buttonRight: {},
+			btns: "[]",
+			btnLeft: "[]",
+			btnRight: "[]"
 		}
 	},
 	// computed: {
@@ -15,9 +19,21 @@ export default {
 	// 	}
 	// },
 	watch: {
-		button: {
+		buttonGroup: {
 			handler(newVal) {
-				this.btn = JSON.stringify(newVal)
+				this.btns = JSON.stringify(newVal)
+			},
+			deep: true
+		},
+		buttonLeft: {
+			handler(newVal) {
+				this.btnLeft = JSON.stringify(newVal)
+			},
+			deep: true
+		},
+		buttonRight: { 
+			handler(newVal) {
+				this.btnRight = JSON.stringify(newVal)
 			},
 			deep: true
 		},
@@ -37,7 +53,9 @@ export default {
 		}
 	},
 	created() {
+		// swipeaction值为父组件的this示例，通过inject注入，在u-swipe-action-item中被声明
 		if (this.swipeaction.children !== undefined) {
+			// 将子组件的实例，添加到父组件的数组中，方便后续需要自动关闭时，进行统一管理，实现打开一个，自动关闭其他单元格的“互斥”功能
 			this.swipeaction.children.push(this)
 		}
 	},
@@ -45,6 +63,7 @@ export default {
 		this.init()
 	},
 	beforeDestroy() {
+		// 在组件生命周期销毁时，移除在父组件u-swipe-action的children数组中的本组件的实例
 		this.swipeaction.children.forEach((item, index) => {
 			if (item === this) {
 				this.swipeaction.children.splice(index, 1)
@@ -53,23 +72,28 @@ export default {
 	},
 	methods: {
 		init() {
+			// 为了避免定时器混乱，任何定时器开始之间，都应该先清除该定时器
 			clearTimeout(this.swipetimer)
 			this.swipetimer = setTimeout(() => {
-				this.getButtonSize()
+				// 分别获取按钮组的尺寸
+				this.getButtonGroupSize()
+				this.getLeftButtonSize()
+				this.getRightButtonSize()
 			}, 50)
 		},
 		closeSwipe(e) {
+			// 关闭其他的单元格
 			if (!this.autoClose) return
 			this.swipeaction.closeOther(this)
 		},
 
 		change(e) {
+			// 单元格状态发生改变时，发出事件
 			this.$emit('change', e.open)
-			let show = this.button.show
+			let show = this.buttonGroup.show
 			if (show !== e.open) {
-				this.button.show = e.open
+				this.buttonGroup.show = e.open
 			}
-
 		},
 
 		appTouchStart(e) {
@@ -77,15 +101,15 @@ export default {
 				clientX
 			} = e.changedTouches[0]
 			this.clientX = clientX
-			this.timestamp = new Date().getTime()
+			this.timestamp = Number(new Date())
 		},
 		appTouchEnd(e, index, item, position) {
 			const {
 				clientX
 			} = e.changedTouches[0]
-			// fixed by xxxx 模拟点击事件，解决 ios 13 点击区域错位的问题
+			// 模拟点击事件，解决 ios 13 点击区域错位的问题
 			let diff = Math.abs(this.clientX - clientX)
-			let time = (new Date().getTime()) - this.timestamp
+			let time = Number(new Date()) - this.timestamp
 			if (diff < 40 && time < 300) {
 				this.$emit('click', {
 					content: item,
@@ -94,10 +118,10 @@ export default {
 				})
 			}
 		},
-		getButtonSize() {
+		getButtonGroupSize() {
 			const views = uni.createSelectorQuery().in(this)
 			views
-				.selectAll('.uni-swipe_button-group')
+				.selectAll('.u-swipe__button-group')
 				.boundingClientRect(data => {
 					let show = 'none'
 					if (this.autoClose) {
@@ -105,12 +129,30 @@ export default {
 					} else {
 						show = this.show
 					}
-					this.button = {
+					this.buttonGroup = {
 						data,
 						show
 					}
 				})
 				.exec()
-		}
+		},
+		getLeftButtonSize() {
+			const views = uni.createSelectorQuery().in(this)
+			views
+				.selectAll('.button-hock--left')
+				.boundingClientRect(data => {
+					this.buttonLeft = data
+				})
+				.exec()
+		},
+		getRightButtonSize() {
+			const views = uni.createSelectorQuery().in(this)
+			views
+				.selectAll('.button-hock--right')
+				.boundingClientRect(data => {
+					this.buttonRight = data
+				})
+				.exec()
+		},
 	}
 }

@@ -1,0 +1,370 @@
+var MIN_DISTANCE = 10;
+
+/**
+ * 监听页面内值的变化,主要用于动态开关swipe-action
+ * @param {Object} newValue
+ * @param {Object} oldValue
+ * @param {Object} ownerInstance
+ * @param {Object} instance
+ */
+function sizeReady(newValue, oldValue, ownerInstance, instance) {
+	var state = instance.getState()
+	state.position = JSON.parse(newValue)
+	var buttonPositions = JSON.parse(newValue)
+	if (!buttonPositions || !buttonPositions.data || buttonPositions.data.length === 0) return
+	// leftWidth，rightWidth分别为滑动单元格的左边和右边隐藏的所有按钮的宽度值
+	state.leftWidth = buttonPositions.data[0].width
+	state.rightWidth = buttonPositions.data[1].width
+	// 滑动缺省值
+	state.threshold = instance.getDataset().threshold
+
+	// show的可选值为left，right，none
+	if (buttonPositions.show && buttonPositions.show !== 'none') {
+		// 去设置为left或者right打开状态
+		openState(buttonPositions.show, instance, ownerInstance)
+		return
+	}
+
+	if (state.left) {
+		openState('none', instance, ownerInstance)
+	}
+	resetTouchStatus(instance)
+}
+
+/**
+ * 开始触摸操作
+ * @param {Object} e
+ * @param {Object} ins
+ */
+function touchstart(e, ins) {
+	// wxs事件对象下有一个instance属性，表示当前触发此事件的组件的实例，通过该实例，可以获取相关的dataset，设置样式等信息
+	// https://developers.weixin.qq.com/miniprogram/dev/framework/view/interactive-animation.html
+	const instance = e.instance;
+	let disabled = instance.getDataset().disabled
+	// getState()为一个对象，挂载在instance上，类似组件的data一样，可以存放一些变量，供以后的触发事件中使用
+	const state = instance.getState();
+	// TODO 兼容 app-vue 获取dataset为字符串 , h5 获取 为 undefined 的问题,待框架修复
+	// 在H5中，如果标签的data-xxx为一个变量，且这个变量的类型为boolean的且值为false话，在H5中会导致获取不到xxx
+	disabled = (typeof(disabled) === 'string' ? JSON.parse(disabled) : disabled) || false;
+	if (disabled) return
+	// 开始触摸时移除动画类
+	instance.requestAnimationFrame(function() {
+		instance.removeClass('ani')
+		var owner = ins.selectAllComponents('.button-hock')
+		for (var i = 0; i < owner.length; i++) {
+			owner[i].removeClass('ani');
+		}
+		// 调用逻辑层的方法，关闭其他的swipe action
+		ins.callMethod('closeSwipe')
+	})
+	// 记录上次的位置
+	state.x = state.left || 0
+	// 计算滑动开始位置
+	stopTouchStart(e, ins)
+}
+
+/**
+ * 开始滑动操作
+ * @param {Object} e
+ * @param {Object} ownerInstance
+ */
+function touchmove(e, ownerInstance) {
+	var instance = e.instance;
+	var disabled = instance.getDataset().disabled
+	var state = instance.getState()
+	// TODO 兼容 app-vue 获取dataset为字符串 , h5 获取 为 undefined 的问题,待框架修复
+	disabled = (typeof(disabled) === 'string' ? JSON.parse(disabled) : disabled) || false;
+	if (disabled) return
+	// stopTouchMove会判断当前是水平还是垂直滑动，并且记录到state中，供下一步判断做决策
+	stopTouchMove(e);
+	// 如果为垂直滑动，不展开swipe action
+	if (state.direction !== 'horizontal') {
+		return;
+	}
+
+	if (e.preventDefault) {
+		// 阻止页面滚动，可以保证在滑动过程中，不让页面可以上下滚动，造成不好的体验
+		e.preventDefault()
+	}
+
+	// 当我们手指滑动的过程中，通过transform设置translateX，移动swipe action，从而使隐藏的按钮显示出来
+	move(state.x + state.deltaX, instance, ownerInstance)
+}
+
+/**
+ * 结束触摸操作
+ * @param {Object} e
+ * @param {Object} ownerInstance
+ */
+function touchend(e, ownerInstance) {
+	var instance = e.instance;
+	var disabled = instance.getDataset().disabled
+	var state = instance.getState()
+	// TODO 兼容 app-vue 获取dataset为字符串 , h5 获取 为 undefined 的问题,待框架修复
+	disabled = (typeof(disabled) === 'string' ? JSON.parse(disabled) : disabled) || false;
+
+	if (disabled) return
+	var owner = ownerInstance.selectAllComponents('.button-hock')
+	// 循环为按钮添加ani样式类，主要用于解决用户滑开单元格后，点击自动关闭时让它带有动画收缩效果
+	for (var i = 0; i < owner.length; i++) {
+		owner[i].addClass('ani');
+	}
+	// 滑动过程中触摸结束,通过阙值判断是开启还是关闭
+	// 定时器解决点击按钮，touchend 触发比 click 事件时机早的问题 ，主要是 ios13
+	moveDirection(state.left, instance, ownerInstance)
+}
+
+/**
+ * 设置移动距离
+ * @param {Object} value
+ * @param {Object} instance
+ * @param {Object} ownerInstance
+ */
+function move(value, instance, ownerInstance) {
+	value = value || 0
+	var state = instance.getState()
+	var leftWidth = state.leftWidth
+	var rightWidth = state.rightWidth
+	// 获取可滑动范围
+	state.left = range(value, -rightWidth, leftWidth);
+	instance.requestAnimationFrame(function() {
+		instance.setStyle({
+			// 设置translateX的值，如果是左滑动(隐藏的按钮在右边)，那么state.left的值为负值
+			transform: 'translateX(' + state.left + 'px)',
+			'-webkit-transform': 'translateX(' + state.left + 'px)'
+		})
+		// 折叠按钮动画
+		buttonFold(state.left, instance, ownerInstance)
+	})
+}
+
+/**
+ * 获取范围
+ * @param {Object} num
+ * @param {Object} min
+ * @param {Object} max
+ */
+function range(num, min, max) {
+	return Math.min(Math.max(num, min), max);
+}
+
+
+/**
+ * 移动方向判断
+ * @param {Object} left
+ * @param {Object} value
+ * @param {Object} ownerInstance
+ * @param {Object} ins
+ */
+function moveDirection(left, ins, ownerInstance) {
+	var state = ins.getState()
+	var threshold = state.threshold
+	var position = state.position
+	var isopen = state.isopen || 'none'
+	var leftWidth = state.leftWidth
+	var rightWidth = state.rightWidth
+	if (state.deltaX === 0) {
+		openState('none', ins, ownerInstance)
+		return
+	}
+	// 判断该往哪个方向移动
+	if ((isopen === 'none' && rightWidth > 0 && -left > threshold) || (isopen !== 'none' && rightWidth > 0 && rightWidth +
+			left < threshold)) {
+		// right
+		openState('right', ins, ownerInstance)
+	} else if ((isopen === 'none' && leftWidth > 0 && left > threshold) || (isopen !== 'none' && leftWidth > 0 &&
+			leftWidth - left < threshold)) {
+		// left
+		openState('left', ins, ownerInstance)
+	} else {
+		// default
+		openState('none', ins, ownerInstance)
+	}
+}
+
+
+/**
+ * 开启状态
+ * @param {Boolean} type
+ * @param {Object} ins
+ * @param {Object} ownerInstance
+ */
+function openState(type, ins, ownerInstance) {
+	var state = ins.getState()
+	var position = state.position
+	var leftWidth = state.leftWidth
+	var rightWidth = state.rightWidth
+	var left = ''
+	// 目前是否打开的状态
+	state.isopen = state.isopen ? state.isopen : 'none'
+	switch (type) {
+		// 如果隐藏的按钮在左边，那么意味着为向右滑动才能打开按钮单元格，这时移动的x轴的为正值
+		// 因为对元素来说，坐标轴的原点在元素的左上角
+		case "left":
+			left = leftWidth
+			break
+			// 如果隐藏的按钮在右边，意味着向左互动才能打开单元格，这时移动的x轴的值为负值
+		case "right":
+			left = -rightWidth
+			break
+		default:
+			left = 0
+	}
+
+	// 如果原来的状态，不等于目前需要设置的状态，则修改目前的状态
+	if (state.isopen !== type) {
+		state.throttle = true
+		// change方法为在逻辑层中的方法
+		ownerInstance.callMethod('change', {
+			open: type
+		})
+	}
+
+	// 标记当前的最新状态
+	state.isopen = type
+	// 添加动画类
+	ins.requestAnimationFrame(function() {
+		// 添加ani类，该类为自动打开或者关闭时，执行的动画相关的配置
+		ins.addClass('ani');
+		move(left, ins, ownerInstance)
+	})
+}
+
+
+function getDirection(x, y) {
+	// 通过滑动的绝对值，判断是垂直还是水平滑动，如果在x轴滑动的距离大于y轴，那么认为是朝水平滑动了
+	if (x >= y && x > MIN_DISTANCE) {
+		return 'horizontal';
+	}
+	if (y > x && y > MIN_DISTANCE) {
+		return 'vertical';
+	}
+	return '';
+}
+
+/**
+ * 重置滑动状态
+ * @param {Object} event
+ */
+function resetTouchStatus(instance) {
+	var state = instance.getState();
+	// 重置各项状态值
+	state.direction = '';
+	state.deltaX = 0;
+	state.deltaY = 0;
+	state.offsetX = 0;
+	state.offsetY = 0;
+}
+
+/**
+ * 设置滑动开始位置
+ * @param {Object} event
+ */
+function stopTouchStart(event) {
+	const instance = event.instance;
+	const state = instance.getState();
+	// 重置滑动状态，清除上一次滑动保存在state中的各个变量的值
+	resetTouchStatus(instance);
+	// 将开始滑动点的x和y坐标保存到state中去
+	const touch = event.touches[0];
+	state.startX = touch.clientX;
+	state.startY = touch.clientY;
+}
+
+/**
+ * 滑动中，是否禁止打开
+ * @param {Object} event
+ */
+function stopTouchMove(event) {
+	var instance = event.instance;
+	var state = instance.getState();
+	var touch = event.touches[0];
+	// deltaX为手指触摸过程中，x坐标不停变化，记录与手指刚触摸时的x坐标的差值，也即二者之间的距离
+	state.deltaX = touch.clientX - state.startX;
+	state.deltaY = touch.clientY - state.startY;
+	// offsetX为偏移量，是deltaX的绝对值，意味着该值是不断变大的
+	state.offsetX = Math.abs(state.deltaX);
+	state.offsetY = Math.abs(state.deltaY);
+	// 记录滑动的方向，水平或者垂直
+	state.direction = state.direction || getDirection(state.offsetX, state.offsetY);
+}
+
+/**
+ * 设置按钮移动距离
+ * @param {Object} value
+ * @param {Object} instance
+ * @param {Object} ownerInstance
+ */
+function buttonFold(value, instance, ownerInstance) {
+	var state = instance.getState();
+	// 判断是左边还是右边滑出单元格
+	var openDirection = state.isopen === 'left' || state.isopen === 'right' ? state.isopen : state.deltaX <= 0 ? 'right' :
+		'left'
+	// 根据左边还是右边滑出，选择不同的左右按钮组
+	var ins = ownerInstance.selectAllComponents(`.button-hock--${openDirection}`);
+	var position = state.position;
+
+	var arr = [];
+	var w = 0;
+	// 判断是左边打开单元格
+	if (openDirection === 'left') {
+		// 这里的for循环，不同于右边打开的情况，他需要倒序插入
+		for (var i = ins.length - 1; i >= 0; i--) {
+			if (!ins[i].getDataset().button) return
+			var btnData = JSON.parse(ins[i].getDataset().button)
+
+			// TODO 在 app-vue 中,字符串转对象,需要转两次,这里先这么兼容
+			if (typeof(btnData) === 'string') {
+				btnData = JSON.parse(btnData)
+			}
+
+			var button = btnData[i] && btnData[i].width || 0
+			w += button
+			
+			arr.push(w)
+		}
+		// 需要元素倒序反转
+		arr.reverse() 
+
+		// 历遍所有按钮，进行折叠
+		for (var i = 0; i < arr.length; i++) {
+			if (i != ins.length - 1) {
+				var distance = arr[i + 1] - value * (arr[i + 1] / position.data[0].width)
+				// 所有左边按钮中，只有最后一个无需折叠，因为它是正常状态(从实际效果中可以看出)
+				ins[i].setStyle({
+					transform: 'translateX(' + distance + 'px)',
+				})
+			}
+		}
+	} else {
+		for (var i = 0; i < ins.length; i++) {
+			if (!ins[i].getDataset().button) return
+			var btnData = JSON.parse(ins[i].getDataset().button)
+
+			// 在 app-vue 中,字符串转对象,需要转两次,这里先这么兼容
+			if (typeof(btnData) === 'string') {
+				btnData = JSON.parse(btnData)
+			}
+
+			var button = btnData[i] && btnData[i].width || 0
+			w += button
+			arr.push(-w) 
+			if (i != 0) {
+				// 动态计算按钮组每个按钮的折叠动画移动距离
+				var distance = arr[i - 1] + value * (arr[i - 1] / position.data[1].width)
+				// 不同于左边画出的状态，右边滑出的状态第一个按钮无需折叠状态
+				ins[i].setStyle({
+					transform: 'translateX(' + distance + 'px)',
+				})
+			}
+		}
+	}
+}
+
+
+module.exports = {
+	sizeReady: sizeReady,
+	touchstart: touchstart,
+	touchmove: touchmove,
+	touchend: touchend
+}

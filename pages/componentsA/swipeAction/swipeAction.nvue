@@ -1,0 +1,33 @@
+<template>
+	<view class="u-page">
+		<u-swipe-action>
+			<u-swipe-action-item :disabled="false" :rightOptions="options"  :leftOptions="options">
+				<text>娃哈哈了吗</text>
+			</u-swipe-action-item>
+		</u-swipe-action>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				options: [{
+						text: '确认删除',
+						style: {
+							backgroundColor: '#323519'
+						}
+					}, {
+						text: '收藏',
+						style: {
+							backgroundColor: '#dd524d'
+						}
+					}
+				]
+			}
+		}
+	}
+</script>
+
+<style>
+</style>

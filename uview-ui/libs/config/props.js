@@ -157,6 +157,6 @@ export default {
 		autoClose: false,
 		threshold: 20,
 		leftOptions: [],
-		rightOptions
+		rightOptions: []
 	}
 }

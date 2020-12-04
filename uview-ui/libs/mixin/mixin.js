@@ -27,6 +27,10 @@ module.exports = {
 		// getRect挂载到$u上，因为这方法需要使用in(this)，所以无法把它独立成一个单独的文件导出
 		this.$u.getRect = this.$uGetRect
 	},
+	created() {
+		// 组件当中，只有created声明周期，为了能在组件使用，故也在created中将方法挂载到$u
+		this.$u.getRect = this.$uGetRect
+	},
 	computed: {
 		// 在2.x版本中，将会把$u挂载到uni对象下，导致在模板中无法使用uni.$u.xxx形式
 		// 所以这里通过computed计算属性将其附加到this.$u上，就可以在模板或者js中使用this.$u.xxx

@@ -157,6 +157,8 @@
 </script>
 
 <style lang="scss">
+	@import "../../libs/css/components.scss";
+	
 	.u-popup {
 		flex: 1;
 		height: 500px;

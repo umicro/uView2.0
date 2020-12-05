@@ -1,10 +1,15 @@
 <template>
 	<view
 	    class="u-sticky"
-		:id="elId"
+	    :id="elId"
 	    :style="[style]"
 	>
-		<slot />
+		<view
+		    :style="[stickyContent]"
+		    class="u-sticky__content"
+		>
+			<slot />
+		</view>
 	</view>
 </template>
 
@@ -14,7 +19,7 @@
 			// 吸顶容器到顶部某个距离的时候，进行吸顶，在H5平台，NavigationBar为44px
 			offsetTop: {
 				type: [Number, String],
-				default: 0
+				default: uni.$u.props.sticky.offsetTop
 			},
 			// 自定义导航栏的高度
 			customNavHeight: {
@@ -24,38 +29,44 @@
 				default: 44
 				// #endif
 				// #ifndef H5
-				default: 0
+				default: uni.$u.props.sticky.customNavHeight
 				// #endif
 			},
 			// 是否开启吸顶功能
 			disabled: {
 				type: Boolean,
-				default: false
+				default: uni.$u.props.sticky.disabled
 			},
 			// 吸顶区域的背景颜色
 			bgColor: {
 				type: String,
-				default: '#ffffff'
+				default: uni.$u.props.sticky.bgColor
 			},
 			// z-index值
 			zIndex: {
 				type: [Number, String],
-				default: ''
+				default: uni.$u.props.sticky.zIndex
 			},
 			//列表中的索引值
 			index: {
 				type: [Number, String],
-				default: ''
+				default: uni.$u.props.sticky.index
 			},
+			// js还是css模式吸顶
+			mode: {
+				type: String,
+				default: uni.$u.props.sticky.mode
+			}
 		},
 		data() {
 			return {
 				cssSticky: false, // 是否使用css的sticky实现
 				stickyTop: 0, // 吸顶的top值，因为可能受自定义导航栏影响，最终的吸顶值非offsetTop值
-				elId: this.$u.guid(),
-				left: 0,
+				elId: uni.$u.guid(),
+				left: 0, // js模式时，吸顶的内容因为处于postition: fixed模式，为了和原来保持一致的样式，需要记录并重新设置它的left，height，width属性
 				width: 'auto',
-				height: 'auto'
+				height: 'auto',
+				fixed: false, // js模式时，是否处于吸顶模式
 			}
 		},
 		mixins: [uni.$u.mixin],
@@ -64,9 +75,10 @@
 				const style = {}
 				if (this.cssSticky) {
 					style.position = 'sticky'
-					style.top = this.$u.addUnit(this.top)
+					style.zIndex = this.uZindex
+					style.top = this.$u.addUnit(this.stickyTop)
 				} else {
-					style.height = fixed ? height + 'px' : 'auto'
+					style.height = this.fixed ? this.height + 'px' : 'auto'
 				}
 				style.backgroundColor = this.bgColor
 				return this.$u.deepMerge(this.customStyle, style)
@@ -74,14 +86,17 @@
 			// 吸顶内容的样式
 			stickyContent() {
 				const style = {}
-				if(!this.cssSticky) {
-					this.position = this.fixed ? 'fixed' : 'static'
+				if (!this.cssSticky) {
+					style.position = this.fixed ? 'fixed' : 'static'
 					style.top = this.stickyTop + 'px'
 					style.left = this.left + 'px'
-					style.width = this.width == 'auto' ? 'auto' : width + 'px'
-					style.zIndex = this.zIndex ? this.zIndex : this.$u.zIndex.sticky
+					style.width = this.width == 'auto' ? 'auto' : this.width + 'px'
+					style.zIndex = this.uZindex
 				}
 				return style
+			},
+			uZindex() {
+				return this.zIndex ? this.zIndex : uni.$u.zIndex.sticky
 			}
 		},
 		mounted() {
@@ -90,54 +105,68 @@
 		methods: {
 			init() {
 				this.getStickyTop()
-				this.checkSupportCssSticky()
-				// 如果不支持css sticky，则使用js方案，此方案性能比不上css方案
-				if(!this.cssSticky) {
-					
+				// 判断使用的模式
+				if(this.mode === 'css') {
+					this.cssSticky = true
+				} else if(this.mode === 'js') {
+					this.initObserveContent()
+				} else {
+					this.checkSupportCssSticky()
+					// 如果不支持css sticky，则使用js方案，此方案性能比不上css方案
+					if (!this.cssSticky) {
+						this.initObserveContent()
+					}
 				}
 			},
 			initObserveContent() {
-				this.disconnectObserver('contentObserver');
-				this.$u.getRect('.' + this.elId).then((res) => {
-					this.height = res.height;
-					this.left = res.left;
-					this.width = res.width;
+				// 获取吸顶内容的高度，用于在js吸顶模式时，给父元素一个填充高度，防止"塌陷"
+				this.$uGetRect('#' + this.elId).then((res) => {
+					this.height = res.height
+					this.left = res.left
+					this.width = res.width
 					this.$nextTick(() => {
-						this.observeContent();
+						this.observeContent()
 					})
 				})
 			},
 			observeContent() {
-				this.disconnectObserver('contentObserver');
-				const contentObserver = this.createIntersectionObserver({
+				// 先断掉之前的观察
+				this.disconnectObserver('contentObserver')
+				const contentObserver = uni.createIntersectionObserver({
+					// 检测的区间范围
 					thresholds: [0.95, 0.98, 1]
-				});
+				})
+				// 到屏幕顶部的高度时触发
 				contentObserver.relativeToViewport({
 					top: -this.stickyTop
-				});
-				contentObserver.observe('.' + this.elClass, res => {
-					if (!this.disabled) return;
-					this.setFixed(res.boundingClientRect.top);
-				});
-				this.contentObserver = contentObserver;
+				})
+				// 绑定观察的元素
+				contentObserver.observe(`#${this.elId}`, res => {
+					if (this.disabled) return
+					this.setFixed(res.boundingClientRect.top)
+				})
+				this.contentObserver = contentObserver
 			},
 			setFixed(top) {
-				const fixed = top < this.stickyTop;
-				if (fixed) this.$emit('fixed', this.index);
-				else if(this.fixed) this.$emit('unfixed', this.index);
-				this.fixed = fixed;
+				// 判断是否出于吸顶条件范围
+				const fixed = top <= this.stickyTop
+				// 发出事件
+				if (fixed) this.$emit('fixed', this.index)
+				else if (this.fixed) this.$emit('unfixed', this.index)
+				this.fixed = fixed
 			},
 			disconnectObserver(observerName) {
-				const observer = this[observerName];
-				observer && observer.disconnect();
+				// 断掉观察，释放资源
+				const observer = this[observerName]
+				observer && observer.disconnect()
 			},
 			getStickyTop() {
 				if (/rpx$/.test(this.customNavHeight)) {
 					// rpx单位需要转为px单位，才能直接相加
-					this.stickyTop = this.offsetTop + uni.rpx2px(this.customNavHeight) + 'px'
+					this.stickyTop = parseInt(this.offsetTop) + parseInt(uni.rpx2px(this.customNavHeight))
 				} else {
 					// 无论customNavHeight为数值(默认px单位)，还是12px(parseInt后为12)之类转换后都为数值，可以直接相加
-					this.stickyTop = this.offsetTop + parseInt(this.customNavHeight) + 'px'
+					this.stickyTop = parseInt(this.offsetTop) + parseInt(this.customNavHeight)
 				}
 			},
 			async checkSupportCssSticky() {
@@ -148,10 +177,10 @@
 				// #endif
 
 				// 如果安卓版本高于8.0，依然认为是支持css sticky的(因为安卓7在某些机型，可能不支持sticky)
-				if(this.$u.os() === 'android' && Number(this.$u.sys().system()) > 8) {
+				if (this.$u.os() === 'android' && Number(this.$u.sys().system()) > 8) {
 					this.cssSticky = true
 				}
-				
+
 				// #ifdef APP-VUE || MP-WEIXIN
 				this.cssSticky = await this.checkComputedStyle()
 				// #endif
@@ -178,7 +207,7 @@
 			}
 		},
 		beforeDestroy() {
-			this.disconnectObserver('contentObserver');
+			this.disconnectObserver('contentObserver')
 		}
 	}
 </script>
@@ -187,7 +216,7 @@
 	.u-sticky {
 		/* #ifdef APP-VUE || MP-WEIXIN */
 		// 此处默认写sticky属性，是为了给微信和APP通过uni.createSelectorQuery查询是否支持css sticky使用
-		position: sticky;
-		/* #endif */
+		position: sticky
+			/* #endif */
 	}
 </style>

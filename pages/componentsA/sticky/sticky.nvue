@@ -14,7 +14,7 @@
 				44444444
 			</view>
 		</u-sticky>
-		<u-sticky>
+		<u-sticky offsetTop="100">
 			<view
 			    class="box2"
 			    ref="box"

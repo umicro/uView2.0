@@ -158,5 +158,36 @@ export default {
 		threshold: 20,
 		leftOptions: [],
 		rightOptions: []
+	},
+	
+	// sticky组件
+	sticky: {
+		offsetTop: 0,
+		customNavHeight: 0,
+		disabled: false,
+		bgColor: '#ffffff',
+		zIndex: '',
+		index: '',
+		mode: 'auto'
+	},
+	
+	// image组件
+	image: {
+		src: '',
+		mode: 'aspectFill',
+		width: '300',
+		height: '225',
+		shape: 'square',
+		borderRadius: 0,
+		lazyLoad: true,
+		showMenuByLongpress: true,
+		loadingIcon: 'photo',
+		errorIcon: 'error-circle',
+		showLoading: true,
+		showError: true,
+		fade: true,
+		webp: false,
+		duration: 500,
+		bgColor: '#f3f4f6'
 	}
 }

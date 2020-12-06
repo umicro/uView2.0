@@ -118,7 +118,7 @@ export default [{
 			title: 'Checkbox 复选框',
 			title_en: 'Checkbox',
 		}, {
-			path: '/pages/componentsB/radio/index',
+			path: '/pages/componentsA/radio/radio',
 			icon: 'radio',
 			title: 'Radio 单选框',
 			title_en: 'Radio',

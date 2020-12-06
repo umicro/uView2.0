@@ -301,7 +301,7 @@ function buttonFold(value, instance, ownerInstance) {
 	var openDirection = state.isopen === 'left' || state.isopen === 'right' ? state.isopen : state.deltaX <= 0 ? 'right' :
 		'left'
 	// 根据左边还是右边滑出，选择不同的左右按钮组
-	var ins = ownerInstance.selectAllComponents(`.button-hock--${openDirection}`);
+	var ins = ownerInstance.selectAllComponents('.button-hock--' + openDirection)
 	var position = state.position;
 
 	var arr = [];

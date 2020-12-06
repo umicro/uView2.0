@@ -157,12 +157,12 @@
 			uClasses() {
 				let classes = []
 				classes.push(this.customPrefix + '-' + this.name)
-				// uView的自定义图标类名为u-iconfont
-				if (this.customPrefix == 'uicon') {
-					classes.push('u-iconfont')
-				} else {
-					classes.push(this.customPrefix)
-				}
+				// // uView的自定义图标类名为u-iconfont
+				// if (this.customPrefix == 'uicon') {
+				// 	classes.push('u-iconfont')
+				// } else {
+				// 	classes.push(this.customPrefix)
+				// }
 				// 主题色，通过类配置
 				if (this.showDecimalIcon && this.inactiveColor && this.$u.config.type.includes(this.inactiveColor)) {
 					classes.push('u-icon__icon--' + this.inactiveColor)
@@ -177,7 +177,8 @@
 			iconStyle() {
 				let style = {}
 				style = {
-					fontSize: this.size == 'inherit' ? 'inherit' : this.$u.addUnit(this.size),
+					fontSize: this.$u.addUnit(this.size),
+					lineHeight: this.$u.addUnit(this.size),
 					fontWeight: this.bold ? 'bold' : 'normal',
 					// 某些特殊情况需要设置一个到顶部的距离，才能更好的垂直居中
 					top: this.$u.addUnit(this.top)
@@ -239,7 +240,7 @@
 
 	.u-icon {
 		/* #ifndef APP-NVUE */
-		display: inline-flex;
+		display: flex;
 		/* #endif */
 		align-items: center;
 

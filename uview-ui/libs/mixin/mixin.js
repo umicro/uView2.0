@@ -51,14 +51,18 @@ module.exports = {
 				// 类名前缀
 				const prefix = `u-${name}--`
 				const classes = {}
-				fixed.map(item => {
-					// 这里的类名，会一直存在
-					classes[prefix + this[item]] = true 
-				})
-				change.map(item => {
-					// 这里的类名，会根据this[item]的值为true或者false，而进行添加或者移除某一个类
-					this[item] ? (classes[prefix + item] = this[item] ) : (delete classes[prefix + item])
-				})
+				if(fixed) {
+					fixed.map(item => {
+						// 这里的类名，会一直存在
+						classes[prefix + this[item]] = true 
+					})
+				}
+				if(change) {
+					change.map(item => {
+						// 这里的类名，会根据this[item]的值为true或者false，而进行添加或者移除某一个类
+						this[item] ? (classes[prefix + item] = this[item] ) : (delete classes[prefix + item])
+					})
+				}
 				return Object.keys(classes)
 			}
 		}

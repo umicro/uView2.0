@@ -60,6 +60,8 @@ import trim from './libs/function/trim.js'
 import toast from './libs/function/toast.js'
 // 获取父组件参数
 import getParent from './libs/function/getParent.js'
+// 错误提示
+import error from './libs/function/error.js'
 // 获取整个父组件
 import $parent from './libs/function/$parent.js'
 // 获取sys()和os()工具方法
@@ -107,6 +109,7 @@ const $u = {
 	getParent,
 	$parent,
 	addUnit,
+	error,
 	trim,
 	type: ['primary', 'success', 'error', 'warning', 'info'],
 	http,

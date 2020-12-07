@@ -1,18 +1,18 @@
 <template>
 	<view
-	    class="u-radio"
+	    class="u-checkbox"
 	    :style="[customStyle]"
-	    :class="[`u-radio-label--${iconPlacement}`]"
+	    :class="[`u-checkbox-label--${iconPlacement}`]"
 	>
 		<view
-		    class="u-radio__icon-wrap"
+		    class="u-checkbox__icon-wrap"
 		    @tap.stop="iconClickHandler"
 		    :class="iconClasses"
 		    :style="[iconWrapStyle]"
 		>
 			<slot name="icon">
 				<u-icon
-				    class="u-radio__icon-wrap__icon"
+				    class="u-checkbox__icon-wrap__icon"
 				    name="checkbox-mark"
 				    :size="elIconSize"
 				    :color="elIconColor"
@@ -31,78 +31,83 @@
 
 <script>
 	export default {
-		name: "u-radio",
+		name: "u-checkbox",
 		props: {
-			// radio的名称
+			// checkbox的名称
 			name: {
 				type: [String, Number, Boolean],
-				default: uni.$u.props.radio.name
+				default: uni.$u.props.checkbox.name
 			},
 			// 形状，square为方形，circle为圆型
 			shape: {
 				type: String,
-				default: uni.$u.props.radio.shape
+				default: uni.$u.props.checkbox.shape
 			},
 			// 是否禁用
 			disabled: {
 				type: [String, Boolean],
-				default: uni.$u.props.radio.disabled
+				default: uni.$u.props.checkbox.disabled
 			},
 			// 是否禁止点击提示语选中复选框
 			labelDisabled: {
 				type: [String, Boolean],
-				default: uni.$u.props.radio.labelDisabled
+				default: uni.$u.props.checkbox.labelDisabled
 			},
 			// 选中状态下的颜色，如设置此值，将会覆盖parent的activeColor值
 			activeColor: {
 				type: String,
-				default: uni.$u.props.radio.activeColor
+				default: uni.$u.props.checkbox.activeColor
 			},
 			// 未选中的颜色
 			inactiveColor: {
 				type: String,
-				default: uni.$u.props.radio.inactiveColor
+				default: uni.$u.props.checkbox.inactiveColor
 			},
 			// 图标的大小，单位px
 			iconSize: {
 				type: [String, Number],
-				default: uni.$u.props.radio.iconSize
+				default: uni.$u.props.checkbox.iconSize
 			},
 			// label的字体大小，px单位
 			labelSize: {
 				type: [String, Number],
-				default: uni.$u.props.radio.labelSize
+				default: uni.$u.props.checkbox.labelSize
 			},
 			// label提示文字，因为nvue下，直接slot进来的文字，由于特殊的结构，无法修改样式
 			label: {
 				type: [String, Number],
-				default: uni.$u.props.radio.label
+				default: uni.$u.props.checkbox.label
 			},
 			// 整体的大小
 			size: {
 				type: [String, Number],
-				default: uni.$u.props.radio.size
+				default: uni.$u.props.checkbox.size
 			},
 			// 图标颜色
 			iconColor: {
 				type: String,
-				default: uni.$u.props.radio.iconColor
+				default: uni.$u.props.checkbox.iconColor
 			},
 			// label的颜色
 			labelColor: {
 				type: String,
-				default: uni.$u.props.radio.labelColor
+				default: uni.$u.props.checkbox.labelColor
 			},
 			// 图标与文字的对齐方式
 			iconPlacement: {
 				type: String,
-				default: uni.$u.props.radio.radioPlacement
+				default: uni.$u.props.checkbox.checkboxPlacement
+			},
+			// 是否默认选中
+			checked: {
+				type: Boolean,
+				default: uni.$u.props.checkbox.checked
 			}
 		},
 		mixins: [uni.$u.mixin],
 		data() {
 			return {
-				checked: false,
+				isChecked: false,
 				// 父组件的默认值，因为头条小程序不支持在computed中使用this.parent.shape的形式
 				// 故只能使用如此方法
 				parentData: {
@@ -163,21 +168,21 @@
 					'#ffffff');
 				// 图标的颜色
 				if (this.elDisabled) {
-					// disabled状态下，已勾选的radio图标改为elInactiveColor
-					return this.checked ? this.elInactiveColor : 'transparent'
+					// disabled状态下，已勾选的checkbox图标改为elInactiveColor
+					return this.isChecked ? this.elInactiveColor : 'transparent'
 				} else {
-					return this.checked ? iconColor : 'transparent'
+					return this.isChecked ? iconColor : 'transparent'
 				}
 			},
 			iconClasses() {
 				let classes = []
 				// 组件的形状
-				classes.push('u-radio__icon-wrap--' + this.elShape)
+				classes.push('u-checkbox__icon-wrap--' + this.elShape)
 				if (this.elDisabled) {
-					classes.push('u-radio__icon-wrap--disabled')
+					classes.push('u-checkbox__icon-wrap--disabled')
 				}
-				if (this.checked && this.elDisabled) {
-					classes.push('u-radio__icon-wrap--disabled--checked')
+				if (this.isChecked && this.elDisabled) {
+					classes.push('u-checkbox__icon-wrap--disabled--checked')
 				}
 				// 支付宝，头条小程序无法动态绑定一个数组类名，否则解析出来的结果会带有","，而导致失效
 				// #ifdef MP-ALIPAY || MP-TOUTIAO
@@ -186,10 +191,10 @@
 				return classes
 			},
 			iconWrapStyle() {
-				// radio的整体样式
+				// checkbox的整体样式
 				const style = {}
-				style.backgroundColor = this.checked && !this.elDisabled ? this.elActiveColor : '#ffffff'
-				style.borderColor = this.checked && !this.elDisabled ? this.elActiveColor : this.elInactiveColor
+				style.backgroundColor = this.isChecked && !this.elDisabled ? this.elActiveColor : '#ffffff'
+				style.borderColor = this.isChecked && !this.elDisabled ? this.elActiveColor : this.elInactiveColor
 				style.width = uni.$u.addUnit(this.elSize)
 				style.height = uni.$u.addUnit(this.elSize)
 				// 如果是图标在右边的话，移除它的右边距
@@ -208,14 +213,21 @@
 				// 支付宝小程序不支持provide/inject，所以使用这个方法获取整个父组件，在created定义，避免循环引用
 				this.updateParentData();
 				if (!this.parent) {
-					uni.$u.error('u-radio必须搭配u-radio-group组件使用')
+					uni.$u.error('u-checkbox必须搭配u-checkbox-group组件使用')
 				}
 				this.parent.children && this.parent.children.push(this)
-				// 设置初始化时，是否默认选中的状态
-				this.checked = this.name === this.parentData.value
+				// 设置初始化时，是否默认选中的状态，父组件u-checkbox-group的value可能是array，所以额外判断
+				if (this.checked) {
+					this.isChecked = true
+				} else if(uni.$u.test.array(this.parentData.value)) {
+					// 查找数组是是否存在this.name元素值
+					this.isChecked = this.parentData.value.some(item => {
+						return item === this.name
+					})
+				}
 			},
 			updateParentData() {
-				this.getParentData('u-radio-group')
+				this.getParentData('u-checkbox-group')
 			},
 			// 点击图标
 			iconClickHandler() {
@@ -232,18 +244,15 @@
 				}
 			},
 			emitEvent() {
-				// u-radio的checked不为true时(意味着未选中)，才发出事件，避免多次点击触发事件
-				if (!this.checked) {
-					this.$emit('change', this.name)
-				}
+				this.$emit('change', this.isChecked)
 			},
 			// 改变组件选中状态
-			// 这里的改变的依据是，更改本组件的checked值为true，同时通过父组件遍历所有u-radio实例
-			// 将本组件外的其他u-radio的checked都设置为false(都被取消选中状态)，因而只剩下一个为选中状态
+			// 这里的改变的依据是，更改本组件的checked值为true，同时通过父组件遍历所有u-checkbox实例
+			// 将本组件外的其他u-checkbox的checked都设置为false(都被取消选中状态)，因而只剩下一个为选中状态
 			setRadioCheckedStatus() {
+				// 将本组件标记为与原来相反的状态
+				this.isChecked = !this.isChecked
 				this.emitEvent()
-				// 将本组件标记为选中状态
-				this.checked = true
 				typeof this.parent.unCheckedOther === 'function' && this.parent.unCheckedOther(this)
 			}
 		}
@@ -253,7 +262,7 @@
 <style lang="scss">
 	@import "../../libs/css/components.scss";
 
-	.u-radio {
+	.u-checkbox {
 		/* #ifndef APP-NVUE */
 		@include flex(row);
 		/* #endif */

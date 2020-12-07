@@ -1,21 +1,21 @@
 <template>
 	<view class="u-page">
-		<u-radio-group
+		<u-checkbox-group
 		    v-model="value"
 		    placement="column"
+			@change="checkboxChange"
 		>
-			<u-radio
+			<u-checkbox
 			    :customStyle="{marginBottom: '8px'}"
 			    v-for="(item, index) in list"
 			    :key="index"
 			    :label="item.name"
 			    :name="item.name"
-			    @change="radioChange"
-				iconPlacement="right"
+			    iconPlacement="right"
 			>
 
-			</u-radio>
-		</u-radio-group>
+			</u-checkbox>
+		</u-checkbox-group>
 	</view>
 </template>
 
@@ -36,16 +36,16 @@
 						disabled: false
 					}
 				],
-				// u-radio-group的v-model绑定的值如果设置为某个radio的name，就会被默认选中
-				value: '苹果',
+				// u-checkbox-group的v-model绑定的值如果设置为某个checkbox的name，就会被默认选中
+				value: ['苹果', '橙子'],
 			}
 		},
 		onLoad() {
 
 		},
 		methods: {
-			radioChange(n) {
-
+			checkboxChange(n) {
+				console.log(n);
 			}
 		}
 	}

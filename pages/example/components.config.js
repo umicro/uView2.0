@@ -113,7 +113,7 @@ export default [{
 			title: 'Field 输入框',
 			title_en: 'Field',
 		}, {
-			path: '/pages/componentsB/checkbox/index',
+			path: '/pages/componentsA/checkbox/index',
 			icon: 'checkbox',
 			title: 'Checkbox 复选框',
 			title_en: 'Checkbox',

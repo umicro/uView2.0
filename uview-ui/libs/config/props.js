@@ -189,5 +189,78 @@ export default {
 		webp: false,
 		duration: 500,
 		bgColor: '#f3f4f6'
+	},
+	
+	// radio组件
+	radio: {
+		name: '',
+		shape: '',
+		disabled: '',
+		labelDisabled: '',
+		activeColor: '',
+		inactiveColor: '',
+		iconSize: '',
+		labelSize: '',
+		label: '',
+		labelColor: '',
+		size: '',
+		iconColor: '',
+		placement: ''
+	},
+	
+	// radio-group组件
+	radioGroup: {
+		name: '',
+		value: '',
+		shape: 'circle',
+		disabled: false,
+		labelDisabled: false,
+		activeColor: '#2979ff',
+		inactiveColor: '#c8c9cc',
+		iconSize: 12,
+		placement: 'row',
+		labelSize: 15,
+		labelColor: '#303133',
+		label: '',
+		size: 20,
+		iconColor: '#ffffff',
+		iconPlacement: 'left'
+	},
+	
+	// checkbox组件
+	checkbox: {
+		name: '',
+		shape: '',
+		disabled: '',
+		labelDisabled: '',
+		activeColor: '',
+		inactiveColor: '',
+		iconSize: '',
+		labelSize: '',
+		label: '',
+		labelColor: '',
+		size: '',
+		iconColor: '',
+		placement: ''
+	},
+	
+	// checkbox-group组件
+	checkboxGroup: {
+		name: '',
+		value: () => [],
+		shape: 'circle',
+		disabled: false,
+		labelDisabled: false,
+		activeColor: '#2979ff',
+		inactiveColor: '#c8c9cc',
+		iconSize: 12,
+		placement: 'row',
+		labelSize: 15,
+		labelColor: '#303133',
+		label: '',
+		size: 20,
+		iconColor: '#ffffff',
+		iconPlacement: 'left',
+		checked: false
 	}
 }

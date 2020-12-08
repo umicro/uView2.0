@@ -22,7 +22,7 @@
 		<text
 		    @tap.stop="labelClickHandler"
 		    :style="{
-			color: elLabelColor,
+			color: elDisabled ? elInactiveColor : elLabelColor,
 			fontSize: elLabelSize
 		}"
 		>{{label}}</text>

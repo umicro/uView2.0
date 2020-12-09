@@ -1,0 +1,35 @@
+<template>
+	<view class="u-page">
+		<u-empty mode="comment" :icon="imgList['comment']"></u-empty>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			const baseUrl = 'http://cdn.uviewui.com/uview/empty/'
+			return {
+				imgList: {
+					car: baseUrl + 'car.png',
+					address: baseUrl + 'address.png',
+					comment: baseUrl + 'comment.png',
+					coupon: baseUrl + 'coupon.png',
+					data: baseUrl + 'data.png',
+					history: baseUrl + 'history.png',
+					list: baseUrl + 'list.png',
+					message: baseUrl + 'message.png',
+					news: baseUrl + 'news.png',
+					order: baseUrl + 'order.png',
+					page: baseUrl + 'page.png',
+					permission: baseUrl + 'permission.png',
+					search: baseUrl + 'search.png',
+					wifi: baseUrl + 'wifi.png',
+				}
+			}
+		}
+	}
+</script>
+
+<style>
+
+</style>

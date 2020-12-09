@@ -1,0 +1,24 @@
+<template>
+	<view class="u-page">
+		<u-back-top :scrollTop="scrollTop"></u-back-top>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				scrollTop: 0
+			}
+		},
+		onPageScroll(e) {
+			this.scrollTop = e.scrollTop;
+		}
+	}
+</script>
+
+<style lang="scss">
+	.u-page {
+		height: 1200px;
+	}
+</style>

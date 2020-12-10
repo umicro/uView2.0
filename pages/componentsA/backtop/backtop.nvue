@@ -1,15 +1,25 @@
 <template>
-	<view class="u-page">
+	<view
+	    class="u-page"
+	    ref="u-back-top"
+	>
 		<u-back-top :scrollTop="scrollTop"></u-back-top>
 	</view>
 </template>
 
 <script>
+	// const dom = weex.requireModule('dom')
 	export default {
 		data() {
 			return {
 				scrollTop: 0
 			}
+		},
+		onLoad() {
+			setTimeout(() => {
+				// console.log(234);
+				// dom.scrollToElement(this.$refs.item, { offset: 0 })  
+			}, 6000)
 		},
 		onPageScroll(e) {
 			this.scrollTop = e.scrollTop;

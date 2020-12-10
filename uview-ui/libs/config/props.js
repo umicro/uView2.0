@@ -4,7 +4,9 @@
  * 无需在每个引入组件的页面中都配置一次
  */
 import config from './config'
-const {color} = config
+const {
+	color
+} = config
 export default {
 	// icon组件
 	icon: {
@@ -27,7 +29,7 @@ export default {
 		top: 0,
 		stop: false
 	},
-	
+
 	// transition动画组件的props
 	transition: {
 		show: true,
@@ -36,7 +38,7 @@ export default {
 		customStyle: {},
 		timingFunction: 'linear'
 	},
-	
+
 	// cell组件的props
 	cell: {
 		customClass: '',
@@ -60,13 +62,13 @@ export default {
 		size: '',
 		stop: true
 	},
-	
+
 	// cell-group组件的props
 	cellGroup: {
 		title: '',
 		border: true
 	},
-	
+
 	// img组件的props
 	img: {
 		src: '',
@@ -86,7 +88,7 @@ export default {
 		duration: 300,
 		bgColor: '#f3f4f6'
 	},
-	
+
 	// link超链接组件props参数
 	link: {
 		color: color['u-primary'],
@@ -97,7 +99,7 @@ export default {
 		lineColor: '',
 		text: ''
 	},
-	
+
 	// loading-icon加载中图标组件
 	loadingIcon: {
 		color: color['u-tips-color'],
@@ -109,7 +111,7 @@ export default {
 		type: '',
 		timingFunction: 'ease-in-out'
 	},
-	
+
 	// button组件
 	button: {
 		hairline: false,
@@ -140,7 +142,7 @@ export default {
 		icon: '',
 		color: ''
 	},
-	
+
 	// loading-page组件
 	loadingPage: {
 		loadingText: '正在加载',
@@ -149,7 +151,7 @@ export default {
 		loading: false,
 		bgColor: '#ffffff'
 	},
-	
+
 	// swipe-action组件
 	swipeAction: {
 		show: 'none',
@@ -159,7 +161,7 @@ export default {
 		leftOptions: [],
 		rightOptions: []
 	},
-	
+
 	// sticky组件
 	sticky: {
 		offsetTop: 0,
@@ -170,7 +172,7 @@ export default {
 		index: '',
 		mode: 'auto'
 	},
-	
+
 	// image组件
 	image: {
 		src: '',
@@ -190,7 +192,7 @@ export default {
 		duration: 500,
 		bgColor: '#f3f4f6'
 	},
-	
+
 	// radio组件
 	radio: {
 		name: '',
@@ -207,7 +209,7 @@ export default {
 		iconColor: '',
 		placement: ''
 	},
-	
+
 	// radio-group组件
 	radioGroup: {
 		name: '',
@@ -226,7 +228,7 @@ export default {
 		iconColor: '#ffffff',
 		iconPlacement: 'left'
 	},
-	
+
 	// checkbox组件
 	checkbox: {
 		name: '',
@@ -243,7 +245,7 @@ export default {
 		iconColor: '',
 		placement: ''
 	},
-	
+
 	// checkbox-group组件
 	checkboxGroup: {
 		name: '',
@@ -263,7 +265,7 @@ export default {
 		iconPlacement: 'left',
 		checked: false
 	},
-	
+
 	// empty组件
 	empty: {
 		icon: '',
@@ -277,5 +279,24 @@ export default {
 		height: 160,
 		show: true,
 		marginTop: 0
+	},
+
+	// backtop组件
+	backtop: {
+		mode: 'circle',
+		icon: 'arrow-upward',
+		text: '',
+		duration: 100,
+		scrollTop: 0,
+		top: 400,
+		bottom: 100,
+		right: 20,
+		zIndex: 9,
+		iconStyle: () => {
+			return {
+				color: '#909399',
+				fontSize: '19px'
+			}
+		},
 	}
 }

@@ -273,7 +273,7 @@ export default [{
 		},
 		// #endif
 		{
-			path: '/pages/componentsB/divider/index',
+			path: '/pages/componentsA/divider/index',
 			icon: 'divider',
 			title: 'Divider 分割线',
 			title_en: 'Divider',

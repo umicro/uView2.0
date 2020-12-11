@@ -298,5 +298,27 @@ export default {
 				fontSize: '19px'
 			}
 		},
+	},
+	
+	// divider组件
+	divider: {
+		dashed: false,
+		hairline: true,
+		dot: false,
+		textPosition: 'center',
+		text: '',
+		textSize: 14,
+		textColor: '#909399',
+		lineColor: '#dcdfe6'
+	},
+	
+	// line组件
+	line: {
+		color: '#e4e7ed',
+		length: '100%',
+		direction: 'row',
+		hairline: true,
+		margin: 0,
+		dashed: false
 	}
 }

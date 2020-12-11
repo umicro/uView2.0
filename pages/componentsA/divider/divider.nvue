@@ -1,0 +1,25 @@
+<template>
+	<view class="u-page">
+		<u-divider lineColor="red" text-position="right" text="分割线"></u-divider>
+		<u-divider lineColor="red" :dot="true" text="分割线"></u-divider>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				
+			}
+		},
+		methods: {
+			
+		}
+	}
+</script>
+
+<style lang="scss">
+	.u-divider {
+		// display: flex;
+	}
+</style>

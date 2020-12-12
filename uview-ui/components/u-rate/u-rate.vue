@@ -1,0 +1,309 @@
+<template>
+	<view
+	    class="u-rate"
+	    :id="elId"
+	    ref="u-rate"
+	    @touchmove.stop.prevent="touchMove"
+		@touchend.stop.prevent="touchEnd"
+	>
+		<view
+		    class="u-rate__item"
+		    v-for="(item, index) in count"
+		    :key="index"
+		    :class="[elClass]"
+		>
+			<view
+			    class="u-rate__item__icon-wrap"
+			    ref="u-rate__item__icon-wrap"
+			    @tap.stop="clickHandler($event, index + 1)"
+			>
+				<u-icon
+				    :name="Math.floor(activeIndex) > index ? activeIcon : inactiveIcon"
+				    :color="Math.floor(activeIndex) > index ? activeColor : inactiveColor"
+				    :custom-style="{
+						fontSize: size + 'rpx',
+						padding: `0 ${gutter / 2 + 'rpx'}`
+					}"
+				></u-icon>
+			</view>
+			<view
+			    v-if="allowHalf"
+			    @tap.stop="clickHandler($event, index + 1)"
+			    class="u-rate__item__icon-wrap u-rate__item__icon-wrap--half"
+			    :style="{
+				width: rateWidth / 2 + 'px'
+			}"
+			    ref="u-rate__item__icon-wrap"
+			>
+				<u-icon
+				    :name="Math.ceil(activeIndex) > index ? activeIcon : inactiveIcon"
+				    :color="Math.ceil(activeIndex) > index ? activeColor : inactiveColor"
+				    :custom-style="{
+						fontSize: size + 'rpx',
+						padding: `0 ${gutter / 2 + 'rpx'}`
+					}"
+				></u-icon>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	// #ifdef APP-NVUE
+	const dom = weex.requireModule('dom')
+	// #endif
+	/**
+	 * rate 评分
+	 * @description 该组件一般用于满意度调查，星型评分的场景
+	 * @tutorial https://www.uviewui.com/components/rate.html
+	 * @property {String Number} count 最多可选的星星数量（默认5）
+	 * @property {String Number} current 默认选中的星星数量（默认0）
+	 * @property {Boolean} disabled 是否禁止用户操作（默认false）
+	 * @property {String Number} size 星星的大小，单位rpx（默认32）
+	 * @property {String} inactive-color 未选中星星的颜色（默认#b2b2b2）
+	 * @property {String} active-color 选中的星星颜色（默认#FA3534）
+	 * @property {String} active-icon 选中时的图标名，只能为uView的内置图标（默认star-fill）
+	 * @property {String} inactive-icon 未选中时的图标名，只能为uView的内置图标（默认star）
+	 * @property {String} gutter 星星之间的距离（默认10）
+	 * @property {String Number} min-count 最少选中星星的个数（默认0）
+	 * @property {Boolean} allow-half 是否允许半星选择（默认false）
+	 * @event {Function} change 选中的星星发生变化时触发
+	 * @example <u-rate :count="count" :current="2"></u-rate>
+	 */
+	export default {
+		name: 'u-rate',
+		props: {
+			// 用于v-model双向绑定选中的星星数量
+			value: {
+				type: [Number, String],
+				default: uni.$u.props.rate.value
+			},
+			// 要显示的星星数量
+			count: {
+				type: [Number, String],
+				default: uni.$u.props.rate.count
+			},
+			// 是否不可选中
+			disabled: {
+				type: Boolean,
+				default: uni.$u.props.rate.disabled
+			},
+			// 星星的大小，单位rpx
+			size: {
+				type: [Number, String],
+				default: uni.$u.props.rate.size
+			},
+			// 未选中时的颜色
+			inactiveColor: {
+				type: String,
+				default: uni.$u.props.rate.inactiveColor
+			},
+			// 选中的颜色
+			activeColor: {
+				type: String,
+				default: uni.$u.props.rate.activeColor
+			},
+			// 星星之间的间距，单位rpx
+			gutter: {
+				type: [Number, String],
+				default: uni.$u.props.rate.gutter
+			},
+			// 最少能选择的星星个数
+			minCount: {
+				type: [Number, String],
+				default: uni.$u.props.rate.minCount
+			},
+			// 是否允许半星(功能尚未实现)
+			allowHalf: {
+				type: Boolean,
+				default: uni.$u.props.rate.allowHalf
+			},
+			// 选中时的图标(星星)
+			activeIcon: {
+				type: String,
+				default: uni.$u.props.rate.activeIcon
+			},
+			// 未选中时的图标(星星)
+			inactiveIcon: {
+				type: String,
+				default: uni.$u.props.rate.inactiveIcon
+			},
+		},
+		mixins: [uni.$u.mixin],
+		data() {
+			return {
+				// 生成一个唯一id，否则一个页面多个评分组件，会造成冲突
+				elId: uni.$u.guid(),
+				elClass: uni.$u.guid(),
+				rateBoxLeft: 0, // 评分盒子左边到屏幕左边的距离，用于滑动选择时计算距离
+				activeIndex: this.value,
+				rateWidth: 0, // 每个星星的宽度
+				// 标识是否正在滑动，由于iOS事件上touch比click先触发，导致快速滑动结束后，接着触发click，导致事件混乱而出错
+				moving: false, 
+			}
+		},
+		watch: {
+			value(val) {
+				this.activeIndex = val
+			},
+		},
+		methods: {
+			init() {
+				this.$nextTick(() => {
+					this.getRateItemRect()
+					this.getRateIconWrapRect()
+				})
+			},
+			// 获取评分组件盒子的布局信息
+			getRateItemRect() {
+				// uView封装的获取节点的方法，详见文档
+				// #ifndef APP-NVUE
+				this.$uGetRect('#' + this.elId).then(res => {
+					this.rateBoxLeft = res.left
+				})
+				// #endif
+				// #ifdef APP-NVUE
+				dom.getComponentRect(this.$refs['u-rate'], (res) => {
+					this.rateBoxLeft = res.size.left
+				})
+				// #endif
+			},
+			// 获取单个星星的尺寸
+			getRateIconWrapRect() {
+				// uView封装的获取节点的方法，详见文档
+				// #ifndef APP-NVUE
+				this.$uGetRect('.' + this.elClass).then(res => {
+					this.rateWidth = res.width
+				})
+				// #endif
+				// #ifdef APP-NVUE
+				dom.getComponentRect(this.$refs['u-rate__item__icon-wrap'][0], (res) => {
+					this.rateWidth = res.size.width
+				})
+				// #endif
+			},
+			// 手指滑动
+			touchMove(e) {
+				this.preventEvent(e)
+				const x = e.changedTouches[0].pageX
+				this.getActiveIndex(x)
+			},
+			// 停止滑动
+			touchEnd(e) {
+				this.preventEvent(e)
+				const x = e.changedTouches[0].pageX
+				this.getActiveIndex(x)
+			},
+			// 通过点击，直接选中
+			clickHandler(e, index) {
+				// ios上，moving状态取消事件触发
+				if(uni.$u.os() === 'ios' && this.moving) {
+					return 
+				}
+				this.preventEvent(e)
+				// 点击时，在nvue上，无法获得点击的坐标，所以无法实现点击半星选择
+				// #ifndef APP-NVUE
+				const x = e.changedTouches[0].pageX
+				// #endif
+				// #ifdef APP-NVUE
+				// 模拟坐标
+				const x = index * this.rateWidth + this.rateBoxLeft
+				// #endif
+				this.getActiveIndex(x)
+			},
+			// 发出事件
+			emitEvent() {
+				// 发出change事件
+				this.$emit('change', this.activeIndex)
+				// 同时修改双向绑定的value的值
+				if (this.value != -1) {
+					this.$emit('input', this.activeIndex)
+				}
+			},
+			// 获取当前激活的评分图标
+			getActiveIndex(x) {
+				if (this.disabled) {
+					return
+				}
+				// 判断当前操作的点的x坐标值，是否在允许的边界范围内
+				const allRateWidth = this.rateWidth * this.count + this.rateBoxLeft
+				// 如果小于第一个图标的左边界，设置为最小值
+				if (x <= this.rateBoxLeft) {
+					x = this.rateBoxLeft
+				} else if (x >= allRateWidth) {
+					// 如果大于所有图标的宽度，则设置为最大值
+					x = allRateWidth
+				}
+				// 滑动点相对于评分盒子左边的距离
+				const distance = x - this.rateBoxLeft
+				// 滑动的距离，相当于多少颗星星
+				let index
+				// 判断是否允许半星
+				if (this.allowHalf) {
+					index = Math.floor(distance / this.rateWidth)
+					// 取余，判断小数的区间范围
+					const decimal = distance % this.rateWidth
+					if (decimal <= this.rateWidth / 2 && decimal > 0) {
+						index += 0.5
+					} else if(decimal > this.rateWidth / 2) {
+						index ++
+					}
+				} else {
+					index = Math.floor(distance / this.rateWidth)
+					// 取余，判断小数的区间范围
+					const decimal = distance % this.rateWidth
+					// 非半星时，只有超过了图标的一半距离，才认为是选择了这颗星
+					if(decimal > this.rateWidth / 2) {
+						index ++
+					}
+				}
+				this.activeIndex = index > this.count ? this.count : index
+				// 对最少颗星星的限制
+				if (this.activeIndex < this.minCount) this.activeIndex = this.minCount
+				this.moving = true
+				// 一定时间后，取消标识为移动中状态，是为了让click事件无效
+				setTimeout(() => {
+					this.moving = false
+				}, 10)
+				this.emitEvent()
+			}
+		},
+		mounted() {
+			this.init()
+		}
+	}
+</script>
+
+<style lang="scss">
+	@import "../../libs/css/components.scss";
+
+	.u-rate {
+		@include flex;
+		align-items: center;
+		margin: 0;
+		padding: 0;
+		/* #ifndef APP-NVUE */
+		touch-action: none;
+		/* #endif */
+
+		&__item {
+			position: relative;
+
+			&__icon-wrap {
+
+				&--half {
+					position: absolute;
+					overflow: hidden;
+					top: 0;
+					left: 0;
+				}
+			}
+		}
+	}
+
+	.u-icon {
+		/* #ifndef APP-NVUE */
+		box-sizing: border-box;
+		/* #endif */
+	}
+</style>

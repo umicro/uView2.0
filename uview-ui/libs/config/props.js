@@ -320,5 +320,20 @@ export default {
 		hairline: true,
 		margin: 0,
 		dashed: false
+	},
+	
+	// rate组件
+	rate: {
+		value: 1,
+		count: 5,
+		disabled: false,
+		size: 16,
+		inactiveColor: '#b2b2b2',
+		activeColor: '#FA3534',
+		gutter: 5,
+		minCount: 1,
+		allowHalf: false,
+		activeIcon: 'star-fill',
+		inactiveIcon: 'star'
 	}
 }

@@ -119,13 +119,6 @@
 				type: String,
 				default: uni.$u.props.icon.imgMode
 			},
-			// 自定义样式
-			// customStyle: {
-			// 	type: Object,
-			// 	default () {
-			// 		return uni.$u.props.icon.customStyle
-			// 	}
-			// },
 			// 用于显示图片小图标时，图片的宽度
 			width: {
 				type: [String, Number],
@@ -164,9 +157,7 @@
 				// 	classes.push(this.customPrefix)
 				// }
 				// 主题色，通过类配置
-				if (this.showDecimalIcon && this.inactiveColor && this.$u.config.type.includes(this.inactiveColor)) {
-					classes.push('u-icon__icon--' + this.inactiveColor)
-				} else if (this.color && this.$u.config.type.includes(this.color)) classes.push('u-icon__icon--' + this.color)
+				if (this.color && this.$u.config.type.includes(this.color)) classes.push('u-icon__icon--' + this.color)
 				// 阿里，头条，百度小程序通过数组绑定类名时，无法直接使用[a, b, c]的形式，否则无法识别
 				// 故需将其拆成一个字符串的形式，通过空格隔开各个类名
 				//#ifdef MP-ALIPAY || MP-TOUTIAO || MP-BAIDU

@@ -1,0 +1,26 @@
+<template>
+	<view class="u-page">
+		<u-rate v-model="value" :allow-half="true"></u-rate>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				value: 3.5
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+.u-page {
+	margin-top: 100px;
+	/* #ifndef APP-NVUE */
+	display: flex;
+	/* #endif */
+	margin-left: 100px;
+	justify-content: center;
+}
+</style>

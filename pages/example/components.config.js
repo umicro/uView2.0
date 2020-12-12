@@ -83,7 +83,7 @@ export default [{
 			title: 'Picker 选择器',
 			title_en: 'Picker',
 		}, {
-			path: '/pages/componentsB/rate/index',
+			path: '/pages/componentsA/rate/index',
 			icon: 'rate',
 			title: 'Rate 评分',
 			title_en: 'Rate',

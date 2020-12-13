@@ -239,7 +239,7 @@ export default [{
 		}, 
 		// #endif
 		{
-			path: '/pages/componentsC/grid/index',
+			path: '/pages/componentsA/grid/index',
 			icon: 'grid',
 			title: 'Grid 宫格布局',
 			title_en: 'Grid',
@@ -375,7 +375,7 @@ export default [{
 			title: 'LazyLoad 懒加载',
 			title_en: 'LazyLoad',
 		}, {
-			path: '/pages/componentsC/gap/index',
+			path: '/pages/componentsA/gap/index',
 			icon: 'gap',
 			title: 'Gap 间隔槽',
 			title_en: 'Gap',

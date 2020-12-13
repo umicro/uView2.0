@@ -1,0 +1,198 @@
+<template>
+	<view
+	    class="u-grid-item"
+	    hover-class="u-grid-item--hover-class"
+	    :hover-stay-time="200"
+	    @tap="clickHandler"
+	    :class="classes"
+	    :style="{
+			background: bgColor,
+			width: width,
+		}"
+	>
+		<slot />
+	</view>
+</template>
+
+<script>
+	/**
+	 * gridItem 提示
+	 * @description 宫格组件一般用于同时展示多个同类项目的场景，可以给宫格的项目设置徽标组件(badge)，或者图标等，也可以扩展为左右滑动的轮播形式。搭配u-grid使用
+	 * @tutorial https://www.uviewui.com/components/grid.html
+	 * @property {String} bg-color 宫格的背景颜色（默认#ffffff）
+	 * @property {String Number} index 点击宫格时，返回的值
+	 * @property {Object} custom-style 自定义样式，对象形式
+	 * @event {Function} click 点击宫格触发
+	 * @example <u-grid-item></u-grid-item>
+	 */
+	export default {
+		name: "u-grid-item",
+		props: {
+			// 背景颜色
+			bgColor: {
+				type: String,
+				default: '#ffffff'
+			},
+			// 点击时返回的index
+			index: {
+				type: [Number, String],
+				default: ''
+			},
+		},
+		mixins: [uni.$u.mixin],
+		data() {
+			return {
+				parentData: {
+					col: 3, // 父组件划分的宫格数
+					border: true, // 是否显示边框，根据父组件决定
+				},
+				// #ifdef APP-NVUE
+				width: 0, // nvue下才这么计算，vue下放到computed中，否则会因为延时造成闪烁
+				// #endif
+				classes: [], // 类名集合，用于判断是否显示右边和下边框
+			};
+		},
+		mounted() {
+			this.init()
+		},
+		computed: {
+			// #ifndef APP-NVUE
+			// vue下放到computed中，否则会因为延时造成闪烁
+			width() {
+				return 100 / Number(this.parentData.col) + '%'
+			},
+			// #endif
+		},
+		methods: {
+			init() {
+				// 用于在父组件u-grid的children中被添加入子组件时，
+				// 重新计算item的边框
+				uni.$on('$uGridItem', () => {
+					this.gridItemClasses()
+				})
+				this.parent = {}
+				// 父组件的实例
+				this.updateParentData('u-grid')
+				// this.parent在updateParentData()中定义
+				this.parent.children.push(this)
+				// #ifdef APP-NVUE
+				// 获取元素该有的长度，nvue下要延时才准确
+				this.$nextTick(function(){
+					this.getItemWidth()
+				})
+				// #endif
+				// 发出事件，通知所有的grid-item都重新计算自己的边框
+				uni.$emit('$uGridItem')
+				this.gridItemClasses()
+			},
+			// 获取父组件的参数
+			updateParentData() {
+				// 此方法写在mixin中
+				this.getParentData('u-grid');
+			},
+			clickHandler() {
+				let itemIndex, children = this.parent.children
+				// 历遍父组件的children数组，判断当前的元素是否和本实例this相等，找出当前组件的索引
+				if(children.length) {
+					children.map((item, index) => {
+						if(item === this) {
+							itemIndex = index
+						}
+					})
+				}
+				this.$emit('click', itemIndex)
+				this.parent && this.parent.click(itemIndex)
+			},
+			async getItemWidth() {
+				// 如果是nvue，不能使用百分比，只能使用固定宽度
+				let width = 0
+				if(this.parent) {
+					// 获取父组件宽度后，除以栅格数，得出每个item的宽度
+					const parentWidth = await this.getParentWidth()
+					width = parentWidth / Number(this.parentData.col) + 'px'
+				}
+				this.width = width
+			},
+			// 获取父元素的尺寸
+			getParentWidth() {
+				// #ifdef APP-NVUE
+				// 返回一个promise，让调用者可以用await同步获取
+				const dom = uni.requireNativePlugin('dom')
+				return new Promise(resolve => {
+					// 调用父组件的ref
+					dom.getComponentRect(this.parent.$refs['u-grid'], res => {
+						resolve(res.size.width)
+					})
+				})
+				// #endif
+			},
+			gridItemClasses() {
+				if(this.parentData.border) {
+					const classes = []
+					this.parent.children.map((item, index) =>{
+						if(this === item) {
+							// 贴近右边屏幕边沿的item，无需右边框
+							if((index + 1) % this.parentData.col !== 0) {
+								classes.push('u-border-right')
+							} 
+							const len = this.parent.children.length
+							const lessNum = len % this.parentData.col
+							// 最下面的一排item，无需下边框
+							if(index < len - lessNum) {
+								classes.push('u-border-bottom')
+							}
+						}
+					})
+					// 支付宝，头条小程序无法动态绑定一个数组类名，否则解析出来的结果会带有","，而导致失效
+					// #ifdef MP-ALIPAY || MP-TOUTIAO
+					classes = classes.join(' ')
+					// #endif
+					this.classes = classes
+				}
+			}
+		}
+	};
+</script>
+
+<style lang="scss">
+	@import "../../libs/css/components.scss";
+
+	.u-grid-item {
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		flex-direction: column;
+		/* #ifndef APP-NVUE */
+		box-sizing: border-box;
+		display: flex;
+		/* #endif */
+
+		/* #ifdef MP */
+		position: relative;
+		float: left;
+		/* #endif */
+		
+		/* #ifdef MP-WEIXIN */
+		// 由于这个世上最大的垃圾互联网公司的无能，所以需要写这一句
+		margin-top: 1rpx;
+		/* #endif */
+		
+		&--hover-class {
+			opacity: 0.5;
+		}
+	}
+
+	/* #ifdef APP-NVUE */
+	// 由于nvue不支持组件内引入app.vue中再引入的样式，所以需要写在这里
+	.u-border-right {
+		border-right-width: 0.5px;
+		border-color: $u-border-color;
+	}
+
+	.u-border-bottom {
+		border-bottom-width: 0.5px;
+		border-color: $u-border-color;
+	}
+
+	/* #endif */
+</style>

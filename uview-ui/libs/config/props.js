@@ -335,5 +335,18 @@ export default {
 		allowHalf: false,
 		activeIcon: 'star-fill',
 		inactiveIcon: 'star'
+	},
+	
+	// gap组件
+	gap: {
+		bgColor: 'transparent',
+		height: 20,
+		marginTop: 0,
+		marginBottom: 0
+	},
+	
+	// grid组件
+	grid: {
+		
 	}
 }

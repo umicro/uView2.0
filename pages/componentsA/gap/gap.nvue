@@ -1,0 +1,15 @@
+<template>
+	<view class="u-page">
+		<u-gap bg-color="red"></u-gap>
+	</view>
+</template>
+
+<script>
+	export default {
+		
+	}
+</script>
+
+<style lang="scss">
+
+</style>

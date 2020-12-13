@@ -7,7 +7,7 @@
 		"current": 0, //当前激活的模式(list 的索引项)
 		"list": [{
 			"name": "test", //模式名称
-			"path": "pages/componentsA/rate/rate", //启动页面，必选
+			"path": "pages/componentsA/grid/grid", //启动页面，必选
 			"query": "uuid=c4bba940-f69e-11ea-a419-6bafda9d095e&__id__=1" //启动参数，在页面的onLoad函数里面得到
 		}]
 	},
@@ -155,6 +155,18 @@
 				"path": "rate/rate",
 				"style": {
 					"navigationBarTitleText": "评分"
+				}
+			},
+			{
+				"path": "gap/gap",
+				"style": {
+					"navigationBarTitleText": "间隔槽"
+				}
+			},
+			{
+				"path": "grid/grid",
+				"style": {
+					"navigationBarTitleText": "宫格"
 				}
 			}
 		]

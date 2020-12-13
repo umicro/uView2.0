@@ -1,0 +1,42 @@
+<template>
+	<view class="u-page">
+		<u-grid>
+			<u-grid-item @click="click">
+				<u-icon name="map"></u-icon>
+				<text>你好吗</text>
+			</u-grid-item>
+			<u-grid-item>
+				<u-icon name="map"></u-icon>
+				<text>你好吗</text>
+			</u-grid-item>
+			<u-grid-item> 
+				<u-icon name="map"></u-icon>
+				<text>你好吗</text>
+			</u-grid-item>
+			<u-grid-item>
+				<u-icon name="map"></u-icon>
+				<text>你好吗</text>
+			</u-grid-item>
+			<u-grid-item>
+				<u-icon name="map"></u-icon>
+				<text>你好吗</text>
+			</u-grid-item>
+		</u-grid>
+	</view>
+</template>
+
+<script>
+	export default {
+		methods: {
+			click(index) {
+				console.log(index)
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+	.u-page {
+		padding: 20px;
+	}
+</style>

@@ -3,6 +3,7 @@
 	    class="u-rate"
 	    :id="elId"
 	    ref="u-rate"
+		:style="[customStyle]"
 	    @touchmove.stop.prevent="touchMove"
 		@touchend.stop.prevent="touchEnd"
 	>

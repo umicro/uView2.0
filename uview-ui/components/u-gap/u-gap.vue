@@ -45,7 +45,7 @@ export default {
 				marginTop: uni.$u.addUnit(this.marginTop),
 				marginBottom: uni.$u.addUnit(this.marginBottom),
 			}
-			return uni.$u.deepMerge(style, customStyle)
+			return uni.$u.deepMerge(style, this.customStyle)
 		}
 	}
 };

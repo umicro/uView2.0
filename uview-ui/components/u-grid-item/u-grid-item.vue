@@ -5,10 +5,7 @@
 	    :hover-stay-time="200"
 	    @tap="clickHandler"
 	    :class="classes"
-	    :style="{
-			background: bgColor,
-			width: width,
-		}"
+	    :style="itemStyle"
 	>
 		<slot />
 	</view>
@@ -31,12 +28,7 @@
 			// 背景颜色
 			bgColor: {
 				type: String,
-				default: '#ffffff'
-			},
-			// 点击时返回的index
-			index: {
-				type: [Number, String],
-				default: ''
+				default: uni.$u.props.gridItem.bgColor
 			},
 		},
 		mixins: [uni.$u.mixin],
@@ -62,6 +54,13 @@
 				return 100 / Number(this.parentData.col) + '%'
 			},
 			// #endif
+			itemStyle() {
+				const style = {
+					background: this.bgColor,
+					width: this.width
+				}
+				return uni.$u.deepMerge(style, this.customStyle)
+			}
 		},
 		methods: {
 			init() {
@@ -150,6 +149,10 @@
 					this.classes = classes
 				}
 			}
+		},
+		beforeDestroy() {
+			// 移除事件监听，释放性能
+			uni.$off('$uGridItem')
 		}
 	};
 </script>

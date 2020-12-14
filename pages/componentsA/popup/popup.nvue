@@ -5,7 +5,7 @@
 		<u-button @click="openPopup('left')" text="左边弹窗"></u-button>
 		<u-button @click="openPopup('right')" text="右边弹窗"></u-button>
 		<u-button @click="openPopup('center')" text="中部弹窗"></u-button>
-		<u-popup :position="position" :show="show" @close="show = !show">
+		<u-popup :mode="mode" :show="show" @close="show = !show">
 			<view class="popup">
 				撒旦
 			</view>
@@ -33,12 +33,12 @@
 		data() {
 			return {
 				show: false,
-				position: 'left'
+				mode: 'left'
 			}
 		},
 		methods: {
-			openPopup(position) {
-				this.position = position
+			openPopup(mode) {
+				this.mode = mode
 				this.show = !this.show
 			}
 		}

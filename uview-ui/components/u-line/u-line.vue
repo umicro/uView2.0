@@ -26,7 +26,7 @@
 			},
 			// 长度，竖向时表现为高度，横向时表现为长度，可以为百分比，带rpx单位的值等
 			length: {
-				type: String,
+				type: [String, Number],
 				default: uni.$u.props.line.length
 			},
 			// 线条方向，col-竖向，row-横向
@@ -41,7 +41,7 @@
 			},
 			// 线条与上下左右元素的间距，字符串形式，如"30rpx"、"20rpx 30rpx"
 			margin: {
-				type: String,
+				type: [String, Number],
 				default: uni.$u.props.line.margin
 			},
 			// 是否实线，true-实线，false-虚线

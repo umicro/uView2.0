@@ -36,7 +36,7 @@ export default {
 		mode: 'fade',
 		duration: '300',
 		customStyle: {},
-		timingFunction: 'linear'
+		timingFunction: 'ease-out'
 	},
 
 	// cell组件的props
@@ -109,6 +109,7 @@ export default {
 		textSize: 15,
 		text: '',
 		type: '',
+		duration: 1200,
 		timingFunction: 'ease-in-out'
 	},
 
@@ -347,6 +348,29 @@ export default {
 	
 	// grid组件
 	grid: {
-		
+		col: 3,
+		border: false,
+		align: 'left'
+	},
+	
+	// grid-item组件
+	gridItem: {
+		bgColor: 'transparent'
+	},
+	
+	// popup组件
+	popup: {
+		show: false,
+		overlay: true,
+		mode: 'bottom',
+		duration: 300,
+		borderRadis: 0,
+		closeable: false,
+		safeAreaInsetTop: false,
+		overlayStyle: () => {},
+		closeOnClickOverly: true,
+		zIndex: 1075,
+		safeAreaInsetBottom: true,
 	}
+	
 }

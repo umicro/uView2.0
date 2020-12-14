@@ -1,0 +1,51 @@
+<template>
+	<view>
+		<u-button
+		    @click="show = true"
+		    text="弹出"
+		></u-button>
+		<u-action-sheet
+		    :show="show"
+		    @close="show = !show"
+		    :description="description"
+		    :title="title"
+			:actions="actions"
+			:cancelText="cancelText"
+		>
+
+		</u-action-sheet>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				show: true,
+				title: '我们很明显能感知到',
+				description: '',
+				actions: [{
+						name: '着色选项',
+						color: '#ee0a24'
+					},
+					{
+						loading: true
+					},
+					{
+						name: '禁用选项',
+						disabled: true,
+						subname: '你说啥呢'
+					},
+				],
+				cancelText: '取消'
+			}
+		},
+		onLoad() {
+			console.log(uni.$u.sys().safeAreaInsets)
+		}
+	}
+</script>
+
+<style lang="scss">
+
+</style>

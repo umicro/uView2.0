@@ -1,3 +1,13 @@
+// iPhoneX底部安全区定义
+.safe-area-inset-bottom {
+  padding-bottom: 0;  
+  padding-bottom: constant(safe-area-inset-bottom);  
+  padding-bottom: env(safe-area-inset-bottom);  
+} 
 
-
-
+// iPhoneX顶部安全区定义
+.safe-area-inset-top {
+  padding-top: 0;  
+  padding-top: constant(safe-area-inset-top);  
+  padding-top: env(safe-area-inset-top);  
+} 

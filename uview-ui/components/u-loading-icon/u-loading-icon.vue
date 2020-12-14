@@ -16,7 +16,8 @@
 				borderBottomColor: otherBorderColor,
 				borderLeftColor: otherBorderColor,
 				borderRightColor: otherBorderColor,
-				'animation-timing-function': mode === 'semicircle' || mode === 'circle' ? timingFunction : 'linear'
+				'animation-duration': `${duration}ms`,
+				'animation-timing-function': mode === 'semicircle' || mode === 'circle' ? timingFunction : ''
 			}"
 		>
 			<block v-if="mode === 'spinner'">
@@ -89,6 +90,11 @@
 			timingFunction: {
 				type: String,
 				default: uni.$u.props.loadingIcon.timingFunction
+			},
+			// 动画执行周期时间
+			duration: {
+				type: [String, Number],
+				default: uni.$u.props.loadingIcon.duration
 			}
 		},
 		mixins: [uni.$u.mixin],
@@ -149,7 +155,7 @@
 						transform: `rotate(${this.aniAngel}deg)`,
 						transformOrigin: 'center center'
 					},
-					duration: 1000,
+					duration: this.duration,
 					timingFunction: this.timingFunction,
 					delay: 0
 				}, () => {

@@ -91,6 +91,6 @@
 	/* #endif */
 	
 	.u-transition {
-	    
+	    background-color: #FFFFFF;
 	}
 </style>

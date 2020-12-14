@@ -1,7 +1,7 @@
 <template>
-	<view class="u-popup">
+	<view class="u-popup" :style="[customStyle]">
 		<u-overlay :show="show" @click="overlayClick"></u-overlay>
-		<u-transition :show="show" :custom-style="transitionStyle" :mode="mode" @click="transitionClick">
+		<u-transition :show="show" :custom-style="transitionStyle" :mode="position" @click="transitionClick">
 			<view class="u-popup__content" :style="[contentStyle]" @tap.stop="noop">
 				<slot></slot>
 			</view>
@@ -15,61 +15,58 @@
 			// 是否展示弹窗
 			show: {
 				type: Boolean,
-				default: false
+				default: uni.$u.props.popup.show
 			},
 			// 是否显示遮罩
 			overlay: {
 				type: Boolean,
-				default: true
+				default: uni.$u.props.popup.overlay
 			},
 			// 弹出的方向，可选值为 top bottom right left center
-			position: {
+			mode: {
 				type: String,
-				default: 'center'
+				default: uni.$u.props.popup.mode
 			},
 			// 动画时长，单位ms
 			duration: {
 				type: [String, Number],
-				default: 300
+				default: uni.$u.props.popup.duration
 			},
 			// 圆角值
 			borderRadis: {
 				type: [String, Number],
-				default: 0
+				default: uni.$u.props.popup.borderRadis
 			},
 			// 是否显示关闭图标
 			closeable: {
 				type: Boolean,
-				default: false
-			},
-			// 是否为iPhoneX预留底部的安全距离
-			safeAreaInsetBottom: {
-				type: Boolean,
-				default: true
-			},
-			// 是否留出顶部安全距离(状态栏高度)
-			safeAreaInsetTop: {
-				type: Boolean,
-				default: false
+				default: uni.$u.props.popup.closeable
 			},
 			// 自定义遮罩的样式
 			overlayStyle: {
 				type: Object,
-				default () {
-					return {}
-				}
+				default: uni.$u.props.popup.overlayStyle
 			},
 			// 点击遮罩是否关闭弹窗
 			closeOnClickOverly: {
 				type: Boolean,
-				default: true
+				default: uni.$u.props.popup.closeOnClickOverly
 			},
 			// 层级
 			zIndex: {
 				type: [String, Number],
-				default: 1075
-			}
-
+				default: uni.$u.props.popup.zIndex
+			},
+			// 是否为iPhoneX留出底部安全距离
+			safeAreaInsetBottom: {
+				type: Boolean,
+				default: uni.$u.props.popup.safeAreaInsetBottom
+			},
+			// 是否留出顶部安全距离（状态栏高度）
+			safeAreaInsetTop: {
+				type: Boolean,
+				default: uni.$u.props.popup.safeAreaInsetTop
+			},
 		},
 		mixins: [uni.$u.mixin],
 		data() {
@@ -82,28 +79,38 @@
 					position: 'fixed',
 					display: 'flex',
 				}
-				style[this.position] = 0
-				if (this.position === 'left') {
+				// 通过设备信息的safeAreaInsets值来判断是否需要预留顶部状态栏和底部安全局的位置
+				// 不使用css方案，是因为nvue不支持css的iPhoneX安全区查询属性
+				const { safeAreaInsets } = uni.$u.sys()
+				if(this.safeAreaInsetTop) {
+					// 通过加入pandding-top避开安全局
+					style.paddingTop = uni.$u.addUnit(safeAreaInsets.top)
+				}
+				if(this.safeAreaInsetBottom) {
+					style.paddingBottom = uni.$u.addUnit(safeAreaInsets.bottom)
+				}
+				style[this.mode] = 0
+				if (this.mode === 'left') {
 					return this.$u.deepMerge(style, {
 						bottom: 0,
 						top: 0,
 					})
-				} else if(this.position === 'right') {
+				} else if(this.mode === 'right') {
 					return this.$u.deepMerge(style, {
 						bottom: 0,
 						top: 0,
 					})
-				} else if(this.position === 'top') {
+				} else if(this.mode === 'top') {
 					return this.$u.deepMerge(style, {
 						left: 0,
 						right: 0,
 					})
-				} else if(this.position === 'bottom') {
+				} else if(this.mode === 'bottom') {
 					return this.$u.deepMerge(style, {
 						left: 0,
 						right: 0,
 					})
-				} else if(this.position === 'center') {
+				} else if(this.mode === 'center') {
 					return this.$u.deepMerge(style, {
 						alignItems: 'center',
 						'justify-content': 'center',
@@ -116,28 +123,28 @@
 			},
 			contentStyle() {
 				const style = {}
-				if(this.position !== 'center') {
+				if(this.mode !== 'center') {
 					style.flex = 1
 				}
 				return style
 			},
-			mode() {
-				if (this.position === 'center') {
+			position() {
+				if (this.mode === 'center') {
 					return 'fade'
 				}
-				if (this.position === 'left') {
+				if (this.mode === 'left') {
 					return 'slide-left'
 				}
-				if (this.position === 'right') {
+				if (this.mode === 'right') {
 					return 'slide-right'
 				}
-				if (this.position === 'bottom') {
+				if (this.mode === 'bottom') {
 					return 'slide-up'
 				}
-				if (this.position === 'top') {
+				if (this.mode === 'top') {
 					return 'slide-down'
 				}
-			}
+			},
 		},
 		methods: {
 			// 点击遮罩
@@ -147,7 +154,7 @@
 				}
 			},
 			transitionClick() {
-				if (this.position === 'center') {
+				if (this.mode === 'center') {
 					this.overlayClick()
 				}
 			}
@@ -161,10 +168,9 @@
 	
 	.u-popup {
 		flex: 1;
-		height: 500px;
 
 		&__content {
-			background-color: red;
+			background-color: #FFFFFF;
 		}
 	}
 </style>

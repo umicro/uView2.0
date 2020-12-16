@@ -101,6 +101,25 @@
 <script>
 	import openType from '../../libs/mixin/open-type'
 	import button from '../../libs/mixin/button'
+	/**
+	 * actionSheet 操作菜单
+	 * @description 本组件用于从底部弹出一个操作菜单，供用户选择并返回结果。本组件功能类似于uni的uni.showActionSheetAPI，配置更加灵活，所有平台都表现一致。
+	 * @tutorial https://www.uviewui.com/components/actionSheet.html
+	 * @property {Array<Object>} actions 按钮的文字数组，见官方文档示例
+	 * @property {Boolean} show 是否展示操作菜单
+	 * @property {Object} tips 顶部的提示文字，见官方文档示例
+	 * @property {String} cancel-text 取消按钮的提示文字
+	 * @property {Boolean} cancel-btn 是否显示底部的取消按钮（默认true）
+	 * @property {Number String} border-radius 弹出部分顶部左右的圆角值，单位rpx（默认0）
+	 * @property {Boolean} mask-close-able 点击遮罩是否可以关闭（默认true）
+	 * @property {Boolean} safe-area-inset-bottom 是否开启底部安全区适配（默认false）
+	 * @property {Number String} z-index z-index值（默认1075）
+	 * @property {String} cancel-text 取消按钮的提示文字
+	 * @property {Object} customStyle 自定义样式，对象类型
+	 * @event {Function} click 点击ActionSheet列表项时触发
+	 * @event {Function} close 点击取消按钮时触发
+	 * @example <u-action-sheet :actions="actions" @click="click" :show="show"></u-action-sheet>
+	 */
 	export default {
 		name: "u-action-sheet",
 		props: {
@@ -212,7 +231,6 @@
 	$u-action-sheet-cancel-text-color:$u-main-color !default;
 	$u-action-sheet-cancel-text-font-size:15px!default;
 	$u-action-sheet-cancel-text-hover-background-color:rgb(242, 243, 245)!default;
-     
 	.u-reset-button {
 		width: $u-action-sheet-reset-button-width;
 	}

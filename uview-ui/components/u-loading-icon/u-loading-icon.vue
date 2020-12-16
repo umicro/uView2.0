@@ -183,39 +183,39 @@
 	$u-loading-icon-text-color:$u-content-color !default;
 	$u-loading-icon-text-font-size:14px !default;
 	$u-loading-icon-text-line-height:20px !default;
-	$u-loading-icon-spinner-width:30px !default;
-	$u-loading-icon-spinner-height:30px !default;
-	$u-loading-icon-spinner-max-width:100% !default;
-	$u-loading-icon-spinner-max-height:100% !default;
-	$u-loading-icon-spinner-semicircle-border-width:1px!default;
-	$u-loading-icon-spinner-semicircle-border-color:transparent!default;
-	$u-loading-icon-spinner-semicircle-border-top-right-radius: 100px!default;
-	$u-loading-icon-spinner-semicircle-border-top-left-radius: 100px!default;
-	$u-loading-icon-spinner-semicircle-border-bottom-left-radius: 100px!default;
-	$u-loading-icon-spinner-semicircle-border-bottom-right-radiu: 100px!default;
-	$u-loading-icon-spinner-semicircle-border-style: solid !default;
-	$u-loading-icon-spinner-circle-border-top-right-radius: 100px!default;
-	$u-loading-icon-spinner-circle-border-top-left-radius: 100px!default;
-	$u-loading-icon-spinner-circle-border-bottom-left-radius: 100px!default;
-	$u-loading-icon-spinner-circle-border-bottom-right-radiu: 100px!default;
-	$u-loading-icon-spinner-circle-border-width:2px!default;
-	$u-loading-icon-spinner-circle-border-top-color:#e5e5e5!default;
-	$u-loading-icon-spinner-circle-border-right-color:$u-loading-icon-spinner-circle-border-top-color!default;
-	$u-loading-icon-spinner-circle-border-bottom-color:$u-loading-icon-spinner-circle-border-top-color!default;
-	$u-loading-icon-spinner-circle-border-left-color:$u-loading-icon-spinner-circle-border-top-color!default;
-    $u-loading-icon-spinner-circle-border-style:solid !default;
+	$u-loading-width:30px !default;
+	$u-loading-height:30px !default;
+	$u-loading-max-width:100% !default;
+	$u-loading-max-height:100% !default;
+	$u-loading-semicircle-border-width:1px!default;
+	$u-loading-semicircle-border-color:transparent!default;
+	$u-loading-semicircle-border-top-right-radius: 100px!default;
+	$u-loading-semicircle-border-top-left-radius: 100px!default;
+	$u-loading-semicircle-border-bottom-left-radius: 100px!default;
+	$u-loading-semicircle-border-bottom-right-radiu: 100px!default;
+	$u-loading-semicircle-border-style: solid !default;
+	$u-loading-circle-border-top-right-radius: 100px!default;
+	$u-loading-circle-border-top-left-radius: 100px!default;
+	$u-loading-circle-border-bottom-left-radius: 100px!default;
+	$u-loading-circle-border-bottom-right-radiu: 100px!default;
+	$u-loading-circle-border-width:2px!default;
+	$u-loading-circle-border-top-color:#e5e5e5!default;
+	$u-loading-circle-border-right-color:$u-loading-circle-border-top-color!default;
+	$u-loading-circle-border-bottom-color:$u-loading-circle-border-top-color!default;
+	$u-loading-circle-border-left-color:$u-loading-circle-border-top-color!default;
+    $u-loading-circle-border-style:solid !default;
 	$u-loading-icon-host-font-size:0px!default;
 	$u-loading-icon-host-line-height:1!default;
-	$u-loading-iconu-loading-icon-vertical-margin:4px 0 0!default;
-	$u-loading-iconu-loading-icon-dot-top:0!default;
-	$u-loading-iconu-loading-icon-dot-left:0!default;
-	$u-loading-iconu-loading-icon-dot-width:100%!default;
-	$u-loading-iconu-loading-icon-dot-height:100%!default;
-	$u-loading-iconu-loading-icon-dot-before-width:2px!default;
-	$u-loading-iconu-loading-icon-dot-before-height:25%!default;
-	$u-loading-iconu-loading-icon-dot-before-margin:0 auto!default;
-	$u-loading-iconu-loading-icon-dot-before-background-color:currentColor!default;
-	$u-loading-iconu-loading-icon-dot-before-border-radius:40%!default;
+	$u-loading-icon-vertical-margin:4px 0 0!default;
+	$u-loading-icon-dot-top:0!default;
+	$u-loading-icon-dot-left:0!default;
+	$u-loading-icon-dot-width:100%!default;
+	$u-loading-icon-dot-height:100%!default;
+	$u-loading-icon-dot-before-width:2px!default;
+	$u-loading-icon-dot-before-height:25%!default;
+	$u-loading-icon-dot-before-margin:0 auto!default;
+	$u-loading-icon-dot-before-background-color:currentColor!default;
+	$u-loading-icon-dot-before-border-radius:40%!default;
 	
 	.u-loading-icon {
 		/* #ifndef APP-NVUE */
@@ -234,38 +234,38 @@
 		}
 
 		&__spinner {
-			width: $u-loading-icon-spinner-width;
-			height: $u-loading-icon-spinner-height;
+			width: $u-loading-width;
+			height: $u-loading-height;
 			position: relative;
 			/* #ifndef APP-NVUE */
 			box-sizing: border-box;
-			max-width: $u-loading-icon-spinner-max-width;
-			max-height:$u-loading-icon-spinner-max-height;
+			max-width: $u-loading-max-width;
+			max-height:$u-loading-max-height;
 			animation: u-rotate 1s linear infinite;
 			/* #endif */
 		}
 
 		&__spinner--semicircle {
-			border-width:$u-loading-icon-spinner-semicircle-border-width;
-			border-color:$u-loading-icon-spinner-semicircle-border-color;
-			border-top-right-radius:$u-loading-icon-spinner-semicircle-border-top-right-radius;
-			border-top-left-radius:$u-loading-icon-spinner-semicircle-border-top-left-radius;
-			border-bottom-left-radius:$u-loading-icon-spinner-semicircle-border-bottom-left-radius;
-			border-bottom-right-radius:$u-loading-icon-spinner-semicircle-border-bottom-right-radiu;
-			border-style:$u-loading-icon-spinner-semicircle-border-style;
+			border-width:$u-loading-semicircle-border-width;
+			border-color:$u-loading-semicircle-border-color;
+			border-top-right-radius:$u-loading-semicircle-border-top-right-radius;
+			border-top-left-radius:$u-loading-semicircle-border-top-left-radius;
+			border-bottom-left-radius:$u-loading-semicircle-border-bottom-left-radius;
+			border-bottom-right-radius:$u-loading-semicircle-border-bottom-right-radiu;
+			border-style:$u-loading-semicircle-border-style;
 		}
 
 		&__spinner--circle {
-			border-top-right-radius:$u-loading-icon-spinner-circle-border-top-right-radius;
-			border-top-left-radius:$u-loading-icon-spinner-circle-border-top-left-radius;
-			border-bottom-left-radius:$u-loading-icon-spinner-circle-border-bottom-left-radius;
-			border-bottom-right-radius:$u-loading-icon-spinner-circle-border-bottom-right-radiu;
-			border-width:$u-loading-icon-spinner-circle-border-width;
-			border-top-color:$u-loading-icon-spinner-circle-border-top-color;
-			border-right-color:$u-loading-icon-spinner-circle-border-right-color;
-			border-bottom-color:$u-loading-icon-spinner-circle-border-bottom-color;
-			border-left-color:$u-loading-icon-spinner-circle-border-left-color;
-			border-style: $u-loading-icon-spinner-circle-border-style;
+			border-top-right-radius:$u-loading-circle-border-top-right-radius;
+			border-top-left-radius:$u-loading-circle-border-top-left-radius;
+			border-bottom-left-radius:$u-loading-circle-border-bottom-left-radius;
+			border-bottom-right-radius:$u-loading-circle-border-bottom-right-radiu;
+			border-width:$u-loading-circle-border-width;
+			border-top-color:$u-loading-circle-border-top-color;
+			border-right-color:$u-loading-circle-border-right-color;
+			border-bottom-color:$u-loading-circle-border-bottom-color;
+			border-left-color:$u-loading-circle-border-left-color;
+			border-style: $u-loading-circle-border-style;
 		}
 
 		&--vertical {
@@ -289,23 +289,23 @@
 		}
 
 		&--vertical &__text {
-			margin:$u-loading-iconu-loading-icon-vertical-margin;
+			margin:$u-loading-icon-vertical-margin;
 		}
 
 		&__dot {
 			position: absolute;
-			top:$u-loading-iconu-loading-icon-dot-top;
-			left:$u-loading-iconu-loading-icon-dot-left;
-			width:$u-loading-iconu-loading-icon-dot-width;
-			height:$u-loading-iconu-loading-icon-dot-height;
+			top:$u-loading-icon-dot-top;
+			left:$u-loading-icon-dot-left;
+			width:$u-loading-icon-dot-width;
+			height:$u-loading-icon-dot-height;
 
 			&:before {
 				display: block;
-				width:$u-loading-iconu-loading-icon-dot-before-width;
-				height:$u-loading-iconu-loading-icon-dot-before-height;
-				margin:	$u-loading-iconu-loading-icon-dot-before-margin;
-				background-color:$u-loading-iconu-loading-icon-dot-before-background-color;
-				border-radius:$u-loading-iconu-loading-icon-dot-before-border-radius;
+				width:$u-loading-icon-dot-before-width;
+				height:$u-loading-icon-dot-before-height;
+				margin:	$u-loading-icon-dot-before-margin;
+				background-color:$u-loading-icon-dot-before-background-color;
+				border-radius:$u-loading-icon-dot-before-border-radius;
 				content: " "
 			}
 		}

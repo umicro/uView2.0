@@ -147,18 +147,18 @@
 
 <style lang="scss">
 	@import '../../libs/css/components.scss';
-     $u-back-top-back-top-flex:1 !default;
-     $u-back-top-back-top-height:100% !default;
-     $u-back-top-back-top-background-color:#E1E1E1 !default;
+     $u-back-top-flex:1 !default;
+     $u-back-top-height:100% !default;
+     $u-back-top-background-color:#E1E1E1 !default;
      $u-back-top-tips-font-size:12px !default;
 	.u-back-top {
 		@include flex;
 		flex-direction: column;
 		align-items: center;
-		flex:$u-back-top-back-top-flex;
-		height: $u-back-top-back-top-height;
+		flex:$u-back-top-flex;
+		height: $u-back-top-height;
 		justify-content: center;
-		background-color: $u-back-top-back-top-background-color;
+		background-color: $u-back-top-background-color;
 
 		&__tips {
 			font-size:$u-back-top-tips-font-size;

@@ -65,11 +65,9 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-	
 	$text-color: rgb(220, 220, 220) !default;
 	$text-size: 16px !default;
-	$u-loading-loading-icon-margin-bottom: 10px !default;
-
+	$u-loading-icon-margin-bottom: 10px !default;
 	.u-loading-page {
 		@include flex(column);
 		flex: 1;
@@ -86,7 +84,7 @@
 			/* #endif */
 			
 			&__loading-icon {
-				margin-bottom:$u-loading-loading-icon-margin-bottom;
+				margin-bottom:$u-loading-icon-margin-bottom;
 			}
 
 			&__text {

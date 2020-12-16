@@ -252,18 +252,18 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-   $u-radio-icon-wrap-margin-right:6px !default;
-   $u-radio-icon-wrap-font-size:20px !default;
-   $u-radio-icon-wrap-border-width:1px !default;
-   $u-radio-icon-wrap-border-color: #c8c9cc !default;
-   $u-radio-icon-line-height:0 !default;
-   $u-radio-icon-circle-border-radius:100% !default;
-   $u-radio-icon-square-border-radius:3px !default;
-   $u-radio-icon-checked-color:#fff !default;
-   $u-radio-icon-checked-background-color:red !default;
-   $u-radio-icon-checked-border-color: #2979ff !default;
-   $u-radio-icon-disabled-background-color:#ebedf0 !default;
-   $u-radio-icon-disabled--checked-color:#c8c9cc !default;
+   $u-radio-wrap-margin-right:6px !default;
+   $u-radio-wrap-font-size:20px !default;
+   $u-radio-wrap-border-width:1px !default;
+   $u-radio-wrap-border-color: #c8c9cc !default;
+   $u-radio-line-height:0 !default;
+   $u-radio-circle-border-radius:100% !default;
+   $u-radio-square-border-radius:3px !default;
+   $u-radio-checked-color:#fff !default;
+   $u-radio-checked-background-color:red !default;
+   $u-radio-checked-border-color: #2979ff !default;
+   $u-radio-disabled-background-color:#ebedf0 !default;
+   $u-radio-disabled--checked-color:#c8c9cc !default;
    $u-radio-label-margin-left: 5px !default;
    $u-radio-label-margin-right:12px !default;
    $u-radio-label-color:$u-content-color !default;
@@ -299,39 +299,39 @@
 			justify-content: center;
 			color: transparent;
 			text-align: center;
-			margin-right:$u-radio-icon-wrap-margin-right;
-			font-size:$u-radio-icon-wrap-font-size;
-			border-width:$u-radio-icon-wrap-border-width;
-			border-color:$u-radio-icon-wrap-border-color;
+			margin-right:$u-radio-wrap-margin-right;
+			font-size:$u-radio-wrap-font-size;
+			border-width:$u-radio-wrap-border-width;
+			border-color:$u-radio-wrap-border-color;
 
 			/* #ifdef MP-TOUTIAO */
 			// 头条小程序兼容性问题，需要设置行高为0，否则图标偏下
 			&__icon {
-				line-height:$u-radio-icon-line-height;
+				line-height:$u-radio-line-height;
 			}
 
 			/* #endif */
 
 			&--circle {
-				border-radius:$u-radio-icon-circle-border-radius;
+				border-radius:$u-radio-circle-border-radius;
 			}
 
 			&--square {
-				border-radius:$u-radio-icon-square-border-radius;
+				border-radius:$u-radio-square-border-radius;
 			}
 
 			&--checked {
-				color: $u-radio-icon-checked-color;
-				background-color:$u-radio-icon-checked-background-color;
-				border-color: $u-radio-icon-checked-border-color;
+				color: $u-radio-checked-color;
+				background-color:$u-radio-checked-background-color;
+				border-color: $u-radio-checked-border-color;
 			}
 
 			&--disabled {
-				background-color: $u-radio-icon-disabled-background-color  !important;
+				background-color: $u-radio-disabled-background-color  !important;
 			}
 
 			&--disabled--checked {
-				color: $u-radio-icon-disabled--checked-color  !important;
+				color: $u-radio-disabled--checked-color  !important;
 			}
 		}
 

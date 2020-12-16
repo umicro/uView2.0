@@ -269,23 +269,23 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-	$u-card-u-card-font-size:28rpx !default;
-	$u-card-u-card-background-color:#fff !default;
-	$u-card-u-card-full-border-after-border-radius:16rpx !default;
-	$u-card-u-card-head-left-color:$u-main-color!default;
-	$u-card-u-card-head-left-thumb-margin-right:16rpx !default;
-	$u-card-u-card-head-left-title-max-width:400rpx !default;
-	$u-card-u-card-head-right-color: $u-tips-color !default;
-	$u-card-u-card-head-right-margin-left:6rpx !default;
-	$u-card-u-card-body-color:$u-content-color !default;
-	$u-card-u-card-foot-color:$u-tips-color !default;
+	$u-card-font-size:28rpx !default;
+	$u-card-background-color:#fff !default;
+	$u-card-full-border-radius:16rpx !default;
+	$u-card-head-left-color:$u-main-color!default;
+	$u-card-head-left-thumb-margin-right:16rpx !default;
+	$u-card-head-left-title-max-width:400rpx !default;
+	$u-card-head-right-color: $u-tips-color !default;
+	$u-card-head-right-margin-left:6rpx !default;
+	$u-card-body-color:$u-content-color !default;
+	$u-card-foot-color:$u-tips-color !default;
 	
 
 	.u-card {
 		position: relative;
 		overflow: hidden;
-		font-size: $u-card-u-card-font-size;
-		background-color: $u-card-u-card-background-color;
+		font-size: $u-card-font-size;
+		background-color: $u-card-background-color;
 		// border-radius: 10;
 		// border-top-right-radius: 20rpx;
 		// border-bottom-left-radius: 63rpx;
@@ -302,7 +302,7 @@
 		}
 
 		&--border:after {
-			border-radius:$u-card-u-card-full-border-after-border-radius;
+			border-radius:$u-card-full-border-radius;
 		}
 
 		&__head {
@@ -313,31 +313,31 @@
 			&--left {
 				@include flex;
 				align-items: center;
-				color:$u-card-u-card-head-left-color;
+				color:$u-card-head-left-color;
 
 				&__thumb {
-					margin-right:$u-card-u-card-head-left-thumb-margin-right;
+					margin-right:$u-card-head-left-thumb-margin-right;
 				}
 
 				&__title {
 					/* #ifndef APP-NVUE */
-					max-width:$u-card-u-card-head-left-title-max-width;
+					max-width:$u-card-head-left-title-max-width;
 					/* #endif */
 				}
 			}
 
 			&--right {
-				color:$u-card-u-card-head-right-color;
-				margin-left:$u-card-u-card-head-right-margin-left;
+				color:$u-card-head-right-color;
+				margin-left:$u-card-head-right-margin-left;
 			}
 		}
 
 		&__body {
-			color:$u-card-u-card-body-color;
+			color:$u-card-body-color;
 		}
 
 		&__foot {
-			color:$u-card-u-card-foot-color;
+			color:$u-card-foot-color;
 		}
 	}
 </style>

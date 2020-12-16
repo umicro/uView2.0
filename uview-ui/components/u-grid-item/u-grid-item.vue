@@ -160,10 +160,11 @@
 <style lang="scss">
 	@import "../../libs/css/components.scss";
       $u-grid-item-hover-class-opcatiy:.5 !default; 
-      $u-grid-item-u-border-right-border-right-width:0.5px !default; 
-      $u-grid-item-u-border-bottom-border-bottom-width:0.5px !default; 
-      $u-grid-item-u-border-right-border-color:$u-border-color !default; 
-      $u-grid-item-u-border-bottom-border-color:$u-border-color !default; 
+      $u-grid-item-margin-top:1rpx !default; 
+      $u-grid-item-border-right-width:0.5px !default; 
+      $u-grid-item-border-bottom-width:0.5px !default; 
+      $u-grid-item-border-right-color:$u-border-color !default; 
+      $u-grid-item-border-bottom-color:$u-border-color !default; 
 	.u-grid-item {
 		align-items: center;
 		justify-content: center;
@@ -181,7 +182,7 @@
 		
 		/* #ifdef MP-WEIXIN */
 		// 由于这个世上最大的垃圾互联网公司的无能，所以需要写这一句
-		margin-top: 1rpx;
+		margin-top:$u-grid-item-margin-top;
 		/* #endif */
 		
 		&--hover-class {
@@ -192,13 +193,13 @@
 	/* #ifdef APP-NVUE */
 	// 由于nvue不支持组件内引入app.vue中再引入的样式，所以需要写在这里
 	.u-border-right {
-		border-right-width:$u-grid-item-u-border-right-border-right-width;
-		border-color: $u-grid-item-u-border-right-border-color;
+		border-right-width:$u-grid-item-border-right-width;
+		border-color: $u-grid-item-border-right-color;
 	}
 
 	.u-border-bottom {
-		border-bottom-width:$u-grid-item-u-border-bottom-border-bottom-width;
-		border-color:$u-grid-item-u-border-bottom-border-color;
+		border-bottom-width:$u-grid-item-border-bottom-width;
+		border-color:$u-grid-item-border-bottom-color;
 	}
 
 	/* #endif */

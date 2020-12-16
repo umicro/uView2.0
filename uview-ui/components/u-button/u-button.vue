@@ -362,6 +362,39 @@
 	$u-button-info-border-color:#ebedf0 !default;
 	$u-button-info-border-width:1px !default;
 	$u-button-info-border-style:solid !default;
+	$u-button-success-color:#fff !default;
+	$u-button-success-background-color:$u-success !default;
+	$u-button-success-border-color:$u-button-success-background-color !default;
+	$u-button-success-border-width:1px !default;
+	$u-button-success-border-style:solid !default;
+	$u-button-primary-color:#fff !default;
+	$u-button-primary-background-color:$u-primary !default;
+	$u-button-primary-border-color:$u-button-primary-background-color !default;
+	$u-button-primary-border-width:1px !default;
+	$u-button-primary-border-style:solid !default;
+	$u-button-error-color:#fff !default;
+	$u-button-error-background-color:$u-error !default;
+	$u-button-error-border-color:$u-button-error-background-color !default;
+	$u-button-error-border-width:1px !default;
+	$u-button-error-border-style:solid !default;
+ 	$u-button-warning-color:#fff !default;
+	$u-button-warning-background-color:$u-warning !default;
+	$u-button-warning-border-color:$u-button-warning-background-color !default;
+	$u-button-warning-border-width:1px !default;
+	$u-button-warning-border-style:solid !default;
+	$u-button-block-width:100% !default;
+	$u-button-circle-border-top-right-radius:100px !default;
+	$u-button-circle-border-top-left-radius:100px !default;
+	$u-button-circle-border-bottom-left-radius:100px !default;
+	$u-button-circle-border-bottom-right-radius:100px !default;
+	$u-button-square-border-top-right-radius:3px !default;
+	$u-button-square-border-top-left-radius:3px !default;
+	$u-button-square-border-bottom-left-radius:3px !default;
+	$u-button-square-border-bottom-right-radius:3px !default;
+	$u-button-icon-min-width:1em !default;
+	$u-button-plain-background-color:#fff !default;
+	$u-button-hairline-border-width:0.5px !default;
+ 
 
 	.u-button {
 		height: $u-button-u-button-height;
@@ -424,70 +457,70 @@
 		}
 
 		&--success {
-			color: #fff;
-			background-color: $u-success;
-			border-color: $u-success;
-			border-width: 1px;
-			border-style: solid;
+			color:$u-button-success-color;
+			background-color:$u-button-success-background-color;
+			border-color:$u-button-success-border-color;
+			border-width:$u-button-success-border-width;
+			border-style:$u-button-success-border-style;
 		}
 
 		&--primary {
-			color: #fff;
-			background-color: $u-primary;
-			border-color: $u-primary;
-			border-width: 1px;
-			border-style: solid;
+			color:$u-button-primary-color;
+			background-color:$u-button-primary-background-color;
+			border-color:$u-button-primary-border-color;
+			border-width:$u-button-primary-border-width;
+			border-style:$u-button-primary-border-style;
 		}
 
 		&--error {
-			color: #fff;
-			background-color: $u-error;
-			border-color: $u-error;
-			border-width: 1px;
-			border-style: solid;
+			color:$u-button-error-color;
+			background-color:$u-button-error-background-color;
+			border-color:$u-button-error-border-color;
+			border-width:$u-button-error-border-width;
+			border-style:$u-button-error-border-style;
 		}
 
 		&--warning {
-			color: #fff;
-			background-color: $u-warning;
-			border-color: $u-warning;
-			border-width: 1px;
-			border-style: solid;
+			color:$u-button-warning-color;
+			background-color:$u-button-warning-background-color;
+			border-color:$u-button-warning-border-color;
+			border-width:$u-button-warning-border-width;
+			border-style:$u-button-warning-border-style;
 		}
 
 		&--block {
 			@include flex;
-			width: 100%
+			width:$u-button-block-width;
 		}
 
 		&--circle {
-			border-top-right-radius: 100px;
-			border-top-left-radius: 100px;
-			border-bottom-left-radius: 100px;
-			border-bottom-right-radius: 100px;
+			border-top-right-radius:$u-button-circle-border-top-right-radius;
+			border-top-left-radius:$u-button-circle-border-top-left-radius;
+			border-bottom-left-radius:$u-button-circle-border-bottom-left-radius;
+			border-bottom-right-radius:$u-button-circle-border-bottom-right-radius;
 		}
 
 		&--square {
-			border-bottom-left-radius: 3px;
-			border-bottom-right-radius: 3px;
-			border-top-left-radius: 3px;
-			border-top-right-radius: 3px;
+			border-bottom-left-radius:$u-button-square-border-top-right-radius;
+			border-bottom-right-radius:$u-button-square-border-top-left-radius;
+			border-top-left-radius:$u-button-square-border-bottom-left-radius;
+			border-top-right-radius:$u-button-square-border-bottom-right-radius;
 		}
 
 		&__icon {
 			/* #ifndef APP-NVUE */
-			min-width: 1em;
+			min-width:$u-button-icon-min-width;
 			line-height: inherit !important;
 			vertical-align: top
 				/* #endif */
 		}
 
 		&--plain {
-			background-color: #fff;
+			background-color:$u-button-plain-background-color;
 		}
 
 		&--hairline {
-			border-width: 0.5px !important;
+			border-width: $u-button-hairline-border-width !important;
 		}
 
 	}

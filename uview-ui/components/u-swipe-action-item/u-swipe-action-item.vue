@@ -272,20 +272,20 @@
 	}
 </script>
 <style lang="scss">
-	$u-swipe-action-item-button-group-top:0 !default;
-	$u-swipe-action-item-button-group-bottom:0 !default;
-	$u-swipe-action-item-button-group-bottom-left-left:0 !default;
-	$u-swipe-action-item-button-group-bottom-left-right:0 !default;
-	$u-swipe-action-item-button-group-button-flex:1 !default;
-	$u-swipe-action-item-button-group-button-padding: 0 20px !default;
-	$u-swipe-action-item-button-group-text-font-size:14px !default;
-	$u-swipe-action-item-movable-area-height:45px !default;
-	$u-swipe-action-item-movable-view-flex:1 !default;
-	$u-swipe-action-item-movable-view-height:45px !default;
-	$u-swipe-action-item-movable-view-button-height:100% !default;
-	$u-swipe-action-item-movable-view-button-background: #C0C0C0 !default;
-	$u-swipe-action-item-movable-view-box-height:100% !default;
-	$u-swipe-action-item-movable-view-box-background-color:#fff !default;
+	$u-swipe-action-button-group-top:0 !default;
+	$u-swipe-action-button-group-bottom:0 !default;
+	$u-swipe-action-button-group-bottom-left-left:0 !default;
+	$u-swipe-action-button-group-bottom-left-right:0 !default;
+	$u-swipe-action-button-group-button-flex:1 !default;
+	$u-swipe-action-button-group-button-padding: 0 20px !default;
+	$u-swipe-action-button-group-text-font-size:14px !default;
+	$u-swipe-action-movable-area-height:45px !default;
+	$u-swipe-action-movable-view-flex:1 !default;
+	$u-swipe-action-movable-view-height:45px !default;
+	$u-swipe-action-movable-view-button-height:100% !default;
+	$u-swipe-action-movable-view-button-background: #C0C0C0 !default;
+	$u-swipe-action-movable-view-box-height:100% !default;
+	$u-swipe-action-movable-view-box-background-color:#fff !default;
  
 	.u-swipe {
 		position: relative;
@@ -309,22 +309,22 @@
 			/* #endif */
 			flex-direction: row;
 			position: absolute;
-			top:$u-swipe-action-item-button-group-top;
-			bottom:$u-swipe-action-item-button-group-bottom;
+			top:$u-swipe-action-button-group-top;
+			bottom:$u-swipe-action-button-group-bottom;
 
 			&--left {
-				left:$u-swipe-action-item-button-group-bottom-left-left;
+				left:$u-swipe-action-button-group-bottom-left-left;
 				transform: translateX(-100%)
 			}
 
 			&--right {
-				right:$u-swipe-action-item-button-group-bottom-left-right;
+				right:$u-swipe-action-button-group-bottom-left-right;
 				transform: translateX(100%)
 			}
 
 			&__button {
 				/* #ifdef APP-NVUE */
-				flex:$u-swipe-action-item-button-group-button-flex;
+				flex:$u-swipe-action-button-group-button-flex;
 				/* #endif */
 				/* #ifndef APP-NVUE */
 				display: flex;
@@ -332,13 +332,13 @@
 				flex-direction: row;
 				justify-content: center;
 				align-items: center;
-				padding:$u-swipe-action-item-button-group-button-padding;
+				padding:$u-swipe-action-button-group-button-padding;
 
 				&__text {
 					/* #ifndef APP-NVUE */
 					flex-shrink: 0;
 					/* #endif */
-					font-size:$u-swipe-action-item-button-group-text-font-size;
+					font-size:$u-swipe-action-button-group-text-font-size;
 				}
 			}
 		}
@@ -353,15 +353,15 @@
 	/* #ifdef MP-ALIPAY */
 	.movable-area {
 		/* width: 100%; */
-		height:$u-swipe-action-item-movable-area-height;
+		height:$u-swipe-action-movable-area-height;
 	}
 
 	.movable-view {
 		display: flex;
 		/* justify-content: center; */
 		position: relative;
-		flex:$u-swipe-action-item-movable-view-flex;
-		height:$u-swipe-action-item-movable-view-height;
+		flex:$u-swipe-action-movable-view-flex;
+		height:$u-swipe-action-movable-view-height;
 		z-index: 2;
 	}
 
@@ -369,8 +369,8 @@
 		display: flex;
 		flex-shrink: 0;
 		flex-direction: row;
-		height:$u-swipe-action-item-movable-view-button-height;
-		background:	$u-swipe-action-item-movable-view-button-background;
+		height:$u-swipe-action-movable-view-button-height;
+		background:	$u-swipe-action-movable-view-button-background;
 	}
 
 	/* .transition {
@@ -379,8 +379,8 @@
 
 	.movable-view-box {
 		flex-shrink: 0;
-		height:$u-swipe-action-item-movable-view-box-height;
-		background-color:$u-swipe-action-item-movable-view-box-background-color;
+		height:$u-swipe-action-movable-view-box-height;
+		background-color:$u-swipe-action-movable-view-box-background-color;
 	}
 
 	/* #endif */

@@ -76,7 +76,7 @@
 	}
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 	@import "../../libs/css/components.scss";
 	
 	.u-line {

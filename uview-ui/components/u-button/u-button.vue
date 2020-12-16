@@ -1,35 +1,44 @@
 <template>
 	<!-- #ifndef APP-NVUE -->
 	<button
-	 :hover-start-time="Number(hoverStartTime)"
-	 :hover-stay-time="Number(hoverStayTime)"
-	 :form-type="formType"
-	 :open-type="openType"
-	 :app-parameter="appParameter"
-	 :hover-stop-propagation="hoverStopPropagation"
-	 :send-message-title="sendMessageTitle"
-	 send-message-path="sendMessagePath"
-	 :lang="lang"
-	 :data-name="dataName"
-	 :session-from="sessionFrom"
-	 :send-message-img="sendMessageImg"
-	 :show-message-card="showMessageCard"
-	 @getphonenumber="getphonenumber"
-	 @getuserinfo="getuserinfo"
-	 @error="error"
-	 @opensetting="opensetting"
-	 @launchapp="launchapp"
-	 hover-class="u-button--active"
-	 class="u-button u-reset-button"
-	 :style="[baseColor, customStyle]"
-	 @tap="clickHandler"
-	 :class="bemClass">
+	    :hover-start-time="Number(hoverStartTime)"
+	    :hover-stay-time="Number(hoverStayTime)"
+	    :form-type="formType"
+	    :open-type="openType"
+	    :app-parameter="appParameter"
+	    :hover-stop-propagation="hoverStopPropagation"
+	    :send-message-title="sendMessageTitle"
+	    send-message-path="sendMessagePath"
+	    :lang="lang"
+	    :data-name="dataName"
+	    :session-from="sessionFrom"
+	    :send-message-img="sendMessageImg"
+	    :show-message-card="showMessageCard"
+	    @getphonenumber="getphonenumber"
+	    @getuserinfo="getuserinfo"
+	    @error="error"
+	    @opensetting="opensetting"
+	    @launchapp="launchapp"
+	    hover-class="u-button--active"
+	    class="u-button u-reset-button"
+	    :style="[baseColor, customStyle]"
+	    @tap="clickHandler"
+	    :class="bemClass"
+	>
 		<template v-if="loading">
-			<u-loading-icon :mode="loadingMode" :size="loadingSize" :color="loadingColor"></u-loading-icon>
+			<u-loading-icon
+			    :mode="loadingMode"
+			    :size="loadingSize"
+			    :color="loadingColor"
+			></u-loading-icon>
 			<text class="u-button__loading-text">{{ loadingText }}</text>
 		</template>
 		<template v-else>
-			<u-icon v-if="icon" :name="icon" :color="iconColor"></u-icon>
+			<u-icon
+			    v-if="icon"
+			    :name="icon"
+			    :color="iconColor"
+			></u-icon>
 			<slot>
 				<text class="u-button__text">{{text}}</text>
 			</slot>
@@ -39,22 +48,40 @@
 
 	<!-- #ifdef APP-NVUE -->
 	<view
-	 :hover-start-time="Number(hoverStartTime)"
-	 :hover-stay-time="Number(hoverStayTime)"
-	 class="u-button"
-	 hover-class="u-button--active"
-	 :style="[baseColor, customStyle]"
-	 @tap="clickHandler"
-	 :class="bemClass">
+	    :hover-start-time="Number(hoverStartTime)"
+	    :hover-stay-time="Number(hoverStayTime)"
+	    class="u-button"
+	    hover-class="u-button--active"
+	    :style="[baseColor, customStyle]"
+	    @tap="clickHandler"
+	    :class="bemClass"
+	>
 		<template v-if="loading">
-			<u-loading-icon :mode="loadingMode" :size="loadingSize" :color="loadingColor"></u-loading-icon>
-			<text class="u-button__loading-text" :style="[nvueTextStyle]" :class="[plain && `u-button__text--plain--${type}`]">{{ loadingText }}</text>
+			<u-loading-icon
+			    :mode="loadingMode"
+			    :size="loadingSize"
+			    :color="loadingColor"
+			></u-loading-icon>
+			<text
+			    class="u-button__loading-text"
+			    :style="[nvueTextStyle]"
+			    :class="[plain && `u-button__text--plain--${type}`]"
+			>{{ loadingText }}</text>
 		</template>
 		<template v-else>
-			<u-icon v-if="icon" :name="icon" :color="iconColor" size="18"></u-icon>
-			<text class="u-button__text" :style="[{
+			<u-icon
+			    v-if="icon"
+			    :name="icon"
+			    :color="iconColor"
+			    size="18"
+			></u-icon>
+			<text
+			    class="u-button__text"
+			    :style="[{
 				marginLeft: icon ? '2px' : 0
-			}, nvueTextStyle]" :class="[plain && `u-button__text--plain--${type}`]">{{text}}</text>
+			}, nvueTextStyle]"
+			    :class="[plain && `u-button__text--plain--${type}`]"
+			>{{text}}</text>
 		</template>
 	</view>
 	<!-- #endif -->
@@ -267,7 +294,7 @@
 				if (this.type === 'info') {
 					style.color = '#323233';
 				}
-				if(this.color) {
+				if (this.color) {
 					style.color = this.plain ? this.color : 'white'
 				}
 				return style
@@ -305,17 +332,39 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-	
+
 	/* #ifndef APP-NVUE */
 	@import "./vue.scss";
 	/* #endif */
-	
+
 	/* #ifdef APP-NVUE */
 	@import "./nvue.scss";
 	/* #endif */
+	
+	$u-button-u-button-height:44px !default;
+	$u-button-text-font-size:15px !default;
+	$u-button-loading-text-font-size:15px !default;
+	$u-button-loading-text-margin-left:4px !default;
+	$u-button-large-width:100% !default;
+	$u-button-large-height:50px !default;
+	$u-button-normal-padding:0 15px !default;
+	$u-button-normal-font-size:14px !default;
+	$u-button-small-min-width:60px !default;
+	$u-button-small-height:30px !default;
+	$u-button-small-padding:0px 8px !default;
+	$u-button-small-font-size:12px !default;
+	$u-button-mini-height:22px !default;
+	$u-button-mini-font-size:10px !default;
+	$u-button-mini-min-width:50px !default;
+	$u-button-disabled-opacity:.5 !default;
+	$u-button-info-color: #323233 !default;
+	$u-button-info-background-color: #fff !default;
+	$u-button-info-border-color:#ebedf0 !default;
+	$u-button-info-border-width:1px !default;
+	$u-button-info-border-style:solid !default;
 
 	.u-button {
-		height: 44px;
+		height: $u-button-u-button-height;
 		position: relative;
 		align-items: center;
 		justify-content: center;
@@ -326,52 +375,52 @@
 		flex-direction: row;
 
 		&__text {
-			font-size: 15px;
+			font-size:$u-button-text-font-size;
 		}
-		
+
 		&__loading-text {
-			font-size: 15px;
-			margin-left: 4px;
+			font-size:$u-button-loading-text-font-size;
+			margin-left:$u-button-loading-text-margin-left;
 		}
 
 		&--large {
-			width: 100%;
-			height: 50px;
+			width:$u-button-large-width;
+			height:$u-button-large-height;
 		}
 
 		&--normal {
-			padding: 0 15px;
-			font-size: 14px;
+			padding:$u-button-normal-padding;
+			font-size:$u-button-normal-font-size;
 		}
 
 		&--small {
 			/* #ifndef APP-NVUE */
-			min-width: 60px;
+			min-width:$u-button-small-min-width;
 			/* #endif */
-			height: 30px;
-			padding: 0 8px;
-			font-size: 12px;
+			height:$u-button-small-height;
+			padding:$u-button-small-padding;
+			font-size:$u-button-small-font-size;
 		}
 
 		&--mini {
-			height: 22px;
-			font-size: 10px;
+			height:$u-button-mini-height;
+			font-size:$u-button-mini-font-size;
 			/* #ifndef APP-NVUE */
-			min-width: 50px;
+			min-width:$u-button-mini-min-width;
 			display: inline-block;
 			/* #endif */
 		}
 
 		&--disabled {
-			opacity: .5;
+			opacity:$u-button-disabled-opacity;
 		}
 
 		&--info {
-			color: #323233;
-			background-color: #fff;
-			border-color: #ebedf0;
-			border-width: 1px;
-			border-style: solid;
+			color:$u-button-info-color;
+			background-color:$u-button-info-background-color;
+			border-color:$u-button-info-border-color;
+			border-width:$u-button-info-border-width;
+			border-style:$u-button-info-border-style;
 		}
 
 		&--success {
@@ -430,7 +479,7 @@
 			min-width: 1em;
 			line-height: inherit !important;
 			vertical-align: top
-			/* #endif */
+				/* #endif */
 		}
 
 		&--plain {

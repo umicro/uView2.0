@@ -277,12 +277,15 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-
+$u-rate-margin:0 !default;
+$u-rate-padding:0 !default;
+$u-rate-item-icon-wrap-half-top:0 !default;
+$u-rate-item-icon-wrap-half-left:0 !default;
 	.u-rate {
 		@include flex;
 		align-items: center;
-		margin: 0;
-		padding: 0;
+		margin:$u-rate-margin;
+		padding:$u-rate-padding;
 		/* #ifndef APP-NVUE */
 		touch-action: none;
 		/* #endif */
@@ -295,8 +298,8 @@
 				&--half {
 					position: absolute;
 					overflow: hidden;
-					top: 0;
-					left: 0;
+					top:$u-rate-item-icon-wrap-half-top;
+					left:$u-rate-item-icon-wrap-half-left;
 				}
 			}
 		}

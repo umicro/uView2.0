@@ -184,12 +184,13 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-
+    $u-popup-flex:1 !default;
+    $u-popup-content-background-color:#fff !default;
 	.u-popup {
-		flex: 1;
+		flex: $u-popup-flex;
 
 		&__content {
-			background-color: #FFFFFF;
+			background-color:$u-popup-content-background-color;
 		}
 	}
 </style>

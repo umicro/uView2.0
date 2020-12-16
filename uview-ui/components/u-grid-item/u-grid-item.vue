@@ -159,7 +159,11 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-
+      $u-grid-item-hover-class-opcatiy:.5 !default; 
+      $u-grid-item-u-border-right-border-right-width:0.5px !default; 
+      $u-grid-item-u-border-bottom-border-bottom-width:0.5px !default; 
+      $u-grid-item-u-border-right-border-color:$u-border-color !default; 
+      $u-grid-item-u-border-bottom-border-color:$u-border-color !default; 
 	.u-grid-item {
 		align-items: center;
 		justify-content: center;
@@ -181,20 +185,20 @@
 		/* #endif */
 		
 		&--hover-class {
-			opacity: 0.5;
+			opacity:$u-grid-item-hover-class-opcatiy;
 		}
 	}
 
 	/* #ifdef APP-NVUE */
 	// 由于nvue不支持组件内引入app.vue中再引入的样式，所以需要写在这里
 	.u-border-right {
-		border-right-width: 0.5px;
-		border-color: $u-border-color;
+		border-right-width:$u-grid-item-u-border-right-border-right-width;
+		border-color: $u-grid-item-u-border-right-border-color;
 	}
 
 	.u-border-bottom {
-		border-bottom-width: 0.5px;
-		border-color: $u-border-color;
+		border-bottom-width:$u-grid-item-u-border-bottom-border-bottom-width;
+		border-color:$u-grid-item-u-border-bottom-border-color;
 	}
 
 	/* #endif */

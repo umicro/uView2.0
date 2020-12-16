@@ -178,7 +178,7 @@
 
 <style lang="scss">
 	@import '../../libs/css/components.scss';
-
+    $u-empty-text-margin-top:20rpx !default;
 	.u-empty {
 		@include flex;
 		flex-direction: column;
@@ -189,7 +189,7 @@
 			@include flex;
 			justify-content: center;
 			align-items: center;
-			margin-top: 20rpx;
+			margin-top:$u-empty-text-margin-top;
 		}
 	}
 </style>

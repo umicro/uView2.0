@@ -261,7 +261,23 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-
+         $u-checkbox-icon-wrap-margin-right:6px !default;
+         $u-checkbox-icon-wrap-font-size:6px !default;
+         $u-checkbox-icon-wrap-border-width:1px !default;
+         $u-checkbox-icon-wrap-border-color:#c8c9cc !default;
+         $u-checkbox-icon-wrap-icon-line-height:0 !default;
+         $u-checkbox-icon-wrap-circle-border-radius:100% !default;
+         $u-checkbox-icon-wrap-square-border-radius:3px !default;
+         $u-checkbox-icon-wrap-checked-color:#fff !default;
+         $u-checkbox-icon-wrap-checked-background-color:red !default;
+         $u-checkbox-icon-wrap-checked-border-color:#2979ff !default;
+         $u-checkbox-icon-wrap-disabled-background-color:#ebedf0 !default;
+         $u-checkbox-icon-wrap-disabled-checked-color:#c8c9cc !default;
+         $u-checkbox-label-margin-left:5px !default;
+         $u-checkbox-label-margin-right:12px !default;
+         $u-checkbox-label-color:$u-content-color !default;
+         $u-checkbox-label-font-size:15px !default;
+         $u-checkbox-label-disabled-color:#c8c9cc !default;
 	.u-checkbox {
 		/* #ifndef APP-NVUE */
 		@include flex(row);
@@ -292,40 +308,40 @@
 			justify-content: center;
 			color: transparent;
 			text-align: center;
-			margin-right: 6px;
+			margin-right:$u-checkbox-icon-wrap-margin-right;
 
-			font-size: 20px;
-			border-width: 1px;
-			border-color: #c8c9cc;
+			font-size:$u-checkbox-icon-wrap-font-size;
+			border-width: $u-checkbox-icon-wrap-border-width;
+			border-color:$u-checkbox-icon-wrap-border-color;
 
 			/* #ifdef MP-TOUTIAO */
 			// 头条小程序兼容性问题，需要设置行高为0，否则图标偏下
 			&__icon {
-				line-height: 0;
+				line-height:$u-checkbox-icon-wrap-icon-line-height;
 			}
 
 			/* #endif */
 
 			&--circle {
-				border-radius: 100%;
+				border-radius:$u-checkbox-icon-wrap-circle-border-radius;
 			}
 
 			&--square {
-				border-radius: 3px;
+				border-radius:$u-checkbox-icon-wrap-square-border-radius;
 			}
 
 			&--checked {
-				color: #fff;
-				background-color: red;
-				border-color: #2979ff;
+				color:$u-checkbox-icon-wrap-checked-color;
+				background-color:$u-checkbox-icon-wrap-checked-background-color;
+				border-color:$u-checkbox-icon-wrap-checked-border-color;
 			}
 
 			&--disabled {
-				background-color: #ebedf0 !important;
+				background-color: $u-checkbox-icon-wrap-disabled-background-color !important;
 			}
 
 			&--disabled--checked {
-				color: #c8c9cc !important;
+				color:$u-checkbox-icon-wrap-disabled-checked-color !important;
 			}
 		}
 
@@ -333,13 +349,13 @@
 			/* #ifndef APP-NVUE */
 			word-wrap: break-word;
 			/* #endif */
-			margin-left: 5px;
-			margin-right: 12px;
-			color: $u-content-color;
-			font-size: 15px;
+			margin-left: $u-checkbox-label-margin-left;
+			margin-right:  $u-checkbox-label-margin-right;
+			color:  $u-checkbox-label-color ;
+			font-size:$u-checkbox-label-font-size;
 
 			&--disabled {
-				color: #c8c9cc;
+				color:$u-checkbox-label-disabled-color;
 			}
 		}
 	}

@@ -105,21 +105,25 @@
 
 <style lang="scss">
 	@import '../../libs/css/components.scss';
-
+    $u-divider-margin:15px 0 !default;
+    $u-divider-text-margin:0 15px !default;
+    $u-divider-dot-font-size:12px !default;
+    $u-divider-dot-margin:0 12px !default;
+    $u-divider-dot-color: #c0c4cc !default;
 	.u-divider {
 		@include flex;
 		flex-direction: row;
 		align-items: center;
-		margin: 15px 0;
+		margin:$u-divider-margin;
 
 		&__text {
-			margin: 0 15px;
+			margin: $u-divider-text-margin;
 		}
 
 		&__dot {
-			font-size: 12px;
-			margin: 0 12px;
-			color: #c0c4cc;
+			font-size: $u-divider-dot-font-size;
+			margin:$u-divider-dot-margin;
+			color:$u-divider-dot-color;
 		}
 	}
 </style>

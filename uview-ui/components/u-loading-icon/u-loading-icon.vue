@@ -1,14 +1,14 @@
 <template>
-	<view 
-		class="u-loading-icon" 
-		:class="[vertical && 'u-loading-icon--vertical']"
+	<view
+	    class="u-loading-icon"
+	    :class="[vertical && 'u-loading-icon--vertical']"
 	>
-		<view 
-			v-if="!webviewHide"
-			class="u-loading-icon__spinner"
-			:class="[`u-loading-icon__spinner--${mode}`]"
-			ref="ani"
-			:style="{
+		<view
+		    v-if="!webviewHide"
+		    class="u-loading-icon__spinner"
+		    :class="[`u-loading-icon__spinner--${mode}`]"
+		    ref="ani"
+		    :style="{
 				color: color,
 				width: $u.addUnit(size),
 				height: $u.addUnit(size),
@@ -31,18 +31,23 @@
 				<!-- #endif -->
 				<!-- #ifdef APP-NVUE -->
 				<!-- 此组件内部图标部分无法设置宽高，即使通过width和height配置了也无效 -->
-				<loading-indicator v-if="!webviewHide" class="u-loading-indicator" :animating="true" :style="{
+				<loading-indicator
+				    v-if="!webviewHide"
+				    class="u-loading-indicator"
+				    :animating="true"
+				    :style="{
 					color: color,
 					width: $u.addUnit(size),
 					height: $u.addUnit(size)
-				}" />
+				}"
+				/>
 				<!-- #endif -->
 			</block>
 		</view>
 		<text
-			v-if="text"
-			class="u-loading-icon__text"
-			:style="{
+		    v-if="text"
+		    class="u-loading-icon__text"
+		    :style="{
 				fontSize: $u.addUnit(textSize),
 			}"
 		>{{text}}</text>
@@ -53,7 +58,7 @@
 	// #ifdef APP-NVUE
 	const animation = weex.requireModule('animation');
 	// #endif
-	
+
 	export default {
 		props: {
 			// 颜色
@@ -102,7 +107,9 @@
 			return {
 				// Array.form可以通过一个伪数组对象创建指定长度的数组
 				// https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/from
-				array12: Array.from({ length: 12 }),
+				array12: Array.from({
+					length: 12
+				}),
 				aniAngel: 0, // 动画旋转角度
 				webviewHide: false, // 监听webview的状态，如果隐藏了页面，则停止动画，以免性能消耗
 			}
@@ -161,7 +168,7 @@
 				}, () => {
 					// 每次增加360deg，为了让其重新旋转一周
 					this.aniAngel += 360
-					 // 动画结束后，继续循环执行动画
+					// 动画结束后，继续循环执行动画
 					this.startAnimate()
 				})
 			}
@@ -171,116 +178,155 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
+	$u-loading-icon-color: #c8c9cc !default;
+	$u-loading-icon-text-margin-left:4px !default;
+	$u-loading-icon-text-color:$u-content-color !default;
+	$u-loading-icon-text-font-size:14px !default;
+	$u-loading-icon-text-line-height:20px !default;
+	$u-loading-icon-spinner-width:30px !default;
+	$u-loading-icon-spinner-height:30px !default;
+	$u-loading-icon-spinner-max-width:100% !default;
+	$u-loading-icon-spinner-max-height:100% !default;
+	$u-loading-icon-spinner-semicircle-border-width:1px!default;
+	$u-loading-icon-spinner-semicircle-border-color:transparent!default;
+	$u-loading-icon-spinner-semicircle-border-top-right-radius: 100px!default;
+	$u-loading-icon-spinner-semicircle-border-top-left-radius: 100px!default;
+	$u-loading-icon-spinner-semicircle-border-bottom-left-radius: 100px!default;
+	$u-loading-icon-spinner-semicircle-border-bottom-right-radiu: 100px!default;
+	$u-loading-icon-spinner-semicircle-border-style: solid !default;
+	$u-loading-icon-spinner-circle-border-top-right-radius: 100px!default;
+	$u-loading-icon-spinner-circle-border-top-left-radius: 100px!default;
+	$u-loading-icon-spinner-circle-border-bottom-left-radius: 100px!default;
+	$u-loading-icon-spinner-circle-border-bottom-right-radiu: 100px!default;
+	$u-loading-icon-spinner-circle-border-width:2px!default;
+	$u-loading-icon-spinner-circle-border-top-color:#e5e5e5!default;
+	$u-loading-icon-spinner-circle-border-right-color:$u-loading-icon-spinner-circle-border-top-color!default;
+	$u-loading-icon-spinner-circle-border-bottom-color:$u-loading-icon-spinner-circle-border-top-color!default;
+	$u-loading-icon-spinner-circle-border-left-color:$u-loading-icon-spinner-circle-border-top-color!default;
+    $u-loading-icon-spinner-circle-border-style:solid !default;
+	$u-loading-icon-host-font-size:0px!default;
+	$u-loading-icon-host-line-height:1!default;
+	$u-loading-iconu-loading-icon-vertical-margin:4px 0 0!default;
+	$u-loading-iconu-loading-icon-dot-top:0!default;
+	$u-loading-iconu-loading-icon-dot-left:0!default;
+	$u-loading-iconu-loading-icon-dot-width:100%!default;
+	$u-loading-iconu-loading-icon-dot-height:100%!default;
+	$u-loading-iconu-loading-icon-dot-before-width:2px!default;
+	$u-loading-iconu-loading-icon-dot-before-height:25%!default;
+	$u-loading-iconu-loading-icon-dot-before-margin:0 auto!default;
+	$u-loading-iconu-loading-icon-dot-before-background-color:currentColor!default;
+	$u-loading-iconu-loading-icon-dot-before-border-radius:40%!default;
 	
 	.u-loading-icon {
-	    /* #ifndef APP-NVUE */
-	    display: inline-flex;
-	    /* #endif */
+		/* #ifndef APP-NVUE */
+		display: inline-flex;
+		/* #endif */
 		flex-direction: row;
-	    align-items: center;
-	    justify-content: center;
-	    color: #c8c9cc;
-		
+		align-items: center;
+		justify-content: center;
+		color: $u-loading-icon-color;
+
 		&__text {
-		    margin-left: 4px;
-		    color: $u-content-color;
-		    font-size: 14px;
-		    line-height: 20px;
+			margin-left: $u-loading-icon-text-margin-left;
+			color: $u-loading-icon-text-color;
+			font-size: $u-loading-icon-text-font-size;
+			line-height: $u-loading-icon-text-line-height;
 		}
-		
+
 		&__spinner {
-			width: 30px;
-			height: 30px;
+			width: $u-loading-icon-spinner-width;
+			height: $u-loading-icon-spinner-height;
 			position: relative;
 			/* #ifndef APP-NVUE */
 			box-sizing: border-box;
-			max-width: 100%;
-			max-height: 100%;
+			max-width: $u-loading-icon-spinner-max-width;
+			max-height:$u-loading-icon-spinner-max-height;
 			animation: u-rotate 1s linear infinite;
 			/* #endif */
 		}
-		
+
 		&__spinner--semicircle {
-			border-width: 1px;
-			border-color: transparent;
-			border-top-right-radius: 100px;
-			border-top-left-radius: 100px;
-			border-bottom-left-radius: 100px;
-			border-bottom-right-radius: 100px;
-			border-style: solid;
+			border-width:$u-loading-icon-spinner-semicircle-border-width;
+			border-color:$u-loading-icon-spinner-semicircle-border-color;
+			border-top-right-radius:$u-loading-icon-spinner-semicircle-border-top-right-radius;
+			border-top-left-radius:$u-loading-icon-spinner-semicircle-border-top-left-radius;
+			border-bottom-left-radius:$u-loading-icon-spinner-semicircle-border-bottom-left-radius;
+			border-bottom-right-radius:$u-loading-icon-spinner-semicircle-border-bottom-right-radiu;
+			border-style:$u-loading-icon-spinner-semicircle-border-style;
 		}
-		
+
 		&__spinner--circle {
-			border-top-right-radius: 100px;
-			border-top-left-radius: 100px;
-			border-bottom-left-radius: 100px;
-			border-bottom-right-radius: 100px;
-			border-width: 2px;
-			border-top-color: #e5e5e5;
-			border-right-color: #e5e5e5;
-			border-bottom-color: #e5e5e5;
-			border-left-color: #e5e5e5;
-			border-style: solid;
+			border-top-right-radius:$u-loading-icon-spinner-circle-border-top-right-radius;
+			border-top-left-radius:$u-loading-icon-spinner-circle-border-top-left-radius;
+			border-bottom-left-radius:$u-loading-icon-spinner-circle-border-bottom-left-radius;
+			border-bottom-right-radius:$u-loading-icon-spinner-circle-border-bottom-right-radiu;
+			border-width:$u-loading-icon-spinner-circle-border-width;
+			border-top-color:$u-loading-icon-spinner-circle-border-top-color;
+			border-right-color:$u-loading-icon-spinner-circle-border-right-color;
+			border-bottom-color:$u-loading-icon-spinner-circle-border-bottom-color;
+			border-left-color:$u-loading-icon-spinner-circle-border-left-color;
+			border-style: $u-loading-icon-spinner-circle-border-style;
 		}
-		
+
 		&--vertical {
-		    flex-direction: column
+			flex-direction: column
 		}
 	}
-	
+
 	/* #ifndef APP-NVUE */
 	:host {
-	    font-size: 0;
-	    line-height: 1
+		font-size:$u-loading-icon-host-font-size;
+		line-height:$u-loading-icon-host-line-height;
 	}
-	
+
 	.u-loading-icon {
 		&__spinner--spinner {
-		    animation-timing-function: steps(12)
+			animation-timing-function: steps(12)
 		}
-		
+
 		&__text:empty {
 			display: none
 		}
-		
+
 		&--vertical &__text {
-		    margin: 4px 0 0;
+			margin:$u-loading-iconu-loading-icon-vertical-margin;
 		}
-		
+
 		&__dot {
 			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			
+			top:$u-loading-iconu-loading-icon-dot-top;
+			left:$u-loading-iconu-loading-icon-dot-left;
+			width:$u-loading-iconu-loading-icon-dot-width;
+			height:$u-loading-iconu-loading-icon-dot-height;
+
 			&:before {
 				display: block;
-				width: 2px;
-				height: 25%;
-				margin: 0 auto;
-				background-color: currentColor;
-				border-radius: 40%;
+				width:$u-loading-iconu-loading-icon-dot-before-width;
+				height:$u-loading-iconu-loading-icon-dot-before-height;
+				margin:	$u-loading-iconu-loading-icon-dot-before-margin;
+				background-color:$u-loading-iconu-loading-icon-dot-before-background-color;
+				border-radius:$u-loading-iconu-loading-icon-dot-before-border-radius;
 				content: " "
 			}
 		}
 	}
-	
+
 	@for $i from 1 through 12 {
-	    .u-loading-icon__dot:nth-of-type(#{$i}) {
-	        transform: rotate($i * 30deg);
-	        opacity: 1 - (0.75 / 12) * ($i - 1);
-	    }
+		.u-loading-icon__dot:nth-of-type(#{$i}) {
+			transform: rotate($i * 30deg);
+			opacity: 1 - (0.75 / 12) * ($i - 1);
+		}
 	}
-	
+
 	@keyframes u-rotate {
-	    0% {
-	        transform: rotate(0deg)
-	    }
-	
-	    to {
-	        transform: rotate(1turn)
-	    }
+		0% {
+			transform: rotate(0deg)
+		}
+
+		to {
+			transform: rotate(1turn)
+		}
 	}
+
 	/* #endif */
 </style>

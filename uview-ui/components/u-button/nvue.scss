@@ -1,35 +1,43 @@
+$u-button-active-opacity:0.75 !default;
+$u-button-loading-text-margin-left:4px !default;
+$u-button-text-color: #FFFFFF !default;
+$u-button-text-plain-error-color:$u-error !default;
+$u-button-text-plain-warning-color:$uwarning !default;
+$u-button-text-plain-success-color:$u-success !default;
+$u-button-text-plain-info-color:$u-info !default;
+$u-button-text-plain-primary-color:$u-primary !default;
 .u-button {
 	
 	&--active {
-		opacity: 0.75;
+		opacity: $u-button-active-opacity;
 	}
 	
 	&__loading-text {
-		margin-left: 4px;
+		margin-left:$u-button-loading-text-margin-left;
 	}
 	
 	&__text,
 	&__loading-text {
-		color: #FFFFFF;
+		color:$u-button-text-color;
 	}
 	
 	&__text--plain--error {
-		color: $u-error;
+		color:$u-button-text-plain-error;
 	}
 	
 	&__text--plain--warning {
-		color: $u-warning;
+		color:$u-button-text-plain-warning;
 	}
 	
 	&__text--plain--success{
-		color: $u-success;
+		color:$u-button-text-plain-success;
 	}
 	
 	&__text--plain--info {
-		color: $u-info;
+		color:$u-button-text-plain-info;
 	}
 	
 	&__text--plain--primary {
-		color: $u-primary;
+		color:$u-button-text-plain-primary;
 	}
 }

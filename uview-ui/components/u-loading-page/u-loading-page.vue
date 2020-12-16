@@ -68,6 +68,7 @@
 	
 	$text-color: rgb(220, 220, 220) !default;
 	$text-size: 16px !default;
+	$u-loading-loading-icon-margin-bottom: 10px !default;
 
 	.u-loading-page {
 		@include flex(column);
@@ -85,7 +86,7 @@
 			/* #endif */
 			
 			&__loading-icon {
-				margin-bottom: 10px;
+				margin-bottom:$u-loading-loading-icon-margin-bottom;
 			}
 
 			&__text {

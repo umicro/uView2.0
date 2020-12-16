@@ -3,7 +3,7 @@
 	    :show="show"
 	    mode="bottom"
 	    @close="close"
-		:closeOnClickOverly="closeOnClickOverly"
+	    :closeOnClickOverly="closeOnClickOverly"
 	    :safeAreaInsetBottom="safeAreaInsetBottom"
 	>
 		<view class="u-action-sheet">
@@ -32,9 +32,9 @@
 				<template v-for="(item, index) in actions">
 					<!-- #ifdef MP -->
 					<button
-						:key="index"
+					    :key="index"
 					    class="u-reset-button"
-						:data-index="index"
+					    :data-index="index"
 					    :openType="openType"
 					    @getuserinfo="onGetUserInfo"
 					    @contact="onContact"
@@ -43,14 +43,14 @@
 					    @launchapp="onLaunchApp"
 					    @opensetting="onOpenSetting"
 					    :lang="lang"
-						:session-from="sessionFrom"
-						:send-message-title="sendMessageTitle"
-						:send-message-path="sendMessagePath"
-						:send-message-img="sendMessageImg"
-						:show-message-card="showMessageCard"
-						:app-parameter="appParameter"
-						@tap="selectHandler(index)"
-						:hover-class="!item.disabled && !item.loading ? 'u-action-sheet--hover' : ''"
+					    :session-from="sessionFrom"
+					    :send-message-title="sendMessageTitle"
+					    :send-message-path="sendMessagePath"
+					    :send-message-img="sendMessageImg"
+					    :show-message-card="showMessageCard"
+					    :app-parameter="appParameter"
+					    @tap="selectHandler(index)"
+					    :hover-class="!item.disabled && !item.loading ? 'u-action-sheet--hover' : ''"
 					>
 						<!-- #endif -->
 						<view
@@ -194,13 +194,27 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-	
+	$u-action-sheet-reset-button-width:100% !default;
 	$u-action-sheet-title-font-size: 16px !default;
 	$u-action-sheet-title-padding: 18px 30px !default;
 	$u-action-sheet-title-color: $u-main-color !default;
-
+	$u-action-sheet-header-icon-wrap-right:15px !default;
+	$u-action-sheet-header-icon-wrap-top:15px !default;
+	$u-action-sheet-description-font-size:14px !default;
+	$u-action-sheet-description-color:14px !default;
+	$u-action-sheet-description-margin: 18px 15px !default;
+	$u-action-sheet-item-wrap-item-padding:15px !default;
+	$u-action-sheet-item-wrap-name-font-size:16px !default;
+	$u-action-sheet-item-wrap-subname-font-size:13px !default;
+	$u-action-sheet-item-wrap-subname-color: #c0c4cc !default;
+	$u-action-sheet-item-wrap-subname-margin-top:10px !default;
+	$u-action-sheet-cancel-text-font-size:16px !default;
+	$u-action-sheet-cancel-text-color:$u-main-color !default;
+	$u-action-sheet-cancel-text-font-size:15px!default;
+	$u-action-sheet-cancel-text-hover-background-color:rgb(242, 243, 245)!default;
+     
 	.u-reset-button {
-		width: 100%;
+		width: $u-action-sheet-reset-button-width;
 	}
 
 	.u-action-sheet {
@@ -218,51 +232,51 @@
 
 			&__icon-wrap {
 				position: absolute;
-				right: 15px;
-				top: 15px;
+				right: $u-action-sheet-header-icon-wrap-right;
+				top: $u-action-sheet-header-icon-wrap-top;
 			}
 		}
 
 		&__description {
-			font-size: 14px;
+			font-size: $u-action-sheet-description-font-size;
 			color: $u-tips-color;
-			margin: 18px 15px;
+			margin: $u-action-sheet-description-margin;
 			text-align: center;
 		}
 
 		&__item-wrap {
 
 			&__item {
-				padding: 15px;
+				padding: $u-action-sheet-item-wrap-item-padding;
 				@include flex;
 				align-items: center;
 				justify-content: center;
 				flex-direction: column;
 
 				&__name {
-					font-size: 16px;
+					font-size: $u-action-sheet-item-wrap-name-font-size;
 					color: $u-main-color;
 					text-align: center;
 				}
 
 				&__subname {
-					font-size: 13px;
-					color: #c0c4cc;
-					margin-top: 10px;
+					font-size: $u-action-sheet-item-wrap-subname-font-size;
+					color:$u-action-sheet-item-wrap-subname-color;
+					margin-top: $u-action-sheet-item-wrap-subname-margin-top;
 					text-align: center;
 				}
 			}
 		}
 
 		&__cancel-text {
-			font-size: 16px;
-			color: $u-main-color;
+			font-size:$u-action-sheet-cancel-text-font-size;
+			color:$u-action-sheet-cancel-text-color;
 			text-align: center;
-			padding: 15px;
+			padding:$u-action-sheet-cancel-text-font-size;
 		}
 
 		&--hover {
-			background-color: rgb(242, 243, 245);
+			background-color:$u-action-sheet-cancel-text-hover-background-color;
 		}
 	}
 </style>

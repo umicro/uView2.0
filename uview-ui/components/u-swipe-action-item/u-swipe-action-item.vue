@@ -272,6 +272,21 @@
 	}
 </script>
 <style lang="scss">
+	$u-swipe-action-item-button-group-top:0 !default;
+	$u-swipe-action-item-button-group-bottom:0 !default;
+	$u-swipe-action-item-button-group-bottom-left-left:0 !default;
+	$u-swipe-action-item-button-group-bottom-left-right:0 !default;
+	$u-swipe-action-item-button-group-button-flex:1 !default;
+	$u-swipe-action-item-button-group-button-padding: 0 20px !default;
+	$u-swipe-action-item-button-group-text-font-size:14px !default;
+	$u-swipe-action-item-movable-area-height:45px !default;
+	$u-swipe-action-item-movable-view-flex:1 !default;
+	$u-swipe-action-item-movable-view-height:45px !default;
+	$u-swipe-action-item-movable-view-button-height:100% !default;
+	$u-swipe-action-item-movable-view-button-background: #C0C0C0 !default;
+	$u-swipe-action-item-movable-view-box-height:100% !default;
+	$u-swipe-action-item-movable-view-box-background-color:#fff !default;
+ 
 	.u-swipe {
 		position: relative;
 		/* #ifndef APP-NVUE */
@@ -294,22 +309,22 @@
 			/* #endif */
 			flex-direction: row;
 			position: absolute;
-			top: 0;
-			bottom: 0;
+			top:$u-swipe-action-item-button-group-top;
+			bottom:$u-swipe-action-item-button-group-bottom;
 
 			&--left {
-				left: 0;
+				left:$u-swipe-action-item-button-group-bottom-left-left;
 				transform: translateX(-100%)
 			}
 
 			&--right {
-				right: 0;
+				right:$u-swipe-action-item-button-group-bottom-left-right;
 				transform: translateX(100%)
 			}
 
 			&__button {
 				/* #ifdef APP-NVUE */
-				flex: 1;
+				flex:$u-swipe-action-item-button-group-button-flex;
 				/* #endif */
 				/* #ifndef APP-NVUE */
 				display: flex;
@@ -317,13 +332,13 @@
 				flex-direction: row;
 				justify-content: center;
 				align-items: center;
-				padding: 0 20px;
+				padding:$u-swipe-action-item-button-group-button-padding;
 
 				&__text {
 					/* #ifndef APP-NVUE */
 					flex-shrink: 0;
 					/* #endif */
-					font-size: 14px;
+					font-size:$u-swipe-action-item-button-group-text-font-size;
 				}
 			}
 		}
@@ -338,15 +353,15 @@
 	/* #ifdef MP-ALIPAY */
 	.movable-area {
 		/* width: 100%; */
-		height: 45px;
+		height:$u-swipe-action-item-movable-area-height;
 	}
 
 	.movable-view {
 		display: flex;
 		/* justify-content: center; */
 		position: relative;
-		flex: 1;
-		height: 45px;
+		flex:$u-swipe-action-item-movable-view-flex;
+		height:$u-swipe-action-item-movable-view-height;
 		z-index: 2;
 	}
 
@@ -354,8 +369,8 @@
 		display: flex;
 		flex-shrink: 0;
 		flex-direction: row;
-		height: 100%;
-		background: #C0C0C0;
+		height:$u-swipe-action-item-movable-view-button-height;
+		background:	$u-swipe-action-item-movable-view-button-background;
 	}
 
 	/* .transition {
@@ -364,8 +379,8 @@
 
 	.movable-view-box {
 		flex-shrink: 0;
-		height: 100%;
-		background-color: #fff;
+		height:$u-swipe-action-item-movable-view-box-height;
+		background-color:$u-swipe-action-item-movable-view-box-background-color;
 	}
 
 	/* #endif */

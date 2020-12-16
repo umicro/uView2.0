@@ -252,7 +252,23 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-
+   $u-radio-icon-wrap-margin-right:6px !default;
+   $u-radio-icon-wrap-font-size:20px !default;
+   $u-radio-icon-wrap-border-width:1px !default;
+   $u-radio-icon-wrap-border-color: #c8c9cc !default;
+   $u-radio-icon-line-height:0 !default;
+   $u-radio-icon-circle-border-radius:100% !default;
+   $u-radio-icon-square-border-radius:3px !default;
+   $u-radio-icon-checked-color:#fff !default;
+   $u-radio-icon-checked-background-color:red !default;
+   $u-radio-icon-checked-border-color: #2979ff !default;
+   $u-radio-icon-disabled-background-color:#ebedf0 !default;
+   $u-radio-icon-disabled--checked-color:#c8c9cc !default;
+   $u-radio-label-margin-left: 5px !default;
+   $u-radio-label-margin-right:12px !default;
+   $u-radio-label-color:$u-content-color !default;
+   $u-radio-label-font-size:15px !default;
+   $u-radio-label-disabled-color:#c8c9cc !default;
 	.u-radio {
 		/* #ifndef APP-NVUE */
 		@include flex(row);
@@ -283,40 +299,39 @@
 			justify-content: center;
 			color: transparent;
 			text-align: center;
-			margin-right: 6px;
-
-			font-size: 20px;
-			border-width: 1px;
-			border-color: #c8c9cc;
+			margin-right:$u-radio-icon-wrap-margin-right;
+			font-size:$u-radio-icon-wrap-font-size;
+			border-width:$u-radio-icon-wrap-border-width;
+			border-color:$u-radio-icon-wrap-border-color;
 
 			/* #ifdef MP-TOUTIAO */
 			// 头条小程序兼容性问题，需要设置行高为0，否则图标偏下
 			&__icon {
-				line-height: 0;
+				line-height:$u-radio-icon-line-height;
 			}
 
 			/* #endif */
 
 			&--circle {
-				border-radius: 100%;
+				border-radius:$u-radio-icon-circle-border-radius;
 			}
 
 			&--square {
-				border-radius: 3px;
+				border-radius:$u-radio-icon-square-border-radius;
 			}
 
 			&--checked {
-				color: #fff;
-				background-color: red;
-				border-color: #2979ff;
+				color: $u-radio-icon-checked-color;
+				background-color:$u-radio-icon-checked-background-color;
+				border-color: $u-radio-icon-checked-border-color;
 			}
 
 			&--disabled {
-				background-color: #ebedf0 !important;
+				background-color: $u-radio-icon-disabled-background-color  !important;
 			}
 
 			&--disabled--checked {
-				color: #c8c9cc !important;
+				color: $u-radio-icon-disabled--checked-color  !important;
 			}
 		}
 
@@ -324,13 +339,13 @@
 			/* #ifndef APP-NVUE */
 			word-wrap: break-word;
 			/* #endif */
-			margin-left: 5px;
-			margin-right: 12px;
-			color: $u-content-color;
-			font-size: 15px;
+			margin-left: $u-radio-label-margin-left;
+			margin-right:$u-radio-label-margin-right;
+			color: $u-radio-label-color ;
+			font-size:$u-radio-label-font-size;
 
 			&--disabled {
-				color: #c8c9cc;
+				color:$u-radio-label-disabled-color;
 			}
 		}
 	}

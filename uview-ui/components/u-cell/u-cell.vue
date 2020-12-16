@@ -174,6 +174,11 @@
 	$u-cell-value-font-size-large: 16px !default;
 	$u-cell-label-font-size-large: 14px !default; 
 	$u-cell-title-font-size-large: 16px !default; 
+	$u-cell-body-left-icon-wrap-margin-right: 4px !default; 
+	$u-cell-body-right-icon-wrap-margin-left: 4px !default; 
+	$u-cell-body-title-flex:1 !default; 
+	$u-cell-body-label-margin-top:14px !default; 
+	
 	
 	.u-cell {
 		&__body {
@@ -197,15 +202,15 @@
 		}
 		
 		&__left-icon-wrap {
-			margin-right: 4px;
+			margin-right:$u-cell-body-left-icon-wrap-margin-right;
 		}
 		
 		&__right-icon-wrap {
-			margin-left: 4px;
+			margin-left:$u-cell-body-right-icon-wrap-margin-left;
 		}
 		
 		&__title {
-			flex: 1;
+			flex:$u-cell-body-title-flex;
 			
 			&-text {
 				font-size: $u-cell-title-font-size;
@@ -220,7 +225,7 @@
 		}
 		
 		&__label {
-			margin-top: 4px;
+			margin-top:$u-cell-body-label-margin-top;
 			font-size: $u-cell-label-font-size;
 			color: $u-cell-label-color;
 			line-height: $u-cell-label-line-height;

@@ -124,7 +124,6 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-
 	.u-checkbox-group {
 
 		&--row {

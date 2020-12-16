@@ -220,6 +220,7 @@
 	$u-icon-info: $u-info!default;
 	$u-icon-warning: $u-warning!default;
 	$u-icon-error: $u-error!default;
+	$u-icon-label-line-height:1!default;
 	
 	/* #ifndef APP-NVUE */
 	// 非nvue下加载字体
@@ -289,7 +290,7 @@
 
 		&__label {
 			/* #ifndef APP-NVUE */
-			line-height: 1;
+			line-height:$u-icon-label-line-height;
 			/* #endif */
 		}
 	}

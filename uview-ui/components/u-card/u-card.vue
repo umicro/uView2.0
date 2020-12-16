@@ -1,37 +1,73 @@
 <template>
-	<view class="u-card" @tap.stop="click" :class="{ 'u-border': border, 'u-card-full': full, 'u-card--border': borderRadius > 0 }"
-	 :style="[cardStyle]">
-		<view v-if="showHead" class="u-card__head" :style="[{padding: $u.addUnit(padding)}, headStyle]" :class="{
+	<view
+	    class="u-card"
+	    @tap.stop="click"
+	    :class="{ 'u-border': border, 'u-card-full': full, 'u-card--border': borderRadius > 0 }"
+	    :style="[cardStyle]"
+	>
+		<view
+		    v-if="showHead"
+		    class="u-card__head"
+		    :style="[{padding: $u.addUnit(padding)}, headStyle]"
+		    :class="{
 				'u-border-bottom': headBorderBottom
 			}"
-		 @tap="headClick">
+		    @tap="headClick"
+		>
 			<slot name="head">
-				<view class="u-card__head--left u-line-1" v-if="title">
-					<image :src="thumb" class="u-card__head--left__thumb" mode="aspectfull" v-if="thumb" :style="{ 
+				<view
+				    class="u-card__head--left u-line-1"
+				    v-if="title"
+				>
+					<image
+					    :src="thumb"
+					    class="u-card__head--left__thumb"
+					    mode="aspectfull"
+					    v-if="thumb"
+					    :style="{ 
 							height: $u.addUnit(thumbWidth), 
 							width: $u.addUnit(thumbWidth), 
 							borderRadius: $u.addUnit(thumbCircle) ? '100rpx' : '6rpx' 
-						}"></image>
-					<text class="u-card__head--left__title u-line-1" :style="{
+						}"
+					></image>
+					<text
+					    class="u-card__head--left__title u-line-1"
+					    :style="{
 							fontSize: titleSize + 'rpx',
 							color: titleColor
-						}">{{ title }}</text>
+						}"
+					>{{ title }}</text>
 				</view>
-				<view class="u-card__head--right u-line-1" v-if="subTitle">
-					<text class="u-card__head__title__text" :style="{
+				<view
+				    class="u-card__head--right u-line-1"
+				    v-if="subTitle"
+				>
+					<text
+					    class="u-card__head__title__text"
+					    :style="{
 							fontSize: subTitleSize + 'rpx',
 							color: subTitleColor
-						}">{{ subTitle }}</text>
+						}"
+					>{{ subTitle }}</text>
 				</view>
 			</slot>
 		</view>
-		<view @tap="bodyClick" class="u-card__body" :style="[bodyStyle]">
+		<view
+		    @tap="bodyClick"
+		    class="u-card__body"
+		    :style="[bodyStyle]"
+		>
 			<slot name="body" />
 		</view>
-		<view v-if="showFoot" class="u-card__foot" @tap="footClick" :style="[{padding: $slots.foot ?  $u.addUnit(padding) : 0}, footStyle]"
-		 :class="{
+		<view
+		    v-if="showFoot"
+		    class="u-card__foot"
+		    @tap="footClick"
+		    :style="[{padding: $slots.foot ?  $u.addUnit(padding) : 0}, footStyle]"
+		    :class="{
 				'u-border-top': footBorderTop
-			}">
+			}"
+		>
 			<slot name="foot" />
 		</view>
 	</view>
@@ -231,14 +267,25 @@
 	};
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	@import "../../libs/css/components.scss";
+	$u-card-u-card-font-size:28rpx !default;
+	$u-card-u-card-background-color:#fff !default;
+	$u-card-u-card-full-border-after-border-radius:16rpx !default;
+	$u-card-u-card-head-left-color:$u-main-color!default;
+	$u-card-u-card-head-left-thumb-margin-right:16rpx !default;
+	$u-card-u-card-head-left-title-max-width:400rpx !default;
+	$u-card-u-card-head-right-color: $u-tips-color !default;
+	$u-card-u-card-head-right-margin-left:6rpx !default;
+	$u-card-u-card-body-color:$u-content-color !default;
+	$u-card-u-card-foot-color:$u-tips-color !default;
+	
 
 	.u-card {
 		position: relative;
 		overflow: hidden;
-		font-size: 28rpx;
-		background-color: #ffffff;
+		font-size: $u-card-u-card-font-size;
+		background-color: $u-card-u-card-background-color;
 		// border-radius: 10;
 		// border-top-right-radius: 20rpx;
 		// border-bottom-left-radius: 63rpx;
@@ -255,7 +302,7 @@
 		}
 
 		&--border:after {
-			border-radius: 16rpx;
+			border-radius:$u-card-u-card-full-border-after-border-radius;
 		}
 
 		&__head {
@@ -266,31 +313,31 @@
 			&--left {
 				@include flex;
 				align-items: center;
-				color: $u-main-color;
+				color:$u-card-u-card-head-left-color;
 
 				&__thumb {
-					margin-right: 16rpx;
+					margin-right:$u-card-u-card-head-left-thumb-margin-right;
 				}
 
 				&__title {
 					/* #ifndef APP-NVUE */
-					max-width: 400rpx;
+					max-width:$u-card-u-card-head-left-title-max-width;
 					/* #endif */
 				}
 			}
 
 			&--right {
-				color: $u-tips-color;
-				margin-left: 6rpx;
+				color:$u-card-u-card-head-right-color;
+				margin-left:$u-card-u-card-head-right-margin-left;
 			}
 		}
 
 		&__body {
-			color: $u-content-color;
+			color:$u-card-u-card-body-color;
 		}
 
 		&__foot {
-			color: $u-tips-color;
+			color:$u-card-u-card-foot-color;
 		}
 	}
 </style>

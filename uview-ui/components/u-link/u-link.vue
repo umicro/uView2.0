@@ -83,12 +83,12 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	@import "../../libs/css/components.scss";
-	
+	 $u-link-line-height:1 !default;
 	.u-link {
 		/* #ifndef APP-NVUE */
-		line-height: 1;
+		line-height:$u-link-line-height;
 		/* #endif */
 	}
 </style>

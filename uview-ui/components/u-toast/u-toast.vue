@@ -1,5 +1,8 @@
 <template>
-	<view class="u-toast" :style="[toastStyle]">
+	<view
+	    class="u-toast"
+	    :style="[toastStyle]"
+	>
 		<u-overlay></u-overlay>
 		<u-transition
 		    mode="fade"
@@ -16,7 +19,7 @@
 				<u-icon
 				    v-else
 				    name="map"
-					color="#ffffff"
+				    color="#ffffff"
 				></u-icon>
 				<text class="u-toast__content__text">{{text}}</text>
 			</view>
@@ -106,7 +109,8 @@
 			toastStyle() {
 				const style = {}
 				const sys = uni.$u.sys()
-				let left = sys.windowWidth / 2, top = sys.windowHeight / 2
+				let left = sys.windowWidth / 2,
+					top = sys.windowHeight / 2
 				// 非H5端有原生导航栏，其高度不会算到windowHeight中，toast会在视觉上偏下，这里做一个向上的偏移
 				// #ifndef H5
 				// 原生导航栏的高度为44px
@@ -114,7 +118,7 @@
 				// #endif
 				style.left = left + 'px'
 				style.top = top + 'px'
-				
+
 				return uni.$u.deepMerge(style, this.customStyle)
 			}
 		},
@@ -192,27 +196,60 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
+	$u-toast-color:#fff !default;
+	$u-toast-border-radius:8rpx !default;
+	$u-toast-border-background-color:#585858 !default;
+	$u-toast-border-font-size:28rpx !default;
+	$u-toast-border-padding:18rpx 40rpx !default;
+	$u-toast-content-text-color:#fff !default;
+	$u-toast-content-text-font-size:15px !default;
+	$u-toast-u-icon:10rpx !default;
+	$u-toast-u-position-center-top:50% !default;
+	$u-toast-u-position-center-left:50% !default;
+	$u-toast-u-position-center-max-width:50% !default;
+	$u-toast-u-position-top-left:50% !default;
+	$u-toast-u-position-top-top:20% !default;
+	$u-toast-u-position-bottom-left:50% !default;
+	$u-toast-u-position-bottom-bottom:20% !default;
+	$u-toast-u-type-primary-color:$u-primary !default;
+	$u-toast-u-type-primary-background-color:#ecf5ff !default;
+	$u-toast-u-type-primary-border-color:rgb(215, 234, 254) !default;
+	$u-toast-u-type-primary-border-width:1px !default;
+	$u-toast-u-type-success-color: $u-success !default;
+	$u-toast-u-type-success-background-color: #dbf1e1 !default;
+	$u-toast-u-type-success-border-color: #BEF5C8 !default;
+	$u-toast-u-type-success-border-width: 1px !default;
+	$u-toast-u-type-error-color:$u-error !default;
+	$u-toast-u-type-error-background-color:#fef0f0 !default;
+	$u-toast-u-type-error-border-color:#fde2e2 !default;
+	$u-toast-u-type-error-border-width: 1px !default;
+	$u-toast-u-type-warning-color:$u-warning !default;
+	$u-toast-u-type-warning-background-color:#fdf6ec !default;
+	$u-toast-u-type-warning-border-color:#faecd8 !default;
+	$u-toast-u-type-warning-border-width: 1px !default;
+	$u-toast-u-type-default-color:#fff !default;
+	$u-toast-u-type-default-background-color:#585858 !default;
 
 	.u-toast {
 		position: fixed;
 		transform: translate(-50%, -50%);
 		transition: opacity 0.3s;
 		text-align: center;
-		color: #fff;
-		border-radius: 8rpx;
-		background-color: #585858;
+		color: $u-toast-color;
+		border-radius: $u-toast-border-radius;
+		background-color: $u-toast-border-background-color;
 		@include flex;
 		align-items: center;
 		justify-content: center;
-		font-size: 28rpx;
-		padding: 18rpx 40rpx;
-		
+		font-size: $u-toast-border-font-size;
+		padding: $u-toast-border-padding;
+
 		&__content {
 			@include flex;
-			
+
 			&__text {
-				color: #FFFFFF;
-				font-size: 15px;
+				color:$u-toast-content-text-color;
+				font-size:$u-toast-content-text-font-size;
 			}
 		}
 	}
@@ -222,62 +259,62 @@
 	// }
 
 	.u-icon {
-		margin-right: 10rpx;
+		margin-right: $u-toast-u-icon;
 		@include flex;
 		align-items: center;
 	}
 
 	.u-position-center {
-		left: 50%;
-		top: 50%;
+		top: $u-toast-u-position-center-top;
+		left:$u-toast-u-position-center-left;
 		transform: translate(-50%, -50%);
 		/* #ifndef APP-NVUE */
-		max-width: 70%;
+		max-width:$u-toast-u-position-center-max-width;
 		/* #endif */
 	}
 
 	.u-position-top {
-		left: 50%;
-		top: 20%;
+		left: $u-toast-u-position-top-left;
+		top: $u-toast-u-position-top-top;
 		transform: translate(-50%, -50%);
 	}
 
 	.u-position-bottom {
-		left: 50%;
-		bottom: 20%;
+		left: $u-toast-u-position-bottom-left;
+		bottom: $u-toast-u-position-bottom-bottom;
 		transform: translate(-50%, -50%);
 	}
 
 	.u-type-primary {
-		color: $u-primary;
-		background-color: #ecf5ff;
-		border-color: rgb(215, 234, 254);
-		border-width: 1px;
+		color: $u-toast-u-type-primary-color;
+		background-color: $u-toast-u-type-primary-background-color;
+		border-color: $u-toast-u-type-primary-border-color;
+		border-width: $u-toast-u-type-primary-border-width;
 	}
 
 	.u-type-success {
-		color: $u-success;
-		background-color: #dbf1e1;
-		border-color: #BEF5C8;
+		color: $u-toast-u-type-success-color;
+		background-color: $u-toast-u-type-success-background-color;
+		border-color: $u-toast-u-type-success-border-color;
 		border-width: 1px;
 	}
 
 	.u-type-error {
-		color: $u-error;
-		background-color: #fef0f0;
-		border-color: #fde2e2;
-		border-width: 1px;
+		color: $u-toast-u-type-error-color;
+		background-color: $u-toast-u-type-error-background-color;
+		border-color: $u-toast-u-type-error-border-color;
+		border-width: $u-toast-u-type-error-border-width;
 	}
 
 	.u-type-warning {
-		color: $u-warning;
-		background-color: #fdf6ec;
-		border-color: #faecd8;
+		color: $u-toast-u-type-warning-color;
+		background-color: $u-toast-u-type-warning-background-color;
+		border-color: $u-toast-u-type-warning-border-color;
 		border-width: 1px;
 	}
 
 	.u-type-default {
-		color: #fff;
-		background-color: #585858;
+		color: $u-toast-u-type-default-color;
+		background-color: $u-toast-u-type-default-background-color;
 	}
 </style>

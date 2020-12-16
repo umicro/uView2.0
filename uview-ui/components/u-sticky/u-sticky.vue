@@ -106,9 +106,9 @@
 			init() {
 				this.getStickyTop()
 				// 判断使用的模式
-				if(this.mode === 'css') {
+				if (this.mode === 'css') {
 					this.cssSticky = true
-				} else if(this.mode === 'js') {
+				} else if (this.mode === 'js') {
 					this.initObserveContent()
 				} else {
 					this.checkSupportCssSticky()

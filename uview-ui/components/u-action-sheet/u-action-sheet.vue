@@ -194,6 +194,10 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
+	
+	$u-action-sheet-title-font-size: 16px !default;
+	$u-action-sheet-title-padding: 18px 30px !default;
+	$u-action-sheet-title-color: $u-main-color !default;
 
 	.u-reset-button {
 		width: 100%;
@@ -205,9 +209,9 @@
 			position: relative;
 
 			&__title {
-				font-size: 16px;
-				color: $u-main-color;
-				padding: 18px 30px;
+				font-size: $u-action-sheet-title-font-size;
+				color: $u-action-sheet-title-color;
+				padding: $u-action-sheet-title-padding;
 				text-align: center;
 				font-weight: bold;
 			}

@@ -1,21 +1,13 @@
 <template>
 	<u-transition
-	  :show="show"
-	  custom-class="u-overlay"
-	  :duration="duration"
-	  :custom-style="{
-		  position: 'fixed',
-		  top: 0,
-		  left: 0,
-		  right: 0,
-		  zIndex: zIndex,
-		  bottom: 0,
-		  'background-color': `rgba(0, 0, 0, ${opacity})`
-	  }"
-	  @tap="clickHandler"
-	  @touchmove="noop"
+	    :show="show"
+	    custom-class="u-overlay"
+	    :duration="duration"
+	    :custom-style="overlyStyle"
+	    @click="clickHandler"
+	    @touchmove="noop"
 	>
-	  <slot />
+		<slot />
 	</u-transition>
 </template>
 
@@ -37,22 +29,37 @@
 			// 是否显示遮罩
 			show: {
 				type: Boolean,
-				default: false
+				default: uni.$u.props.overlay.show
 			},
 			// 层级z-index
 			zIndex: {
 				type: [Number, String],
-				default: 9
+				default: uni.$u.props.overlay.zIndex
 			},
 			// 遮罩的过渡时间，单位为ms
 			duration: {
 				type: [Number, String],
-				default: 300
+				default: uni.$u.props.overlay.duration
 			},
 			// 不透明度值，当做rgba的第四个参数
 			opacity: {
 				type: [Number, String],
-				default: 0.7
+				default: uni.$u.props.overlay.opacity
+			}
+		},
+		mixins: [uni.$u.mixin],
+		computed: {
+			overlyStyle() {
+				const style = {
+					position: 'fixed',
+					top: 0,
+					left: 0,
+					right: 0,
+					zIndex: this.zIndex,
+					bottom: 0,
+					'background-color': `rgba(0, 0, 0, ${this.opacity})`
+				}
+				return uni.$u.deepMerge(style, this.customStyle)
 			}
 		},
 		methods: {
@@ -65,7 +72,7 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-	
+
 	.u-overlay {
 		position: fixed;
 		top: 0;

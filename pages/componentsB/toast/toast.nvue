@@ -1,0 +1,22 @@
+<template>
+	<view class="u-page">
+		<u-toast text="你好吗"></u-toast>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				
+			}
+		},
+		methods: {
+			
+		}
+	}
+</script>
+
+<style lang="scss">
+
+</style>

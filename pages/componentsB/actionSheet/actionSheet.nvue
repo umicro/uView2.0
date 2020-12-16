@@ -6,11 +6,14 @@
 		></u-button>
 		<u-action-sheet
 		    :show="show"
-		    @close="show = !show"
+		    @close="close"
 		    :description="description"
 		    :title="title"
 			:actions="actions"
 			:cancelText="cancelText"
+			openType="getUserInfo"
+			@getuserinfo="getuserinfo"
+			:closeOnClickOverly="true"
 		>
 
 		</u-action-sheet>
@@ -41,7 +44,15 @@
 			}
 		},
 		onLoad() {
-			console.log(uni.$u.sys().safeAreaInsets)
+			
+		},
+		methods: {
+			getuserinfo(e) {
+				// console.log(e);
+			},
+			close() {
+				this.show = !this.show
+			}
 		}
 	}
 </script>

@@ -47,7 +47,6 @@
 
 <style lang="scss">
 .popup {
-	background-color: $u-primary;
 	width: 200px;
 }
 </style>

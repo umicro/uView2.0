@@ -171,7 +171,7 @@ export default [{
 			title: 'AlertTips 警告提示',
 			title_en: 'AlertTips',
 		}, {
-			path: '/pages/componentsA/toast/toast',
+			path: '/pages/componentsB/toast/toast',
 			icon: 'toast',
 			title: 'Toast 消息提示',
 			title_en: 'Toast',
@@ -345,7 +345,7 @@ export default [{
 		groupName: '其他组件',
 		groupName_en: 'Other components',
 		list: [{
-			path: '/pages/componentsA/parse/parse',
+			path: '/pages/componentsB/parse/parse',
 			icon: 'parse',
 			title: 'Parse 富文本解析器',
 			title_en: 'Parse',

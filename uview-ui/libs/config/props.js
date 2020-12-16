@@ -369,8 +369,34 @@ export default {
 		safeAreaInsetTop: false,
 		overlayStyle: () => {},
 		closeOnClickOverly: true,
-		zIndex: 1075,
+		zIndex: 10075,
 		safeAreaInsetBottom: true,
-	}
+	},
 	
+	// overlay组件
+	overlay: {
+		show: false,
+		zIndex: 10070,
+		duration: 300,
+		opacity: 0.7
+	},
+	
+	// action-sheet组件
+	actionSheet: {
+		show: false,
+		title: '',
+		description: '',
+		actions: () => [],
+		index: '',
+		cancelText: '',
+		closeOnClickAction: true,
+		safeAreaInsetBottom: true,
+		openType: '',
+		closeOnClickOverly: true
+	},
+	
+	// toast组件
+	toast: {
+		
+	}
 }

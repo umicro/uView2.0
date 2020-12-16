@@ -24,7 +24,7 @@ export default {
 	methods: {
 		// 组件被点击发出事件
 		clickHandler() {
-			this.$emit('click');
+			this.$emit('click')
 		},
 		// #ifndef APP-NVUE
 		// vue版本的组件进场处理

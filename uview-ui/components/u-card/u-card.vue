@@ -80,26 +80,28 @@
 	 * @tutorial https://www.uviewui.com/components/card.html
 	 * @property {Boolean} full 卡片与屏幕两侧是否留空隙（默认false）
 	 * @property {String} title 头部左边的标题
-	 * @property {String} title-color 标题颜色（默认#303133）
-	 * @property {String | Number} title-size 标题字体大小，单位rpx（默认30）
-	 * @property {String} sub-title 头部右边的副标题
-	 * @property {String} sub-title-color 副标题颜色（默认#909399）
-	 * @property {String | Number} sub-title-size 副标题字体大小（默认26）
+	 * @property {String} titleColor 标题颜色（默认#303133）
+	 * @property {String | Number} titleSize 标题字体大小，单位rpx（默认30）
+	 * @property {String} subTitle 头部右边的副标题
+	 * @property {String} subTitleColor 副标题颜色（默认#909399）
+	 * @property {String | Number} subTitleSize 副标题字体大小（默认26）
 	 * @property {Boolean} border 是否显示边框（默认true）
 	 * @property {String | Number} index 用于标识点击了第几个卡片
-	 * @property {String} box-shadow 卡片外围阴影，字符串形式（默认none）
 	 * @property {String} margin 卡片与屏幕两边和上下元素的间距，需带单位，如"30rpx 20rpx"（默认30rpx）
-	 * @property {String | Number} border-radius 卡片整体的圆角值，单位rpx（默认16）
-	 * @property {Object} head-style 头部自定义样式，对象形式
-	 * @property {Object} body-style 中部自定义样式，对象形式
-	 * @property {Object} foot-style 底部自定义样式，对象形式
-	 * @property {Boolean} head-border-bottom 是否显示头部的下边框（默认true）
-	 * @property {Boolean} foot-border-top 是否显示底部的上边框（默认true）
-	 * @property {Boolean} show-head 是否显示头部（默认true）
-	 * @property {Boolean} show-head 是否显示尾部（默认true）
+	 * @property {String | Number} borderRadius 卡片整体的圆角值，单位rpx（默认16）
+	 * @property {Object} headStyle 头部自定义样式，对象形式
+	 * @property {Object} bodyStyle 中部自定义样式，对象形式
+	 * @property {Object} footStyle 底部自定义样式，对象形式
+	 * @property {Boolean} headBorderBottom 是否显示头部的下边框（默认true）
+	 * @property {Boolean} footBorderTop 是否显示底部的上边框（默认true）
 	 * @property {String} thumb 缩略图路径，如设置将显示在标题的左边，不建议使用相对路径
-	 * @property {String | Number} thumb-width 缩略图的宽度，高等于宽，单位rpx（默认60）
-	 * @property {Boolean} thumb-circle 缩略图是否为圆形（默认false）
+	 * @property {String | Number} thumbWidth 缩略图的宽度，高等于宽，单位rpx（默认60）
+	 * @property {Boolean} thumbCircle 缩略图是否为圆形（默认false）
+	 * @property {String Number} padding 给head，foot的内边距（默认24）
+	 * @property {Boolean} showHead 是否显示头部（默认true）
+	 * @property {Boolean} showFoot 是否显示尾部（默认true）
+	 * @property {String} boxShadow 卡片外围阴影，字符串形式（默认rgba(0, 0, 0, 0)）
+     * @property {String} customStyle  定义需要用到的外部样式
 	 * @event {Function} click 整个卡片任意位置被点击时触发
 	 * @event {Function} head-click 卡片头部被点击时触发
 	 * @event {Function} body-click 卡片主体部分被点击时触发

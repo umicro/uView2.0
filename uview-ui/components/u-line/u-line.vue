@@ -12,9 +12,10 @@
 	 * @property {String} color 线条的颜色(默认#e4e7ed)
 	 * @property {String} length 长度，竖向时表现为高度，横向时表现为长度，可以为百分比，带rpx单位的值等
 	 * @property {String} direction 线条的方向，row-横向，col-竖向(默认row)
-	 * @property {String} border-style 线条的类型，solid-实线，dashed-方形虚线，dotted-圆点虚线(默认solid)
-	 * @property {Boolean} hair-line 是否显示细线条(默认true)
+	 * @property {Boolean} hairline 是否显示细线条(默认true)
 	 * @property {String} margin 线条与上下左右元素的间距，字符串形式，如"30rpx"
+	 * @property {String} dashed 是否实线，true-实线，false-虚线 (默认 false)
+	 * @property {Object} customStyle icon的样式，对象形式
 	 * @example <u-line color="red"></u-line>
 	 */
 	export default {

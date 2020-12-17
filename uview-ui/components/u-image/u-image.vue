@@ -68,18 +68,18 @@
 	 * @property {String | Number} width 宽度，单位任意，如果为数值，则为rpx单位（默认100%）
 	 * @property {String | Number} height 高度，单位任意，如果为数值，则为rpx单位（默认 auto）
 	 * @property {String} shape 图片形状，circle-圆形，square-方形（默认square）
-	 * @property {String | Number} border-radius 圆角值，单位任意，如果为数值，则为rpx单位（默认 0）
-	 * @property {Boolean} lazy-load 是否懒加载，仅微信小程序、App、百度小程序、字节跳动小程序有效（默认 true）
-	 * @property {Boolean} show-menu-by-longpress 是否开启长按图片显示识别小程序码菜单，仅微信小程序有效（默认 false）
-	 * @property {String} loading-icon 加载中的图标，或者小图片（默认 photo）
-	 * @property {String} error-icon 加载失败的图标，或者小图片（默认 error-circle）
-	 * @property {Boolean} show-loading 是否显示加载中的图标或者自定义的slot（默认 true）
-	 * @property {Boolean} show-error 是否显示加载错误的图标或者自定义的slot（默认 true）
+	 * @property {String | Number} borderRadius 圆角值，单位任意，如果为数值，则为rpx单位（默认 0）
+	 * @property {Boolean} lazyLoad 是否懒加载，仅微信小程序、App、百度小程序、字节跳动小程序有效（默认 true）
+	 * @property {Boolean} showMenuByLongpress 是否开启长按图片显示识别小程序码菜单，仅微信小程序有效（默认 false）
+	 * @property {String} loadingIcon 加载中的图标，或者小图片（默认 photo）
+	 * @property {String} errorIcon 加载失败的图标，或者小图片（默认 error-circle）
+	 * @property {Boolean} showLoading 是否显示加载中的图标或者自定义的slot（默认 true）
+	 * @property {Boolean} showError 是否显示加载错误的图标或者自定义的slot（默认 true）
 	 * @property {Boolean} fade 是否需要淡入效果（默认 true）
-	 * @property {String Number} width 传入图片路径时图片的宽度
-	 * @property {String Number} height 传入图片路径时图片的高度
 	 * @property {Boolean} webp 只支持网络资源，只对微信小程序有效（默认 false）
 	 * @property {String | Number} duration 搭配fade参数的过渡时间，单位ms（默认 500）
+	 * @property {String} bgColor 背景颜色，用于深色页面加载图片时，为了和背景色融合 (默认 #f3f4f6)
+	 * @property {Object} customStyle icon的样式，对象形式
 	 * @event {Function} click 点击图片时触发
 	 * @event {Function} error 图片加载失败时触发
 	 * @event {Function} load 图片加载成功时触发

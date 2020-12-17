@@ -13,19 +13,19 @@
 
 <script>
 	/**
-	 * mask 遮罩
+	 * overlay 遮罩
 	 * @description 创建一个遮罩层，用于强调特定的页面元素，并阻止用户对遮罩下层的内容进行操作，一般用于弹窗场景
-	 * @tutorial https://www.uviewui.com/components/mask.html
+	 * @tutorial https://www.uviewui.com/components/overlay.html
 	 * @property {Boolean} show 是否显示遮罩（默认false）
 	 * @property {String Number} zIndex zIndex 层级（默认1070）
 	 * @property {String Number} duration 动画时长，单位毫秒（默认300）
 	 * @property {String Number} opacity 不透明度值，当做rgba的第四个参数 （默认0.7）
-	 * @property {Object} customStyle icon的样式，对象形式
+	 * @property {Object} customStyle  定义需要用到的外部样式
 	 * @event {Function} click 点击遮罩发送事件
-	 * @example <u-mask :show="show" @click="show = false"></u-mask>
+	 * @example <u-overlay :show="show" @click="show = false"></u-overlay>
 	 */
 	export default {
-		name: "u-mask",
+		name: "u-overlay",
 		props: {
 			// 是否显示遮罩
 			show: {

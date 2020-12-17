@@ -3,9 +3,9 @@
 	    class="u-rate"
 	    :id="elId"
 	    ref="u-rate"
-		:style="[customStyle]"
+	    :style="[customStyle]"
 	    @touchmove.stop.prevent="touchMove"
-		@touchend.stop.prevent="touchEnd"
+	    @touchend.stop.prevent="touchEnd"
 	>
 		<view
 		    class="u-rate__item"
@@ -57,17 +57,18 @@
 	 * rate 评分
 	 * @description 该组件一般用于满意度调查，星型评分的场景
 	 * @tutorial https://www.uviewui.com/components/rate.html
+	 * @property {String Number} value 用于v-model双向绑定选中的星星数量 (默认 1)
 	 * @property {String Number} count 最多可选的星星数量（默认5）
-	 * @property {String Number} current 默认选中的星星数量（默认0）
 	 * @property {Boolean} disabled 是否禁止用户操作（默认false）
 	 * @property {String Number} size 星星的大小，单位rpx（默认32）
-	 * @property {String} inactive-color 未选中星星的颜色（默认#b2b2b2）
-	 * @property {String} active-color 选中的星星颜色（默认#FA3534）
-	 * @property {String} active-icon 选中时的图标名，只能为uView的内置图标（默认star-fill）
-	 * @property {String} inactive-icon 未选中时的图标名，只能为uView的内置图标（默认star）
+	 * @property {String} inactiveColor 未选中星星的颜色（默认#b2b2b2）
+	 * @property {String} activeColor 选中的星星颜色（默认#FA3534）
 	 * @property {String} gutter 星星之间的距离（默认10）
-	 * @property {String Number} min-count 最少选中星星的个数（默认0）
-	 * @property {Boolean} allow-half 是否允许半星选择（默认false）
+	 * @property {String Number} minCount 最少选中星星的个数（默认0）
+	 * @property {Boolean} allowHalf 是否允许半星选择（默认false）
+	 * @property {String} activeIcon 选中时的图标名，只能为uView的内置图标（默认star-fill）
+	 * @property {String} inactiveIcon 未选中时的图标名，只能为uView的内置图标（默认star）
+	 * @property {Object} customStyle  组件的样式，对象形式
 	 * @event {Function} change 选中的星星发生变化时触发
 	 * @example <u-rate :count="count" :current="2"></u-rate>
 	 */
@@ -140,7 +141,7 @@
 				activeIndex: this.value,
 				rateWidth: 0, // 每个星星的宽度
 				// 标识是否正在滑动，由于iOS事件上touch比click先触发，导致快速滑动结束后，接着触发click，导致事件混乱而出错
-				moving: false, 
+				moving: false,
 			}
 		},
 		watch: {
@@ -198,8 +199,8 @@
 			// 通过点击，直接选中
 			clickHandler(e, index) {
 				// ios上，moving状态取消事件触发
-				if(uni.$u.os() === 'ios' && this.moving) {
-					return 
+				if (uni.$u.os() === 'ios' && this.moving) {
+					return
 				}
 				this.preventEvent(e)
 				// 点击时，在nvue上，无法获得点击的坐标，所以无法实现点击半星选择
@@ -246,16 +247,16 @@
 					const decimal = distance % this.rateWidth
 					if (decimal <= this.rateWidth / 2 && decimal > 0) {
 						index += 0.5
-					} else if(decimal > this.rateWidth / 2) {
-						index ++
+					} else if (decimal > this.rateWidth / 2) {
+						index++
 					}
 				} else {
 					index = Math.floor(distance / this.rateWidth)
 					// 取余，判断小数的区间范围
 					const decimal = distance % this.rateWidth
 					// 非半星时，只有超过了图标的一半距离，才认为是选择了这颗星
-					if(decimal > this.rateWidth / 2) {
-						index ++
+					if (decimal > this.rateWidth / 2) {
+						index++
 					}
 				}
 				this.activeIndex = index > this.count ? this.count : index
@@ -277,15 +278,16 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-$u-rate-margin:0 !default;
-$u-rate-padding:0 !default;
-$u-rate-item-icon-wrap-half-top:0 !default;
-$u-rate-item-icon-wrap-half-left:0 !default;
+	$u-rate-margin:0 !default;
+	$u-rate-padding:0 !default;
+	$u-rate-item-icon-wrap-half-top:0 !default;
+	$u-rate-item-icon-wrap-half-left:0 !default;
+
 	.u-rate {
 		@include flex;
 		align-items: center;
-		margin:$u-rate-margin;
-		padding:$u-rate-padding;
+		margin: $u-rate-margin;
+		padding: $u-rate-padding;
 		/* #ifndef APP-NVUE */
 		touch-action: none;
 		/* #endif */
@@ -298,8 +300,8 @@ $u-rate-item-icon-wrap-half-left:0 !default;
 				&--half {
 					position: absolute;
 					overflow: hidden;
-					top:$u-rate-item-icon-wrap-half-top;
-					left:$u-rate-item-icon-wrap-half-left;
+					top: $u-rate-item-icon-wrap-half-top;
+					left: $u-rate-item-icon-wrap-half-left;
 				}
 			}
 		}

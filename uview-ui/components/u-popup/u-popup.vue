@@ -32,12 +32,12 @@
 	 * @property {Boolean} show  是否展示弹窗 (默认 false)
 	 * @property {Boolean} overlay  是否显示遮罩 （默认 true）
 	 * @property {String} mode 弹出方向（默认left）
-	 * @property {String | Number} duration  动画时长，单位ms （默认 3000）
-	 * @property {String | Numberr} borderRadis 弹窗圆角值（默认0）
+	 * @property {String Number} duration  动画时长，单位ms （默认 3000）
+	 * @property {String Numberr} borderRadis 弹窗圆角值（默认0）
 	 * @property {Boolean} closeable 是否显示关闭图标（默认false）
 	 * @property {Object} overlayStyle 自定义遮罩的样式
 	 * @property {Boolean} closeOnClickOverly  点击遮罩是否关闭弹窗 （默认  true）
-	 * @property {String | Number} zIndex  层级 （默认 10075）
+	 * @property {String Number} zIndex  层级 （默认 10075）
 	 * @property {Boolean} safeAreaInsetBottom  是否为iPhoneX留出底部安全距离 （默认 true）
 	 * @property {Boolean} safeAreaInsetTop  是否留出顶部安全距离（状态栏高度） （默认 false）
 	 * @property {Object} customStyle  组件的样式，对象形式
@@ -46,6 +46,7 @@
 	 * @example <u-popup v-model="show"><view>出淤泥而不染，濯清涟而不妖</view></u-popup>
 	 */
 	export default {
+		name:'u-popup',
 		props: {
 			// 是否展示弹窗
 			show: {

@@ -14,7 +14,24 @@
 </template>
 
 <script>
+	/**
+	 * sticky 吸顶
+	 * @description 该组件与CSS中position: sticky属性实现的效果一致，当组件达到预设的到顶部距离时， 就会固定在指定位置，组件位置大于预设的顶部距离时，会重新按照正常的布局排列。
+	 * @tutorial https://www.uviewui.com/components/sticky.html
+	 * @property {String Number} offsetTop 吸顶时与顶部的距离，单位rpx（默认0）
+	 * @property {String Number} customNavHeight 自定义导航栏的高度 （h5 默认44  其他默认 0）
+	 * @property {Boolean} disabled 是否开启吸顶功能 （默认 false）
+	 * @property {String} bgColor 组件背景颜色（默认#ffffff）
+	 * @property {String Number} z-index 吸顶时的z-index值
+	 * @property {String Number} index 自定义标识，用于区分是哪一个组件
+	 * @property {String} mode js还是css模式吸顶 （默认 auto）
+  	 * @property {Object} customStyle  组件的样式，对象形式
+	 * @event {Function} fixed 组件吸顶时触发
+	 * @event {Function} unfixed 组件取消吸顶时触发
+	 * @example <u-sticky offsetTop="200"><view>塞下秋来风景异，衡阳雁去无留意</view></u-sticky>
+	 */
 	export default {
+		name: 'u-sticky',
 		props: {
 			// 吸顶容器到顶部某个距离的时候，进行吸顶，在H5平台，NavigationBar为44px
 			offsetTop: {

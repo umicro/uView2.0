@@ -43,6 +43,7 @@
 	 * @example <u-divider :color="color">锦瑟无端五十弦</u-divider>
 	 */
 	export default {
+		name:'u-divider',
 		props: {
 			// 是否虚线
 			dashed: {

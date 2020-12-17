@@ -81,21 +81,21 @@
 	 * @property {Boolean} full 卡片与屏幕两侧是否留空隙（默认false）
 	 * @property {String} title 头部左边的标题
 	 * @property {String} titleColor 标题颜色（默认#303133）
-	 * @property {String | Number} titleSize 标题字体大小，单位rpx（默认30）
+	 * @property {String Number} titleSize 标题字体大小，单位rpx（默认30）
 	 * @property {String} subTitle 头部右边的副标题
 	 * @property {String} subTitleColor 副标题颜色（默认#909399）
-	 * @property {String | Number} subTitleSize 副标题字体大小（默认26）
+	 * @property {String Number} subTitleSize 副标题字体大小（默认26）
 	 * @property {Boolean} border 是否显示边框（默认true）
-	 * @property {String | Number} index 用于标识点击了第几个卡片
+	 * @property {String Number} index 用于标识点击了第几个卡片
 	 * @property {String} margin 卡片与屏幕两边和上下元素的间距，需带单位，如"30rpx 20rpx"（默认30rpx）
-	 * @property {String | Number} borderRadius 卡片整体的圆角值，单位rpx（默认16）
+	 * @property {String Number} borderRadius 卡片整体的圆角值，单位rpx（默认16）
 	 * @property {Object} headStyle 头部自定义样式，对象形式
 	 * @property {Object} bodyStyle 中部自定义样式，对象形式
 	 * @property {Object} footStyle 底部自定义样式，对象形式
 	 * @property {Boolean} headBorderBottom 是否显示头部的下边框（默认true）
 	 * @property {Boolean} footBorderTop 是否显示底部的上边框（默认true）
 	 * @property {String} thumb 缩略图路径，如设置将显示在标题的左边，不建议使用相对路径
-	 * @property {String | Number} thumbWidth 缩略图的宽度，高等于宽，单位rpx（默认60）
+	 * @property {String Number} thumbWidth 缩略图的宽度，高等于宽，单位rpx（默认60）
 	 * @property {Boolean} thumbCircle 缩略图是否为圆形（默认false）
 	 * @property {String Number} padding 给head，foot的内边距（默认24）
 	 * @property {Boolean} showHead 是否显示头部（默认true）

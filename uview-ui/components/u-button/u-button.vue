@@ -99,7 +99,7 @@
 	 * @property {Boolean} plain 按钮是否镂空，背景色透明 （默认 false）
 	 * @property {Boolean} disabled 是否禁用 （默认 false）
 	 * @property {Boolean} loading 按钮名称前是否带 loading 图标(App-nvue 平台，在 ios 上为雪花，Android上为圆圈) （默认 false）
-	 * @property {String, Number} loadingText 加载中提示文字
+	 * @property {String Number} loadingText 加载中提示文字
 	 * @property {String} loadingMode 加载状态图标类型 （默认spinner）
 	 * @property {String，Number} loadingSize 加载图标大小 （默认16）
 	 * @property {String} openType 开放能力，具体请看uniapp稳定关于button组件部分说明
@@ -129,6 +129,7 @@
 	 * @example <u-button>月落</u-button>
 	 */
 	export default {
+		name:'u-button',
 		props: {
 			// 是否细边框
 			hairline: {

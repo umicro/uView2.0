@@ -13,7 +13,7 @@
 	 * @description 该组件为超链接组件，在不同平台有不同表现形式：在APP平台会通过plus环境打开内置浏览器，在小程序中把链接复制到粘贴板，同时提示信息，在H5中通过window.open打开链接。
 	 * @tutorial https://www.uviewui.com/components/link.html
 	 * @property {String} color 文字颜色（默认#606266）
-	 * @property {String | Number} fontSize 字体大小，单位rpx（默认28）
+	 * @property {String Number} fontSize 字体大小，单位rpx（默认28）
 	 * @property {Boolean} underLine 是否显示下划线（默认false）
 	 * @property {String} href 跳转的链接，要带上http(s)
 	 * @property {String} mpTips 各个小程序平台把链接复制到粘贴板后的提示语（默认“链接已复制，请在浏览器打开”）

@@ -1,6 +1,7 @@
 <template>
 	<view class="u-page">
-		<u-toast text="你好吗"></u-toast>
+		<u-button text="点我吧" @click="btnClick"></u-button>
+		<u-toast icon="lock-opened-fill" text="你好吗你好吗你" :show="show" type="error" position="top"></u-toast>
 	</view>
 </template>
 
@@ -8,11 +9,18 @@
 	export default {
 		data() {
 			return {
-				
+				show: true
 			}
 		},
+		onLoad() {
+			// setTimeout(() => {
+			// 	this.show = false
+			// }, 3000)
+		},
 		methods: {
-			
+			btnClick() {
+				this.show = !this.show
+			}
 		}
 	}
 </script>

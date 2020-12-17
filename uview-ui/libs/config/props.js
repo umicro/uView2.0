@@ -108,7 +108,6 @@ export default {
 		size: 24,
 		textSize: 15,
 		text: '',
-		type: '',
 		duration: 1200,
 		timingFunction: 'ease-in-out'
 	},

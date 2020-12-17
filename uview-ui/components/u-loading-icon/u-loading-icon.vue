@@ -1,6 +1,7 @@
 <template>
 	<view
 	    class="u-loading-icon"
+		:style="[customStyle]"
 	    :class="[vertical && 'u-loading-icon--vertical']"
 	>
 		<view

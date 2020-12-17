@@ -1,12 +1,13 @@
 <template>
-	<view
-	    class="u-toast"
-	    :style="[toastStyle]"
-	>
-		<u-overlay></u-overlay>
+	<view class="u-toast">
+		<u-overlay
+		    :show="overlay && show"
+		    :custom-style="overlayStyle"
+		></u-overlay>
 		<u-transition
 		    mode="fade"
-		    :show="true"
+		    :show="show"
+		    :custom-style="toastStyle"
 		>
 			<view
 			    class="u-toast__content "
@@ -15,13 +16,22 @@
 				<u-loading-icon
 				    v-if="loading"
 				    :mode="loadingMode"
+					:customStyle="iconStyle"
+					:color="loadingIconColor"
+					size="17"
 				></u-loading-icon>
 				<u-icon
 				    v-else
-				    name="map"
-				    color="#ffffff"
+				    :name="iconName"
+					size="17"
+				    :color="type"
+				    :customStyle="iconStyle"
 				></u-icon>
-				<text class="u-toast__content__text">{{text}}</text>
+				<text
+				    class="u-toast__content__text"
+				    :class="['u-toast__content__text--' + type]"
+					style="max-width: 400rpx;"
+				>{{text}}</text>
 			</view>
 		</u-transition>
 	</view>
@@ -42,7 +52,7 @@
 			// z-index值
 			zIndex: {
 				type: [Number, String],
-				default: ''
+				default: 10075
 			},
 			// 是否加载中
 			loading: {
@@ -68,6 +78,21 @@
 			loadingMode: {
 				type: String,
 				default: 'circle'
+			},
+			// show
+			show: {
+				type: Boolean,
+				default: false
+			},
+			// 是否显示透明遮罩，防止点击穿透
+			overlay: {
+				type: Boolean,
+				default: false
+			},
+			// 位置
+			position: {
+				type: String,
+				default: 'center'
 			}
 		},
 		mixins: [uni.$u.mixin],
@@ -93,17 +118,13 @@
 		computed: {
 			iconName() {
 				// 只有不为none，并且type为error|warning|succes|info时候，才显示图标
-				if (['error', 'warning', 'success', 'default'].indexOf(this.tmpConfig.type) >= 0 && this.tmpConfig.icon) {
-					let icon = this.$u.type2icon(this.tmpConfig.type);
+				if (['error', 'warning', 'success', 'primary'].includes(this.type) && !this.icon) {
+					let icon = this.$u.type2icon(this.type);
 					return icon;
 				} else {
 					// 非主题类型，剩下的无论用户传入图标还是图片路径，统一是用u-icon组件解析
-					return this.tmpConfig.icon
+					return this.icon
 				}
-			},
-			uZIndex() {
-				// 显示toast时候，如果用户有传递z-index值，有限使用
-				return this.isShow ? (this.zIndex ? this.zIndex : this.$u.zIndex.toast) : '999999';
 			},
 			// 整体样式
 			toastStyle() {
@@ -116,33 +137,64 @@
 				// 原生导航栏的高度为44px
 				top = top - 22
 				// #endif
+				style.position = 'fixed'
 				style.left = left + 'px'
-				style.top = top + 'px'
-
+				// toast的弹出位置
+				if (this.position === 'center') {
+					style.top = top + 'px'
+				} else if (this.position === 'top') {
+					style.top = top - sys.windowHeight / 4 + 'px'
+				} else {
+					style.top = top + sys.windowHeight / 4 + 'px'
+				}
+				style.zIndex = this.zIndex
+				// 进行位移偏转，再通过left，top修正，以达到居中的效果
+				style.transform = 'translate(-50%, -50%)'
 				return uni.$u.deepMerge(style, this.customStyle)
+			},
+			overlayStyle() {
+				const style = {}
+				// 将遮罩设置为100%透明度，避免出现灰色背景
+				style.backgroundColor = 'rgba(0, 0, 0, 0)'
+				return style
+			},
+			iconStyle() {
+				const style = {}
+				// 图标需要一个右边距，以跟右边的文字有隔开的距离
+				style.marginRight = '4px'
+				return style
+			},
+			loadingIconColor() {
+				let color = 'rgb(255, 255, 255)';
+				if(this.type !== 'default') {
+					// loading-icon组件内部会对color参数进行一个透明度处理，该方法要求传入的颜色值
+					// 必须为rgb格式的，所以这里做一个处理
+					color = uni.$u.hexToRgb(uni.$u.config.color[`u-${this.type}`])
+				}
+				return color
 			}
 		},
 		methods: {
 			// 显示toast组件，由父组件通过this.$refs.xxx.show(options)形式调用
-			show(options) {
-				// 不降结果合并到this.config变量，避免多次条用u-toast，前后的配置造成混论
-				this.tmpConfig = this.$u.deepMerge(this.config, options);
-				if (this.timer) {
-					// 清除定时器
-					clearTimeout(this.timer);
-					this.timer = null;
-				}
-				this.isShow = true;
-				this.timer = setTimeout(() => {
-					// 倒计时结束，清除定时器，隐藏toast组件
-					this.isShow = false;
-					clearTimeout(this.timer);
-					this.timer = null;
-					// 判断是否存在callback方法，如果存在就执行
-					typeof(this.tmpConfig.callback) === 'function' && this.tmpConfig.callback();
-					this.timeEnd();
-				}, this.tmpConfig.duration);
-			},
+			// show(options) {
+			// 	// 不降结果合并到this.config变量，避免多次调用u-toast，前后的配置造成混论
+			// 	this.tmpConfig = this.$u.deepMerge(this.config, options);
+			// 	if (this.timer) {
+			// 		// 清除定时器
+			// 		clearTimeout(this.timer);
+			// 		this.timer = null;
+			// 	}
+			// 	this.isShow = true;
+			// 	this.timer = setTimeout(() => {
+			// 		// 倒计时结束，清除定时器，隐藏toast组件
+			// 		this.isShow = false;
+			// 		clearTimeout(this.timer);
+			// 		this.timer = null;
+			// 		// 判断是否存在callback方法，如果存在就执行
+			// 		typeof(this.tmpConfig.callback) === 'function' && this.tmpConfig.callback();
+			// 		this.timeEnd();
+			// 	}, this.tmpConfig.duration);
+			// },
 			// 隐藏toast组件，由父组件通过this.$refs.xxx.hide()形式调用
 			hide() {
 				this.isShow = false;
@@ -206,7 +258,7 @@
 	$u-toast-u-icon:10rpx !default;
 	$u-toast-u-position-center-top:50% !default;
 	$u-toast-u-position-center-left:50% !default;
-	$u-toast-u-position-center-max-width:50% !default;
+	$u-toast-u-position-center-max-width:80% !default;
 	$u-toast-u-position-top-left:50% !default;
 	$u-toast-u-position-top-top:20% !default;
 	$u-toast-u-position-bottom-left:50% !default;
@@ -231,46 +283,48 @@
 	$u-toast-u-type-default-background-color:#585858 !default;
 
 	.u-toast {
-		position: fixed;
-		transform: translate(-50%, -50%);
-		transition: opacity 0.3s;
-		text-align: center;
-		color: $u-toast-color;
-		border-radius: $u-toast-border-radius;
-		background-color: $u-toast-border-background-color;
-		@include flex;
-		align-items: center;
-		justify-content: center;
-		font-size: $u-toast-border-font-size;
-		padding: $u-toast-border-padding;
-
 		&__content {
 			@include flex;
+			padding: $u-toast-border-padding;
+			border-radius: $u-toast-border-radius;
+			background-color: $u-toast-border-background-color;
+			color: $u-toast-color;
+			align-items: center;
+			/* #ifndef APP-NVUE */
+			max-width: 600rpx;
+			/* #endif */
 
 			&__text {
-				color:$u-toast-content-text-color;
-				font-size:$u-toast-content-text-font-size;
+				color: $u-toast-content-text-color;
+				font-size: $u-toast-content-text-font-size;
+
+				&--default {
+					color: $u-toast-content-text-color;
+				}
+
+				&--error {
+					color: $u-error;
+				}
+
+				&--primary {
+					color: $u-primary;
+				}
+
+				&--success {
+					color: $u-success;
+				}
+
+				&--warning {
+					color: $u-warning;
+				}
 			}
 		}
 	}
 
-	// .u-toast.u-show {
-	// 	opacity: 1;
-	// }
-
-	.u-icon {
-		margin-right: $u-toast-u-icon;
-		@include flex;
-		align-items: center;
-	}
-
 	.u-position-center {
 		top: $u-toast-u-position-center-top;
-		left:$u-toast-u-position-center-left;
+		left: $u-toast-u-position-center-left;
 		transform: translate(-50%, -50%);
-		/* #ifndef APP-NVUE */
-		max-width:$u-toast-u-position-center-max-width;
-		/* #endif */
 	}
 
 	.u-position-top {

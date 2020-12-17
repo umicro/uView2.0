@@ -138,7 +138,7 @@
 			stop: {
 				type: Boolean,
 				default: uni.$u.props.icon.stop
-			}
+			},
 		},
 		data() {
 			return {
@@ -175,9 +175,7 @@
 					top: this.$u.addUnit(this.top)
 				}
 				// 非主题色值时，才当作颜色值
-				if (this.showDecimalIcon && this.inactiveColor && !this.$u.config.type.includes(this.inactiveColor)) {
-					style.color = this.inactiveColor
-				} else if (this.color && !this.$u.config.type.includes(this.color)) style.color = this.color
+				if (this.color && !this.$u.config.type.includes(this.color)) style.color = this.color
 
 				return style
 			},

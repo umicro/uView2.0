@@ -15,7 +15,8 @@
 	 * @tutorial https://www.uviewui.com/components/grid.html
 	 * @property {String Number} col 宫格的列数（默认3）
 	 * @property {Boolean} border 是否显示宫格的边框（默认true）
-	 * @property {Boolean} hover-class 点击宫格的时候，是否显示按下的灰色背景（默认false）
+	 * @property {Boolean} align 宫格对齐方式，表现为数量少的时候，靠左，居中，还是靠右 （默认 left）
+	 * @property {String} customStyle  定义需要用到的外部样式
 	 * @event {Function} click 点击宫格触发
 	 * @example <u-grid :col="3" @click="click"></u-grid>
 	 */

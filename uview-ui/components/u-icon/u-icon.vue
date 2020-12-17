@@ -1,16 +1,38 @@
 <template>
-	<view :style="[customStyle]" class="u-icon" @tap="clickHandler" :class="['u-icon--' + labelPos]">
-		<image class="u-icon__img" v-if="isImg" :src="name" :mode="imgMode" :style="[imgStyle]"></image>
-		<text v-else class="u-icon__icon" :class="uClasses" :style="[iconStyle]" :hover-class="hoverClass" @touchstart="touchstart">{{icon}}</text>
+	<view
+	    :style="[customStyle]"
+	    class="u-icon"
+	    @tap="clickHandler"
+	    :class="['u-icon--' + labelPos]"
+	>
+		<image
+		    class="u-icon__img"
+		    v-if="isImg"
+		    :src="name"
+		    :mode="imgMode"
+		    :style="[imgStyle]"
+		></image>
+		<text
+		    v-else
+		    class="u-icon__icon"
+		    :class="uClasses"
+		    :style="[iconStyle]"
+		    :hover-class="hoverClass"
+		    @touchstart="touchstart"
+		>{{icon}}</text>
 		<!-- 这里进行空字符串判断，如果仅仅是v-if="label"，可能会出现传递0的时候，结果也无法显示 -->
-		<text v-if="label !== ''" class="u-icon__label" :style="{
+		<text
+		    v-if="label !== ''"
+		    class="u-icon__label"
+		    :style="{
 			color: labelColor,
 			fontSize: $u.addUnit(labelSize),
 			marginLeft: labelPos == 'right' ? $u.addUnit(space) : 0,
 			marginTop: labelPos == 'bottom' ? $u.addUnit(space) : 0,
 			marginRight: labelPos == 'left' ? $u.addUnit(space) : 0,
 			marginBottom: labelPos == 'top' ? $u.addUnit(space) : 0,
-		}">{{ label }}</text>
+		}"
+		>{{ label }}</text>
 	</view>
 </template>
 
@@ -33,22 +55,25 @@
 	 * @description 基于字体的图标集，包含了大多数常见场景的图标。
 	 * @tutorial https://www.uviewui.com/components/icon.html
 	 * @property {String} name 图标名称，见示例图标集
-	 * @property {String} color 图标颜色（默认#606266）
-	 * @property {String | Number} size 图标字体大小，单位rpx（默认32）
-	 * @property {String | Number} label-size label字体大小，单位rpx（默认28）
-	 * @property {String} label 图标右侧的label文字（默认28）
-	 * @property {String} label-pos label文字相对于图标的位置
-	 * @property {String} label-color label字体颜色（默认#606266）
-	 * @property {Object} custom-style icon的样式，对象形式
-	 * @property {String} custom-prefix 自定义字体图标库时，需要写上此值
-	 * @property {String | Number} space label与图标的距离，单位rpx（默认3px）
-	 * @property {String} label-pos label相对于图标的位置，只能right或bottom（默认right）
+	 * @property {String} color 图标颜色（默认 color['u-content-color']）
+	 * @property {String Number} size 图标字体大小，单位rpx（默认32）
+	 * @property {Boolean} bold 是否显示粗体（默认false）
 	 * @property {String} index 一个用于区分多个图标的值，点击图标时通过click事件传出
-	 * @property {String} hover-class 图标按下去的样式类，用法同uni的view组件的hover-class参数，详情见官网
+	 * @property {String} hoverClass 图标按下去的样式类，用法同uni的view组件的hoverClass参数，详情见官网
+	 * @property {String} customPrefix 自定义扩展前缀，方便用户扩展自己的图标库 （默认 uicon）
+	 * @property {String} label 图标右侧的label文字（默认28）
+	 * @property {String} labelPos label相对于图标的位置，只能right或bottom（默认right）
+	 * @property {String Number} labelSize label字体大小，单位rpx（默认28）
+	 * @property {String} labelColor 图标右侧的label文字颜色（默认color['u-content-color']）
+	 * @property {String Number} space label与图标的距离，单位rpx（默认3px）
+	 * @property {String} imgMode 图片的mode （默认 widthFix）
 	 * @property {String} width 显示图片小图标时的宽度
 	 * @property {String} height 显示图片小图标时的高度
 	 * @property {String} top 图标在垂直方向上的定位
+	 * @property {Boolean} stop 是否阻止事件传播 （默认false）
+	 * @property {Object} customStyle icon的样式，对象形式
 	 * @event {Function} click 点击图标时触发
+	 * @event {Function} touchstart 事件触摸时触发
 	 * @example <u-icon name="photo" color="#2979ff" size="28"></u-icon>
 	 */
 	export default {
@@ -204,6 +229,8 @@
 			},
 			touchstart() {
 				this.$emit('touchstart', this.index)
+				// 是否阻止事件冒泡
+				this.stop && this.$u.preventEvent(e)
 			}
 		}
 	}
@@ -211,21 +238,22 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-	
+
 	// 变量定义
-	$u-icon-primary: $u-primary!default;
-	$u-icon-success: $u-success!default;
-	$u-icon-info: $u-info!default;
-	$u-icon-warning: $u-warning!default;
-	$u-icon-error: $u-error!default;
-	$u-icon-label-line-height:1!default;
-	
+	$u-icon-primary: $u-primary !default;
+	$u-icon-success: $u-success !default;
+	$u-icon-info: $u-info !default;
+	$u-icon-warning: $u-warning !default;
+	$u-icon-error: $u-error !default;
+	$u-icon-label-line-height:1 !default;
+
 	/* #ifndef APP-NVUE */
 	// 非nvue下加载字体
 	@font-face {
 		font-family: 'uicon-iconfont';
 		src: url('https://at.alicdn.com/t/font_1529455_k4s6di1d1.ttf') format('truetype');
 	}
+
 	/* #endif */
 
 	.u-icon {
@@ -288,7 +316,7 @@
 
 		&__label {
 			/* #ifndef APP-NVUE */
-			line-height:$u-icon-label-line-height;
+			line-height: $u-icon-label-line-height;
 			/* #endif */
 		}
 	}

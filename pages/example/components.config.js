@@ -316,7 +316,7 @@ export default [{
 		},
 		// #endif
 		{
-			path: '/pages/componentsC/subsection/subsection',
+			path: '/pages/componentsA/subsection/subsection',
 			icon: 'subsection',
 			title: 'Subsection 分段器',
 			title_en: 'Subsection',
@@ -336,7 +336,7 @@ export default [{
 			title: 'Empty 内容为空',
 			title_en: 'Empty',
 		}, {
-			path: '/pages/componentsC/section/section',
+			path: '/pages/componentsB/section/section',
 			icon: 'section',
 			title: 'Section 查看更多',
 			title_en: 'Section',

@@ -411,5 +411,10 @@ export default {
 		url: '',
 		callback: null,
 		back: false
+	},
+	
+	// subsection组件
+	section: {
+		
 	}
 }

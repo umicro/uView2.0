@@ -17,9 +17,10 @@
 	 * @description 创建一个遮罩层，用于强调特定的页面元素，并阻止用户对遮罩下层的内容进行操作，一般用于弹窗场景
 	 * @tutorial https://www.uviewui.com/components/mask.html
 	 * @property {Boolean} show 是否显示遮罩（默认false）
-	 * @property {String Number} z-index z-index 层级（默认1070）
-	 * @property {Object} custom-style 自定义样式对象，见上方说明
+	 * @property {String Number} zIndex zIndex 层级（默认1070）
 	 * @property {String Number} duration 动画时长，单位毫秒（默认300）
+	 * @property {String Number} opacity 不透明度值，当做rgba的第四个参数 （默认0.7）
+	 * @property {Object} customStyle icon的样式，对象形式
 	 * @event {Function} click 点击遮罩发送事件
 	 * @example <u-mask :show="show" @click="show = false"></u-mask>
 	 */

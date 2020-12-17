@@ -30,6 +30,27 @@
 </template>
 
 <script>
+	/**
+	 * radio 单选框
+	 * @description 单选框用于有一个选择，用户只能选择其中一个的场景。搭配u-radio-group使用
+	 * @tutorial https://www.uviewui.com/components/radio.html
+	 * @property {String Number} name radio的名称
+	 * @property {String} shape 形状，见上方说明（默认circle）
+	 * @property {Boolean} disabled 是否禁用（默认false）
+	 * @property {Boolean} labelDisabled 点击文本是否可以操作radio（
+	 * @property {String} activeColor 选中时的颜色，如设置parent的active-color将失效
+	 * @property {String} inactiveColor  未选中的颜色
+	 * @property {String Number} iconSize 图标大小，单位rpx（默认24）
+	 * @property {String Number} labelSize label字体大小，单位rpx（默认28）
+	 * @property {String Number} label label提示文字，因为nvue下，直接slot进来的文字，由于特殊的结构，无法修改样式
+	 * @property {String Number} size 整体的大小
+	 * @property {String} iconColor 图标颜色
+	 * @property {String} labelColor label的颜色
+	 * @property {String} iconPlacement 图标与文字的对齐方式
+	 * @property {Object} customStyle  组件的样式，对象形式
+	 * @event {Function} change 某个radio状态发生变化时触发(选中状态)
+	 * @example <u-radio :labelDisabled="false">门掩黄昏，无计留春住</u-radio>
+	 */
 	export default {
 		name: "u-radio",
 		props: {
@@ -193,7 +214,7 @@
 				style.width = uni.$u.addUnit(this.elSize)
 				style.height = uni.$u.addUnit(this.elSize)
 				// 如果是图标在右边的话，移除它的右边距
-				if(this.iconPlacement === 'right') {
+				if (this.iconPlacement === 'right') {
 					style.marginRight = 0
 				}
 				return style
@@ -252,23 +273,24 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-   $u-radio-wrap-margin-right:6px !default;
-   $u-radio-wrap-font-size:20px !default;
-   $u-radio-wrap-border-width:1px !default;
-   $u-radio-wrap-border-color: #c8c9cc !default;
-   $u-radio-line-height:0 !default;
-   $u-radio-circle-border-radius:100% !default;
-   $u-radio-square-border-radius:3px !default;
-   $u-radio-checked-color:#fff !default;
-   $u-radio-checked-background-color:red !default;
-   $u-radio-checked-border-color: #2979ff !default;
-   $u-radio-disabled-background-color:#ebedf0 !default;
-   $u-radio-disabled--checked-color:#c8c9cc !default;
-   $u-radio-label-margin-left: 5px !default;
-   $u-radio-label-margin-right:12px !default;
-   $u-radio-label-color:$u-content-color !default;
-   $u-radio-label-font-size:15px !default;
-   $u-radio-label-disabled-color:#c8c9cc !default;
+	$u-radio-wrap-margin-right:6px !default;
+	$u-radio-wrap-font-size:20px !default;
+	$u-radio-wrap-border-width:1px !default;
+	$u-radio-wrap-border-color: #c8c9cc !default;
+	$u-radio-line-height:0 !default;
+	$u-radio-circle-border-radius:100% !default;
+	$u-radio-square-border-radius:3px !default;
+	$u-radio-checked-color:#fff !default;
+	$u-radio-checked-background-color:red !default;
+	$u-radio-checked-border-color: #2979ff !default;
+	$u-radio-disabled-background-color:#ebedf0 !default;
+	$u-radio-disabled--checked-color:#c8c9cc !default;
+	$u-radio-label-margin-left: 5px !default;
+	$u-radio-label-margin-right:12px !default;
+	$u-radio-label-color:$u-content-color !default;
+	$u-radio-label-font-size:15px !default;
+	$u-radio-label-disabled-color:#c8c9cc !default;
+
 	.u-radio {
 		/* #ifndef APP-NVUE */
 		@include flex(row);
@@ -276,11 +298,11 @@
 		overflow: hidden;
 		flex-direction: row;
 		align-items: center;
-		
+
 		&-label--left {
 			flex-direction: row
 		}
-		
+
 		&-label--right {
 			flex-direction: row-reverse;
 			justify-content: space-between
@@ -299,39 +321,39 @@
 			justify-content: center;
 			color: transparent;
 			text-align: center;
-			margin-right:$u-radio-wrap-margin-right;
-			font-size:$u-radio-wrap-font-size;
-			border-width:$u-radio-wrap-border-width;
-			border-color:$u-radio-wrap-border-color;
+			margin-right: $u-radio-wrap-margin-right;
+			font-size: $u-radio-wrap-font-size;
+			border-width: $u-radio-wrap-border-width;
+			border-color: $u-radio-wrap-border-color;
 
 			/* #ifdef MP-TOUTIAO */
 			// 头条小程序兼容性问题，需要设置行高为0，否则图标偏下
 			&__icon {
-				line-height:$u-radio-line-height;
+				line-height: $u-radio-line-height;
 			}
 
 			/* #endif */
 
 			&--circle {
-				border-radius:$u-radio-circle-border-radius;
+				border-radius: $u-radio-circle-border-radius;
 			}
 
 			&--square {
-				border-radius:$u-radio-square-border-radius;
+				border-radius: $u-radio-square-border-radius;
 			}
 
 			&--checked {
 				color: $u-radio-checked-color;
-				background-color:$u-radio-checked-background-color;
+				background-color: $u-radio-checked-background-color;
 				border-color: $u-radio-checked-border-color;
 			}
 
 			&--disabled {
-				background-color: $u-radio-disabled-background-color  !important;
+				background-color: $u-radio-disabled-background-color !important;
 			}
 
 			&--disabled--checked {
-				color: $u-radio-disabled--checked-color  !important;
+				color: $u-radio-disabled--checked-color !important;
 			}
 		}
 
@@ -340,12 +362,12 @@
 			word-wrap: break-word;
 			/* #endif */
 			margin-left: $u-radio-label-margin-left;
-			margin-right:$u-radio-label-margin-right;
-			color: $u-radio-label-color ;
-			font-size:$u-radio-label-font-size;
+			margin-right: $u-radio-label-margin-right;
+			color: $u-radio-label-color;
+			font-size: $u-radio-label-font-size;
 
 			&--disabled {
-				color:$u-radio-label-disabled-color;
+				color: $u-radio-label-disabled-color;
 			}
 		}
 	}

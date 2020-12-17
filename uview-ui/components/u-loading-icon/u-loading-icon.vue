@@ -66,15 +66,16 @@
 		 * @property {String} color 动画活动区域的颜色，只对 mode = flower 模式有效（默认color['u-tips-color']）
     	 * @property {Boolean} vertical 文字和图标是否垂直排列 (默认 false)
     	 * @property {String} mode 模式选择，见官网说明（默认circle）
-    	 * @property {String | Number} size 加载图标的大小，单位px（默认24）
-    	 * @property {String | Number} textSize 文字大小（默认15）
-    	 * @property {String | Number} text 文字内容 
+    	 * @property {String Number} size 加载图标的大小，单位px（默认24）
+    	 * @property {String Number} textSize 文字大小（默认15）
+    	 * @property {String Number} text 文字内容 
     	 * @property {String} timingFunction 动画模式 （默认 ease-in-out）
-    	 * @property {String | Number} duration 动画执行周期时间（默认 1200）
-		 * @property {Object} customStyle icon的样式，对象形式
+    	 * @property {String Number} duration 动画执行周期时间（默认 1200）
+		 * @property {Object} customStyle  定义需要用到的外部样式
     	 * @example <u-loading mode="circle"></u-loading>
     	 */
 	export default {
+		name:'u-loading-icon',
 		props: {
 			// 颜色
 			color: {

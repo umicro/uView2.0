@@ -191,6 +191,7 @@
 	 * @property {Array} rgihtOptions 					右侧选项内容及样式
 	 * @event {Function} click 							点击选项按钮时触发事件，e = {content,index} ，content（点击内容）、index（下标)
 	 * @event {Function} change 						组件打开或关闭时触发，left\right\none
+	 * @example<u-swiper :list="list"></u-swiper>
 	 */
 
 	export default {
@@ -205,7 +206,7 @@
 		// #ifndef APP-PLUS|| MP-WEIXIN ||  H5
 		mixins: [mixins],
 		// #endif
-
+        name:'u-swipe-action-item',
 		props: {
 			// 控制打开或者关闭
 			show: {

@@ -34,12 +34,12 @@
 	 * @property {String} mode  返回顶部的形状，circle-圆形，square-方形 （默认circle）
 	 * @property {String} icon  自定义图标 （默认 arrow-upward） 见官方文档示例
 	 * @property {String} text  提示文字 
-	 * @property {Number, String}  duration  返回顶部滚动时间 （默认 100）
-	 * @property {Number, String}  scrollTop  滚动距离 （默认 0）
-	 * @property {Number, String}  top  距离顶部多少距离显示，单位rpx （默认 400）
-	 * @property {Number, String}  bottom  返回顶部按钮到底部的距离，单位rpx （默认 100）
-	 * @property {Number, String}  right  返回顶部按钮到右边的距离，单位rpx （默认 20）
-	 * @property {Number, String}  zIndex 层级   （默认 9）
+	 * @property {Number String}  duration  返回顶部滚动时间 （默认 100）
+	 * @property {Number String}  scrollTop  滚动距离 （默认 0）
+	 * @property {Number String}  top  距离顶部多少距离显示，单位rpx （默认 400）
+	 * @property {Number String}  bottom  返回顶部按钮到底部的距离，单位rpx （默认 100）
+	 * @property {Number String}  right  返回顶部按钮到右边的距离，单位rpx （默认 20）
+	 * @property {Number String}  zIndex 层级   （默认 9）
 	 * @property {Object<Object>}  iconStyle 图标的样式，对象形式   （默认 {color: '#909399',fontSize: '19px'}）
 	 * @property {String} customStyle  定义需要用到的外部样式
 	 * @example <u-back-top :scrollTop="scrollTop"></u-back-top>

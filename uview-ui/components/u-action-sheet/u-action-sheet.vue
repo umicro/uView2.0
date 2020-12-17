@@ -114,7 +114,7 @@
 	 * @property {Boolean} closeOnClickAction 点击某个菜单项时是否关闭弹窗（默认true）
 	 * @property {Boolean} safeAreaInsetBottom 处理底部安全区（默认true）
 	 * @property {String} openType 小程序的打开方式
-	 * @property {Boolean} closeOnClickOverly 点击遮罩是否允许关闭
+	 * @property {Boolean} closeOnClickOverly 点击遮罩是否允许关闭 (默认true)
 	 * @property {String} customStyle  定义需要用到的外部样式
 	 * @property {String} lang  指定返回用户信息的语言，zh_CN 简体中文，zh_TW 繁体中文，en 英文
 	 * @property {String} sessionFrom  会话来源，openType="contact"时有效

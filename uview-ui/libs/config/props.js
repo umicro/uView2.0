@@ -299,7 +299,7 @@ export default {
 			}
 		},
 	},
-	
+
 	// divider组件
 	divider: {
 		dashed: false,
@@ -311,7 +311,7 @@ export default {
 		textColor: '#909399',
 		lineColor: '#dcdfe6'
 	},
-	
+
 	// line组件
 	line: {
 		color: '#e4e7ed',
@@ -321,7 +321,7 @@ export default {
 		margin: 0,
 		dashed: false
 	},
-	
+
 	// rate组件
 	rate: {
 		value: 1,
@@ -336,7 +336,7 @@ export default {
 		activeIcon: 'star-fill',
 		inactiveIcon: 'star'
 	},
-	
+
 	// gap组件
 	gap: {
 		bgColor: 'transparent',
@@ -344,19 +344,19 @@ export default {
 		marginTop: 0,
 		marginBottom: 0
 	},
-	
+
 	// grid组件
 	grid: {
 		col: 3,
 		border: false,
 		align: 'left'
 	},
-	
+
 	// grid-item组件
 	gridItem: {
 		bgColor: 'transparent'
 	},
-	
+
 	// popup组件
 	popup: {
 		show: false,
@@ -371,7 +371,7 @@ export default {
 		zIndex: 10075,
 		safeAreaInsetBottom: true,
 	},
-	
+
 	// overlay组件
 	overlay: {
 		show: false,
@@ -379,7 +379,7 @@ export default {
 		duration: 300,
 		opacity: 0.7
 	},
-	
+
 	// action-sheet组件
 	actionSheet: {
 		show: false,
@@ -393,7 +393,7 @@ export default {
 		openType: '',
 		closeOnClickOverly: true
 	},
-	
+
 	// toast组件
 	toast: {
 		zIndex: 10090,
@@ -412,9 +412,23 @@ export default {
 		callback: null,
 		back: false
 	},
-	
+
 	// subsection组件
+	subsection: {
+
+	},
+	//u-section组件
 	section: {
-		
-	}
+		title: '',
+		subTitle: '更多',
+		right: true,
+		fontSize: 15,
+		bold: true,
+		color: '#303133',
+		subColor: '#909399',
+		showLine: true,
+		lineColor: '',
+		arrow: true
+	},
+
 }

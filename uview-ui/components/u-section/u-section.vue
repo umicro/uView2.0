@@ -67,13 +67,16 @@
 	 * @description 该组件一般用于分类信息有很多，但是限于篇幅只能列出一部分，让用户通过"查看更多"获得更多信息的场景，实际效果见演示。
 	 * @tutorial https://www.uviewui.com/components/section.html
 	 * @property {String} title 左边主标题
-	 * @property {String} sub-title 右边副标题（默认更多）
+	 * @property {String} subTitle 右边副标题（默认更多）
 	 * @property {Boolean} right 是否显示右边的内容（默认true）
-	 * @property {Boolean} showLine 是否显示左边的竖条（默认true）
-	 * @property {Boolean} arrow 是否显示右边箭头（默认true）
-	 * @property {String Number} font-size 主标题的字体大小（默认28）
+	 * @property {String Number} fontSize 主标题的字体大小（默认15）
 	 * @property {Boolean} bold 主标题是否加粗（默认true）
 	 * @property {String} color 主标题颜色（默认#303133）
+	 * @property {String} subColor 右边副标题的颜色（默认#909399）
+	 * @property {Boolean} showLine 是否显示左边的竖条（默认true）
+	 * @property {String} lineColor 左边竖线的颜色（默认true）
+	 * @property {Boolean} arrow 是否显示右边箭头（默认true）
+	 * @property {Object} customStyle  组件的样式，对象形式
 	 * @event {Function} click 组件右侧的内容被点击时触发，用于跳转"更多"
 	 * @example <u-section title="今日热门" :right="false"></u-section>
 	 */
@@ -83,51 +86,51 @@
 			// 标题信息
 			title: {
 				type: String,
-				default: ''
+				default: uni.$u.props.section.title
 			},
 			// 右边副标题内容
 			subTitle: {
 				type: String,
-				default: '更多'
+				default: uni.$u.props.section.subTitle
 			},
 			// 是否显示右边的内容
 			right: {
 				type: Boolean,
-				default: true
+				default: uni.$u.props.section.right
 			},
 			fontSize: {
 				type: [Number, String],
-				default: 15
+				default: uni.$u.props.section.fontSize
 			},
 			// 主标题是否加粗
 			bold: {
 				type: Boolean,
-				default: true
+				default: uni.$u.props.section.bold
 			},
 			// 主标题的颜色
 			color: {
 				type: String,
-				default: '#303133'
+				default: uni.$u.props.section.color
 			},
 			// 右边副标题的颜色
 			subColor: {
 				type: String,
-				default: '#909399'
+				default: uni.$u.props.section.subColor
 			},
 			// 是否显示左边的竖条
 			showLine: {
 				type: Boolean,
-				default: true
+				default: uni.$u.props.section.showLine
 			},
 			// 左边竖线的颜色
 			lineColor: {
 				type: String,
-				default: ''
+				default: uni.$u.props.section.lineColor
 			},
 			// 是否显示右边箭头
 			arrow: {
 				type: Boolean,
-				default: true
+				default: uni.$u.props.section.arrow
 			},
 		},
 		mixins: [uni.$u.mixin],
@@ -150,6 +153,12 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
+	$u-section-title-font-size:14px !default;
+	$u-section-title-padding-left:10px !default;
+	$u-section-text-margin-top:1px !default;
+	$u-section-subtitle-font-size:13px !default;
+	$u-section-icon-arrow-margin-top:1px !default;
+	$u-section-icon-arrow-margin-left:1px !default;
 
 	.u-section {
 		@include flex;
@@ -159,8 +168,8 @@
 
 		&__title {
 			position: relative;
-			font-size: 14px;
-			padding-left: 10px;
+			font-size: $u-section-title-font-size;
+			padding-left: $u-section-title-padding-left;
 			@include flex;
 			align-items: center;
 			flex-direction: row;
@@ -170,7 +179,7 @@
 			}
 
 			&__text {
-				margin-top: 1px;
+				margin-top: $u-section-text-margin-top;
 			}
 		}
 
@@ -181,13 +190,13 @@
 
 			&__subtitle {
 				color: $u-tips-color;
-				font-size: 13px;
+				font-size: $u-section-subtitle-font-size;
 				@include flex;
 			}
 
 			&__icon-arrow {
-				margin-top: 1px;
-				margin-left: 1px;
+				margin-top: $u-section-icon-arrow-margin-top;
+				margin-left: $u-section-icon-arrow-margin-left;
 			}
 		}
 	}

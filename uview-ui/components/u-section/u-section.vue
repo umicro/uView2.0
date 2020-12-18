@@ -3,19 +3,18 @@
 		<view
 		    class="u-section__title"
 		    :style="{
-			paddingLeft: showLine ? (fontSize * 0.7) + 'px' : 0
-		}"
+				paddingLeft: showLine ? (fontSize * 0.7) + 'px' : 0
+			}"
 		    :class="{
-			'u-section--line': showLine
-		}"
+				'u-section--line': showLine
+			}"
 		>
 			<view
-			    class="u-section__title__icon-wrap u-flex"
+			    class="u-section__title__icon-wrap"
 			    :style="[lineStyle]"
 			    v-if="showLine"
 			>
 				<u-icon
-				    top="0"
 				    name="column-line"
 				    :size="fontSize * 1.3"
 				    bold
@@ -23,12 +22,12 @@
 				></u-icon>
 			</view>
 			<text
-			    class="u-flex u-section__title__text"
+			    class="u-section__title__text"
 			    :style="{
-				fontWeight: bold ? 'bold' : 'normal',
-				color: color,
-				fontSize: fontSize + 'px',
-			}"
+					fontWeight: bold ? 'bold' : 'normal',
+					color: color,
+					fontSize: fontSize + 'px',
+				}"
 			>{{title}}</text>
 		</view>
 		<view
@@ -135,7 +134,6 @@
 		computed: {
 			// 左边竖条的样式
 			lineStyle() {
-				// 由于安卓和iOS的，需要稍微调整绝对定位的top值，才能让左边的竖线和右边的文字垂直居中
 				return {
 					// 由于竖线为字体图标，具有比实际线宽更宽的宽度，所以也需要根据字体打下动态调整
 					left: -(Number(this.fontSize) * 0.9) + 'px',
@@ -189,7 +187,7 @@
 
 			&__icon-arrow {
 				margin-top: 1px;
-				margin-left: 3px;
+				margin-left: 1px;
 			}
 		}
 	}

@@ -207,7 +207,8 @@ export default {
 		labelColor: '',
 		size: '',
 		iconColor: '',
-		placement: ''
+		placement: '',
+		iconPlacement: 'left'
 	},
 
 	// radio-group组件
@@ -219,14 +220,14 @@ export default {
 		labelDisabled: false,
 		activeColor: '#2979ff',
 		inactiveColor: '#c8c9cc',
-		iconSize: 12,
+		iconSize: 11,
 		placement: 'row',
-		labelSize: 15,
+		labelSize: 14,
 		labelColor: '#303133',
 		label: '',
-		size: 20,
+		size: 18,
 		iconColor: '#ffffff',
-		iconPlacement: 'left'
+		borderBottom: false
 	},
 
 	// checkbox组件
@@ -263,7 +264,8 @@ export default {
 		size: 20,
 		iconColor: '#ffffff',
 		iconPlacement: 'left',
-		checked: false
+		checked: false,
+		borderBottom: false
 	},
 
 	// empty组件

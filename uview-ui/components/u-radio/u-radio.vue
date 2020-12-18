@@ -1,8 +1,8 @@
 <template>
 	<view
 	    class="u-radio"
-	    :style="[customStyle]"
-	    :class="[`u-radio-label--${iconPlacement}`]"
+	    :style="[radioStyle]"
+	    :class="[`u-radio-label--${iconPlacement}`, this.parentData.borderBottom && this.parentData.placement === 'column' && 'u-border-bottom']"
 	>
 		<view
 		    class="u-radio__icon-wrap"
@@ -59,6 +59,7 @@
 				type: [String, Number, Boolean],
 				default: uni.$u.props.radio.name
 			},
+			
 			// 形状，square为方形，circle为圆型
 			shape: {
 				type: String,
@@ -69,7 +70,7 @@
 				type: [String, Boolean],
 				default: uni.$u.props.radio.disabled
 			},
-			// 是否禁止点击提示语选中复选框
+			// 是否禁止点击提示语选中单选框
 			labelDisabled: {
 				type: [String, Boolean],
 				default: uni.$u.props.radio.labelDisabled
@@ -117,7 +118,7 @@
 			// 图标与文字的对齐方式
 			iconPlacement: {
 				type: String,
-				default: uni.$u.props.radio.radioPlacement
+				default: uni.$u.props.radio.iconPlacement
 			}
 		},
 		mixins: [uni.$u.mixin],
@@ -135,7 +136,9 @@
 					inactiveColor: null,
 					size: null,
 					value: null,
-					iconColor: null
+					iconColor: null,
+					placement: 'row',
+					borderBottom: false
 				}
 			}
 		},
@@ -218,6 +221,14 @@
 					style.marginRight = 0
 				}
 				return style
+			},
+			radioStyle() {
+				const style = {}
+				// 当父组件设置了显示下边框并且排列形式为纵向时，给内容和边框之间加上一定间隔
+				if(this.parentData.borderBottom && this.parentData.placement === 'column') {
+					style.paddingBottom = '8px'
+				}
+				return uni.$u.deepMerge(style, this.customStyle)
 			}
 		},
 		mounted() {
@@ -290,7 +301,7 @@
 	$u-radio-label-color:$u-content-color !default;
 	$u-radio-label-font-size:15px !default;
 	$u-radio-label-disabled-color:#c8c9cc !default;
-
+	
 	.u-radio {
 		/* #ifndef APP-NVUE */
 		@include flex(row);

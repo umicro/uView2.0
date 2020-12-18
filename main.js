@@ -9,6 +9,9 @@ App.mpType = 'app'
 import uView from 'uview-ui'
 Vue.use(uView)
 
+// 引入事列样式
+import props from 'common/props'
+
 // 路由拦截
 // uni.$u.routeIntercept = (config, next) => {
 // 	next(false)

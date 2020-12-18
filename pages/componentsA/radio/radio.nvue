@@ -1,21 +1,165 @@
 <template>
 	<view class="u-page">
-		<u-radio-group
-		    v-model="value"
-		    placement="column"
-		>
-			<u-radio
-			    :customStyle="{marginBottom: '8px'}"
-			    v-for="(item, index) in list"
-			    :key="index"
-			    :label="item.name"
-			    :name="item.name"
-			    @change="radioChange"
-				iconPlacement="right"
+		<u-gap></u-gap>
+		<view class="u-block">
+			<u-section
+			    title="基本案例"
+			    :right="false"
+			></u-section>
+			<text class="u-block__title">苹果、香蕉和橙子那个最甜</text>
+			<u-radio-group
+			    v-model="value"
+			    placement="column"
 			>
+				<u-radio
+				    :customStyle="{marginBottom: '8px'}"
+				    v-for="(item, index) in list"
+				    :key="index"
+				    :label="item.name"
+				    :name="item.name"
+				>
+				</u-radio>
+			</u-radio-group>
+		</view>
+		<u-gap></u-gap>
 
-			</u-radio>
-		</u-radio-group>
+		<view class="u-block">
+			<u-section
+			    title="自定义形状"
+			    :right="false"
+			></u-section>
+			<text class="u-block__title">苹果、香蕉和橙子那个最甜</text>
+			<u-radio-group
+			    v-model="value"
+			    placement="column"
+			    shape="square"
+			>
+				<u-radio
+				    :customStyle="{marginBottom: '8px'}"
+				    v-for="(item, index) in list"
+				    :key="index"
+				    :label="item.name"
+				    :name="item.name"
+				>
+				</u-radio>
+			</u-radio-group>
+		</view>
+		<u-gap></u-gap>
+
+		<view class="u-block">
+			<u-section
+			    title="是否禁用"
+			    :right="false"
+			></u-section>
+			<text class="u-block__title">苹果、香蕉和橙子那个最甜</text>
+			<u-radio-group
+			    v-model="value"
+			    placement="column"
+			>
+				<u-radio
+				    :customStyle="{marginBottom: '8px'}"
+				    v-for="(item, index) in list"
+				    :key="index"
+				    :label="item.name"
+				    :name="item.name"
+					:disabled="!index"
+				>
+				</u-radio>
+			</u-radio-group>
+		</view>
+		<u-gap></u-gap>
+
+		<view class="u-block">
+			<u-section
+			    title="是否禁止点击提示语选中单选框"
+			    :right="false"
+			></u-section>
+			<text class="u-block__title">苹果、香蕉和橙子那个最甜</text>
+			<u-radio-group
+			    v-model="value"
+			    placement="column"
+			    :labelDisabled="true"
+			>
+				<u-radio
+				    :customStyle="{marginBottom: '8px'}"
+				    v-for="(item, index) in list"
+				    :key="index"
+				    :label="item.name"
+				    :name="item.name"
+				>
+				</u-radio>
+			</u-radio-group>
+		</view>
+		<u-gap></u-gap>
+
+		<view class="u-block">
+			<u-section
+			    title="自定义颜色"
+			    :right="false"
+			></u-section>
+			<text class="u-block__title">苹果、香蕉和橙子那个最甜</text>
+			<u-radio-group
+			    v-model="value"
+			    placement="column"
+			    activeColor="#19be6b"
+			>
+				<u-radio
+				    :customStyle="{marginBottom: '8px'}"
+				    v-for="(item, index) in list"
+				    :key="index"
+				    :label="item.name"
+				    :name="item.name"
+				>
+				</u-radio>
+			</u-radio-group>
+		</view>
+		<u-gap></u-gap>
+		
+		<view class="u-block">
+			<u-section
+			    title="横向排列形式"
+			    :right="false"
+			></u-section>
+			<text class="u-block__title">苹果、香蕉和橙子那个最甜</text>
+			<u-radio-group
+			    v-model="value"
+			    placement="row"
+			>
+				<u-radio
+				    :customStyle="{marginRight: '8px'}"
+				    v-for="(item, index) in list"
+				    :key="index"
+				    :label="item.name"
+				    :name="item.name"
+				>
+				</u-radio>
+			</u-radio-group>
+		</view>
+		<u-gap></u-gap>
+		
+		<view class="u-block">
+			<u-section
+			    title="横向两端排列形式"
+			    :right="false"
+			></u-section>
+			<text class="u-block__title">苹果、香蕉和橙子那个最甜</text>
+			<u-radio-group
+			    v-model="value"
+			    placement="column"
+				:borderBottom="true"
+			>
+				<u-radio
+				    :customStyle="{marginBottom: '8px'}"
+				    v-for="(item, index) in list"
+				    :key="index"
+				    :label="item.name"
+				    :name="item.name" 
+					iconPlacement="right"
+				>
+				</u-radio>
+			</u-radio-group>
+		</view>
+		<u-gap></u-gap>
 	</view>
 </template>
 
@@ -53,6 +197,19 @@
 
 <style lang="scss">
 	.u-page {
+
 		// background-color: red;
+		&__style {
+			font-size: 16px;
+			color: rgb(96, 98, 102);
+			margin-bottom: 10px;
+			font-weight: bold;
+		}
+
+		&__title {
+			font-size: 16px;
+			color: rgb(96, 98, 102);
+			margin-bottom: 10px;
+		}
 	}
 </style>

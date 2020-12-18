@@ -24,6 +24,7 @@
 	 * @property {String Number} labelSize label的字体大小，px单位 （默认 15）
 	 * @property {String} iconColor 图标颜色 （默认 #ffffff）
 	 * @property {String Number} iconSize 图标的大小，单位px （默认 12）
+	 * @property {Boolean} borderBottom  placement为row时，是否显示下边框
      * @property {Object} customStyle  组件的样式，对象形式
 	 * @event {Function} change 任一个radio状态发生变化时触发
 	 * @example <u-radio-group v-model="value"></u-radio-group>
@@ -90,6 +91,11 @@
 				type: [String, Number],
 				default: uni.$u.props.radioGroup.iconSize
 			},
+			// 竖向配列时，是否显示下划线
+			borderBottom: {
+				type: Boolean,
+				default: uni.$u.props.radioGroup.borderBottom
+			}
 		},
 		mixins: [uni.$u.mixin],
 		computed: {
@@ -98,7 +104,7 @@
 			// 拉取父组件新的变化后的参数
 			parentData() {
 				return [this.value, this.disabled, this.inactiveColor, this.activeColor, this.size, this.labelDisabled, this.shape,
-					this.iconSize
+					this.iconSize, this.borderBottom, this.placement
 				]
 			},
 			bemClass() {

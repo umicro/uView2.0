@@ -1,8 +1,8 @@
 <template>
 	<view
 	    class="u-checkbox"
-	    :style="[customStyle]"
-	    :class="[`u-checkbox-label--${iconPlacement}`]"
+		:style="[checkboxStyle]"
+	    :class="[`u-checkbox-label--${iconPlacement}`, this.parentData.borderBottom && this.parentData.placement === 'column' && 'u-border-bottom']"
 	>
 		<view
 		    class="u-checkbox__icon-wrap"
@@ -141,7 +141,9 @@
 					inactiveColor: null,
 					size: null,
 					value: null,
-					iconColor: null
+					iconColor: null,
+					placement: 'row',
+					borderBottom: false
 				}
 			}
 		},
@@ -224,6 +226,14 @@
 					style.marginRight = 0
 				}
 				return style
+			},
+			checkboxStyle() {
+				const style = {}
+				// 当父组件设置了显示下边框并且排列形式为纵向时，给内容和边框之间加上一定间隔
+				if(this.parentData.borderBottom && this.parentData.placement === 'column') {
+					style.paddingBottom = '8px'
+				}
+				return uni.$u.deepMerge(style, this.customStyle)
 			}
 		},
 		mounted() {

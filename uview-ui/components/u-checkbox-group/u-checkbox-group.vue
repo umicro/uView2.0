@@ -26,6 +26,7 @@
 	 * @property {String} iconColor 图标颜色 （默认 #ffffff）
 	 * @property {String Number} iconSize  图标的大小，单位px （默认 12）
 	 * @property {String} customStyle  定义需要用到的外部样式
+	 * @property {Boolean} borderBottom  placement为row时，是否显示下边框
 	 * @event {Function} change 任一个checkbox状态发生变化时触发，回调为一个对象
 	 * @event {Function} input 修改通过v-model绑定的值时触发，回调为一个对象
 	 * @example <u-checkbox-group></u-checkbox-group>
@@ -98,6 +99,11 @@
 				type: [String, Number],
 				default: uni.$u.props.checkboxGroup.iconSize
 			},
+			// 竖向配列时，是否显示下划线
+			borderBottom: {
+				type: Boolean,
+				default: uni.$u.props.checkboxGroup.borderBottom
+			}
 		},
 		mixins: [uni.$u.mixin],
 		computed: {
@@ -106,7 +112,7 @@
 			// 拉取父组件新的变化后的参数
 			parentData() {
 				return [this.value, this.disabled, this.inactiveColor, this.activeColor, this.size, this.labelDisabled, this.shape,
-					this.iconSize
+					this.iconSize, this.borderBottom, this.placement
 				]
 			},
 			bemClass() {

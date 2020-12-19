@@ -24,6 +24,9 @@
 		    class="u-empty__text"
 		    :style="[textStyle]"
 		>{{text ? text : icons[mode]}}</text>
+		<view class="u-slot-wrap">
+				<slot name="bottom"></slot>
+			</view>
 	</view>
 </template>
 
@@ -199,6 +202,7 @@
 <style lang="scss">
 	@import '../../libs/css/components.scss';
 	$u-empty-text-margin-top:20rpx !default;
+	$u-empty-slot-margin-top:20rpx !default;
 
 	.u-empty {
 		@include flex;
@@ -213,4 +217,10 @@
 			margin-top: $u-empty-text-margin-top;
 		}
 	}
+		.u-slot-wrap {
+			@include flex;
+			justify-content: center;
+			align-items: center;
+			margin-top:$u-empty-slot-margin-top;
+		}
 </style>

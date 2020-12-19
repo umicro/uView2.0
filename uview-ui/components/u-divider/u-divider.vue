@@ -7,6 +7,7 @@
 		    :color="lineColor"
 		    :customStyle="leftLineStyle"
 		    :hairline="hairline"
+			:dashed="dashed"
 		></u-line>
 		<text
 		    v-if="dot"
@@ -21,6 +22,7 @@
 		    :color="lineColor"
 		    :customStyle="rightLineStyle"
 		    :hairline="hairline"
+			:dashed="dashed"
 		></u-line>
 	</view>
 </template>

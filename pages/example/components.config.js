@@ -215,7 +215,7 @@ export default [{
 		groupName: '布局组件',
 		groupName_en: 'Layout components',
 		list: [{
-			path: '/pages/componentsB/line/line',
+			path: '/pages/componentsA/line/line',
 			icon: 'line',
 			title: 'Line 线条',
 			title_en: 'Line',

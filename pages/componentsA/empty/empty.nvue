@@ -1,6 +1,30 @@
 <template>
 	<view class="u-page">
-		<u-empty mode="comment" :icon="imgList['comment']"></u-empty>
+		<view class="u-page__paddingLeft">
+			<u-section
+			    title="样式效果"
+			    :right="false"
+			></u-section>
+		</view>
+		<u-empty
+		    :mode="mode"
+		    :icon="imgList[mode]"
+		>
+			<u-button
+			    v-if="mode=='car'"
+			    slot="bottom"
+				text="slot按钮"
+			>
+			</u-button>
+		</u-empty>
+		<u-cell
+		    :titleStyle="{fontWeight: 500}"
+		    @click="openImg(item1.imgName)"
+		    :title="item1.title"
+		    v-for="(item1, index1) in list"
+		    :key="index1"
+		>
+		</u-cell>
 	</view>
 </template>
 
@@ -9,6 +33,15 @@
 		data() {
 			const baseUrl = 'http://cdn.uviewui.com/uview/empty/'
 			return {
+				radioValue: '不传入',
+				radioList: [{
+					name: '不传入',
+					disabled: false
+				}, {
+					name: '传入',
+					disabled: false,
+				}],
+				mode: 'car',
 				imgList: {
 					car: baseUrl + 'car.png',
 					address: baseUrl + 'address.png',
@@ -24,12 +57,68 @@
 					permission: baseUrl + 'permission.png',
 					search: baseUrl + 'search.png',
 					wifi: baseUrl + 'wifi.png',
-				}
+				},
+
+				list: [{
+						imgName: 'car',
+						title: '购物车为空(同时传入slot)',
+					},
+					{
+						imgName: 'data',
+						title: '数据为空',
+					}, {
+						imgName: 'comment',
+						title: '评论为空',
+					}, {
+						imgName: 'coupon',
+						title: '没有优惠券',
+					}, {
+						imgName: 'history',
+						title: '无历史记录',
+					}, {
+						imgName: 'list',
+						title: '列表为空',
+					}, {
+						imgName: 'message',
+						title: '消息列表为空',
+					}, {
+						imgName: 'news',
+						title: '无新闻列表',
+					}, {
+						imgName: 'order',
+						title: '订单为空',
+					}, {
+						imgName: 'page',
+						title: '页面不存在',
+					}, {
+						imgName: 'permission',
+						title: '无权限',
+					}, {
+						imgName: 'search',
+						title: '没有搜索结果',
+					}, {
+						imgName: 'wifi',
+						title: '没有WiFi',
+					},
+				]
+
+			}
+		},
+		methods: {
+			//点击改变图片
+			openImg(imgName) {
+				// this.mode = this.imgList[imgName]
+				this.mode=imgName;
 			}
 		}
 	}
 </script>
 
-<style>
-
+<style lang="scss">
+	.u-page {
+		padding: 20px 0px;
+		&__paddingLeft{
+			padding-left: 20px;
+		}
+	}
 </style>

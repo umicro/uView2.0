@@ -9,7 +9,7 @@
 	>
 		<view
 		    class="u-rate__item"
-		    v-for="(item, index) in count"
+		    v-for="(item, index) in Number(count)"
 		    :key="index"
 		    :class="[elClass]"
 		>

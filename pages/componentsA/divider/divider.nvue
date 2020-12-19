@@ -1,7 +1,99 @@
 <template>
 	<view class="u-page">
-		<u-divider lineColor="red" text-position="right" text="分割线"></u-divider>
-		<u-divider lineColor="red" :dot="true" text="分割线"></u-divider>
+		<u-gap></u-gap>
+		<view class="u-block">
+			<u-section
+			    title="基本案例"
+			    :right="false"
+			></u-section>
+			<u-divider text="分割线"></u-divider>
+		</view>
+		<u-gap></u-gap>
+
+		<view class="u-block">
+			<u-section
+			    title="是否虚线"
+			    :right="false"
+			></u-section>
+			<u-divider
+			    text="分割线"
+			    :dashed="true"
+			></u-divider>
+		</view>
+		<u-gap></u-gap>
+		
+		<view class="u-block">
+			<u-section
+			    title="是否细线"
+			    :right="false"
+			></u-section>
+			<u-divider
+			    text="分割线"
+			    :hairline="true"
+			></u-divider>
+		</view>
+		<u-gap></u-gap>
+
+		<view class="u-block">
+			<u-section
+			    title="是否以点代替文字"
+			    :right="false"
+			></u-section>
+			<u-divider
+			    text="分割线"
+			    :dot="true"
+			></u-divider>
+		</view>
+		<u-gap></u-gap>
+
+		<view class="u-block">
+			<u-section
+			    title="文本内容靠左"
+			    :right="false"
+			></u-section>
+			<u-divider
+			    text="分割线"
+			    textPosition="left"
+			></u-divider>
+		</view>
+		<u-gap></u-gap>
+
+		<view class="u-block">
+			<u-section
+			    title="文本内容靠右"
+			    :right="false"
+			></u-section>
+			<u-divider
+			    text="分割线"
+			    textPosition="right"
+			></u-divider>
+		</view>
+		<u-gap></u-gap>	
+		
+		<view class="u-block">
+			<u-section
+			    title="自定义文本颜色"
+			    :right="false"
+			></u-section>
+			<u-divider
+			    text="分割线"
+			    textColor="#2979ff"
+			></u-divider>
+		</view>
+		<u-gap></u-gap>	
+		
+		<view class="u-block">
+			<u-section
+			    title="自定义线条颜色"
+			    :right="false"
+			></u-section>
+			<u-divider
+			    text="分割线"
+			    lineColor="#2979ff"
+			></u-divider>
+		</view>
+		<u-gap></u-gap>
+
 	</view>
 </template>
 
@@ -9,11 +101,11 @@
 	export default {
 		data() {
 			return {
-				
+
 			}
 		},
 		methods: {
-			
+
 		}
 	}
 </script>

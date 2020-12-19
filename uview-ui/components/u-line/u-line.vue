@@ -14,7 +14,7 @@
 	 * @property {String} direction 线条的方向，row-横向，col-竖向(默认row)
 	 * @property {Boolean} hairline 是否显示细线条(默认true)
 	 * @property {String} margin 线条与上下左右元素的间距，字符串形式，如"30rpx"
-	 * @property {String} dashed 是否实线，true-实线，false-虚线 (默认 false)
+	 * @property {String} dashed 是否虚线，true-虚线，false-实线 (默认 false)
 	 * customStyle  定义需要用到的外部样式
 	 * @example <u-line color="red"></u-line>
 	 */
@@ -45,7 +45,7 @@
 				type: [String, Number],
 				default: uni.$u.props.line.margin
 			},
-			// 是否实线，true-实线，false-虚线
+			// 是否虚线，true-实线，false-虚线
 			dashed: {
 				type: Boolean,
 				default: uni.$u.props.line.dashed
@@ -60,16 +60,18 @@
 				if(this.direction === 'row') {
 					// 此处采用兼容分开写，兼容nvue的写法
 					style.borderBottomWidth = '1px'
-					style.borderBottomStyle = this.borderStyle
+					style.borderBottomStyle = this.dashed
 					style.width = this.$u.addUnit(this.length)
 					if(this.hairline) style.transform = 'scaleY(0.5)'
 				} else {
 					// 如果是竖向线条，边框宽度为1px，再通过transform缩小一半，就是0.5px了
 					style.borderLeftWidth = '1px'
-					style.borderLeftStyle = this.borderStyle
+					style.borderLeftStyle = this.dashed
 					style.height = this.$u.addUnit(this.length)
 					if(this.hairline) style.transform = 'scaleX(0.5)'
 				}
+
+				style.borderStyle =this.dashed?'dashed':'solid'
 				style.borderColor = this.color
 				return uni.$u.deepMerge(style, this.customStyle)
 			}

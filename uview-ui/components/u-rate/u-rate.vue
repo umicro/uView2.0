@@ -69,6 +69,7 @@
 	 * @property {String} activeIcon 选中时的图标名，只能为uView的内置图标（默认star-fill）
 	 * @property {String} inactiveIcon 未选中时的图标名，只能为uView的内置图标（默认star）
 	 * @property {Object} customStyle  组件的样式，对象形式
+	 * @property {Boolean} touchable  是否可以通过滑动手势选择评分
 	 * @event {Function} change 选中的星星发生变化时触发
 	 * @example <u-rate :count="count" :current="2"></u-rate>
 	 */
@@ -130,6 +131,11 @@
 				type: String,
 				default: uni.$u.props.rate.inactiveIcon
 			},
+			// 是否可以通过滑动手势选择评分
+			touchable: {
+				type: Boolean,
+				default: uni.$u.props.rate.touchable
+			}
 		},
 		mixins: [uni.$u.mixin],
 		data() {
@@ -186,12 +192,20 @@
 			},
 			// 手指滑动
 			touchMove(e) {
+				// 如果禁止通过手动滑动选择，返回
+				if(!this.touchable) {
+					return
+				}
 				this.preventEvent(e)
 				const x = e.changedTouches[0].pageX
 				this.getActiveIndex(x)
 			},
 			// 停止滑动
 			touchEnd(e) {
+				// 如果禁止通过手动滑动选择，返回
+				if(!this.touchable) {
+					return
+				}
 				this.preventEvent(e)
 				const x = e.changedTouches[0].pageX
 				this.getActiveIndex(x)

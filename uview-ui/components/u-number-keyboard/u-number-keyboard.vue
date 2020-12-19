@@ -1,23 +1,31 @@
-<!-- <template>
-	<view class="u-keyboard" @touchmove.stop.prevent="() => {}">
-		<view class="u-keyboard-grids">
-			<view
-			    class="u-keyboard-grids-item"
-			    :class="[btnBgGray(index) ? 'u-bg-gray' : '', index <= 2 ? 'u-border-top' : '', index < 9 ? 'u-border-bottom' : '', (index + 1) % 3 != 0 ? 'u-border-right' : '']"
-			    :style="[itemStyle(index)]"
-			    v-for="(item, index) in numList"
-			    :key="index"
-			    :hover-class="hoverClass(index)"
-			    :hover-stay-time="100"
-			    @tap="keyboardClick(item)">
-				<view class="u-keyboard-grids-btn">{{ item }}</view>
-			</view>
-			<view class="u-keyboard-grids-item u-bg-gray" hover-class="u-hover-class" :hover-stay-time="100" @touchstart.stop="backspaceClick"
-			    @touchend="clearTimer">
-				<view class="u-keyboard-back u-keyboard-grids-btn">
-					<u-icon name="backspace" :size="38" :bold="true"></u-icon>
-				</view>
-			</view>
+<template>
+	<view
+	    class="u-keyboard"
+	    @touchmove.stop.prevent="noop"
+	>
+		<view
+		    class="u-keyboard__button"
+		    :style="[itemStyle(index)]"
+		    v-for="(item, index) in numList"
+		    :key="index"
+		    hover-class="u-hover-class"
+		    :hover-stay-time="200"
+		    @tap="keyboardClick(item)"
+		>
+			<text class="u-keyboard__button__text">{{ item }}</text>
+		</view>
+		<view
+		    class="u-keyboard__button u-keyboard__button__gray"
+		    hover-class="u-hover-class"
+		    :hover-stay-time="200"
+		    @touchstart.stop="backspaceClick"
+		    @touchend="clearTimer"
+		>
+			<u-icon
+			    name="backspace"
+			    size="20"
+			    :bold="true"
+			></u-icon>
 		</view>
 	</view>
 </template>
@@ -77,7 +85,7 @@
 			itemStyle() {
 				return index => {
 					let style = {};
-					if (this.mode == 'number' && !this.dotEnabled && index == 9) style.flex = '0 0 66.6666666666%';
+					if (this.mode == 'number' && !this.dotEnabled && index == 9) style.width = '464rpx';
 					return style;
 				};
 			},
@@ -88,12 +96,9 @@
 					else return false;
 				};
 			},
-			hoverClass() {
-				return index => {
-					if (!this.random && index == 9 && (this.mode == 'number' && this.dotEnabled || this.mode == 'card')) return 'u-hover-class';
-					else return 'u-keyboard-hover';
-				}
-			}
+		},
+		created() {
+
 		},
 		methods: {
 			// 点击退格键
@@ -123,37 +128,40 @@
 	@import "../../libs/css/components.scss";
 
 	.u-keyboard {
-		position: relative;
-		z-index: 1003;
-	}
-
-	.u-keyboard-grids {
 		@include flex;
+		flex-direction: row;
+		justify-content: space-around;
+		background-color: rgb(214, 218, 220);
 		flex-wrap: wrap;
-	}
+		padding: 8px 10rpx 10rpx 10rpx;
 
-	.u-keyboard-grids-item {
-		flex: 1;
-		text-align: center;
-		font-size: 50rpx;
-		color: #333;
-		@include flex;
-		align-items: center;
-		justify-content: center;
-		height: 110rpx;
-		font-weight: 500;
-	}
+		&__button {
+			width: 222rpx;
+			margin: 4px 6rpx;
+			border-top-left-radius: 4px;
+			border-top-right-radius: 4px;
+			border-bottom-left-radius: 4px;
+			border-bottom-right-radius: 4px;
+			padding: 10px 0;
+			background-color: #FFFFFF;
+			@include flex;
+			justify-content: center;
+			align-items: center;
+			box-shadow: 0 1px 0px #999992;
 
-	.u-bg-gray {
-		background-color: $u-border-color;
+			&__text {
+				font-size: 20px;
+				font-weight: 500;
+				color: $u-main-color;
+			}
+			
+			&__gray {
+				background-color: rgb(190, 192, 200);
+			}
+		}
 	}
-
-	.u-keyboard-back {
-		font-size: 36rpx;
-	}
-
-	.u-keyboard-hover {
-		background-color: #e7e6eb;
+	
+	.u-hover-class {
+		background-color: rgb(168, 171, 178);
 	}
 </style>
- -->

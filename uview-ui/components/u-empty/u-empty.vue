@@ -24,9 +24,9 @@
 		    class="u-empty__text"
 		    :style="[textStyle]"
 		>{{text ? text : icons[mode]}}</text>
-		<view class="u-slot-wrap">
-				<slot name="bottom"></slot>
-			</view>
+		<view class="u-empty__wrap" v-if="$slots.default || $slots.$default">
+			<slot />
+		</view>
 	</view>
 </template>
 

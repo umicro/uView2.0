@@ -1,6 +1,7 @@
 <template>
 	<view class="u-page">
-		<u-keyboard mode="card"></u-keyboard>
+		<u-button text="打开键盘" @click="show = true"></u-button>
+		<u-keyboard mode="number" :dotEnabled="true" :show="show" @close="show = false"></u-keyboard>
 	</view>
 </template>
 
@@ -8,7 +9,7 @@
 	export default {
 		data() {
 			return {
-				
+				show: true
 			}
 		},
 		methods: {

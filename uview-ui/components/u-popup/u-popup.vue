@@ -1,11 +1,11 @@
 <template>
 	<view
 	    class="u-popup"
-	    :style="[customStyle]"
 	>
 		<u-overlay
 		    :show="show"
 		    @click="overlayClick"
+			v-if="overlay"
 		></u-overlay>
 		<u-transition
 		    :show="show"
@@ -166,7 +166,7 @@
 				if (this.mode !== 'center') {
 					style.flex = 1
 				}
-				return style
+				return uni.$u.deepMerge(style, this.customStyle)
 			},
 			position() {
 				if (this.mode === 'center') {
@@ -211,7 +211,7 @@
 		flex: $u-popup-flex;
 
 		&__content {
-			background-color:$u-popup-content-background-color;
+			background-color: $u-popup-content-background-color;
 		}
 	}
 </style>

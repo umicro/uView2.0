@@ -1,6 +1,6 @@
 <template>
 	<view class="u-page">
-		<view class="u-page__paddingLeft">
+		<view class="u-page__padding-left">
 			<u-section
 			    title="样式效果"
 			    :right="false"
@@ -12,8 +12,7 @@
 		>
 			<u-button
 			    v-if="mode=='car'"
-			    slot="bottom"
-				text="slot按钮"
+				text="查看更多商品"
 			>
 			</u-button>
 		</u-empty>
@@ -117,7 +116,7 @@
 <style lang="scss">
 	.u-page {
 		padding: 20px 0px;
-		&__paddingLeft{
+		&__padding-left{
 			padding-left: 20px;
 		}
 	}

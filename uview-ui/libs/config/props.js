@@ -451,5 +451,7 @@ export default {
 		zIndex: 10075,
 		cancelText: '取消',
 		confirmText: '确定'
-	}
+	},
+	
+	
 }

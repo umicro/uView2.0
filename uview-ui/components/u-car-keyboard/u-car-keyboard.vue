@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
 	<view class="u-keyboard" @touchmove.stop.prevent="() => {}">
 		<view class="u-keyboard-grids">
 			<block>
@@ -170,7 +170,7 @@
 	@import "../../libs/css/components.scss";
 
 	.u-keyboard-grids {
-		background-color: rgb(215, 215, 217);
+		background: rgb(215, 215, 217);
 		padding: 24rpx 0;
 		position: relative;
 	}
@@ -183,7 +183,8 @@
 
 	.u-keyboard-grids-btn {
 		text-decoration: none;
-		width: 64rpx;
+		width: 62rpx;
+		flex: 0 0 64rpx;
 		height: 80rpx;
 		/* #ifndef APP-NVUE */
 		display: inline-flex;		
@@ -233,25 +234,24 @@
 		justify-content: center;
 	}
 
-	// .u-keyboard-change .inactive.zh {
-	// 	transform: scale(0.85) translateY(-10rpx);
-	// }
+	.u-keyboard-change .inactive.zh {
+		transform: scale(0.85) translateY(-10rpx);
+	}
 
-	// .u-keyboard-change .inactive.en {
-	// 	transform: scale(0.85) translateY(10rpx);
-	// }
+	.u-keyboard-change .inactive.en {
+		transform: scale(0.85) translateY(10rpx);
+	}
 
-	// .u-keyboard-change .active {
-	// 	color: rgb(237, 112, 64);
-	// 	font-size: 30rpx;
-	// }
+	.u-keyboard-change .active {
+		color: rgb(237, 112, 64);
+		font-size: 30rpx;
+	}
 
-	// .u-keyboard-change .zh {
-	// 	transform: translateY(-10rpx);
-	// }
+	.u-keyboard-change .zh {
+		transform: translateY(-10rpx);
+	}
 
-	// .u-keyboard-change .en {
-	// 	transform: translateY(10rpx);
-	// }
+	.u-keyboard-change .en {
+		transform: translateY(10rpx);
+	}
 </style>
- -->

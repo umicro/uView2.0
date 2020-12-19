@@ -1,7 +1,30 @@
 <template>
 	<view class="u-page">
-		<u-button text="点我吧" @click="btnClick"></u-button>
-		<u-toast icon="lock-opened-fill" text="你好吗你好吗你" :show="show" type="error" position="top"></u-toast>
+		<u-cell-group
+		    title-bg-color="rgb(243, 244, 246)"
+		    title=""
+		>
+			<u-cell
+			    :titleStyle="{fontWeight: 500}"
+			    :title="item.title"
+			    v-for="(item, index) in list"
+			    :key="index"
+			    isLink
+			    @click="clickIndex(index)"
+			>
+				<!-- <image
+				    slot="icon"
+				    class="u-cell-icon"
+				    :src="getIcon(item.icon)"
+				    mode="widthFix"
+				></image> -->
+			</u-cell>
+		</u-cell-group>
+		<u-toast
+		    text="锦瑟无端五十弦"
+		    :show="show"
+		    position="top"
+		></u-toast>
 	</view>
 </template>
 
@@ -9,8 +32,36 @@
 	export default {
 		data() {
 			return {
-				show: true
+				show: false,
+				list: [{
+					icon: 'color',
+					title: 'primary',
+				},
+				{
+					icon: 'icon',
+					title: 'success',
+				}, 
+				{
+					icon: 'icon',
+					title: 'error',
+				}, 
+				{
+					icon: 'icon',
+					title: 'warning',
+				}, 
+				{
+					icon: 'icon',
+					title: 'default',
+				}, 
+				],
 			}
+		},
+		computed: {
+			getIcon() {
+				return path => {
+					return 'https://cdn.uviewui.com/uview/example/' + path + '.png';
+				}
+			},
 		},
 		onLoad() {
 			// setTimeout(() => {
@@ -18,7 +69,7 @@
 			// }, 3000)
 		},
 		methods: {
-			btnClick() {
+			clickIndex() {
 				this.show = !this.show
 			}
 		}
@@ -26,5 +77,13 @@
 </script>
 
 <style lang="scss">
+	.u-cell-icon {
+		width: 36rpx;
+		height: 36rpx;
+		margin-right: 8rpx;
+	}
 
+	.u-cell-group__title__text {
+		font-weight: bold;
+	}
 </style>

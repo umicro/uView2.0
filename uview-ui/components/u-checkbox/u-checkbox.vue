@@ -118,7 +118,7 @@
 			// 图标与文字的对齐方式
 			iconPlacement: {
 				type: String,
-				default: uni.$u.props.checkbox.checkboxPlacement
+				default: uni.$u.props.checkbox.iconPlacement
 			},
 			// 是否默认选中
 			checked: {

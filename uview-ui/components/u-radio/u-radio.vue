@@ -125,6 +125,7 @@
 		data() {
 			return {
 				checked: false,
+				// 当你看到这段代码的时候，
 				// 父组件的默认值，因为头条小程序不支持在computed中使用this.parent.shape的形式
 				// 故只能使用如此方法
 				parentData: {
@@ -224,9 +225,13 @@
 			},
 			radioStyle() {
 				const style = {}
+				if(this.parentData.borderBottom && this.parentData.placement === 'row') {
+					uni.$u.error('检测到您将borderBottom设置为true，需要同时将u-radio-group的placement设置为column才有效')
+				}
 				// 当父组件设置了显示下边框并且排列形式为纵向时，给内容和边框之间加上一定间隔
 				if(this.parentData.borderBottom && this.parentData.placement === 'column') {
-					style.paddingBottom = '8px'
+					// ios像素密度高，需要多一点的距离
+					style.paddingBottom = uni.$u.os() === 'ios' ? '12px' : '8px'
 				}
 				return uni.$u.deepMerge(style, this.customStyle)
 			}

@@ -73,7 +73,7 @@ export default [{
 			title: 'Select 列选择器',
 			title_en: 'Select',
 		}, {
-			path: '/pages/componentsA/keyboard/keyboard',
+			path: '/pages/componentsB/keyboard/keyboard',
 			icon: 'keyboard',
 			title: 'Keyboard 键盘',
 			title_en: 'Keyboard',

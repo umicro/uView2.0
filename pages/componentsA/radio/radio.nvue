@@ -145,11 +145,11 @@
 			<text class="u-block__title">苹果、香蕉和橙子那个最甜</text>
 			<u-radio-group
 			    v-model="value"
-			    placement="column"
 				:borderBottom="true"
+				placement="column"
 			>
 				<u-radio
-				    :customStyle="{marginBottom: '8px'}"
+				    :customStyle="{marginBottom: '16px'}"
 				    v-for="(item, index) in list"
 				    :key="index"
 				    :label="item.name"

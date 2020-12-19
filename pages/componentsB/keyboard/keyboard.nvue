@@ -1,0 +1,22 @@
+<template>
+	<view class="u-page">
+		<u-keyboard mode="card"></u-keyboard>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				
+			}
+		},
+		methods: {
+			
+		}
+	}
+</script>
+
+<style lang="scss">
+
+</style>

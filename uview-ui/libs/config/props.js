@@ -433,4 +433,22 @@ export default {
 		arrow: true
 	},
 
+	// 键盘组件
+	keyboard: {
+		mode: 'number',
+		dotEnabled: true,
+		tooltip: true,
+		showTips: true,
+		tips: '',
+		showCancel: true,
+		showConfirm: true,
+		random: false,
+		safeAreaInsetBottom: true,
+		closeOnClickOverly: true,
+		show: false,
+		overlay: true,
+		zIndex: 10075,
+		cancelText: '取消',
+		confirmText: '确定'
+	}
 }

@@ -229,6 +229,9 @@
 			},
 			checkboxStyle() {
 				const style = {}
+				if(this.parentData.borderBottom && this.parentData.placement === 'row') {
+					uni.$u.error('检测到您将borderBottom设置为true，需要同时将u-checkbox-group的placement设置为column才有效')
+				}
 				// 当父组件设置了显示下边框并且排列形式为纵向时，给内容和边框之间加上一定间隔
 				if(this.parentData.borderBottom && this.parentData.placement === 'column') {
 					style.paddingBottom = '8px'

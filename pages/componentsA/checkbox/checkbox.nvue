@@ -1,21 +1,76 @@
 <template>
 	<view class="u-page">
-		<u-checkbox-group
-		    v-model="value"
-		    placement="column"
-			@change="checkboxChange"
-		>
-			<u-checkbox
-			    :customStyle="{marginBottom: '8px'}"
-			    v-for="(item, index) in list"
-			    :key="index"
-			    :label="item.name"
-			    :name="item.name"
-			    iconPlacement="right"
+		<u-gap></u-gap>
+		<view class="u-block">
+			<u-section
+			    title="基本案例"
+			    :right="false"
+			></u-section>
+			<text class="u-block__title">苹果、香蕉和橙子那个最甜</text>
+			<u-checkbox-group
+			    v-model="value"
+			    placement="column"
+			    @change="checkboxChange"
 			>
+				<u-checkbox
+				    :customStyle="{marginBottom: '8px'}"
+				    v-for="(item, index) in list"
+				    :key="index"
+				    :label="item.name"
+				    :name="item.name"
+				>
+				</u-checkbox>
+			</u-checkbox-group>
+		</view>
+		<u-gap></u-gap>
 
-			</u-checkbox>
-		</u-checkbox-group>
+		<view class="u-block">
+			<u-section
+			    title="自定义形状"
+			    :right="false"
+			></u-section>
+			<text class="u-block__title">苹果、香蕉和橙子那个最甜</text>
+			<u-checkbox-group
+			    v-model="value"
+			    placement="column"
+			    @change="checkboxChange"
+			    shape="square"
+			>
+				<u-checkbox
+				    :customStyle="{marginBottom: '8px'}"
+				    v-for="(item, index) in list"
+				    :key="index"
+				    :label="item.name"
+				    :name="item.name"
+				>
+				</u-checkbox>
+			</u-checkbox-group>
+		</view>
+		<u-gap></u-gap>
+
+		<view class="u-block">
+			<u-section
+			    title="自定义形状"
+			    :right="false"
+			></u-section>
+			<text class="u-block__title">苹果、香蕉和橙子那个最甜</text>
+			<u-checkbox-group
+			    v-model="value"
+			    placement="column"
+			    @change="checkboxChange"
+			    shape="square"
+			>
+				<u-checkbox
+				    :customStyle="{marginBottom: '8px'}"
+				    v-for="(item, index) in list"
+				    :key="index"
+				    :label="item.name"
+				    :name="item.name"
+				>
+				</u-checkbox>
+			</u-checkbox-group>
+		</view>
+		<u-gap></u-gap>
 	</view>
 </template>
 

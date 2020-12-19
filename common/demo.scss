@@ -1,12 +1,13 @@
 .u-block{
 	padding: 14px;
-
 	&__title {
 		margin-top:10px;
 		font-size: 15px;
 		color: $u-content-color;
 		margin-bottom:10px;
 	}
-	
+	&__flex{
+		display: flex;
+	}
 }
 

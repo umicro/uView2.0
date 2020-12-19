@@ -336,7 +336,8 @@ export default {
 		minCount: 1,
 		allowHalf: false,
 		activeIcon: 'star-fill',
-		inactiveIcon: 'star'
+		inactiveIcon: 'star',
+		touchable: true
 	},
 
 	// gap组件

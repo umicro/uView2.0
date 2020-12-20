@@ -1,23 +1,53 @@
 <template>
-	<view class="u-keyboard" @touchmove.stop.prevent="() => {}">
-		<view class="u-keyboard-grids">
-			<block>
-				<view class="u-keyboard-grids-item" v-for="(group, i) in abc ? EngKeyBoardList : areaList" :key="i">
-					<view :hover-stay-time="100" @tap="carInputClick(i, j)" hover-class="u-carinput-hover" class="u-keyboard-grids-btn"
-					 v-for="(item, j) in group" :key="j">
-						{{ item }}
-					</view>
-				</view>
-				<view @touchstart="backspaceClick" @touchend="clearTimer" :hover-stay-time="100" class="u-keyboard-back"
-				 hover-class="u-hover-class">
-					<u-icon :size="38" name="backspace" :bold="true"></u-icon>
-				</view>
-				<view :hover-stay-time="100" class="u-keyboard-change" hover-class="u-carinput-hover" @tap="changeCarInputMode">
-					<text class="zh" :class="[!abc ? 'active' : 'inactive']">中</text>
-					/
-					<text class="en" :class="[abc ? 'active' : 'inactive']">英</text>
-				</view>
-			</block>
+	<view
+	    class="u-keyboard"
+	    @touchmove.stop.prevent="noop"
+	>
+		<view
+		    v-for="(group, i) in abc ? engKeyBoardList : areaList"
+		    class="u-keyboard__button"
+		    :class="[i + 1 === 4 && 'u-keyboard__button--center']"
+		>
+			<view
+			    class="u-keyboard__button__inner"
+			    :hover-stay-time="200"
+			    @tap="carInputClick(i, j)"
+			    hover-class="u-hover-class"
+			    v-for="(item, j) in group"
+			    :key="j"
+			>
+				<text class="u-keyboard__button__inner__text">{{ item }}</text>
+			</view>
+		</view>
+		<view
+		    @touchstart="backspaceClick"
+		    @touchend="clearTimer"
+		    :hover-stay-time="200"
+		    class="u-keyboard__button u-keyboard__button--absolute u-keyboard__button--absolute-right"
+		    hover-class="u-hover-class"
+		>
+			<u-icon
+			    :size="18"
+			    name="backspace"
+			    :bold="true"
+				color="#303133"
+			></u-icon>
+		</view>
+		<view
+		    :hover-stay-time="200"
+		    class="u-keyboard__button u-keyboard__button--absolute u-keyboard__button--absolute-left"
+		    hover-class="u-hover-class"
+		    @tap="changeCarInputMode"
+		>
+			<text
+			    class="u-keyboard__button--absolute-left__lang"
+			    :class="[!abc && 'u-keyboard__button--absolute-left__lang--active']"
+			>中</text>
+			<text class="u-keyboard__button__line">/</text>
+			<text
+			    class="u-keyboard__button--absolute-left__lang"
+			    :class="[abc && 'u-keyboard__button--absolute-left__lang--active']"
+			>英</text>
 		</view>
 	</view>
 </template>
@@ -29,7 +59,7 @@
 			// 是否打乱键盘按键的顺序
 			random: {
 				type: Boolean,
-				default: false
+				default: uni.$u.props.carKeyboard.random
 			}
 		},
 		data() {
@@ -88,7 +118,7 @@
 				tmp[3] = data.slice(30, 36);
 				return tmp;
 			},
-			EngKeyBoardList() {
+			engKeyBoardList() {
 				let data = [
 					1,
 					2,
@@ -141,7 +171,7 @@
 			carInputClick(i, j) {
 				let value = '';
 				// 不同模式，获取不同数组的值
-				if (this.abc) value = this.EngKeyBoardList[i][j];
+				if (this.abc) value = this.engKeyBoardList[i][j];
 				else value = this.areaList[i][j];
 				this.$emit('change', value);
 			},
@@ -169,89 +199,94 @@
 <style lang="scss">
 	@import "../../libs/css/components.scss";
 
-	.u-keyboard-grids {
-		background: rgb(215, 215, 217);
-		padding: 24rpx 0;
-		position: relative;
-	}
+	.u-keyboard {
+		@include flex(column);
+		justify-content: space-around;
+		background-color: rgb(214, 218, 220);
+		flex-wrap: wrap;
+		align-items: stretch;
+		padding: 6px 0 5px;
 
-	.u-keyboard-grids-item {
-		@include flex;
-		align-items: center;
-		justify-content: center;
-	}
+		&__button {
+			@include flex;
+			justify-content: center;
+			flex: 1;
+			/* #ifndef APP-NVUE */
+			width: 100%;
+			/* #endif */
 
-	.u-keyboard-grids-btn {
-		text-decoration: none;
-		width: 62rpx;
-		flex: 0 0 64rpx;
-		height: 80rpx;
-		/* #ifndef APP-NVUE */
-		display: inline-flex;		
-		/* #endif */
-		font-size: 36rpx;
-		text-align: center;
-		line-height: 80rpx;
-		background-color: #fff;
-		margin: 8rpx 5rpx;
-		border-radius: 8rpx;
-		box-shadow: 0 2rpx 0rpx #888992;
-		font-weight: 500;
-		justify-content: center;
-	}
+			&__inner {
+				@include flex;
+				justify-content: center;
+				align-items: center;
+				width: 64rpx;
+				background-color: #FFFFFF;
+				height: 80rpx;
+				box-shadow: 0 1px 0px #999992;
+				border-top-left-radius: 4px;
+				border-top-right-radius: 4px;
+				border-bottom-left-radius: 4px;
+				border-bottom-right-radius: 4px;
+				margin: 8rpx 5rpx;
 
-	.u-carinput-hover {
-		background-color: rgb(185, 188, 195) !important;
-	}
+				&__text {
+					font-size: 16px;
+					color: $u-main-color;
+				}
+			}
 
-	.u-keyboard-back {
-		position: absolute;
-		width: 96rpx;
-		right: 22rpx;
-		bottom: 32rpx;
-		height: 80rpx;
-		background-color: rgb(185, 188, 195);
-		@include flex;
-		align-items: center;
-		border-radius: 8rpx;
-		justify-content: center;
-		box-shadow: 0 2rpx 0rpx #888992;
-	}
+			&--center {
+				justify-content: center;
 
-	.u-keyboard-change {
-		font-size: 24rpx;
-		box-shadow: 0 2rpx 0rpx #888992;
-		position: absolute;
-		width: 96rpx;
-		left: 22rpx;
-		line-height: 1;
-		bottom: 32rpx;
-		height: 80rpx;
-		background-color: #ffffff;
-		@include flex;
-		align-items: center;
-		border-radius: 8rpx;
-		justify-content: center;
-	}
+				&__inner {
+					margin: 0 4rpx;
+				}
+			}
 
-	.u-keyboard-change .inactive.zh {
-		transform: scale(0.85) translateY(-10rpx);
-	}
+			&--absolute {
+				position: absolute;
+				border-top-left-radius: 4px;
+				border-top-right-radius: 4px;
+				border-bottom-left-radius: 4px;
+				border-bottom-right-radius: 4px;
+				width: 135rpx;
+				height: 80rpx;
+				bottom: 9px;
+				background-color: rgb(190, 192, 200);
+				@include flex;
+				justify-content: center;
+				align-items: center;
+				box-shadow: 0 1px 0px #999992;
+			}
 
-	.u-keyboard-change .inactive.en {
-		transform: scale(0.85) translateY(10rpx);
-	}
+			&--absolute-left {
+				left: 20rpx;
 
-	.u-keyboard-change .active {
-		color: rgb(237, 112, 64);
-		font-size: 30rpx;
-	}
+				@include flex;
 
-	.u-keyboard-change .zh {
-		transform: translateY(-10rpx);
-	}
+				&__lang {
+					font-size: 16px;
+					color: $u-main-color;
+					
+					&--active {
+						color: $u-primary;
+					}
+				}
+			}
 
-	.u-keyboard-change .en {
-		transform: translateY(10rpx);
+			&--absolute-right {
+				right: 20rpx;
+			}
+			
+			&__line {
+				font-size: 15px;
+				color: $u-main-color;
+				margin: 0 1px;
+			}
+		}
+	}
+	
+	.u-hover-class {
+		background-color: rgb(168, 171, 178);
 	}
 </style>

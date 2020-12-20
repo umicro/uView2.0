@@ -23,7 +23,8 @@
 		>
 			<u-icon
 			    name="backspace"
-			    size="20"
+				color="#303133"
+			    size="18"
 			    :bold="true"
 			></u-icon>
 		</view>
@@ -36,17 +37,17 @@
 			// 键盘的类型，number-数字键盘，card-身份证键盘
 			mode: {
 				type: String,
-				default: 'number'
+				default: uni.$u.props.carKeyboard.mode
 			},
 			// 是否显示键盘的"."符号
-			dotEnabled: {
+			dotEnable: {
 				type: Boolean,
-				default: true
+				default: uni.$u.props.carKeyboard.dotEnable
 			},
 			// 是否打乱键盘按键的顺序
 			random: {
 				type: Boolean,
-				default: false
+				default: uni.$u.props.carKeyboard.random
 			}
 		},
 		data() {
@@ -61,13 +62,13 @@
 			// 键盘需要显示的内容
 			numList() {
 				let tmp = [];
-				if (!this.dotEnabled && this.mode == 'number') {
+				if (!this.dotEnable && this.mode == 'number') {
 					if (!this.random) {
 						return [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 					} else {
 						return this.$u.randomArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
 					}
-				} else if (this.dotEnabled && this.mode == 'number') {
+				} else if (this.dotEnable && this.mode == 'number') {
 					if (!this.random) {
 						return [1, 2, 3, 4, 5, 6, 7, 8, 9, this.dot, 0];
 					} else {
@@ -85,14 +86,14 @@
 			itemStyle() {
 				return index => {
 					let style = {};
-					if (this.mode == 'number' && !this.dotEnabled && index == 9) style.width = '464rpx';
+					if (this.mode == 'number' && !this.dotEnable && index == 9) style.width = '464rpx';
 					return style;
 				};
 			},
 			// 是否让按键显示灰色，只在非乱序&&数字键盘&&且允许点按键的时候
 			btnBgGray() {
 				return index => {
-					if (!this.random && index == 9 && (this.mode != 'number' || (this.mode == 'number' && this.dotEnabled))) return true;
+					if (!this.random && index == 9 && (this.mode != 'number' || (this.mode == 'number' && this.dotEnable))) return true;
 					else return false;
 				};
 			},
@@ -117,7 +118,7 @@
 			// 获取键盘显示的内容
 			keyboardClick(val) {
 				// 允许键盘显示点模式和触发非点按键时，将内容转为数字类型
-				if (this.dotEnabled && val != this.dot && val != this.cardX) val = Number(val);
+				if (this.dotEnable && val != this.dot && val != this.cardX) val = Number(val);
 				this.$emit('change', val);
 			}
 		}

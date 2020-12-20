@@ -453,5 +453,15 @@ export default {
 		confirmText: '确定'
 	},
 	
+	// 数字键盘
+	numberKeyboard: {
+		mode: 'number',
+		dotEnable: true,
+		random: false
+	},
 	
+	// 车牌号键盘
+	carKeyboard: {
+		random: false
+	}
 }

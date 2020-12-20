@@ -52,7 +52,7 @@
 				    @backspace="backspace"
 				    @change="change"
 				    :mode="mode"
-				    :dotEnabled="dotEnabled"
+				    :dotEnable="dotEnable"
 				></u-number-keyboard>
 			</template>
 			<template v-else>
@@ -72,7 +72,7 @@
 	 * @description 此为uViw自定义的键盘面板，内含了数字键盘，车牌号键，身份证号键盘3中模式，都有可以打乱按键顺序的选项。
 	 * @tutorial https://www.uviewui.com/components/keyboard.html
 	 * @property {String} mode 键盘类型，见官网基本使用的说明（默认number）
-	 * @property {Boolean} dot-enabled 是否显示"."按键，只在mode=number时有效（默认true）
+	 * @property {Boolean} dot-enable 是否显示"."按键，只在mode=number时有效（默认true）
 	 * @property {Boolean} tooltip 是否显示键盘顶部工具条（默认true）
 	 * @property {String} tips 工具条中间的提示文字，见上方基本使用的说明，如不需要，请传""空字符
 	 * @property {Boolean} cancel-btn 是否显示工具条左边的"取消"按钮（默认true）
@@ -99,9 +99,9 @@
 				default: uni.$u.props.keyboard.mode
 			},
 			// 是否显示键盘的"."符号
-			dotEnabled: {
+			dotEnable: {
 				type: Boolean,
-				default: uni.$u.props.keyboard.dotEnabled
+				default: uni.$u.props.keyboard.dotEnable
 			},
 			// 是否显示顶部工具条
 			tooltip: {

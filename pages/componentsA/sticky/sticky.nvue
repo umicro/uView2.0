@@ -14,7 +14,7 @@
 				44444444
 			</view>
 		</u-sticky>
-		<u-sticky offsetTop="100">
+		<u-sticky offsetTop="300">
 			<view
 			    class="box2"
 			    ref="box"
@@ -48,16 +48,16 @@
 		},
 		methods: {
 			// 在APP和微信小程序上，通过uni.createSelectorQuery可以判断是否支持css sticky
-			checkSupportCssSticky() {
-				return new Promise(resolve => {
-					uni.createSelectorQuery().in(this).select(".box1").fields({
-						computedStyle: ["position"]
-					}).exec(e => {
-						console.log(e);
-						resolve('sticky' === e[0].position)
-					})
-				})
-			}
+			// checkSupportCssSticky() {
+			// 	return new Promise(resolve => {
+			// 		uni.createSelectorQuery().in(this).select(".box1").fields({
+			// 			computedStyle: ["position"]
+			// 		}).exec(e => {
+			// 			console.log(e);
+			// 			resolve('sticky' === e[0].position)
+			// 		})
+			// 	})
+			// }
 		}
 	}
 </script>

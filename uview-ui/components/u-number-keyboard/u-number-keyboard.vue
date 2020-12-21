@@ -32,6 +32,17 @@
 </template>
 
 <script>
+	/**
+	 * keyboard 键盘组件
+	 * @description  
+	 * @tutorial  
+	 * @property {String} mode 键盘的类型，number-数字键盘，card-身份证键盘
+	 * @property {Boolean} dotEnable 是否显示键盘的"."符号
+	 * @property {Boolean} random 是否打乱键盘按键的顺序
+	 * @event {Function} change 点击键盘触发
+	 * @event {Function} backspace 点击退格键触发
+	 * @example 
+	 */
 	export default {
 		props: {
 			// 键盘的类型，number-数字键盘，card-身份证键盘
@@ -127,42 +138,57 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-
+     $u-number-keyboard-background-color:rgb(214, 218, 220) !default;
+	 $u-number-keyboard-padding:8px 10rpx 10rpx 10rpx !default;
+	 $u-number-keyboard-button-width:222rpx !default;
+	 $u-number-keyboard-button-margin:4px 6rpx !default;
+	 $u-number-keyboard-button-border-top-left-radius:4px !default;
+	 $u-number-keyboard-button-border-top-right-radius:4px !default;
+	 $u-number-keyboard-button-border-bottom-left-radius:4px !default;
+	 $u-number-keyboard-button-border-bottom-right-radius:4px !default;
+	 $u-number-keyboard-button-padding:10px 0 !default;
+	 $u-number-keyboard-button-background-color:#FFFFFF !default;
+	 $u-number-keyboard-button-box-shadow:0 1px 0px #999992 !default;
+	 $u-number-keyboard-text-font-size:20px !default;
+	 $u-number-keyboard-text-font-weight:500 !default;
+	 $u-number-keyboard-text-color:$u-main-color !default;
+	 $u-number-keyboard-gray-background-color:rgb(190, 192, 200) !default;
+	 $u-number-keyboard-u-hover-class-background-color:rgb(168, 171, 178) !default;
 	.u-keyboard {
 		@include flex;
 		flex-direction: row;
 		justify-content: space-around;
-		background-color: rgb(214, 218, 220);
+		background-color: $u-number-keyboard-background-color;
 		flex-wrap: wrap;
-		padding: 8px 10rpx 10rpx 10rpx;
+		padding:$u-number-keyboard-padding;
 
 		&__button {
-			width: 222rpx;
-			margin: 4px 6rpx;
-			border-top-left-radius: 4px;
-			border-top-right-radius: 4px;
-			border-bottom-left-radius: 4px;
-			border-bottom-right-radius: 4px;
-			padding: 10px 0;
-			background-color: #FFFFFF;
+			width: $u-number-keyboard-button-width;
+			margin: $u-number-keyboard-button-margin;
+			border-top-left-radius:$u-number-keyboard-button-border-top-left-radius;
+			border-top-right-radius:$u-number-keyboard-button-border-top-right-radius;
+			border-bottom-left-radius:$u-number-keyboard-button-border-bottom-left-radius;
+			border-bottom-right-radius:$u-number-keyboard-button-border-bottom-right-radius;
+			padding:$u-number-keyboard-button-padding;
+			background-color: $u-number-keyboard-button-background-color;
 			@include flex;
 			justify-content: center;
 			align-items: center;
-			box-shadow: 0 1px 0px #999992;
+			box-shadow:$u-number-keyboard-button-box-shadow;
 
 			&__text {
-				font-size: 20px;
-				font-weight: 500;
-				color: $u-main-color;
+				font-size: $u-number-keyboard-text-font-size;
+				font-weight: $u-number-keyboard-text-font-weight;
+				color: $u-number-keyboard-text-color;
 			}
 			
 			&__gray {
-				background-color: rgb(190, 192, 200);
+				background-color:$u-number-keyboard-gray-background-color;
 			}
 		}
 	}
 	
 	.u-hover-class {
-		background-color: rgb(168, 171, 178);
+		background-color: $u-number-keyboard-u-hover-class-background-color;
 	}
 </style>

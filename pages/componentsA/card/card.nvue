@@ -1,24 +1,201 @@
 <template>
-	<view class="">
+	<view class="u-page">
+
+		<!-- 基本案列 -->
 		<view class="card">
-			<u-card @click="click" @head-click="headClick" :title="title" :sub-title="subTitle" :thumb="thumb" :padding="padding"
-			 :border="border">
+			<u-section
+			    class="card__section"
+			    title="基本案列"
+			    :right="false"
+			></u-section>
+			<u-card
+			    :showHead="showHead"
+			    :showFoot="showFoot"
+			    :border="border"
+			    :borderRadius="borderRadius"
+			>
 				<template slot="body">
-					<view class="card__body">
-						<view class="card__body__item u-border-bottom">
-							<text class="card__body__item__title u-line-2">瓶身描绘的牡丹一如你初妆，冉冉檀香透过窗心事我了然，宣纸上走笔至此搁一半</text>
-							<image class="card__body__item__thumbnail" src="https://img11.360buyimg.com/n7/jfs/t1/94448/29/2734/524808/5dd4cc16E990dfb6b/59c256f85a8c3757.jpg"
-							 mode="aspectFill"></image>
-						</view>
-						<view class="card__body__item u-border-bottom">
-							<text class="card__body__item__title u-line-2">釉色渲染仕女图韵味被私藏，而你嫣然的一笑如含苞待放</text>
-							<image class="card__body__item__thumbnail" src="https://img12.360buyimg.com/n7/jfs/t1/102191/19/9072/330688/5e0af7cfE17698872/c91c00d713bf729a.jpg"
-							 mode="aspectFill"></image>
+					<view class="base-body">
+						<n-image
+						    width="200rpx"
+						    borderRadius="12rpx"
+						    height="200rpx"
+						    :src="src"
+						></n-image>
+						<view class="base-body__content">
+							<text class="base-body__content__title">香甜枇杷果</text>
+							<text class="base-body__content__introduce"> 味道甘美，形如黄杏。枇杷果柔软多汁，风味酸甜，随着生物科技的发展应用如今的枇杷口味甘甜，肉质细腻。</text>
 						</view>
 					</view>
 				</template>
-				<template class="" slot="foot">
-					<u-icon v-if="bottomSlot" name="chat-fill" size="34" label="30评论"></u-icon>
+			</u-card>
+		</view>
+		<!-- 卡片类型（cover） -->
+		<view class="card">
+			<u-section
+			    class="card__section"
+			    title="卡片类型（cover）"
+			    :right="false"
+			></u-section>
+			<u-card
+			    :showHead="showHead"
+			    :showFoot="showFoot"
+			    :border="border"
+			    :borderRadius="borderRadius"
+			>
+				<template slot="body">
+					<view class="card__body-top"></view>
+					<view class="base-body">
+						<view class="base-body__content">
+							<text class="base-body__content__title">香甜枇杷果</text>
+							<text class="base-body__content__introduce"> 味道甘美，形如黄杏。枇杷果柔软多汁，风味酸甜，随着生物科技的发展应用如今的枇杷口味甘甜，肉质细腻。</text>
+						</view>
+					</view>
+				</template>
+			</u-card>
+		</view>
+
+		<!-- 卡片类型（avatar） -->
+		<view class="card">
+			<u-section
+			    class="card__section"
+			    title="卡片类型（avatar）"
+			    :right="false"
+			></u-section>
+			<u-card
+			    :border="border"
+			    :borderRadius="borderRadius"
+			>
+				<template slot="head">
+					<view class="base-head">
+						<view class="base-head__left">
+							<n-image
+							    width="80rpx"
+							    shape="circle"
+							    height="80rpx"
+							    :src="src"
+							></n-image>
+							<view class="base-head__left__content">
+								<text class="base-head__left__content__title">Amur</text>
+								<text class="base-head__left__content__introduce">3个小时以前</text>
+							</view>
+						</view>
+						<view class="base-head__right">+关注</view>
+					</view>
+				</template>
+				<template slot="body">
+					<view class="base-body">
+						<view class="base-body__content">
+							<text class="base-body__content__introduce"> 味道甘美，形如黄杏。枇杷果柔软多汁，风味酸甜，随着生物科技的发展应用如今的枇杷口味甘甜，肉质细腻。</text>
+						</view>
+					</view>
+				</template>
+				<template slot="foot">
+					<u-icon
+					    name="chat-fill"
+					    size="15"
+					    label="30评论"
+					    labelSize="15"
+					></u-icon>
+					<u-icon
+					    name="heart"
+					    size="15"
+					    label="520喜欢"
+					    labelSize="15"
+					></u-icon>
+				</template>
+			</u-card>
+		</view>
+
+		<!-- 纯文字卡片 -->
+		<view class="card">
+			<u-section
+			    class="card__section"
+			    title="纯文字卡片"
+			    :right="false"
+			></u-section>
+			<u-card
+			    :showHead="showHead"
+			    :showFoot="showFoot"
+			    :border="border"
+			    :borderRadius="borderRadius"
+			>
+				<template slot="body">
+					<view class="base-body">
+						<view class="base-body__content">
+							<text class="base-body__content__title">香甜枇杷果</text>
+							<text class="base-body__content__introduce"> 味道甘美，形如黄杏。枇杷果柔软多汁，风味酸甜，随着生物科技的发展应用如今的枇杷口味甘甜，肉质细腻。</text>
+						</view>
+					</view>
+				</template>
+			</u-card>
+		</view>
+
+		<!-- 图片位置 -->
+		<view class="card">
+			<u-section
+			    class="card__section"
+			    title="图片位置"
+			    :right="false"
+			></u-section>
+			<u-card
+			    :showHead="showHead"
+			    :showFoot="showFoot"
+			    :border="border"
+			    :borderRadius="borderRadius"
+			>
+				<template slot="body">
+					<view class="base-body">
+						<n-image
+						    width="200rpx"
+						    borderRadius="12rpx"
+						    height="200rpx"
+						    :src="src"
+						></n-image>
+						<view class="base-body__content">
+							<text class="base-body__content__title">香甜枇杷果</text>
+							<text class="base-body__content__introduce"> 味道甘美，形如黄杏。枇杷果柔软多汁，风味酸甜，随着生物科技的发展应用如今的枇杷口味甘甜，肉质细腻。</text>
+						</view>
+					</view>
+					<u-gap></u-gap>
+					<view class="base-body">
+						<view class="base-body__content">
+							<text class="base-body__content__title">香甜枇杷果</text>
+							<text class="base-body__content__introduce"> 味道甘美，形如黄杏。枇杷果柔软多汁，风味酸甜，随着生物科技的发展应用如今的枇杷口味甘甜，肉质细腻。</text>
+						</view>
+						<n-image
+						    width="200rpx"
+						    borderRadius="12rpx"
+						    height="200rpx"
+						    :src="src"
+						></n-image>
+					</view>
+				</template>
+			</u-card>
+		</view>
+
+		<!-- 通栏卡片 -->
+		<view class="card">
+			<u-section
+			    class="card__section"
+			    title="通栏卡片"
+			    :right="false"
+			></u-section>
+			<u-card
+			    :showHead="showHead"
+			    :showFoot="showFoot"
+			    :border="border"
+			    :borderRadius="borderRadius"
+			>
+				<template slot="body">
+					<view class="base-body">
+						<view class="base-body__left">
+						</view>
+						<view class="base-body__content">
+							<text class="base-body__content__title">香甜枇杷果</text>
+							<text class="base-body__content__introduce"> 味道甘美，形如黄杏。枇杷果柔软多汁，风味酸甜，随着生物科技的发展应用如今的枇杷口味甘甜，肉质细腻。</text>
+						</view>
+					</view>
 				</template>
 			</u-card>
 		</view>
@@ -29,66 +206,104 @@
 	export default {
 		data() {
 			return {
-				title: '素胚勾勒出青花，笔锋浓转淡',
-				subTitle: '2020-05-15',
-				thumb: 'http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg',
-				padding: 20,
-				bottomSlot: true,
-				border: true
+				showHead: false,
+				showFoot: false,
+				border: false,
+				borderRadius: 6,
+				src: "http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg"
+
 			}
 		},
 		methods: {
-			thumbChange(index) {
-				this.thumb = index == 0 ? 'http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg' : '';
-			},
-			paddingChange(index) {
-				this.padding = [20, 30, 40][index];
-			},
-			bottomChange(index) {
-				this.bottomSlot = !index;
-			},
-			borderChange(index) {
-				this.border = !index;
-			},
-			click(index) {
-				console.log(index);
-			},
-			headClick(index) {
-				console.log(index);
-			}
+
 		}
 	}
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 	@import "@/uview-ui/libs/css/components.scss";
+
+	.u-page {
+		background-color: $u-bg-color;
+		padding-top: 20px;
+	}
 
 	.card {
 		padding: 1px;
-		background-color: #FFFFFF;
 
-		&__body {
-			padding: 12px;
+		&__section {
+			padding-left: 10px;
+		}
 
-			&__item {
-				@include flex;
-				font-size: 16px;
-				align-items: flex-start;
-				line-height: 24px;
+		&__body-top {
+			height: 200rpx;
+			width: 100%;
+		}
+	}
+
+	.base-head {
+		@include flex;
+		justify-content: space-around;
+		align-items: stretch;
+
+		&__left {
+			@include flex;
+			background-color: hotpink;
+
+			&__content {
+				margin-left: 20px;
 
 				&__title {
-					flex: 1;
-					color: $u-main-color;
-					font-size: 15px;
-					line-height: 22px;
+					font-size: 14px;
+					font-weight: bold;
+					color: #333;
 				}
 
-				&__thumbnail {
-					width: 50px;
-					height: 50px;
-					border-radius: 4;
-					margin-left: 6px;
+				&__introduce {
+					font-size: 12px;
 				}
+			}
+		}
+
+		&__right {
+			height: 60rpx;
+			width: 120rpx;
+			text-align: center;
+			background-color: yellow;
+			border-radius: 60rpx;
+			line-height: 60rpx;
+		}
+	}
+
+	.base-body {
+		padding: 20px;
+		@include flex;
+		align-items: stretch;
+
+		&__left {
+			width: 200rpx;
+			height: 200rpx;
+		}
+
+		&__content {
+			flex: 1;
+			padding: 0 10px;
+			/* #ifndef APP-NVUE */
+			box-sizing: border-box;
+			/* #endif */
+			flex-direction: column;
+			justify-content: space-between;
+
+			&__title {
+				font-size: 14px;
+				font-weight: bold;
+				color: #333;
+			}
+
+			&__introduce {
+				// height: 80px;
+				font-size: 12px;
+				background-color: skyblue;
 			}
 		}
 	}

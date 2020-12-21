@@ -276,7 +276,7 @@
 	$u-card-full-border-radius:16rpx !default;
 	$u-card-head-left-color:$u-main-color!default;
 	$u-card-head-left-thumb-margin-right:16rpx !default;
-	$u-card-head-left-title-max-width:400rpx !default;
+	$u-card-head-left-title-max-width:300rpx !default;
 	$u-card-head-right-color: $u-tips-color !default;
 	$u-card-head-right-margin-left:6rpx !default;
 	$u-card-body-color:$u-content-color !default;
@@ -320,11 +320,11 @@
 				&__thumb {
 					margin-right:$u-card-head-left-thumb-margin-right;
 				}
-
 				&__title {
 					/* #ifndef APP-NVUE */
 					max-width:$u-card-head-left-title-max-width;
 					/* #endif */
+					
 				}
 			}
 

@@ -18,10 +18,10 @@
 		</u-empty>
 		<u-cell
 		    :titleStyle="{fontWeight: 500}"
-		    @click="openImg(item1.imgName)"
-		    :title="item1.title"
-		    v-for="(item1, index1) in list"
-		    :key="index1"
+		    @click="openImg(item.imgName)"
+		    :title="item.title"
+		    v-for="(item, index) in list"
+		    :key="index"
 		>
 		</u-cell>
 	</view>
@@ -113,7 +113,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.u-page {
 		padding: 20px 0px;
 		&__padding-left{

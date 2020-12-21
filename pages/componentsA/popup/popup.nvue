@@ -1,28 +1,26 @@
 <template>
 	<view>
-		<u-button @click="openPopup('top')" text="顶部弹窗"></u-button>
-		<u-button @click="openPopup('bottom')" text="底部弹窗"></u-button>
-		<u-button @click="openPopup('left')" text="左边弹窗"></u-button>
-		<u-button @click="openPopup('right')" text="右边弹窗"></u-button>
-		<u-button @click="openPopup('center')" text="中部弹窗"></u-button>
-		<u-popup :mode="mode" :show="show" @close="show = !show">
+		<u-cell
+		    :titleStyle="{fontWeight: 500}"
+		    @click="openPopup(item.popupData)"
+		    :title="item.title"
+		    v-for="(item, index) in list"
+		    isLink
+		    :key="index"
+		>
+		</u-cell>
+		<u-popup
+		    :safeAreaInsetBottom="true"
+		    :safeAreaInsetTop="true"
+		    :mode="popupData.mode"
+		    :show="show"
+		    :overlay="popupData.overlay"
+		    :borderRadis="popupData.borderRadis"
+		    :closeable="popupData.closeable"
+		    :closeOnClickOverly="popupData.closeOnClickOverly"
+		    @close="show = !show"
+		>
 			<view class="popup">
-				撒旦
-			</view>
-			<view class="popup">
-				撒旦
-			</view>
-			<view class="popup">
-				撒旦
-			</view>
-			<view class="popup">
-				撒旦
-			</view>
-			<view class="popup">
-				撒旦
-			</view>
-			<view class="popup">
-				撒旦
 			</view>
 		</u-popup>
 	</view>
@@ -33,12 +31,100 @@
 		data() {
 			return {
 				show: false,
-				mode: 'left'
+				popupData: {
+					overlay:true,
+					mode: 'bottom',
+					borderRadis: '',
+					closeable:true,
+					closeOnClickOverly:true
+				},
+				list: [
+					{
+						popupData: {
+							overlay:true,
+							mode: 'top',
+							borderRadis: '',
+							closeable:true,
+							closeOnClickOverly:true
+						},
+						title: "顶部弹出"
+					},
+					{
+						popupData: {
+							overlay:true,
+							mode: 'right',
+							borderRadis: '',
+							closeable:true,
+							closeOnClickOverly:true
+						},
+						title: "右侧弹出"
+					},
+					{
+						popupData: {
+							overlay:true,
+							mode: 'bottom',
+							borderRadis: '',
+							closeable:true,
+							closeOnClickOverly:true
+						},
+						title: "底部弹出"
+					},
+					{
+						popupData: {
+							overlay:true,
+							mode: 'center',
+							borderRadis: '',
+							closeable:true,
+							closeOnClickOverly:true
+						},
+						title: "居中弹出"
+					},
+					{
+						popupData: {
+							overlay:true,
+							mode: 'bottom',
+							borderRadis:30,
+							closeable:true,
+							closeOnClickOverly:true
+						},
+						title: "显示圆角"
+					},
+					{
+						popupData: {
+							overlay:true,
+							mode: 'bottom',
+							borderRadis:30,
+							closeable:true,
+							closeOnClickOverly:false
+						},
+						title: "禁止弹窗关闭"
+					},
+					{
+						popupData: {
+							overlay:true,
+							mode: 'bottom',
+							borderRadis:30,
+							closeable:true,
+							closeOnClickOverly:false
+						},
+						title: "显示关闭按钮"
+					},
+					{
+						popupData: {
+							overlay:false,
+							mode: 'bottom',
+							borderRadis:30,
+							closeable:true,
+							closeOnClickOverly:false
+						},
+						title: "关闭遮罩"
+					},
+				]
 			}
 		},
 		methods: {
-			openPopup(mode) {
-				this.mode = mode
+			openPopup(popupData) {
+				this.popupData = popupData
 				this.show = !this.show
 			}
 		}
@@ -46,7 +132,8 @@
 </script>
 
 <style lang="scss">
-.popup {
-	width: 200px;
-}
+	.popup {
+		width: 200px;
+		height:150px;
+	}
 </style>

@@ -1,8 +1,196 @@
 <template>
 	<view>
-		<u-cell-group>
-			<u-cell title="你好" value="更多" isLink @click="click" large></u-cell>
-		</u-cell-group>
+		<u-gap></u-gap>
+		<view class="u-block">
+			<u-section
+			    title="自定义标题"
+			    :right="false"
+			    class="u-block__section"
+			></u-section>
+			<u-cell-group :border="false">
+				<u-cell :border="false" title="我是自定义标题"></u-cell>
+			</u-cell-group>
+		</view>
+		<u-gap></u-gap>
+
+		<view class="u-block">
+			<u-section
+			    title="自定义标题下方描述信息"
+			    :right="false"
+			    class="u-block__section"
+			></u-section>
+			<u-cell-group :border="false">
+				<u-cell
+				:border="false"
+				    title="我是自定义标题"
+				    label="我是自定义标题下方描述信息"
+				></u-cell>
+			</u-cell-group>
+		</view>
+		<u-gap></u-gap>
+
+		<view class="u-block">
+			<u-section
+			    title="自定义右侧内容"
+			    :right="false"
+			    class="u-block__section"
+			></u-section>
+			<u-cell-group :border="false">
+				<u-cell
+				:border="false"
+				    title="我是自定义标题"
+				    value="更多"
+				></u-cell>
+			</u-cell-group>
+		</view>
+		<u-gap></u-gap>
+
+				 
+	<!-- 	<view class="u-block">
+			<u-section
+			    title="自定义左侧图标"
+			    :right="false"
+				class="u-block__section"
+			></u-section>
+		 <u-cell-group :border="false">
+		 	<u-cell :border="false" title="我是自定义标题" icon="grid"></u-cell>
+		 </u-cell-group>
+		</view>
+		<u-gap></u-gap> -->
+
+		<view class="u-block">
+			<u-section
+			    title="显示下边框"
+			    :right="false"
+			    class="u-block__section"
+			></u-section>
+			<u-cell-group :border="false">
+				<u-cell
+				    title="我是自定义标题"
+				    :border="true"
+				></u-cell>
+			</u-cell-group>
+		</view>
+		<u-gap></u-gap>
+		
+		<view class="u-block">
+			<u-section
+			    title="显示外边框"
+			    :right="false"
+			    class="u-block__section"
+			></u-section>
+			<u-cell-group :border="true">
+				<u-cell
+				:border="false"
+				    title="我是自定义标题"
+				></u-cell>
+			</u-cell-group>
+		</view>
+
+		<view class="u-block">
+			<u-section
+			    title="内容垂直居中"
+			    :right="false"
+			    class="u-block__section"
+			></u-section>
+			<u-cell-group :border="false">
+				<u-cell
+				:border="false"
+				    title="我是自定义标题"
+				    :center="true"
+				></u-cell>
+			</u-cell-group>
+		</view>
+		<u-gap></u-gap>
+
+		<view class="u-block">
+			<u-section
+			    title="展示右侧箭头"
+			    :right="false"
+			    class="u-block__section"
+			></u-section>
+			<u-cell-group :border="false">
+				<u-cell
+				:border="false"
+				    title="我是自定义标题"
+					value="更多"
+				    :isLink="true"
+				></u-cell>
+			</u-cell-group>
+		</view>
+		<u-gap></u-gap>
+
+		<view class="u-block">
+			<u-section
+			    title="自定义右侧箭头方向"
+			    :right="false"
+			    class="u-block__section"
+			></u-section>
+			<u-cell-group :border="false">
+				<u-cell
+				:border="false"
+				    title="我是自定义标题"
+				    :isLink="true"
+				    arrowDirection="down"
+				></u-cell>
+			</u-cell-group>
+		</view>
+		<u-gap></u-gap>
+
+		<view class="u-block">
+			<u-section
+			    title="自定义右侧图标"
+			    :right="false"
+			    class="u-block__section"
+			></u-section>
+			<u-cell-group :border="false">
+				<u-cell
+				:border="false"
+				    title="我是自定义标题"
+				    :isLink="true"
+				    value="编辑"
+				    rightIcon="edit-pen"
+				></u-cell>
+			</u-cell-group>
+		</view>
+		<u-gap></u-gap>
+
+		<view class="u-block">
+			<u-section
+			    title="自定义单位元的大小"
+			    :right="false"
+			    class="u-block__section"
+			></u-section>
+			<u-cell-group :border="false">
+				<u-cell
+				:border="false"
+				    title="我是自定义标题"
+				    :isLink="true"
+				    size="large"
+				></u-cell>
+			</u-cell-group>
+		</view>
+		<u-gap></u-gap>
+		
+		
+		<view class="u-block">
+			<u-section
+			    title="开启点击反馈"
+			    :right="false"
+			    class="u-block__section"
+			></u-section>
+			<u-cell-group :border="false">
+				<u-cell
+				:border="false"
+				    title="我是自定义标题"
+					value="更多"
+				    :isLink="true"
+					:clickable="true"
+					@click="click"
+				></u-cell>
+			</u-cell-group>
+		</view>
+		<u-gap></u-gap>
 	</view>
 </template>
 
@@ -10,7 +198,6 @@
 	export default {
 		data() {
 			return {
-				
 			}
 		},
 		methods: {

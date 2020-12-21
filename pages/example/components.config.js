@@ -28,7 +28,7 @@ export default [{
 			title: 'Layout 布局',
 			title_en: 'Layout',
 		}, {
-			path: '/pages/componentsC/cell/cell',
+			path: '/pages/componentsA/cell/cell',
 			icon: 'cell',
 			title: 'Cell 单元格',
 			title_en: 'Cell',

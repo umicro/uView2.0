@@ -329,7 +329,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.u-page {
 		// background-color: red;
 	}

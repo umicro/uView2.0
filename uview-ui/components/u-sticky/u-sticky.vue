@@ -194,7 +194,7 @@
 				// #endif
 
 				// 如果安卓版本高于8.0，依然认为是支持css sticky的(因为安卓7在某些机型，可能不支持sticky)
-				if (this.$u.os() === 'android' && Number(this.$u.sys().system()) > 8) {
+				if (this.$u.os() === 'android' && Number(this.$u.sys().system) > 8) {
 					this.cssSticky = true
 				}
 

@@ -30,7 +30,7 @@
 			    :size="18"
 			    name="backspace"
 			    :bold="true"
-				color="#303133"
+			    color="#303133"
 			></u-icon>
 		</view>
 		<view
@@ -53,6 +53,15 @@
 </template>
 
 <script>
+	/**
+	 * keyboard 键盘组件
+	 * @description  
+	 * @tutorial  
+	 * @property {Boolean} random 是否打乱键盘的顺序 
+	 * @event {Function} change 点击键盘触发
+	 * @event {Function} backspace 点击退格键触发
+	 * @example 
+	 */
 	export default {
 		name: "u-keyboard",
 		props: {
@@ -198,40 +207,72 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-
+	$u-car-keyboard-background-color: rgb(214, 218, 220) !default;
+	$u-car-keyboard-padding:6px 0 5px !default;
+    $u-car-keyboard-button-width:100% !default;
+	$u-car-keyboard-button-inner-width:64rpx !default;
+	$u-car-keyboard-button-inner-background-color:#FFFFFF !default;
+	$u-car-keyboard-button-inner-height:80rpx !default;
+	$u-car-keyboard-button-inner-box-shadow:0 1px 0px #999992 !default;
+	$u-car-keyboard-button-inner-border-top-left-radius:4px !default;
+	$u-car-keyboard-button-inner-border-top-right-radius:4px !default;
+	$u-car-keyboard-button-inner-border-bottom-left-radius:4px !default;
+	$u-car-keyboard-button-inner-border-bottom-right-radius:4px !default;
+	$u-car-keyboard-button-inner-margin:8rpx 5rpx !default;
+	$u-car-keyboard-button-text-font-size:16px !default;
+	$u-car-keyboard-button-text-color:$u-main-color !default;
+	$u-car-keyboard-center-inner-margin: 0 4rpx !default;
+	$u-car-keyboard-absolute-border-top-left-radius:4px !default;
+	$u-car-keyboard-absolute-border-top-right-radius:4px !default;
+	$u-car-keyboard-absolute-border-bottom-left-radius:4px !default;
+	$u-car-keyboard-absolute-border-bottom-right-radius:4px !default;
+	$u-car-keyboard-absolute-width:135rpx !default;
+	$u-car-keyboard-absolute-height:80rpx !default;
+	$u-car-keyboard-absolute-bottom:9px !default;
+	$u-car-keyboard-absolute-background-color:rgb(190, 192, 200) !default;
+	$u-car-keyboard-absolute-box-shadow:0 1px 0px #999992 !default;
+	$u-car-keyboard-absolute-left:20rpx !default;
+	$u-car-keyboard-lang-font-size:16px !default;
+	$u-car-keyboard-lang-color:$u-main-color !default;
+	$u-car-keyboard-active-color:$u-primary !default;
+	$u-car-keyboard-absolute-right:20rpx !default;
+	$u-car-keyboard-line-font-size:15px !default;
+	$u-car-keyboard-line-color:$u-main-color !default;
+	$u-car-keyboard-line-margin:0 1px !default;
+	$u-car-keyboard-u-hover-class-background-color:rgb(168, 171, 178) !default;
 	.u-keyboard {
 		@include flex(column);
 		justify-content: space-around;
-		background-color: rgb(214, 218, 220);
+		background-color:$u-car-keyboard-background-color;
 		flex-wrap: wrap;
 		align-items: stretch;
-		padding: 6px 0 5px;
+		padding: $u-car-keyboard-padding;
 
 		&__button {
 			@include flex;
 			justify-content: center;
 			flex: 1;
 			/* #ifndef APP-NVUE */
-			width: 100%;
+			width:$u-car-keyboard-button-width;
 			/* #endif */
 
 			&__inner {
 				@include flex;
 				justify-content: center;
 				align-items: center;
-				width: 64rpx;
-				background-color: #FFFFFF;
-				height: 80rpx;
-				box-shadow: 0 1px 0px #999992;
-				border-top-left-radius: 4px;
-				border-top-right-radius: 4px;
-				border-bottom-left-radius: 4px;
-				border-bottom-right-radius: 4px;
-				margin: 8rpx 5rpx;
+				width:$u-car-keyboard-button-inner-width;
+				background-color:$u-car-keyboard-button-inner-background-color ;
+				height:$u-car-keyboard-button-inner-height ;
+				box-shadow:$u-car-keyboard-button-inner-box-shadow ;
+				border-top-left-radius:$u-car-keyboard-button-inner-border-top-left-radius ;
+				border-top-right-radius:$u-car-keyboard-button-inner-border-top-right-radius;
+				border-bottom-left-radius:$u-car-keyboard-button-inner-border-bottom-left-radius ;
+				border-bottom-right-radius:$u-car-keyboard-button-inner-border-bottom-right-radius;
+				margin:$u-car-keyboard-button-inner-margin;
 
 				&__text {
-					font-size: 16px;
-					color: $u-main-color;
+					font-size:$u-car-keyboard-button-text-font-size;
+					color:$u-car-keyboard-button-text-color;
 				}
 			}
 
@@ -239,54 +280,54 @@
 				justify-content: center;
 
 				&__inner {
-					margin: 0 4rpx;
+					margin:$u-car-keyboard-center-inner-margin;
 				}
 			}
 
 			&--absolute {
 				position: absolute;
-				border-top-left-radius: 4px;
-				border-top-right-radius: 4px;
-				border-bottom-left-radius: 4px;
-				border-bottom-right-radius: 4px;
-				width: 135rpx;
-				height: 80rpx;
-				bottom: 9px;
-				background-color: rgb(190, 192, 200);
+				border-top-left-radius:$u-car-keyboard-absolute-border-top-left-radius ;
+				border-top-right-radius:$u-car-keyboard-absolute-border-top-right-radius;
+				border-bottom-left-radius:$u-car-keyboard-absolute-border-bottom-left-radius;
+				border-bottom-right-radius:$u-car-keyboard-absolute-border-bottom-right-radius;
+				width:$u-car-keyboard-absolute-width;
+				height:$u-car-keyboard-absolute-height;
+				bottom:$u-car-keyboard-absolute-bottom;
+				background-color:$u-car-keyboard-absolute-background-color;
 				@include flex;
 				justify-content: center;
 				align-items: center;
-				box-shadow: 0 1px 0px #999992;
+				box-shadow:$u-car-keyboard-absolute-box-shadow;
 			}
 
 			&--absolute-left {
-				left: 20rpx;
+				left:$u-car-keyboard-absolute-left;
 
 				@include flex;
 
 				&__lang {
-					font-size: 16px;
-					color: $u-main-color;
-					
+					font-size:$u-car-keyboard-lang-font-size;
+					color:$u-car-keyboard-lang-color;
+
 					&--active {
-						color: $u-primary;
+						color:$u-car-keyboard-active-color;
 					}
 				}
 			}
 
 			&--absolute-right {
-				right: 20rpx;
+				right:$u-car-keyboard-absolute-right;
 			}
-			
+
 			&__line {
-				font-size: 15px;
-				color: $u-main-color;
-				margin: 0 1px;
+				font-size:$u-car-keyboard-line-font-size;
+				color:$u-car-keyboard-line-color;
+				margin:$u-car-keyboard-line-margin ;
 			}
 		}
 	}
-	
+
 	.u-hover-class {
-		background-color: rgb(168, 171, 178);
+		background-color:$u-car-keyboard-u-hover-class-background-color;
 	}
 </style>

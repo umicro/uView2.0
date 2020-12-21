@@ -52,7 +52,7 @@
 				    @backspace="backspace"
 				    @change="change"
 				    :mode="mode"
-				    :dotEnable="dotEnable"
+				    :dotDisabled="dotDisabled"
 				></u-number-keyboard>
 			</template>
 			<template v-else>
@@ -99,9 +99,9 @@
 				default: uni.$u.props.keyboard.mode
 			},
 			// 是否显示键盘的"."符号
-			dotEnable: {
+			dotDisabled: {
 				type: Boolean,
-				default: uni.$u.props.keyboard.dotEnable
+				default: uni.$u.props.keyboard.dotDisabled
 			},
 			// 是否显示顶部工具条
 			tooltip: {

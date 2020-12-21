@@ -40,9 +40,9 @@
 				default: uni.$u.props.carKeyboard.mode
 			},
 			// 是否显示键盘的"."符号
-			dotEnable: {
+			dotDisabled: {
 				type: Boolean,
-				default: uni.$u.props.carKeyboard.dotEnable
+				default: uni.$u.props.carKeyboard.dotDisabled
 			},
 			// 是否打乱键盘按键的顺序
 			random: {
@@ -62,13 +62,13 @@
 			// 键盘需要显示的内容
 			numList() {
 				let tmp = [];
-				if (!this.dotEnable && this.mode == 'number') {
+				if (this.dotDisabled && this.mode == 'number') {
 					if (!this.random) {
 						return [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 					} else {
 						return this.$u.randomArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
 					}
-				} else if (this.dotEnable && this.mode == 'number') {
+				} else if (!this.dotDisabled && this.mode == 'number') {
 					if (!this.random) {
 						return [1, 2, 3, 4, 5, 6, 7, 8, 9, this.dot, 0];
 					} else {
@@ -86,14 +86,14 @@
 			itemStyle() {
 				return index => {
 					let style = {};
-					if (this.mode == 'number' && !this.dotEnable && index == 9) style.width = '464rpx';
+					if (this.mode == 'number' && this.dotDisabled && index == 9) style.width = '464rpx';
 					return style;
 				};
 			},
 			// 是否让按键显示灰色，只在非乱序&&数字键盘&&且允许点按键的时候
 			btnBgGray() {
 				return index => {
-					if (!this.random && index == 9 && (this.mode != 'number' || (this.mode == 'number' && this.dotEnable))) return true;
+					if (!this.random && index == 9 && (this.mode != 'number' || (this.mode == 'number' && !this.dotDisabled))) return true;
 					else return false;
 				};
 			},
@@ -118,7 +118,7 @@
 			// 获取键盘显示的内容
 			keyboardClick(val) {
 				// 允许键盘显示点模式和触发非点按键时，将内容转为数字类型
-				if (this.dotEnable && val != this.dot && val != this.cardX) val = Number(val);
+				if (!this.dotDisabled && val != this.dot && val != this.cardX) val = Number(val);
 				this.$emit('change', val);
 			}
 		}

@@ -10,7 +10,9 @@
 		margin-bottom:10px;
 	}
 	&__flex{
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
 	}
 }
 

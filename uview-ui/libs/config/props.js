@@ -437,7 +437,7 @@ export default {
 	// 键盘组件
 	keyboard: {
 		mode: 'number',
-		dotEnabled: true,
+		dotDisabled: false,
 		tooltip: true,
 		showTips: true,
 		tips: '',
@@ -456,7 +456,7 @@ export default {
 	// 数字键盘
 	numberKeyboard: {
 		mode: 'number',
-		dotEnable: true,
+		dotDisabled: false,
 		random: false
 	},
 	

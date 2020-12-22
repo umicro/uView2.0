@@ -21,6 +21,7 @@
 		    @close="show = !show"
 		>
 			<view class="popup">
+			我是弹窗内容
 			</view>
 		</u-popup>
 	</view>
@@ -72,18 +73,28 @@
 					{
 						popupData: {
 							overlay:true,
-							mode: 'center',
+							mode: 'left',
 							borderRadis: '',
 							closeable:true,
 							closeOnClickOverly:true
 						},
-						title: "居中弹出"
+						title: "左侧弹出"
 					},
+			{
+				popupData: {
+					overlay:true,
+					mode: 'center',
+					borderRadis: '',
+					closeable:true,
+					closeOnClickOverly:true
+				},
+				title: "居中弹出"
+			},
 					{
 						popupData: {
 							overlay:true,
 							mode: 'bottom',
-							borderRadis:30,
+							borderRadis:60,
 							closeable:true,
 							closeOnClickOverly:true
 						},
@@ -105,7 +116,7 @@
 							mode: 'bottom',
 							borderRadis:30,
 							closeable:true,
-							closeOnClickOverly:false
+							closeOnClickOverly:true
 						},
 						title: "显示关闭按钮"
 					},
@@ -115,7 +126,7 @@
 							mode: 'bottom',
 							borderRadis:30,
 							closeable:true,
-							closeOnClickOverly:false
+							closeOnClickOverly:true
 						},
 						title: "关闭遮罩"
 					},

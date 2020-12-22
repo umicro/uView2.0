@@ -48,7 +48,7 @@
 					<view class="base-body">
 						<view class="base-body__content">
 							<text class="base-body__content__title">香甜枇杷果</text>
-							<text class="base-body__content__introduce"> 味道甘美，形如黄杏。枇杷果柔软多汁，风味酸甜，随着生物科技的发展应用如今的枇杷口味甘甜，肉质细腻。</text>
+								<text class="base-body__content__introduce"> 味道甘美，形如黄杏。枇杷果柔软多汁，风味酸甜，随着生物科技的发展应用如今的枇杷口味甘甜，肉质细腻。</text>
 						</view>
 					</view>
 				</template>
@@ -130,7 +130,6 @@
 				</template>
 			</u-card>
 		</view>
-
 		<!-- 图片位置 -->
 		<view class="card">
 			<u-section
@@ -307,4 +306,5 @@
 			}
 		}
 	}
+ 
 </style>

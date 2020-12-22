@@ -79,7 +79,7 @@
 	 * @property {Boolean} webp 只支持网络资源，只对微信小程序有效（默认 false）
 	 * @property {String Number} duration 搭配fade参数的过渡时间，单位ms（默认 500）
 	 * @property {String} bgColor 背景颜色，用于深色页面加载图片时，为了和背景色融合 (默认 #f3f4f6)
-	 * customStyle  定义需要用到的外部样式
+	 * @property {Object} customStyle  定义需要用到的外部样式
 	 * @event {Function} click 点击图片时触发
 	 * @event {Function} error 图片加载失败时触发
 	 * @event {Function} load 图片加载成功时触发
@@ -201,7 +201,6 @@
 		computed: {
 			wrapStyle() {
 				let style = {};
-				// 如果是配置了圆形，设置50%的圆角，否则按照默认的配置值
 				style.borderRadius = this.shape == 'circle' ? '50%' : this.$u.addUnit(this.borderRadius);
 				// 如果设置圆角，必须要有hidden，否则可能圆角无效
 				style.overflow = this.borderRadius > 0 ? 'hidden' : 'visible';

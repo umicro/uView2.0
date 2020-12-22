@@ -1,6 +1,15 @@
 <template>
-	<view class="">
-		<u-transition mode="fade" :show="show" :custom-style="style">
+	<view class="u-page">
+		<u-cell
+		    :titleStyle="{fontWeight: 500}"
+		    @click="openTransition(item.mode)"
+		    :title="item.title"
+		    v-for="(item, index) in list"
+		    :key="index"
+			isLink
+		>
+		</u-cell>
+		<u-transition :mode="mode" :show="show" :custom-style="style">
 			<view class="transition"></view>
 		</u-transition>
 	</view>
@@ -10,6 +19,7 @@
 	export default {
 		data() {
 			return {
+				mode:'',
 				show: false,
 				style: {
 				    position: 'fixed',
@@ -19,17 +29,55 @@
 				    height: '100px',
 				    backgroundColor: '#1989fa'
 				},
+				list:[
+					{
+						mode:'fade',
+						title:'淡入'
+					},
+					{
+						mode:'fade-up',
+						title:'上滑淡入'
+					},
+					{
+						mode:'fade-down',
+						title:'下滑淡入'
+					},
+					{
+						mode:'fade-left',
+						title:'左滑淡入'
+					},
+					{
+						mode:'fade-right',
+						title:'右滑淡入'
+					},
+					{
+						mode:'slide-up',
+						title:'上滑进入'
+					},
+					{
+						mode:'slide-down',
+						title:'下滑进入'
+					},
+					{
+						mode:'slide-left',
+						title:'左滑进入'
+					},
+					{
+						mode:'slide-right',
+						title:'右滑进入'
+					},
+				]
 			}
 		},
 		mixins: [uni.$u.mixin],
-		onLoad() {
-			this.show = true;
-			setTimeout(() => {
-				this.show = false;
-			}, 1000)
-		},
 		methods: {
-			
+			openTransition(mode){
+				this.mode=mode;
+				this.show = true;
+				setTimeout(() => {
+					this.show = false;
+				}, 1000)
+			}
 		}
 	}
 </script>

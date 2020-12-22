@@ -1,42 +1,212 @@
 <template>
 	<view class="u-page">
-		<u-grid>
-			<u-grid-item @click="click">
-				<u-icon name="map"></u-icon>
-				<text>你好吗</text>
-			</u-grid-item>
-			<u-grid-item>
-				<u-icon name="map"></u-icon>
-				<text>你好吗</text>
-			</u-grid-item>
-			<u-grid-item> 
-				<u-icon name="map"></u-icon>
-				<text>你好吗</text>
-			</u-grid-item>
-			<u-grid-item>
-				<u-icon name="map"></u-icon>
-				<text>你好吗</text>
-			</u-grid-item>
-			<u-grid-item>
-				<u-icon name="map"></u-icon>
-				<text>你好吗</text>
-			</u-grid-item>
-		</u-grid>
+		<u-gap></u-gap>
+		<view class="u-block">
+			<u-section
+			    title="基本案例"
+			    :right="false"
+			    class="u-block__section"
+			></u-section>
+			<u-grid :border="false">
+				<u-grid-item
+				    v-for="(baseListItem,baseListIndex) in baseList"
+				>
+					<u-icon
+					    :customStyle="{paddingTop:20+'rpx'}"
+					    :name="baseListItem.name"
+					    :size="22"
+					></u-icon>
+					<text class="grid-text">{{baseListItem.title}}</text>
+				</u-grid-item>
+			</u-grid>
+		</view>
+		<u-gap></u-gap>
+
+		<view class="u-block">
+			<u-section
+			    title="显示边框"
+			    :right="false"
+			    class="u-block__section"
+			></u-section>
+			<u-grid :border="true">
+				<u-grid-item  :customStyle="{width:220+'rpx',height:220+'rpx'}" v-for="(listItem,listIndex) in list">
+					<u-icon
+					    :customStyle="{paddingTop:20+'rpx'}"
+					    :name="listItem.name"
+					    :size="22"
+					></u-icon>
+					<text class="grid-text">{{listItem.title}}</text>
+				</u-grid-item>
+			</u-grid>
+		</view>
+		<u-gap></u-gap>
+
+		<view class="u-block">
+			<u-section
+			    title="绑定点击事件&自定义列数"
+			    :right="false"
+			    class="u-block__section"
+			></u-section>
+			<u-grid
+			    :border="false"
+			    col="4"
+			>
+				<u-grid-item
+				    @click="clickItem(listItem.title)"
+				    v-for="(listItem,listIndex) in list"
+				>
+					<u-icon
+					    :customStyle="{paddingTop:20+'rpx'}"
+					    :name="listItem.name"
+					    :size="22"
+					></u-icon>
+					<text class="grid-text">{{listItem.title}}</text>
+				</u-grid-item>
+			</u-grid>
+		</view>
+		<u-gap></u-gap>
+
+		<view class="u-block">
+			<u-section
+			    title="可滑动"
+			    :right="false"
+			    class="u-block__section"
+			></u-section>
+			<swiper
+			    :indicator-dots="true"
+			    class="swiper"
+			>
+				<swiper-item>
+					<u-grid :border="true">
+						<u-grid-item
+						    :customStyle="{width:220+'rpx',height:220+'rpx'}"
+						    v-for="(item, index) in swiperList"
+						    :index="index"
+						    :key="index"
+						>
+							<u-icon
+							    :customStyle="{paddingTop:20+'rpx'}"
+							    :name="item"
+							    :size="22"
+							></u-icon>
+							<text class="grid-text">{{ '宫格' + (index + 1) }}</text>
+						</u-grid-item>
+					</u-grid>
+				</swiper-item>
+				<swiper-item>
+					<u-grid :border="true">
+						<u-grid-item
+						:customStyle="{width:220+'rpx',height:220+'rpx'}"
+						    v-for="(item, index) in swiperList"
+						    :index="index + 9"
+						    :key="index"
+						>
+							<u-icon
+							    :customStyle="{paddingTop:20+'rpx'}"
+							    :name="item"
+							    :size="22"
+							></u-icon>
+							<text class="grid-text">{{ '宫格' + (index + 1) }}</text>
+						</u-grid-item>
+					</u-grid>
+				</swiper-item>
+				<swiper-item>
+					<u-grid :border="true">
+						<u-grid-item
+						:customStyle="{width:220+'rpx',height:220+'rpx'}"
+						    v-for="(item, index) in swiperList"
+						    :index="index + 18"
+						    :key="index"
+						>
+							<u-icon
+							    :customStyle="{paddingTop:20+'rpx'}"
+							    :name="item"
+							    :size="22"
+							></u-icon>
+							<text class="grid-text">{{ '宫格' + (index + 1) }}</text>
+						</u-grid-item>
+					</u-grid>
+				</swiper-item>
+			</swiper>
+		</view>
+		<u-gap></u-gap>
+		<u-toast
+		    type="success"
+		    :text="text"
+		    :show="show"
+		/>
 	</view>
 </template>
 
 <script>
 	export default {
-		methods: {
-			click(index) {
-				console.log(index)
+		data() {
+			return {
+				// 是否显示弹窗组件
+				show: false,
+				//弹窗组件显示的文字
+				text: '',
+				baseList: [{
+						name: 'photo',
+						title: '图片'
+					},
+					{
+						name: 'lock',
+						title: '锁头'
+					},
+					{
+						name: 'star',
+						title: '星星'
+					},
+				],
+				list: [{
+						name: 'photo',
+						title: '图片'
+					},
+					{
+						name: 'lock',
+						title: '锁头'
+					},
+					{
+						name: 'star',
+						title: '星星'
+					},
+					{
+						name: 'hourglass',
+						title: '沙漏'
+					},
+					{
+						name: 'home',
+						title: '首页'
+					},
+					{
+						name: 'volume-up',
+						title: '音量'
+					},
+				],
+				swiperList: ['integral', 'kefu-ermai', 'coupon', 'gift', 'scan', 'pause-circle', 'wifi', 'email', 'list'],
 			}
+		},
+		methods: {
+			clickItem(itemTitle) {
+				this.show = true;
+				this.text = itemTitle
+			},
 		}
 	}
 </script>
 
 <style lang="scss">
-	.u-page {
-		padding: 20px;
+	.swiper {
+		height: 720rpx;
+	}
+
+	.grid-text {
+		font-size: 14px;
+		color: #909399;
+		padding: 10rpx 0 20rpx 0rpx;
+		/* #ifndef APP-PLUS */
+		box-sizing: border-box;
+		/* #endif */
 	}
 </style>

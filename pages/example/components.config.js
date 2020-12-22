@@ -385,10 +385,15 @@ export default [{
 			title: 'Avatar 头像',
 			title_en: 'Avatar',
 		}, {
-			path: '/pages/componentsC/link/link',
+			path: '/pages/componentsA/link/link',
 			icon: 'link',
 			title: 'Link 超链接',
 			title_en: 'Link',
+		}, {
+			path: '/pages/componentsA/transition/transition',
+			icon: 'link',
+			title: 'transition 动画',
+			title_en: '动画',
 		}]
 	},
 ]

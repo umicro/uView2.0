@@ -17,7 +17,7 @@
 						style: {
 							backgroundColor: '#323519'
 						}
-					}, {
+				    	}, {
 						text: '收藏',
 						style: {
 							backgroundColor: '#dd524d'

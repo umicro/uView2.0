@@ -1,8 +1,21 @@
 <template>
-	<view>
-		<u-button @click="loading = !loading" type="primary" text="加载"></u-button>
-		<u-loading-page loadingText="uView UI" :loading="loading">
-			<n-image src="/static/uview/common/gray-logo.png" width="125" height="25"></n-image>
+	<view class="u-page">
+	 <u-cell
+	     :titleStyle="{fontWeight: 500}"
+	     @click="openLoadingPage(index)"
+	     :title="item.title"
+	     v-for="(item, index) in list"
+	     :key="index"
+	 	isLink
+	 >
+	 </u-cell> 
+		<u-loading-page
+		 :loadingText="loadingPageData.loadingText" 
+		:image="loadingPageData.image" 
+		:loadingMode="loadingPageData.loadingMode"
+		:bgColor="loadingPageData.bgColor"
+		:loading="loading">
+			<!-- <n-image src="/static/uview/common/gray-logo.png" width="125" height="25"></n-image> -->
 		</u-loading-page>
 	</view>
 </template>
@@ -11,17 +24,71 @@
 	export default {
 		data() {
 			return {
-				loading: true
+				loading:false,
+				loadingPageData:{
+					// 自定义提示内容
+					loadingText:'',
+					// 自定义图片
+					image:'',
+					// 自定义加载动画模式
+					loadingMode:'',
+					// 自定义背景色
+					bgColor:'',
+				},
+				list:[
+					{
+						title:'自定义提示内容'
+					},
+					{
+						title:'自定义图片'
+					},
+					{
+						title:'自定义加载动画模式'
+					},
+					{
+						title:'自定义背景色'
+					},
+				]
 			}
 		},
 		onLoad() {
-			setTimeout(() => {
-				this.loading = false
-			}, 3000)
+			
+		},
+		methods:{
+			openLoadingPage(indexNum){
+				this.loadingPageData={
+					loadingText:'',
+					image:'',
+					loadingMode:'',
+					bgColor:'',
+				}
+				if(indexNum==0){
+					//自定义提示内容
+					this.loadingPageData.loadingMode='spinner'
+					this.loadingPageData.loadingText="你好，uView"
+				}else if(indexNum==1){
+					// 自定义图片
+					this.loadingPageData.image="https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3281904817,1077646612&fm=26&gp=0.jpg"
+				this.loadingPageData.loadingText="自定义图片"
+				} else if(indexNum==2){
+					// 自定义加载动画模式
+					this.loadingPageData.loadingMode='spinner'
+					this.loadingPageData.loadingText="动画"
+				}else if(indexNum==3){
+					// 自定义背景色
+					this.loadingPageData.loadingMode='spinner'
+					this.loadingPageData.bgColor='#19be6b'
+					this.loadingPageData.loadingText="背景色"
+				}
+				this.loading=true
+				setTimeout(() => {
+					this.loading = false
+				}, 3000)
+			}
 		}
 	}
 </script>
 
-<style>
+<style lang="scss">
 
 </style>

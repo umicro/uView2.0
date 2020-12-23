@@ -46,7 +46,7 @@
 	 * @property {String Number} height，图标高度，单位px （默认160）
 	 * @property {Boolean} show  是否显示组件
 	 * @property {String Number} marginTop  组件距离上一个元素之间的距离，默认px单位 （默认 0）
-	 * @property {String} customStyle  定义需要用到的外部样式
+	 * @property {Object} customStyle  定义需要用到的外部样式
 	 * @event {Function} click 点击组件时触发
 	 * @event {Function} close 点击关闭按钮时触发
 	 * @example <u-empty text="所谓伊人，在水一方" mode="list"></u-empty>

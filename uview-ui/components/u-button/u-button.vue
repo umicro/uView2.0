@@ -119,7 +119,7 @@
 	 * @property {String Number} text  按钮文字，之所以通过props传入，是因为slot传入的话（注：nvue中无法控制文字的样式）
 	 * @property {String} icon 按钮图标
 	 * @property {String} color 按钮颜色，支持传入linear-gradient渐变色
-	 * @property {String} customStyle  定义需要用到的外部样式
+	 * @property {Object} customStyle  定义需要用到的外部样式
 	 * @event {Function}  click 非禁止并且非加载中，才能点击
 	 * @event {Function} getphonenumber open-type="getPhoneNumber"时有效
 	 * @event {Function} getuserinfo 用户点击该按钮时，会返回获取到的用户信息，从返回参数的detail中获取到的值同uni.getUserInfo

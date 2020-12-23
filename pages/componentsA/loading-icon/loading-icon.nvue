@@ -1,17 +1,82 @@
 <template>
-	<div>
-		<u-loading-icon text="你好" ></u-loading-icon>
-		<u-loading-icon text="你好"  mode="semicircle"></u-loading-icon>
-		<u-loading-icon text="你好"  mode="circle"></u-loading-icon>
-	</div>
+	<view class="u-page">
+		<u-gap></u-gap>
+		<view class="u-block">
+			<u-section
+			    class="u-block__section"
+			    title="基本案列"
+			    :right="false"
+			></u-section>
+			<u-loading-icon></u-loading-icon>
+		</view>
+		<u-gap></u-gap>
+
+		<view class="u-block">
+			<u-section
+			    class="u-block__section"
+			    title="半圆loading"
+			    :right="false"
+			></u-section>
+			<u-loading-icon
+			    mode="semicircle"
+			></u-loading-icon>
+		</view>
+		<u-gap></u-gap>
+
+		<view class="u-block">
+			<u-section
+			    class="u-block__section"
+			    title="圆loading"
+			    :right="false"
+			></u-section>
+			<u-loading-icon
+			    mode="circle"
+			></u-loading-icon>
+		</view>
+		<u-gap></u-gap>
+		
+		<view class="u-block">
+			<u-section
+			    class="u-block__section"
+			    title="自定义颜色"
+			    :right="false"
+			></u-section>
+			<u-loading-icon color="#19be6b"></u-loading-icon>
+		</view>
+		<u-gap></u-gap>
+		
+		<view class="u-block">
+			<u-section
+			    class="u-block__section"
+			    title="自定义文字"
+			    :right="false"
+			></u-section>
+			<u-loading-icon :vertical="true"  text="加载中"></u-loading-icon>
+		</view>
+		<u-gap></u-gap>
+		
+		<view class="u-block">
+			<u-section
+			    class="u-block__section"
+			    title="自定义大小"
+			    :right="false"
+			></u-section>
+			<u-loading-icon size="40" textSize="16" :vertical="true"  text="加载中"></u-loading-icon>
+		</view>
+		<u-gap></u-gap>
+	</view>
 </template>
 
 <script>
 	export default {
-		
+		data() {
+			return {
+
+			}
+		}
 	}
 </script>
 
-<style>
+<style lang="scss">
 
 </style>

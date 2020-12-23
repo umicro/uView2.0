@@ -15,7 +15,7 @@
 	 * @property {Boolean} hairline 是否显示细线条(默认true)
 	 * @property {String} margin 线条与上下左右元素的间距，字符串形式，如"30rpx"
 	 * @property {String} dashed 是否虚线，true-虚线，false-实线 (默认 false)
-	 * customStyle  定义需要用到的外部样式
+	 * @property {Object} customStyle  定义需要用到的外部样式
 	 * @example <u-line color="red"></u-line>
 	 */
 	export default {

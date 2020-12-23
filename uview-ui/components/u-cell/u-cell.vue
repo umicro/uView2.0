@@ -50,7 +50,7 @@
 	 * @property {Object} titleStyle  标题的样式
 	 * @property {String} size 单位元的大小，可选值为large
 	 * @property {Boolean} stop 点击cell是否阻止事件传播 (默认 true)
-	 * @property {String} customStyle  定义需要用到的外部样式
+	 * @property {Object} customStyle  定义需要用到的外部样式
 	 * @event {Function} click	点击cell列表时触发
 	 * @example 该组件需要搭配cell-group组件使用，见官方文档示例
 	 */

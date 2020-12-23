@@ -33,6 +33,7 @@
 	 * @property {String}  loadingMode  加载动画的模式，circle-圆形，spinner-花朵形，semicircle-半圆形 （默认 circle）
 	 * @property {Boolean}  loading  是否加载中 （默认 false）
 	 * @property {String}  bgColor   背景色 （默认 #fff）
+	 * @property {Object}  customStyle 自定义样式
 	 * @example <u-loading mode="circle"></u-loading>
 	 */
 	export default {

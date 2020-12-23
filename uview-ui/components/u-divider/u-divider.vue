@@ -40,7 +40,7 @@
 	 * @property {Number String} textSize 文本大小 （默认 14）
 	 * @property {String} textColor 文本颜色 （默认 #909399）
 	 * @property {String} lineColor  线条颜色 （默认 #dcdfe6）
-	 * @property {String} customStyle  定义需要用到的外部样式
+	 * @property {Object} customStyle  定义需要用到的外部样式
 	 * @event {Function} click divider组件被点击时触发
 	 * @example <u-divider :color="color">锦瑟无端五十弦</u-divider>
 	 */

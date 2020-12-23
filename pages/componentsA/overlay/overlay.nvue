@@ -1,14 +1,47 @@
 <template>
-	<view>
-		<u-button text="打开Overlay" @click="show = !show"></u-button>
-		<u-overlay :show="show" @click="clickHandler"></u-overlay>
-		<u-button text="嵌入内容" @click="showSlot = !showSlot">
-		</u-button>
-		<u-overlay :show="showSlot" @click="showSlot = !showSlot">
-			<view class="overlay-wrap">
-				<view class="overlay-wrap__box"></view>
-			</view>
-		</u-overlay>
+	<view class="u-page">
+		<u-gap></u-gap>
+		<view class="u-block">
+			<u-section
+			    class="u-block__section"
+			    title="基本案列"
+			    :right="false"
+			></u-section>
+			 <u-button color="linear-gradient(to right, #4bb0ff, #6149f6)" text="显示遮罩" @click="show = !show"></u-button>
+			 <u-overlay :show="show" @click="clickHandler"></u-overlay>
+		</view>
+		<u-gap></u-gap>
+		
+		<view class="u-block">
+			<u-section
+			    class="u-block__section"
+			    title="嵌入内容"
+			    :right="false"
+			></u-section>
+			<u-button color="linear-gradient(to right, #70e1f5, #076585)" text="嵌入内容" @click="showSlot = !showSlot">
+			</u-button>
+			<u-overlay :show="showSlot" @click="showSlot = !showSlot">
+				<view class="overlay-wrap">
+					<view class="overlay-wrap__box"></view>
+				</view>
+			</u-overlay>
+		</view>
+		<u-gap></u-gap>
+		
+		<view class="u-block">
+			<u-section
+			    class="u-block__section"
+			    title="自定义遮罩透明度"
+			    :right="false"
+			></u-section>
+			<u-button color="linear-gradient(to right, #00bf8f, #001510)" text="设置透明度" @click="showOpcatiy = !showOpcatiy">
+			</u-button>
+			<u-overlay opacity=".85" :show="showOpcatiy" @click="showOpcatiy = !showOpcatiy">
+			</u-overlay>
+		</view>
+		<u-gap></u-gap>
+		
+	
 	</view>
 </template>
 
@@ -17,7 +50,8 @@
 		data() {
 			return {
 				show: false,
-				showSlot: true
+				showSlot:false,
+				showOpcatiy:false
 			}
 		},
 		onLoad() {
@@ -43,7 +77,7 @@
 		&__box {
 			width: 100px;
 			height: 100px;
-			background-color: $u-primary;
+			background-color:#70e1f5;
 		}
 	}
 </style>

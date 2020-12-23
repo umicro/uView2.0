@@ -1,7 +1,7 @@
 <template>
 	<view class="u-page">
 		<u-swipe-action>
-			<u-swipe-action-item :disabled="false" :rightOptions="options"  :leftOptions="options">
+			<u-swipe-action-item show="right" :disabled="false" :rightOptions="options"  :leftOptions="options">
 				<text>娃哈哈了吗</text>
 			</u-swipe-action-item>
 		</u-swipe-action>

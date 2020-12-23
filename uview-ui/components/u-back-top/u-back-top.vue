@@ -41,7 +41,7 @@
 	 * @property {Number String}  right  返回顶部按钮到右边的距离，单位rpx （默认 20）
 	 * @property {Number String}  zIndex 层级   （默认 9）
 	 * @property {Object<Object>}  iconStyle 图标的样式，对象形式   （默认 {color: '#909399',fontSize: '19px'}）
-	 * @property {String} customStyle  定义需要用到的外部样式
+	 * @property {Object} customStyle  定义需要用到的外部样式
 	 * @example <u-back-top :scrollTop="scrollTop"></u-back-top>
 	 */
 	export default {

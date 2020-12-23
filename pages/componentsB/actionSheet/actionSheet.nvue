@@ -1,30 +1,67 @@
 <template>
 	<view>
-		<u-button
-		    @click="show = true"
-		    text="弹出"
-		></u-button>
-		<u-action-sheet
-		    :show="show"
-		    @close="close"
-		    :description="description"
-		    :title="title"
-			:actions="actions"
-			:cancelText="cancelText"
-			openType="getUserInfo"
-			@getuserinfo="getuserinfo"
-			:closeOnClickOverly="true"
-		>
+		<u-gap></u-gap>
+		<view class="u-block">
+			<u-section
+			    class="u-block__section"
+			    title="基本案列"
+			    :right="false"
+			></u-section>
+			<u-button
+			    @click="show = true"
+			    color="linear-gradient(to right, #4bb0ff, #6149f6)"
+			    text="显示上拉菜单"
+			></u-button>
+			<u-action-sheet
+			    :show="show"
+			    @close="close"
+			    :description="description"
+			    :title="title"
+			    :actions="actions"
+			    :cancelText="cancelText"
+			    openType="getUserInfo"
+			    @getuserinfo="getuserinfo"
+			    :closeOnClickOverly="false"
+			>
+			</u-action-sheet>
+		</view>
+		<u-gap></u-gap>
 
-		</u-action-sheet>
+
+		<view class="u-block">
+			<u-section
+			    class="u-block__section"
+			    title="点击遮罩关闭"
+			    :right="false"
+			></u-section>
+			<u-button
+			    @click="Overlyshow = true"
+			    color="linear-gradient(to right,  #00bf8f, #001510)"
+			    text="点击遮罩关闭"
+			></u-button>
+			<u-action-sheet
+			    :show="Overlyshow"
+			    @close="closeOverly"
+			    :description="description"
+			    :title="title"
+			    :actions="actions"
+			    :cancelText="cancelText"
+			    openType="getUserInfo"
+			    @getuserinfo="getuserinfo"
+			    :closeOnClickOverly="true"
+			>
+			</u-action-sheet>
+		</view>
+		<u-gap></u-gap>
 	</view>
 </template>
-
 <script>
 	export default {
 		data() {
 			return {
-				show: true,
+				show: false,
+				// 点击遮罩关闭
+				Overlyshow:false,
 				title: '我们很明显能感知到',
 				description: '',
 				actions: [{
@@ -44,15 +81,21 @@
 			}
 		},
 		onLoad() {
-			
+
 		},
 		methods: {
 			getuserinfo(e) {
 				// console.log(e);
 			},
+			// 点击关闭
 			close() {
 				this.show = !this.show
-			}
+			
+			},
+			//点击遮罩关闭的关闭事件
+			closeOverly(){
+				this.Overlyshow = !this.Overlyshow
+				}
 		}
 	}
 </script>

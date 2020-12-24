@@ -1,10 +1,38 @@
 <template>
 	<view class="u-page">
-		<u-swipe-action>
-			<u-swipe-action-item show="right" :disabled="false" :rightOptions="options"  :leftOptions="options">
-				<text>娃哈哈了吗</text>
-			</u-swipe-action-item>
-		</u-swipe-action>
+		<u-gap></u-gap>
+		<view>
+			<u-section
+			    title="演示案例"
+			    :right="false"
+			    class="u-block"
+			></u-section>
+			<u-swipe-action>
+				<u-swipe-action-item
+				    v-for="(item,index) in swipeItemList"
+				    :key="index"
+				    :rightOptions="item.options"
+				    :disabled="index==2"
+				    :autoClose="index==1"
+				>
+					<view class="swipe-action">
+						<view class="swipe-action__content">
+							<text class="swipe-action__content__text">{{item.name}}</text>
+						</view>
+						<u-line></u-line>
+					</view>
+				</u-swipe-action-item>
+				<u-swipe-action-item :leftOptions="options">
+					<view class="swipe-action">
+						<view class="swipe-action__content">
+							<text class="swipe-action__content__text">左边滑出</text>
+						</view>
+						<u-line></u-line>
+					</view>
+				</u-swipe-action-item>
+			</u-swipe-action>
+		</view>
+		<u-gap></u-gap>
 	</view>
 </template>
 
@@ -12,22 +40,90 @@
 	export default {
 		data() {
 			return {
+				showText: '当前状态：关',
+				showStatus: false,
 				options: [{
-						text: '确认删除',
+						text: '置顶',
 						style: {
-							backgroundColor: '#323519'
+							backgroundColor: 'rgb(199, 199, 199)'
 						}
-				    	}, {
-						text: '收藏',
+					},
+					{
+						text: '取消',
 						style: {
-							backgroundColor: '#dd524d'
+							backgroundColor: '#2979ff'
+						}
+					}, {
+						text: '删除',
+						style: {
+							backgroundColor: 'rgb(255, 58, 52)'
 						}
 					}
-				]
+				],
+				swipeItemList: [{
+						options: [{
+							text: '置顶',
+							style: {
+								backgroundColor: 'rgb(199, 199, 199)'
+							}
+						}, ],
+						name: '基本内容'
+					},
+					{
+						options: [{
+								text: '置顶',
+								style: {
+									backgroundColor: 'rgb(199, 199, 199)'
+								}
+							},
+							{
+								text: '取消',
+								style: {
+									backgroundColor: '#2979ff'
+								}
+							}, {
+								text: '删除',
+								style: {
+									backgroundColor: 'rgb(255, 58, 52)'
+								}
+							},
+						],
+						name: '打开当前组件，关闭其他组件'
+					},
+					{
+						options: [{
+								text: '置顶',
+								style: {
+									backgroundColor: 'rgb(199, 199, 199)'
+								}
+							},
+							{
+								text: '取消',
+								style: {
+									backgroundColor: '#2979ff'
+								}
+							}
+						],
+						name: '禁止滑动'
+					},
+
+				],
 			}
-		}
+		},
+		methods: {}
 	}
 </script>
 
-<style>
+<style lang="scss">
+	.swipe-action {
+		&__content {
+			padding: 10px 0;
+
+			&__text {
+				font-size: 14px;
+				color: $u-main-color;
+				padding-left: 20px;
+			}
+		}
+	}
 </style>

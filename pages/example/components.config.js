@@ -292,7 +292,7 @@ export default [{
 			title: 'Tabbar 底部导航栏',
 			title_en: 'Tabbar',
 		},{
-			path: '/pages/componentsA/backtop/backtop',
+			path: '/pages/componentsA/back-top/back-top',
 			icon: 'backTop',
 			title: 'BackTop 返回顶部',
 			title_en: 'BackTop',

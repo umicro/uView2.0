@@ -48,7 +48,7 @@
 					<view class="base-body">
 						<view class="base-body__content">
 							<text class="base-body__content__title">香甜枇杷果</text>
-								<text class="base-body__content__introduce"> 味道甘美，形如黄杏。枇杷果柔软多汁，风味酸甜，随着生物科技的发展应用如今的枇杷口味甘甜，肉质细腻。</text>
+							<text class="base-body__content__introduce"> 味道甘美，形如黄杏。枇杷果柔软多汁，风味酸甜，随着生物科技的发展应用如今的枇杷口味甘甜，肉质细腻。</text>
 						</view>
 					</view>
 				</template>
@@ -209,7 +209,7 @@
 				showFoot: false,
 				border: false,
 				borderRadius: 6,
-				src: "http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg"
+				src:'http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg'
 
 			}
 		},
@@ -306,5 +306,4 @@
 			}
 		}
 	}
- 
 </style>

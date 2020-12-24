@@ -20,7 +20,7 @@
 			<u-gap bgColor="#2979ff"></u-gap>
 		</view>
 		<u-gap></u-gap>
-		
+
 		<view class="u-block">
 			<u-section
 			    title="自定义高度"
@@ -30,24 +30,17 @@
 			<u-gap height="40"></u-gap>
 		</view>
 		<u-gap></u-gap>
-		
-		<view class="u-block">
-			<u-section
-			    title="自定义高度"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-gap height="40"></u-gap>
-		</view>
-		<u-gap></u-gap>
-		
+
 		<view class="u-block">
 			<u-section
 			    title="自定义上下边距"
 			    :right="false"
 			    class="u-block__section"
 			></u-section>
-			<u-gap marginTop="20" marginBottom="20"></u-gap>
+			<u-gap
+			    marginTop="20"
+			    marginBottom="20"
+			></u-gap>
 		</view>
 		<u-gap></u-gap>
 	</view>

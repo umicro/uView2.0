@@ -12,7 +12,7 @@
 		>
 			<u-button
 			    v-if="mode=='car'"
-				text="查看更多商品"
+			    text="查看更多商品"
 			>
 			</u-button>
 		</u-empty>
@@ -22,8 +22,14 @@
 		    :title="item.title"
 		    v-for="(item, index) in list"
 		    :key="index"
-			isLink
+		    isLink
 		>
+			<image
+			    slot="icon"
+			    class="u-cell-icon"
+			    :src="item.iconUrl"
+			    mode="widthFix"
+			></image>
 		</u-cell>
 	</view>
 </template>
@@ -58,47 +64,59 @@
 					search: baseUrl + 'search.png',
 					wifi: baseUrl + 'wifi.png',
 				},
-
 				list: [{
 						imgName: 'car',
 						title: '购物车为空(同时传入slot)',
+						iconUrl: require('@/static/common/image/empty/car.png')
 					},
 					{
 						imgName: 'data',
 						title: '数据为空',
+						iconUrl: require('@/static/common/image/empty/data.png')
 					}, {
 						imgName: 'comment',
 						title: '评论为空',
+						iconUrl: require('@/static/common/image/empty/comment.png')
 					}, {
 						imgName: 'coupon',
 						title: '没有优惠券',
+						iconUrl: require('@/static/common/image/empty/coupon.png')
 					}, {
 						imgName: 'history',
 						title: '无历史记录',
+						iconUrl: require('@/static/common/image/empty/history.png')
 					}, {
 						imgName: 'list',
 						title: '列表为空',
+						iconUrl: require('@/static/common/image/empty/list.png')
 					}, {
 						imgName: 'message',
 						title: '消息列表为空',
+						iconUrl: require('@/static/common/image/empty/message.png')
 					}, {
 						imgName: 'news',
 						title: '无新闻列表',
+						iconUrl: require('@/static/common/image/empty/news.png')
 					}, {
 						imgName: 'order',
 						title: '订单为空',
+						iconUrl: require('@/static/common/image/empty/order.png')
 					}, {
 						imgName: 'page',
 						title: '页面不存在',
+						iconUrl: require('@/static/common/image/empty/page.png')
 					}, {
 						imgName: 'permission',
 						title: '无权限',
+						iconUrl: require('@/static/common/image/empty/permission.png')
 					}, {
 						imgName: 'search',
 						title: '没有搜索结果',
+						iconUrl: require('@/static/common/image/empty/search.png')
 					}, {
 						imgName: 'wifi',
 						title: '没有WiFi',
+						iconUrl: require('@/static/common/image/empty/wifi.png')
 					},
 				]
 
@@ -108,16 +126,20 @@
 			//点击改变图片
 			openImg(imgName) {
 				// this.mode = this.imgList[imgName]
-				this.mode=imgName;
+				this.mode = imgName;
 			}
 		}
 	}
 </script>
 
-<style lang="scss" scoped>
+<style
+    lang="scss"
+    scoped
+>
 	.u-page {
 		padding: 20px 0px;
-		&__top-box{
+
+		&__top-box {
 			padding-left: 20px;
 		}
 	}

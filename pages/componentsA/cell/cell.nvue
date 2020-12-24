@@ -1,192 +1,102 @@
 <template>
 	<view>
 		<u-gap></u-gap>
-		<view class="u-block">
+		<view>
 			<u-section
-			    title="自定义标题"
+			    title="基础用法"
 			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-cell-group :border="false">
-				<u-cell :border="false" title="我是自定义标题"></u-cell>
-			</u-cell-group>
-		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="自定义标题下方描述信息"
-			    :right="false"
-			    class="u-block__section"
+			    class="u-block"
 			></u-section>
 			<u-cell-group :border="false">
 				<u-cell
-				:border="false"
-				    title="我是自定义标题"
-				    label="我是自定义标题下方描述信息"
-				></u-cell>
-			</u-cell-group>
-		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="自定义右侧内容"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-cell-group :border="false">
-				<u-cell
-				:border="false"
-				    title="我是自定义标题"
-				    value="更多"
-				></u-cell>
-			</u-cell-group>
-		</view>
-		<u-gap></u-gap>
-
-				 
-	<!-- 	<view class="u-block">
-			<u-section
-			    title="自定义左侧图标"
-			    :right="false"
-				class="u-block__section"
-			></u-section>
-		 <u-cell-group :border="false">
-		 	<u-cell :border="false" title="我是自定义标题" icon="grid"></u-cell>
-		 </u-cell-group>
-		</view>
-		<u-gap></u-gap> -->
-
-		<view class="u-block">
-			<u-section
-			    title="显示下边框"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-cell-group :border="false">
-				<u-cell
-				    title="我是自定义标题"
 				    :border="true"
-				></u-cell>
-			</u-cell-group>
-		</view>
-		<u-gap></u-gap>
-		
-		<view class="u-block">
-			<u-section
-			    title="显示外边框"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-cell-group :border="true">
-				<u-cell
-				:border="false"
-				    title="我是自定义标题"
-				></u-cell>
-			</u-cell-group>
-		</view>
-
-		<view class="u-block">
-			<u-section
-			    title="内容垂直居中"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-cell-group :border="false">
-				<u-cell
-				:border="false"
-				    title="我是自定义标题"
+				    title="单元格居中"
 				    :center="true"
 				></u-cell>
-			</u-cell-group>
-		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="展示右侧箭头"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-cell-group :border="false">
 				<u-cell
-				:border="false"
-				    title="我是自定义标题"
-					value="更多"
-				    :isLink="true"
+				    :border="true"
+				    title="单元格"
+				    value="内容"
+				></u-cell>
+				<u-cell
+				    :border="false"
+				    title="单元格"
+				    value="内容"
+				    label="描述信息"
 				></u-cell>
 			</u-cell-group>
 		</view>
 		<u-gap></u-gap>
 
-		<view class="u-block">
+		<view>
 			<u-section
-			    title="自定义右侧箭头方向"
+			    title="单元格大小"
 			    :right="false"
-			    class="u-block__section"
+			    class="u-block"
 			></u-section>
 			<u-cell-group :border="false">
 				<u-cell
-				:border="false"
-				    title="我是自定义标题"
-				    :isLink="true"
-				    arrowDirection="down"
+				    :border="true"
+				    title="单元格"
+				    value="内容"
 				></u-cell>
-			</u-cell-group>
-		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="自定义右侧图标"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-cell-group :border="false">
 				<u-cell
-				:border="false"
-				    title="我是自定义标题"
-				    :isLink="true"
-				    value="编辑"
-				    rightIcon="edit-pen"
-				></u-cell>
-			</u-cell-group>
-		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="自定义单位元的大小"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-cell-group :border="false">
-				<u-cell
-				:border="false"
-				    title="我是自定义标题"
-				    :isLink="true"
+				    :border="false"
+				    title="单元格"
+				    value="内容"
+				    label="描述信息"
 				    size="large"
 				></u-cell>
 			</u-cell-group>
 		</view>
 		<u-gap></u-gap>
-		
-		
-		<view class="u-block">
+
+
+		<view>
 			<u-section
-			    title="开启点击反馈"
+			    title="自定义图标"
 			    :right="false"
-			    class="u-block__section"
+			    class="u-block"
 			></u-section>
 			<u-cell-group :border="false">
 				<u-cell
-				:border="false"
-				    title="我是自定义标题"
-					value="更多"
+				    :border="true"
+				    title="单元格"
 				    :isLink="true"
-					:clickable="true"
-					@click="click"
+				    value="编辑"
+				    rightIcon="edit-pen"
+				></u-cell>
+				<u-cell
+				    :border="true"
+				    :isLink="true"
+				    title="单元格"
+				    arrowDirection="left"
+				></u-cell>
+				<u-cell
+				    :border="true"
+				    title="单元格(箭头朝下)"
+				    :isLink="true"
+				    arrowDirection="down"
+				></u-cell>
+				<u-cell
+				    :border="false"
+				    title="单元格"
+				    icon="grid"
+				></u-cell>
+			</u-cell-group>
+		</view>
+		<u-gap></u-gap>
+
+		<view class="u-block">
+			<u-section
+			    title="显示上下边框"
+			    :right="false"
+			    class="u-block__section"
+			></u-section>
+			<u-cell-group :border="true">
+				<u-cell
+				    title="单元格"
+				    :border="true"
 				></u-cell>
 			</u-cell-group>
 		</view>
@@ -197,8 +107,7 @@
 <script>
 	export default {
 		data() {
-			return {
-			}
+			return {}
 		},
 		methods: {
 			click() {

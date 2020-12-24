@@ -31,7 +31,7 @@
 		    :bottom="backTopData.bottom"
 		    :icon="backTopData.icon"
 		    :mode="backTopData.mode"
-			:iconStyle="backTopData.iconStyle"
+		    :iconStyle="backTopData.iconStyle"
 		    :scrollTop="scrollTop"
 		></u-back-top>
 	</view>
@@ -47,7 +47,7 @@
 					icon: 'arrow-upward',
 					bottom: 100,
 					customStyle: {},
-					iconStyle:{},
+					iconStyle: {},
 				},
 				scrollTop: 0,
 				// 被自定义的样式
@@ -83,14 +83,14 @@
 		methods: {
 			checkboxChange(n) {
 				if (n.includes('显示方形')) {
-					this.backTopData.mode = "square"
+					this.backTopData.mode = 'square'
 				} else {
-					this.backTopData.mode = "circle"
+					this.backTopData.mode = 'circle'
 				}
 				if (n.includes('自定义图标')) {
-					this.backTopData.icon = "arrow-up"
+					this.backTopData.icon = 'arrow-up'
 				} else {
-					this.backTopData.icon = "arrow-upward"
+					this.backTopData.icon = 'arrow-upward'
 				}
 				if (n.includes('自定义距离')) {
 					this.backTopData.bottom = 300
@@ -101,12 +101,12 @@
 					this.backTopData.customStyle = {
 						backgroundColor: '#2979ff',
 					}
-					this.backTopData.iconStyle={
+					this.backTopData.iconStyle = {
 						color: '#ffffff'
 					}
 				} else {
 					this.backTopData.customStyle = {}
-					this.backTopData.iconStyle={}
+					this.backTopData.iconStyle = {}
 				}
 			}
 		}

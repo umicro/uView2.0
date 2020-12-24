@@ -8,7 +8,7 @@
 			    class="u-block__section"
 			></u-section>
 			<n-image
-			:showLoading="true"
+			    :showLoading="true"
 			    class="nImage"
 			    src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1588620919,359805583&fm=26&gp=0.jpg"
 			    width="100px"
@@ -114,6 +114,7 @@
 
 <style lang="scss">
 	@import "@/uview-ui/libs/css/components.scss";
+
 	.nImage {
 		@include flex;
 		margin: 40rpx 0;

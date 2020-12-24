@@ -1,21 +1,27 @@
 <template>
 	<view class="u-page">
-	 <u-cell
-	     :titleStyle="{fontWeight: 500}"
-	     @click="openLoadingPage(index)"
-	     :title="item.title"
-	     v-for="(item, index) in list"
-	     :key="index"
-	 	isLink
-	 >
-	 </u-cell> 
+		<u-cell
+		    :titleStyle="{fontWeight: 500}"
+		    @click="openLoadingPage(index)"
+		    :title="item.title"
+		    v-for="(item, index) in list"
+		    :key="index"
+		    isLink
+		>
+			<image
+			    slot="icon"
+			    class="u-cell-icon"
+			    :src="item.iconUrl"
+			    mode="widthFix"
+			></image>
+		</u-cell>
 		<u-loading-page
-		 :loadingText="loadingPageData.loadingText" 
-		:image="loadingPageData.image" 
-		:loadingMode="loadingPageData.loadingMode"
-		:bgColor="loadingPageData.bgColor"
-		:loading="loading">
-			<!-- <n-image src="/static/uview/common/gray-logo.png" width="125" height="25"></n-image> -->
+		    :loadingText="loadingPageData.loadingText"
+		    :image="loadingPageData.image"
+		    :loadingMode="loadingPageData.loadingMode"
+		    :bgColor="loadingPageData.bgColor"
+		    :loading="loading"
+		>
 		</u-loading-page>
 	</view>
 </template>
@@ -24,71 +30,78 @@
 	export default {
 		data() {
 			return {
-				loading:false,
-				loadingPageData:{
+				loading: false,
+				loadingPageData: {
 					// 自定义提示内容
-					loadingText:'',
+					loadingText: '',
 					// 自定义图片
-					image:'',
+					image: '',
 					// 自定义加载动画模式
-					loadingMode:'',
+					loadingMode: '',
 					// 自定义背景色
-					bgColor:'',
+					bgColor: '',
 				},
-				list:[
-					{
-						title:'自定义提示内容'
+				list: [{
+						title: '自定义提示内容',
+						iconUrl: require('@/static/common/image/loading-page/promptContent.png'),
 					},
 					{
-						title:'自定义图片'
+						title: '自定义图片',
+						iconUrl: require('@/static/common/image/loading-page/customPicture.png'),
 					},
 					{
-						title:'自定义加载动画模式'
+						title: '自定义加载动画模式',
+
+						iconUrl: require('@/static/common/image/loading-page/customMode.png'),
 					},
 					{
-						title:'自定义背景色'
+						title: '自定义背景色',
+						iconUrl: require('@/static/common/image/loading-page/customBgColor.png'),
 					},
 				]
 			}
 		},
 		onLoad() {
-			
+
 		},
-		methods:{
-			openLoadingPage(indexNum){
-				this.loadingPageData={
-					loadingText:'',
-					image:'',
-					loadingMode:'',
-					bgColor:'',
+		methods: {
+			openLoadingPage(indexNum) {
+				this.loadingPageData = {
+					loadingText: '',
+					image: '',
+					loadingMode: '',
+					bgColor: '',
 				}
-				if(indexNum==0){
+				if (indexNum == 0) {
 					//自定义提示内容
-					this.loadingPageData.loadingMode='spinner'
-					this.loadingPageData.loadingText="你好，uView"
-				}else if(indexNum==1){
+					this.loadingPageData.bgColor = 'rgb(0,0,0,.6)'
+					this.loadingPageData.loadingMode = 'spinner'
+					this.loadingPageData.loadingText = "你好，uView"
+				} else if (indexNum == 1) {
 					// 自定义图片
-					this.loadingPageData.image="https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3281904817,1077646612&fm=26&gp=0.jpg"
-				this.loadingPageData.loadingText="自定义图片"
-				} else if(indexNum==2){
+					this.loadingPageData.bgColor = 'rgb(0,0,0,.6)'
+					this.loadingPageData.image =
+						"https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3281904817,1077646612&fm=26&gp=0.jpg"
+					this.loadingPageData.loadingText = "自定义图片"
+				} else if (indexNum == 2) {
 					// 自定义加载动画模式
-					this.loadingPageData.loadingMode='spinner'
-					this.loadingPageData.loadingText="动画"
-				}else if(indexNum==3){
+					this.loadingPageData.bgColor = 'rgb(0,0,0,.6)'
+					this.loadingPageData.loadingMode = 'spinner'
+					this.loadingPageData.loadingText = "动画"
+				} else if (indexNum == 3) {
 					// 自定义背景色
-					this.loadingPageData.loadingMode='spinner'
-					this.loadingPageData.bgColor='#19be6b'
-					this.loadingPageData.loadingText="背景色"
+					this.loadingPageData.loadingMode = 'spinner'
+					this.loadingPageData.bgColor = '#19be6b'
+					this.loadingPageData.loadingText = "背景色"
 				}
-				this.loading=true
+				this.loading = true
 				setTimeout(() => {
 					this.loading = false
-				}, 3000)
+				}, 1500)
 			}
 		}
 	}
 </script>
 
 <style lang="scss">
-
 </style>

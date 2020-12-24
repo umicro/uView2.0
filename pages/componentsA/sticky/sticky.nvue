@@ -38,6 +38,7 @@
 	.u-page {
 		height: 2000px;
 	}
+
 	.box {
 		/* #ifndef APP-PLUS */
 		width: 100%;

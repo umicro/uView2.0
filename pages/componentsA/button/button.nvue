@@ -249,14 +249,14 @@
 				    class="button-layout__item"
 				    text="成功按钮"
 				    size="normal"
-					color="linear-gradient(to right, #4bb0ff, #6149f6)"
+				    color="linear-gradient(to right, #4bb0ff, #6149f6)"
 				></u-button>
 
 				<u-button
 				    class="button-layout__item"
 				    text="危险按钮"
 				    size="normal"
-					color="linear-gradient(to bottom, pink, red)"
+				    color="linear-gradient(to bottom, pink, red)"
 				></u-button>
 				<u-button
 				    class="button-layout__item"
@@ -268,41 +268,40 @@
 		</view>
 		<u-gap></u-gap>
 
-	<view class="u-block">
-		<u-section
-		    class="u-block__section"
-		    title="自定义大小"
-		    :right="false"
-		></u-section>
-		<view class="button-layout">
-			<u-button
-			    class="button-layout__item"
-			    text="成功按钮"
-			    size="normal"
-			    type="success"
-			></u-button>
-			<u-button
-			    class="button-layout__item"
-			    text="危险按钮"
-			    size="default"
-			    type="error"
-				 
-			></u-button>
-			<u-button
-			    class="button-layout__item"
-			    text="主要按钮"
-			    size="medium"
-			    type="primary"
-			></u-button>
-			<u-button
-			    class="button-layout__item"
-			    text="警告按钮"
-			    size="mini"
-			    type="warning"
-			></u-button>
+		<view class="u-block">
+			<u-section
+			    class="u-block__section"
+			    title="自定义大小"
+			    :right="false"
+			></u-section>
+			<view class="button-layout">
+				<u-button
+				    class="button-layout__item"
+				    text="成功按钮"
+				    size="normal"
+				    type="success"
+				></u-button>
+				<u-button
+				    class="button-layout__item"
+				    text="危险按钮"
+				    size="default"
+				    type="error"
+				></u-button>
+				<u-button
+				    class="button-layout__item"
+				    text="主要按钮"
+				    size="medium"
+				    type="primary"
+				></u-button>
+				<u-button
+				    class="button-layout__item"
+				    text="警告按钮"
+				    size="mini"
+				    type="warning"
+				></u-button>
+			</view>
 		</view>
-	</view>
-	<u-gap></u-gap>
+		<u-gap></u-gap>
 	</view>
 </template>
 

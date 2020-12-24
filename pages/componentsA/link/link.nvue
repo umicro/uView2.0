@@ -7,47 +7,68 @@
 			    :right="false"
 			    class="u-block__section"
 			></u-section>
-			 <u-link href="http://www.baidu.com" text="点击我进行跳转"></u-link>
+			<u-link
+			    href="http://www.baidu.com"
+			    text="点击我进行跳转"
+			></u-link>
 		</view>
 		<u-gap></u-gap>
-		
+
 		<view class="u-block">
 			<u-section
 			    title="自定义颜色"
 			    :right="false"
 			    class="u-block__section"
 			></u-section>
-			 <u-link href="http://www.baidu.com" color="#19be6b" text="点击我进行跳转"></u-link>
+			<u-link
+			    href="http://www.baidu.com"
+			    color="#19be6b"
+			    text="点击我进行跳转"
+			></u-link>
 		</view>
 		<u-gap></u-gap>
-		
+
 		<view class="u-block">
 			<u-section
 			    title="显示下划线"
 			    :right="false"
 			    class="u-block__section"
 			></u-section>
-			 <u-link href="http://www.baidu.com" :underLine="true" text="点击我进行跳转"></u-link>
+			<u-link
+			    href="http://www.baidu.com"
+			    :underLine="true"
+			    text="点击我进行跳转"
+			></u-link>
 		</view>
 		<u-gap></u-gap>
-		
+
 		<view class="u-block">
 			<u-section
 			    title="自定义下划线颜色"
 			    :right="false"
 			    class="u-block__section"
 			></u-section>
-			 <u-link href="http://www.baidu.com" lineColor="#19be6b" color="#19be6b" :underLine="true" text="点击我进行跳转"></u-link>
+			<u-link
+			    href="http://www.baidu.com"
+			    lineColor="#19be6b"
+			    color="#19be6b"
+			    :underLine="true"
+			    text="点击我进行跳转"
+			></u-link>
 		</view>
 		<u-gap></u-gap>
-		
+
 		<view class="u-block">
 			<u-section
 			    title="自定义链接内容"
 			    :right="false"
 			    class="u-block__section"
 			></u-section>
-			 <u-link href="http://www.baidu.com" :underLine="true" text="我是自定义链接内容"></u-link>
+			<u-link
+			    href="http://www.baidu.com"
+			    :underLine="true"
+			    text="我是自定义链接内容"
+			></u-link>
 		</view>
 		<u-gap></u-gap>
 	</view>
@@ -57,11 +78,11 @@
 	export default {
 		data() {
 			return {
-				
+
 			}
 		},
 		methods: {
-			
+
 		}
 	}
 </script>

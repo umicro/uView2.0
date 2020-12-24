@@ -8,6 +8,12 @@
 		    isLink
 		    :key="index"
 		>
+			<image
+			    slot="icon"
+			    class="u-cell-icon"
+			    :src="item.iconUrl"
+			    mode="widthFix"
+			></image>
 		</u-cell>
 		<u-keyboard
 		    :mode="keyData.mode"
@@ -29,19 +35,24 @@
 					random: false,
 				},
 				list: [{
-						title: '车牌号键盘'
+						title: '车牌号键盘',
+						iconUrl: require('@/static/common/image/keyboard/car.png')
 					},
 					{
-						title: '数字键盘'
+						title: '数字键盘',
+						iconUrl: require('@/static/common/image/keyboard/number.png')
 					},
 					{
-						title: '身份证键盘'
+						title: '身份证键盘',
+						iconUrl: require('@/static/common/image/keyboard/IdCard.png')
 					},
 					{
-						title: '显示键盘的"."符号'
+						title: '显示键盘的"."符号',
+						iconUrl: require('@/static/common/image/keyboard/dot.png')
 					},
 					{
-						title: '打乱键盘按键的顺序'
+						title: '打乱键盘按键的顺序',
+						iconUrl: require('@/static/common/image/keyboard/order.png')
 					},
 				],
 				show: false
@@ -56,17 +67,17 @@
 					random: false,
 				}
 				if (indexNum == 0) {
-					this.keyData.mode = ""
+					this.keyData.mode = ''
 				} else if (indexNum == 1) {
-					this.keyData.mode = "number"
+					this.keyData.mode = 'number'
 				} else if (indexNum == 2) {
-					this.keyData.mode = "card"
+					this.keyData.mode = 'card'
 				} else if (indexNum == 3) {
 					this.keyData.dotEnable = true
 				} else if (indexNum == 4) {
-					this.keyData.mode = "number"
+					this.keyData.mode = 'number'
 					this.keyData.random = true
-				}  
+				}
 				this.show = true
 			}
 

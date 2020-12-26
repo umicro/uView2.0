@@ -27,11 +27,13 @@
 		</view>
 		<u-gap></u-gap>
 		<u-back-top
+		    :right="backTopData.right"
 		    :customStyle="backTopData.customStyle"
 		    :bottom="backTopData.bottom"
 		    :icon="backTopData.icon"
 		    :mode="backTopData.mode"
 		    :iconStyle="backTopData.iconStyle"
+			:duration="backTopData.duration"
 		    :scrollTop="scrollTop"
 		></u-back-top>
 	</view>
@@ -48,6 +50,7 @@
 					bottom: 100,
 					customStyle: {},
 					iconStyle: {},
+					right:20
 				},
 				scrollTop: 0,
 				// 被自定义的样式
@@ -68,6 +71,10 @@
 						name: '自定义样式',
 						disabled: false
 					},
+					{
+						name:'自定义返回顶部滚动时间',
+						disabled:false
+					}
 				]
 			}
 		},
@@ -85,15 +92,16 @@
 				if (n.includes('显示方形')) {
 					this.backTopData.mode = 'square'
 				} else {
-					this.backTopData.mode = 'circle'
+					this.backTopData.mode = "circle"
 				}
 				if (n.includes('自定义图标')) {
-					this.backTopData.icon = 'arrow-up'
+					this.backTopData.icon = "arrow-up"
 				} else {
-					this.backTopData.icon = 'arrow-upward'
+					this.backTopData.icon = "arrow-upward"
 				}
 				if (n.includes('自定义距离')) {
 					this.backTopData.bottom = 300
+					this.backTopData.right=20
 				} else {
 					this.backTopData.bottom = 100
 				}
@@ -108,6 +116,11 @@
 					this.backTopData.customStyle = {}
 					this.backTopData.iconStyle = {}
 				}
+				if (n.includes('自定义返回顶部滚动时间')) {
+					this.backTopData.duration =1500 
+				} else {
+					this.backTopData.duration =1000
+				}
 			}
 		}
 	}
@@ -115,6 +128,6 @@
 
 <style lang="scss">
 	.u-page {
-		height: 12000px;
+		height: 1200px;
 	}
 </style>

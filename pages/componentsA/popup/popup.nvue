@@ -5,8 +5,8 @@
 		    @click="openPopup(item.popupData)"
 		    :title="item.title"
 		    v-for="(item, index) in list"
-		    isLink
 		    :key="index"
+			 isLink
 		>
 			<image
 			    slot="icon"
@@ -54,7 +54,7 @@
 							closeOnClickOverly: true
 						},
 						title:'顶部弹出',
-						iconUrl: require('@/static/common/image/popup/modeTop.png')
+						iconUrl:'/static/common/image/popup/modeTop.png'
 					},
 					{
 						popupData: {
@@ -65,7 +65,7 @@
 							closeOnClickOverly: true
 						},
 						title: '右侧弹出',
-						iconUrl: require('@/static/common/image/popup/modeRight.png')
+						iconUrl:'/static/common/image/popup/modeRight.png'
 					},
 					{
 						popupData: {
@@ -76,7 +76,7 @@
 							closeOnClickOverly: true
 						},
 						title: '底部弹出',
-						iconUrl: require('@/static/common/image/popup/modeBottom.png')
+						iconUrl:'/static/common/image/popup/modeBottom.png'
 					},
 					{
 						popupData: {
@@ -87,7 +87,7 @@
 							closeOnClickOverly: true
 						},
 						title: '左侧弹出',
-						iconUrl: require('@/static/common/image/popup/modeLeft.png')
+						iconUrl:'/static/common/image/popup/modeLeft.png'
 					},
 					{
 						popupData: {
@@ -98,7 +98,7 @@
 							closeOnClickOverly: true
 						},
 						title: '居中弹出',
-						iconUrl: require('@/static/common/image/popup/modeCenter.png')
+						iconUrl:'/static/common/image/popup/modeCenter.png'
 					},
 					{
 						popupData: {
@@ -109,18 +109,19 @@
 							closeOnClickOverly: true
 						},
 						title: '显示圆角',
-						iconUrl: require('@/static/common/image/popup/showRadis.png')
+						iconUrl:'/static/common/image/popup/showRadis.png'
 					},
 					{
 						popupData: {
 							overlay: true,
+							
 							mode: 'bottom',
 							borderRadis: 30,
 							closeable: true,
 							closeOnClickOverly: false
 						},
 						title: '禁止弹窗关闭',
-						iconUrl: require('@/static/common/image/popup/noClose.png')
+						iconUrl:'/static/common/image/popup/noClose.png'
 					},
 					{
 						popupData: {
@@ -131,7 +132,7 @@
 							closeOnClickOverly: true
 						},
 						title: '显示关闭按钮',
-						iconUrl: require('@/static/common/image/popup/showCloseBtn.png')
+						iconUrl:'/static/common/image/popup/showCloseBtn.png'
 					},
 					{
 						popupData: {
@@ -142,7 +143,7 @@
 							closeOnClickOverly: true
 						},
 						title: '关闭遮罩',
-						iconUrl: require('@/static/common/image/popup/closeOverly.png')
+						iconUrl:'/static/common/image/popup/closeOverly.png'
 					},
 				]
 			}
@@ -158,7 +159,7 @@
 
 <style lang="scss">
 	.popup {
-		width: 200px;
-		height: 150px;
+		width:400rpx;
+		height:300rpx;
 	}
 </style>

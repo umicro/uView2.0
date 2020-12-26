@@ -46,15 +46,15 @@
 				showOpcatiy: false,
 				list: [{
 						title: '基本案列',
-						iconUrl: require('@/static/common/image/overlay/baseCases.png')
+						iconUrl:'/static/common/image/overlay/baseCases.png'
 					},
 					{
 						title: '嵌入内容',
-						iconUrl: require('@/static/common/image/overlay/embeddedContent.png')
+						iconUrl:'/static/common/image/overlay/embeddedContent.png'
 					},
 					{
 						title: '设置透明度',
-						iconUrl: require('@/static/common/image/overlay/setTransparency.png')
+						iconUrl:'/static/common/image/overlay/setTransparency.png'
 					},
 				]
 			}
@@ -87,8 +87,8 @@
 		flex: 1;
 
 		&__box {
-			width: 100px;
-			height: 100px;
+			width:200rpx;
+			height:200rpx;
 			background-color: #70e1f5;
 		}
 	}

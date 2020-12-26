@@ -199,6 +199,7 @@
 				    size="normal"
 				    loading
 				    type="success"
+					loadingSize="25"
 				></u-button>
 				<u-button
 				    class="button-layout__item"
@@ -214,7 +215,7 @@
 		<view class="u-block">
 			<u-section
 			    class="u-block__section"
-			    title="按钮图标"
+			    title="按钮图标&按钮形状"
 			    :right="false"
 			></u-section>
 			<view class="button-layout">
@@ -222,17 +223,17 @@
 				    class="button-layout__item"
 				    text="按钮图标"
 				    size="normal"
-				    icon="map"
+				    icon="home"
 				    plain
-				    type="success"
+				    type="warning"
 				></u-button>
 				<u-button
 				    class="button-layout__item"
 				    text="按钮图标"
 				    size="normal"
-				    icon="home"
 				    plain
-				    type="warning"
+					shape="circle"
+				    type="success"
 				></u-button>
 			</view>
 		</view>
@@ -324,11 +325,12 @@
 
 <style lang="scss">
 	@import "@/uview-ui/libs/css/components.scss";
-
+      .u-page{
+		  
+	  }
 	.button-layout {
 		@include flex;
 		flex-wrap: wrap;
-
 		&__item {
 			margin: 16rpx 16rpx 0rpx 16rpx;
 		}

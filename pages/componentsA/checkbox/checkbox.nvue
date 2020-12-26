@@ -107,6 +107,7 @@
 			    placement="column"
 			    @change="checkboxChange"
 			    activeColor="#19be6b"
+				
 			>
 				<u-checkbox
 				    :customStyle="{marginBottom: '8px'}"
@@ -323,17 +324,14 @@
 		},
 		methods: {
 			checkboxChange(n) {
-				console.log(n);
+				
 			}
 		}
 	}
 </script>
 
-<style
-    lang="scss"
-    scoped
->
+<style lang="scss">
 	.u-page {
-		// background-color: red;
+		 
 	}
 </style>

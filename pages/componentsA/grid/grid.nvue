@@ -8,7 +8,7 @@
 			    class="u-block__section"
 			></u-section>
 			<u-grid :border="false">
-				<u-grid-item v-for="(baseListItem,baseListIndex) in baseList">
+				<u-grid-item v-for="(baseListItem,baseListIndex) in baseList" :key="index">
 					<u-icon
 					    :customStyle="{paddingTop:20+'rpx'}"
 					    :name="baseListItem.name"
@@ -30,6 +30,7 @@
 				<u-grid-item
 				    :customStyle="{width:220+'rpx',height:220+'rpx'}"
 				    v-for="(listItem,listIndex) in list"
+					:key="listIndex"
 				>
 					<u-icon
 					    :customStyle="{paddingTop:20+'rpx'}"
@@ -55,6 +56,7 @@
 				<u-grid-item
 				    @click="clickItem(listItem.title)"
 				    v-for="(listItem,listIndex) in list"
+					:key="listIndex"
 				>
 					<u-icon
 					    :customStyle="{paddingTop:20+'rpx'}"
@@ -201,7 +203,6 @@
 	.swiper {
 		height: 720rpx;
 	}
-
 	.grid-text {
 		font-size: 14px;
 		color: #909399;

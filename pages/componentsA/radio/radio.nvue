@@ -312,24 +312,19 @@
 	}
 </script>
 
-<style
-    lang="scss"
-    scoped
->
+<style lang="scss">
 	.u-page {
-
-		// background-color: red;
 		&__style {
 			font-size: 16px;
 			color: rgb(96, 98, 102);
-			margin-bottom: 10px;
+			margin-bottom:20rpx;
 			font-weight: bold;
 		}
 
 		&__title {
 			font-size: 16px;
 			color: rgb(96, 98, 102);
-			margin-bottom: 10px;
+			margin-bottom:20rpx;
 		}
 	}
 </style>

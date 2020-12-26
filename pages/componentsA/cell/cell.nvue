@@ -50,8 +50,7 @@
 			</u-cell-group>
 		</view>
 		<u-gap></u-gap>
-
-
+		
 		<view>
 			<u-section
 			    title="自定义图标"
@@ -78,11 +77,11 @@
 				    :isLink="true"
 				    arrowDirection="down"
 				></u-cell>
-				<u-cell
+			<!-- 	<u-cell
 				    :border="false"
 				    title="单元格"
 				    icon="grid"
-				></u-cell>
+				></u-cell> -->
 			</u-cell-group>
 		</view>
 		<u-gap></u-gap>

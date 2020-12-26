@@ -66,12 +66,12 @@
 				cancelText: '取消',
 				list: [{
 						title: '显示上拉菜单',
-						iconUrl: require('@/static/common/image/actionSheet/pullUp.png')
+						iconUrl:'/static/common/image/actionSheet/pullUp.png'
 
 					},
 					{
 						title: '点击关闭遮罩',
-						iconUrl: require('@/static/common/image/actionSheet/closeSheet.png')
+						iconUrl:'/static/common/image/actionSheet/closeSheet.png'
 					}
 				]
 			}

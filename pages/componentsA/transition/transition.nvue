@@ -42,47 +42,47 @@
 				list: [{
 						mode: 'fade',
 						title: '淡入',
-						iconUrl: require('@/static/common/image/transition/fade.png')
+						iconUrl:'/static/common/image/transition/fade.png'
 					},
 					{
 						mode: 'fade-up',
 						title: '上滑淡入',
-						iconUrl: require('@/static/common/image/transition/fadeUp.png')
+						iconUrl:'/static/common/image/transition/fadeUp.png'
 					},
 					{
 						mode: 'fade-down',
 						title: '下滑淡入',
-						iconUrl: require('@/static/common/image/transition/fadeDown.png')
+						iconUrl:'/static/common/image/transition/fadeDown.png'
 					},
 					{
 						mode: 'fade-left',
 						title: '左滑淡入',
-						iconUrl: require('@/static/common/image/transition/fadeLeft.png')
+						iconUrl:'/static/common/image/transition/fadeLeft.png'
 					},
 					{
 						mode: 'fade-right',
 						title: '右滑淡入',
-						iconUrl: require('@/static/common/image/transition/fadeRight.png')
+						iconUrl:'/static/common/image/transition/fadeRight.png'
 					},
 					{
 						mode: 'slide-up',
 						title: '上滑进入',
-						iconUrl: require('@/static/common/image/transition/slideUp.png')
+						iconUrl:'/static/common/image/transition/slideUp.png'
 					},
 					{
 						mode: 'slide-down',
 						title: '下滑进入',
-						iconUrl: require('@/static/common/image/transition/slideDown.png')
+						iconUrl:'/static/common/image/transition/slideDown.png'
 					},
 					{
 						mode: 'slide-left',
 						title: '左滑进入',
-						iconUrl: require('@/static/common/image/transition/slideLeft.png')
+						iconUrl:'/static/common/image/transition/slideLeft.png'
 					},
 					{
 						mode: 'slide-right',
 						title: '右滑进入',
-						iconUrl: require('@/static/common/image/transition/slideRight.png')
+						iconUrl:'/static/common/image/transition/slideRight.png'
 					},
 				]
 			}
@@ -100,11 +100,8 @@
 	}
 </script>
 
-<style
-    lang="scss"
-    scoped
->
+<style lang="scss">
 	.transition {
-		background-color: blue;
+		background-color:$u-primary;
 	}
 </style>

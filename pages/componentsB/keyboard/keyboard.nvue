@@ -5,8 +5,8 @@
 		    @click="openKeyboard(index)"
 		    :title="item.title"
 		    v-for="(item, index) in list"
-		    isLink
 		    :key="index"
+		    isLink
 		>
 			<image
 			    slot="icon"
@@ -36,23 +36,23 @@
 				},
 				list: [{
 						title: '车牌号键盘',
-						iconUrl: require('@/static/common/image/keyboard/car.png')
+						iconUrl: '/static/common/image/keyboard/car.png'
 					},
 					{
 						title: '数字键盘',
-						iconUrl: require('@/static/common/image/keyboard/number.png')
+						iconUrl: '/static/common/image/keyboard/number.png'
 					},
 					{
 						title: '身份证键盘',
-						iconUrl: require('@/static/common/image/keyboard/IdCard.png')
+						iconUrl: '/static/common/image/keyboard/IdCard.png'
 					},
 					{
 						title: '显示键盘的"."符号',
-						iconUrl: require('@/static/common/image/keyboard/dot.png')
+						iconUrl: '/static/common/image/keyboard/dot.png'
 					},
 					{
 						title: '打乱键盘按键的顺序',
-						iconUrl: require('@/static/common/image/keyboard/order.png')
+						iconUrl: '/static/common/image/keyboard/order.png'
 					},
 				],
 				show: false

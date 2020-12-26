@@ -110,11 +110,7 @@
 	}
 </script>
 
-<style
-    lang="scss"
-    scoped
->
+<style lang="scss">
 	.u-divider {
-		// display: flex;
 	}
 </style>

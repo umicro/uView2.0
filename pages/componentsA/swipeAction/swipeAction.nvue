@@ -117,12 +117,11 @@
 <style lang="scss">
 	.swipe-action {
 		&__content {
-			padding: 10px 0;
-
+			padding: 20rpx 0;
 			&__text {
 				font-size: 14px;
 				color: $u-main-color;
-				padding-left: 20px;
+				padding-left:40rpx;
 			}
 		}
 	}

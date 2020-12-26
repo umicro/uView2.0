@@ -43,20 +43,20 @@
 				},
 				list: [{
 						title: '自定义提示内容',
-						iconUrl: require('@/static/common/image/loading-page/promptContent.png'),
+						iconUrl:'/static/common/image/loading-page/promptContent.png',
 					},
 					{
 						title: '自定义图片',
-						iconUrl: require('@/static/common/image/loading-page/customPicture.png'),
+						iconUrl:'/static/common/image/loading-page/customPicture.png',
 					},
 					{
 						title: '自定义加载动画模式',
 
-						iconUrl: require('@/static/common/image/loading-page/customMode.png'),
+						iconUrl:'/static/common/image/loading-page/customMode.png',
 					},
 					{
 						title: '自定义背景色',
-						iconUrl: require('@/static/common/image/loading-page/customBgColor.png'),
+						iconUrl:'/static/common/image/loading-page/customBgColor.png',
 					},
 				]
 			}

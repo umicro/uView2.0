@@ -38,18 +38,16 @@
 	.u-page {
 		height: 2000px;
 	}
-
 	.box {
 		/* #ifndef APP-PLUS */
 		width: 100%;
 		/* #endif */
-		height: 40px;
+		height:80rpx;
 		background-color: #2979ff;
 		color: #fff;
-		padding: 10px;
+		padding: 20rpx;
 		text-align: center;
-		border-radius: 10px;
-
+		border-radius: 20rpx;
 		&__text {
 			color: #fff;
 			font-size: 14px;

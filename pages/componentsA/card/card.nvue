@@ -221,22 +221,20 @@
 
 <style lang="scss">
 	@import "@/uview-ui/libs/css/components.scss";
-
 	.u-page {
 		background-color: $u-bg-color;
-		padding-top: 20px;
+		padding-top: 40rpx;
 	}
 
 	.card {
 		padding: 1px;
 
 		&__section {
-			padding-left: 10px;
+			padding-left: 20rpx;
 		}
 
 		&__body-top {
 			height: 200rpx;
-			width: 100%;
 		}
 	}
 
@@ -250,7 +248,7 @@
 			background-color: hotpink;
 
 			&__content {
-				margin-left: 20px;
+				margin-left: 40rpx;
 
 				&__title {
 					font-size: 14px;

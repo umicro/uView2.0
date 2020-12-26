@@ -31,6 +31,7 @@
 				result: [],
 			}
 		},
+		mixins: [uni.$u.mixin],
 		onLoad() {
 			this.getResult();
 		},

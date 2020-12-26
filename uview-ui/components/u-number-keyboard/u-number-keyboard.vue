@@ -61,6 +61,7 @@
 				default: uni.$u.props.carKeyboard.random
 			}
 		},
+		mixins: [uni.$u.mixin],
 		data() {
 			return {
 				backspace: 'backspace', // 退格键内容

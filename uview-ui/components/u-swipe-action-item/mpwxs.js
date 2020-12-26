@@ -10,14 +10,6 @@ export default {
 			btnRight: "[]"
 		}
 	},
-	// computed: {
-	// 	pos() {
-	// 		return JSON.stringify(this.position)
-	// 	},
-	// 	btn() {
-	// 		return JSON.stringify(this.button)
-	// 	}
-	// },
 	watch: {
 		buttonGroup: {
 			handler(newVal) {

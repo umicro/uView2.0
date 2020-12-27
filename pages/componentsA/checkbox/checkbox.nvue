@@ -82,7 +82,7 @@
 			    v-model="checkboxValue4"
 			    placement="column"
 			    @change="checkboxChange"
-			    :labelDisabled='true'
+			    :labelDisabled="true"
 			>
 				<u-checkbox
 				    :customStyle="{marginBottom: '8px'}"
@@ -106,7 +106,8 @@
 			    v-model="checkboxValue5"
 			    placement="column"
 			    @change="checkboxChange"
-			    activeColor='#19be6b'
+			    activeColor="#19be6b"
+				
 			>
 				<u-checkbox
 				    :customStyle="{marginBottom: '8px'}"
@@ -160,7 +161,7 @@
 				    :key="index"
 				    :label="item.name"
 				    :name="item.name"
-					 iconPlacement="right"
+				    iconPlacement="right"
 				>
 				</u-checkbox>
 			</u-checkbox-group>
@@ -251,8 +252,8 @@
 					}
 				],
 				// u-checkbox-group的v-model绑定的值如果设置为某个checkbox的name，就会被默认选中
-				checkboxValue4: ['黄庭坚','欧阳修','王安石'],
-				
+				checkboxValue4: ['黄庭坚', '欧阳修', '王安石'],
+
 				//自定义颜色数据
 				checkboxList5: [{
 						name: '红色',
@@ -273,7 +274,7 @@
 				],
 				// u-checkbox-group的v-model绑定的值如果设置为某个checkbox的name，就会被默认选中
 				checkboxValue5: ['绿色'],
-							
+
 				//横向排列形式数据
 				checkboxList6: [{
 						name: '小鸟',
@@ -293,8 +294,8 @@
 					}
 				],
 				// u-checkbox-group的v-model绑定的值如果设置为某个checkbox的name，就会被默认选中
-				checkboxValue6: ['游艇','轮船'],	
-							
+				checkboxValue6: ['游艇', '轮船'],
+
 				//横向两端排列形式
 				checkboxList7: [{
 						name: '汽车',
@@ -314,7 +315,7 @@
 					}
 				],
 				// u-checkbox-group的v-model绑定的值如果设置为某个checkbox的name，就会被默认选中
-				checkboxValue7: ['汽车','蒸汽机'],
+				checkboxValue7: ['汽车', '蒸汽机'],
 			}
 
 		},
@@ -323,14 +324,14 @@
 		},
 		methods: {
 			checkboxChange(n) {
-				console.log(n);
+				
 			}
 		}
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	.u-page {
-		// background-color: red;
+		 
 	}
 </style>

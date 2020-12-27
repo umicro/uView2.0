@@ -1,35 +1,58 @@
 <template>
-	<view>
-		<u-button
-		    @click="show = true"
-		    text="弹出"
-		></u-button>
+	<view class="u-page">
+		<u-cell
+		    :titleStyle="{fontWeight: 500}"
+		    @click="openSheet(index)"
+		    :title="item.title"
+		    v-for="(item, index) in list"
+		    :key="index"
+		    isLink
+		>
+			<image
+			    slot="icon"
+			    class="u-cell-icon"
+			    :src="item.iconUrl"
+			    mode="widthFix"
+			></image>
+		</u-cell>
 		<u-action-sheet
 		    :show="show"
 		    @close="close"
 		    :description="description"
 		    :title="title"
-			:actions="actions"
-			:cancelText="cancelText"
-			openType="getUserInfo"
-			@getuserinfo="getuserinfo"
-			:closeOnClickOverly="true"
+		    :actions="actions"
+		    :cancelText="cancelText"
+		    openType="getUserInfo"
+		    @getuserinfo="getuserinfo"
+		    :closeOnClickOverly="false"
 		>
-
+		</u-action-sheet>
+		<u-action-sheet
+		    :show="Overlyshow"
+		    @close="closeOverly"
+		    :description="description"
+		    :title="title"
+		    :actions="actions"
+		    :cancelText="cancelText"
+		    openType="getUserInfo"
+		    @getuserinfo="getuserinfo"
+		    :closeOnClickOverly="true"
+		>
 		</u-action-sheet>
 	</view>
 </template>
-
 <script>
 	export default {
 		data() {
 			return {
-				show: true,
+				show: false,
+				// 点击遮罩关闭
+				Overlyshow: false,
 				title: '我们很明显能感知到',
 				description: '',
 				actions: [{
 						name: '着色选项',
-						color: '#ee0a24'
+						color: '#ee0a24',
 					},
 					{
 						loading: true
@@ -40,19 +63,32 @@
 						subname: '你说啥呢'
 					},
 				],
-				cancelText: '取消'
+				cancelText: '取消',
+				list: [{
+						title: '显示上拉菜单',
+						iconUrl:'/static/common/image/actionSheet/pullUp.png'
+
+					},
+					{
+						title: '点击关闭遮罩',
+						iconUrl:'/static/common/image/actionSheet/closeSheet.png'
+					}
+				]
 			}
 		},
 		onLoad() {
-			
+
 		},
 		methods: {
-			getuserinfo(e) {
-				// console.log(e);
+			// 点击cell，判断显示那个功能
+			openSheet(indexNum) {
+				if (indexNum == 0) {
+					this.show = !this.show
+				} else if (indexNum == 1) {
+					this.Overlyshow = !this.Overlyshow
+				}
 			},
-			close() {
-				this.show = !this.show
-			}
+
 		}
 	}
 </script>

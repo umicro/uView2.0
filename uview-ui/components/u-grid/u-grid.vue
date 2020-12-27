@@ -16,7 +16,7 @@
 	 * @property {String Number} col 宫格的列数（默认3）
 	 * @property {Boolean} border 是否显示宫格的边框（默认true）
 	 * @property {Boolean} align 宫格对齐方式，表现为数量少的时候，靠左，居中，还是靠右 （默认 left）
-	 * @property {String} customStyle  定义需要用到的外部样式
+	 * @property {Object} customStyle  定义需要用到的外部样式
 	 * @event {Function} click 点击宫格触发
 	 * @example <u-grid :col="3" @click="click"></u-grid>
 	 */

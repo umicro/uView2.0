@@ -17,7 +17,7 @@
 			    :right="false"
 			    class="u-block__section"
 			></u-section>
-			<u-line color='#2979ff'></u-line>
+			<u-line color="#2979ff"></u-line>
 		</view>
 		<u-gap></u-gap>
 
@@ -27,7 +27,7 @@
 			    :right="false"
 			    class="u-block__section"
 			></u-section>
-			<u-line length='200'></u-line>
+			<u-line length="200"></u-line>
 		</view>
 		<u-gap></u-gap>
 
@@ -37,7 +37,11 @@
 			    :right="false"
 			    class="u-block__section"
 			></u-section>
-			<u-line length="30" color='#2979ff'  direction="col"></u-line>
+			<u-line
+			    length="30"
+			    color="#2979ff"
+			    direction="col"
+			></u-line>
 		</view>
 		<u-gap></u-gap>
 
@@ -47,7 +51,7 @@
 			    :right="false"
 			    class="u-block__section"
 			></u-section>
-			<u-line :hairline='true'></u-line>
+			<u-line :hairline="true"></u-line>
 		</view>
 		<u-gap></u-gap>
 
@@ -57,7 +61,7 @@
 			    :right="false"
 			    class="u-block__section"
 			></u-section>
-			<u-line margin='20'></u-line>
+			<u-line margin="20"></u-line>
 		</view>
 		<u-gap></u-gap>
 
@@ -67,7 +71,10 @@
 			    :right="false"
 			    class="u-block__section"
 			></u-section>
-			<u-line color='#2979ff' :dashed='true'></u-line>
+			<u-line
+			    color="#2979ff"
+			    :dashed="true"
+			></u-line>
 		</view>
 		<u-gap></u-gap>
 
@@ -87,6 +94,6 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
 </style>

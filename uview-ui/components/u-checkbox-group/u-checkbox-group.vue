@@ -25,7 +25,7 @@
 	 * @property {String} labelColor label的字体颜色 （默认 #303133）
 	 * @property {String} iconColor 图标颜色 （默认 #ffffff）
 	 * @property {String Number} iconSize  图标的大小，单位px （默认 12）
-	 * @property {String} customStyle  定义需要用到的外部样式
+	 * @property {Object} customStyle  定义需要用到的外部样式
 	 * @property {Boolean} borderBottom  placement为row时，是否显示下边框
 	 * @event {Function} change 任一个checkbox状态发生变化时触发，回调为一个对象
 	 * @event {Function} input 修改通过v-model绑定的值时触发，回调为一个对象

@@ -1,0 +1,133 @@
+<template>
+	<view
+	    class="u-page"
+	    ref="u-back-top"
+	>
+		<u-gap></u-gap>
+		<view class="u-block">
+			<u-section
+			    title="自定义backTop"
+			    :right="false"
+			></u-section>
+			<text class="u-block__title">请选出您想要定义的backTop样式</text>
+			<u-checkbox-group
+			    v-model="checkboxValue"
+			    placement="column"
+			    @change="checkboxChange"
+			>
+				<u-checkbox
+				    :customStyle="{marginBottom: '8px'}"
+				    v-for="(item, index) in checkboxList"
+				    :key="index"
+				    :label="item.name"
+				    :name="item.name"
+				>
+				</u-checkbox>
+			</u-checkbox-group>
+		</view>
+		<u-gap></u-gap>
+		<u-back-top
+		    :right="backTopData.right"
+		    :customStyle="backTopData.customStyle"
+		    :bottom="backTopData.bottom"
+		    :icon="backTopData.icon"
+		    :mode="backTopData.mode"
+		    :iconStyle="backTopData.iconStyle"
+			:duration="backTopData.duration"
+		    :scrollTop="scrollTop"
+		></u-back-top>
+	</view>
+</template>
+
+<script>
+	// const dom = weex.requireModule('dom')
+	export default {
+		data() {
+			return {
+				backTopData: {
+					mode: 'circle',
+					icon: 'arrow-upward',
+					bottom: 100,
+					customStyle: {},
+					iconStyle: {},
+					right:20
+				},
+				scrollTop: 0,
+				// 被自定义的样式
+				checkboxValue: ['', ],
+				checkboxList: [{
+						name: '显示方形',
+						disabled: false
+					},
+					{
+						name: '自定义图标',
+						disabled: false
+					},
+					{
+						name: '自定义距离',
+						disabled: false
+					},
+					{
+						name: '自定义样式',
+						disabled: false
+					},
+					{
+						name:'自定义返回顶部滚动时间',
+						disabled:false
+					}
+				]
+			}
+		},
+		onLoad() {
+			setTimeout(() => {
+				// console.log(234);
+				// dom.scrollToElement(this.$refs.item, { offset: 0 })  
+			}, 6000)
+		},
+		onPageScroll(e) {
+			this.scrollTop = e.scrollTop;
+		},
+		methods: {
+			checkboxChange(n) {
+				if (n.includes('显示方形')) {
+					this.backTopData.mode = 'square'
+				} else {
+					this.backTopData.mode = "circle"
+				}
+				if (n.includes('自定义图标')) {
+					this.backTopData.icon = "arrow-up"
+				} else {
+					this.backTopData.icon = "arrow-upward"
+				}
+				if (n.includes('自定义距离')) {
+					this.backTopData.bottom = 300
+					this.backTopData.right=20
+				} else {
+					this.backTopData.bottom = 100
+				}
+				if (n.includes('自定义样式')) {
+					this.backTopData.customStyle = {
+						backgroundColor: '#2979ff',
+					}
+					this.backTopData.iconStyle = {
+						color: '#ffffff'
+					}
+				} else {
+					this.backTopData.customStyle = {}
+					this.backTopData.iconStyle = {}
+				}
+				if (n.includes('自定义返回顶部滚动时间')) {
+					this.backTopData.duration =1500 
+				} else {
+					this.backTopData.duration =1000
+				}
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+	.u-page {
+		height: 1200px;
+	}
+</style>

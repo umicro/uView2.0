@@ -5,9 +5,15 @@
 		    @click="openPopup(item.popupData)"
 		    :title="item.title"
 		    v-for="(item, index) in list"
-		    isLink
 		    :key="index"
+			 isLink
 		>
+			<image
+			    slot="icon"
+			    class="u-cell-icon"
+			    :src="item.iconUrl"
+			    mode="widthFix"
+			></image>
 		</u-cell>
 		<u-popup
 		    :safeAreaInsetBottom="true"
@@ -21,7 +27,7 @@
 		    @close="show = !show"
 		>
 			<view class="popup">
-			我是弹窗内容
+				我是弹窗内容
 			</view>
 		</u-popup>
 	</view>
@@ -33,102 +39,111 @@
 			return {
 				show: false,
 				popupData: {
-					overlay:true,
+					overlay: true,
 					mode: 'bottom',
 					borderRadis: '',
-					closeable:true,
-					closeOnClickOverly:true
+					closeable: true,
+					closeOnClickOverly: true
 				},
-				list: [
-					{
+				list: [{
 						popupData: {
-							overlay:true,
+							overlay: true,
 							mode: 'top',
 							borderRadis: '',
-							closeable:true,
-							closeOnClickOverly:true
+							closeable: true,
+							closeOnClickOverly: true
 						},
-						title: "顶部弹出"
+						title:'顶部弹出',
+						iconUrl:'/static/common/image/popup/modeTop.png'
 					},
 					{
 						popupData: {
-							overlay:true,
+							overlay: true,
 							mode: 'right',
 							borderRadis: '',
-							closeable:true,
-							closeOnClickOverly:true
+							closeable: true,
+							closeOnClickOverly: true
 						},
-						title: "右侧弹出"
+						title: '右侧弹出',
+						iconUrl:'/static/common/image/popup/modeRight.png'
 					},
 					{
 						popupData: {
-							overlay:true,
+							overlay: true,
 							mode: 'bottom',
 							borderRadis: '',
-							closeable:true,
-							closeOnClickOverly:true
+							closeable: true,
+							closeOnClickOverly: true
 						},
-						title: "底部弹出"
+						title: '底部弹出',
+						iconUrl:'/static/common/image/popup/modeBottom.png'
 					},
 					{
 						popupData: {
-							overlay:true,
+							overlay: true,
 							mode: 'left',
 							borderRadis: '',
-							closeable:true,
-							closeOnClickOverly:true
+							closeable: true,
+							closeOnClickOverly: true
 						},
-						title: "左侧弹出"
-					},
-			{
-				popupData: {
-					overlay:true,
-					mode: 'center',
-					borderRadis: '',
-					closeable:true,
-					closeOnClickOverly:true
-				},
-				title: "居中弹出"
-			},
-					{
-						popupData: {
-							overlay:true,
-							mode: 'bottom',
-							borderRadis:60,
-							closeable:true,
-							closeOnClickOverly:true
-						},
-						title: "显示圆角"
+						title: '左侧弹出',
+						iconUrl:'/static/common/image/popup/modeLeft.png'
 					},
 					{
 						popupData: {
-							overlay:true,
-							mode: 'bottom',
-							borderRadis:30,
-							closeable:true,
-							closeOnClickOverly:false
+							overlay: true,
+							mode: 'center',
+							borderRadis: '',
+							closeable: true,
+							closeOnClickOverly: true
 						},
-						title: "禁止弹窗关闭"
+						title: '居中弹出',
+						iconUrl:'/static/common/image/popup/modeCenter.png'
 					},
 					{
 						popupData: {
-							overlay:true,
+							overlay: true,
 							mode: 'bottom',
-							borderRadis:30,
-							closeable:true,
-							closeOnClickOverly:true
+							borderRadis: 60,
+							closeable: true,
+							closeOnClickOverly: true
 						},
-						title: "显示关闭按钮"
+						title: '显示圆角',
+						iconUrl:'/static/common/image/popup/showRadis.png'
 					},
 					{
 						popupData: {
-							overlay:false,
+							overlay: true,
+							
 							mode: 'bottom',
-							borderRadis:30,
-							closeable:true,
-							closeOnClickOverly:true
+							borderRadis: 30,
+							closeable: true,
+							closeOnClickOverly: false
 						},
-						title: "关闭遮罩"
+						title: '禁止弹窗关闭',
+						iconUrl:'/static/common/image/popup/noClose.png'
+					},
+					{
+						popupData: {
+							overlay: true,
+							mode: 'bottom',
+							borderRadis: 30,
+							closeable: true,
+							closeOnClickOverly: true
+						},
+						title: '显示关闭按钮',
+						iconUrl:'/static/common/image/popup/showCloseBtn.png'
+					},
+					{
+						popupData: {
+							overlay: false,
+							mode: 'bottom',
+							borderRadis: 30,
+							closeable: true,
+							closeOnClickOverly: true
+						},
+						title: '关闭遮罩',
+						iconUrl:'/static/common/image/popup/closeOverly.png'
 					},
 				]
 			}
@@ -144,7 +159,7 @@
 
 <style lang="scss">
 	.popup {
-		width: 200px;
-		height:150px;
+		width:400rpx;
+		height:300rpx;
 	}
 </style>

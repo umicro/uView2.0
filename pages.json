@@ -140,7 +140,7 @@
 				}
 			},
 			{
-				"path": "backtop/backtop",
+				"path": "back-top/back-top",
 				"style": {
 					"navigationBarTitleText": "返回顶部"
 				}

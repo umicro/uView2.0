@@ -21,7 +21,7 @@
 			></u-divider>
 		</view>
 		<u-gap></u-gap>
-		
+
 		<view class="u-block">
 			<u-section
 			    title="是否细线"
@@ -68,8 +68,8 @@
 			    textPosition="right"
 			></u-divider>
 		</view>
-		<u-gap></u-gap>	
-		
+		<u-gap></u-gap>
+
 		<view class="u-block">
 			<u-section
 			    title="自定义文本颜色"
@@ -80,8 +80,8 @@
 			    textColor="#2979ff"
 			></u-divider>
 		</view>
-		<u-gap></u-gap>	
-		
+		<u-gap></u-gap>
+
 		<view class="u-block">
 			<u-section
 			    title="自定义线条颜色"
@@ -110,8 +110,7 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	.u-divider {
-		// display: flex;
 	}
 </style>

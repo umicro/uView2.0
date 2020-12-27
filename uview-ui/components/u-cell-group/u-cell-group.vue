@@ -19,7 +19,7 @@
 	 * @tutorial https://uviewui.com/components/cell.html
 	 * @property {String} title  分组标题
 	 * @property {Boolean} border  是否显示外边框
-	 * @property {String} customStyle  定义需要用到的外部样式
+	 * @property {Object} customStyle  定义需要用到的外部样式
 	 * @event {Function} click 	点击cell列表时触发
 	 * @example <u-cell-group title="设置喜好">
 	 */

@@ -3,104 +3,117 @@
 		<u-gap></u-gap>
 		<view class="u-block">
 			<u-section
-			   class="u-block__section"
+			    class="u-block__section"
 			    title="基本案例"
 			    :right="false"
 			></u-section>
 			<u-rate></u-rate>
 		</view>
 		<u-gap></u-gap>
-		
+
 		<view class="u-block">
 			<u-section
-			   class="u-block__section"
+			    class="u-block__section"
 			    title="自定义选中星星数量"
 			    :right="false"
 			></u-section>
 			<u-rate v-model="value"></u-rate>
 		</view>
 		<u-gap></u-gap>
-		
+
 		<view class="u-block">
 			<u-section
-			   class="u-block__section"
+			    class="u-block__section"
 			    title="自定义星星数量"
 			    :right="false"
 			></u-section>
 			<u-rate count="6"></u-rate>
 		</view>
 		<u-gap></u-gap>
-		
+
 		<view class="u-block">
 			<u-section
-			   class="u-block__section"
+			    class="u-block__section"
 			    title="是否禁用评分"
 			    :right="false"
 			></u-section>
 			<u-rate :disabled="true"></u-rate>
 		</view>
 		<u-gap></u-gap>
-		
+
 		<view class="u-block">
 			<u-section
-			   class="u-block__section"
+			    class="u-block__section"
 			    title="自定义选中星星颜色"
 			    :right="false"
 			></u-section>
-			<u-rate v-model="activeColorValue" activeColor="#2979ff"></u-rate>
+			<u-rate
+			    v-model="activeColorValue"
+			    activeColor="#2979ff"
+			></u-rate>
 		</view>
 		<u-gap></u-gap>
-		
+
 		<view class="u-block">
 			<u-section
-			   class="u-block__section"
+			    class="u-block__section"
 			    title="自定义未选中星星颜色"
 			    :right="false"
 			></u-section>
-			<u-rate v-model="value" inactiveColor="#2979ff" ></u-rate>
+			<u-rate
+			    v-model="value"
+			    inactiveColor="#2979ff"
+			></u-rate>
 		</view>
 		<u-gap></u-gap>
-		
+
 		<view class="u-block">
 			<u-section
-			   class="u-block__section"
+			    class="u-block__section"
 			    title="自定义星星之间的距离"
 			    :right="false"
 			></u-section>
-			<u-rate gutter="20" ></u-rate>
+			<u-rate gutter="20"></u-rate>
 		</view>
 		<u-gap></u-gap>
-		
+
 		<view class="u-block">
 			<u-section
-			   class="u-block__section"
+			    class="u-block__section"
 			    title="是否允许半星"
 			    :right="false"
 			></u-section>
-			<u-rate v-model="HalfValue" :allowHalf="true" ></u-rate>
+			<u-rate
+			    v-model="HalfValue"
+			    :allowHalf="true"
+			></u-rate>
 		</view>
 		<u-gap></u-gap>
-		
+
 		<view class="u-block">
 			<u-section
-			   class="u-block__section"
+			    class="u-block__section"
 			    title="自定义选中的图标"
 			    :right="false"
 			></u-section>
-			<u-rate v-model="activeIconValue" inactiveIcon="heart" activeIcon="heart-fill" ></u-rate>
+			<u-rate
+			    v-model="activeIconValue"
+			    inactiveIcon="heart"
+			    activeIcon="heart-fill"
+			></u-rate>
 		</view>
 		<u-gap></u-gap>
-		
+
 		<view class="u-block">
 			<u-section
-			   class="u-block__section"
+			    class="u-block__section"
 			    title="是否可通过滑动手势选择评分"
 			    :right="false"
 			></u-section>
-			<u-rate :touchable="true" ></u-rate>
+			<u-rate :touchable="true"></u-rate>
 		</view>
 		<u-gap></u-gap>
-		
+
 	</view>
 </template>
 
@@ -109,19 +122,18 @@
 		data() {
 			return {
 				//自定义星星的个数
-				 value:3,
-				 // 自定义选择星星颜色个数
-				 activeColorValue:3,
-				 // 是否允许半星的个数
-				 HalfValue:3.5,
-				 // 自定义图标星星个数
-				 activeIconValue:3,
+				value: 3,
+				// 自定义选择星星颜色个数
+				activeColorValue: 3,
+				// 是否允许半星的个数
+				HalfValue: 3.5,
+				// 自定义图标星星个数
+				activeIconValue: 3,
 			}
 		}
 	}
 </script>
 
-<style lang="scss" scoped>
-	.u-page {
-	}
+<style lang="scss">
+	.u-page {}
 </style>

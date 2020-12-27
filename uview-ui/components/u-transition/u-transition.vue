@@ -21,6 +21,7 @@
 	 * @property {String} show 是否展示组件 （默认 true）
 	 * @property {String} mode 使用的动画模式 （默认 fade）
 	 * @property {String Number} duration 使用的动画模式 （默认 300）
+	 * @property {Object} customStyle 自定义样式
 	 * @property {String} timingFunction 使用的动画过渡函数 （默认 ease-out）
 	 * @event {Function} before-enter 进入前触发
 	 * @event {Function} enter 进入中触发

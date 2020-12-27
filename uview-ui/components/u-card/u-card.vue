@@ -101,7 +101,7 @@
 	 * @property {Boolean} showHead 是否显示头部（默认true）
 	 * @property {Boolean} showFoot 是否显示尾部（默认true）
 	 * @property {String} boxShadow 卡片外围阴影，字符串形式（默认rgba(0, 0, 0, 0)）
-     * @property {String} customStyle  定义需要用到的外部样式
+     * @property {Object} customStyle  定义需要用到的外部样式
 	 * @event {Function} click 整个卡片任意位置被点击时触发
 	 * @event {Function} head-click 卡片头部被点击时触发
 	 * @event {Function} body-click 卡片主体部分被点击时触发

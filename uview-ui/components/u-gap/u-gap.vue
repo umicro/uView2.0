@@ -11,7 +11,7 @@
  * @property {String Number} height 分割槽高度，单位px（默认30）
  * @property {String Number} marginTop 与前一个组件的距离，单位px（默认0）
  * @property {String Number} marginBottom 与后一个组件的距离，单位px（0）
- * @property {String} customStyle  定义需要用到的外部样式
+ * @property {Object} customStyle  定义需要用到的外部样式
  * @example <u-gap height="80" bg-color="#bbb"></u-gap>
  */
 export default {

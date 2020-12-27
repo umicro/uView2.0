@@ -52,15 +52,14 @@
 				}
 			}
 		},
-		onLoad() {
-		},
+		onLoad() {},
 		methods: {
-			
+
 		}
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	.u-content {
 		padding: 24rpx;
 		font-size: 32rpx;

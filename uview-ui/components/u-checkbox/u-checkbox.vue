@@ -48,7 +48,7 @@
 	 * @property {String} labelColor  label的颜色
 	 * @property {String} iconPlacement  图标与文字的对齐方式
 	 * @property {Boolean} checked  是否默认选中
-	 * @property {String} customStyle  定义需要用到的外部样式
+	 * @property {Object} customStyle  定义需要用到的外部样式
 	 * @event {Function} change 任一个checkbox状态发生变化时触发，回调为一个对象
 	 * @example <u-checkbox v-model="checked" :disabled="false">天涯</u-checkbox>
 	 */

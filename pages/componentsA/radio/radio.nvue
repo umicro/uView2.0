@@ -244,7 +244,7 @@
 				],
 				// u-radio-group的v-model绑定的值如果设置为某个radio的name，就会被默认选中
 				radiovalue4: '6倍镜',
-				
+
 				//自定义颜色数据
 				radiolist5: [{
 						name: '红色',
@@ -265,7 +265,7 @@
 				],
 				// u-radio-group的v-model绑定的值如果设置为某个radio的name，就会被默认选中
 				radiovalue5: '绿色',
-					
+
 				//横向排列形式数据
 				radiolist6: [{
 						name: '妲己',
@@ -282,7 +282,7 @@
 				],
 				// u-radio-group的v-model绑定的值如果设置为某个radio的name，就会被默认选中
 				radiovalue6: '妲己',
-				
+
 				//横向两端排列形式数据
 				radiolist7: [{
 						name: '可爱',
@@ -312,21 +312,19 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	.u-page {
-
-		// background-color: red;
 		&__style {
 			font-size: 16px;
 			color: rgb(96, 98, 102);
-			margin-bottom: 10px;
+			margin-bottom:20rpx;
 			font-weight: bold;
 		}
 
 		&__title {
 			font-size: 16px;
 			color: rgb(96, 98, 102);
-			margin-bottom: 10px;
+			margin-bottom:20rpx;
 		}
 	}
 </style>

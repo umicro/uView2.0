@@ -34,25 +34,25 @@
 			return {
 				show: false,
 				list: [{
-					icon: 'color',
-					title: 'primary',
-				},
-				{
-					icon: 'icon',
-					title: 'success',
-				}, 
-				{
-					icon: 'icon',
-					title: 'error',
-				}, 
-				{
-					icon: 'icon',
-					title: 'warning',
-				}, 
-				{
-					icon: 'icon',
-					title: 'default',
-				}, 
+						icon: 'color',
+						title: 'primary',
+					},
+					{
+						icon: 'icon',
+						title: 'success',
+					},
+					{
+						icon: 'icon',
+						title: 'error',
+					},
+					{
+						icon: 'icon',
+						title: 'warning',
+					},
+					{
+						icon: 'icon',
+						title: 'default',
+					},
 				],
 			}
 		},

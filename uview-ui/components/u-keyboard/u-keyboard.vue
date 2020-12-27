@@ -84,6 +84,7 @@
 	 * @property {Boolean} random 是否打乱键盘按键的顺序（默认false）
 	 * @property {Boolean} safe-area-inset-bottom 是否开启底部安全区适配（默认false）
 	 * @property {Boolean} mask-close-able 是否允许点击遮罩收起键盘（默认true）
+	 * @property {Object} customStyle 自定义样式，对象形式
 	 * @event {Function} change 按键被点击(不包含退格键被点击)
 	 * @event {Function} cancel 键盘顶部工具条左边的"取消"按钮被点击
 	 * @event {Function} confirm 键盘顶部工具条右边的"完成"按钮被点击

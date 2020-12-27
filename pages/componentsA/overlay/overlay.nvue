@@ -1,13 +1,38 @@
 <template>
-	<view>
-		<u-button text="打开Overlay" @click="show = !show"></u-button>
-		<u-overlay :show="show" @click="clickHandler"></u-overlay>
-		<u-button text="嵌入内容" @click="showSlot = !showSlot">
-		</u-button>
-		<u-overlay :show="showSlot" @click="showSlot = !showSlot">
+	<view class="u-page">
+		<u-cell
+		    :titleStyle="{fontWeight: 500}"
+		    @click="openMask(index)"
+		    :title="item.title"
+		    v-for="(item, index) in list"
+		    :key="index"
+		    isLink
+		>
+			<image
+			    slot="icon"
+			    class="u-cell-icon"
+			    :src="item.iconUrl"
+			    mode="widthFix"
+			></image>
+		</u-cell>
+		<u-overlay
+		    :show="show"
+		    @click="show = !show"
+		></u-overlay>
+
+		<u-overlay
+		    :show="showSlot"
+		    @click="showSlot = !showSlot"
+		>
 			<view class="overlay-wrap">
 				<view class="overlay-wrap__box"></view>
 			</view>
+		</u-overlay>
+		<u-overlay
+		    opacity=".85"
+		    :show="showOpcatiy"
+		    @click="showOpcatiy = !showOpcatiy"
+		>
 		</u-overlay>
 	</view>
 </template>
@@ -17,16 +42,37 @@
 		data() {
 			return {
 				show: false,
-				showSlot: true
+				showSlot: false,
+				showOpcatiy: false,
+				list: [{
+						title: '基本案列',
+						iconUrl:'/static/common/image/overlay/baseCases.png'
+					},
+					{
+						title: '嵌入内容',
+						iconUrl:'/static/common/image/overlay/embeddedContent.png'
+					},
+					{
+						title: '设置透明度',
+						iconUrl:'/static/common/image/overlay/setTransparency.png'
+					},
+				]
 			}
 		},
 		onLoad() {
 			// this.show = true;
 		},
 		methods: {
-			clickHandler() {
-				this.show = !this.show;
-			}
+			openMask(indexNum) {
+				if (indexNum == 0) {
+					this.show = !this.show;
+				} else if (indexNum == 1) {
+					this.showSlot = !this.showSlot
+				} else if (indexNum == 2) {
+					this.showOpcatiy = !this.showOpcatiy
+				}
+			},
+
 		}
 	}
 </script>
@@ -39,11 +85,11 @@
 		justify-content: center;
 		align-items: center;
 		flex: 1;
-		
+
 		&__box {
-			width: 100px;
-			height: 100px;
-			background-color: $u-primary;
+			width:200rpx;
+			height:200rpx;
+			background-color: #70e1f5;
 		}
 	}
 </style>

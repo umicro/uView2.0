@@ -6,10 +6,20 @@
 		    :title="item.title"
 		    v-for="(item, index) in list"
 		    :key="index"
-			isLink
+		    isLink
 		>
+			<image
+			    slot="icon"
+			    class="u-cell-icon"
+			    :src="item.iconUrl"
+			    mode="widthFix"
+			></image>
 		</u-cell>
-		<u-transition :mode="mode" :show="show" :custom-style="style">
+		<u-transition
+		    :mode="mode"
+		    :show="show"
+		    :custom-style="style"
+		>
 			<view class="transition"></view>
 		</u-transition>
 	</view>
@@ -19,60 +29,68 @@
 	export default {
 		data() {
 			return {
-				mode:'',
+				mode: '',
 				show: false,
 				style: {
-				    position: 'fixed',
-				    top: `${uni.$u.sys().windowHeight / 2 - 50}px`,
-				    left: `${uni.$u.sys().windowWidth / 2 - 50}px`,
-				    width: '100px',
-				    height: '100px',
-				    backgroundColor: '#1989fa'
+					position: 'fixed',
+					top: `${uni.$u.sys().windowHeight / 2 - 50}px`,
+					left: `${uni.$u.sys().windowWidth / 2 - 50}px`,
+					width: '100px',
+					height: '100px',
+					backgroundColor: '#1989fa'
 				},
-				list:[
-					{
-						mode:'fade',
-						title:'淡入'
+				list: [{
+						mode: 'fade',
+						title: '淡入',
+						iconUrl:'/static/common/image/transition/fade.png'
 					},
 					{
-						mode:'fade-up',
-						title:'上滑淡入'
+						mode: 'fade-up',
+						title: '上滑淡入',
+						iconUrl:'/static/common/image/transition/fadeUp.png'
 					},
 					{
-						mode:'fade-down',
-						title:'下滑淡入'
+						mode: 'fade-down',
+						title: '下滑淡入',
+						iconUrl:'/static/common/image/transition/fadeDown.png'
 					},
 					{
-						mode:'fade-left',
-						title:'左滑淡入'
+						mode: 'fade-left',
+						title: '左滑淡入',
+						iconUrl:'/static/common/image/transition/fadeLeft.png'
 					},
 					{
-						mode:'fade-right',
-						title:'右滑淡入'
+						mode: 'fade-right',
+						title: '右滑淡入',
+						iconUrl:'/static/common/image/transition/fadeRight.png'
 					},
 					{
-						mode:'slide-up',
-						title:'上滑进入'
+						mode: 'slide-up',
+						title: '上滑进入',
+						iconUrl:'/static/common/image/transition/slideUp.png'
 					},
 					{
-						mode:'slide-down',
-						title:'下滑进入'
+						mode: 'slide-down',
+						title: '下滑进入',
+						iconUrl:'/static/common/image/transition/slideDown.png'
 					},
 					{
-						mode:'slide-left',
-						title:'左滑进入'
+						mode: 'slide-left',
+						title: '左滑进入',
+						iconUrl:'/static/common/image/transition/slideLeft.png'
 					},
 					{
-						mode:'slide-right',
-						title:'右滑进入'
+						mode: 'slide-right',
+						title: '右滑进入',
+						iconUrl:'/static/common/image/transition/slideRight.png'
 					},
 				]
 			}
 		},
 		mixins: [uni.$u.mixin],
 		methods: {
-			openTransition(mode){
-				this.mode=mode;
+			openTransition(mode) {
+				this.mode = mode;
 				this.show = true;
 				setTimeout(() => {
 					this.show = false;
@@ -82,8 +100,8 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	.transition {
-		background-color: blue;
+		background-color:$u-primary;
 	}
 </style>

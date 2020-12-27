@@ -44,7 +44,7 @@ export default [{
 			title_en: 'Tag',
 		}, {
 			path: '/pages/componentsA/loading-icon/loading-icon',
-			icon: 'loading-icon',
+			icon: 'loading',
 			title: 'Loading 加载动画',
 			title_en: 'loading Icon',
 		}, {
@@ -128,7 +128,7 @@ export default [{
 			title: 'Switch 开关选择器',
 			title_en: 'Switch',
 		}, {
-			path: '/pages/componentsA/slider/slider',
+			path: '/pages/componentsB/slider/slider',
 			icon: 'slider',
 			title: 'Slider 滑动选择器',
 			title_en: 'Slider',

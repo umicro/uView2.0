@@ -10,101 +10,85 @@
 function onTouchMove(e, ownerInstance) {
 	// wxs事件对象下有一个instance属性，表示当前触发此事件的组件的实例，通过该实例，可以获取相关的dataset，设置样式等信息
 	// https://developers.weixin.qq.com/miniprogram/dev/framework/view/interactive-animation.html
-	const instance = e.instance;
-	let disabled = instance.getDataset().disabled
-
+	var instance = e.instance;
 	// getState()为一个对象，挂载在instance上，类似组件的data一样，可以存放一些变量，供以后的触发事件中使用
-	const state = instance.getState()
-	// TODO 兼容 app-vue 获取dataset为字符串 , h5 获取 为 undefined 的问题,待框架修复
-	// 在H5中，如果标签的data-xxx为一个变量，且这个变量的类型为boolean的且值为false话，在H5中会导致获取不到xxx
-	disabled = (typeof(disabled) === 'string' ? JSON.parse(disabled) : disabled) || false;
-	if (disabled) return
+	var state = instance.getState()
 
 	// 滑块组件的整体尺寸信息
-	const {
-		left,
-		width
-	} = state.mp
-	const distanceX = getTouchX(e) - left
+	var mp = state.mp
+	if(mp.disabled) {
+		return
+	}
+	
+	var distanceX = getTouchX(e) - mp.left
 	// 获得移动距离对整个滑块的百分比值，此为带有多位小数的值，step大于1时，不能用此更新视图
-	const percent = (distanceX / width) * 100
+	var percent = (distanceX / mp.width) * 100
 
 	updateSliderPlacement(instance, ownerInstance, percent, 'moving')
 	
 	// 阻止页面滚动，可以保证在滑动过程中，不让页面可以上下滚动，造成不好的体验
 	e.stopPropagation && e.stopPropagation() 
-	e.stopPropagation && e.preventDefault()
+	e.preventDefault && e.preventDefault()
 }
 
 function onClick(e, ownerInstance) {
-	const instance = e.instance
-	const state = instance.getState()
-	const {
-		step,
-		disabled,
-		width,
-		left,
-		min,
-		max
-	} = state.mp
+	var instance = e.instance
+	var state = instance.getState()
+	var mp = state.mp
+	if(mp.disabled) {
+		return
+	}
+	
 	// 直接点击滑块的情况，计算方式与onTouchMove方法相同
-	const value = ((e.detail.x - left) / width) * 100
+	var value = ((e.detail.x - mp.left) / mp.width) * 100
 	updateSliderPlacement(instance, ownerInstance, value, 'click')
 }
 
-function sizeReady(newVal, oldValue, ownerInstance, instance) {
-	const state = instance.getState()
-	state.mp = newVal
-	updateSliderPlacement(instance, ownerInstance, newVal.value)
+function sizeReady(newValue, oldValue, ownerInstance, instance) {
+	// 页面初始化时候，也会触发此方法，传递的值为空，这里不执行往后的逻辑
+	if(!newValue || newValue.disabled) {
+		return 
+	}
+	var state = instance.getState()
+	state.mp = newValue
+	updateSliderPlacement(instance, ownerInstance, newValue.value)
 }
 
 // 设置滑点的位置
 function updateSliderPlacement(instance, ownerInstance, value, event) {
-	const state = instance.getState()
-	const {
-		step,
-		disabled,
-		width,
-		left,
-		min,
-		max
-	} = state.mp
+	var state = instance.getState()
+	var mp = state.mp
+	if(mp.disabled) {
+		return
+	}
 
-	let percent = 0
-	if (step > 1) {
+	var percent = 0
+	if (mp.step > 1) {
 		// 如果step步进大于1，需要跳步，所以需要使用Math.round进行取整
-		percent = Math.round(Math.max(min, Math.min(value, max)) / step) * step
+		percent = Math.round(Math.max(mp.min, Math.min(value, mp.max)) / mp.step) * mp.step
 	} else {
 		// 当step=1时，无需跳步，充分利用bindingx性能，滑块实时跟随手势，达到丝滑的效果
-		percent = Math.max(min, Math.min(value, max))
+		percent = Math.max(mp.min, Math.min(value, mp.max))
 	}
 	// 返回组件的实例
-	const gapInstance = ownerInstance.selectComponent('.u-slider__gap')
+	var gapInstance = ownerInstance.selectComponent('.u-slider__gap')
 	// 在移动期间，不允许transition动画，否则会造成卡顿
 	gapInstance[event === 'click' ? 'addClass' : 'removeClass']('u-slider__gap--ani')
 	// 调用逻辑层的方法，修改v-model绑定的值
 	ownerInstance.callMethod('updateValue', Math.round(percent))
 	if(event) {
 		ownerInstance.callMethod('emitEvent', {
-			event, 
+			event: event,
 			value: Math.round(percent)
 		})
 	}
 	
 	// 设置移动的值
-	gapInstance.requestAnimationFrame(() => {
+	gapInstance.requestAnimationFrame(function() {
 		gapInstance.setStyle({
-			width: percent / 100 * width + 'px',
+			width: percent / 100 * mp.width + 'px',
 		})
 	})
-	
-	// 移动期间无需过渡动画
-	// 修改value值
-	// this.$emit('input', percent)
-	// 事件的名称
-	// if(event) {
-	// 	this.emitEvent(event, percent)
-	// }
 }
 
 // 开始滑动
@@ -129,9 +113,9 @@ function getTouchX(e) {
 }
 
 module.exports = {
-	onTouchStart,
-	onTouchMove,
-	onTouchEnd,
-	sizeReady,
-	onClick
+	onTouchStart: onTouchStart,
+	onTouchMove: onTouchMove,
+	onTouchEnd: onTouchEnd,
+	sizeReady: sizeReady,
+	onClick: onClick
 }

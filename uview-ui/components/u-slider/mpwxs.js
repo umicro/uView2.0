@@ -1,17 +1,10 @@
 export default {
 	data() {
 		return {
-			sliderRect: {}
-		}
-	},
-	mounted() {
-		this.init()
-	},
-	computed: {
-		info() {
-			return {
-				width: this.sliderRect.width,
-				left: this.sliderRect.left,
+			sliderRect: {},
+			info: {
+				width: null,
+				left: null,
 				step: this.step,
 				disabled: this.disabled,
 				min: this.min,
@@ -20,6 +13,22 @@ export default {
 			}
 		}
 	},
+	mounted() {
+		this.init()
+	},
+	// computed: {
+	// 	info() {
+	// 		return {
+	// 			width: this.sliderRect.width,
+	// 			left: this.sliderRect.left,
+	// 			step: this.step,
+	// 			disabled: this.disabled,
+	// 			min: this.min,
+	// 			max: this.max,
+	// 			value: this.value
+	// 		}
+	// 	}
+	// },
 	methods: {
 		init() {
 			this.getSliderRect()
@@ -29,7 +38,8 @@ export default {
 			// 获取滑块条的尺寸信息
 			setTimeout(() => {
 				this.$uGetRect('.u-slider').then(rect => {
-					this.sliderRect = rect
+					this.info.width = rect.width
+					this.info.left = rect.left
 				})
 			}, 10)
 		},

@@ -96,8 +96,8 @@
         "appid" : "wxc256e348c4032ebd",
         "setting" : {
             "urlCheck" : true,
-            "es6" : false,
-            "minified" : true,
+            "es6" : true,
+            "minified" : false,
             "postcss" : true
         },
         "optimization" : {

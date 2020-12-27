@@ -1,4 +1,5 @@
 <template>
+	<!-- #ifdef H5 || APP-VUE || MP-QQ || MP-WEIXIN -->
 	<view
 	    class="u-slider"
 	    @tap="wxsModule.onClick"
@@ -11,6 +12,19 @@
 			height: $u.addUnit(height),
 		}"
 	>
+	<!-- #endif -->
+	<!-- #ifdef APP-NVUE -->
+	<view
+	    class="u-slider"
+	    @touchstart="onClick"
+		ref="slider"
+	    :class="[disabled ? 'u-slider--disabled' : '']"
+	    :style="{
+			backgroundColor: inactiveColor,
+			height: $u.addUnit(height),
+		}"
+	>
+	<!-- #endif -->
 		<view
 		    class="u-slider__gap u-slider__gap--ani"
 			ref="nvue-gap"
@@ -25,7 +39,8 @@
 			<!-- #ifdef APP-NVUE -->
 			<view
 			    class="u-slider__gap__button-wrap"
-			    @panmove="onTouchStart"
+				@touchstart="onTouchStart"
+			    @panmove="onTouchMove"
 				:style="[buttomWrapStyle]"
 				ref="nvue-button"
 			>

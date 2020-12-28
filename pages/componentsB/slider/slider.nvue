@@ -1,13 +1,98 @@
 <template>
 	<view class="u-page">
-		<u-slider
-		    v-model="value"
-		    @moving="moving"
-		    @click="click"
-			@start="start"
-			:step="1"
-			@end="end"
-		></u-slider>
+		<u-gap></u-gap>
+		<view class="u-block">
+			<u-section
+			    title="基本案例"
+			    :right="false"
+				class="u-block__section"
+			></u-section>
+			<u-slider
+			    v-model="value"
+			    @moving="moving"
+			    @click="click"
+				@start="start"
+				:step="1"
+				@end="end"
+			></u-slider>
+		</view>
+		<u-gap></u-gap>
+		
+		<view class="u-block">
+			<u-section
+			    title="自定义范围(0—50)"
+			    :right="false"
+				class="u-block__section"
+			></u-section>
+			<u-slider
+			    v-model="value"
+			    @moving="moving"
+			    @click="click"
+				@start="start"
+				:step="1"
+				@end="end"
+				min="0"
+				max="50"
+			></u-slider>
+		</view>
+		<u-gap></u-gap>
+		
+		<!-- <view class="u-block">
+			<u-section
+			    title="禁用"
+			    :right="false"
+				class="u-block__section"
+			></u-section>
+			<u-slider
+			    v-model="value"
+			    @moving="moving"
+			    @click="click"
+				@start="start"
+				:step="1"
+				@end="end"
+				:disabled="true"
+			></u-slider>
+		</view>
+		<u-gap></u-gap> -->
+		
+		<view class="u-block">
+			<u-section
+			    title="指定步长"
+			    :right="false"
+				class="u-block__section"
+			></u-section>
+			<u-slider
+			    v-model="value"
+			    @moving="moving"
+			    @click="click"
+				@start="start"
+				:step="20"
+				@end="end"
+			></u-slider>
+		</view>
+		<u-gap></u-gap>
+		
+		<view class="u-block">
+			<u-section
+			    title="自定义样式"
+			    :right="false"
+				class="u-block__section"
+			></u-section>
+			<u-slider
+			    v-model="value"
+			    @moving="moving"
+			    @click="click"
+				@start="start"
+				:step="20"
+				@end="end"
+				height="20"
+				blockHeight="20"
+				activeColor="red"
+				inactiveColor="rgb(243, 244, 246)"
+				blockColor="pink"
+			></u-slider>
+		</view>
+		<u-gap></u-gap>
 	</view>
 </template>
 
@@ -15,7 +100,7 @@
 	export default {
 		data() {
 			return {
-				value: 30
+				value:30
 			}
 		},
 		watch: {
@@ -25,16 +110,16 @@
 		},
 		methods: {
 			moving(value) {
-				console.log('moving', value)
+				// console.log('moving', value)
 			},
 			click(value) {
-				console.log('click', value)
+				// console.log('click', value)
 			},
 			end(value) {
-				console.log('end', value)
+				// console.log('end', value)
 			},
 			start(value) {
-				console.log('start', value)
+				// console.log('start', value)
 			}
 		}
 	}
@@ -42,8 +127,5 @@
 
 <style lang="scss">
 	.u-page {
-		padding-left: 70px;
-		margin-top: 100px;
-		margin-right: 50px;
 	}
 </style>

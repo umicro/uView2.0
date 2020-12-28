@@ -103,19 +103,21 @@
 	// #endif
 	/**
 	 * slider 滑块选择器
+	 * @description 该组件一般用于表单中，手动选择一个区间范围的场景.
 	 * @tutorial https://uviewui.com/components/slider.html
-	 * @property {Number | String} value 滑块默认值（默认0）
-	 * @property {Number | String} min 最小值（默认0）
-	 * @property {Number | String} max 最大值（默认100）
-	 * @property {Number | String} step 步长（默认1）
-	 * @property {Number | String} blockWidth 滑块宽度，高等于宽（30）
-	 * @property {Number | String} height 滑块条高度，单位rpx（默认6）
-	 * @property {String} inactiveColor 底部条背景颜色（默认#c0c4cc）
-	 * @property {String} activeColor 底部选择部分的背景颜色（默认#2979ff）
-	 * @property {String} blockColor 滑块颜色（默认#ffffff）
+	 * @property {Number String} value 滑块默认值 
+	 * @property {Boolean} disabled 是否禁用滑块 
+	 * @property {Number String} blockWidth 滑块宽度，高等于宽 
+	 * @property {Number String} min 最小值 
+	 * @property {Number String} max 最大值 
+	 * @property {Number String} step 步长 
+	 * @property {Number String} height 滑块条高度，单位rpx
+	 * @property {String} activeColor 底部选择部分的背景颜色
+	 * @property {String} inactiveColor 底部条背景颜色 
+	 * @property {String} blockColor 滑块颜色 
 	 * @property {Object} blockStyle 给滑块自定义样式，对象形式
-	 * @property {Boolean} disabled 是否禁用滑块(默认为false)
-	 * @event {Function} start 滑动触发
+	 * @property {Object} customStyle  组件的样式，对象形式
+	 * @event {Function} start 滑动触发 
 	 * @event {Function} moving 正在滑动中
 	 * @event {Function} end 滑动结束
 	 * @example <u-slider v-model="value" />
@@ -126,59 +128,57 @@
 			// 当前进度百分比值，范围0-100
 			value: {
 				type: [Number, String],
-				default: 0
+				default:uni.$u.props.slider.value,
 			},
 			// 是否禁用滑块
 			disabled: {
 				type: Boolean,
-				default: false
+				default:uni.$u.props.slider.disabled,
 			},
 			// 滑块宽度，高等于宽，单位rpx
 			blockHeight: {
 				type: [Number, String],
-				default: 15
+				default:uni.$u.props.slider.blockHeight,
 			},
 			// 最小值
 			min: {
 				type: [Number, String],
-				default: 0
+				default:uni.$u.props.slider.min,
 			},
 			// 最大值
 			max: {
 				type: [Number, String],
-				default: 100
+				default:uni.$u.props.slider.max,
 			},
 			// 步进值
 			step: {
 				type: [Number, String],
-				default: 1
+				default:uni.$u.props.slider.step,
 			},
 			// 滑块条高度，单位rpx
 			height: {
 				type: [Number, String],
-				default: 10
+				default:uni.$u.props.slider.height,
 			},
 			// 进度条的激活部分颜色
 			activeColor: {
 				type: String,
-				default: '#2979ff'
+				default:uni.$u.props.slider.activeColor,
 			},
 			// 进度条的背景颜色
 			inactiveColor: {
 				type: String,
-				default: '#c0c4cc'
+				default:uni.$u.props.slider.inactiveColor,
 			},
 			// 滑块的背景颜色
 			blockColor: {
 				type: String,
-				default: '#ffffff'
+				default:uni.$u.props.slider.blockColor
 			},
 			// 用户对滑块的自定义颜色
 			blockStyle: {
 				type: Object,
-				default () {
-					return {};
-				}
+				default:uni.$u.props.slider.blockStyle
 			},
 		},
 		mixins: [uni.$u.mixin, mixins],
@@ -222,38 +222,52 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-
+    $u-slider-border-radius:999px !default;
+	$u-slider-bgColor:#ebedf0 !default;
+	$u-slider-gap-border-radius:999px !default;
+	$u-slider-gap-bgColor:$u-primary !default;
+	$u-slider-gap-width:0 !default;
+	$u-slider-ani-transition:width 0.2s ease !default;
+	$u-slider-button-wrap-top:50% !default;
+    $u-slider-button-wrap-right:0 !default;
+	$u-slider-button-wrap-transform: translate(50%, -50%) !default;
+	$u-slider-button-width:24px !default;
+	$u-slider-button-height:24px !default;
+	$u-slider-button-border-radius:100px !default;
+	$u-slider-button-box-shadow:0 1px 2px rgba(0, 0, 0, 0.5) !default;
+	$u-slider-button-bgColor:#fff !default;
+	$u-slider-disabled-opacity:0.5 !default;
 	.u-slider {
 		position: relative;
-		border-radius: 999px;
-		background-color: #ebedf0;
+		border-radius:$u-slider-border-radius;
+		background-color:$u-slider-bgColor;
 		/* #ifndef APP-NVUE */
 		touch-action: none;
 		/* #endif */
 
 		&__gap {
 			position: relative;
-			border-radius: 999px;
-			background-color: $u-primary;
-			width: 0;
+			border-radius:$u-slider-gap-border-radius;
+			background-color:$u-slider-gap-bgColor;
+			width:$u-slider-gap-width;
 			
 			&--ani {
-				transition: width 0.2s ease;
+				transition:$u-slider-ani-transition;
 			}
 
 			&__button-wrap {
 				position: absolute;
-				top: 50%;
-				right: 0;
-				transform: translate(50%, -50%);
+				top:$u-slider-button-wrap-top;
+				right:$u-slider-button-wrap-right;
+				transform:$u-slider-button-wrap-transform;
 				
 
 				&__button {
-					width: 24px;
-					height: 24px;
-					border-radius: 100px;
-					box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-					background-color: #fff;
+					width:$u-slider-button-width;
+					height:$u-slider-button-height;
+					border-radius:$u-slider-button-border-radius;
+					box-shadow:$u-slider-button-box-shadow;
+					background-color:$u-slider-button-bgColor;
 					/* #ifndef APP-NVUE */
 					cursor: pointer;
 					/* #endif */
@@ -262,7 +276,7 @@
 		}
 
 		&--disabled {
-			opacity: 0.5;
+			opacity:$u-slider-disabled-opacity;
 		}
 	}
 </style>

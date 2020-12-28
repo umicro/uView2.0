@@ -463,5 +463,20 @@ export default {
 	// 车牌号键盘
 	carKeyboard: {
 		random: false
-	}
+	},
+	
+	//slider组件
+	 slider:{
+		 value:0,
+		 disabled:false,
+		 blockHeight:15,
+		 min:0,
+		 max:100,
+		 step:1,
+		 height:10,
+		 activeColor:'#2979ff',
+		 inactiveColor:'#c0c4cc',
+		 blockColor:'#ffffff', 
+		 blockStyle:() => {},
+		 }
 }

@@ -17,7 +17,9 @@ export default {
 			// 标记是否移动状态
 			moving: false,
 			// 位移的偏移量
-			x: 0
+			x: 0,
+			// 是否正在触摸过程中，用于标记动画类是否添加或移除
+			touching: false
 		}
 	},
 	mounted() {
@@ -40,10 +42,14 @@ export default {
 		},
 		// 点击slider
 		onClick(e) {
-			console.log(e.touches[0].screenX)
 			if (this.disabled || this.moving) {
 				return
 			}
+			// 标记为移动中状态，并延时250ms，因为这里改变滑块位置，加入了动画，需要等动画结束
+			this.moving = true
+			setTimeout(() => {
+				this.moving = false
+			}, 230)
 			const {
 				left,
 				width
@@ -61,12 +67,6 @@ export default {
 			// 事件的名称
 			this.emitEvent('click', percent)
 			this.barStyle = barStyle
-			
-			// 标记为移动中状态，并延时250ms，因为这里改变滑块位置，加入了动画，需要等动画结束
-			this.moving = true
-			setTimeout(() => {
-				this.moving = false
-			}, 230)
 		},
 		emitEvent(event, value) {
 			this.$emit(event, value ? value : this.value)
@@ -89,7 +89,11 @@ export default {
 			// 阻止页面滚动，可以保证在滑动过程中，不让页面可以上下滚动，造成不好的体验
 			e.stopPropagation && e.stopPropagation() 
 			e.preventDefault && e.preventDefault()
+			
 			this.moving = true
+			this.touching = true
+			
+			// 获取元素ref
 			const button = this.$refs['nvue-button'].ref
 			const gap = this.$refs['nvue-gap'].ref
 
@@ -136,6 +140,7 @@ export default {
 						eventType: 'pan'
 					})
 					this.moving = false
+					this.touching = false
 				}
 			})
 		}

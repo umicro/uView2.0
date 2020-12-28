@@ -25,6 +25,21 @@
 		}"
 	>
 	<!-- #endif -->
+		<!-- #ifdef APP-NVUE -->
+		<view
+		    class="u-slider__gap"
+			ref="nvue-gap"
+			:class="[!touching && 'u-slider__gap--ani']"
+		    :style="[
+				barStyle,
+				{
+					backgroundColor: activeColor,
+					height: $u.addUnit(height),
+				}
+			]"
+		>
+		<!-- #endif -->
+		<!-- #ifndef APP-NVUE -->
 		<view
 		    class="u-slider__gap u-slider__gap--ani"
 			ref="nvue-gap"
@@ -36,6 +51,7 @@
 				}
 			]"
 		>
+		<!-- #endif -->
 			<!-- #ifdef APP-NVUE -->
 			<view
 			    class="u-slider__gap__button-wrap"
@@ -82,7 +98,6 @@
 	// #ifdef APP-VUE || MP-WEIXIN || H5 || MP-QQ
 	import mixins from './mpwxs.js'
 	// #endif
-	// import mixins from './mpother'
 	// #ifdef APP-NVUE
 	import mixins from './nvue'
 	// #endif

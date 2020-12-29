@@ -250,6 +250,7 @@
 			border-radius:$u-slider-gap-border-radius;
 			background-color:$u-slider-gap-bgColor;
 			width:$u-slider-gap-width;
+			width: 100px;
 			
 			&--ani {
 				transition:$u-slider-ani-transition;
@@ -260,6 +261,7 @@
 				top:$u-slider-button-wrap-top;
 				right:$u-slider-button-wrap-right;
 				transform:$u-slider-button-wrap-transform;
+				z-index: 3999; 
 				
 
 				&__button {

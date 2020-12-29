@@ -391,7 +391,7 @@ export default [{
 			title_en: 'Link',
 		}, {
 			path: '/pages/componentsA/transition/transition',
-			icon: 'link',
+			icon: 'transition',
 			title: 'transition 动画',
 			title_en: '动画',
 		}]

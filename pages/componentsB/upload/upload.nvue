@@ -1,6 +1,6 @@
 <template>
 	<view class="u-page">
-		
+		<u-upload></u-upload>
 	</view>
 </template>
 

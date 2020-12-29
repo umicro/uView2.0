@@ -205,6 +205,38 @@ function code(value, len = 6) {
 	return new RegExp(`^\\d{${len}}$`).test(value);
 }
 
+/**
+ * 是否函数方法
+ * @param {Object} value
+ */
+function func(value) {
+	return typeof val === 'function';
+}
+
+/**
+ * 是否promise对象
+ * @param {Object} value
+ */
+function promise(value) {
+	return object(value) && func(value.then) && func(value.catch)
+}
+
+/** 是否图片格式
+ * @param {Object} value
+ */
+function image(value) {
+	const IMAGE_REGEXP = /\.(jpeg|jpg|gif|png|svg|webp|jfif|bmp|dpg)/i;
+	return IMAGE_REGEXP.test(value);
+}
+
+/** 
+ * 是否视频格式
+ * @param {Object} value
+ */
+function video(value) {
+	const VIDEO_REGEXP = /\.(mp4|mpg|mpeg|dat|asf|avi|rm|rmvb|mov|wmv|flv|mkv)/i;
+	return VIDEO_REGEXP.test(value);
+}
 
 export default {
 	email,
@@ -229,5 +261,9 @@ export default {
 	landline,
 	object,
 	array,
-	code
+	code,
+	func,
+	promise,
+	video,
+	image
 }

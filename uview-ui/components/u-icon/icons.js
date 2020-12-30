@@ -1,4 +1,6 @@
 export default {
+	"uicon-column-line": "\ue68e",
+	"uicon-checkbox-mark": "\ue7c2",
 	"uicon-check-success": "\ue7c0", 
 	"uicon-check-primary": "\ue7bf",
 	"uicon-folder": "\ue7f5",

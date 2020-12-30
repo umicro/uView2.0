@@ -1,6 +1,12 @@
 <template>
 	<view class="u-page">
-		<u-upload></u-upload>
+		<u-upload
+		    :fileList="fileList"
+		    @afterRead="afterRead"
+		    @delete="deletePic"
+		    multiple
+		    :maxCount="10"
+		></u-upload>
 	</view>
 </template>
 
@@ -8,15 +14,63 @@
 	export default {
 		data() {
 			return {
-				
+				fileList: [],
 			}
 		},
-		methods: {
+		onLoad() {
 			
-		}
+		},
+		methods: {
+			deletePic(index) {
+				this.fileList.splice(index, 1)
+			},
+			async afterRead(event) {
+				console.log(event)
+				// 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
+				let lists = [].concat(event.file)
+				let fileListLen = this.fileList.length
+				lists.map((item) => {
+					this.fileList.push({
+						...item,
+						status: 'uploading',
+						message: '上传中'
+					})
+				})
+				for(let i = 0; i < lists.length; i++) {
+					const result = await this.uploadFilePromise(lists[i].thumb)
+					let item = this.fileList[fileListLen]
+					this.fileList.splice(fileListLen, 1, Object.assign(item, {
+						status: 'success',
+						message: '',
+						url: result
+					}))
+					fileListLen ++
+				}
+			},
+			uploadFilePromise(url) {
+				return new Promise((resolve, reject) => {
+					uni.uploadFile({
+						url: 'http://192.168.2.21:7001/upload', // 仅为示例，非真实的接口地址
+						filePath: url,
+						name: 'file',
+						formData: {
+							user: 'test'
+						},
+						success: (res) => {
+							setTimeout(() => {
+								console.log(res.data);
+								resolve(res.data.data)
+							}, 1000)
+						}
+					});
+				})
+			},
+		},
 	}
 </script>
 
 <style lang="scss">
-
+	.u-page {
+		padding: 15px 0 0 10px;
+	}
 </style>

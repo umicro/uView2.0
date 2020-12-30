@@ -7,7 +7,7 @@
 			    :key="index"
 			>
 				<image
-				    v-if="item.isImage"
+				    v-if="item.isImage || (item.type && item.type === 'image')"
 				    :src="item.thumb || item.url"
 				    mode="aspectFill"
 				    class="u-upload__wrap__preview__image"
@@ -31,7 +31,7 @@
 						    size="25"
 						/>
 						<u-loading-icon
-							size="22"
+						    size="22"
 						    mode="circle"
 						    color="#ffffff"
 						    v-else
@@ -45,6 +45,7 @@
 				<view
 				    class="u-upload__deletable"
 				    v-if="item.status !== 'uploading' && (deletable || item.deletable)"
+					@tap.stop="deleteItem(index)"
 				>
 					<view class="u-upload__deletable__icon">
 						<u-icon
@@ -56,7 +57,7 @@
 				</view>
 				<view
 				    class="u-upload__success"
-				    v-if="item.status !== 'uploading' && item.status !== 'failed' && item.success"
+				    v-if="item.status === 'success'"
 				>
 					<!-- #ifdef APP-NVUE -->
 					<image
@@ -81,10 +82,10 @@
 			    class="u-upload__button"
 			    hover-class="u-upload__button--hover"
 			    hover-stay-time="150"
-				@tap="chooseFile"
+			    @tap="chooseFile"
 			>
 				<u-icon
-				    name="camera-fill"
+				    :name="uploadIcon"
 				    size="25"
 				    color="#dcdee0"
 				></u-icon>
@@ -98,18 +99,56 @@
 </template>
 
 <script>
-	import { chooseFile } from './utils';
+	import {
+		chooseFile
+	} from './utils';
 	export default {
 		props: {
 			// 接受的文件类型, 可选值为all media image file video
 			accept: {
-			    type: String,
-			    default: 'image',
+				type: String,
+				default: 'image',
 			},
 			capture: {
 				type: [String, Array],
-				default() {
+				default () {
 					return ['album', 'camera']
+				}
+			},
+			// 当accept为video时生效，是否压缩视频，默认为true
+			compressed: {
+				type: Boolean,
+				default: true
+			},
+			// 当accept为video时生效，可选值为back或front
+			camera: {
+				type: String,
+				default: 'back'
+			},
+			// 当accept为video时生效，拍摄视频最长拍摄时间，单位秒
+			maxDuration: {
+				type: Number,
+				value: 60,
+			},
+			// 上传区域的图标，只能内置图标
+			uploadIcon: {
+				type: String,
+				default: 'camera-fill'
+			},
+			useBeforeRead: {
+				type: Boolean,
+				default: false
+			},
+			afterRead: {
+				type: Function,
+				default() {
+					return null
+				}
+			},
+			beforeRead: {
+				type: Function,
+				default() {
+					return null
 				}
 			},
 			//是否显示组件自带的图片预览功能
@@ -156,10 +195,10 @@
 					return {};
 				}
 			},
-			// 上传的文件字段名
+			// 标识符，可以在回调函数的第二项参数中获取
 			name: {
 				type: String,
-				default: 'file'
+				default: ''
 			},
 			// 所选的图片的尺寸, 可选值为original compressed
 			sizeType: {
@@ -182,7 +221,7 @@
 			// 是否开启图片多选，部分安卓机型不支持
 			multiple: {
 				type: Boolean,
-				default: true
+				default: false
 			},
 			// 是否展示删除按钮
 			deletable: {
@@ -281,44 +320,43 @@
 				// #ifdef APP-NVUE
 				successIcon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAKKADAAQAAAABAAAAKAAAAAB65masAAACP0lEQVRYCc3YXygsURwH8K/dpcWyG3LF5u/6/+dKVylSypuUl6uUPMifKMWL8oKEB1EUT1KeUPdR3uTNUsSLxb2udG/cbvInNuvf2rVnazZ/ZndmZ87snjM1Z+Z3zpzfp9+Z5mEAhlvjRtZgCKs+gnPAOcAkkMOR4jEHfItjDvgRxxSQD8cM0BuOCaAvXNCBQrigAsXgggYUiwsK0B9cwIH+4gIKlIILGFAqLiBAOTjFgXJxigJp4BQD0sIpAqSJow6kjSNAFTnRaHJwLenD6Mud52VQAcrBfTd2oyq+HtGaGGWAcnAVcXWoM3bCZrdi+ncPfaAcXE5UKVpdW/vitGPqqAtn98d0gXJwX7Qp6MmegUYVhvmTIezdmHlxJCjpHRTCFerLkRRu4k0aqdajN3sWOo0BK//msHa+xDuPC/oNFMKRhTtM4xjIX0SCNpXL4+7VIaHuyiWEp2L7ahWLf8fejfPdqPmC3mJicORZUp1CQzm+GiphvljGk+PBvWRbxii+xVTj5M6CiZ/tsDufvaXyxEUDxeLIyvu3m0iOyEFWVAkydcVYdyFrE9tQk9iMq6f/GNlvwt3LjQfh60LUrw9/cFyyMJUW/XkLSNMV4Mi6C5ML+ui4x5ClAX9sB9w0wV6wglJwJCv5fOxcr6EstgbGiEw4XcfUry4cWrcEUW8n+ARKxXEJHhw2WG43UKSvwI/TSZgvl7kh0b3XLZaLEy0QmMgLZAVH7J+ALOE+AVnDvQOyiPMAWcW5gSzjCPAV+78S5WE0GrQAAAAASUVORK5CYII=',
 				// #endif
-				lists: [{
-						isImage: true,
-						success: true,
-						status: 'uploading',
-						message: '上传中',
-						url: 'https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2127033353,3265008235&fm=111&gp=0.jpg',
-					},
-					{
-						isImage: true,
-						success: true,
-						status: 'failed',
-						message: '上传失败',
-						url: 'https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3864366174,3024802681&fm=26&gp=0.jpg',
-
-					},
-					{
-						isImage: true,
-						success: true,
-						url: 'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=317355792,3908274683&fm=26&gp=0.jpg'
-					}
-				]
+				lists: [],
+				isInCount: true,
 			}
 		},
-		computed: {
-			isInCount() {
-				return true
+		watch: {
+			fileList: {
+				immediate: true,
+				handler() {
+					this.formatFileList()
+				}
 			}
 		},
 		methods: {
-			chooseFile() {
+			formatFileList() {
 			    const {
-			        maxCount,
-			        multiple,
-			        lists,
-			        disabled
+			        fileList = [], maxCount
 			    } = this;
-			    if (disabled) return;
-				console.log(Object.assign(Object.assign({}, {
+			    const lists = fileList.map((item) =>
+			        Object.assign(Object.assign({}, item), {
+			            isImage: uni.$u.test.image(item.url),
+			            isVideo: uni.$u.test.video(item.url),
+			            deletable: typeof(item.deletable) === 'boolean' ? item.deletable : true,
+			        })
+			    );
+				this.lists = lists
+				this.isInCount = lists.length < maxCount
+			},
+			chooseFile() {
+				const {
+					maxCount,
+					multiple,
+					lists,
+					disabled
+				} = this;
+				if (disabled) return;
+				chooseFile(
+						Object.assign({
 							accept: this.accept,
 							multiple: this.multiple,
 							capture: this.capture,
@@ -326,22 +364,86 @@
 							maxDuration: this.maxDuration,
 							sizeType: this.sizeType,
 							camera: this.camera,
-						}), {
-			                maxCount: maxCount - lists.length,
-			            }));
-			    chooseFile(
-			            Object.assign(Object.assign({}, {
-							accept: this.accept
-						}), {
-			                maxCount: maxCount - lists.length,
-			            })
-			        )
-			        .then((res) => {
-			            this.onBeforeRead(multiple ? res : res[0]);
-			        })
-			        .catch((error) => {
-			            this.$emit('error', error);
-			        });
+						}, {
+							maxCount: maxCount - lists.length,
+						})
+					)
+					.then((res) => {
+						this.onBeforeRead(multiple ? res : res[0]);
+					})
+					.catch((error) => {
+						this.$emit('error', error);
+					});
+			},
+			// 文件读取之前
+			onBeforeRead(file) {
+				const {
+					beforeRead,
+					useBeforeRead,
+				} = this;
+				let res = true
+				// beforeRead是否为一个方法
+				if (uni.$u.test.func(beforeRead)) {
+					// 如果用户定义了此方法，则去执行此方法，并传入读取的文件回调
+					res = beforeRead(file, this.getDetail());
+				}
+				if (useBeforeRead) {
+					res = new Promise((resolve, reject) => {
+						this.$emit(
+							'before-read',
+							Object.assign(Object.assign({
+								file
+							}, this.getDetail()), {
+								callback: (ok) => {
+									ok ? resolve() : reject();
+								},
+							})
+						);
+					});
+				}
+				if (!res) {
+					return;
+				}
+				if (uni.$u.test.promise(res)) {
+					res.then((data) => this.onAfterRead(data || file));
+				} else {
+					this.onAfterRead(file);
+				}
+			},
+			getDetail(index) {
+				return {
+					name: this.name,
+					index: index == null ? this.fileList.length : index,
+				};
+			},
+			onAfterRead(file) {
+				const {
+					maxSize,
+					afterRead
+				} = this;
+				const oversize = Array.isArray(file) ?
+					file.some((item) => item.size > maxSize) :
+					file.size > maxSize;
+				if (oversize) {
+					this.$emit('oversize', Object.assign({
+						file
+					}, this.getDetail()));
+					return;
+				}
+				if (typeof afterRead === 'function') {
+					afterRead(file, this.getDetail());
+				}
+				this.$emit('afterRead', Object.assign({
+					file
+				}, this.getDetail()));
+			},
+			deleteItem(index) {
+				this.$emit(
+					'delete',
+					Object.assign(Object.assign({}, this.getDetail(index)), {
+						file: this.fileList[index],
+					})
+				);
 			},
 			// 预览图片
 			onPreviewImage(item) {
@@ -354,6 +456,41 @@
 						uni.$u.toast('预览图片失败')
 					},
 				});
+			},
+			onPreviewVideo(event) {
+				if (!this.data.previewFullImage) return;
+				const {
+					index
+				} = event.currentTarget.dataset;
+				const {
+					lists
+				} = this.data;
+				wx.previewMedia({
+					sources: lists
+						.filter((item) => isVideoFile(item))
+						.map((item) =>
+							Object.assign(Object.assign({}, item), {
+								type: 'video'
+							})
+						),
+					current: index,
+					fail() {
+						wx.showToast({
+							title: '预览视频失败',
+							icon: 'none'
+						});
+					},
+				});
+			},
+			onClickPreview(event) {
+				const {
+					index
+				} = event.currentTarget.dataset;
+				const item = this.data.lists[index];
+				this.$emit(
+					'click-preview',
+					Object.assign(Object.assign({}, item), this.getDetail(index))
+				);
 			}
 		}
 	}

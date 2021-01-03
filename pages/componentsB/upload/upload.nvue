@@ -102,6 +102,7 @@
 			    multiple
 			    :maxCount="3"
 			>
+				<u-button text="上传"></u-button>
 			</u-upload>
 		</view>
 		<u-gap></u-gap>

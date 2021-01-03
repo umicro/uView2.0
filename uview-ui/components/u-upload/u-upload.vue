@@ -82,8 +82,15 @@
 				</view>
 			</view>
 		</view>
-		<slot v-if="isInCount">
+		<template v-if="isInCount">
 			<view
+			    v-if="$slots.default || $slots.$default"
+			    @tap="chooseFile"
+			>
+				<slot />
+			</view>
+			<view
+			    v-else
 			    class="u-upload__button"
 			    :hover-class="!disabled && 'u-upload__button--hover'"
 			    hover-stay-time="150"
@@ -100,7 +107,7 @@
 				    class="u-upload__button__text"
 				>{{ uploadText }}</text>
 			</view>
-		</slot>
+		</template>
 	</view>
 </template>
 
@@ -147,37 +154,37 @@
 			// 接受的文件类型, 可选值为all media image file video
 			accept: {
 				type: String,
-				default:uni.$u.props.upload.accept,
+				default: uni.$u.props.upload.accept,
 			},
 			// 	图片或视频拾取模式，当accept为image类型时设置capture可选额外camera可以直接调起摄像头
 			capture: {
 				type: [String, Array],
-				default:uni.$u.props.upload.capture,
+				default: uni.$u.props.upload.capture,
 			},
 			// 当accept为video时生效，是否压缩视频，默认为true
 			compressed: {
 				type: Boolean,
-				default:uni.$u.props.upload.compressed
+				default: uni.$u.props.upload.compressed
 			},
 			// 当accept为video时生效，可选值为back或front
 			camera: {
 				type: String,
-				default:uni.$u.props.upload.camera
+				default: uni.$u.props.upload.camera
 			},
 			// 当accept为video时生效，拍摄视频最长拍摄时间，单位秒
 			maxDuration: {
 				type: Number,
-				value:uni.$u.props.upload.maxDuration,
+				value: uni.$u.props.upload.maxDuration,
 			},
 			// 上传区域的图标，只能内置图标
 			uploadIcon: {
 				type: String,
-				default:uni.$u.props.upload.uploadIcon
+				default: uni.$u.props.upload.uploadIcon
 			},
 			// 是否开启文件读取前事件
 			useBeforeRead: {
 				type: Boolean,
-				default:uni.$u.props.upload.useBeforeRead
+				default: uni.$u.props.upload.useBeforeRead
 			},
 			// 读取后的处理函数
 			afterRead: {
@@ -196,52 +203,52 @@
 			// 是否显示组件自带的图片预览功能
 			previewFullImage: {
 				type: Boolean,
-				default:uni.$u.props.upload.previewFullImage
+				default: uni.$u.props.upload.previewFullImage
 			},
 			// 最大上传数量
 			maxCount: {
 				type: [String, Number],
-				default:uni.$u.props.upload.maxCount
+				default: uni.$u.props.upload.maxCount
 			},
 			// 是否启用
 			disabled: {
 				type: Boolean,
-				default:uni.$u.props.upload.disabled
+				default: uni.$u.props.upload.disabled
 			},
 			// 预览上传的图片时的裁剪模式，和image组件mode属性一致
 			imageMode: {
 				type: String,
-				default:uni.$u.props.upload.imageMode
+				default: uni.$u.props.upload.imageMode
 			},
 			// 标识符，可以在回调函数的第二项参数中获取
 			name: {
 				type: String,
-				default:uni.$u.props.upload.name
+				default: uni.$u.props.upload.name
 			},
 			// 所选的图片的尺寸, 可选值为original compressed
 			sizeType: {
 				type: Array,
-				default:uni.$u.props.upload.sizeType
+				default: uni.$u.props.upload.sizeType
 			},
 			// 是否开启图片多选，部分安卓机型不支持
 			multiple: {
 				type: Boolean,
-				default:uni.$u.props.upload.multiple
+				default: uni.$u.props.upload.multiple
 			},
 			// 是否展示删除按钮
 			deletable: {
 				type: Boolean,
-				default:uni.$u.props.upload.deletable
+				default: uni.$u.props.upload.deletable
 			},
 			// 文件大小限制，单位为byte
 			maxSize: {
 				type: [String, Number],
-				default:uni.$u.props.upload.maxSize
+				default: uni.$u.props.upload.maxSize
 			},
 			// 显示已上传的文件列表
 			fileList: {
 				type: Array,
-				default:uni.$u.props.upload.fileList
+				default: uni.$u.props.upload.fileList
 			},
 			// 上传区域的提示文字
 			uploadText: {
@@ -251,12 +258,12 @@
 			// 内部预览图片区域和选择图片按钮的区域宽度
 			width: {
 				type: [String, Number],
-				default:uni.$u.props.upload.width
+				default: uni.$u.props.upload.width
 			},
 			// 内部预览图片区域和选择图片按钮的区域高度
 			height: {
 				type: [String, Number],
-				default:uni.$u.props.upload.height
+				default: uni.$u.props.upload.height
 			}
 		},
 		mixins: [uni.$u.mixin, mixin],
@@ -448,16 +455,16 @@
 	$u-upload-preview-height:$u-upload-preview-width;
 	$u-upload-preview-border-radius: 2px !default;
 	$u-upload-preview-margin: 0 8px 8px 0 !default;
-    $u-upload-image-width:80px !default;
-    $u-upload-image-height:$u-upload-image-width;
-    $u-upload-other-bgColor: rgb(242, 242, 242) !default;
+	$u-upload-image-width:80px !default;
+	$u-upload-image-height:$u-upload-image-width;
+	$u-upload-other-bgColor: rgb(242, 242, 242) !default;
 	$u-upload-other-flex:1 !default;
 	$u-upload-text-font-size:11px !default;
 	$u-upload-text-color:$u-tips-color !default;
 	$u-upload-text-margin-top:2px !default;
-	$u-upload-deletable-right:0!default;
-	$u-upload-deletable-top:0!default;
-	$u-upload-deletable-bgColor:rgb(55, 55, 55)!default;
+	$u-upload-deletable-right:0 !default;
+	$u-upload-deletable-top:0 !default;
+	$u-upload-deletable-bgColor:rgb(55, 55, 55) !default;
 	$u-upload-deletable-height:14px !default;
 	$u-upload-deletable-width:$u-upload-deletable-height;
 	$u-upload-deletable-boder-bottom-left-radius:100px !default;
@@ -495,7 +502,8 @@
 	$u-upload-text-color:$u-tips-color !default;
 	$u-upload-text-margin-top: 2px !default;
 	$u-upload-hover-bgColor:rgb(240, 241, 243) !default;
-	$u-upload-disabled-opacity:.5!default;
+	$u-upload-disabled-opacity:.5 !default;
+
 	.u-upload {
 		@include flex;
 
@@ -512,21 +520,21 @@
 				@include flex;
 
 				&__image {
-					width:$u-upload-image-width;
-					height:$u-upload-image-height;
+					width: $u-upload-image-width;
+					height: $u-upload-image-height;
 				}
 
 				&__other {
 					background-color: $u-upload-other-bgColor;
-					flex:$u-upload-other-flex;
+					flex: $u-upload-other-flex;
 					@include flex(column);
 					justify-content: center;
 					align-items: center;
 
 					&__text {
-						font-size:$u-upload-text-font-size;
-						color:$u-upload-text-color;
-						margin-top:$u-upload-text-margin-top;
+						font-size: $u-upload-text-font-size;
+						color: $u-upload-text-color;
+						margin-top: $u-upload-text-margin-top;
 					}
 				}
 			}
@@ -534,42 +542,42 @@
 
 		&__deletable {
 			position: absolute;
-			top:$u-upload-deletable-top;
-			right:$u-upload-deletable-right;
-			background-color:$u-upload-deletable-bgColor ;
-			height:$u-upload-deletable-height;
-			width:$u-upload-deletable-width;
+			top: $u-upload-deletable-top;
+			right: $u-upload-deletable-right;
+			background-color: $u-upload-deletable-bgColor;
+			height: $u-upload-deletable-height;
+			width: $u-upload-deletable-width;
 			@include flex;
-			border-bottom-left-radius:$u-upload-deletable-boder-bottom-left-radius;
+			border-bottom-left-radius: $u-upload-deletable-boder-bottom-left-radius;
 			align-items: center;
 			justify-content: center;
-			z-index:$u-upload-deletable-zIndex;
+			z-index: $u-upload-deletable-zIndex;
 
 			&__icon {
 				position: absolute;
 				transform: scale(0.7);
-				top:$u-upload-icon-top;
-				right:$u-upload-icon-right;
+				top: $u-upload-icon-top;
+				right: $u-upload-icon-right;
 				/* #ifdef H5 */
-				top:$u-upload-icon-h5-top;
-				right:$u-upload-icon-h5-right;
+				top: $u-upload-icon-h5-top;
+				right: $u-upload-icon-h5-right;
 				/* #endif */
 			}
 		}
 
 		&__success {
 			position: absolute;
-			bottom:$u-upload-success-bottom;
-			right:$u-upload-success-right;
+			bottom: $u-upload-success-bottom;
+			right: $u-upload-success-right;
 			@include flex;
 			// 由于weex(nvue)为阿里巴巴的KPI(部门业绩考核)的产物，不支持css绘制三角形
 			// 所以在nvue下使用图片，非nvue下使用css实现
 			/* #ifndef APP-NVUE */
-			border-top-color:$u-upload-success-border-top-color;
-			border-left-color:$u-upload-success-border-left-color;
-			border-bottom-color:$u-upload-success-border-bottom-color;
-			border-right-color:$u-upload-success-border-right-color;
-			border-width:$u-upload-success-border-width;
+			border-top-color: $u-upload-success-border-top-color;
+			border-left-color: $u-upload-success-border-left-color;
+			border-bottom-color: $u-upload-success-border-bottom-color;
+			border-right-color: $u-upload-success-border-right-color;
+			border-width: $u-upload-success-border-width;
 			align-items: center;
 			justify-content: center;
 			/* #endif */
@@ -578,36 +586,36 @@
 				/* #ifndef APP-NVUE */
 				position: absolute;
 				transform: scale(0.7);
-				bottom:$u-upload-success-icon-bottom;
-				right:$u-upload-success-icon-right;
+				bottom: $u-upload-success-icon-bottom;
+				right: $u-upload-success-icon-right;
 				/* #endif */
 				/* #ifdef APP-NVUE */
-				width:$u-upload-icon-width;
-				height:$u-upload-icon-height;
+				width: $u-upload-icon-width;
+				height: $u-upload-icon-height;
 				/* #endif */
 			}
 		}
 
 		&__status {
 			position: absolute;
-			top:$u-upload-status-top;
-			bottom:$u-upload-status-bottom;
-			left:$u-upload-status-left;
-			right:$u-upload-status-right;
-			background-color:$u-upload-status-bgColor;
+			top: $u-upload-status-top;
+			bottom: $u-upload-status-bottom;
+			left: $u-upload-status-left;
+			right: $u-upload-status-right;
+			background-color: $u-upload-status-bgColor;
 			@include flex(column);
 			align-items: center;
 			justify-content: center;
 
 			&__icon {
 				position: relative;
-				z-index:$u-upload-status-icon-Zindex;
+				z-index: $u-upload-status-icon-Zindex;
 			}
 
 			&__message {
-				font-size:$u-upload-message-font-size;
-				color:$u-upload-message-color;
-				margin-top:$u-upload-message-margin-top;
+				font-size: $u-upload-message-font-size;
+				color: $u-upload-message-color;
+				margin-top: $u-upload-message-margin-top;
 			}
 		}
 
@@ -615,27 +623,27 @@
 			@include flex(column);
 			align-items: center;
 			justify-content: center;
-			width:$u-upload-button-width;
-			height:$u-upload-button-height;
-			background-color:$u-upload-button-bgColor;
-			border-radius:$u-upload-button-border-radius;
-			margin:$u-upload-botton-margin;
+			width: $u-upload-button-width;
+			height: $u-upload-button-height;
+			background-color: $u-upload-button-bgColor;
+			border-radius: $u-upload-button-border-radius;
+			margin: $u-upload-botton-margin;
 			/* #ifndef APP-NVUE */
 			box-sizing: border-box;
 			/* #endif */
 
 			&__text {
-				font-size:$u-upload-text-font-size;
-				color:$u-upload-text-color;
-				margin-top:$u-upload-text-margin-top;
+				font-size: $u-upload-text-font-size;
+				color: $u-upload-text-color;
+				margin-top: $u-upload-text-margin-top;
 			}
 
 			&--hover {
-				background-color:$u-upload-hover-bgColor;
+				background-color: $u-upload-hover-bgColor;
 			}
 
 			&--disabled {
-				opacity:$u-upload-disabled-opacity;
+				opacity: $u-upload-disabled-opacity;
 			}
 		}
 	}

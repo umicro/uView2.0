@@ -19,7 +19,21 @@ export default {
 			// 位移的偏移量
 			x: 0,
 			// 是否正在触摸过程中，用于标记动画类是否添加或移除
-			touching: false
+			touching: false,
+			changeFromInside: false
+		}
+	},
+	watch: {
+		// 监听vlaue的变化，此变化可能是由于内部修改v-model的值，或者外部
+		// 从服务端获取一个值后，赋值给slider的v-model而导致的
+		value(n) {
+			console.log(this.changeFromInside)
+			if(!this.changeFromInside) {
+				console.log('变化了', n);
+				this.initX()
+			} else {
+				this.changeFromInside = false 
+			}
 		}
 	},
 	mounted() {
@@ -37,15 +51,17 @@ export default {
 			setTimeout(() => {
 				dom.getComponentRect(this.$refs['slider'], res => {
 					this.sliderRect = res.size
+					this.initX()
 				})
 			}, 10)
 		},
 		// 点击slider
 		onClick(e) {
+			return;
 			if (this.disabled || this.moving) {
 				return
 			}
-			// 标记为移动中状态，并延时250ms，因为这里改变滑块位置，加入了动画，需要等动画结束
+			// 标记为移动中状态，并延时一定时间，因为这里改变滑块位置，加入了动画，需要等动画结束
 			this.moving = true
 			setTimeout(() => {
 				this.moving = false
@@ -58,12 +74,16 @@ export default {
 			// 直接点击滑块的情况，计算方式与onTouchMove方法相同
 			var value = ((x - left) / width) * 100
 			const percent = this.formatStep(value)
+			// 通过占总width的百分比，推算出具体的值
+			const percentWdith = percent / 100 * width
 			// 设置移动的值
 			const barStyle = {
-				width: percent / 100 * width + 'px'
+				width: percentWdith + 'px'
 			}
 			// 修改value值
 			this.$emit('input', percent)
+			// 标记下一次触发value的watch时，这个值的变化，是由内部改变的
+			this.changeFromInside = true
 			// 事件的名称
 			this.emitEvent('click', percent)
 			this.barStyle = barStyle
@@ -80,6 +100,16 @@ export default {
 			// 阻止页面滚动，可以保证在滑动过程中，不让页面可以上下滚动，造成不好的体验
 			e.stopPropagation && e.stopPropagation() 
 			e.preventDefault && e.preventDefault()
+		},
+		// 从value的变化，倒推得出x的值该为多少
+		initX() {
+			const {
+				left,
+				width
+			} = this.sliderRect
+			// 得出x的初始偏移值，之所以需要这么做，是因为在bindingX中，触摸滑动时，只能的值本次移动的偏移值
+			// 而无法的值准确的前后移动的两个点的坐标值，weex纯粹为阿里巴巴的KPI(部门业绩考核)产物，也就这样了
+			this.x = this.value / 100 * width
 		},
 		// 滑动时的事件
 		onTouchMove(e) {
@@ -133,6 +163,13 @@ export default {
 			}, (e) => {
 				if (e.state === 'end') {
 					this.x = e.deltaX + this.x
+					// 根据偏移值，得出移动的百分比，进而修改双向绑定的v-model的值
+					var value = ((this.x - left) / width) * 100
+					const percent = this.formatStep(value)
+					// 修改value值
+					this.$emit('input', percent)
+					// 标记下一次触发value的watch时，这个值的变化，是由内部改变的
+					this.changeFromInside = true
 					// 取消bindingx的方法绑定，释放资源
 					BindingX.unbind({
 						token: this.panEvent.token,

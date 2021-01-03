@@ -76,8 +76,8 @@ export function chooseFile({
 					fail: reject,
 				});
 				break;
-			// #ifdef MP-WEIXIN
-			// 只有微信小程序才支持chooseMedia接口
+				// #ifdef MP-WEIXIN
+				// 只有微信小程序才支持chooseMedia接口
 			case 'media':
 				wx.chooseMedia({
 					count: multiple ? Math.min(maxCount, 9) : 1,
@@ -89,7 +89,7 @@ export function chooseFile({
 					fail: reject,
 				});
 				break;
-			// #endif
+				// #endif
 			case 'video':
 				uni.chooseVideo({
 					sourceType: capture,
@@ -100,17 +100,28 @@ export function chooseFile({
 					fail: reject,
 				});
 				break;
-			// #ifdef MP-WEIXIN
-			// 只有微信小程序才支持chooseMessageFile接口
+				// #ifdef MP-WEIXIN || H5
+				// 只有微信小程序才支持chooseMessageFile接口
 			case 'file':
+				// #ifdef MP-WEIXIN
 				wx.chooseMessageFile({
 					count: multiple ? maxCount : 1,
 					type: accept,
 					success: (res) => resolve(formatFile(res)),
 					fail: reject,
 				});
+				// #endif
+				// #ifdef H5
+				// 需要hx2.9.9以上才支持uni.chooseFile
+				uni.chooseFile({
+					count: multiple ? maxCount : 1,
+					type: accept,
+					success: (res) => resolve(formatFile(res)),
+					fail: reject,
+				})
+				// #endif
 				break;
-			// #endif
+				// #endif
 		}
 	});
 }

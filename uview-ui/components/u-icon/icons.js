@@ -1,8 +1,7 @@
 export default {
+	"uicon-level": "\ue693",
 	"uicon-column-line": "\ue68e",
 	"uicon-checkbox-mark": "\ue7c2",
-	"uicon-check-success": "\ue7c0", 
-	"uicon-check-primary": "\ue7bf",
 	"uicon-folder": "\ue7f5",
 	"uicon-movie": "\ue7f6",
 	"uicon-star-fill": "\ue669",

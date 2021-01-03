@@ -15,9 +15,14 @@
 				/>
 				<view
 				    v-else
-				    class="u-upload__wrap__preview__file"
+				    class="u-upload__wrap__preview__other"
 				>
-					<u-icon name="map"></u-icon>
+					<u-icon
+					    color="#80CBF9"
+						size="26"
+					    :name="item.isVideo || (item.type && item.type === 'video') ? 'movie' : 'folder'"
+					></u-icon>
+					<text class="u-upload__wrap__preview__other__text">{{item.isVideo || (item.type && item.type === 'video') ? '视频' : '文件'}}</text>
 				</view>
 				<view
 				    class="u-upload__status"
@@ -45,7 +50,7 @@
 				<view
 				    class="u-upload__deletable"
 				    v-if="item.status !== 'uploading' && (deletable || item.deletable)"
-					@tap.stop="deleteItem(index)"
+				    @tap.stop="deleteItem(index)"
 				>
 					<view class="u-upload__deletable__icon">
 						<u-icon
@@ -83,11 +88,12 @@
 			    hover-class="u-upload__button--hover"
 			    hover-stay-time="150"
 			    @tap="chooseFile"
+			    :class="[disabled && 'u-upload__button--disabled']"
 			>
 				<u-icon
 				    :name="uploadIcon"
-				    size="25"
-				    color="#dcdee0"
+				    size="26"
+				    color="#D3D4D6"
 				></u-icon>
 				<text
 				    v-if="uploadText"
@@ -102,6 +108,7 @@
 	import {
 		chooseFile
 	} from './utils';
+	import mixin from './mixin.js'
 	export default {
 		props: {
 			// 接受的文件类型, 可选值为all media image file video
@@ -141,35 +148,25 @@
 			},
 			afterRead: {
 				type: Function,
-				default() {
+				default () {
 					return null
 				}
 			},
 			beforeRead: {
 				type: Function,
-				default() {
+				default () {
 					return null
 				}
 			},
-			//是否显示组件自带的图片预览功能
-			showUploadList: {
+			// 是否显示组件自带的图片预览功能
+			previewFullImage: {
 				type: Boolean,
 				default: true
-			},
-			// 后端地址
-			action: {
-				type: String,
-				default: ''
 			},
 			// 最大上传数量
 			maxCount: {
 				type: [String, Number],
 				default: 52
-			},
-			//  是否显示进度条
-			showProgress: {
-				type: Boolean,
-				default: true
 			},
 			// 是否启用
 			disabled: {
@@ -180,20 +177,6 @@
 			imageMode: {
 				type: String,
 				default: 'aspectFill'
-			},
-			// 头部信息
-			header: {
-				type: Object,
-				default () {
-					return {};
-				}
-			},
-			// 额外携带的参数
-			formData: {
-				type: Object,
-				default () {
-					return {};
-				}
 			},
 			// 标识符，可以在回调函数的第二项参数中获取
 			name: {
@@ -206,17 +189,6 @@
 				default () {
 					return ['original', 'compressed'];
 				}
-			},
-			sourceType: {
-				type: Array,
-				default () {
-					return ['album', 'camera'];
-				}
-			},
-			// 是否在点击预览图后展示全屏图片预览
-			previewFullImage: {
-				type: Boolean,
-				default: true
 			},
 			// 是否开启图片多选，部分安卓机型不支持
 			multiple: {
@@ -245,21 +217,6 @@
 				type: String,
 				default: ''
 			},
-			// 是否自动上传
-			autoUpload: {
-				type: Boolean,
-				default: true
-			},
-			// 是否显示toast消息提示
-			showTips: {
-				type: Boolean,
-				default: true
-			},
-			// 是否通过slot自定义传入选择图标的按钮
-			customBtn: {
-				type: Boolean,
-				default: false
-			},
 			// 内部预览图片区域和选择图片按钮的区域宽度
 			width: {
 				type: [String, Number],
@@ -269,52 +226,9 @@
 			height: {
 				type: [String, Number],
 				default: 200
-			},
-			// 右上角关闭按钮的背景颜色
-			delBgColor: {
-				type: String,
-				default: '#fa3534'
-			},
-			// 右上角关闭按钮的叉号图标的颜色
-			delColor: {
-				type: String,
-				default: '#ffffff'
-			},
-			// 右上角删除图标名称，只能为uView内置图标
-			delIcon: {
-				type: String,
-				default: 'close'
-			},
-			// 如果上传后的返回值为json字符串，是否自动转json
-			toJson: {
-				type: Boolean,
-				default: true
-			},
-			// 上传前的钩子，每个文件上传前都会执行
-			beforeUpload: {
-				type: Function,
-				default: null
-			},
-			// 移除文件前的钩子
-			beforeRemove: {
-				type: Function,
-				default: null
-			},
-			// 允许上传的图片后缀
-			limitType: {
-				type: Array,
-				default () {
-					// 支付宝小程序真机选择图片的后缀为"image"
-					// https://opendocs.alipay.com/mini/api/media-image
-					return ['png', 'jpg', 'jpeg', 'webp', 'gif', 'image'];
-				}
-			},
-			// 在各个回调事件中的最后一个参数返回，用于区别是哪一个组件的事件
-			index: {
-				type: [Number, String],
-				default: ''
 			}
 		},
+		mixins: [uni.$u.mixin, mixin],
 		data() {
 			return {
 				// #ifdef APP-NVUE
@@ -325,25 +239,28 @@
 			}
 		},
 		watch: {
+			// 监听文件列表的变化，重新整理内部数据
 			fileList: {
 				immediate: true,
 				handler() {
 					this.formatFileList()
 				}
-			}
+			},
 		},
 		methods: {
 			formatFileList() {
-			    const {
-			        fileList = [], maxCount
-			    } = this;
-			    const lists = fileList.map((item) =>
-			        Object.assign(Object.assign({}, item), {
-			            isImage: uni.$u.test.image(item.url),
-			            isVideo: uni.$u.test.video(item.url),
-			            deletable: typeof(item.deletable) === 'boolean' ? item.deletable : true,
-			        })
-			    );
+				const {
+					fileList = [], maxCount
+				} = this;
+				const lists = fileList.map((item) =>
+					Object.assign(Object.assign({}, item), {
+						// isImage: uni.$u.test.image(item.url),
+						// isVideo: uni.$u.test.video(item.url),
+						isImage: false,
+						isVideo: true,
+						deletable: typeof(item.deletable) === 'boolean' ? item.deletable : true,
+					})
+				);
 				this.lists = lists
 				this.isInCount = lists.length < maxCount
 			},
@@ -513,10 +430,25 @@
 				position: relative;
 				border-radius: 2px;
 				overflow: hidden;
+				@include flex;
 
 				&__image {
 					width: 80px;
 					height: 80px;
+				}
+				
+				&__other {
+					background-color: rgb(242, 242, 242);
+					flex: 1;
+					@include flex(column);
+					justify-content: center;
+					align-items: center;
+					
+					&__text {
+						font-size: 11px;
+						color: $u-tips-color;
+						margin-top: 2px;
+					}
 				}
 			}
 		}
@@ -606,15 +538,21 @@
 			justify-content: center;
 			width: 80px;
 			height: 80px;
-			background-color: #f7f8fa;
+			background-color: rgb(244, 245, 247);
 			border-radius: 2px;
 			margin: 0 8px 8px 0;
 			/* #ifndef APP-NVUE */
 			box-sizing: border-box;
 			/* #endif */
+			
+			&__text {
+				font-size: 11px;
+				color: $u-tips-color;
+				margin-top: 2px;
+			}
 
 			&--hover {
-				background-color: rgb(242, 243, 245);
+				background-color: rgb(240, 241, 243);
 			}
 		}
 	}

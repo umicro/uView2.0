@@ -1,11 +1,29 @@
 <template>
 	<view class="u-page">
-		<text>3434</text>
+		<u-cell
+		    :titleStyle="{fontWeight: 500}"
+		    @click="openNotify(item.notifyData)"
+		    :title="item.title"
+		    v-for="(item, index) in list"
+		    :key="index"
+		    isLink
+		>
+			<image
+			    slot="icon"
+			    class="u-cell-icon"
+			    :src="item.iconUrl"
+			    mode="widthFix"
+			></image>
+		</u-cell>
 		<u-notify
-		    :message="message"
+		    :message="notifyData.message"
+		    :type="notifyData.type"
+			:color="notifyData.color"
+			:bgColor="notifyData.bgColor"
+			:fontSize="notifyData.fontSize"
+			:duration="notifyData.duration"
 		    :show="show"
-			type="success"
-		></u-notify> 
+		></u-notify>
 	</view>
 </template>
 
@@ -13,12 +31,94 @@
 	export default {
 		data() {
 			return {
-				message: '哈喽哇哈哈了啦',
-				show: true
+				show: false,
+				notifyData: {
+					message: 'notify顶部提示',
+					type: 'primary',
+					color: '#ffffff',
+					bgColor: '',
+					fontSize: 14,
+					duration: 3000,
+				},
+				list: [{
+						notifyData: {
+							message: 'notify顶部提示',
+							type: 'primary',
+							color: '#ffffff',
+							bgColor: '',
+							fontSize: 14,
+							duration: 3000
+						},
+						title: '主要通知',
+						iconUrl: '/static/common/image/transition/fade.png'
+					}, {
+						notifyData: {
+							message: 'notify顶部提示',
+							type: 'success',
+							color: '#ffffff',
+							bgColor: '',
+							fontSize: 14,
+							duration: 3000
+						},
+						title: '成功通知',
+						iconUrl: '/static/common/image/transition/fade.png'
+					}, {
+						notifyData: {
+							message: 'notify顶部提示',
+							type: 'error',
+							color: '#ffffff',
+							bgColor: '',
+							fontSize: 14,
+							duration: 3000
+						},
+						title: '危险通知',
+						iconUrl: '/static/common/image/transition/fade.png'
+					}, {
+						notifyData: {
+							message: 'notify顶部提示',
+							type: 'warning',
+							color: '#ffffff',
+							bgColor: '',
+							fontSize: 14,
+							duration: 3000
+						},
+						title: '警告通知',
+						iconUrl: '/static/common/image/transition/fade.png'
+					},
+					{
+						notifyData: {
+							message: 'notify顶部提示',
+							color: '#fff',
+							bgColor:'#4bb0ff',
+							fontSize: 14,
+							duration: 3000
+						},
+						title: '自定义样式',
+						iconUrl: '/static/common/image/transition/fade.png'
+					},
+					{
+						notifyData: {
+							message: 'notify顶部提示',
+							type: 'primary',
+							color: '#ffffff',
+							bgColor: '',
+							fontSize: 14,
+							duration:6000
+						},
+						title: '自定义时间',
+						iconUrl: '/static/common/image/transition/fade.png'
+					}
+				]
 			}
 		},
 		onLoad() {
-			
+
+		},
+		methods: {
+			openNotify(item) {
+				this.notifyData = item;
+				this.show = true;
+			}
 		}
 	}
 </script>

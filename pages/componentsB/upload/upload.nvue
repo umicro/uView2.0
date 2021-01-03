@@ -5,6 +5,7 @@
 		    @afterRead="afterRead"
 		    @delete="deletePic"
 		    multiple
+			disabled
 		    :maxCount="10"
 		></u-upload>
 	</view>

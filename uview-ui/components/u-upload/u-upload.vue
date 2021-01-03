@@ -85,7 +85,7 @@
 		<slot v-if="isInCount">
 			<view
 			    class="u-upload__button"
-			    hover-class="u-upload__button--hover"
+			    :hover-class="!disabled && 'u-upload__button--hover'"
 			    hover-stay-time="150"
 			    @tap="chooseFile"
 			    :class="[disabled && 'u-upload__button--disabled']"
@@ -553,6 +553,10 @@
 
 			&--hover {
 				background-color: rgb(240, 241, 243);
+			}
+			
+			&--disabled {
+			    opacity: .5;
 			}
 		}
 	}

@@ -8,7 +8,7 @@
 				class="u-block__section"
 			></u-section>
 			<u-slider
-			    v-model="value"
+			    v-model="value1"
 			    @moving="moving"
 			    @click="click"
 				@start="start"
@@ -25,7 +25,7 @@
 				class="u-block__section"
 			></u-section>
 			<u-slider
-			    v-model="value"
+			    v-model="value2"
 			    @moving="moving"
 			    @click="click"
 				@start="start"
@@ -44,7 +44,7 @@
 				class="u-block__section"
 			></u-section>
 			<u-slider
-			    v-model="value"
+			    v-model="value3"
 			    @moving="moving"
 			    @click="click"
 				@start="start"
@@ -62,7 +62,7 @@
 				class="u-block__section"
 			></u-section>
 			<u-slider
-			    v-model="value"
+			    v-model="value4"
 			    @moving="moving"
 			    @click="click"
 				@start="start"
@@ -79,7 +79,7 @@
 				class="u-block__section"
 			></u-section>
 			<u-slider
-			    v-model="value"
+			    v-model="value5"
 			    @moving="moving"
 			    @click="click"
 				@start="start"
@@ -100,7 +100,11 @@
 	export default {
 		data() {
 			return {
-				value:30
+				value1:30,
+				value2:30,
+				value3:30,
+				value4:30,
+				value5:30
 			}
 		},
 		watch: {

@@ -1,13 +1,110 @@
 <template>
 	<view class="u-page">
-		<u-upload
-		    :fileList="fileList"
-		    @afterRead="afterRead"
-		    @delete="deletePic"
-		    multiple
-			disabled
-		    :maxCount="10"
-		></u-upload>
+		<u-gap></u-gap>
+		<view class="u-block">
+			<u-section
+			    title="基础用法"
+			    :right="false"
+			    class="u-block__section"
+			></u-section>
+			<u-upload
+			    :fileList="fileList1"
+			    @afterRead="afterRead"
+			    @delete="deletePic"
+			    name="1"
+			    multiple
+			    :maxCount="10"
+			></u-upload>
+		</view>
+		<u-gap></u-gap>
+
+		<view class="u-block">
+			<u-section
+			    title="上传视频"
+			    :right="false"
+			    class="u-block__section"
+			></u-section>
+			<u-upload
+			    :fileList="fileList2"
+			    @afterRead="afterRead"
+			    @delete="deletePic"
+			    name="2"
+			    multiple
+			    :maxCount="10"
+			    accept="video"
+			></u-upload>
+		</view>
+		<u-gap></u-gap>
+
+		<view class="u-block">
+			<u-section
+			    title="文件预览"
+			    :right="false"
+			    class="u-block__section"
+			></u-section>
+			<u-upload
+			    :fileList="fileList3"
+			    @afterRead="afterRead"
+			    @delete="deletePic"
+			    name="3"
+			    multiple
+			    :maxCount="10"
+			    :previewFullImage="true"
+			></u-upload>
+		</view>
+		<u-gap></u-gap>
+
+		<view class="u-block">
+			<u-section
+			    title="隐藏上传按钮"
+			    :right="false"
+			    class="u-block__section"
+			></u-section>
+			<u-upload
+			    :fileList="fileList4"
+			    @afterRead="afterRead"
+			    @delete="deletePic"
+			    name="4"
+			    multiple
+			    :maxCount="2"
+			></u-upload>
+		</view>
+		<u-gap></u-gap>
+		
+		<view class="u-block">
+			<u-section
+			    title="限制上传数量"
+			    :right="false"
+			    class="u-block__section"
+			></u-section>
+			<u-upload
+			    :fileList="fileList5"
+			    @afterRead="afterRead"
+			    @delete="deletePic"
+			    name="5"
+			    multiple
+			    :maxCount="3"
+			></u-upload>
+		</view>
+		<u-gap></u-gap>
+		
+		<view class="u-block">
+			<u-section
+			    title="自定义上传样式"
+			    :right="false"
+			    class="u-block__section"
+			></u-section>
+			<u-upload
+			    :fileList="fileList5"
+			    @afterRead="afterRead"
+			    @delete="deletePic"
+			    name="5"
+			    multiple
+			    :maxCount="3"
+			>
+			</u-upload>
+		</view>
+		<u-gap></u-gap>
 	</view>
 </template>
 
@@ -15,41 +112,51 @@
 	export default {
 		data() {
 			return {
-				fileList: [
+				fileList1: [
+
+				],
+				fileList2: [],
+				fileList3: [{
+					url: 'http://pics.sc.chinaz.com/files/pic/pic9/201912/hpic1886.jpg',
+				}],
+				fileList4: [{
+						url: 'http://pics.sc.chinaz.com/files/pic/pic9/201912/hpic1886.jpg',
+					},
 					{
-						url: 'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2346282507,2171850944&fm=26&gp=0.jpg',
-						type: 'movie'
+						url: 'http://pics.sc.chinaz.com/files/pic/pic9/201912/hpic1886.jpg',
 					}
 				],
+				fileList5:[]
 			}
 		},
 		onLoad() {
-			
+
 		},
 		methods: {
-			deletePic(index) {
-				this.fileList.splice(index, 1)
+			deletePic(event) {
+				this[`fileList${event.name}`].splice(event.index, 1)
 			},
 			async afterRead(event) {
+				console.log(event)
 				// 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
 				let lists = [].concat(event.file)
-				let fileListLen = this.fileList.length
+				let fileListLen = this[`fileList${event.name}`].length
 				lists.map((item) => {
-					this.fileList.push({
+					this[`fileList${event.name}`].push({
 						...item,
 						status: 'uploading',
 						message: '上传中'
 					})
 				})
-				for(let i = 0; i < lists.length; i++) {
+				for (let i = 0; i < lists.length; i++) {
 					const result = await this.uploadFilePromise(lists[i].thumb)
-					let item = this.fileList[fileListLen]
-					this.fileList.splice(fileListLen, 1, Object.assign(item, {
+					let item = this[`fileList${event.name}`][fileListLen]
+					this[`fileList${event.name}`].splice(fileListLen, 1, Object.assign(item, {
 						status: 'success',
 						message: '',
 						url: result
 					}))
-					fileListLen ++
+					fileListLen++
 				}
 			},
 			uploadFilePromise(url) {
@@ -74,7 +181,5 @@
 </script>
 
 <style lang="scss">
-	.u-page {
-		padding: 15px 0 0 10px;
-	}
+	.u-page {}
 </style>

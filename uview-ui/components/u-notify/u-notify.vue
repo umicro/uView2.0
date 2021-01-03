@@ -51,6 +51,10 @@
 	 * @property {String} message 展示的文字内容
 	 * @property {String} duration 展示时长，为0时不消失，单位ms
 	 * @property {String} fontSize  字体大小
+	 * @property {Boolean} safeAreaInsetTop  是否留出顶部安全距离（状态栏高度）
+	 * @property {Object} customStyle  组件的样式，对象形式
+	 * @event {Function} open  开启组件时调用的函数
+	 * @event {Function} close 关闭组件式调用的函数
 	 * @example <u-notify message="Hi uView"></u-notify>
 	 */
 	export default {
@@ -80,7 +84,6 @@
 					top = 44
 					// #endif
 				}
-
 				const style = {
 					top: uni.$u.addUnit(this.top === 0 ? top : this.top),
 					// 因为组件底层为u-transition组件，必须将其设置为fixed定位

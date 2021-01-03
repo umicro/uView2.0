@@ -1,9 +1,11 @@
 <template>
 	<view class="u-page">
+		<text>3434</text>
 		<u-notify
 		    :message="message"
 		    :show="show"
-		></u-notify>
+			type="success"
+		></u-notify> 
 	</view>
 </template>
 

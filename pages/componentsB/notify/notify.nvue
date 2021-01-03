@@ -1,0 +1,26 @@
+<template>
+	<view class="u-page">
+		<u-notify
+		    :message="message"
+		    :show="show"
+		></u-notify>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				message: '哈喽哇哈哈了啦',
+				show: true
+			}
+		},
+		onLoad() {
+			
+		}
+	}
+</script>
+
+<style lang="scss">
+
+</style>

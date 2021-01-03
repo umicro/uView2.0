@@ -181,10 +181,10 @@ export default [{
 			title: 'NoticeBar 滚动通知',
 			title_en: 'NoticeBar',
 		}, {
-			path: '/pages/componentsA/topTips/topTips',
-			icon: 'topTips',
-			title: 'TopTips 顶部提示',
-			title_en: 'TopTips',
+			path: '/pages/componentsB/notify/notify',
+			icon: 'notify',
+			title: 'Notify 消息提示',
+			title_en: 'Notify',
 		}, {
 			path: '/pages/componentsA/swipeAction/swipeAction',
 			icon: 'swipeAction',

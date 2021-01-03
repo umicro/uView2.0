@@ -70,7 +70,7 @@
 			></u-upload>
 		</view>
 		<u-gap></u-gap>
-		
+
 		<view class="u-block">
 			<u-section
 			    title="限制上传数量"
@@ -87,7 +87,7 @@
 			></u-upload>
 		</view>
 		<u-gap></u-gap>
-		
+
 		<view class="u-block">
 			<u-section
 			    title="自定义上传样式"
@@ -95,14 +95,17 @@
 			    class="u-block__section"
 			></u-section>
 			<u-upload
-			    :fileList="fileList5"
+			    :fileList="fileList6"
 			    @afterRead="afterRead"
 			    @delete="deletePic"
-			    name="5"
+			    name="6"
 			    multiple
 			    :maxCount="3"
 			>
-				<u-button text="上传"></u-button>
+				<u-button
+				    color="linear-gradient(to right, #4bb0ff, #6149f6)"
+				    text="上传"
+				></u-button>
 			</u-upload>
 		</view>
 		<u-gap></u-gap>
@@ -127,16 +130,20 @@
 						url: 'http://pics.sc.chinaz.com/files/pic/pic9/201912/hpic1886.jpg',
 					}
 				],
-				fileList5:[]
+				fileList5: [],
+				fileList6: [],
+				fileList7: []
 			}
 		},
 		onLoad() {
 
 		},
 		methods: {
+			// 删除图片
 			deletePic(event) {
 				this[`fileList${event.name}`].splice(event.index, 1)
 			},
+			// 新增图片
 			async afterRead(event) {
 				console.log(event)
 				// 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式

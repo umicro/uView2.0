@@ -343,7 +343,7 @@
 				if (useBeforeRead) {
 					res = new Promise((resolve, reject) => {
 						this.$emit(
-							'before-read',
+							'beforeRead',
 							Object.assign(Object.assign({
 								file
 							}, this.getDetail()), {

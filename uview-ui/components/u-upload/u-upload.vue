@@ -19,7 +19,7 @@
 				>
 					<u-icon
 					    color="#80CBF9"
-						size="26"
+					    size="26"
 					    :name="item.isVideo || (item.type && item.type === 'video') ? 'movie' : 'folder'"
 					></u-icon>
 					<text class="u-upload__wrap__preview__other__text">{{item.isVideo || (item.type && item.type === 'video') ? '视频' : '文件'}}</text>
@@ -108,50 +108,85 @@
 	import {
 		chooseFile
 	} from './utils';
-	import mixin from './mixin.js'
+	import mixin from './mixin.js';
+	/**
+	 * upload 上传
+	 * @description 该组件用于上传图片场景
+	 * @tutorial https://uviewui.com/components/upload.html
+	 * @property {String} accept 接受的文件类型, 可选值为all media image file video
+	 * @property {String Array} capture  	图片或视频拾取模式，当accept为image类型时设置capture可选额外camera可以直接调起摄像头
+	 * @property {Boolean} compressed  当accept为video时生效，是否压缩视频，默认为true
+	 * @property {String} camera  当accept为video时生效，可选值为back或front
+	 * @property {Number} maxDuration  当accept为video时生效，拍摄视频最长拍摄时间，单位秒
+	 * @property {String} uploadIcon  上传区域的图标，只能内置图标
+	 * @property {Boolean} useBeforeRead  是否开启文件读取前事件
+	 * @property {Boolean} previewFullImage  是否显示组件自带的图片预览功能
+	 * @property {String Number} maxCount  最大上传数量
+	 * @property {Boolean} disabled  是否启用
+	 * @property {String} imageMode  预览上传的图片时的裁剪模式，和image组件mode属性一致
+	 * @property {String} name  标识符，可以在回调函数的第二项参数中获取
+	 * @property {Array} sizeType  所选的图片的尺寸, 可选值为original compressed
+	 * @property {Boolean} multiple  是否开启图片多选，部分安卓机型不支持
+	 * @property {Boolean} deletable  是否展示删除按钮
+	 * @property {String Number} maxSize  文件大小限制，单位为byte
+	 * @property {Array} fileList  显示已上传的文件列表
+	 * @property {String} uploadText  上传区域的提示文字
+	 * @property {String Number} width  内部预览图片区域和选择图片按钮的区域宽度
+	 * @property {String Number} height  内部预览图片区域和选择图片按钮的区域高度
+	 * @property {Object} customStyle  组件的样式，对象形式
+	 * @event {Function} afterRead  读取后的处理函数
+	 * @event {Function} beforeRead  读取前的处理函数
+	 * @event {Function} oversize 文件超出大小限制
+	 * @event {Function} clickPreview 点击预览图片
+	 * @event {Function} delete 删除图片
+	 * @example <u-upload :action="action" :fileList="fileList" ></u-upload>
+	 */
 	export default {
+		name: "u-upload",
 		props: {
 			// 接受的文件类型, 可选值为all media image file video
 			accept: {
 				type: String,
-				default: 'image',
+				default:uni.$u.props.upload.accept,
 			},
+			// 	图片或视频拾取模式，当accept为image类型时设置capture可选额外camera可以直接调起摄像头
 			capture: {
 				type: [String, Array],
-				default () {
-					return ['album', 'camera']
-				}
+				default:uni.$u.props.upload.capture,
 			},
 			// 当accept为video时生效，是否压缩视频，默认为true
 			compressed: {
 				type: Boolean,
-				default: true
+				default:uni.$u.props.upload.compressed
 			},
 			// 当accept为video时生效，可选值为back或front
 			camera: {
 				type: String,
-				default: 'back'
+				default:uni.$u.props.upload.camera
 			},
 			// 当accept为video时生效，拍摄视频最长拍摄时间，单位秒
 			maxDuration: {
 				type: Number,
-				value: 60,
+				value:uni.$u.props.upload.maxDuration,
 			},
 			// 上传区域的图标，只能内置图标
 			uploadIcon: {
 				type: String,
-				default: 'camera-fill'
+				default:uni.$u.props.upload.uploadIcon
 			},
+			// 是否开启文件读取前事件
 			useBeforeRead: {
 				type: Boolean,
-				default: false
+				default:uni.$u.props.upload.useBeforeRead
 			},
+			// 读取后的处理函数
 			afterRead: {
 				type: Function,
 				default () {
 					return null
 				}
 			},
+			// 读取前的处理函数
 			beforeRead: {
 				type: Function,
 				default () {
@@ -161,71 +196,67 @@
 			// 是否显示组件自带的图片预览功能
 			previewFullImage: {
 				type: Boolean,
-				default: true
+				default:uni.$u.props.upload.previewFullImage
 			},
 			// 最大上传数量
 			maxCount: {
 				type: [String, Number],
-				default: 52
+				default:uni.$u.props.upload.maxCount
 			},
 			// 是否启用
 			disabled: {
 				type: Boolean,
-				default: false
+				default:uni.$u.props.upload.disabled
 			},
 			// 预览上传的图片时的裁剪模式，和image组件mode属性一致
 			imageMode: {
 				type: String,
-				default: 'aspectFill'
+				default:uni.$u.props.upload.imageMode
 			},
 			// 标识符，可以在回调函数的第二项参数中获取
 			name: {
 				type: String,
-				default: ''
+				default:uni.$u.props.upload.name
 			},
 			// 所选的图片的尺寸, 可选值为original compressed
 			sizeType: {
 				type: Array,
-				default () {
-					return ['original', 'compressed'];
-				}
+				default:uni.$u.props.upload.sizeType
 			},
 			// 是否开启图片多选，部分安卓机型不支持
 			multiple: {
 				type: Boolean,
-				default: false
+				default:uni.$u.props.upload.multiple
 			},
 			// 是否展示删除按钮
 			deletable: {
 				type: Boolean,
-				default: true
+				default:uni.$u.props.upload.deletable
 			},
 			// 文件大小限制，单位为byte
 			maxSize: {
 				type: [String, Number],
-				default: Number.MAX_VALUE
+				default:uni.$u.props.upload.maxSize
 			},
 			// 显示已上传的文件列表
 			fileList: {
 				type: Array,
-				default () {
-					return [];
-				}
+				default:uni.$u.props.upload.fileList
 			},
 			// 上传区域的提示文字
 			uploadText: {
 				type: String,
-				default: ''
+				default: uni.$u.props.upload.uploadText
 			},
 			// 内部预览图片区域和选择图片按钮的区域宽度
 			width: {
 				type: [String, Number],
-				default: 200
+				default:uni.$u.props.upload.width
 			},
 			// 内部预览图片区域和选择图片按钮的区域高度
 			height: {
 				type: [String, Number],
-				default: 200
+				default:uni.$u.props.upload.height
 			}
 		},
 		mixins: [uni.$u.mixin, mixin],
@@ -254,10 +285,8 @@
 				} = this;
 				const lists = fileList.map((item) =>
 					Object.assign(Object.assign({}, item), {
-						// isImage: uni.$u.test.image(item.url),
-						// isVideo: uni.$u.test.video(item.url),
-						isImage: false,
-						isVideo: true,
+						isImage: uni.$u.test.image(item.url),
+						isVideo: uni.$u.test.video(item.url),
 						deletable: typeof(item.deletable) === 'boolean' ? item.deletable : true,
 					})
 				);
@@ -415,7 +444,58 @@
 
 <style lang="scss">
 	@import '../../libs/css/components.scss';
-
+	$u-upload-preview-width:80px !default;
+	$u-upload-preview-height:$u-upload-preview-width;
+	$u-upload-preview-border-radius: 2px !default;
+	$u-upload-preview-margin: 0 8px 8px 0 !default;
+    $u-upload-image-width:80px !default;
+    $u-upload-image-height:$u-upload-image-width;
+    $u-upload-other-bgColor: rgb(242, 242, 242) !default;
+	$u-upload-other-flex:1 !default;
+	$u-upload-text-font-size:11px !default;
+	$u-upload-text-color:$u-tips-color !default;
+	$u-upload-text-margin-top:2px !default;
+	$u-upload-deletable-right:0!default;
+	$u-upload-deletable-top:0!default;
+	$u-upload-deletable-bgColor:rgb(55, 55, 55)!default;
+	$u-upload-deletable-height:14px !default;
+	$u-upload-deletable-width:$u-upload-deletable-height;
+	$u-upload-deletable-boder-bottom-left-radius:100px !default;
+	$u-upload-deletable-zIndex:3 !default;
+	$u-upload-success-bottom:0 !default;
+	$u-upload-success-right:0 !default;
+	$u-upload-success-border-top-color:transparent !default;
+	$u-upload-success-border-left-color:transparent !default;
+	$u-upload-success-border-bottom-color: $u-success !default;
+	$u-upload-success-border-right-color:$u-upload-success-border-bottom-color;
+	$u-upload-success-border-width:9px !default;
+	$u-upload-icon-top:0px !default;
+	$u-upload-icon-right:0px !default;
+	$u-upload-icon-h5-top:1px !default;
+	$u-upload-icon-h5-right:0 !default;
+	$u-upload-icon-width:16px !default;
+	$u-upload-icon-height:$u-upload-icon-width;
+	$u-upload-success-icon-bottom:-10px !default;
+	$u-upload-success-icon-right:-10px !default;
+	$u-upload-status-right:0 !default;
+	$u-upload-status-left:0 !default;
+	$u-upload-status-bottom:0 !default;
+	$u-upload-status-top:0 !default;
+	$u-upload-status-bgColor:rgba(0, 0, 0, 0.5) !default;
+	$u-upload-status-icon-Zindex:1 !default;
+	$u-upload-message-font-size:12px !default;
+	$u-upload-message-color:#FFFFFF !default;
+	$u-upload-message-margin-top:5px !default;
+	$u-upload-button-width:80px !default;
+	$u-upload-button-height:$u-upload-button-width;
+	$u-upload-button-bgColor:rgb(244, 245, 247) !default;
+	$u-upload-button-border-radius:2px !default;
+	$u-upload-botton-margin: 0 8px 8px 0 !default;
+	$u-upload-text-font-size:11px !default;
+	$u-upload-text-color:$u-tips-color !default;
+	$u-upload-text-margin-top: 2px !default;
+	$u-upload-hover-bgColor:rgb(240, 241, 243) !default;
+	$u-upload-disabled-opacity:.5!default;
 	.u-upload {
 		@include flex;
 
@@ -423,31 +503,30 @@
 			@include flex;
 
 			&__preview {
-				width: 80px;
-				height: 80px;
-				border-radius: 3px;
-				margin: 0 8px 8px 0;
+				width: $u-upload-preview-width;
+				height: $u-upload-preview-height;
+				border-radius: $u-upload-preview-border-radius;
+				margin: $u-upload-preview-margin;
 				position: relative;
-				border-radius: 2px;
 				overflow: hidden;
 				@include flex;
 
 				&__image {
-					width: 80px;
-					height: 80px;
+					width:$u-upload-image-width;
+					height:$u-upload-image-height;
 				}
-				
+
 				&__other {
-					background-color: rgb(242, 242, 242);
-					flex: 1;
+					background-color: $u-upload-other-bgColor;
+					flex:$u-upload-other-flex;
 					@include flex(column);
 					justify-content: center;
 					align-items: center;
-					
+
 					&__text {
-						font-size: 11px;
-						color: $u-tips-color;
-						margin-top: 2px;
+						font-size:$u-upload-text-font-size;
+						color:$u-upload-text-color;
+						margin-top:$u-upload-text-margin-top;
 					}
 				}
 			}
@@ -455,42 +534,42 @@
 
 		&__deletable {
 			position: absolute;
-			top: 0;
-			right: 0;
-			background-color: rgb(55, 55, 55);
-			height: 14px;
-			width: 14px;
+			top:$u-upload-deletable-top;
+			right:$u-upload-deletable-right;
+			background-color:$u-upload-deletable-bgColor ;
+			height:$u-upload-deletable-height;
+			width:$u-upload-deletable-width;
 			@include flex;
-			border-bottom-left-radius: 100px;
+			border-bottom-left-radius:$u-upload-deletable-boder-bottom-left-radius;
 			align-items: center;
 			justify-content: center;
-			z-index: 3;
+			z-index:$u-upload-deletable-zIndex;
 
 			&__icon {
 				position: absolute;
 				transform: scale(0.7);
-				top: 0px;
-				right: 0px;
+				top:$u-upload-icon-top;
+				right:$u-upload-icon-right;
 				/* #ifdef H5 */
-				top: 1px;
-				right: 0;
+				top:$u-upload-icon-h5-top;
+				right:$u-upload-icon-h5-right;
 				/* #endif */
 			}
 		}
 
 		&__success {
 			position: absolute;
-			bottom: 0;
-			right: 0;
+			bottom:$u-upload-success-bottom;
+			right:$u-upload-success-right;
 			@include flex;
 			// 由于weex(nvue)为阿里巴巴的KPI(部门业绩考核)的产物，不支持css绘制三角形
 			// 所以在nvue下使用图片，非nvue下使用css实现
 			/* #ifndef APP-NVUE */
-			border-top-color: transparent;
-			border-left-color: transparent;
-			border-bottom-color: $u-success;
-			border-right-color: $u-success;
-			border-width: 9px;
+			border-top-color:$u-upload-success-border-top-color;
+			border-left-color:$u-upload-success-border-left-color;
+			border-bottom-color:$u-upload-success-border-bottom-color;
+			border-right-color:$u-upload-success-border-right-color;
+			border-width:$u-upload-success-border-width;
 			align-items: center;
 			justify-content: center;
 			/* #endif */
@@ -499,36 +578,36 @@
 				/* #ifndef APP-NVUE */
 				position: absolute;
 				transform: scale(0.7);
-				bottom: -10px;
-				right: -10px;
+				bottom:$u-upload-success-icon-bottom;
+				right:$u-upload-success-icon-right;
 				/* #endif */
 				/* #ifdef APP-NVUE */
-				width: 16px;
-				height: 16px;
+				width:$u-upload-icon-width;
+				height:$u-upload-icon-height;
 				/* #endif */
 			}
 		}
 
 		&__status {
 			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			background-color: rgba(0, 0, 0, 0.5);
+			top:$u-upload-status-top;
+			bottom:$u-upload-status-bottom;
+			left:$u-upload-status-left;
+			right:$u-upload-status-right;
+			background-color:$u-upload-status-bgColor;
 			@include flex(column);
 			align-items: center;
 			justify-content: center;
 
 			&__icon {
 				position: relative;
-				z-index: 1;
+				z-index:$u-upload-status-icon-Zindex;
 			}
 
 			&__message {
-				font-size: 12px;
-				color: #FFFFFF;
-				margin-top: 5px;
+				font-size:$u-upload-message-font-size;
+				color:$u-upload-message-color;
+				margin-top:$u-upload-message-margin-top;
 			}
 		}
 
@@ -536,27 +615,27 @@
 			@include flex(column);
 			align-items: center;
 			justify-content: center;
-			width: 80px;
-			height: 80px;
-			background-color: rgb(244, 245, 247);
-			border-radius: 2px;
-			margin: 0 8px 8px 0;
+			width:$u-upload-button-width;
+			height:$u-upload-button-height;
+			background-color:$u-upload-button-bgColor;
+			border-radius:$u-upload-button-border-radius;
+			margin:$u-upload-botton-margin;
 			/* #ifndef APP-NVUE */
 			box-sizing: border-box;
 			/* #endif */
-			
+
 			&__text {
-				font-size: 11px;
-				color: $u-tips-color;
-				margin-top: 2px;
+				font-size:$u-upload-text-font-size;
+				color:$u-upload-text-color;
+				margin-top:$u-upload-text-margin-top;
 			}
 
 			&--hover {
-				background-color: rgb(240, 241, 243);
+				background-color:$u-upload-hover-bgColor;
 			}
-			
+
 			&--disabled {
-			    opacity: .5;
+				opacity:$u-upload-disabled-opacity;
 			}
 		}
 	}

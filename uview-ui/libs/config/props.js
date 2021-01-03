@@ -337,7 +337,7 @@ export default {
 		allowHalf: false,
 		activeIcon: 'star-fill',
 		inactiveIcon: 'star',
-		touchable:true
+		touchable: true
 	},
 
 	// gap组件
@@ -452,31 +452,62 @@ export default {
 		cancelText: '取消',
 		confirmText: '确定'
 	},
-	
+
 	// 数字键盘
 	numberKeyboard: {
 		mode: 'number',
 		dotDisabled: false,
 		random: false
 	},
-	
+
 	// 车牌号键盘
 	carKeyboard: {
 		random: false
 	},
-	
+
 	//slider组件
-	 slider:{
-		 value:0,
-		 disabled:false,
-		 blockHeight:15,
-		 min:0,
-		 max:100,
-		 step:1,
-		 height:10,
-		 activeColor:'#2979ff',
-		 inactiveColor:'#c0c4cc',
-		 blockColor:'#ffffff', 
-		 blockStyle:() => {},
-		 }
+	slider: {
+		value: 0,
+		disabled: false,
+		blockHeight: 15,
+		min: 0,
+		max: 100,
+		step: 1,
+		height: 10,
+		activeColor: '#2979ff',
+		inactiveColor: '#c0c4cc',
+		blockColor: '#ffffff',
+		blockStyle: () => {},
+	},
+
+
+	// upload组件
+	upload: {
+		accept: 'image',
+		capture: () => {
+			return ['album', 'camera']
+		},
+		compressed: true,
+		camera: 'back',
+		maxDuration: 60,
+		uploadIcon: 'camera-fill',
+		useBeforeRead: false,
+		previewFullImage: true,
+		maxCount: 52,
+		disabled: false,
+		imageMode: 'aspectFill',
+		name: '',
+		sizeType: () => {
+			return ['original', 'compressed'];
+		},
+		multiple: false,
+		deletable: true,
+		maxSize: Number.MAX_VALUE,
+		fileList: () => {
+			return [];
+		},
+		uploadText: '',
+		width:200,
+		height:200
+	}
 }

@@ -2,20 +2,37 @@
 	<u-transition
 	    mode="slide-down"
 	    :customStyle="containerStyle"
-	    :show="showStatus"
+	    :show="show"
 	>
 		<view
 		    class="u-notify"
 		    :class="[`u-notify--${type}`]"
 		    :style="[backgroundColor]"
 		>
-			<text
-			    class="u-notify__text"
+			<view
+			    v-if="safeAreaInsetTop"
 			    :style="{
-					fontSize: $u.addUnit(fontSize),
-					color: color 
+					height: `${statusBarHeight}px`
 				}"
-			>{{ message }}</text>
+			/>
+			<view class="u-notify__warpper">
+				<slot name="icon">
+					<u-icon
+					    v-if="['success', 'warning', 'error'].includes(type)"
+					    :name="icon"
+						:color="color"
+						:size="1.3 * fontSize"
+						:customStyle="{marginRight: '4px'}"
+					></u-icon>
+				</slot>
+				<text
+				    class="u-notify__warpper__text"
+				    :style="{
+						fontSize: $u.addUnit(fontSize),
+						color: color 
+					}"
+				>{{ message }}</text>
+			</view>
 		</view>
 	</u-transition>
 </template>
@@ -34,7 +51,7 @@
 	 * @property {String} message 展示的文字内容
 	 * @property {String} duration 展示时长，为0时不消失，单位ms
 	 * @property {String} fontSize  字体大小
-	 * @example <u-upload :action="action" :fileList="fileList" ></u-upload>
+	 * @example <u-notify message="Hi uView"></u-notify>
 	 */
 	export default {
 		name: 'u-notify',
@@ -42,7 +59,6 @@
 		data() {
 			return {
 				timer: null,
-				showStatus: false
 			}
 		},
 		watch: {
@@ -56,8 +72,17 @@
 		},
 		computed: {
 			containerStyle() {
+				let top = 0
+				if (this.top === 0) {
+					// #ifdef H5
+					// H5端，导航栏为普通元素，需要将组件移动到导航栏的下边沿
+					// H5的导航栏高度为44px
+					top = 44
+					// #endif
+				}
+
 				const style = {
-					top: uni.$u.addUnit(this.top),
+					top: uni.$u.addUnit(this.top === 0 ? top : this.top),
 					// 因为组件底层为u-transition组件，必须将其设置为fixed定位
 					// 让其出现在导航栏底部
 					position: 'fixed',
@@ -72,8 +97,26 @@
 				if (this.bgColor) {
 					style.backgroundColor = this.bgColor
 				}
-				console.log(style);
 				return style
+			},
+			// 状态栏高度
+			statusBarHeight() {
+				const {
+					statusBarHeight
+				} = uni.$u.sys()
+				return statusBarHeight
+			},
+			// 默认主题下的图标
+			icon() {
+				let icon
+				if(this.type === 'success') {
+					icon = 'checkmark-circle'
+				} else if(this.type === 'error') {
+					icon = 'close-circle'
+				} else if(this.type === 'warning') {
+					icon = 'error-circle'
+				}
+				return icon
 			}
 		},
 		methods: {
@@ -82,10 +125,7 @@
 				clearTimeout(this.timer)
 				this.timer = null
 				if (this.duration > 0 && this.duration !== Infinity) {
-					// 等待组件创建完毕
-					this.$nextTick(function() {
-						this.showStatus = true
-					})
+					this.$emit('open')
 					// 定时结束后，关闭组件
 					this.timer = setTimeout(() => {
 						this.close()
@@ -96,15 +136,16 @@
 			close() {
 				clearTimeout(this.timer)
 				this.timer = null
-				// 标记组件为关闭状态
-				this.showStatus = false
+				this.$emit('close')
 			}
 		}
 	}
 </script>
 
 <style lang="scss">
-	$u-notify-padding: 8px 0 !default;
+	@import "../../libs/css/components.scss";
+	
+	$u-notify-padding: 8px 10px !default;
 	$u-notify-text-font-size: 15px !default;
 	$u-notify-primary-bgColor: $u-primary !default;
 	$u-notify-success-bgColor: $u-success !default;
@@ -114,10 +155,17 @@
 
 	.u-notify {
 		padding: $u-notify-padding;
-
-		&__text {
-			font-size: $u-notify-text-font-size;
+		
+		&__warpper {
+			@include flex;
+			align-items: center;
 			text-align: center;
+			justify-content: center;
+			
+			&__text {
+				font-size: $u-notify-text-font-size;
+				text-align: center;
+			}
 		}
 
 		&--primary {

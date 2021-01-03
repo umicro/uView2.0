@@ -75,7 +75,7 @@ export default {
 	"uicon-bag-fill": "\ue617",
 	"uicon-bag": "\ue619",
 	"uicon-error-circle-fill": "\ue62c",
-	"uicon-info-circle": "\ue660",
+	"uicon-error-circle": "\ue660",
 	"uicon-close-circle": "\ue63f",
 	"uicon-checkmark-circle": "\ue63d",
 	"uicon-question-circle-fill": "\ue666",

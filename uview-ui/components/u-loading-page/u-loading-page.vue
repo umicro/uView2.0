@@ -78,6 +78,7 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
+	
 	$text-color: rgb(220, 220, 220) !default;
 	$text-size: 16px !default;
 	$u-loading-icon-margin-bottom: 10px !default;

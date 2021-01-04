@@ -1,5 +1,5 @@
 <template>
-	<view class="u-upload">
+	<view class="u-upload" :style="[customStyle]">
 		<view class="u-upload__wrap">
 			<view
 			    class="u-upload__wrap__preview"

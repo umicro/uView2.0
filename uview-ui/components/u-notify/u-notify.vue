@@ -7,7 +7,7 @@
 		<view
 		    class="u-notify"
 		    :class="[`u-notify--${type}`]"
-		    :style="[backgroundColor]"
+		    :style="[backgroundColor, customStyle]"
 		>
 			<view
 			    v-if="safeAreaInsetTop"
@@ -141,7 +141,11 @@
 				this.timer = null
 				this.$emit('close')
 			}
-		}
+		},
+		destroyed() {
+		    clearTimeout(this.timer);
+		    this.timer = null;
+		},
 	}
 </script>
 

@@ -132,6 +132,7 @@
 		},
 		onLoad() {
 
+
 		},
 		methods: {
 			openNotify(item) {

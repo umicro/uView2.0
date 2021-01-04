@@ -522,4 +522,11 @@ export default {
 		fontSize: 15,
 		safeAreaInsetTop: false
 	},
+	// u-count-down 计时器组件
+	countDown:{
+		time: 0,
+		format: 'HH:mm:ss',
+		autoStart: true,
+		millisecond: false
+	},
 }

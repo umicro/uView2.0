@@ -8,7 +8,7 @@
 			    class="u-block__section"
 			></u-section>
 			<u-grid :border="false">
-				<u-grid-item v-for="(baseListItem,baseListIndex) in baseList" :key="index">
+				<u-grid-item v-for="(baseListItem,baseListIndex) in baseList" :key="baseListIndex">
 					<u-icon
 					    :customStyle="{paddingTop:20+'rpx'}"
 					    :name="baseListItem.name"

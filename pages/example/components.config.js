@@ -147,7 +147,7 @@ export default [{
 			title: 'Table 表格',
 			title_en: 'Table',
 		}, {
-			path: '/pages/componentsC/countDown/countDown',
+			path: '/pages/componentsB/countDown/countDown',
 			icon: 'countDown',
 			title: 'CountDown 倒计时',
 			title_en: 'CountDown',

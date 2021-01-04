@@ -12,7 +12,23 @@
 		isSameSecond,
 		parseFormat,
 		parseTimeData
-	} from './utils'
+	} from './utils';
+	/**
+	 * u-count-down 倒计时
+	 * @description 该组件一般使用于某个活动的截止时间上，通过数字的变化，给用户明确的时间感受，提示用户进行某一个行为操作。
+	 * @tutorial https://uviewui.com/components/countDown.html
+	 * @property {Number String}  time  倒计时时长，单位ms
+	 * @property {String}  format  DD-日，HH-时，mm-分，ss-秒，SSS-毫秒
+	 * @property {Boolean}  autoStart  是否自动开始倒计时
+	 * @property {Boolean}  millisecond  是否展示毫秒倒计时
+	 * @property {Object} customStyle  定义需要用到的外部样式
+	 * @event {Function} finish 倒计时结束时触发 
+	 * @event {Function} change 倒计时变化时触发 
+	 * @event {Function} start 开始倒计时
+	 * @event {Function} pause 暂停倒计时 
+	 * @event {Function} reset 重设倒计时，若 auto-start 为 true，重设后会自动开始倒计时 
+	 * @example <u-count-down :time="time"></u-count-down>
+	 */
 	export default {
 		name: 'u-count-down',
 		mixins: [uni.$u.mixin, props],
@@ -134,12 +150,14 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-	
+	$u-count-down-text-color:$u-content-color !default;
+	$u-count-down-text-font-size:15px !default;
+	$u-count-down-text-line-height:22px !default;
 	.u-count-down {
 		&__text {
-			color: $u-content-color;
-			font-size: 15px;
-			line-height: 22px;
+			color:$u-count-down-text-color;
+			font-size:$u-count-down-text-font-size;
+			line-height:$u-count-down-text-line-height;
 		}
 	}
 </style>

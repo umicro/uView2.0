@@ -1,19 +1,108 @@
 <template>
 	<view class="u-page">
-		<u-count-down
-		    :time="30 * 60 * 60 * 1000"
-		    format="HH:mm:ss:SSS"
-		    autoStart
-		    millisecond
-		    @change="onChange"
-		>
-			<!-- <view class="time">
-				<text class="item">{{ timeData.hours }}</text>: 
-				<text class="item">{{ timeData.minutes }}</text>: 
-				<text class="item">{{ timeData.seconds }}</text>:       
-				<text class="item">{{ timeData.milliseconds }}</text>
-			</view> -->
-		</u-count-down>
+		<view class="u-view">
+			<text class="u-view__title">基础用法</text>
+			<u-count-down
+			    :time="30 * 60 * 60 * 1000"
+			    format="HH:mm:ss"
+			    autoStart
+			    millisecond
+			>
+			</u-count-down>
+		</view>
+
+		<view class="u-view">
+			<text class="u-view__title">自定义格式</text>
+			<u-count-down
+			    :time="30 * 60 * 60 * 1000"
+			    format="DD:HH:mm:ss"
+			    autoStart
+			    millisecond
+			    @change="onChange"
+			>
+				<view class="time">
+					<text class="time__item">{{ timeData.days }}&nbsp;天</text>
+					<text class="time__item">{{ timeData.hours>10?timeData.hours:'0'+timeData.hours}}&nbsp;时</text>
+					<text class="time__item">{{ timeData.minutes }}&nbsp;分</text>
+					<text class="time__item">{{ timeData.seconds }}&nbsp;秒</text>
+				</view>
+			</u-count-down>
+		</view>
+
+		<view class="u-view">
+			<text class="u-view__title">毫秒级渲染</text>
+			<u-count-down
+			    :time="30 * 60 * 60 * 1000"
+			    format="HH:mm:ss:SSS"
+			    autoStart
+			    millisecond
+			>
+			</u-count-down>
+		</view>
+
+		<view class="u-view">
+			<text class="u-view__title">自定义样式</text>
+			<u-count-down
+			    :time="30 * 60 * 60 * 1000"
+			    format="HH:mm:ss"
+			    autoStart
+			    millisecond
+			    @change="onChange"
+			>
+				<view class="time">
+					<view class="time__custom">
+						<text class="time__custom__item">{{ timeData.hours>10?timeData.hours:'0'+timeData.hours}}</text>
+					</view>
+					<text class="time__doc">:</text>
+					<view class="time__custom">
+						<text class="time__custom__item">{{ timeData.minutes }}</text>
+					</view>
+					<text class="time__doc">:</text>
+					<view class="time__custom">
+						<text class="time__custom__item">{{ timeData.seconds }}</text>
+					</view>
+				</view>
+			</u-count-down>
+		</view>
+
+		<view class="u-view">
+			<text class="u-view__title">手动控制</text>
+			<u-count-down
+			    ref="countDown"
+			    :time="60* 1000"
+			    format="ss:SSS"
+			    :autoStart="false"
+			    millisecond
+			    @change="onChange"
+			>
+			</u-count-down>
+		</view>
+		<u-grid :border="true" :customStyle="{marginTop:20+'rpx'}">
+			<u-grid-item @click="reset">
+				<u-icon
+				    :customStyle="{paddingTop:20+'rpx'}"
+				    name="reload"
+				    :size="22"
+				></u-icon>
+				<text class="u-view__grid-text">重置</text>
+			</u-grid-item>
+			<u-grid-item @click="start">
+				<u-icon
+				    :customStyle="{paddingTop:20+'rpx'}"
+				    name="play-circle"
+				    :size="22"
+				></u-icon>
+				<text class="u-view__grid-text">开始</text>
+			</u-grid-item>
+			<u-grid-item @click="pause">
+				<u-icon
+				    :customStyle="{paddingTop:20+'rpx'}"
+				    name="pause-circle"
+				    :size="22"
+				></u-icon>
+				<text class="u-view__grid-text">暂停</text>
+			</u-grid-item>
+		</u-grid>
 	</view>
 </template>
 
@@ -21,10 +110,25 @@
 	export default {
 		data() {
 			return {
-				timeData: {}
+				timeData: {},
 			}
 		},
+		onLoad() {
+			
+		},
 		methods: {
+			//开始
+			start() {
+				this.$refs.countDown.start();
+			},
+			// 暂停
+			pause() {
+				this.$refs.countDown.pause();
+			},
+			// 重置
+			reset() {
+				this.$refs.countDown.reset();
+			},
 			onChange(e) {
 				this.timeData = e
 			}
@@ -38,5 +142,55 @@
 		display: flex;
 		/* #endif */
 		flex-direction: row;
+		align-items: center;
+
+		&__custom {
+			margin-top: 4px;
+			width: 22px;
+			height: 22px;
+			background-color: $u-primary;
+			border-radius: 4px;
+			/* #ifndef APP-NVUE */
+			display: flex;
+			/* #endif */
+			justify-content: center;
+			align-items: center;
+
+			&__item {
+				color: #fff;
+				font-size: 12px;
+				text-align: center;
+			}
+		}
+
+		&__doc {
+			color: $u-primary;
+			padding: 0px 4px;
+		}
+
+		&__item {
+			color: #606266;
+			font-size: 15px;
+			margin-right: 4px;
+		}
+	}
+
+	.u-view {
+		padding:40px 20px 0px 20px;
+
+		&__title {
+			font-size: 14px;
+			color: rgb(143, 156, 162);
+			margin-bottom:10px;
+		}
+
+		&__grid-text {
+			font-size: 14px;
+			color: #909399;
+			padding: 10rpx 0 20rpx 0rpx;
+			/* #ifndef APP-PLUS */
+			box-sizing: border-box;
+			/* #endif */
+		}
 	}
 </style>

@@ -18,11 +18,10 @@
 		    :class="uClasses"
 		    :style="[iconStyle]"
 		    :hover-class="hoverClass"
-		    @touchstart="touchstart"
 		>{{icon}}</text>
 		<!-- 这里进行空字符串判断，如果仅仅是v-if="label"，可能会出现传递0的时候，结果也无法显示 -->
 		<text
-		    v-if="label !== ''"
+		    v-if="label !== ''" 
 		    class="u-icon__label"
 		    :style="{
 			color: labelColor,
@@ -224,11 +223,6 @@
 		methods: {
 			clickHandler(e) {
 				this.$emit('click', this.index)
-				// 是否阻止事件冒泡
-				this.stop && this.$u.preventEvent(e)
-			},
-			touchstart() {
-				this.$emit('touchstart', this.index)
 				// 是否阻止事件冒泡
 				this.stop && this.$u.preventEvent(e)
 			}

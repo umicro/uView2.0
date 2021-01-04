@@ -1,6 +1,19 @@
 <template>
 	<view class="u-page">
-		
+		<u-count-down
+		    :time="30 * 60 * 60 * 1000"
+		    format="HH:mm:ss:SSS"
+		    autoStart
+		    millisecond
+		    @change="onChange"
+		>
+			<!-- <view class="time">
+				<text class="item">{{ timeData.hours }}</text>: 
+				<text class="item">{{ timeData.minutes }}</text>: 
+				<text class="item">{{ timeData.seconds }}</text>:       
+				<text class="item">{{ timeData.milliseconds }}</text>
+			</view> -->
+		</u-count-down>
 	</view>
 </template>
 
@@ -8,15 +21,22 @@
 	export default {
 		data() {
 			return {
-				
+				timeData: {}
 			}
 		},
 		methods: {
-			
+			onChange(e) {
+				this.timeData = e
+			}
 		}
 	}
 </script>
 
 <style lang="scss">
-	
+	.time {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+	}
 </style>

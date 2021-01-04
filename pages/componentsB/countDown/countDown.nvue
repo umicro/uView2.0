@@ -182,19 +182,17 @@
 	}
 	.u-view {
 		padding: 40px 20px 0px 20px;
-
 		&__title {
 			font-size: 14px;
 			color: rgb(143, 156, 162);
 			margin-bottom: 10px;
 		}
-		
 	}
 	// 手动控制的btn样式
 	.count-down{
 		&__grid-item{
-			width:60px;
-			height: 60px;
+			width:70px;
+			height: 70px;
 			/* #ifndef APP-NVUE */
 			display: flex;
 			/* #endif */
@@ -210,7 +208,7 @@
 				/* #endif */
 				justify-content: center;
 				align-items: center;
-				
+				box-shadow:1px 1px 4px  rgba(155, 191, 255,.7);
 			}
 			&__grid-text {
 				font-size: 14px;

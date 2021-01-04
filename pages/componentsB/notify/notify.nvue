@@ -131,8 +131,6 @@
 			}
 		},
 		onLoad() {
-
-
 		},
 		methods: {
 			openNotify(item) {

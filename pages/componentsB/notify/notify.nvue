@@ -52,7 +52,7 @@
 							duration: 3000
 						},
 						title: '主要通知',
-						iconUrl: '/static/common/image/transition/fade.png'
+						iconUrl: '/static/common/image/notify/main.png'
 					}, {
 						notifyData: {
 							message: 'notify顶部提示',
@@ -64,7 +64,7 @@
 							safeAreaInsetTop: false
 						},
 						title: '成功通知',
-						iconUrl: '/static/common/image/transition/fade.png'
+						iconUrl: '/static/common/image/notify/success.png'
 					}, {
 						notifyData: {
 							message: 'notify顶部提示',
@@ -76,7 +76,7 @@
 							safeAreaInsetTop: false
 						},
 						title: '危险通知',
-						iconUrl: '/static/common/image/transition/fade.png'
+						iconUrl: '/static/common/image/notify/error.png'
 					}, {
 						notifyData: {
 							message: 'notify顶部提示',
@@ -88,7 +88,7 @@
 							safeAreaInsetTop: false
 						},
 						title: '警告通知',
-						iconUrl: '/static/common/image/transition/fade.png'
+						iconUrl: '/static/common/image/notify/warning.png'
 					},
 					{
 						notifyData: {
@@ -100,7 +100,7 @@
 							safeAreaInsetTop: false
 						},
 						title: '自定义样式',
-						iconUrl: '/static/common/image/transition/fade.png'
+						iconUrl: '/static/common/image/notify/customStyle.png'
 					},
 					{
 						notifyData: {
@@ -113,7 +113,7 @@
 							safeAreaInsetTop: false
 						},
 						title: '自定义时间',
-						iconUrl: '/static/common/image/transition/fade.png'
+						iconUrl: '/static/common/image/notify/customTime.png'
 					},
 					{
 						notifyData: {
@@ -125,7 +125,7 @@
 							safeAreaInsetTop: true
 						},
 						title: '插入状态栏高度',
-						iconUrl: '/static/common/image/transition/fade.png'
+						iconUrl: '/static/common/image/notify/height.png'
 					}
 				]
 			}

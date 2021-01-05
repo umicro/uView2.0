@@ -12,6 +12,10 @@ $u-button-text-plain-primary-color:$u-primary !default;
 		opacity: $u-button-active-opacity;
 	}
 	
+	&--active--plain {
+		background-color: rgb(217, 217, 217);
+	}
+	
 	&__loading-text {
 		margin-left:$u-button-loading-text-margin-left;
 	}

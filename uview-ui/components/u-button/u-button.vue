@@ -19,7 +19,7 @@
 	    @error="error"
 	    @opensetting="opensetting"
 	    @launchapp="launchapp"
-	    hover-class="u-button--active"
+	    :hover-class="[!disabled && !loading && 'u-button--active']"
 	    class="u-button u-reset-button"
 	    :style="[baseColor, customStyle]"
 	    @tap="clickHandler"
@@ -28,19 +28,21 @@
 		<template v-if="loading">
 			<u-loading-icon
 			    :mode="loadingMode"
-			    :size="loadingSize"
+			    :size="textSize * 1.15"
 			    :color="loadingColor"
 			></u-loading-icon>
-			<text class="u-button__loading-text">{{ loadingText }}</text>
+			<text class="u-button__loading-text" :style="{fontSize: textSize + 'px'}">{{ loadingText || text }}</text>
 		</template>
 		<template v-else>
 			<u-icon
 			    v-if="icon"
 			    :name="icon"
 			    :color="iconColor"
+				:size="textSize * 1.35"
+				:customStyle="{marginRight: '2px'}"
 			></u-icon>
 			<slot>
-				<text class="u-button__text">{{text}}</text>
+				<text class="u-button__text" :style="{fontSize: textSize + 'px'}">{{text}}</text>
 			</slot>
 		</template>
 	</button>
@@ -51,35 +53,35 @@
 	    :hover-start-time="Number(hoverStartTime)"
 	    :hover-stay-time="Number(hoverStayTime)"
 	    class="u-button"
-	    hover-class="u-button--active"
-	    :style="[baseColor, customStyle]"
+	    :hover-class="!disabled && !loading && !color && (plain || type === 'info') ? 'u-button--active--plain' : !disabled && !loading && !plain ? 'u-button--active' : ''"
 	    @tap="clickHandler"
 	    :class="bemClass"
+		:style="[baseColor, customStyle]"
 	>
 		<template v-if="loading">
 			<u-loading-icon
 			    :mode="loadingMode"
-			    :size="loadingSize"
+			    :size="textSize * 1.15"
 			    :color="loadingColor"
 			></u-loading-icon>
 			<text
 			    class="u-button__loading-text"
 			    :style="[nvueTextStyle]"
 			    :class="[plain && `u-button__text--plain--${type}`]"
-			>{{ loadingText }}</text>
+			>{{ loadingText || text }}</text>
 		</template>
 		<template v-else>
 			<u-icon
 			    v-if="icon"
 			    :name="icon"
 			    :color="iconColor"
-			    size="18"
+			    :size="textSize * 1.35"
 			></u-icon>
 			<text
 			    class="u-button__text"
 			    :style="[{
-				marginLeft: icon ? '2px' : 0
-			}, nvueTextStyle]"
+					marginLeft: icon ? '2px' : 0
+				}, nvueTextStyle]"
 			    :class="[plain && `u-button__text--plain--${type}`]"
 			>{{text}}</text>
 		</template>
@@ -94,7 +96,7 @@
 	 * @tutorial https://www.uviewui.com/components/button.html
 	 * @property {Boolean} hairline 是否显示按钮的细边框(默认true)
 	 * @property {String} type 按钮的预置样式，info，primary，error，warning，success (默认info)
-	 * @property {String} size 按钮尺寸，normal，default，medium，mini （默认 normal）
+	 * @property {String} size 按钮尺寸，large，normal，medium，mini （默认 normal）
 	 * @property {String} shape  按钮形状，circle（两边为半圆），square（带圆角） （默认 square）
 	 * @property {Boolean} plain 按钮是否镂空，背景色透明 （默认 false）
 	 * @property {Boolean} disabled 是否禁用 （默认 false）
@@ -129,7 +131,7 @@
 	 * @example <u-button>月落</u-button>
 	 */
 	export default {
-		name:'u-button',
+		name: 'u-button',
 		props: {
 			// 是否细边框
 			hairline: {
@@ -141,7 +143,7 @@
 				type: String,
 				default: uni.$u.props.button.type
 			},
-			// 按钮尺寸，normal，default，medium，mini
+			// 按钮尺寸，large，normal，medium，mini
 			size: {
 				type: String,
 				default: uni.$u.props.button.size
@@ -283,7 +285,12 @@
 			// 生成bem风格的类名
 			bemClass() {
 				// this.bem为一个computed变量，在mixin中
-				return this.bem('button', ['type', 'shape', 'size'], ['disabled', 'plain', 'hairline'])
+				if(!this.color) {
+					return this.bem('button', ['type', 'shape', 'size'], ['disabled', 'plain', 'hairline'])
+				} else {
+					// 由于nvue的原因，在有color参数时，不需要传入type，否则会生成type相关的类型，影响最终的样式
+					return this.bem('button', ['shape', 'size'], ['disabled', 'plain', 'hairline'])
+				}
 			},
 			loadingColor() {
 				if (this.plain) {
@@ -310,12 +317,17 @@
 					// 针对自定义了color颜色的情况，镂空状态下，就是用自定义的颜色
 					style.color = this.plain ? this.color : 'white'
 					if (!this.plain) {
-						// 非落空，背景色使用自定义的颜色
-						style.backgroundColor = this.color
+						// 非镂空，背景色使用自定义的颜色
+						style['background-color'] = this.color
 					}
 					if (this.color.indexOf('gradient') !== -1) {
 						// 如果自定义的颜色为渐变色，不显示边框，以及通过backgroundImage设置渐变色
-						style.borderWidth = 0
+						// weex文档说明可以写borderWidth的形式，为什么这里需要分开写？
+						// 因为weex是阿里巴巴为了部门业绩考核而做的你懂的东西，所以需要这么写才有效
+						style.borderTopWidth = 0
+						style.borderRightWidth = 0
+						style.borderBottomWidth = 0
+						style.borderLeftWidth = 0
 						if (!this.plain) {
 							style.backgroundImage = this.color
 						}
@@ -338,7 +350,17 @@
 				if (this.color) {
 					style.color = this.plain ? this.color : 'white'
 				}
+				style.fontSize = this.textSize + 'px'
 				return style
+			},
+			// 字体大小
+			textSize() {
+				let fontSize = 14, { size } = this
+				if(size === 'large') fontSize = 16
+				if(size === 'normal') fontSize = 14
+				if(size === 'small') fontSize = 12
+				if(size === 'mini') fontSize = 10
+				return fontSize
 			}
 		},
 		created() {
@@ -393,6 +415,7 @@
 	$u-button-small-min-width:60px !default;
 	$u-button-small-height:30px !default;
 	$u-button-small-padding:0px 8px !default;
+	$u-button-mini-padding: 0px 5px !default;
 	$u-button-small-font-size:12px !default;
 	$u-button-mini-height:22px !default;
 	$u-button-mini-font-size:10px !default;
@@ -450,6 +473,9 @@
 
 		&__text {
 			font-size: $u-button-text-font-size;
+			/* #ifndef APP-NVUE */
+			line-height: 1;
+			/* #endif */
 		}
 
 		&__loading-text {
@@ -481,8 +507,8 @@
 			font-size: $u-button-mini-font-size;
 			/* #ifndef APP-NVUE */
 			min-width: $u-button-mini-min-width;
-			display: inline-block;
 			/* #endif */
+			padding: $u-button-mini-padding;
 		}
 
 		&--disabled {
@@ -563,6 +589,5 @@
 		&--hairline {
 			border-width: $u-button-hairline-border-width !important;
 		}
-
 	}
 </style>

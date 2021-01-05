@@ -1,5 +1,8 @@
 <template>
 	<view class="u-page">
+		<view class="test" :class="[abc]" style="background-color: #2979FF;">
+			
+		</view>
 		<u-gap></u-gap>
 		<view class="u-block">
 			<u-section
@@ -199,7 +202,6 @@
 				    size="normal"
 				    loading
 				    type="success"
-					loadingSize="25"
 				></u-button>
 				<u-button
 				    class="button-layout__item"
@@ -223,7 +225,7 @@
 				    class="button-layout__item"
 				    text="按钮图标"
 				    size="normal"
-				    icon="home"
+				    icon="map"
 				    plain
 				    type="warning"
 				></u-button>
@@ -232,7 +234,7 @@
 				    text="按钮图标"
 				    size="normal"
 				    plain
-					shape="circle"
+				    shape="circle"
 				    type="success"
 				></u-button>
 			</view>
@@ -248,22 +250,22 @@
 			<view class="button-layout">
 				<u-button
 				    class="button-layout__item"
-				    text="成功按钮"
+				    text="渐变色按钮"
 				    size="normal"
-				    color="linear-gradient(to right, #4bb0ff, #6149f6)"
+				    color="linear-gradient(to right, rgb(66, 83, 216), rgb(213, 51, 186))"
 				></u-button>
 
 				<u-button
 				    class="button-layout__item"
-				    text="危险按钮"
+				    text="渐变色按钮"
 				    size="normal"
-				    color="linear-gradient(to bottom, pink, red)"
+				    color="linear-gradient(to right, rgb(220, 194, 11), rgb(4, 151, 99))"
 				></u-button>
 				<u-button
 				    class="button-layout__item"
-				    text="警告按钮"
+				    text="青绿色按钮"
 				    size="normal"
-				    type="warning"
+				    color="rgb(10, 185, 156)"
 				></u-button>
 			</view>
 		</view>
@@ -279,19 +281,19 @@
 				<u-button
 				    class="button-layout__item"
 				    text="成功按钮"
-				    size="normal"
+				    size="large"
 				    type="success"
 				></u-button>
 				<u-button
 				    class="button-layout__item"
 				    text="危险按钮"
-				    size="default"
+				    size="normal"
 				    type="error"
 				></u-button>
 				<u-button
 				    class="button-layout__item"
 				    text="主要按钮"
-				    size="medium"
+				    size="small"
 				    type="primary"
 				></u-button>
 				<u-button
@@ -325,12 +327,13 @@
 
 <style lang="scss">
 	@import "@/uview-ui/libs/css/components.scss";
-      .u-page{
-		  
-	  }
+
+	.u-page {}
+
 	.button-layout {
 		@include flex;
 		flex-wrap: wrap;
+
 		&__item {
 			margin: 16rpx 16rpx 0rpx 16rpx;
 		}

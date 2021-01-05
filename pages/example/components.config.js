@@ -3,7 +3,7 @@ export default [{
 		groupName: '基础组件',
 		groupName_en: 'Basic components',
 		list: [{
-			path: '/pages/componentsC/color/color',
+			path: '/pages/componentsB/color/color',
 			icon: 'color',
 			title: 'Color 色彩',
 			title_en: 'Color',

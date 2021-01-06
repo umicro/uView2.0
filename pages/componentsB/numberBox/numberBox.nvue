@@ -1,12 +1,16 @@
 <template>
 	<view class="u-page">
-		
+		<u-numberbox></u-numberbox>
 	</view>
 </template>
 
 <script>
 	export default {
-		
+		data() {
+			return {
+				
+			}
+		}
 	}
 </script>
 

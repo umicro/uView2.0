@@ -260,6 +260,7 @@
 
 <style lang="scss">
 	@import '../../libs/css/components.scss';
+	
 	$u-image-error-top:0px !default;
 	$u-image-error-left:0px !default;
 	$u-image-error-width:100% !default;

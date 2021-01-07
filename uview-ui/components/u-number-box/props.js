@@ -13,12 +13,12 @@ export default {
 		// 最小值
 		min: {
 			type: [Number, String],
-			default: 0
+			default: 1
 		},
 		// 最大值
 		max: {
 			type: [Number, String],
-			default: 0
+			default: Number.MAX_SAFE_INTEGER
 		},
 		// 加减的步长，可为小数
 		step: {
@@ -79,6 +79,41 @@ export default {
 		longPress: {
 			type: Boolean,
 			default: true
+		},
+		// 输入框文字和加减按钮图标的颜色
+		color: {
+			type: String,
+			default: '#323233'
+		},
+		// 按钮大小，宽高等于此值，单位px，输入框高度和此值保持一致
+		buttonSize: {
+			type: [String, Number],
+			default: 30
+		},
+		// 输入框和按钮的背景颜色
+		bgColor: {
+			type: String,
+			default: '#EBECEE'
+		},
+		// 指定光标于键盘的距离，避免键盘遮挡输入框，单位px
+		cursorSpacing: {
+			type: [String, Number],
+			default: 100
+		},
+		// 是否只能输入整数，含0在内
+		integer: {
+			type: Boolean,
+			default: false
+		},
+		// 是否禁用增加按钮
+		disablePlus: {
+			type: Boolean,
+			default: false
+		},
+		// 是否禁用减少按钮
+		disableMinus: {
+			type: Boolean,
+			default: false
 		}
 	}
 }

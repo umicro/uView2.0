@@ -1,6 +1,10 @@
 <template>
 	<view class="u-page">
-		<u-numberbox></u-numberbox>
+		<u-number-box
+		    v-model="value"
+		    step="1"
+			integer
+		></u-number-box>
 	</view>
 </template>
 
@@ -8,12 +12,15 @@
 	export default {
 		data() {
 			return {
-				
+				value: 3
 			}
 		}
 	}
 </script>
 
 <style lang="scss">
-
+	.u-page {
+		margin-top: 100px;
+		margin-left: 100px;
+	}
 </style>

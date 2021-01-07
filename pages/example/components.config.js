@@ -93,7 +93,7 @@ export default [{
 			title: 'Search 搜索',
 			title_en: 'Search',
 		}, {
-			path: '/pages/componentsC/numberBox/numberBox',
+			path: '/pages/componentsB/numberBox/numberBox',
 			icon: 'numberBox',
 			title: 'NumberBox 步进器',
 			title_en: 'NumberBox',

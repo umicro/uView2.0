@@ -4,7 +4,12 @@
 		    v-model="value"
 		    step="1"
 			integer
-		></u-number-box>
+			@change="change"
+		>
+			<text slot="minus">-</text>
+			<text slot="input">{{value}}</text>
+			<text slot="plus">+</text>
+		</u-number-box>
 	</view>
 </template>
 
@@ -12,7 +17,14 @@
 	export default {
 		data() {
 			return {
-				value: 3
+				value: 3,
+				value1: '',
+			}
+		},
+		methods: {
+			change(e) {
+				console.log(e);
+				// this.value1 = e
 			}
 		}
 	}

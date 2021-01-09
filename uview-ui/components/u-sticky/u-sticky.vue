@@ -25,7 +25,7 @@
 	 * @property {String Number} z-index 吸顶时的z-index值
 	 * @property {String Number} index 自定义标识，用于区分是哪一个组件
 	 * @property {String} mode js还是css模式吸顶 （默认 auto）
-  	 * @property {Object} customStyle  组件的样式，对象形式
+	 * @property {Object} customStyle  组件的样式，对象形式
 	 * @event {Function} fixed 组件吸顶时触发
 	 * @event {Function} unfixed 组件取消吸顶时触发
 	 * @example <u-sticky offsetTop="200"><view>塞下秋来风景异，衡阳雁去无留意</view></u-sticky>
@@ -188,9 +188,10 @@
 			},
 			async checkSupportCssSticky() {
 				// #ifdef H5
-				// H5，也即手机浏览器，都是现代浏览器，是支持css sticky的
-				// 为了预防某些低版本安卓上，H5依然可能不支持css sticky，所以放在最上面，优先级最低
-				this.cssSticky = true
+				// H5，一般都是现代浏览器，是支持css sticky的，这里使用创建元素嗅探的形式判断
+				if(this.checkCssStickyForH5()) {
+					this.cssSticky = true
+				}
 				// #endif
 
 				// 如果安卓版本高于8.0，依然认为是支持css sticky的(因为安卓7在某些机型，可能不支持sticky)
@@ -214,6 +215,8 @@
 			},
 			// 在APP和微信小程序上，通过uni.createSelectorQuery可以判断是否支持css sticky
 			checkComputedStyle() {
+				// 方法内进行判断，避免在其他平台生成无用代码
+				// #ifdef APP-VUE || MP-WEIXIN
 				return new Promise(resolve => {
 					uni.createSelectorQuery().in(this).select('.u-sticky').fields({
 						computedStyle: ["position"]
@@ -221,6 +224,24 @@
 						resolve('sticky' === e[0].position)
 					})
 				})
+				// #endif
+			},
+			// H5通过创建元素的形式嗅探是否支持css sticky
+			// 判断浏览器是否支持sticky属性
+			checkCssStickyForH5() {
+				// 方法内进行判断，避免在其他平台生成无用代码
+				// #ifdef H5
+				const vendorList = ['', '-webkit-', '-ms-', '-moz-', '-o-'],
+					vendorListLength = vendorList.length,
+					stickyElement = document.createElement('div')
+				for (let i = 0; i < vendorListLength; i++) {
+					stickyElement.style.position = vendorList[i] + 'sticky'
+					if (stickyElement.style.position !== '') {
+						return true
+					}
+				}
+				return false;
+				// #endif
 			}
 		},
 		beforeDestroy() {

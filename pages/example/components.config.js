@@ -152,7 +152,7 @@ export default [{
 			title: 'CountDown 倒计时',
 			title_en: 'CountDown',
 		}, {
-			path: '/pages/componentsC/countTo/countTo',
+			path: '/pages/componentsB/countTo/countTo',
 			icon: 'countTo',
 			title: 'CountTo 数字滚动',
 			title_en: 'CountTo',

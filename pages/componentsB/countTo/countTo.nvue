@@ -1,0 +1,24 @@
+<template>
+	<view class="u-page">
+		<u-count-to :endVal="value"></u-count-to>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				value: 0
+			}
+		},
+		onLoad() {
+			setTimeout(() => {
+				this.value = 3000
+			}, 3000)
+		}
+	}
+</script>
+
+<style lang="scss">
+
+</style>

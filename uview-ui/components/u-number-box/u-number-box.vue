@@ -1,10 +1,22 @@
 <template>
 	<view class="u-number-box">
 		<view
+		    class="u-number-box__slot"
+		    @tap.stop="clickHandler('minus')"
+		    @touchstart.stop="onTouchStart('minus')"
+		    @touchend.stop="clearTimeout"
+		    v-if="$slots.minus"
+		>
+			<slot name="minus" />
+		</view>
+		<view
+		    v-else
 		    class="u-number-box__minus"
-			@tap.stop="clickHandler('minus')"
-		    @touchstart.stop.prevent="onTouchStart('minus')"
-		    @touchend.stop.prevent="clearTimeout"
+		    @tap.stop="clickHandler('minus')"
+		    @touchstart.stop="onTouchStart('minus')"
+		    @touchend.stop="clearTimeout"
+		    hover-class="u-number-box__minus--hover"
+		    hover-stay-time="150"
 		    :class="{ 'u-number-box__minus--disabled': isDisabled('minus') }"
 		    :style="[buttonStyle('minus')]"
 		>
@@ -15,23 +27,38 @@
 			    bold
 			></u-icon>
 		</view>
-		<input
-		    :disabled="disabledInput || disabled"
-		    :cursor-spacing="getCursorSpacing"
-		    :class="{ 'u-number-box__input--disabled': disabled || disabledInput }"
-		    v-model="currentValue"
-		    class="u-number-box__input"
-		    @blur="onBlur"
-		    @focus="onFocus"
-		    @input="onInput"
-		    type="number"
-		    :style="[inputStyle]"
-		/>
+
+		<slot name="input">
+			<input
+			    :disabled="disabledInput || disabled"
+			    :cursor-spacing="getCursorSpacing"
+			    :class="{ 'u-number-box__input--disabled': disabled || disabledInput }"
+			    v-model="currentValue"
+			    class="u-number-box__input"
+			    @blur="onBlur"
+			    @focus="onFocus"
+			    @input="onInput"
+			    type="number"
+			    :style="[inputStyle]"
+			/>
+		</slot>
 		<view
+		    class="u-number-box__slot"
+		    @tap.stop="clickHandler('plus')"
+		    @touchstart.stop="onTouchStart('plus')"
+		    @touchend.stop="clearTimeout"
+		    v-if="$slots.plus"
+		>
+			<slot name="plus" />
+		</view>
+		<view
+		    v-else
 		    class="u-number-box__plus"
-			@tap.stop="clickHandler('plus')"
-		    @touchstart.stop.prevent="onTouchStart('plus')"
-		    @touchend.stop.prevent="clearTimeout"
+		    @tap.stop="clickHandler('plus')"
+		    @touchstart.stop="onTouchStart('plus')"
+		    @touchend.stop="clearTimeout"
+		    hover-class="u-number-box__plus--hover"
+		    hover-stay-time="150"
 		    :class="{ 'u-number-box__minus--disabled': isDisabled('plus') }"
 		    :style="[buttonStyle('plus')]"
 		>
@@ -52,6 +79,7 @@
 		mixins: [uni.$u.mixin, props],
 		data() {
 			return {
+				// 输入框实际操作的值
 				currentValue: '',
 				// 定时器
 				longPressTimer: null
@@ -61,6 +89,12 @@
 			// 多个值之间，只要一个值发生变化，都要重新检查check()函数
 			watchChange(n) {
 				this.check()
+			},
+			// 监听v-mode的变化，重新初始化内部的值
+			value(n) {
+				if (n !== this.currentValue) {
+					this.currentValue = this.format(value)
+				}
 			}
 		},
 		computed: {
@@ -209,6 +243,7 @@
 				// 如果开启了异步变更值，则不修改内部的值，需要用户手动在外部通过v-model变更
 				if (!this.asyncChange) {
 					this.$nextTick(() => {
+						this.$emit('input', value)
 						this.currentValue = value
 						this.$forceUpdate()
 					})
@@ -238,23 +273,24 @@
 				this.onChange()
 			},
 			longPressStep() {
-			    this.longPressTimer = setTimeout(() => {
-			        this.onChange()
-			        this.longPressStep()
-			    }, 250);
+				// 每隔一段时间，重新调用longPressStep方法，实现长按加减
+				this.clearTimeout()
+				this.longPressTimer = setTimeout(() => {
+					this.onChange()
+					this.longPressStep()
+				}, 250);
 			},
 			onTouchStart(type) {
-			    if (!this.longPress) return
-			    this.clearTimeout()
-			    this.type = type
-			    this.isLongPress = false
-			    this.longPressTimer = setTimeout(() => {
-			        this.isLongPress = true
-			        this.onChange()
-			        this.longPressStep()
-			    }, 600)
+				if (!this.longPress) return
+				this.clearTimeout()
+				this.type = type
+				// 一定时间后，默认达到长按状态
+				this.longPressTimer = setTimeout(() => {
+					this.onChange()
+					this.longPressStep()
+				}, 600)
 			},
-			// 触摸结束
+			// 触摸结束，清除定时器，停止长按加减
 			onTouchEnd() {
 				if (!this.longPress) return
 				this.clearTimeout()
@@ -274,6 +310,12 @@
 	.u-number-box {
 		@include flex(row);
 		align-items: center;
+		
+		&__slot {
+			/* #ifndef APP-NVUE */
+			touch-action: none;
+			/* #endif */
+		}
 
 		&__plus,
 		&__minus {
@@ -284,6 +326,10 @@
 			/* #ifndef APP-NVUE */
 			touch-action: none;
 			/* #endif */
+
+			&--hover {
+				background-color: #E6E6E6 !important;
+			}
 
 			&--disabled {
 				color: #c8c9cc;

@@ -1,0 +1,24 @@
+<template>
+	<view class="u-page">
+		<u-search v-model="value" label="手机">
+			<u-icon slot="label" name="mic" size="19"></u-icon>
+		</u-search>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				value: '123'
+			}
+		},
+		methods: {
+			
+		}
+	}
+</script>
+
+<style lang="scss">
+
+</style>

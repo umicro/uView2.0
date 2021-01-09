@@ -39,7 +39,7 @@
 	// #ifdef APP-NVUE
 	// nvue通过weex的dom模块引入字体，相关文档地址如下：
 	// https://weex.apache.org/zh/docs/modules/dom.html#addrule
-	const fontUrl = 'https://at.alicdn.com/t/font_2225171_o1ve4d657a.ttf'
+	const fontUrl = 'https://at.alicdn.com/t/font_2225171_c5qj94zwf8r.ttf'
 	const domModule = weex.requireModule('dom')
 	domModule.addRule('fontFace', {
 		'fontFamily': "uicon-iconfont",
@@ -245,7 +245,7 @@
 	// 非nvue下加载字体
 	@font-face {
 		font-family: 'uicon-iconfont';
-		src: url('https://at.alicdn.com/t/font_2225171_o1ve4d657a.ttf') format('truetype');
+		src: url('https://at.alicdn.com/t/font_2225171_c5qj94zwf8r.ttf') format('truetype');
 	}
 
 	/* #endif */

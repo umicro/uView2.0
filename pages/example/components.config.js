@@ -33,12 +33,12 @@ export default [{
 			title: 'Cell 单元格',
 			title_en: 'Cell',
 		}, {
-			path: '/pages/componentsC/badge/badge',
+			path: '/pages/componentsB/badge/badge',
 			icon: 'badge',
 			title: 'Badge 徽标数',
 			title_en: 'Badge',
 		}, {
-			path: '/pages/componentsA/tag/tag',
+			path: '/pages/componentsB/tag/tag',
 			icon: 'tag',
 			title: 'Tag 标签',
 			title_en: 'Tag',

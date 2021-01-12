@@ -115,10 +115,10 @@
 						name: 'share-fill'
 					},
 					{
-						name: 'volume-up'
+						name: 'volume'
 					},
 					{
-						name: 'volume-up-fill'
+						name: 'volume-fill'
 					},
 					{
 						name: 'volume-off'
@@ -373,12 +373,6 @@
 						name: 'setting-fill'
 					},
 					{
-						name: 'volume'
-					},
-					{
-						name: 'volume-fill'
-					},
-					{
 						name: 'more-dot-fill'
 					},
 					{
@@ -607,7 +601,7 @@
 						name: 'baidu-circle-fill'
 					},
 					{
-						name: 'zhuanfa'
+						name: 'share-square'
 					},
 				]
 			};

@@ -67,7 +67,7 @@ function updateSliderPlacement(instance, ownerInstance, value, event) {
 		// 如果step步进大于1，需要跳步，所以需要使用Math.round进行取整
 		percent = Math.round(Math.max(mp.min, Math.min(value, mp.max)) / mp.step) * mp.step
 	} else {
-		// 当step=1时，无需跳步，充分利用bindingx性能，滑块实时跟随手势，达到丝滑的效果
+		// 当step=1时，无需跳步，充分利用wxs性能，滑块实时跟随手势，达到丝滑的效果
 		percent = Math.max(mp.min, Math.min(value, mp.max))
 	}
 	// 返回组件的实例

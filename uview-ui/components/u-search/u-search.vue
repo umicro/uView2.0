@@ -104,6 +104,7 @@
 	 */
 	export default {
 		name: "u-search",
+		mixins: [uni.$u.mixin],
 		props: {
 			// 搜索框形状，round-圆形，square-方形
 			shape: {
@@ -192,12 +193,12 @@
 			// 搜索图标的颜色，默认同输入框字体颜色
 			searchIconColor: {
 				type: String,
-				default: ''
+				default: '#909399'
 			},
 			// 输入框字体颜色
 			color: {
 				type: String,
-				default: '#303133'
+				default: '#606266'
 			},
 			// placeholder的颜色
 			placeholderColor: {
@@ -218,7 +219,7 @@
 			label: {
 				type: [String, Number],
 				default: null
-			}
+			},
 		},
 		data() {
 			return {

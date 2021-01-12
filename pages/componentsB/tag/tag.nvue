@@ -1,0 +1,23 @@
+<template>
+	<view class="u-page">
+		<u-tag text="什么" icon="https://img.yzcdn.cn/vant/logo.png">
+			<!-- <u-icon name="map" slot="icon"></u-icon> -->
+		</u-tag>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+	.u-page {
+		padding: 50px;
+	}
+</style>

@@ -1,0 +1,38 @@
+<template>
+	<view class="u-page">
+		<u-badge :value="21">
+			<u-button text="按钮"></u-button>
+		</u-badge>
+		<u-badge :value="1500" type="success" shape="horn" numberType="limit">
+			<u-button text="按钮"></u-button>
+		</u-badge>
+		<u-badge :value="5132" numberType="ellipsis" >
+			<u-button text="按钮"></u-button>
+		</u-badge>
+		<u-badge :value="1011" numberType="overflow" >
+			<u-button text="按钮"></u-button>
+		</u-badge>
+		<u-badge :value="45187" type="primary" shape="horn" numberType="limit" >
+			<u-button text="按钮"></u-button>
+		</u-badge>
+		<u-badge :value="1011" numberType="overflow" isDot>
+			<u-button text="按钮"></u-button>
+		</u-badge>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				value: 1500
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+	.u-page {
+		padding: 50px 120px;
+	}
+</style>

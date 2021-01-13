@@ -16,8 +16,31 @@
 	}
 }
 // 使用了cell组件的icon图片样式
-	.u-cell-icon {
-		width: 36rpx;
-		height: 36rpx;
-		margin-right: 8rpx;
+.u-cell-icon {
+	width: 36rpx;
+	height: 36rpx;
+	margin-right: 8rpx;
+}
+
+.u-page {
+	padding: 20px;
+}
+
+.u-demo-block {
+	flex: 1;
+	margin-top: 12px;
+	
+	&__content {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row!important;
+		align-items: center;
 	}
+	
+	&__title {
+		font-size: 14px;
+		color: rgb(143, 156, 162);
+		margin-bottom: 8px;
+	}
+}

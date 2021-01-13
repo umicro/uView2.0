@@ -65,16 +65,6 @@ export default {
 			type: [Number, String],
 			default: null
 		},
-		// 是否禁用减少按钮
-		disabledMinus: {
-			type: Boolean,
-			default: false
-		},
-		// 是否禁用增加按钮
-		disabledPlus: {
-			type: Boolean,
-			default: false
-		},
 		// 是否开启长按加减手势
 		longPress: {
 			type: Boolean,
@@ -99,11 +89,6 @@ export default {
 		cursorSpacing: {
 			type: [String, Number],
 			default: 100
-		},
-		// 是否只能输入整数，含0在内
-		integer: {
-			type: Boolean,
-			default: false
 		},
 		// 是否禁用增加按钮
 		disablePlus: {

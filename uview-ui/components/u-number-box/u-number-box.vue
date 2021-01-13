@@ -74,6 +74,32 @@
 
 <script>
 	import props from './props'
+	/**
+	 * numberBox 步进器
+	 * @description 该组件一般用于商城购物选择物品数量的场景。
+	 * @tutorial https://uviewui.com/components/numberBox.html
+	 * @property {Number | String} name 步进器标识符，在change回调返回
+	 * @property {Number | String} value 用于双向绑定的值，初始化时设置设为默认min值(最小值)  （默认0）
+	 * @property {Number | String} min 最小值 （默认1）
+	 * @property {Number | String} max 最大值 （默认Number.MAX_SAFE_INTEGER）
+	 * @property {Number | String} step 加减的步长，可为小数 （默认1）
+	 * @property {Boolean} integer 是否只允许输入整数 （默认true）
+	 * @property {Boolean} disabled 是否禁用，包括输入框，加减按钮 （默认false）
+	 * @property {Boolean} disabledInput 是否禁用输入框 （默认false）
+	 * @property {Boolean} asyncChange 是否开启异步变更，开启后需要手动控制输入值 （默认false）
+	 * @property {Number | String} inputWidth 输入框宽度，单位为px （默认35）
+	 * @property {Boolean} showMinus 是否显示减少按钮 （默认true）
+	 * @property {Boolean} showPlus 是否显示增加按钮 （默认true）
+	 * @property {Number | String} decimalLength 显示的小数位数
+	 * @property {Boolean} disableMinus 是否禁用减少按钮 （默认false）
+	 * @property {Boolean} disablePlus 是否禁用增加按钮 （默认false）
+	 * @property {Boolean} longPress 是否开启长按加减手势 （默认true）
+	 * @property {String} color 输入框文字和加减按钮图标的颜色 （默认#323233）
+	 * @property {Number | String} buttonSize 按钮大小，宽高等于此值，单位px，输入框高度和此值保持一致 （默认30）
+	 * @property {String} bgColor 输入框和按钮的背景颜色 （默认#EBECEE）
+	 * @property {Number | String} cursorSpacing 指定光标于键盘的距离，避免键盘遮挡输入框，单位px （默认100）
+	 * @example <u-number-box v-model="value" @change="valChange"></u-number-box>
+	 */
 	export default {
 		name: 'u-number-box',
 		mixins: [uni.$u.mixin, props],

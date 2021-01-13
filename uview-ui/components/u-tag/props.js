@@ -45,17 +45,27 @@ export default {
 			default: ''
 		},
 		// 点击时返回的索引值，用于区分例遍的数组哪个元素被点击了
-		index: {
+		name: {
 			type: [Number, String],
 			default: ''
 		},
-		// 模式选择，dark|light|plain
-		mode: {
-			type: String,
-			default: 'light'
+		// // 模式选择，dark|light|plain
+		// mode: {
+		// 	type: String,
+		// 	default: 'light'
+		// },
+		// 镂空时是否填充背景色
+		plainFill: {
+			type: Boolean,
+			default: false
+		},
+		// 是否镂空
+		plain: {
+			type: Boolean,
+			default: false
 		},
 		// 是否可关闭
-		closeable: {
+		closable: {
 			type: Boolean,
 			default: false
 		},

@@ -1,23 +1,124 @@
 <template>
 	<view class="u-page">
-		<u-badge :value="21">
-			<u-button text="按钮"></u-button>
-		</u-badge>
-		<u-badge :value="1500" type="success" shape="horn" numberType="limit">
-			<u-button text="按钮"></u-button>
-		</u-badge>
-		<u-badge :value="5132" numberType="ellipsis" >
-			<u-button text="按钮"></u-button>
-		</u-badge>
-		<u-badge :value="1011" numberType="overflow" >
-			<u-button text="按钮"></u-button>
-		</u-badge>
-		<u-badge :value="45187" type="primary" shape="horn" numberType="limit" >
-			<u-button text="按钮"></u-button>
-		</u-badge>
-		<u-badge :value="1011" numberType="overflow" isDot>
-			<u-button text="按钮"></u-button>
-		</u-badge>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">基础功能</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__tag-item">
+					<view class="badge-box">
+						<u-badge :value="21"></u-badge>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">直角边形状</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__tag-item">
+					<view class="badge-box">
+						<u-badge
+						    :value="1500"
+						    shape="horn"
+						>
+						</u-badge>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">徽标数显示方式</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__tag-item">
+					<view class="badge-box">
+						<u-badge
+						    :value="5132"
+						    numberType="ellipsis"
+						>
+						</u-badge>
+					</view>
+				</view>
+				<view class="u-page__tag-item">
+					<view class="badge-box">
+						<u-badge
+						    :value="1011"
+						    numberType="overflow"
+						>
+						</u-badge>
+					</view>
+				</view>
+				<view class="badge-box">
+					<u-badge
+					    :value="1500"
+					    numberType="limit"
+					>
+					</u-badge>
+				</view>
+				<view class="u-page__tag-item">
+					<view class="badge-box">
+						<u-badge
+						    :value="45187"
+						    numberType="limit"
+						>
+						</u-badge>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">显示圆点</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__tag-item">
+					<view class="badge-box">
+						<u-badge
+						    :value="1011"
+						    numberType="overflow"
+						    isDot
+						>
+						</u-badge>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义主题</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__tag-item">
+					<view class="badge-box">
+						<u-badge
+						    :value="9"
+							type="error"
+						>
+						</u-badge>
+					</view>
+				</view>
+				<view class="u-page__tag-item">
+					<view class="badge-box">
+						<u-badge
+						    :value="9"
+							type="warning"
+						>
+						</u-badge>
+					</view>
+				</view>
+				<view class="u-page__tag-item">
+					<view class="badge-box">
+						<u-badge
+						    :value="9"
+							type="success"
+						>
+						</u-badge>
+					</view>
+				</view>
+				<view class="u-page__tag-item">
+					<view class="badge-box">
+						<u-badge
+						    :value="9"
+							type="primary"
+						>
+						</u-badge>
+					</view>
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -25,14 +126,21 @@
 	export default {
 		data() {
 			return {
-				value: 1500
 			}
 		}
 	}
 </script>
 
 <style lang="scss">
-	.u-page {
-		padding: 50px 120px;
+	.box {
+		justify-content: space-between;
+	}
+
+	.badge-box {
+		width: 45px;
+		height: 45px;
+		border-radius: 3px;
+		background: #E6E6E6;
+		margin-right: 40px;
 	}
 </style>

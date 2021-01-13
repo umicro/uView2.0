@@ -1,3 +1,11 @@
+.u-view {
+		padding: 40px 20px 0px 20px;
+		&__title {
+			font-size: 14px;
+			color: rgb(143, 156, 162);
+			margin-bottom: 10px;
+		}
+	}
 .u-block{
 	padding: 14px;
 	&__section{

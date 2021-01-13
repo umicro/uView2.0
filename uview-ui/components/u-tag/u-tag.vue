@@ -50,6 +50,9 @@
 		align-items: center;
 		// justify-content: center;
 		padding: 4px 5px;
+		background-color: #ecf5ff;
+		border-color: #3C9CFF;
+		border-width: 1px;
 		
 		&__icon {
 			margin-right: 3px;
@@ -57,7 +60,8 @@
 		
 		&__text {
 			font-size: 14px;
-			color: $u-content-color;
+			// color: $u-content-color;
+			color: #3C9CFF;
 			// line-height: 14px;
 		}
 	}

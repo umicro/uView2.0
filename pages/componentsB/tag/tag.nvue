@@ -3,6 +3,11 @@
 		<u-tag text="什么" icon="https://img.yzcdn.cn/vant/logo.png">
 			<!-- <u-icon name="map" slot="icon"></u-icon> -->
 		</u-tag>
+		<u-tag text="什么" icon="https://img.yzcdn.cn/vant/logo.png">
+			<!-- <u-icon name="map" slot="icon"></u-icon> -->
+		</u-tag>
+		<u-button></u-button>
+		<u-
 	</view>
 </template>
 
@@ -19,5 +24,10 @@
 <style lang="scss">
 	.u-page {
 		padding: 50px;
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		justify-content: flex-start;
+		flex-direction: row;
 	}
 </style>

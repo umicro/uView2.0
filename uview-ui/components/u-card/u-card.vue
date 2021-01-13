@@ -261,7 +261,8 @@
 			},
 			bodyClick() {
 				this.$emit('body-click', this.index);
-			},
+			}, 
+			
 			footClick() {
 				this.$emit('foot-click', this.index);
 			}

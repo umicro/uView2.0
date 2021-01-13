@@ -230,7 +230,7 @@
 		}, {
 			"path": "countTo/countTo",
 			"style": {
-				"navigationBarTitleText": "步进器"
+				"navigationBarTitleText": "数字滚动"
 			}
 		}, {
 			"path": "search/search",

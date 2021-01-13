@@ -115,10 +115,10 @@
 	 * @property {String} sendMessageImg  会话内消息卡片图片，openType="contact"时有效
 	 * @property {Boolean} showMessageCard 是否显示会话内消息卡片，设置此参数为 true，用户进入客服会话会在右下角显示"可能要发送的小程序"提示，用户点击后可以快速发送小程序消息，openType="contact"时有效（默认false）
 	 * @property {String} dataName  额外传参参数，用于小程序的data-xxx属性，通过target.dataset.name获取
-	 * @property {String Number} throttleTime  节流，一定时间内只能触发一次
-	 * @property {String Number} hoverStartTime  按住后多久出现点击态，单位毫秒
-	 * @property {String Number} hoverStayTime  手指松开后点击态保留时间，单位毫秒
-	 * @property {String Number} text  按钮文字，之所以通过props传入，是因为slot传入的话（注：nvue中无法控制文字的样式）
+	 * @property {String | Number} throttleTime  节流，一定时间内只能触发一次
+	 * @property {String | Number} hoverStartTime  按住后多久出现点击态，单位毫秒
+	 * @property {String | Number} hoverStayTime  手指松开后点击态保留时间，单位毫秒
+	 * @property {String | Number} text  按钮文字，之所以通过props传入，是因为slot传入的话（注：nvue中无法控制文字的样式）
 	 * @property {String} icon 按钮图标
 	 * @property {String} color 按钮颜色，支持传入linear-gradient渐变色
 	 * @property {Object} customStyle  定义需要用到的外部样式

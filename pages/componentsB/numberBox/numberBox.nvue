@@ -1,15 +1,156 @@
 <template>
-	<view class="u-page">
-		<u-number-box
-		    v-model="value"
-		    step="1"
-			integer
-			@change="change"
-		>
-			<text slot="minus">-</text>
-			<text slot="input">{{value}}</text>
-			<text slot="plus">+</text>
-		</u-number-box>
+	<view class="">
+		<u-cell-group :border="true">
+			<u-cell
+			    :border="true"
+			    title="基础用法"
+			>
+				<u-number-box
+				    slot="right-icon"
+				    v-model="value1"
+				    step="1"
+				    @change="change"
+				>
+				</u-number-box>
+			</u-cell>
+			<u-cell
+			    :border="true"
+			    title="步长设置"
+			>
+				<u-number-box
+				    slot="right-icon"
+				    v-model="value2"
+				    :step="step1"
+				    @change="change"
+				>
+				</u-number-box>
+			</u-cell>
+			<u-cell
+			    :border="true"
+			    title="限制输入范围"
+			>
+				<u-number-box
+				    slot="right-icon"
+				    v-model="value3"
+				    step="1"
+				    :min="min1"
+				    :max="max1"
+				    @change="change"
+				>
+				</u-number-box>
+			</u-cell>
+			<u-cell
+			    :border="true"
+			    title="限制输入整数"
+			>
+				<u-number-box
+				    slot="right-icon"
+				    v-model="value4"
+				    step="1"
+				    integer
+				    @change="change"
+				>
+				</u-number-box>
+			</u-cell>
+			<u-cell
+			    :border="true"
+			    title="禁用状态"
+			>
+				<u-number-box
+				    slot="right-icon"
+				    v-model="value5"
+				    step="1"
+				    :disabled="true"
+				    @change="change"
+				>
+				</u-number-box>
+			</u-cell>
+			<u-cell
+			    :border="true"
+			    title="禁用输入框"
+			>
+				<u-number-box
+				    slot="right-icon"
+				    v-model="value6"
+				    step="1"
+				    :disabledInput="true"
+				    @change="change"
+				>
+				</u-number-box>
+			</u-cell>
+			<u-cell
+			    :border="true"
+			    title="禁用长按"
+			>
+				<u-number-box
+				    slot="right-icon"
+				    v-model="value7"
+				    step="1"
+				    :longPress="false"
+				    @change="change"
+				>
+				</u-number-box>
+			</u-cell>
+			<u-cell
+			    :border="true"
+			    title="固定小数位数"
+			>
+				<u-number-box
+				    slot="right-icon"
+				    v-model="value8"
+				    step="0.2"
+				    decimalLength="1"
+				    @change="change"
+				>
+				</u-number-box>
+			</u-cell>
+			<u-cell
+			    :border="true"
+			    title="异步变更"
+			>
+				<u-number-box
+				    slot="right-icon"
+				    v-model="value9"
+				    step="1"
+				    :asyncChange="asyncChange"
+				    @change="myAsyncChange"
+				>
+				</u-number-box>
+			</u-cell>
+			<u-cell
+			    :border="true"
+			    title="自定义大小颜色样式"
+			>
+				<u-number-box
+				    slot="right-icon"
+				    v-model="value10"
+				    step="1"
+				    :color="color"
+				    :buttonSize="buttonSize"
+				    :bgColor="bgColor"
+				    @change="change"
+				>
+				</u-number-box>
+			</u-cell>
+			<u-cell
+			    :border="true"
+			    title="自定义"
+			>
+				<u-number-box
+				    slot="right-icon"
+					v-model="value11"
+					step="1"
+				>
+					<view slot="minus" class="minus">
+						<u-icon name="minus" size="12"></u-icon>
+					</view>
+					<view slot="input" class="input">{{value11}}</view>
+					<view slot="plus" class="plus">
+						<u-icon name="plus" color="#FFFFFF" size="12"></u-icon>
+					</view>
+				</u-number-box>
+			</u-cell>
+		</u-cell-group>
 	</view>
 </template>
 
@@ -17,22 +158,66 @@
 	export default {
 		data() {
 			return {
-				value: 3,
-				value1: '',
+				value1: 3,
+				value2: 3,
+				value3: 3,
+				value4: 3,
+				value5: 3,
+				value6: 3,
+				value7: 3,
+				value8: 3.1,
+				value9: 3,
+				value10: 3,
+				value11: 3,
+				step1: 2,
+				min1: 5,
+				max1: 8,
+				asyncChange: true,
+				color: '#FFFFFF',
+				buttonSize: 36,
+				bgColor: '#2979ff'
 			}
 		},
 		methods: {
 			change(e) {
 				console.log(e);
 				// this.value1 = e
+			},
+			myAsyncChange(e) {
+				this.asyncChange = false
+				uni.showLoading()
+				setTimeout(() => {
+					uni.hideLoading()
+					this.value9 = e
+					this.asyncChange = true
+				}, 3000)
 			}
 		}
 	}
 </script>
 
 <style lang="scss">
-	.u-page {
-		margin-top: 100px;
-		margin-left: 100px;
+	.minus{
+		width: 22px;
+		height: 22px;
+		border: 1px solid #E6E6E6;
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.input{
+		padding: 0 10px;
+	}
+	
+	.plus{
+		width: 22px;
+		height: 22px;
+		background: #FF0000;
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 </style>

@@ -98,6 +98,10 @@
 	 * @property {Number | String} buttonSize 按钮大小，宽高等于此值，单位px，输入框高度和此值保持一致 （默认30）
 	 * @property {String} bgColor 输入框和按钮的背景颜色 （默认#EBECEE）
 	 * @property {Number | String} cursorSpacing 指定光标于键盘的距离，避免键盘遮挡输入框，单位px （默认100）
+	 * @event {Function} onFocus 输入框活动焦点
+	 * @event {Function} onBlur 输入框失去焦点
+	 * @event {Function} onInput 输入框值发生变化
+	 * @event {Function} onChange 
 	 * @example <u-number-box v-model="value" @change="valChange"></u-number-box>
 	 */
 	export default {
@@ -119,7 +123,7 @@
 			// 监听v-mode的变化，重新初始化内部的值
 			value(n) {
 				if (n !== this.currentValue) {
-					this.currentValue = this.format(value)
+					this.currentValue = this.format(this.value)
 				}
 			}
 		},

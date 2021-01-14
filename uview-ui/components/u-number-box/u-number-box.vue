@@ -336,6 +336,18 @@
 
 <style lang="scss">
 	@import '../../libs/css/components.scss';
+	
+	$u-numberBox-hover-bgColor: #E6E6E6 !default;
+	$u-numberBox-disabled-color: #c8c9cc !default;
+	$u-numberBox-disabled-bgColor: #f7f8fa !default;
+	$u-numberBox-plus-radius: 4px !default;
+	$u-numberBox-minus-radius: 4px !default;
+	$u-numberBox-input-text-align: center  !default;
+	$u-numberBox-input-font-size: 15px !default;
+	$u-numberBox-input-padding: 0  !default;
+	$u-numberBox-input-margin: 0 2px !default;
+	$u-numberBox-input-disabled-color: #c8c9cc !default;
+	$u-numberBox-input-disabled-bgColor: #f2f3f5 !default;
 
 	.u-number-box {
 		@include flex(row);
@@ -358,38 +370,38 @@
 			/* #endif */
 
 			&--hover {
-				background-color: #E6E6E6 !important;
+				background-color: $u-numberBox-hover-bgColor !important;
 			}
 
 			&--disabled {
-				color: #c8c9cc;
-				background-color: #f7f8fa;
+				color: $u-numberBox-disabled-color;
+				background-color: $u-numberBox-disabled-bgColor;
 			}
 		}
 
 		&__plus {
-			border-top-right-radius: 4px;
-			border-bottom-right-radius: 4px;
+			border-top-right-radius: $u-numberBox-plus-radius;
+			border-bottom-right-radius: $u-numberBox-plus-radius;
 		}
 
 		&__minus {
-			border-top-left-radius: 4px;
-			border-bottom-left-radius: 4px;
+			border-top-left-radius: $u-numberBox-minus-radius;
+			border-bottom-left-radius: $u-numberBox-minus-radius;
 		}
 
 		&__input {
 			position: relative;
-			text-align: center;
-			font-size: 15px;
-			padding: 0;
-			margin: 0 2px;
+			text-align: $u-numberBox-input-text-align;
+			font-size: $u-numberBox-input-font-size;
+			padding: $u-numberBox-input-padding;
+			margin: $u-numberBox-input-margin;
 			@include flex;
 			align-items: center;
 			justify-content: center;
 
 			&--disabled {
-				color: #c8c9cc;
-				background-color: #f2f3f5;
+				color: $u-numberBox-input-disabled-color;
+				background-color: $u-numberBox-input-disabled-bgColor;
 			}
 		}
 	}

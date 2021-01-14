@@ -68,6 +68,19 @@
 	@import "../../libs/css/components.scss";
 
 	$u-badge-primary: $u-primary !default;
+	$u-badge-error: $u-error !default;
+	$u-badge-success: $u-success !default;
+	$u-badge-info: $u-info !default;
+	$u-badge-warning: $u-warning !default;
+	$u-badge-dot-radius: 100px !default;
+	$u-badge-dot-size: 8px !default;
+	$u-badge-dot-right: 4px !default;
+	$u-badge-dot-top: 0 !default;
+	$u-badge-text-font-size: 11px !default;
+	$u-badge-text-right: 10px !default;
+	$u-badge-text-padding: 2px 5px !default;
+	$u-badge-text-align: center !default;
+	$u-badge-text-color: #FFFFFF !default;
 	
 	.u-badge {
 		position: relative;
@@ -76,22 +89,22 @@
 		&__dot {
 			z-index: 9;
 			position: absolute;
-			top: 0;
+			top: $u-badge-dot-top;
 			transform: translate(100%, -50%);
 			background-color: $u-error;
-			border-top-right-radius: 100px;
-			border-top-left-radius: 100px;
-			border-bottom-left-radius: 100px;
-			border-bottom-right-radius: 100px;
+			border-top-right-radius: $u-badge-dot-radius;
+			border-top-left-radius: $u-badge-dot-radius;
+			border-bottom-left-radius: $u-badge-dot-radius;
+			border-bottom-right-radius: $u-badge-dot-radius;
 		}
 
 		&__text {
-			right: 10px;
-			line-height: 11px;
-			text-align: center;
-			font-size: 11px;
-			padding: 2px 5px;
-			color: #FFFFFF;
+			right: $u-badge-text-right;
+			line-height: $u-badge-text-font-size;
+			text-align: $u-badge-text-align;
+			font-size: $u-badge-text-font-size;
+			padding: $u-badge-text-padding;
+			color: $u-badge-text-color;
 			// nvue上写border，会导致边框带一丝的红色
 			/* #ifndef APP-NVUE */
 			border-width: 1px;
@@ -100,9 +113,9 @@
 		}
 
 		&__dot {
-			height: 8px; 
-			width: 8px;
-			right: 4px;
+			height: $u-badge-dot-size; 
+			width: $u-badge-dot-size;
+			right: $u-badge-dot-right;
 		}
 		
 		&--horn {
@@ -114,19 +127,19 @@
 		}
 
 		&--error {
-			background-color: $u-error;
+			background-color: $u-badge-error;
 		}
 
 		&--success {
-			background-color: $u-success;
+			background-color: $u-badge-success;
 		}
 
 		&--info {
-			background-color: $u-info;
+			background-color: $u-badge-info;
 		}
 
 		&--warning {
-			background-color: $u-warning;
+			background-color: $u-badge-warning;
 		}
 	}
 </style>

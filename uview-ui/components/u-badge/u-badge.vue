@@ -67,6 +67,8 @@
 <style lang="scss">
 	@import "../../libs/css/components.scss";
 
+	$u-badge-primary: $u-primary !default;
+	
 	.u-badge {
 		position: relative;
 
@@ -108,7 +110,7 @@
 		}
 
 		&--primary {
-			background-color: $u-primary;
+			background-color: $u-badge-primary;
 		}
 
 		&--error {

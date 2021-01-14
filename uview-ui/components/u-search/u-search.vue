@@ -314,7 +314,27 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-
+	$u-search-content-padding: 0 10px !default;
+	$u-search-label-color: $u-main-color !default;
+	$u-search-label-font-size: 14px !default;
+	$u-search-label-margin: 0 4px !default;
+	$u-search-close-size: 20px !default;
+	$u-search-close-radius: 100px !default;
+	$u-search-close-bgColor: #C6C7CB !default;
+	$u-search-close-transform: scale(0.82) !default;
+	$u-search-input-font-size: 14px !default;
+	$u-search-input-margin: 0 5px !default;
+	$u-search-input-color: $u-main-color !default;
+	$u-search-input-placeholder-color: $u-tips-color !default;
+	$u-search-action-font-size: 14px !default;
+	$u-search-action-color: $u-main-color !default;
+	$u-search-action-width: 0 !default;
+	$u-search-action-active-width: 40px !default;
+	$u-search-action-margin-left: 5px !default;
+	$u-search-action-: !default;
+	$u-search-action-: !default;
+	$u-search-action-: !default;
+	$u-search-action-: !default;
 	.u-search {
 		@include flex(row);
 		align-items: center;
@@ -323,7 +343,7 @@
 		&__content {
 			@include flex;
 			align-items: center;
-			padding: 0 10px;
+			padding: $u-search-content-padding;
 			flex: 1;
 			justify-content: space-between;
 
@@ -333,42 +353,42 @@
 			}
 			
 			&__label {
-				color: $u-main-color;
-				font-size: 14px;
-				margin: 0 4px;
+				color: $u-search-label-color;
+				font-size: $u-search-label-font-size;
+				margin: $u-search-label-margin;
 			}
 			
 			&__close {
-				width: 20px;
-				height: 20px;
-				border-top-left-radius: 100px;
-				border-top-right-radius: 100px;
-				border-bottom-left-radius: 100px;
-				border-bottom-right-radius: 100px;
-				background-color: #C6C7CB;
+				width: $u-search-close-size;
+				height: $u-search-close-size;
+				border-top-left-radius: $u-search-close-radius;
+				border-top-right-radius: $u-search-close-radius;
+				border-bottom-left-radius: $u-search-close-radius;
+				border-bottom-right-radius: $u-search-close-radius;
+				background-color: $u-search-close-bgColor;
 				@include flex(row);
 				align-items: center;
 				justify-content: center;
-				transform: scale(0.82);
+				transform: $u-search-close-transform;
 			}
 
 			&__input {
 				flex: 1;
-				font-size: 14px;
+				font-size: $u-search-input-font-size;
 				line-height: 1;
-				margin: 0 5px;
-				color: $u-main-color;
+				margin: $u-search-input-margin;
+				color: $u-search-input-color;
 
 				&--placeholder {
-					color: $u-tips-color;
+					color: $u-search-input-placeholder-color;
 				}
 			}
 		}
 
 		&__action {
-			font-size: 14px;
-			color: $u-main-color;
-			width: 0;
+			font-size: $u-search-action-font-size;
+			color: $u-search-action-color;
+			width: $u-search-action-width;
 			overflow: hidden;
 			transition-property: width;
 			transition-duration: 0.3s;
@@ -378,8 +398,8 @@
 			text-align: center;
 
 			&--active {
-				width: 40px;
-				margin-left: 5px;
+				width: $u-search-action-active-width;
+				margin-left: $u-search-action-margin-left;
 			}
 		}
 	}

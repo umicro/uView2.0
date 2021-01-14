@@ -1,14 +1,12 @@
 <template>
-	<view
+	<text
 		class="u-count-num"
 		:style="{
-			fontSize: fontSize + 'rpx',
+			fontSize: $u.addUnit(fontSize),
 			fontWeight: bold ? 'bold' : 'normal',
 			color: color
 		}"
-	>
-		{{ displayValue }}
-	</view>
+	>{{ displayValue }}</text>
 </template>
 
 <script>
@@ -71,12 +69,12 @@ export default {
 		// 字体颜色
 		color: {
 			type: String,
-			default: '#303133'
+			default: '#606266'
 		},
 		// 字体大小
 		fontSize: {
 			type: [Number, String],
-			default: 50
+			default: 22
 		},
 		// 是否加粗字体
 		bold: {
@@ -103,6 +101,7 @@ export default {
 			lastTime: 0 // 上一次的时间
 		};
 	},
+	mixins: [uni.$u.mixin],
 	computed: {
 		countDown() {
 			return this.startVal > this.endVal;

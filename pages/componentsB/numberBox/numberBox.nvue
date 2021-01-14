@@ -200,9 +200,15 @@
 	.minus{
 		width: 22px;
 		height: 22px;
-		border: 1px solid #E6E6E6;
-		border-radius: 50%;
+		border-width: 1px;
+		border-color: #E6E6E6;
+		border-top-left-radius: 100px;
+		border-top-right-radius: 100px;
+		border-bottom-left-radius: 100px;
+		border-bottom-right-radius: 100px;
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
 		justify-content: center;
 		align-items: center;
 	}
@@ -214,9 +220,11 @@
 	.plus{
 		width: 22px;
 		height: 22px;
-		background: #FF0000;
+		background-color: #FF0000;
 		border-radius: 50%;
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
 		justify-content: center;
 		align-items: center;
 	}

@@ -1,26 +1,17 @@
 <template>
 	<view class="u-page">
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">基础功能</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__tag-item">
-					<view class="badge-box">
-						<u-badge :value="21"></u-badge>
-					</view>
-				</view>
-			</view>
-		</view>
+		 
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">直角边形状</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
-					<view class="badge-box">
-						<u-badge
-						    :value="1500"
-						    shape="horn"
-						>
-						</u-badge>
-					</view>
+					<u-badge
+					    :value="1500"
+					    shape="horn"
+					>
+						<view class="badge-box">
+						</view>
+					</u-badge>
 				</view>
 			</view>
 		</view>
@@ -28,38 +19,45 @@
 			<text class="u-demo-block__title">徽标数显示方式</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
-					<view class="badge-box">
-						<u-badge
-						    :value="5132"
-						    numberType="ellipsis"
-						>
-						</u-badge>
-					</view>
+					<u-badge
+					    :value="5132"
+					    numberType="ellipsis"
+					>
+						<view class="badge-box">
+
+						</view>
+					</u-badge>
 				</view>
 				<view class="u-page__tag-item">
-					<view class="badge-box">
-						<u-badge
-						    :value="1011"
-						    numberType="overflow"
-						>
-						</u-badge>
-					</view>
+					<u-badge
+					    :value="1011"
+					    numberType="overflow"
+					>
+						<view class="badge-box">
+
+						</view>
+					</u-badge>
 				</view>
-				<view class="badge-box">
+				<view class="u-page__tag-item">
 					<u-badge
 					    :value="1500"
 					    numberType="limit"
 					>
+						<view class="badge-box">
+
+						</view>
 					</u-badge>
 				</view>
+
 				<view class="u-page__tag-item">
-					<view class="badge-box">
-						<u-badge
-						    :value="45187"
-						    numberType="limit"
-						>
-						</u-badge>
-					</view>
+					<u-badge
+					    :value="45187"
+					    numberType="limit"
+					>
+						<view class="badge-box">
+
+						</view>
+					</u-badge>
 				</view>
 			</view>
 		</view>
@@ -85,7 +83,7 @@
 					<view class="badge-box">
 						<u-badge
 						    :value="9"
-							type="error"
+						    type="error"
 						>
 						</u-badge>
 					</view>
@@ -94,7 +92,7 @@
 					<view class="badge-box">
 						<u-badge
 						    :value="9"
-							type="warning"
+						    type="warning"
 						>
 						</u-badge>
 					</view>
@@ -103,7 +101,7 @@
 					<view class="badge-box">
 						<u-badge
 						    :value="9"
-							type="success"
+						    type="success"
 						>
 						</u-badge>
 					</view>
@@ -112,7 +110,7 @@
 					<view class="badge-box">
 						<u-badge
 						    :value="9"
-							type="primary"
+						    type="primary"
 						>
 						</u-badge>
 					</view>
@@ -125,8 +123,7 @@
 <script>
 	export default {
 		data() {
-			return {
-			}
+			return {}
 		}
 	}
 </script>
@@ -135,12 +132,19 @@
 	.box {
 		justify-content: space-between;
 	}
+	
+	.u-page__tag-item {
+		margin-right: 40px;
+		margin-top: 10px;
+	}
 
 	.badge-box {
 		width: 45px;
 		height: 45px;
-		border-radius: 3px;
-		background: #E6E6E6;
-		margin-right: 40px;
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+		border-bottom-left-radius: 3px;
+		border-bottom-right-radius: 3px;
+		background-color: #E6E6E6;
 	}
 </style>

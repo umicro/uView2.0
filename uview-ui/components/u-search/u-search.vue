@@ -331,10 +331,6 @@
 	$u-search-action-width: 0 !default;
 	$u-search-action-active-width: 40px !default;
 	$u-search-action-margin-left: 5px !default;
-	$u-search-action-: !default;
-	$u-search-action-: !default;
-	$u-search-action-: !default;
-	$u-search-action-: !default;
 	.u-search {
 		@include flex(row);
 		align-items: center;

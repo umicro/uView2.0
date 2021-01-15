@@ -14,15 +14,15 @@
  * countTo 数字滚动
  * @description 该组件一般用于需要滚动数字到某一个值的场景，目标要求是一个递增的值。
  * @tutorial https://www.uviewui.com/components/countTo.html
- * @property {String Number} start-val 开始值
- * @property {String Number} end-val 结束值
- * @property {String Number} duration 滚动过程所需的时间，单位ms（默认2000）
+ * @property {String | Number} start-val 开始值
+ * @property {String | Number} end-val 结束值
+ * @property {String | Number} duration 滚动过程所需的时间，单位ms（默认2000）
  * @property {Boolean} autoplay 是否自动开始滚动（默认true）
- * @property {String Number} decimals 要显示的小数位数，见官网说明（默认0）
+ * @property {String | Number} decimals 要显示的小数位数，见官网说明（默认0）
  * @property {Boolean} use-easing 滚动结束时，是否缓动结尾，见官网说明（默认true）
  * @property {String} separator 千位分隔符，见官网说明
  * @property {String} color 字体颜色（默认#303133）
- * @property {String Number} font-size 字体大小，单位rpx（默认50）
+ * @property {String | Number} font-size 字体大小，单位rpx（默认50）
  * @property {Boolean} bold 字体是否加粗（默认false）
  * @event {Function} end 数值滚动到目标值时触发
  * @example <u-count-to ref="uCountTo" :end-val="endVal" :autoplay="autoplay"></u-count-to>

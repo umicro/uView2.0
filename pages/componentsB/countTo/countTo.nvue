@@ -99,7 +99,7 @@
 	export default {
 		data() {
 			return {
-				value: 0,
+				value: 3000,
 				startVal1: 300,
 				startVal2: 100.00,
 				endVal: 10.55,
@@ -113,9 +113,9 @@
 			}
 		},
 		onLoad() {
-			setTimeout(() => {
-				this.value = 3000
-			}, 3000)
+			// setTimeout(() => {
+			// 	this.value = 3000
+			// }, 3000)
 		},
 		methods: {
 			start() {

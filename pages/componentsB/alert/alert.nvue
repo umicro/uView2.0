@@ -1,0 +1,35 @@
+<template>
+	<view class="u-page">
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">基础功能</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__alert-item">
+					<u-alert
+					    :description="description"
+					    type="warning"
+					></u-alert>
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				description: '辅助性文字。也可通过默认 slot 传入辅助性文字。也可通过默认 slot 传入辅助性文字。也可通过默认 slot 传入',
+				title: '关闭按钮自定义文本关闭按钮自定义文本关闭按钮自定义文本'
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+	.u-page {
+		
+		&__alert-item {
+			flex: 1;
+		}
+	}
+</style>

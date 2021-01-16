@@ -166,10 +166,10 @@ export default [{
 			title: 'ActionSheet 上拉菜单',
 			title_en: 'ActionSheet',
 		}, {
-			path: '/pages/componentsC/alertTips/alertTips',
-			icon: 'alertTips',
-			title: 'AlertTips 警告提示',
-			title_en: 'AlertTips',
+			path: '/pages/componentsB/alert/alert',
+			icon: 'alert',
+			title: 'Alert 警告提示',
+			title_en: 'Alert',
 		}, {
 			path: '/pages/componentsB/toast/toast',
 			icon: 'toast',

@@ -1,13 +1,20 @@
 <template>
-	<u-transition mode="fade" :show="show">
+	<u-transition
+	    mode="fade"
+	    :show="show"
+	>
 		<view
 		    class="u-alert"
 		    :class="[`u-alert--${type}--${effect}`]"
-			@tap.stop="clickHandler"
+		    @tap.stop="clickHandler"
+		    :style="[customStyle]"
 		>
-			<view class="u-alert__icon">
+			<view
+			    class="u-alert__icon"
+			    v-if="showIcon"
+			>
 				<u-icon
-				    name="checkmark-circle-fill"
+				    :name="iconName"
 				    size="18"
 				    :color="iconColor"
 				></u-icon>
@@ -15,22 +22,32 @@
 			<view
 			    class="u-alert__content"
 			    :style="{
-				paddingRight: closable ? '15px' :0
+				paddingRight: closable ? '20px' : 0
 			}"
 			>
 				<text
 				    class="u-alert__content__title"
+				    v-if="title"
+					:style="{
+						fontSize: $u.addUnit(fontSize),
+						textAlign: center ? 'center' : 'left'
+					}"
 				    :class="[effect === 'dark' ? 'u-alert__text--dark' : `u-alert__text--${type}--light`]"
 				>{{ title }}</text>
 				<text
 				    class="u-alert__content__desc"
+					v-if="description"
+					:style="{
+						fontSize: $u.addUnit(fontSize),
+						textAlign: center ? 'center' : 'left'
+					}"
 				    :class="[effect === 'dark' ? 'u-alert__text--dark' : `u-alert__text--${type}--light`]"
 				>{{ description }}</text>
 			</view>
 			<view
 			    class="u-alert__close"
 			    v-if="closable"
-				@tap.stop="closeHandler"
+			    @tap.stop="closeHandler"
 			>
 				<u-icon
 				    name="close"
@@ -55,6 +72,28 @@
 		computed: {
 			iconColor() {
 				return this.effect === 'light' ? this.type : '#fff'
+			},
+			// 不同主题对应不同的图标
+			iconName() {
+				switch (this.type) {
+					case 'success':
+						return 'checkmark-circle-fill';
+						break;
+					case 'error':
+						return 'close-circle-fill';
+						break;
+					case 'warning':
+						return 'error-circle-fill';
+						break;
+					case 'info':
+						return 'info-circle-fill';
+						break;
+					case 'primary':
+						return 'more-circle-fill';
+						break;
+					default: 
+						return 'error-circle-fill';
+				}
 			}
 		},
 		methods: {

@@ -3,78 +3,42 @@ export default {
 		// 显示文字
 		title: {
 			type: String,
-			default: ''
+			default: uni.$u.props.alert.title
 		},
 		// 主题，success/warning/info/error
 		type: {
 			type: String,
-			default: 'warning'
+			default: uni.$u.props.alert.type
 		},
 		// 辅助性文字
 		description: {
 			type: String,
-			default: ''
+			default: uni.$u.props.alert.description
 		},
 		// 是否可关闭
 		closable: {
 			type: Boolean,
-			default: false
-		},
-		// 关闭按钮自定义文本
-		closeText: {
-			type: String,
-			default: ''
+			default: uni.$u.props.alert.closable
 		},
 		// 是否显示图标
 		showIcon: {
 			type: Boolean,
-			default: false
-		},
-		// 文字颜色，如果定义了color值，icon会失效
-		color: {
-			type: String,
-			default: ''
-		},
-		// 背景颜色
-		bgColor: {
-			type: String,
-			default: ''
-		},
-		// 边框颜色
-		borderColor: {
-			type: String,
-			default: ''
-		},
-		// 左边显示的icon
-		icon: {
-			type: String,
-			default: ''
-		},
-		// icon的样式
-		iconStyle: {
-			type: Object,
-			default () {
-				return {}
-			}
-		},
-		// 标题的样式
-		titleStyle: {
-			type: Object,
-			default () {
-				return {}
-			}
-		},
-		// 描述文字的样式
-		descStyle: {
-			type: Object,
-			default () {
-				return {}
-			}
+			default: uni.$u.props.alert.showIcon
 		},
 		// 浅或深色调，light-浅色，dark-深色
 		effect: {
 			type: String,
-			default: 'light'
+			default: uni.$u.props.alert.effect
+		},
+		// 文字是否居中
+		center: {
+			type: Boolean,
+			default: uni.$u.props.alert.center
+		},
+		// 字体大小
+		fontSize: {
+			type: [String, Number],
+			default: uni.$u.props.alert.fontSize
 		}
 	},
 }

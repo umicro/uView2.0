@@ -31,7 +31,7 @@ function colorGradient(startColor = 'rgb(0, 0, 0)', endColor = 'rgb(255, 255, 25
 // 将hex表示方式转换为rgb表示方式(这里返回rgb数组模式)
 function hexToRgb(sColor, str = true) {
 	let reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
-	sColor = sColor.toLowerCase();
+	sColor = String(sColor).toLowerCase();
 	if (sColor && reg.test(sColor)) {
 		if (sColor.length === 4) {
 			let sColorNew = "#";
@@ -104,7 +104,7 @@ function colorToRgba(color, alpha) {
 	// 十六进制颜色值的正则表达式
 	var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/
 	/* 16进制颜色转为RGB格式 */
-	let sColor = color.toLowerCase()
+	let sColor = String(color).toLowerCase()
 	if (sColor && reg.test(sColor)) {
 		if (sColor.length === 4) {
 			var sColorNew = '#'

@@ -3,6 +3,7 @@
 	    class="u-loading-icon"
 		:style="[customStyle]"
 	    :class="[vertical && 'u-loading-icon--vertical']"
+		v-if="show"
 	>
 		<view
 		    v-if="!webviewHide"
@@ -65,6 +66,7 @@
 	 * @tutorial https://www.uviewui.com/components/loading.html
 	 * @property {String} color 动画活动区域的颜色，只对 mode = flower 模式有效（默认color['u-tips-color']）
 	 * @property {Boolean} vertical 文字和图标是否垂直排列 (默认 false)
+	 * @property {Boolean} show 是否显示组件 (默认 true)
 	 * @property {String} mode 模式选择，见官网说明（默认circle）
 	 * @property {String Number} size 加载图标的大小，单位px（默认24）
 	 * @property {String Number} textSize 文字大小（默认15）
@@ -77,6 +79,11 @@
 	export default {
 		name:'u-loading-icon',
 		props: {
+			// 是否显示组件
+			show: {
+				type: Boolean,
+				default: uni.$u.props.loadingIcon.show
+			},
 			// 颜色
 			color: {
 				type: String,

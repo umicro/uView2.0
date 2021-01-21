@@ -1,24 +1,27 @@
 <template>
-	<view class="u-switch">
+	<view
+	    class="u-switch"
+	    :class="[disabled && 'u-switch--disabled']"
+	    :style="[switchStyle, customStyle]"
+	    @tap="clickHandler"
+	>
 		<view
-		    class="u-switch__content"
-		    :class="[value && 'u-switch--on', disabled && 'u-switch--disabled']"
-		    @tap="onClick"
-		    :style="[switchStyle, customStyle]"
+		    class="u-switch__bg"
+		    :style="[bgStyle]"
 		>
 		</view>
 		<view
-		    class="u-switch__node node-class"
+		    class="u-switch__node"
 		    :class="[value && 'u-switch__node--on']"
-		    :style="{
-				width: $u.addUnit(this.size),
-				height: $u.addUnit(this.size)
-			}"
+		    :style="[nodeStyle]"
+		    ref="u-switch__node"
 		>
 			<u-loading-icon
 			    :show="loading"
 			    mode="circle"
-			    :size="size * 0.8"
+			    timingFunction='linear'
+			    :color="value ? activeColor : '#AAABAD'"
+			    :size="size * 0.6"
 			/>
 		</view>
 	</view>
@@ -56,7 +59,7 @@
 			// 开关尺寸，单位rpx
 			size: {
 				type: [Number, String],
-				default: 28
+				default: 25
 			},
 			// 打开时的背景颜色
 			activeColor: {
@@ -70,12 +73,7 @@
 			},
 			// 通过v-model双向绑定的值
 			value: {
-				type: Boolean,
-				default: false
-			},
-			// 是否使手机发生短促震动，目前只在iOS的微信小程序有效(2020-05-06)
-			vibrateShort: {
-				type: Boolean,
+				type: [Boolean, String, Number],
 				default: false
 			},
 			// 打开选择器时的值
@@ -88,31 +86,74 @@
 				type: [Number, String, Boolean],
 				default: false
 			},
+			// 是否开启异步变更，开启后需要手动控制输入值
+			asyncChange: {
+				type: Boolean,
+				default: false
+			},
+		},
+		watch: {
+			value: {
+				immediate: true,
+				handler(n) {
+					if(n !== this.inactiveValue && n !== this.activeValue) {
+						uni.$u.error('v-mode绑定的值必须为inactiveValue、activeValue二者之一')
+					}
+				}
+			}
 		},
 		data() {
 			return {
-
+				bgColor: '#ffffff'
 			}
 		},
 		computed: {
 			switchStyle() {
-				let style = {};
-				style.fontSize = uni.$u.addUnit(this.size)
-				style.width = uni.$u.addUnit(this.size * 2)
-				style.height = uni.$u.addUnit(this.size + 2)
-				style.backgroundColor = this.value ? this.activeColor : this.inactiveColor
+				let style = {}
+				// 这里需要加2，是为了腾出边框的距离，否则圆点node会和外边框紧贴在一起
+				style.width = uni.$u.addUnit(this.size * 2 + 2)
+				style.height = uni.$u.addUnit(Number(this.size) + 2)
+				// style.borderColor = this.value ? 'rgba(0, 0, 0, 0)' : 'rgba(0, 0, 0, 0.12)'
+				// 如果自定义了“非激活”演示，name边框颜色设置为透明(跟非激活颜色一致)
+				// 这里不能简单的设置为非激活的颜色，否则打开状态时，会有边框，所以需要透明
+				if(this.customInactiveColor) {
+					style.borderColor = 'rgba(0, 0, 0, 0)' 
+				}
+				style.backgroundColor = this.value === this.activeValue ? this.activeColor : this.inactiveColor
 				return style;
 			},
+			nodeStyle() {
+				let style = {}
+				// 如果自定义非激活颜色，将node圆点的尺寸减少两个像素，让其与外边框距离更大一点
+				style.width = uni.$u.addUnit(this.size - (this.customInactiveColor ? 2 : 0))
+				style.height = uni.$u.addUnit(this.size - (this.customInactiveColor ? 2 : 0))
+				style.transform = `translateX(${this.value === this.activeValue ? this.customInactiveColor ? -2 : 0 : -this.size}px)`
+				return style
+			},
+			bgStyle() {
+				let style = {}
+				// 这里配置一个多余的元素在HTML中，是为了让switch切换时，有更良好的背景色扩充体验(见实际效果)
+				style.width = uni.$u.addUnit(Number(this.size) * 2 - this.size / 2)
+				style.height = uni.$u.addUnit(this.size)
+				style.backgroundColor = this.inactiveColor
+				// 打开时，让此元素收缩，否则反之
+				style.transform = `scale(${this.value === this.activeValue ? 0 : 1})`
+				return style
+			},
+			customInactiveColor() {
+				// 之所以需要判断是否自定义了“非激活”颜色，是为了让node圆点离外边框更宽一点的距离
+				return this.inactiveColor !== '#fff' && this.inactiveColor !== '#ffffff'
+			}
 		},
 		methods: {
-			onClick() {
+			clickHandler() {
 				if (!this.disabled && !this.loading) {
-					// 使手机产生短促震动，微信小程序有效，APP(HX 2.6.8)和H5无效
-					if (this.vibrateShort) uni.vibrateShort()
-					this.$emit('input', !this.value)
+					if(!this.asyncChange) {
+						this.$emit('input', this.value === this.activeValue ? this.inactiveValue : this.activeValue)
+					}
 					// 放到下一个生命周期，因为双向绑定的value修改父组件状态需要时间，且是异步的
 					this.$nextTick(() => {
-						this.$emit('change', this.value ? this.activeValue : this.inactiveValue)
+						this.$emit('change', this.value === this.activeValue ? this.inactiveValue : this.activeValue)
 					})
 				}
 			}
@@ -124,56 +165,49 @@
 	@import "../../libs/css/components.scss";
 
 	.u-switch {
-		
-		&__content {
-			position: relative;
-			/* #ifndef APP-NVUE */
-			display: inline-block;
-			box-sizing: border-box;
-			/* #endif */
+		@include flex(row);
+		/* #ifndef APP-NVUE */
+		box-sizing: border-box;
+		/* #endif */
+		position: relative;
+		background-color: #fff;
+		border-width: 1px;
+		border-radius: 100px;
+		transition: background-color 0.3s;
+		border-color: rgba(0, 0, 0, 0.12);
+		border-style: solid;
+		justify-content: flex-end;
+		align-items: center;
+		// 由于weex为阿里逗着玩的垃圾KPI项目，导致bug奇多，这必须要写这一行，
+		// 否则在iOS上，点击页面任意地方，都会触发switch的点击事件
+		overflow: hidden;
+
+		&__node {
+			@include flex(row);
+			align-items: center;
+			justify-content: center;
+			border-radius: 100px;
 			background-color: #fff;
-			border-width: 1px;
-			border-color: rgba(0, 0, 0, 0.08);
-			border-top-left-radius: 100px;
-			border-top-right-radius: 100px;
-			border-bottom-left-radius: 100px;
-			border-bottom-right-radius: 100px;
-			transition: background-color 0.3s;
+			border-radius: 100px;
+			box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.25);
+			transition-property: transform;
+			transition-duration: 0.3s;
+			transition-timing-function: cubic-bezier(0.3, 1.05, 0.4, 1.05);
 		}
-	}
 
-	.u-switch__node {
-		@include flex;
-		align-items: center;
-		justify-content: center;
-		position: absolute;
-		top: 1px;
-		left: 1px;
-		border-radius: 100%;
-		z-index: 1;
-		background-color: #fff;
-		background-color: #fff;
-		box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 3px;;
-		transition-property: transform;
-		transition-duration: 0.3s;
-		transition-timing-function: cubic-bezier(0.3, 1.05, 0.4, 1.05);
-
-		&--on {
-			transform: translateX(100%);
+		&__bg {
+			position: absolute;
+			border-radius: 100px;
+			background-color: #FFFFFF;
+			transition-property: transform;
+			transition-duration: 0.3s;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+			transition-timing-function: ease;
 		}
-	}
 
-	.u-switch__loading {
-		@include flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.u-switch--on {
-		background-color: #1989fa;
-	}
-
-	.u-switch--disabled {
-		opacity: 0.4;
+		&--disabled {
+			opacity: 0.6;
+		}
 	}
 </style>

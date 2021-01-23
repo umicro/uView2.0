@@ -3,29 +3,27 @@
 	    class="u-page"
 	    ref="u-back-top"
 	>
-		<u-gap></u-gap>
-		<view class="u-block">
-			<u-section
-			    title="自定义backTop"
-			    :right="false"
-			></u-section>
-			<text class="u-block__title">请选出您想要定义的backTop样式</text>
-			<u-checkbox-group
-			    v-model="checkboxValue"
-			    placement="column"
-			    @change="checkboxChange"
-			>
-				<u-checkbox
-				    :customStyle="{marginBottom: '8px'}"
-				    v-for="(item, index) in checkboxList"
-				    :key="index"
-				    :label="item.name"
-				    :name="item.name"
+	<view class="u-demo-block">
+		<text class="u-demo-block__title">自定义backTop</text>
+		<view class="u-demo-block__content">
+			<view class="u-page__backTop-item">
+				<u-checkbox-group
+				    v-model="checkboxValue"
+				    placement="column"
+				    @change="checkboxChange"
 				>
-				</u-checkbox>
-			</u-checkbox-group>
+					<u-checkbox
+					    :customStyle="{marginBottom: '8px'}"
+					    v-for="(item, index) in checkboxList"
+					    :key="index"
+					    :label="item.name"
+					    :name="item.name"
+					>
+					</u-checkbox>
+				</u-checkbox-group>
+			</view>
 		</view>
-		<u-gap></u-gap>
+	</view>
 		<u-back-top
 		    :right="backTopData.right"
 		    :customStyle="backTopData.customStyle"
@@ -129,5 +127,8 @@
 <style lang="scss">
 	.u-page {
 		height: 1200px;
+		&__backTop-item{
+			margin-top:10px;
+		}
 	}
 </style>

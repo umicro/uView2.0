@@ -1,98 +1,79 @@
 <template>
 	<view class="u-page">
-		<u-gap></u-gap>
-		<view class="u-block">
-			<u-section
-			    title="基本案例"
-			    :right="false"
-				class="u-block__section"
-			></u-section>
-			<u-slider
-			    v-model="value1"
-			    @moving="moving"
-			    @click="click"
-				@start="start"
-				:step="1"
-				@end="end"
-			></u-slider>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">基本案例</text>
+			<view class="u-page__slide-item">
+				<u-slider
+				    v-model="value1"
+				    @moving="moving"
+				    @click="click"
+				    @start="start"
+				    :step="1"
+				    @end="end"
+				></u-slider>
+			</view>
 		</view>
-		<u-gap></u-gap>
-		
-		<view class="u-block">
-			<u-section
-			    title="自定义范围(0—50)"
-			    :right="false"
-				class="u-block__section"
-			></u-section>
-			<u-slider
-			    v-model="value2"
-			    @moving="moving"
-			    @click="click"
-				@start="start"
-				:step="1"
-				@end="end"
-				min="0"
-				max="50"
-			></u-slider>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义范围(0—50)</text>
+			<view class="u-page__slide-item">
+				<u-slider
+				    v-model="value2"
+				    @moving="moving"
+				    @click="click"
+				    @start="start"
+				    :step="1"
+				    @end="end"
+				    min="0"
+				    max="50"
+				></u-slider>
+			</view>
 		</view>
-		<u-gap></u-gap>
-		
-		<!-- <view class="u-block">
-			<u-section
-			    title="禁用"
-			    :right="false"
-				class="u-block__section"
-			></u-section>
-			<u-slider
-			    v-model="value3"
-			    @moving="moving"
-			    @click="click"
-				@start="start"
-				:step="1"
-				@end="end"
-				:disabled="true"
-			></u-slider>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义范围(0—50)</text>
+			<view class="u-page__slide-item">
+				<u-slider
+				    v-model="value2"
+				    @moving="moving"
+				    @click="click"
+				    @start="start"
+				    :step="1"
+				    @end="end"
+				    min="0"
+				    max="50"
+				></u-slider>
+			</view>
 		</view>
-		<u-gap></u-gap> -->
-		
-		<view class="u-block">
-			<u-section
-			    title="指定步长"
-			    :right="false"
-				class="u-block__section"
-			></u-section>
-			<u-slider
-			    v-model="value4"
-			    @moving="moving"
-			    @click="click"
-				@start="start"
-				:step="20"
-				@end="end"
-			></u-slider>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">指定步长</text>
+			<view class="u-page__slide-item">
+				<u-slider
+				    v-model="value4"
+				    @moving="moving"
+				    @click="click"
+				    @start="start"
+				    :step="20"
+				    @end="end"
+				></u-slider>
+			</view>
 		</view>
-		<u-gap></u-gap>
-		
-		<view class="u-block">
-			<u-section
-			    title="自定义样式"
-			    :right="false"
-				class="u-block__section"
-			></u-section>
-			<u-slider
-			    v-model="value5"
-			    @moving="moving"
-			    @click="click"
-				@start="start"
-				:step="20"
-				@end="end"
-				height="20"
-				blockHeight="20"
-				activeColor="red"
-				inactiveColor="rgb(243, 244, 246)"
-				blockColor="pink"
-			></u-slider>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义样式</text>
+			<view class="u-page__slide-item">
+				<u-slider
+				    v-model="value5"
+				    @moving="moving"
+				    @click="click"
+				    @start="start"
+				    :step="20"
+				    @end="end"
+				    height="20"
+				    blockHeight="20"
+				    activeColor="red"
+				    inactiveColor="rgb(243, 244, 246)"
+				    blockColor="pink"
+				></u-slider>
+			</view>
 		</view>
-		<u-gap></u-gap>
 	</view>
 </template>
 
@@ -100,11 +81,11 @@
 	export default {
 		data() {
 			return {
-				value1:30,
-				value2:30,
-				value3:30,
-				value4:30,
-				value5:30
+				value1: 30,
+				value2: 30,
+				value3: 30,
+				value4: 30,
+				value5: 30
 			}
 		},
 		watch: {
@@ -131,5 +112,8 @@
 
 <style lang="scss">
 	.u-page {
+		&__slide-item{
+			margin-top:5px;
+		}
 	}
 </style>

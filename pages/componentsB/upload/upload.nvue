@@ -1,114 +1,102 @@
 <template>
 	<view class="u-page">
-		<u-gap></u-gap>
-		<view class="u-block">
-			<u-section
-			    title="基础用法"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-upload
-			    :fileList="fileList1"
-			    @afterRead="afterRead"
-			    @delete="deletePic"
-			    name="1"
-			    multiple
-			    :maxCount="10"
-			></u-upload>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">基础用法</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__upload-item">
+				<u-upload
+				    :fileList="fileList1"
+				    @afterRead="afterRead"
+				    @delete="deletePic"
+				    name="1"
+				    multiple
+				    :maxCount="10"
+				></u-upload>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="上传视频"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-upload
-			    :fileList="fileList2"
-			    @afterRead="afterRead"
-			    @delete="deletePic"
-			    name="2"
-			    multiple
-			    :maxCount="10"
-			    accept="video"
-			></u-upload>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">上传视频</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__upload-item">
+				<u-upload
+				    :fileList="fileList2"
+				    @afterRead="afterRead"
+				    @delete="deletePic"
+				    name="2"
+				    multiple
+				    :maxCount="10"
+				    accept="video"
+				></u-upload>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="文件预览"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-upload
-			    :fileList="fileList3"
-			    @afterRead="afterRead"
-			    @delete="deletePic"
-			    name="3"
-			    multiple
-			    :maxCount="10"
-			    :previewFullImage="true"
-			></u-upload>
+			<view class="u-demo-block">
+			<text class="u-demo-block__title">文件预览</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__upload-item">
+				<u-upload
+				    :fileList="fileList3"
+				    @afterRead="afterRead"
+				    @delete="deletePic"
+				    name="3"
+				    multiple
+				    :maxCount="10"
+				    :previewFullImage="true"
+				></u-upload>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="隐藏上传按钮"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-upload
-			    :fileList="fileList4"
-			    @afterRead="afterRead"
-			    @delete="deletePic"
-			    name="4"
-			    multiple
-			    :maxCount="2"
-			></u-upload>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">隐藏上传按钮</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__upload-item">
+				<u-upload
+				    :fileList="fileList4"
+				    @afterRead="afterRead"
+				    @delete="deletePic"
+				    name="4"
+				    multiple
+				    :maxCount="2"
+				></u-upload>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="限制上传数量"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-upload
-			    :fileList="fileList5"
-			    @afterRead="afterRead"
-			    @delete="deletePic"
-			    name="5"
-			    multiple
-			    :maxCount="3"
-			></u-upload>
+			<view class="u-demo-block">
+			<text class="u-demo-block__title">限制上传数量</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__upload-item">
+				<u-upload
+				    :fileList="fileList5"
+				    @afterRead="afterRead"
+				    @delete="deletePic"
+				    name="5"
+				    multiple
+				    :maxCount="3"
+				></u-upload>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="自定义上传样式"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-upload
-			    :fileList="fileList6"
-			    @afterRead="afterRead"
-			    @delete="deletePic"
-			    name="6"
-			    multiple
-			    :maxCount="3"
-			>
-				<u-button
-				    color="linear-gradient(to right, #4bb0ff, #6149f6)"
-				    text="上传"
-				></u-button>
-			</u-upload>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义上传样式</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__upload-item">
+				<u-upload
+				    :fileList="fileList6"
+				    @afterRead="afterRead"
+				    @delete="deletePic"
+				    name="6"
+				    multiple
+				    :maxCount="3"
+				>
+					<u-button
+					    color="linear-gradient(to right, #4bb0ff, #6149f6)"
+					    text="上传"
+					></u-button>
+				</u-upload>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
 	</view>
 </template>
 
@@ -188,5 +176,9 @@
 </script>
 
 <style lang="scss">
-	.u-page {}
+	.u-page {
+		&__upload-item{
+			margin-top:5px;
+		}
+	}
 </style>

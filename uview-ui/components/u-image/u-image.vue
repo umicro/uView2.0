@@ -272,7 +272,6 @@
 	.u-image {
 		position: relative;
 		transition: opacity 0.5s ease-in-out;
-
 		&__loading,
 		&__error {
 			position: absolute;

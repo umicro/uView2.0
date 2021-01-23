@@ -60,7 +60,8 @@ export default {
 		rightIcon: 'arrow-right',
 		titleStyle: {},
 		size: '',
-		stop: true
+		stop: true,
+		disabled: false
 	},
 
 	// cell-group组件的props
@@ -317,7 +318,7 @@ export default {
 
 	// line组件
 	line: {
-		color: '#e4e7ed',
+		color: '#e1e2e4',
 		length: '100%',
 		direction: 'row',
 		hairline: true,

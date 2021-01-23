@@ -1,5 +1,6 @@
 <template>
 	<view class="u-collapse">
+		<u-line v-if="border"></u-line>
 		<slot />
 	</view>
 </template>
@@ -22,74 +23,68 @@
 		name: "u-collapse",
 		mixins: [uni.$u.mixin],
 		props: {
+			// 当前展开面板的name，非手风琴模式：[<string | number>]，手风琴模式：string | number
+			value: {
+				type: [String, Number, Array],
+				default: null
+			},
 			// 是否手风琴模式
 			accordion: {
 				type: Boolean,
-				default: true
+				default: false
 			},
-			// 头部的样式
-			headStyle: {
-				type: Object,
-				default () {
-					return {}
-				}
-			},
-			// 主体的样式
-			bodyStyle: {
-				type: Object,
-				default () {
-					return {}
-				}
-			},
-			// 每一个item的样式
-			itemStyle: {
-				type: Object,
-				default () {
-					return {}
-				}
-			},
-			// 是否显示右侧的箭头
-			arrow: {
+			// 是否显示外边框
+			border: {
 				type: Boolean,
 				default: true
 			},
-			// 箭头的颜色
-			arrowColor: {
-				type: String,
-				default: '#909399'
-			},
-			// 标题部分按压时的样式类，"none"为无效果
-			hoverClass: {
-				type: String,
-				default: 'u-hover-class'
+		},
+		watch: {
+			needInit() {
+				this.init()
 			}
 		},
 		created() {
-			this.childrens = []
+			this.children = []
 		},
-		data() {
-			return {
-
+		computed: {
+			needInit() {
+				return [this.accordion, this.value]
 			}
 		},
 		methods: {
-			// 重新初始化一次内部的所有子元素的高度计算，用于异步获取数据渲染的情况
+			// 重新初始化一次内部的所有子元素
 			init() {
-				this.childrens.forEach((vm, index) => {
-					vm.init();
+				this.children.map(child => {
+					child.init()
 				})
 			},
-			// collapse item被点击，由collapse item调用父组件方法
-			onChange() {
-				let activeItem = [];
-				this.childrens.forEach((vm, index) => {
-					if (vm.isShow) {
-						activeItem.push(vm.nameSync);
+			/**
+			 * collapse-item被点击时触发，由collapse统一处理各子组件的状态
+			 * @param {Object} target 被操作的面板的实例
+			 */
+			onChange(target) {
+				let changeArr = []
+				this.children.map(child => {
+					// 如果是手风琴模式，将其他的折叠面板收起来
+					if (this.accordion) {
+						child.expanded = child === target ? !target.expanded : false
+						child.setContentAnimate()
+					} else {
+						if(child === target) {
+							child.expanded = !child.expanded
+							child.setContentAnimate()
+						}
 					}
-				})
-				// 如果是手风琴模式，只有一个匹配结果，也即activeItem长度为1，将其转为字符串
-				if (this.accordion) activeItem = activeItem.join('');
-				this.$emit('change', activeItem);
+					// 拼接change事件中，数组元素的状态
+					changeArr.push({
+						name: child.name,
+						status: child.isShow ? 'open' : 'close'
+					})
+				}) 
+				
+				this.$emit('change', changeArr)
+				this.$emit(target.expanded ? 'open' : 'close', target.name)
 			}
 		}
 	}

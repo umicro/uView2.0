@@ -1,26 +1,66 @@
 <template>
-	<view class="u-cell" :class="[customClass, center && 'u-cell--center']" :style="[customStyle]" @tap="clickHandler">
+	<view
+	    class="u-cell"
+	    :class="[customClass, center && 'u-cell--center']"
+	    :style="[customStyle]"
+	    :hover-class="(!disabled && clickable) ? 'u-cell--clickable' : ''"
+	    :hover-stay-time="250"
+	    @tap="clickHandler"
+	>
 		<view class="u-cell__body">
-			<view class="u-cell__left-icon-wrap" v-if="$slots.icon || icon">
-				<slot name="icon" v-if="$slots.icon">
+			<view
+			    class="u-cell__left-icon-wrap"
+			    v-if="$slots.icon || icon"
+			>
+				<slot
+				    name="icon"
+				    v-if="$slots.icon"
+				>
 				</slot>
-				<u-icon v-else :name="icon" :custom-style="iconStyle"></u-icon>
+				<u-icon
+				    v-else
+				    :name="icon"
+				    :custom-style="iconStyle"
+				></u-icon>
 			</view>
 			<view class="u-cell__title">
 				<slot name="title">
-					<text v-if="title" class="u-cell__title-text">{{ title }}</text>
+					<text
+					    v-if="title"
+					    class="u-cell__title-text"
+					    :class="[disabled && 'u-cell--disabled']"
+					>{{ title }}</text>
 				</slot>
 				<slot name="label">
-					<text class="u-cell__label" v-if="label">{{ label }}</text>
+					<text
+					    class="u-cell__label"
+					    v-if="label"
+					    :class="[disabled && 'u-cell--disabled']"
+					>{{ label }}</text>
 				</slot>
 			</view>
 			<slot name="value">
-				<text class="u-cell__value">{{ value }}</text>
+				<text
+				    class="u-cell__value"
+				    :class="[disabled && 'u-cell--disabled']"
+				>{{ value }}</text>
 			</slot>
-			<view class="u-cell__right-icon-wrap" v-if="$slots['right-icon'] || isLink">
-				<slot name="right-icon" v-if="$slots['right-icon']">
+			<view
+			    class="u-cell__right-icon-wrap"
+			    v-if="$slots['right-icon'] || isLink"
+				:class="[`u-cell__right-icon-wrap--${arrowDirection}`]"
+			>
+				<slot
+				    name="right-icon"
+				    v-if="$slots['right-icon']"
+				>
 				</slot>
-				<u-icon v-else :name="rightIcon" :custom-style="rightIconStyle" color="info"></u-icon>
+				<u-icon
+				    v-else
+				    :name="rightIcon"
+				    :custom-style="rightIconStyle"
+				    :color="disabled ? '#c8c9cc' : 'info'"
+				></u-icon>
 			</view>
 		</view>
 		<u-line v-if="border"></u-line>
@@ -57,16 +97,6 @@
 	export default {
 		name: 'u-cell',
 		props: {
-			// 自定义外部类名
-			// customClass: {
-			// 	type: String,
-			// 	default: uni.$u.props.cell.customClass
-			// },
-			// // 自定义外部样式，对象形式
-			// customStyle: {
-			// 	type: Object,
-			// 	default: () => uni.$u.props.cell.customStyle
-			// },
 			// 标题
 			title: {
 				type: [String, Number],
@@ -91,6 +121,11 @@
 			titleWidth: {
 				type: [String, Number],
 				default: uni.$u.props.cell.titleWidth
+			},
+			// 是否禁用cell
+			disabled: {
+				type: Boolean,
+				default: uni.$u.props.cell.disabled
 			},
 			// 是否显示下边框
 			border: {
@@ -137,6 +172,11 @@
 				type: String,
 				default: uni.$u.props.cell.arrowDirection
 			},
+			// 左侧图标样式
+			iconStyle: {
+				type: Object,
+				default: () => {}
+			},
 			// 右侧箭头图标的样式
 			rightIconStyle: {
 				type: Object,
@@ -160,7 +200,7 @@
 		},
 		data() {
 			return {
-				
+
 			}
 		},
 		mixins: [uni.$u.mixin],
@@ -179,33 +219,33 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-	
+
 	$u-cell-padding: 10px 15px !default;
-	$u-cell-background-color: #ffffff !default;
 	$u-cell-font-size: 15px !default;
 	$u-cell-line-height: 24px !default;
 	$u-cell-color: $u-main-color !default;
 	$u-cell-icon-size: 16px !default;
 	$u-cell-title-font-size: 15px !default;
-	$u-cell-title-line-height: 24px !default;
+	$u-cell-title-line-height: 22px !default;
 	$u-cell-title-color: $u-main-color !default;
 	$u-cell-label-font-size: 12px !default;
 	$u-cell-label-color: $u-tips-color !default;
 	$u-cell-label-line-height: 18px !default;
 	$u-cell-value-font-size: 14px !default;
 	$u-cell-value-color: $u-content-color !default;
-	$u-cell-active-color: $u-bg-color !default;
+	$u-cell-clickable-color: $u-bg-color !default;
+	$u-cell-disabled-color: #c8c9cc !default;
 	$u-cell-margin-top-large: 12px !default;
 	$u-cell-padding-bottom-large: 12px !default;
 	$u-cell-value-font-size-large: 16px !default;
-	$u-cell-label-font-size-large: 14px !default; 
-	$u-cell-title-font-size-large: 16px !default; 
-	$u-cell-left-icon-wrap-margin-right: 4px !default; 
-	$u-cell-right-icon-wrap-margin-left: 4px !default; 
-	$u-cell-title-flex:1 !default; 
-	$u-cell-label-margin-top:14px !default; 
-	
-	
+	$u-cell-label-font-size-large: 14px !default;
+	$u-cell-title-font-size-large: 16px !default;
+	$u-cell-left-icon-wrap-margin-right: 4px !default;
+	$u-cell-right-icon-wrap-margin-left: 4px !default;
+	$u-cell-title-flex:1 !default;
+	$u-cell-label-margin-top:14px !default;
+
+
 	.u-cell {
 		&__body {
 			@include flex();
@@ -213,12 +253,13 @@
 			box-sizing: border-box;
 			/* #endif */
 			padding: $u-cell-padding;
-			background-color: $u-cell-background-color;
 			font-size: $u-cell-font-size;
 			color: $u-cell-color;
 			line-height: $u-cell-line-height;
+			// 因为weex为阿里做出来的垃圾东西，所以这里必须写这一行，否则title不会换行
+			align-items: center;
 		}
-		
+
 		&__left-icon-wrap,
 		&__right-icon-wrap {
 			@include flex();
@@ -226,60 +267,76 @@
 			height: $u-cell-line-height;
 			font-size: $u-cell-icon-size;
 		}
-		
+
 		&__left-icon-wrap {
-			margin-right:$u-cell-left-icon-wrap-margin-right;
+			margin-right: $u-cell-left-icon-wrap-margin-right;
 		}
-		
+
 		&__right-icon-wrap {
-			margin-left:$u-cell-right-icon-wrap-margin-left;
-		}
-		
-		&__title {
-			flex:$u-cell-title-flex;
+			margin-left: $u-cell-right-icon-wrap-margin-left;
+			transition: transform 0.3s;
 			
+			&--up {
+				transform: rotate(-90deg);
+			}
+			
+			&--down {
+				transform: rotate(90deg);
+			}
+		}
+
+		&__title {
+			flex: $u-cell-title-flex;
+
 			&-text {
 				font-size: $u-cell-title-font-size;
 				line-height: $u-cell-title-line-height;
 				color: $u-cell-title-color;
-				
+
 				&--large {
 					font-size: $u-cell-title-font-size-large;
 				}
 			}
-			
+
 		}
-		
+
 		&__label {
-			margin-top:$u-cell-label-margin-top;
+			margin-top: $u-cell-label-margin-top;
 			font-size: $u-cell-label-font-size;
 			color: $u-cell-label-color;
 			line-height: $u-cell-label-line-height;
-			
+
 			&--large {
 				font-size: $u-cell-label-font-size-large;
 			}
 		}
-		
+
 		&__value {
 			text-align: right;
 			font-size: $u-cell-value-font-size;
 			line-height: $u-cell-line-height;
 			color: $u-cell-value-color;
-			
+
 			&--large {
 				font-size: $u-cell-value-font-size-large;
 			}
 		}
-		
-		&--clickable:active {
-		    background-color: $u-cell-active-color;
+
+		&--clickable {
+			background-color: $u-cell-clickable-color;
 		}
-		
+
+		&--disabled {
+			color: $u-cell-disabled-color;
+			/* #ifndef APP-NVUE */
+			cursor: not-allowed;
+			/* #endif */
+		}
+
 		&--center {
 			align-items: center;
 		}
-		
+
 		&--large {
 			margin-top: $u-cell-margin-top-large;
 			padding-bottom: $u-cell-padding-bottom-large;

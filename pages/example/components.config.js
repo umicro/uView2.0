@@ -191,7 +191,7 @@ export default [{
 			title: 'SwipeAction 滑动单元格',
 			title_en: 'SwipeAction',
 		}, {
-			path: '/pages/componentsC/collapse/collapse',
+			path: '/pages/componentsB/collapse/collapse',
 			icon: 'collapse',
 			title: 'Collapse 折叠面板',
 			title_en: 'Collapse',

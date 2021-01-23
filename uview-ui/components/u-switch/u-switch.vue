@@ -91,6 +91,11 @@
 				type: Boolean,
 				default: false
 			},
+			// 圆点与外边框的距离
+			space: {
+				type: [String, Number],
+				default: 0
+			}
 		},
 		watch: {
 			value: {
@@ -125,9 +130,9 @@
 			nodeStyle() {
 				let style = {}
 				// 如果自定义非激活颜色，将node圆点的尺寸减少两个像素，让其与外边框距离更大一点
-				style.width = uni.$u.addUnit(this.size - (this.customInactiveColor ? 2 : 0))
-				style.height = uni.$u.addUnit(this.size - (this.customInactiveColor ? 2 : 0))
-				style.transform = `translateX(${this.value === this.activeValue ? this.customInactiveColor ? -2 : 0 : -this.size}px)`
+				style.width = uni.$u.addUnit(this.size - this.space)
+				style.height = uni.$u.addUnit(this.size - this.space)
+				style.transform = `translateX(${this.value === this.activeValue ? -this.space : -this.size}px)`
 				return style
 			},
 			bgStyle() {

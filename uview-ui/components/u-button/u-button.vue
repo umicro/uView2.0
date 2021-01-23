@@ -19,7 +19,7 @@
 	    @error="error"
 	    @opensetting="opensetting"
 	    @launchapp="launchapp"
-	    :hover-class="[!disabled && !loading && 'u-button--active']"
+	    :hover-class="!disabled && !loading && 'u-button--active'"
 	    class="u-button u-reset-button"
 	    :style="[baseColor, customStyle]"
 	    @tap="clickHandler"
@@ -96,7 +96,7 @@
 	 * @tutorial https://www.uviewui.com/components/button.html
 	 * @property {Boolean} hairline 是否显示按钮的细边框(默认true)
 	 * @property {String} type 按钮的预置样式，info，primary，error，warning，success (默认info)
-	 * @property {String} size 按钮尺寸，large，normal，medium，mini （默认 normal）
+	 * @property {String} size 按钮尺寸，large，normal，mini （默认 normal）
 	 * @property {String} shape  按钮形状，circle（两边为半圆），square（带圆角） （默认 square）
 	 * @property {Boolean} plain 按钮是否镂空，背景色透明 （默认 false）
 	 * @property {Boolean} disabled 是否禁用 （默认 false）
@@ -143,7 +143,7 @@
 				type: String,
 				default: uni.$u.props.button.type
 			},
-			// 按钮尺寸，large，normal，medium，mini
+			// 按钮尺寸，large，normal，mini
 			size: {
 				type: String,
 				default: uni.$u.props.button.size
@@ -404,13 +404,13 @@
 	@import "./nvue.scss";
 	/* #endif */
 
-	$u-button-u-button-height:44px !default;
+	$u-button-u-button-height:40px !default;
 	$u-button-text-font-size:15px !default;
 	$u-button-loading-text-font-size:15px !default;
 	$u-button-loading-text-margin-left:4px !default;
 	$u-button-large-width:100% !default;
 	$u-button-large-height:50px !default;
-	$u-button-normal-padding:0 15px !default;
+	$u-button-normal-padding:0 12px !default;
 	$u-button-normal-font-size:14px !default;
 	$u-button-small-min-width:60px !default;
 	$u-button-small-height:30px !default;

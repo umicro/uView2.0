@@ -55,10 +55,34 @@
 			</view>
 		</view>
 		<view class="u-demo-block">
-			<text class="u-demo-block__title">自定义星星之间的距离</text>
+			<text class="u-demo-block__title">禁止触摸选择</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__rate-item">
-				<u-rate gutter="20"></u-rate>
+				<u-rate :touchable="false"></u-rate>
+				</view>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">允许触摸选择</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__rate-item">
+				<u-rate :touchable="true"></u-rate>
+				</view>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">禁止触摸选择</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__rate-item">
+				<u-rate :touchable="false"></u-rate>
+				</view>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">允许触摸选择</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__rate-item">
+				<u-rate :touchable="true"></u-rate>
 				</view>
 			</view>
 		</view>
@@ -82,14 +106,6 @@
 				    inactiveIcon="heart"
 				    activeIcon="heart-fill"
 				></u-rate>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">是否可通过滑动手势选择评分</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__rate-item">
-				<u-rate :touchable="true"></u-rate>
 				</view>
 			</view>
 		</view>

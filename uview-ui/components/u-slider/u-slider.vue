@@ -248,6 +248,8 @@
 		&__gap {
 			position: relative;
 			border-radius:$u-slider-gap-border-radius;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
 			background-color:$u-slider-gap-bgColor;
 			width:$u-slider-gap-width;
 			width: 100px;

@@ -103,9 +103,9 @@ export default [{
 			title: 'Upload 上传',
 			title_en: 'Upload',
 		}, {
-			path: '/pages/componentsA/verificationCode/verificationCode',
-			icon: 'verificationCode',
-			title: 'VerificationCode 验证码倒计时',
+			path: '/pages/componentsB/code/code',
+			icon: 'code',
+			title: 'Code 验证码倒计时',
 			title_en: 'VerificationCode',
 		}, {
 			path: '/pages/componentsA/field/field',

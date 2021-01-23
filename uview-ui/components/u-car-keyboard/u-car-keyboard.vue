@@ -27,7 +27,7 @@
 		    hover-class="u-hover-class"
 		>
 			<u-icon
-			    :size="18"
+			    size="28"
 			    name="backspace"
 			    :bold="true"
 			    color="#303133"

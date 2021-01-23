@@ -230,7 +230,7 @@
 	$u-loading-height:30px !default;
 	$u-loading-max-width:100% !default;
 	$u-loading-max-height:100% !default;
-	$u-loading-semicircle-border-width:1px!default;
+	$u-loading-semicircle-border-width: 2px!default;
 	$u-loading-semicircle-border-color:transparent!default;
 	$u-loading-semicircle-border-top-right-radius: 100px!default;
 	$u-loading-semicircle-border-top-left-radius: 100px!default;

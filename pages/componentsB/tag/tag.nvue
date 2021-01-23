@@ -311,5 +311,7 @@
 </script>
 
 <style lang="scss">
-	  
+	.u-page__tag-item {
+		margin-right: 20px;
+	}
 </style>

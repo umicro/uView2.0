@@ -25,6 +25,7 @@
         "nvueCompiler" : "uni-app",
         "compilerVersion" : 3,
         "modules" : {},
+		"nvueLaunchMode" : "fast",
         "distribute" : {
             "android" : {
                 "permissions" : [

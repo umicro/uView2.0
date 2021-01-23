@@ -331,7 +331,7 @@ export default {
 		value: 1,
 		count: 5,
 		disabled: false,
-		size: 16,
+		size: 18,
 		inactiveColor: '#b2b2b2',
 		activeColor: '#FA3534',
 		gutter: 5,

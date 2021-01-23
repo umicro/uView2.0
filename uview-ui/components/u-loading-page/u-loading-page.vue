@@ -12,7 +12,7 @@
 		<view class="u-loading-page">
 			<view class="u-loading-page__warpper">
 				<view class="u-loading-page__warpper__loading-icon">
-					<n-image v-if="image" :src="image" height="40" width="40" mode="widthFit"></n-image>
+					<image v-if="image" :src="image" class="u-loading-page__warpper__loading-icon__img" mode="widthFit"></image>
 					<u-loading-icon v-else :mode="loadingMode" size="28" color="rgb(210, 210, 210)"></u-loading-icon>
 				</view>
 				<slot>
@@ -80,7 +80,7 @@
 	@import "../../libs/css/components.scss";
 	
 	$text-color: rgb(220, 220, 220) !default;
-	$text-size: 16px !default;
+	$text-size: 18px !default;
 	$u-loading-icon-margin-bottom: 10px !default;
 	.u-loading-page {
 		@include flex(column);
@@ -99,6 +99,11 @@
 			
 			&__loading-icon {
 				margin-bottom:$u-loading-icon-margin-bottom;
+				
+				&__img {
+					width: 40px;
+					height: 40px;
+				}
 			}
 
 			&__text {

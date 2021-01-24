@@ -1,0 +1,27 @@
+<template>
+	<view class="u-page">
+		<u-notice-bar
+		    mode="horizontal"
+		    :list="list"
+		></u-notice-bar>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				list: [
+					'寒雨连江夜入吴',
+					'平明送客楚山孤',
+					'洛阳亲友如相问',
+					'一片冰心在玉壶'
+				]
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+
+</style>

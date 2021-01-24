@@ -127,15 +127,17 @@
 			gridItemClasses() {
 				if(this.parentData.border) {
 					const classes = []
-					this.parent.children.map((item, index) =>{
-						if(this === item) {
-							// 贴近右边屏幕边沿的item，无需右边框
+					this.parent.children.map((child, index) =>{
+						if(this === child) {
+							// 贴近右边屏幕边沿的child，无需右边框
 							if((index + 1) % this.parentData.col !== 0) {
 								classes.push('u-border-right')
 							} 
 							const len = this.parent.children.length
-							const lessNum = len % this.parentData.col
-							// 最下面的一排item，无需下边框
+							// 总的宫格数量对列数取余的值
+							// 如果取余后，值为0，则意味着要将最后一排的宫格，都不需要下边框
+							const lessNum = len % this.parentData.col === 0 ? this.parentData.col : len % this.parentData.col
+							// 最下面的一排child，无需下边框
 							if(index < len - lessNum) {
 								classes.push('u-border-bottom')
 							}

@@ -12,22 +12,24 @@
 				    @tap="getCode"
 				    :text="tips"
 				    type="success"
+					size="small"
 				></u-button>
 			</view>
 		</view>
 		<view class="u-demo-block">
-			<text class="u-demo-block__title">保持倒计时(开始后，右上角返退出此页面再进入，会发现倒计时还在继续)</text>
+			<text class="u-demo-block__title">保持倒计时(开始后，左上角返退出此页面再进入，会发现倒计时还在继续)</text>
 			<view class="u-demo-block__content">
 				<u-code
 				    ref="uCode1"
 				    @change="codeChange1"
 				    keep-running
-				    change-text="XS"
+				    change-text="保持倒计时XS"
 				></u-code>
 				<u-button
+					type="primary"
 				    @tap="getCode1"
 				    :text="tips1"
-				    type="success"
+					size="small"
 				></u-button>
 			</view>
 		</view>

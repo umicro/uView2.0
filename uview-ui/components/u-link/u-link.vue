@@ -1,10 +1,9 @@
 <template>
-	<text class="u-link" @tap.stop="openLink" :style="{
-		color: color,
-		fontSize: fontSize + 'rpx',
-		borderBottom: underLine ? `1px solid ${lineColor ? lineColor : color}` : 'none',
-		paddingBottom: underLine ? '0rpx' : '0'
-	}">{{text}}</text>
+	<text
+	    class="u-link"
+	    @tap.stop="openLink"
+	    :style="[linkStyle, customStyle]"
+	>{{text}}</text>
 </template>
 
 <script>
@@ -23,6 +22,7 @@
 	 */
 	export default {
 		name: "u-link",
+		mixins: [uni.$u.mixin],
 		props: {
 			// 文字颜色
 			color: {
@@ -60,6 +60,19 @@
 				default: uni.$u.props.link.text
 			}
 		},
+		computed: {
+			linkStyle() {
+				const style = {
+					color: this.color,
+					fontSize: uni.$u.addUnit(this.fontSize),
+				}
+				if(this.underLine) {
+					style.borderBottomColor = this.lineColor || this.color
+					style.borderBottomWidth = '1px'
+				}
+				return style
+			}
+		},
 		methods: {
 			openLink() {
 				// #ifdef APP-PLUS
@@ -86,10 +99,11 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-	 $u-link-line-height:1 !default;
+	$u-link-line-height:1 !default;
+
 	.u-link {
 		/* #ifndef APP-NVUE */
-		line-height:$u-link-line-height;
+		line-height: $u-link-line-height;
 		/* #endif */
 	}
 </style>

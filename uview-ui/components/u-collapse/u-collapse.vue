@@ -49,6 +49,8 @@
 		},
 		computed: {
 			needInit() {
+				// 通过computed，同时监听accordion和value值的变化
+				// 再通过watch去执行init()方法，进行再一次的初始化
 				return [this.accordion, this.value]
 			}
 		},
@@ -65,7 +67,7 @@
 			 */
 			onChange(target) {
 				let changeArr = []
-				this.children.map(child => {
+				this.children.map((child, index) => {
 					// 如果是手风琴模式，将其他的折叠面板收起来
 					if (this.accordion) {
 						child.expanded = child === target ? !target.expanded : false
@@ -78,7 +80,8 @@
 					}
 					// 拼接change事件中，数组元素的状态
 					changeArr.push({
-						name: child.name,
+						// 如果没有定义name属性，则默认返回组件的index索引
+						name: child.name || index,
 						status: child.isShow ? 'open' : 'close'
 					})
 				}) 

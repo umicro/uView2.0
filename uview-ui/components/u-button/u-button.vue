@@ -143,7 +143,7 @@
 				type: String,
 				default: uni.$u.props.button.type
 			},
-			// 按钮尺寸，large，normal，mini
+			// 按钮尺寸，large，normal，small，mini
 			size: {
 				type: String,
 				default: uni.$u.props.button.size

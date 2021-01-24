@@ -38,7 +38,7 @@
 			>
 				<u-icon
 				    :name="Math.ceil(activeIndex) > index ? activeIcon : inactiveIcon"
-					:color="disabled ? '#c8c9cc' : Math.floor(activeIndex) > index ? activeColor : inactiveColor"
+					:color="disabled ? '#c8c9cc' : Math.ceil(activeIndex) > index ? activeColor : inactiveColor"
 				    :custom-style="{
 						padding: `0 ${gutter / 2 + 'rpx'}`
 					}"

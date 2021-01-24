@@ -5,8 +5,8 @@
 				<text class="u-cell-group__title__text">{{ title }}</text>
 			</slot>
         </view>
-        <view class="u-cell-group" :class="[border ? 'u-cell-group--border' : '']">
-			<u-line v-if="border"></u-line>
+        <view class="u-cell-group">
+			<u-line></u-line>
             <slot />
         </view>
     </view>
@@ -30,12 +30,12 @@ export default {
 		// 分组标题
         title: {
             type: String,
-            default: uni.$u.props.cell.title
+            default: uni.$u.props.cellGroup.title
         },
 		// 是否显示外边框
         border: {
             type: Boolean,
-            default: uni.$u.props.cell.border
+            default: uni.$u.props.cellGroup.border
         }
     }
 }

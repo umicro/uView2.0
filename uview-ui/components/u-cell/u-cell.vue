@@ -3,7 +3,7 @@
 	    class="u-cell"
 	    :class="[customClass, center && 'u-cell--center']"
 	    :style="[customStyle]"
-	    :hover-class="(!disabled && clickable) ? 'u-cell--clickable' : ''"
+	    :hover-class="(!disabled && (clickable || isLink)) ? 'u-cell--clickable' : ''"
 	    :hover-stay-time="250"
 	    @tap="clickHandler"
 	>

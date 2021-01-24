@@ -6,7 +6,7 @@
 				<view class="u-page__link-item">
 					<u-link
 					    href="https://uviewui.com/"
-					    text="点击我进行跳转"
+					    text="打开uView UI文档"
 					></u-link>
 				</view>
 			</view>
@@ -18,7 +18,7 @@
 					<u-link
 					    href="https://uviewui.com/"
 					    :underLine="true"
-					    text="点击我进行跳转"
+					    text="打开uView UI文档"
 					></u-link>
 				</view>
 			</view>
@@ -31,7 +31,7 @@
 					    href="https://uviewui.com/"
 					    lineColor="#19be6b"
 					    color="#19be6b"
-					    text="点击我进行跳转"
+					    text="打开uView UI文档"
 					></u-link>
 				</view>
 			</view>
@@ -41,8 +41,8 @@
 			<view class="u-demo-block__content">
 				<view class="u-page__link-item">
 					<u-link
-					    href="https://uviewui.com/"
-					    text="我是自定义链接内容"
+					    href="https://uniapp.dcloud.io/"
+					    text="打开uni-app文档"
 					></u-link>
 				</view>
 			</view>

@@ -8,9 +8,9 @@
 		    class="u-back-top"
 			:style="contentStyle"
 		    v-if="!$slots.default && !$slots.$default"
+			@click="backToTop"
 		>
 			<u-icon
-			    @click="backToTop"
 			    :name="icon"
 			    :custom-style="iconStyle"
 			></u-icon>

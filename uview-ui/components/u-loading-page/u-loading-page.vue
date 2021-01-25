@@ -1,27 +1,44 @@
 <template>
 	<u-transition
-	 :show="loading"
-	 :custom-style="{ 
+	    :show="loading"
+	    :custom-style="{ 
 		position: 'fixed',
 		top: 0,
 		left: 0,
 		right: 0,
 		bottom: 0,
 		'background-color': bgColor
-	}">
+	}"
+	>
 		<view class="u-loading-page">
 			<view class="u-loading-page__warpper">
 				<view class="u-loading-page__warpper__loading-icon">
-					<image v-if="image" :src="image" class="u-loading-page__warpper__loading-icon__img" mode="widthFit"></image>
-					<u-loading-icon v-else :mode="loadingMode" size="28" color="rgb(210, 210, 210)"></u-loading-icon>
+					<image
+					    v-if="image"
+					    :src="image"
+					    class="u-loading-page__warpper__loading-icon__img"
+					    mode="widthFit"
+					></image>
+					<u-loading-icon
+					    v-else
+					    :mode="loadingMode"
+					    size="28"
+					    :color="loadingColor"
+					></u-loading-icon>
 				</view>
 				<slot>
-					<text class="u-loading-page__warpper__text">{{loadingText}}</text>
+					<text
+					    class="u-loading-page__warpper__text"
+					    :style="{
+							fontSize: $u.addUnit(fontSize),
+							color: color
+						}"
+					>{{loadingText}}</text>
 				</slot>
 			</view>
 		</view>
 	</u-transition>
-</template> 
+</template>
 
 <script>
 	/**
@@ -37,7 +54,8 @@
 	 * @example <u-loading mode="circle"></u-loading>
 	 */
 	export default {
-		name:'u-loading-page',
+		name: 'u-loading-page',
+		mixins: [uni.$u.mixin],
 		props: {
 			// 提示内容
 			loadingText: {
@@ -63,11 +81,26 @@
 			bgColor: {
 				type: String,
 				default: uni.$u.props.loadingPage.bgColor
+			},
+			// 文字大小
+			fontSize: {
+				type: [String, Number],
+				default: uni.$u.props.loadingPage.fontSize
+			},
+			// 文字颜色
+			color: {
+				type: String,
+				default: uni.$u.props.loadingPage.color
+			},
+			// 加载中图标的颜色，只能rgb或者十六进制颜色值
+			loadingColor: {
+				type: String,
+				default: uni.$u.props.loadingPage.loadingColor
 			}
 		},
 		data() {
 			return {
-				
+
 			}
 		},
 		methods: {
@@ -78,10 +111,11 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-	
-	$text-color: rgb(220, 220, 220) !default;
-	$text-size: 18px !default;
+
+	$text-color: rgb(200, 200, 200) !default;
+	$text-size: 19px !default;
 	$u-loading-icon-margin-bottom: 10px !default;
+
 	.u-loading-page {
 		@include flex(column);
 		flex: 1;
@@ -96,10 +130,10 @@
 			color: $text-color;
 			font-size: $text-size;
 			/* #endif */
-			
+
 			&__loading-icon {
-				margin-bottom:$u-loading-icon-margin-bottom;
-				
+				margin-bottom: $u-loading-icon-margin-bottom;
+
 				&__img {
 					width: 40px;
 					height: 40px;

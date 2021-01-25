@@ -22,7 +22,7 @@ export default {
 		labelSize: '15px',
 		labelColor: color['u-content-color'],
 		space: '3px',
-		imgMode: 'widthFix',
+		imgMode: '',
 		customStyle: {},
 		width: '',
 		height: '',
@@ -151,7 +151,10 @@ export default {
 		image: '',
 		loadingMode: 'circle',
 		loading: false,
-		bgColor: '#ffffff'
+		bgColor: '#ffffff',
+		color: '#C8C8C8',
+		fontSize: 19,
+		loadingColor: '#C8C8C8'
 	},
 
 	// swipe-action组件

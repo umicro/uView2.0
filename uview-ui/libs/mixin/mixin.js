@@ -72,6 +72,7 @@ module.exports = {
 		openPage(urlKey = 'url') {
 			const url = this[urlKey];
 			if (url) {
+				console.log(url);
 				// 执行类似uni.navigateTo的方法
 				uni[this.linkType]({
 					url

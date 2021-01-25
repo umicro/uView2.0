@@ -64,7 +64,7 @@
 	 * @property {String Number} labelSize label字体大小，单位rpx（默认28）
 	 * @property {String} labelColor 图标右侧的label文字颜色（默认color['u-content-color']）
 	 * @property {String Number} space label与图标的距离，单位rpx（默认3px）
-	 * @property {String} imgMode 图片的mode （默认 widthFix）
+	 * @property {String} imgMode 图片的mode
 	 * @property {String} width 显示图片小图标时的宽度
 	 * @property {String} height 显示图片小图标时的高度
 	 * @property {String} top 图标在垂直方向上的定位

@@ -199,6 +199,7 @@
 					this.cssSticky = true
 				}
 
+				// APP-Vue和微信平台，通过computedStyle判断是否支持css sticky
 				// #ifdef APP-VUE || MP-WEIXIN
 				this.cssSticky = await this.checkComputedStyle()
 				// #endif

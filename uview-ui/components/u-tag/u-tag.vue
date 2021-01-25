@@ -1,49 +1,51 @@
 <template>
-	<view
-	    class="u-tag-wrapper"
-	    v-if="show"
+	<u-transition
+	    mode="fade"
+	    :show="show"
 	>
-		<view
-		    class="u-tag"
-		    :class="[!plain && `u-tag--${type}`, plain && `u-tag--${type}--plain`, `u-tag--${size}`, plain && plainFill && `u-tag--${type}--plain--fill`]"
-			@tap.stop="clickHandler"
-		>
-			<slot name="icon">
-				<view
-				    class="u-tag__icon"
-				    v-if="icon"
-				>
-					<image
-					    v-if="$u.test.image(icon)"
-					    :src="icon"
-					    :style="[imgStyle]"
-					></image>
-					<u-icon
-					    v-else
-					    :color="elIconColor"
-					    :name="icon"
-					    :size="iconSize"
-					></u-icon>
-				</view>
-			</slot>
-			<text
-			    class="u-tag__text"
-			    :class="[`u-tag__text--${type}`, plain && `u-tag__text--${type}--plain`, `u-tag__text--${size}`]"
-			>{{ text }}</text>
+		<view class="u-tag-wrapper">
+			<view
+			    class="u-tag"
+			    :class="[!plain && `u-tag--${type}`, plain && `u-tag--${type}--plain`, `u-tag--${size}`, plain && plainFill && `u-tag--${type}--plain--fill`]"
+			    @tap.stop="clickHandler"
+			>
+				<slot name="icon">
+					<view
+					    class="u-tag__icon"
+					    v-if="icon"
+					>
+						<image
+						    v-if="$u.test.image(icon)"
+						    :src="icon"
+						    :style="[imgStyle]"
+						></image>
+						<u-icon
+						    v-else
+						    :color="elIconColor"
+						    :name="icon"
+						    :size="iconSize"
+						></u-icon>
+					</view>
+				</slot>
+				<text
+				    class="u-tag__text"
+				    :class="[`u-tag__text--${type}`, plain && `u-tag__text--${type}--plain`, `u-tag__text--${size}`]"
+				>{{ text }}</text>
+			</view>
+			<view
+			    class="u-tag__close"
+			    :class="[`u-tag__close--${size}`]"
+			    v-if="closable"
+			    @tap.stop="closeHandler"
+			>
+				<u-icon
+				    name="close"
+				    :size="closeSize"
+				    color="#ffffff"
+				></u-icon>
+			</view>
 		</view>
-		<view
-		    class="u-tag__close"
-		    :class="[`u-tag__close--${size}`]"
-		    v-if="closable"
-		    @tap.stop="closeHandler"
-		>
-			<u-icon
-			    name="close"
-			    :size="closeSize"
-			    color="#ffffff"
-			></u-icon>
-		</view>
-	</view>
+	</u-transition>
 </template>
 
 <script>

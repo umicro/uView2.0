@@ -1,54 +1,61 @@
 <template>
 	<view
 	    class="u-cell"
-	    :class="[customClass, center && 'u-cell--center']"
+	    :class="[customClass]"
 	    :style="[customStyle]"
 	    :hover-class="(!disabled && (clickable || isLink)) ? 'u-cell--clickable' : ''"
 	    :hover-stay-time="250"
 	    @tap="clickHandler"
 	>
-		<view class="u-cell__body">
-			<view
-			    class="u-cell__left-icon-wrap"
-			    v-if="$slots.icon || icon"
-			>
-				<slot
-				    name="icon"
-				    v-if="$slots.icon"
+		<view
+		    class="u-cell__body"
+		    :class="[ center && 'u-cell--center', size === 'large' && 'u-cell__body--large']"
+		>
+			<view class="u-cell__body__content">
+				<view
+				    class="u-cell__left-icon-wrap"
+				    v-if="$slots.icon || icon"
 				>
-				</slot>
-				<u-icon
-				    v-else
-				    :name="icon"
-				    :custom-style="iconStyle"
-				></u-icon>
-			</view>
-			<view class="u-cell__title">
-				<slot name="title">
-					<text
-					    v-if="title"
-					    class="u-cell__title-text"
-					    :class="[disabled && 'u-cell--disabled']"
-					>{{ title }}</text>
-				</slot>
-				<slot name="label">
-					<text
-					    class="u-cell__label"
-					    v-if="label"
-					    :class="[disabled && 'u-cell--disabled']"
-					>{{ label }}</text>
-				</slot>
+					<slot
+					    name="icon"
+					    v-if="$slots.icon"
+					>
+					</slot>
+					<u-icon
+					    v-else
+					    :name="icon"
+					    :custom-style="iconStyle"
+						:size="size === 'large' ? 22 : 18"
+					></u-icon>
+				</view>
+				<view class="u-cell__title">
+					<slot name="title">
+						<text
+						    v-if="title"
+						    class="u-cell__title-text"
+						    :class="[disabled && 'u-cell--disabled', size === 'large' && 'u-cell__title-text--large']"
+						>{{ title }}</text>
+					</slot>
+					<slot name="label">
+						<text
+						    class="u-cell__label"
+						    v-if="label"
+						    :class="[disabled && 'u-cell--disabled', size === 'large' && 'u-cell__label--large']"
+						>{{ label }}</text>
+					</slot>
+				</view>
 			</view>
 			<slot name="value">
 				<text
 				    class="u-cell__value"
-				    :class="[disabled && 'u-cell--disabled']"
+				    :class="[disabled && 'u-cell--disabled', size === 'large' && 'u-cell__value--large']"
+					v-if="!$u.test.empty(value)"
 				>{{ value }}</text>
 			</slot>
 			<view
 			    class="u-cell__right-icon-wrap"
 			    v-if="$slots['right-icon'] || isLink"
-				:class="[`u-cell__right-icon-wrap--${arrowDirection}`]"
+			    :class="[`u-cell__right-icon-wrap--${arrowDirection}`]"
 			>
 				<slot
 				    name="right-icon"
@@ -60,6 +67,7 @@
 				    :name="rightIcon"
 				    :custom-style="rightIconStyle"
 				    :color="disabled ? '#c8c9cc' : 'info'"
+					:size="size === 'large' ? 18 : 16"
 				></u-icon>
 			</view>
 		</view>
@@ -235,15 +243,15 @@
 	$u-cell-value-color: $u-content-color !default;
 	$u-cell-clickable-color: $u-bg-color !default;
 	$u-cell-disabled-color: #c8c9cc !default;
-	$u-cell-margin-top-large: 12px !default;
-	$u-cell-padding-bottom-large: 12px !default;
-	$u-cell-value-font-size-large: 16px !default;
+	$u-cell-padding-top-large: 13px !default;
+	$u-cell-padding-bottom-large: 13px !default;
+	$u-cell-value-font-size-large: 15px !default;
 	$u-cell-label-font-size-large: 14px !default;
 	$u-cell-title-font-size-large: 16px !default;
 	$u-cell-left-icon-wrap-margin-right: 4px !default;
 	$u-cell-right-icon-wrap-margin-left: 4px !default;
 	$u-cell-title-flex:1 !default;
-	$u-cell-label-margin-top:14px !default;
+	$u-cell-label-margin-top:5px !default;
 
 
 	.u-cell {
@@ -256,10 +264,20 @@
 			font-size: $u-cell-font-size;
 			color: $u-cell-color;
 			line-height: $u-cell-line-height;
-			// 因为weex为阿里做出来的垃圾东西，所以这里必须写这一行，否则title不会换行
 			align-items: center;
+			
+			&__content {
+				@include flex(row);
+				align-items: center;
+				flex: 1;
+			}
+			
+			&--large {
+				padding-top: $u-cell-padding-top-large;
+				padding-bottom: $u-cell-padding-bottom-large;
+			}
 		}
-
+		
 		&__left-icon-wrap,
 		&__right-icon-wrap {
 			@include flex();
@@ -275,11 +293,11 @@
 		&__right-icon-wrap {
 			margin-left: $u-cell-right-icon-wrap-margin-left;
 			transition: transform 0.3s;
-			
+
 			&--up {
 				transform: rotate(-90deg);
 			}
-			
+
 			&--down {
 				transform: rotate(90deg);
 			}
@@ -335,11 +353,6 @@
 
 		&--center {
 			align-items: center;
-		}
-
-		&--large {
-			margin-top: $u-cell-margin-top-large;
-			padding-bottom: $u-cell-padding-bottom-large;
 		}
 	}
 </style>

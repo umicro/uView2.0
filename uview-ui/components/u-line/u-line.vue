@@ -1,6 +1,9 @@
 <template>
-	<view class="u-line" :style="[lineStyle]">
-		
+	<view
+	    class="u-line"
+	    :style="[lineStyle]"
+	>
+
 	</view>
 </template>
 
@@ -57,21 +60,20 @@
 				const style = {}
 				style.margin = this.margin
 				// 如果是水平线条，边框高度为1px，再通过transform缩小一半，就是0.5px了
-				if(this.direction === 'row') {
+				if (this.direction === 'row') {
 					// 此处采用兼容分开写，兼容nvue的写法
 					style.borderBottomWidth = '1px'
-					style.borderBottomStyle = this.dashed
+					style.borderBottomStyle = this.dashed ? 'dashed' : 'solid'
 					style.width = this.$u.addUnit(this.length)
-					if(this.hairline) style.transform = 'scaleY(0.5)'
+					if (this.hairline) style.transform = 'scaleY(0.5)'
 				} else {
 					// 如果是竖向线条，边框宽度为1px，再通过transform缩小一半，就是0.5px了
 					style.borderLeftWidth = '1px'
-					style.borderLeftStyle = this.dashed
+					style.borderLeftStyle = this.dashed ? 'dashed' : 'solid'
 					style.height = this.$u.addUnit(this.length)
-					if(this.hairline) style.transform = 'scaleX(0.5)'
+					if (this.hairline) style.transform = 'scaleX(0.5)'
 				}
 
-				style.borderStyle =this.dashed?'dashed':'solid'
 				style.borderColor = this.color
 				return uni.$u.deepMerge(style, this.customStyle)
 			}
@@ -81,7 +83,7 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-	
+
 	.u-line {
 		/* #ifndef APP-NVUE */
 		vertical-align: middle;

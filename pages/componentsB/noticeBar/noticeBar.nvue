@@ -2,7 +2,7 @@
 	<view class="u-page">
 		<u-notice-bar
 		    mode="horizontal"
-		    :list="list"
+		    :text="text"
 		></u-notice-bar>
 	</view>
 </template>
@@ -11,13 +11,13 @@
 	export default {
 		data() {
 			return {
-				list: [
-					'寒雨连江夜入吴',
-					'平明送客楚山孤',
-					'洛阳亲友如相问',
-					'一片冰心在玉壶'
-				]
+				text: '寒雨连江夜入吴'
 			}
+		},
+		onLoad() {
+		// 	setTimeout(() => {
+		// 		this.text = '设置不同样式过渡效果的键值对，下表列出了所有合法的参数设置不同样式过渡效果的键值对，下表列出了所有合法的参数'
+		// 	}, 3000)
 		}
 	}
 </script>

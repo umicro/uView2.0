@@ -11,7 +11,7 @@
 			    :type="type"
 			    :color="color"
 			    :bgColor="bgColor"
-			    :list="list"
+			    :text="text"
 			    :volumeIcon="volumeIcon"
 			    :moreIcon="moreIcon"
 			    :volumeSize="volumeSize"
@@ -86,8 +86,8 @@
 		name: "u-notice-bar",
 		props: {
 			// 显示的内容，数组
-			list: {
-				type: Array,
+			text: {
+				type: [Array, String],
 				default () {
 					return [];
 				}
@@ -185,15 +185,15 @@
 				default: '18rpx 24rpx'
 			},
 			// list列表为空时，是否显示组件
-			noListHidden: {
+			hideTextEmpty: {
 				type: Boolean,
 				default: true
 			}
 		},
 		computed: {
-			// 如果设置show为false，或者设置了noListHidden为true，且list长度又为零的话，隐藏组件
+			// 如果设置show为false，或者设置了hideTextEmpty为true，且text长度又为零的话，隐藏组件
 			isShow() {
-				if (this.show == false || (this.noListHidden == true && this.list.length == 0)) return false;
+				if (this.show == false || (this.hideTextEmpty == true && this.text.length == 0)) return false;
 				else return true;
 			}
 		},

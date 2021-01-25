@@ -29,9 +29,9 @@
 				</view>
 		</view>
 		<view class="u-demo-block">
-			<text class="u-demo-block__title">是否显示细边</text>
+			<text class="u-demo-block__title">是否显示1px粗线条</text>
 				<view class="u-page__line-item">
-					<u-line :hairline="true"></u-line>
+					<u-line :hairline="false"></u-line>
 				</view>
 		</view>
 		<view class="u-demo-block">

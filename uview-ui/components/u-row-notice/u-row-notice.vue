@@ -19,14 +19,15 @@
 		</view>
 		<view
 		    class="u-notice__content"
-		    id="u-notice__content"
+		    ref="u-notice__content"
 		>
 			<text
+			    ref="u-notice__content__text"
 			    class="u-notice__content__text"
 			    @tap="click"
 			    :style="[textStyle]"
 			    :class="['u-type-' + type]"
-			>{{showText}}</text>
+			>{{text}}</text>
 		</view>
 		<view class="u-notice__right-icon">
 			<u-icon
@@ -54,12 +55,10 @@
 	export default {
 		mixins: [uni.$u.mixin],
 		props: {
-			// 显示的内容，数组
-			list: {
-				type: Array,
-				default () {
-					return [];
-				}
+			// 显示的内容，字符串
+			text: {
+				type: [String, Number],
+				default: ''
 			},
 			// 显示的主题，success|error|primary|info|warning|none
 			// none主题默认为透明背景，黑色(contentColor)字体
@@ -125,29 +124,21 @@
 		},
 		data() {
 			return {
-				textWidth: 0, // 滚动的文字宽度
-				boxWidth: 0, // 供文字滚动的父盒子的宽度，和前者一起为了计算滚动速度
-				animationDuration: '10s', // 动画执行时间
+				animationDuration: '0', // 动画执行时间
 				animationPlayState: 'paused', // 动画的开始和结束执行
-				showText: '' // 显示的文本
+				needInit: true
 			};
 		},
 		watch: {
-			list: {
-				immediate: true,
-				handler(val) {
-					this.showText = val.join('，');
-					this.$nextTick(() => {
-						this.initSize();
-					});
-				}
+			text() {
+				this.needInit = true
 			},
 			playState(val) {
 				if (val == 'play') this.animationPlayState = 'running';
 				else this.animationPlayState = 'paused';
 			},
 			speed(val) {
-				this.initSize();
+				this.init();
 			}
 		},
 		computed: {
@@ -175,24 +166,99 @@
 			}
 		},
 		mounted() {
-			this.$nextTick(() => {
-				this.initSize();
-			});
+			// #ifdef APP-PLUS
+			// 在APP上(含nvue)，监听当前webview是否处于隐藏状态(进入下一页时即为hide状态)
+			// 如果webivew隐藏了，为了节省性能的损耗，应停止动画的执行，同时也是为了保持进入下一页返回后，滚动位置保持不变
+			var pages = getCurrentPages();
+			var page = pages[pages.length - 1];
+			var currentWebview = page.$getAppWebview();
+			currentWebview.addEventListener('hide',()=>{
+				this.webviewHide = true
+			})
+			currentWebview.addEventListener('show',()=>{
+				this.webviewHide = false
+			})
+			// #endif
+			
+			this.init()
 		},
 		methods: {
-			async initSize() {
-				let boxWidth = 0, textWidth = 0
+			init() {
+				// #ifdef APP-NVUE
+				this.nvue()
+				// #endif
+
+				// #ifndef APP-NVUE
+				this.vue()
+				// #endif
+			},
+			// vue版处理
+			async vue() {
+				let boxWidth = 0,
+					textWidth = 0
 				// 查询盒子和文字的宽度
 				textWidth = (await this.$uGetRect('.u-notice__content__text')).width
 				boxWidth = (await this.$uGetRect('.u-notice__content')).width
 				// 根据t=s/v(时间=路程/速度)，这里为何不需要加上#u-notice-box的宽度，因为中设置了.u-notice-content样式中设置了padding-left: 100%
 				// 恰巧计算出来的结果中已经包含了#u-notice-box的宽度
 				this.animationDuration = `${textWidth / uni.$u.getPx(this.speed)}s`
-				// 这里必须这样开始动画，否则在APP上动画速度不会改变(HX版本2.4.6，IOS13)
+				// 这里必须这样开始动画，否则在APP上动画速度不会改变
 				this.animationPlayState = 'paused'
 				setTimeout(() => {
 					if (this.playState == 'play' && this.autoplay) this.animationPlayState = 'running';
 				}, 10);
+			},
+			// nvue版处理
+			async nvue() {
+				this.needInit = false
+				console.log(222);
+				let boxWidth = 0,
+					textWidth = 0
+				// 查询盒子和文字的宽度
+				textWidth = (await this.getNvueRect('u-notice__content__text')).width
+				boxWidth = (await this.getNvueRect('u-notice__content')).width
+				// 将文字移动到盒子的右边沿，之所以需要这么做，是因为nvue不支持100%单位，否则可以通过css设置
+				animation.transition(this.$refs['u-notice__content__text'], {
+					styles: {
+						transform: `translateX(${boxWidth}px)`
+					},
+				}, () => {
+					// 如果非禁止动画，则开始滚动
+					!this.stopAnimation && this.loopAnimation(textWidth, boxWidth)
+				});
+			},
+			loopAnimation(textWidth, boxWidth) {
+				animation.transition(this.$refs['u-notice__content__text'], {
+					styles: {
+						// 目标移动终点为-textWidth，也即当文字的最右边贴到盒子的左边框的位置
+						transform: `translateX(-${textWidth}px)`
+					},
+					// 滚动时间的计算为，时间 = 路程(boxWidth + textWidth) / 速度，最后转为毫秒
+					duration: (boxWidth + textWidth) / uni.$u.getPx(this.speed) * 1000,
+					delay: 10
+				}, () => {
+					// animation.transition(this.$refs['u-notice__content__text'], {
+					// 	styles: {
+					// 		// 重新将文字移动到盒子的右边沿
+					// 		transform: `translateX(${boxWidth}px)`
+					// 	},
+					// }, () => {
+					// 	// 如果非禁止动画，则继续下一轮滚动
+					// 	!this.stopAnimation && this.loopAnimation(textWidth, boxWidth)
+					// });
+					console.log(this.needInit)
+					!this.stopAnimation && this.loopAnimation(textWidth, boxWidth)
+				})
+			},
+			getNvueRect(el) {
+				// #ifdef APP-NVUE
+				// 返回一个promise
+				return new Promise(resolve => {
+					dom.getComponentRect(this.$refs[el], (res) => {
+						resolve(res.size)
+					})
+				})
+				// #endif
 			},
 			// 点击通告栏
 			click(index) {
@@ -206,7 +272,12 @@
 			getMore() {
 				this.$emit('getMore');
 			}
-		}
+		},
+		// #ifdef APP-NVUE
+		beforeDestroy() {
+			this.stopAnimation = true
+		},
+		// #endif
 	};
 </script>
 
@@ -239,12 +310,12 @@
 				font-size: 14px;
 				color: $u-warning;
 				/* #ifndef APP-NVUE */
+				// 这一句很重要，为了能让滚动左右连接起来
+				padding-left: 100%;
 				word-break: keep-all;
 				white-space: nowrap;
 				animation: u-loop-animation 10s linear infinite both;
 				/* #endif */
-				// 这一句很重要，为了能让滚动左右连接起来
-				padding-left: 100%;
 			}
 		}
 

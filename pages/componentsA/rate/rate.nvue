@@ -71,22 +71,6 @@
 			</view>
 		</view>
 		<view class="u-demo-block">
-			<text class="u-demo-block__title">禁止触摸选择</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__rate-item">
-				<u-rate :touchable="false"></u-rate>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">允许触摸选择</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__rate-item">
-				<u-rate :touchable="true"></u-rate>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
 			<text class="u-demo-block__title">是否允许半星</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__rate-item">

@@ -126,19 +126,37 @@
 			return {
 				animationDuration: '0', // 动画执行时间
 				animationPlayState: 'paused', // 动画的开始和结束执行
-				needInit: true
+				nvueInit: true
 			};
 		},
 		watch: {
 			text() {
-				this.needInit = true
+				// #ifdef APP-NVUE
+				this.nvueInit = true
+				// #endif
+				// #ifndef APP-NVUE
+				this.vue()
+				// #endif
+			},
+			fontSize() {
+				t// #ifdef APP-NVUE
+				this.nvueInit = true
+				// #endif
+				// #ifndef APP-NVUE
+				this.vue()
+				// #endif
+			},
+			speed() {
+				// #ifdef APP-NVUE
+				this.nvueInit = true
+				// #endif
+				// #ifndef APP-NVUE
+				this.vue()
+				// #endif
 			},
 			playState(val) {
 				if (val == 'play') this.animationPlayState = 'running';
 				else this.animationPlayState = 'paused';
-			},
-			speed(val) {
-				this.init();
 			}
 		},
 		computed: {
@@ -163,7 +181,7 @@
 			computeBgColor() {
 				if (this.bgColor) return this.bgColor;
 				else if (this.type == 'none') return 'transparent';
-			}
+			},
 		},
 		mounted() {
 			// #ifdef APP-PLUS
@@ -196,6 +214,8 @@
 			async vue() {
 				let boxWidth = 0,
 					textWidth = 0
+				// 进行一定的延时
+				await uni.$u.sleep()
 				// 查询盒子和文字的宽度
 				textWidth = (await this.$uGetRect('.u-notice__content__text')).width
 				boxWidth = (await this.$uGetRect('.u-notice__content')).width
@@ -210,10 +230,11 @@
 			},
 			// nvue版处理
 			async nvue() {
-				this.needInit = false
-				console.log(222);
+				this.nvueInit = false
 				let boxWidth = 0,
 					textWidth = 0
+				// 进行一定的延时
+				await uni.$u.sleep()
 				// 查询盒子和文字的宽度
 				textWidth = (await this.getNvueRect('u-notice__content__text')).width
 				boxWidth = (await this.getNvueRect('u-notice__content')).width
@@ -237,17 +258,22 @@
 					duration: (boxWidth + textWidth) / uni.$u.getPx(this.speed) * 1000,
 					delay: 10
 				}, () => {
-					// animation.transition(this.$refs['u-notice__content__text'], {
-					// 	styles: {
-					// 		// 重新将文字移动到盒子的右边沿
-					// 		transform: `translateX(${boxWidth}px)`
-					// 	},
-					// }, () => {
-					// 	// 如果非禁止动画，则继续下一轮滚动
-					// 	!this.stopAnimation && this.loopAnimation(textWidth, boxWidth)
-					// });
-					console.log(this.needInit)
-					!this.stopAnimation && this.loopAnimation(textWidth, boxWidth)
+					animation.transition(this.$refs['u-notice__content__text'], {
+						styles: {
+							// 重新将文字移动到盒子的右边沿
+							transform: `translateX(${this.stopAnimation ? 0 : boxWidth}px)`
+						},
+					}, () => { 
+						// 如果非禁止动画，则继续下一轮滚动
+						if(!this.stopAnimation) {
+							// 判断是否需要初始化计算尺寸
+							if(this.nvueInit) {
+								this.nvue()
+							} else {
+								this.loopAnimation(textWidth, boxWidth)
+							}
+						}
+					});
 				})
 			},
 			getNvueRect(el) {

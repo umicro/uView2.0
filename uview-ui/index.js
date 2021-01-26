@@ -62,6 +62,8 @@ import toast from './libs/function/toast.js'
 import getParent from './libs/function/getParent.js'
 // 错误提示
 import error from './libs/function/error.js'
+// 延时操作
+import sleep from './libs/function/sleep.js'
 // 获取整个父组件
 import $parent from './libs/function/$parent.js'
 // 获取sys()和os()工具方法
@@ -123,7 +125,8 @@ const $u = {
 	mixin,
 	props,
 	bem,
-	getPx
+	getPx,
+	sleep
 }
 
 // $u挂载到uni对象上

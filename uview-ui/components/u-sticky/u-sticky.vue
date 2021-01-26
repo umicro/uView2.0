@@ -98,7 +98,7 @@
 					style.height = this.fixed ? this.height + 'px' : 'auto'
 				}
 				style.backgroundColor = this.bgColor
-				return this.$u.deepMerge(this.customStyle, style)
+				return this.$u.deepMerge(uni.$u.addStyle(this.customStyle), style)
 			},
 			// 吸顶内容的样式
 			stickyContent() {

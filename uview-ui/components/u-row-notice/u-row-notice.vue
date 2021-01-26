@@ -1,22 +1,19 @@
 <template>
 	<view
-	    v-if="show"
 	    class="u-notice"
-	    :style="{
-			background: computeBgColor
-		}"
-	    :class="[
-			type ? `u-type-${type}-light-bg` : ''
-		]"
 	>
-		<view class="u-notice__left-icon">
-			<u-icon
-			    v-if="volumeIcon"
-			    name="volume-fill"
-			    :size="volumeSize"
-			    :color="computeColor"
-			></u-icon>
-		</view>
+		<slot name="icon">
+			<view
+			    class="u-notice__left-icon"
+			    v-if="icon"
+			>
+				<u-icon
+				    :name="icon"
+				    :color="color"
+				    size="19"
+				></u-icon>
+			</view>
+		</slot>
 		<view
 		    class="u-notice__content"
 		    ref="u-notice__content"
@@ -26,23 +23,24 @@
 			    class="u-notice__content__text"
 			    @tap="click"
 			    :style="[textStyle]"
-			    :class="['u-type-' + type]"
 			>{{text}}</text>
 		</view>
-		<view class="u-notice__right-icon">
+		<view
+		    class="u-notice__right-icon"
+		    @click.stop="rightIconHandle"
+			v-if="mode"
+		>
 			<u-icon
-			    @click="getMore"
-			    v-if="moreIcon"
+			    v-if="mode === 'link'"
 			    name="arrow-right"
-			    :size="26"
-			    :color="computeColor"
+			    :size="17"
+			    :color="color"
 			></u-icon>
 			<u-icon
-			    @click="close"
-			    v-if="closeIcon"
+			    v-if="mode === 'closable'"
 			    name="close"
-			    :size="24"
-			    :color="computeColor"
+			    :size="16"
+			    :color="color"
 			></u-icon>
 		</view>
 	</view>
@@ -60,56 +58,30 @@
 				type: [String, Number],
 				default: ''
 			},
-			// 显示的主题，success|error|primary|info|warning|none
-			// none主题默认为透明背景，黑色(contentColor)字体
-			type: {
-				type: String,
-				default: 'warning'
-			},
 			// 是否显示左侧的音量图标
-			volumeIcon: {
-				type: Boolean,
-				default: true
+			icon: {
+				type: String,
+				default: 'volume'
 			},
-			// 是否显示右侧的右箭头图标
-			moreIcon: {
-				type: Boolean,
-				default: false
-			},
-			// 是否显示右侧的关闭图标
-			closeIcon: {
-				type: Boolean,
-				default: false
-			},
-			// 是否自动播放
-			autoplay: {
-				type: Boolean,
-				default: true
+			// 通告模式，link-显示右箭头，closable-显示右侧关闭图标
+			mode: {
+				type: String,
+				default: ''
 			},
 			// 文字颜色，各图标也会使用文字颜色
 			color: {
 				type: String,
-				default: ''
+				default: '#f9ae3d'
 			},
 			// 背景颜色
 			bgColor: {
 				type: String,
-				default: ''
-			},
-			// 是否显示
-			show: {
-				type: Boolean,
-				default: true
+				default: '#fdf6ec'
 			},
 			// 字体大小，单位rpx
 			fontSize: {
 				type: [Number, String],
 				default: 14
-			},
-			// 音量喇叭的大小
-			volumeSize: {
-				type: [Number, String],
-				default: 20
 			},
 			// 水平滚动时的滚动速度，即每秒滚动多少px(rpx)，这有利于控制文字无论多少时，都能有一个恒定的速度
 			speed: {
@@ -126,7 +98,10 @@
 			return {
 				animationDuration: '0', // 动画执行时间
 				animationPlayState: 'paused', // 动画的开始和结束执行
-				nvueInit: true
+				// nvue下，内容发生变化，导致滚动宽度也变化，需要标志为是否需要重新计算宽度
+				// 不能在内容变化时直接重新计算，因为nvue的animation模块上一次的滚动不是刚好结束，会有影响
+				nvueInit: true,
+				show: true
 			};
 		},
 		watch: {
@@ -139,7 +114,7 @@
 				// #endif
 			},
 			fontSize() {
-				t// #ifdef APP-NVUE
+				t // #ifdef APP-NVUE
 				this.nvueInit = true
 				// #endif
 				// #ifndef APP-NVUE
@@ -155,32 +130,19 @@
 				// #endif
 			},
 			playState(val) {
-				if (val == 'play') this.animationPlayState = 'running';
-				else this.animationPlayState = 'paused';
+				if (val == 'play') this.animationPlayState = 'running'
+				else this.animationPlayState = 'paused'
 			}
 		},
 		computed: {
-			// 计算字体颜色，如果没有自定义的，就用uview主题颜色
-			computeColor() {
-				if (this.color) return this.color;
-				// 如果是无主题，就默认使用content-color
-				else if (this.type == 'none') return '#606266';
-				else return this.type;
-			},
 			// 文字内容的样式
 			textStyle() {
 				let style = {};
-				if (this.color) style.color = this.color;
-				else if (this.type == 'none') style.color = '#606266';
-				style.animationDuration = this.animationDuration,
-					style.animationPlayState = this.animationPlayState,
-					style.fontSize = uni.$u.addUnit(this.fontSize);
-				return style;
-			},
-			// 计算背景颜色
-			computeBgColor() {
-				if (this.bgColor) return this.bgColor;
-				else if (this.type == 'none') return 'transparent';
+				style.color = this.color
+				style.animationDuration = this.animationDuration
+				style.animationPlayState = this.animationPlayState
+				style.fontSize = uni.$u.addUnit(this.fontSize)
+				return style
 			},
 		},
 		mounted() {
@@ -190,14 +152,14 @@
 			var pages = getCurrentPages();
 			var page = pages[pages.length - 1];
 			var currentWebview = page.$getAppWebview();
-			currentWebview.addEventListener('hide',()=>{
+			currentWebview.addEventListener('hide', () => {
 				this.webviewHide = true
 			})
-			currentWebview.addEventListener('show',()=>{
+			currentWebview.addEventListener('show', () => {
 				this.webviewHide = false
 			})
 			// #endif
-			
+
 			this.init()
 		},
 		methods: {
@@ -212,6 +174,7 @@
 			},
 			// vue版处理
 			async vue() {
+				// #ifndef APP-NVUE
 				let boxWidth = 0,
 					textWidth = 0
 				// 进行一定的延时
@@ -225,11 +188,13 @@
 				// 这里必须这样开始动画，否则在APP上动画速度不会改变
 				this.animationPlayState = 'paused'
 				setTimeout(() => {
-					if (this.playState == 'play' && this.autoplay) this.animationPlayState = 'running';
+					if (this.playState == 'play') this.animationPlayState = 'running';
 				}, 10);
+				// #endif
 			},
 			// nvue版处理
 			async nvue() {
+				// #ifdef APP-NVUE
 				this.nvueInit = false
 				let boxWidth = 0,
 					textWidth = 0
@@ -247,8 +212,10 @@
 					// 如果非禁止动画，则开始滚动
 					!this.stopAnimation && this.loopAnimation(textWidth, boxWidth)
 				});
+				// #endif
 			},
 			loopAnimation(textWidth, boxWidth) {
+				// #ifdef APP-NVUE
 				animation.transition(this.$refs['u-notice__content__text'], {
 					styles: {
 						// 目标移动终点为-textWidth，也即当文字的最右边贴到盒子的左边框的位置
@@ -263,11 +230,11 @@
 							// 重新将文字移动到盒子的右边沿
 							transform: `translateX(${this.stopAnimation ? 0 : boxWidth}px)`
 						},
-					}, () => { 
+					}, () => {
 						// 如果非禁止动画，则继续下一轮滚动
-						if(!this.stopAnimation) {
+						if (!this.stopAnimation) {
 							// 判断是否需要初始化计算尺寸
-							if(this.nvueInit) {
+							if (this.nvueInit) {
 								this.nvue()
 							} else {
 								this.loopAnimation(textWidth, boxWidth)
@@ -275,6 +242,7 @@
 						}
 					});
 				})
+				// #endif
 			},
 			getNvueRect(el) {
 				// #ifdef APP-NVUE
@@ -288,15 +256,16 @@
 			},
 			// 点击通告栏
 			click(index) {
-				this.$emit('click');
+				this.$emit('click')
 			},
-			// 点击关闭按钮
-			close() {
-				this.$emit('close');
-			},
-			// 点击更多箭头按钮
-			getMore() {
-				this.$emit('getMore');
+			// 点击右侧按钮，需要判断点击的是关闭图标还是箭头图标
+			rightIconHandle() {
+				if (this.mode === 'link') {
+					// 此方法写在mixin中，另外跳转的url和linkType参数也在mixin的props中
+					this.openPage()
+				} else {
+					this.$emit('close')
+				}
 			}
 		},
 		// #ifdef APP-NVUE
@@ -311,17 +280,17 @@
 	@import "../../libs/css/components.scss";
 
 	.u-notice {
-		padding: 9px 12px;
 		@include flex;
 		align-items: center;
 		justify-content: space-between;
 
 		&__left-icon {
 			align-items: center;
+			margin-right: 5px;
 		}
 
 		&__right-icon {
-			margin-left: 6px;
+			margin-left: 5px;
 			align-items: center;
 		}
 

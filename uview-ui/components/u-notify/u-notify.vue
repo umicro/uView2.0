@@ -7,7 +7,7 @@
 		<view
 		    class="u-notify"
 		    :class="[`u-notify--${type}`]"
-		    :style="[backgroundColor, customStyle]"
+		    :style="[backgroundColor, $u.addStyle(customStyle)]"
 		>
 			<view
 			    v-if="safeAreaInsetTop"

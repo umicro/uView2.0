@@ -189,7 +189,7 @@
 				style.zIndex = this.zIndex
 				// 进行位移偏转，再通过left，top修正，以达到居中的效果
 				style.transform = 'translate(-50%, -50%)'
-				return uni.$u.deepMerge(style, this.customStyle)
+				return uni.$u.deepMerge(style, uni.$u.addStyle(uni.customStyle))
 			},
 			overlayStyle() {
 				const style = {}

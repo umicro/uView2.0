@@ -2,7 +2,7 @@
 	<view
 	    class="u-switch"
 	    :class="[disabled && 'u-switch--disabled']"
-	    :style="[switchStyle, customStyle]"
+	    :style="[switchStyle, $u.addStyle(customStyle)]"
 	    @tap="clickHandler"
 	>
 		<view

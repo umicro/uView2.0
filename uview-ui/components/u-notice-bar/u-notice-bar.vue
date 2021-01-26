@@ -1,42 +1,21 @@
 <template>
 	<view
-	    class="u-notice-bar-wrap"
-	    v-if="isShow"
-	    :style="{
-			borderRadius: borderRadius + 'rpx',
-		}"
+	    class="u-notice-bar"
+	    v-if="show"
+	    :style="[{
+			borderRadius: $u.addUnit(borderRadius),
+			padding: padding,
+			backgroundColor: bgColor
+		}, $u.addStyle(customStyle)]"
 	>
-		<block v-if="mode == 'horizontal' && isCircular">
-			<u-row-notice
-			    :type="type"
+		<template v-if="direction === 'column' || (direction === 'row' && step)">
+			<u-column-notice
 			    :color="color"
 			    :bgColor="bgColor"
 			    :text="text"
-			    :volumeIcon="volumeIcon"
-			    :moreIcon="moreIcon"
-			    :volumeSize="volumeSize"
-			    :closeIcon="closeIcon"
 			    :mode="mode"
-			    :fontSize="fontSize"
-			    :speed="speed"
-			    :playState="playState"
-			    :padding="padding"
-			    @getMore="getMore"
-			    @close="close"
-			    @click="click"
-			></u-row-notice>
-		</block>
-		<block v-if="mode == 'vertical' || (mode == 'horizontal' && !isCircular)">
-			<u-column-notice
-			    :type="type"
-			    :color="color"
-			    :bgColor="bgColor"
-			    :list="list"
-			    :volumeIcon="volumeIcon"
-			    :moreIcon="moreIcon"
-			    :closeIcon="closeIcon"
-			    :mode="mode"
-			    :volumeSize="volumeSize"
+				:step="step"
+				:icon="icon"
 			    :disable-touch="disableTouch"
 			    :fontSize="fontSize"
 			    :duration="duration"
@@ -47,7 +26,25 @@
 			    @click="click"
 			    @end="end"
 			></u-column-notice>
-		</block>
+		</template>
+		<template v-else>
+			<u-row-notice
+			    :color="color"
+			    :bgColor="bgColor"
+			    :text="text"
+			    :mode="mode"
+			    :fontSize="fontSize"
+			    :speed="speed"
+			    :playState="playState"
+			    :padding="padding"
+				:url="url"
+				:linkType="linkType"
+				:icon="icon"
+			    @getMore="getMore"
+			    @close="close"
+			    @click="click"
+			></u-row-notice>
+		</template>
 	</view>
 </template>
 <script>
@@ -60,7 +57,6 @@
 	 * @property {Boolean} volume-icon 是否显示小喇叭图标（默认true）
 	 * @property {Boolean} more-icon 是否显示右边的向右箭头（默认false）
 	 * @property {Boolean} close-icon 是否显示关闭图标（默认false）
-	 * @property {Boolean} autoplay 是否自动播放（默认true）
 	 * @property {String} color 文字颜色
 	 * @property {String Number} bg-color 背景颜色
 	 * @property {String} mode 滚动模式（默认horizontal）
@@ -84,63 +80,59 @@
 	 */
 	export default {
 		name: "u-notice-bar",
+		mixins: [uni.$u.mixin],
 		props: {
 			// 显示的内容，数组
 			text: {
-				type: [Array, String],
+				type: [Array],
 				default () {
 					return [];
 				}
 			},
-			// 显示的主题，success|error|primary|info|warning
-			type: {
+			// 通告滚动模式，row-横向滚动，column-竖向滚动
+			direction: {
 				type: String,
-				default: 'warning'
+				default: 'row'
+			},
+			// direction = row时，是否使用步进形式滚动
+			step: {
+				type: Boolean,
+				default: false
 			},
 			// 是否显示左侧的音量图标
-			volumeIcon: {
-				type: Boolean,
-				default: true
+			icon: {
+				type: String,
+				default: 'volume'
 			},
-			// 音量喇叭的大小
-			volumeSize: {
-				type: [Number, String],
-				default: 20
-			},
-			// 是否显示右侧的右箭头图标
-			moreIcon: {
-				type: Boolean,
-				default: false
-			},
-			// 是否显示右侧的关闭图标
-			closeIcon: {
-				type: Boolean,
-				default: false
-			},
-			// 是否自动播放
-			autoplay: {
-				type: Boolean,
-				default: true
+			// 通告模式，link-显示右箭头，closable-显示右侧关闭图标
+			mode: {
+				type: String,
+				default: ''
 			},
 			// 文字颜色，各图标也会使用文字颜色
 			color: {
 				type: String,
-				default: ''
+				default: '#f9ae3d'
 			},
 			// 背景颜色
 			bgColor: {
 				type: String,
-				default: ''
+				default: '#fdf6ec'
 			},
-			// 滚动方向，horizontal-水平滚动，vertical-垂直滚动
-			mode: {
+			// 字体大小，单位rpx
+			fontSize: {
+				type: [Number, String],
+				default: 14
+			},
+			// 水平滚动时的滚动速度，即每秒滚动多少px(rpx)，这有利于控制文字无论多少时，都能有一个恒定的速度
+			speed: {
+				type: [Number, String],
+				default: 80
+			},
+			// 播放状态，play-播放，paused-暂停
+			playState: {
 				type: String,
-				default: 'horizontal'
-			},
-			// 是否显示
-			show: {
-				type: Boolean,
-				default: true
+				default: 'play'
 			},
 			// 字体大小，单位rpx
 			fontSize: {
@@ -151,22 +143,6 @@
 			duration: {
 				type: [Number, String],
 				default: 2000
-			},
-			// 水平滚动时的滚动速度，即每秒滚动多少rpx，这有利于控制文字无论多少时，都能有一个恒定的速度
-			speed: {
-				type: [Number, String],
-				default: 80
-			},
-			// 水平滚动时，是否采用衔接形式滚动
-			// 水平衔接模式，采用的是swiper组件，水平滚动
-			isCircular: {
-				type: Boolean,
-				default: true
-			},
-			// 播放状态，play-播放，paused-暂停
-			playState: {
-				type: String,
-				default: 'play'
 			},
 			// 是否禁止用手滑动切换
 			// 目前HX2.6.11，只支持App 2.5.5+、H5 2.5.5+、支付宝小程序、字节跳动小程序
@@ -190,12 +166,17 @@
 				default: true
 			}
 		},
+		data() {
+			return {
+				show: true
+			}
+		},
 		computed: {
 			// 如果设置show为false，或者设置了hideTextEmpty为true，且text长度又为零的话，隐藏组件
-			isShow() {
-				if (this.show == false || (this.hideTextEmpty == true && this.text.length == 0)) return false;
-				else return true;
-			}
+			// show() {
+			// 	if (this.show == false || (this.hideTextEmpty == true && this.text.length == 0)) return false;
+			// 	else return true;
+			// }
 		},
 		methods: {
 			// 点击通告栏
@@ -204,6 +185,7 @@
 			},
 			// 点击关闭按钮
 			close() {
+				this.show = false
 				this.$emit('close');
 			},
 			// 点击更多箭头按钮
@@ -221,7 +203,9 @@
 <style lang="scss">
 	@import "../../libs/css/components.scss";
 
-	.u-notice-bar-wrap {
+	.u-notice-bar {
 		overflow: hidden;
+		padding: 9px 12px;
+		flex: 1;
 	}
 </style>

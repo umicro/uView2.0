@@ -15,7 +15,7 @@
 		    v-else
 		    class="u-icon__icon"
 		    :class="uClasses"
-		    :style="[iconStyle, customStyle]"
+		    :style="[iconStyle, $u.addStyle(customStyle)]"
 		    :hover-class="hoverClass"
 		>{{icon}}</text>
 		<!-- 这里进行空字符串判断，如果仅仅是v-if="label"，可能会出现传递0的时候，结果也无法显示 -->

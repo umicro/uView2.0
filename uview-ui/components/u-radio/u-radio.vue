@@ -235,7 +235,7 @@
 					// ios像素密度高，需要多一点的距离
 					style.paddingBottom = uni.$u.os() === 'ios' ? '12px' : '8px'
 				}
-				return uni.$u.deepMerge(style, this.customStyle)
+				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			}
 		},
 		mounted() {

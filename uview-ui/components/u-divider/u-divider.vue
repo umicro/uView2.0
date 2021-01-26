@@ -1,7 +1,7 @@
 <template>
 	<view
 	    class="u-divider"
-	    :style="[customStyle]"
+	    :style="[$u.addStyle(customStyle)]"
 	>
 		<u-line
 		    :color="lineColor"

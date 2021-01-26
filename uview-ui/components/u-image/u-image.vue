@@ -10,6 +10,7 @@
 		    :mode="mode"
 		    @error="onErrorHandler"
 		    @load="onLoadHandler"
+			:show-menu-by-longpress="showMenuByLongpress"
 		    :lazy-load="lazyLoad"
 		    class="u-image__image"
 		    :style="{

@@ -236,7 +236,7 @@
 				if(this.parentData.borderBottom && this.parentData.placement === 'column') {
 					style.paddingBottom = '8px'
 				}
-				return uni.$u.deepMerge(style, this.customStyle)
+				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			}
 		},
 		mounted() {

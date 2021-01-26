@@ -66,6 +66,8 @@ import error from './libs/function/error.js'
 import sleep from './libs/function/sleep.js'
 // 获取整个父组件
 import $parent from './libs/function/$parent.js'
+// 转换用户传递的style(字符串或者对象)为对象或者字符串
+import addStyle from './libs/function/addStyle.js'
 // 获取sys()和os()工具方法
 // 获取设备信息，挂载到$u的sys()(system的缩写)属性中，
 // 同时把安卓和ios平台的名称"ios"和"android"挂到$u.os()中，方便取用
@@ -126,7 +128,8 @@ const $u = {
 	props,
 	bem,
 	getPx,
-	sleep
+	sleep,
+	addStyle
 }
 
 // $u挂载到uni对象上

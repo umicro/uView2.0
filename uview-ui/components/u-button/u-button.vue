@@ -56,7 +56,7 @@
 	    :hover-class="!disabled && !loading && !color && (plain || type === 'info') ? 'u-button--active--plain' : !disabled && !loading && !plain ? 'u-button--active' : ''"
 	    @tap="clickHandler"
 	    :class="bemClass"
-		:style="[baseColor, customStyle]"
+		:style="[baseColor, $u.addStyle(customStyle)]"
 	>
 		<template v-if="loading">
 			<u-loading-icon

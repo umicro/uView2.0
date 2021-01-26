@@ -1,63 +1,54 @@
 <template>
-	<view
-	    class="u-notice-bar"
-	    :style="{
-			background: computeBgColor,
-			padding: padding
-		}"
-	    :class="[
-			type ? `u-type-${type}-light-bg` : ''
-		]"
-	>
-		<view class="u-icon-wrap">
-			<u-icon
-			    class="u-left-icon"
-			    v-if="volumeIcon"
-			    name="volume-fill"
-			    :size="volumeSize"
-			    :color="computeColor"
-			></u-icon>
-		</view>
+	<view class="u-notice">
+		<slot name="icon">
+			<view
+			    class="u-notice__left-icon"
+			    v-if="icon"
+			>
+				<u-icon
+				    :name="icon"
+				    :color="color"
+				    size="19"
+				></u-icon>
+			</view>
+		</slot>
 		<swiper
 		    :disable-touch="disableTouch"
 		    @change="change"
-		    :autoplay="autoplay && playState == 'play'"
-		    :vertical="vertical"
+		    :vertical="step ? false : true"
 		    circular
 		    :interval="duration"
-		    class="u-swiper"
+			:autoplay="true"
+		    class="u-notice__swiper"
 		>
 			<swiper-item
-			    v-for="(item, index) in list"
+			    v-for="(item, index) in text"
 			    :key="index"
-			    class="u-swiper-item"
+			    class="u-notice__swiper__item"
 			>
 				<text
-				    class="u-news-item u-line-1"
+				    class="u-notice__swiper__item__text u-line-1"
 				    :style="[textStyle]"
 				    @tap="click(index)"
-				    :class="['u-type-' + type]"
-				>
-					{{ item }}
-				</text>
+				>{{ item }}</text>
 			</swiper-item>
 		</swiper>
-		<view class="u-icon-wrap">
+		<view
+		    class="u-notice__right-icon"
+		    @click.stop="rightIconHandle"
+		    v-if="mode"
+		>
 			<u-icon
-			    @click="getMore"
-			    class="u-right-icon"
-			    v-if="moreIcon"
+			    v-if="mode === 'link'"
 			    name="arrow-right"
-			    :size="26"
-			    :color="computeColor"
+			    :size="17"
+			    :color="color"
 			></u-icon>
 			<u-icon
-			    @click="close"
-			    class="u-right-icon"
-			    v-if="closeIcon"
+			    v-if="mode === 'closable'"
 			    name="close"
-			    :size="24"
-			    :color="computeColor"
+			    :size="16"
+			    :color="color"
 			></u-icon>
 		</view>
 	</view>
@@ -65,94 +56,57 @@
 
 <script>
 	export default {
+		mixins: [uni.$u.mixin],
 		props: {
-			mixins: [uni.$u.mixin],
-			// 显示的内容，数组
-			list: {
-				type: Array,
-				default () {
-					return [];
-				}
-			},
-			// 显示的主题，success|error|primary|info|warning
-			type: {
-				type: String,
-				default: 'warning'
+			// 显示的内容，字符串
+			text: {
+				type: [Array],
+				default: ''
 			},
 			// 是否显示左侧的音量图标
-			volumeIcon: {
-				type: Boolean,
-				default: true
+			icon: {
+				type: String,
+				default: 'volume'
 			},
-			// 是否显示右侧的右箭头图标
-			moreIcon: {
-				type: Boolean,
-				default: false
-			},
-			// 是否显示右侧的关闭图标
-			closeIcon: {
-				type: Boolean,
-				default: false
-			},
-			// 是否自动播放
-			autoplay: {
-				type: Boolean,
-				default: true
+			// 通告模式，link-显示右箭头，closable-显示右侧关闭图标
+			mode: {
+				type: String,
+				default: ''
 			},
 			// 文字颜色，各图标也会使用文字颜色
 			color: {
 				type: String,
-				default: ''
+				default: '#f9ae3d'
 			},
 			// 背景颜色
 			bgColor: {
 				type: String,
-				default: ''
-			},
-			// 滚动方向，row-水平滚动，column-垂直滚动
-			direction: {
-				type: String,
-				default: 'row'
-			},
-			// 是否显示
-			show: {
-				type: Boolean,
-				default: true
+				default: '#fdf6ec'
 			},
 			// 字体大小，单位rpx
 			fontSize: {
 				type: [Number, String],
 				default: 14
 			},
-			// 滚动一个周期的时间长，单位ms
-			duration: {
-				type: [Number, String],
-				default: 2000
-			},
-			// 音量喇叭的大小
-			volumeSize: {
-				type: [Number, String],
-				default: 20
-			},
-			// 水平滚动时的滚动速度，即每秒滚动多少rpx，这有利于控制文字无论多少时，都能有一个恒定的速度
+			// 水平滚动时的滚动速度，即每秒滚动多少px(rpx)，这有利于控制文字无论多少时，都能有一个恒定的速度
 			speed: {
-				type: Number,
-				default: 160
-			},
-			// 水平滚动时，是否采用衔接形式滚动
-			isCircular: {
-				type: Boolean,
-				default: true
-			},
-			// 滚动方向，horizontal-水平滚动，vertical-垂直滚动
-			mode: {
-				type: String,
-				default: 'horizontal'
+				type: [Number, String],
+				default: 80
 			},
 			// 播放状态，play-播放，paused-暂停
 			playState: {
 				type: String,
 				default: 'play'
+			},
+			// direction = row时，是否使用步进形式滚动
+			step: {
+				type: Boolean,
+				default: false
+			},
+			// 滚动一个周期的时间长，单位ms
+			duration: {
+				type: [Number, String],
+				default: 1500
 			},
 			// 是否禁止用手滑动切换
 			// 目前HX2.6.11，只支持App 2.5.5+、H5 2.5.5+、支付宝小程序、字节跳动小程序
@@ -160,38 +114,20 @@
 				type: Boolean,
 				default: true
 			},
-			// 通知的边距
-			padding: {
-				type: [Number, String],
-				default: '18rpx 24rpx'
-			}
 		},
 		computed: {
-			// 计算字体颜色，如果没有自定义的，就用uview主题颜色
-			computeColor() {
-				if (this.color) return this.color;
-				// 如果是无主题，就默认使用content-color
-				else if (this.type == 'none') return '#606266';
-				else return this.type;
-			},
 			// 文字内容的样式
 			textStyle() {
 				let style = {};
-				if (this.color) style.color = this.color;
-				else if (this.type == 'none') style.color = '#606266';
-				style.fontSize = this.fontSize + 'rpx';
-				return style;
+				style.color = this.color
+				style.fontSize = uni.$u.addUnit(this.fontSize)
+				return style
 			},
 			// 垂直或者水平滚动
 			vertical() {
 				if (this.mode == 'horizontal') return false;
 				else return true;
 			},
-			// 计算背景颜色
-			computeBgColor() {
-				if (this.bgColor) return this.bgColor;
-				else if (this.type == 'none') return 'transparent';
-			}
 		},
 		data() {
 			return {
@@ -213,9 +149,9 @@
 			},
 			change(e) {
 				let index = e.detail.current;
-				if (index == this.list.length - 1) {
-					this.$emit('end');
-				}
+				// if (index == this.list.length - 1) {
+				// 	this.$emit('end');
+				// }
 			}
 		}
 	};
@@ -224,47 +160,42 @@
 <style lang="scss">
 	@import "../../libs/css/components.scss";
 
-	.u-notice-bar {
+	.u-notice {
 		@include flex;
 		align-items: center;
-		justify-content: center;
-		flex-wrap: nowrap;
-		padding: 9px 12px;
-		overflow: hidden;
-	}
+		justify-content: space-between;
 
-	.u-swiper {
-		font-size: 14;
-		height: 16px;
-		@include flex;
-		align-items: center;
-		flex: 1;
-		margin-left: 6px;
-	}
+		&__left-icon {
+			align-items: center;
+			margin-right: 5px;
+		}
 
-	.u-swiper-item {
-		@include flex;
-		align-items: center;
-		overflow: hidden;
-	}
+		&__right-icon {
+			margin-left: 5px;
+			align-items: center;
+		}
 
-	.u-news-item {
-		overflow: hidden;
-		color: $u-warning;
-	}
+		&__swiper {
+			height: 16px;
+			@include flex;
+			align-items: center;
+			flex: 1;
 
-	.u-right-icon {
-		margin-left: 6px;
-		/* #ifndef APP-NVUE */
-		display: inline-flex;
-		/* #endif */
-		align-items: center;
-	}
-
-	.u-left-icon {
-		/* #ifndef APP-NVUE */
-		display: inline-flex;
-		/* #endif */
-		align-items: center;
+			&__item {
+				@include flex;
+				align-items: center;
+				overflow: hidden;
+				
+				&__text {
+					font-size: 14px;
+					color: $u-warning;
+					/* #ifndef APP-NVUE */
+					word-break: keep-all;
+					white-space: nowrap;
+					animation: u-loop-animation 10s linear infinite both;
+					/* #endif */
+				}
+			}
+		}
 	}
 </style>

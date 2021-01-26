@@ -64,7 +64,10 @@
 			}
 		},
 		onLoad() {
-
+			console.log(uni.$u.addStyle({
+				fontWeight: 'bold',
+				color: 'red',
+			}, 'string'))
 		},
 		methods: {
 			openLoadingPage(indexNum) {
@@ -72,7 +75,7 @@
 					loadingText: '',
 					image: '',
 					loadingMode: '',
-					bgColor: '',
+					bgColor: '#ffffff',
 				}
 				if (indexNum == 0) {
 					//自定义提示内容

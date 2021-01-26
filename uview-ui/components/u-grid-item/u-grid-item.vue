@@ -58,7 +58,7 @@
 					background: this.bgColor,
 					width: this.width
 				}
-				return uni.$u.deepMerge(style, this.customStyle)
+				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			}
 		},
 		methods: {

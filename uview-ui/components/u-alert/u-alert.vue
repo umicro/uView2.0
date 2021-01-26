@@ -7,7 +7,7 @@
 		    class="u-alert"
 		    :class="[`u-alert--${type}--${effect}`]"
 		    @tap.stop="clickHandler"
-		    :style="[customStyle]"
+		    :style="[$u.addStyle(customStyle)]"
 		>
 			<view
 			    class="u-alert__icon"

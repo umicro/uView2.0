@@ -7,7 +7,7 @@
 		left: 0,
 		right: 0,
 		bottom: 0,
-		'background-color': bgColor
+		backgroundColor: bgColor
 	}"
 	>
 		<view class="u-loading-page">

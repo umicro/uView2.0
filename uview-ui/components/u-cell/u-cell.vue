@@ -2,7 +2,7 @@
 	<view
 	    class="u-cell"
 	    :class="[customClass]"
-	    :style="[customStyle]"
+	    :style="[$u.addStyle(customStyle)]"
 	    :hover-class="(!disabled && (clickable || isLink)) ? 'u-cell--clickable' : ''"
 	    :hover-stay-time="250"
 	    @tap="clickHandler"

@@ -104,7 +104,7 @@
 		overflow: hidden;
 		display: block;
 		/* #endif */
-
+		justify-content: center;
 		/* #ifndef MP */
 		@include flex;
 		flex-wrap: wrap;

@@ -129,11 +129,11 @@
 					const classes = []
 					this.parent.children.map((child, index) =>{
 						if(this === child) {
-							// 贴近右边屏幕边沿的child，无需右边框
-							if((index + 1) % this.parentData.col !== 0) {
+							const len = this.parent.children.length
+							// 贴近右边屏幕边沿的child，并且最后一个（比如只有横向2个的时候），无需右边框
+							if((index + 1) % this.parentData.col !== 0 && index + 1 !== len) {
 								classes.push('u-border-right')
 							} 
-							const len = this.parent.children.length
 							// 总的宫格数量对列数取余的值
 							// 如果取余后，值为0，则意味着要将最后一排的宫格，都不需要下边框
 							const lessNum = len % this.parentData.col === 0 ? this.parentData.col : len % this.parentData.col

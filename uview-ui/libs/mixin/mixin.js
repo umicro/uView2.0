@@ -2,7 +2,7 @@ module.exports = {
 	// 定义每个组件都可能需要用到的外部样式以及类名
 	props: {
 		customStyle: {
-			type: Object,
+			type: [Object, String],
 			default: () => {}
 		},
 		customClass: {

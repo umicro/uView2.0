@@ -1,7 +1,7 @@
 <template>
 	<view
 	    class="u-loading-icon"
-		:style="[customStyle]"
+		:style="[$u.addStyle(customStyle)]"
 	    :class="[vertical && 'u-loading-icon--vertical']"
 		v-if="show"
 	>
@@ -123,6 +123,11 @@
 			duration: {
 				type: [String, Number],
 				default: uni.$u.props.loadingIcon.duration
+			},
+			// mode=circle时的暗边颜色
+			inactiveColor: {
+				type: String,
+				default: uni.$u.props.loadingIcon.inactiveColor
 			}
 		},
 		mixins: [uni.$u.mixin],
@@ -144,7 +149,12 @@
 			// 而不能是固定的某一个其他颜色(因为这个固定的颜色可能浅蓝，导致效果没有那么细腻良好)
 			otherBorderColor() {
 				const lightColor = uni.$u.colorGradient(this.color, '#ffffff', 100)[80]
-				return this.mode === 'circle' ? lightColor : 'transparent'
+				if(this.mode === 'circle') {
+					return this.inactiveColor ? this.inactiveColor : lightColor
+				} else {
+					return 'transparent'
+				}
+				// return this.mode === 'circle' ? this.inactiveColor ? this.inactiveColor : lightColor : 'transparent'
 			}
 		},
 		watch: {

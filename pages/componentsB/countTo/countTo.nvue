@@ -54,28 +54,35 @@
 			</view>
 			<view
 			    class="u-demo-block__content"
-			    style="margin-top: 10px;"
 			>
-				<view class="u-page__tag-item m-r-10">
-					<button
-					    type="primary"
-					    size="mini"
-					    @click="start"
-					>开始</button>
-				</view>
-				<view class="u-page__tag-item m-r-10">
-					<button
-					    type="primary"
-					    size="mini"
-					    @click="paused"
-					>暂停</button>
-				</view>
-				<view class="u-page__tag-item m-r-10">
-					<button
-					    type="primary"
-					    size="mini"
-					    @click="reStart"
-					>重置归零</button>
+				<view class="" style="flex: 1;">
+					<u-grid
+					    border
+					    align="center"
+						customStyle="margin-top: 20px;margin-bottom: 20"
+					>
+						<u-grid-item @click="start">
+							<view class="u-grid-slot">
+								<view class="u-grid-slot__circle">
+									<text class="u-grid-slot__circle__text">开始</text>
+								</view>
+							</view>
+						</u-grid-item>
+						<u-grid-item @click="paused">
+							<view class="u-grid-slot">
+								<view class="u-grid-slot__circle">
+									<text class="u-grid-slot__circle__text">暂停</text>
+								</view>
+							</view>
+						</u-grid-item>
+						<u-grid-item @click="resume">
+							<view class="u-grid-slot">
+								<view class="u-grid-slot__circle">
+									<text class="u-grid-slot__circle__text">继续</text>
+								</view>
+							</view>
+						</u-grid-item>
+					</u-grid>
 				</view>
 			</view>
 		</view>
@@ -109,7 +116,7 @@
 				endVal3: 3000,
 				autoplay: false,
 				color: '#FF0000',
-				fontSize: 40
+				fontSize: 40,
 			}
 		},
 		onLoad() {
@@ -122,17 +129,37 @@
 				this.$refs.uCountTo.start();
 			},
 			paused() {
-				this.$refs.uCountTo.stop();
+				this.$refs.uCountTo.stop()
 			},
-			reStart() {
-				this.$refs.uCountTo.reset();
+			resume() {
+				this.$refs.uCountTo.resume()
 			},
 		}
 	}
 </script>
 
 <style lang="scss">
-	.m-r-10 {
-		margin-right: 10px;
+	.u-grid-slot {
+		border-radius: 100px;
+		border-color: #dbfbdb;
+		border-width: 2px;
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+	
+		&__circle {
+			width: 50px;
+			height: 50px;
+			background-color: #dbfbdb;
+			border-radius: 100px;
+			justify-content: center;
+			align-items: center;
+			margin: 2px;
+	
+			&__text {
+				color: rgb(25, 190, 107);
+				font-size: 13px;
+			}
+		}
 	}
 </style>

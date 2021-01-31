@@ -1,0 +1,67 @@
+<template>
+	<view class="u-page">
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">基础使用</text>
+			<view class="u-demo-block__content">
+				<u-loadmore
+				    status="loading"
+				    :isDot="true"
+				    loadingIcon="circle"
+				></u-loadmore>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">无更多数据</text>
+			<view class="u-demo-block__content">
+				<u-loadmore
+					:line="true"
+				    status="nomore"
+				></u-loadmore>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义图标</text>
+			<view class="u-demo-block__content">
+				<u-loadmore
+				    status="loading"
+				    loadingIcon="spinner"
+				></u-loadmore>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">显示点</text>
+			<view class="u-demo-block__content">
+				<u-loadmore
+				    status="nomore"
+				    :isDot="true"
+					:line="true"
+					color="#909399"
+				></u-loadmore>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义提示语</text>
+			<view class="u-demo-block__content">
+				<u-loadmore
+				    status="loading"
+					loadingText="努力加载中,先喝杯茶"
+					color="#909399"
+				></u-loadmore>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+
+</style>

@@ -1,7 +1,7 @@
 export default {
 	"uicon-level": "\ue693",
 	"uicon-column-line": "\ue68e",
-	"uicon-checkbox-mark": "\ue7c2",
+	"uicon-checkbox-mark": "\ue807",
 	"uicon-folder": "\ue7f5",
 	"uicon-movie": "\ue7f6",
 	"uicon-star-fill": "\ue669",
@@ -77,7 +77,7 @@ export default {
 	"uicon-bag-fill": "\ue617",
 	"uicon-bag": "\ue619",
 	"uicon-error-circle-fill": "\ue62c",
-	"uicon-error-circle": "\ue660",
+	"uicon-error-circle": "\ue624",
 	"uicon-close-circle": "\ue63f",
 	"uicon-close-circle-fill": "\ue637",
 	"uicon-checkmark-circle": "\ue63d",

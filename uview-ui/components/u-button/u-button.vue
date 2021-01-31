@@ -415,7 +415,7 @@
 	$u-button-small-min-width:60px !default;
 	$u-button-small-height:30px !default;
 	$u-button-small-padding:0px 8px !default;
-	$u-button-mini-padding: 0px 5px !default;
+	$u-button-mini-padding: 0px 8px !default;
 	$u-button-small-font-size:12px !default;
 	$u-button-mini-height:22px !default;
 	$u-button-mini-font-size:10px !default;

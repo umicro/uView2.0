@@ -232,7 +232,7 @@ export default [{
 		}, 
 		// #ifndef MP-TOUTIAO
 		{
-			path: '/pages/componentsA/noNetwork/noNetwork',
+			path: '/pages/componentsC/noNetwork/noNetwork',
 			icon: 'noNetwork',
 			title: 'NoNetwork 无网络提示',
 			title_en: 'NoNetwork',

@@ -78,6 +78,10 @@
 </script>
 
 <style lang="scss">
+	.u-page {
+		padding: 0;
+	}
+	
 	.overlay-wrap {
 		/* #ifndef APP-NVUE */
 		display: flex;

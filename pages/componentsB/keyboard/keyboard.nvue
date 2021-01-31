@@ -1,20 +1,23 @@
 <template>
 	<view class="u-page">
-		<u-cell
-		    :titleStyle="{fontWeight: 500}"
-		    @click="openKeyboard(index)"
-		    :title="item.title"
-		    v-for="(item, index) in list"
-		    :key="index"
-		    isLink
-		>
-			<image
-			    slot="icon"
-			    class="u-cell-icon"
-			    :src="item.iconUrl"
-			    mode="widthFix"
-			></image>
-		</u-cell>
+		<u-gap height="20" bgColor="#fff"></u-gap>
+		<u-cell-group>
+			<u-cell
+			    :titleStyle="{fontWeight: 500}"
+			    @click="openKeyboard(index)"
+			    :title="item.title"
+			    v-for="(item, index) in list"
+			    :key="index"
+			    isLink
+			>
+				<image
+				    slot="icon"
+				    class="u-cell-icon"
+				    :src="item.iconUrl"
+				    mode="widthFix"
+				></image>
+			</u-cell>
+		</u-cell-group>
 		<u-keyboard
 		    :mode="keyData.mode"
 		    :dotDisabled="keyData.dotDisabled"

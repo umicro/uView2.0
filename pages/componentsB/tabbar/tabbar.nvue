@@ -1,10 +1,14 @@
 <template>
 	<view class="u-page">
-		<u-tabbar
-		    v-model="current"
-		    :list="list"
-		    midButton
-		></u-tabbar>
+		<view class="" v-for="item in 50">
+			<text>{{item}}</text>
+		</view>
+		<u-tabbar :value="value1" @change="change1">
+			<u-tabbar-item text="首页" icon="home"></u-tabbar-item>
+			<u-tabbar-item text="放映厅" icon="photo"></u-tabbar-item>
+			<u-tabbar-item text="直播" icon="play-right"></u-tabbar-item>
+			<u-tabbar-item text="我的" icon="account"></u-tabbar-item>
+		</u-tabbar>
 	</view>
 </template>
 
@@ -12,51 +16,22 @@
 	export default {
 		data() {
 			return {
-				list: [{
-						iconPath: "home",
-						selectedIconPath: "home-fill",
-						text: '首页',
-						count: 2,
-						isDot: true,
-						customIcon: false,
-					},
-					{
-						iconPath: "photo",
-						selectedIconPath: "photo-fill",
-						text: '放映厅',
-						customIcon: false,
-					},
-					{
-						iconPath: "https://cdn.uviewui.com/uview/common/min_button.png",
-						selectedIconPath: "https://cdn.uviewui.com/uview/common/min_button_select.png",
-						text: '发布',
-						midButton: true,
-						customIcon: false,
-					},
-					{
-						iconPath: "play-right",
-						selectedIconPath: "play-right-fill",
-						text: '直播',
-						customIcon: false,
-					},
-					{
-						iconPath: "account",
-						selectedIconPath: "account-fill",
-						text: '我的',
-						count: 23,
-						isDot: false,
-						customIcon: false,
-					},
-				],
-				current: 0
+				value1: 0,
 			}
 		},
 		onLoad() {
 			
-		}
+		},
+		methods: {
+			change1(name) {
+				this.value1 = name
+			}
+		},
 	}
 </script>
 
 <style lang="scss">
-
+	.u-page {
+		padding: 0;
+	}
 </style>

@@ -68,11 +68,8 @@
 				uni.$on('$uGridItem', () => {
 					this.gridItemClasses()
 				})
-				this.parent = {}
 				// 父组件的实例
 				this.updateParentData('u-grid')
-				// this.parent在updateParentData()中定义
-				this.parent.children.push(this)
 				// #ifdef APP-NVUE
 				// 获取元素该有的长度，nvue下要延时才准确
 				this.$nextTick(function(){

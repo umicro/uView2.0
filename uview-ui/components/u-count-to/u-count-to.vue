@@ -38,8 +38,7 @@ export default {
 		// 要滚动的目标数值，必须
 		endVal: {
 			type: [Number, String],
-			default: 0,
-			required: true
+			default: 0
 		},
 		// 滚动到目标数值的动画持续时间，单位为毫秒（ms）
 		duration: {
@@ -160,7 +159,7 @@ export default {
 		},
 		// 重新开始(暂停的情况下)
 		resume() {
-			this.startTime = null;
+			this.startTime = 0;
 			this.localDuration = this.remaining;
 			this.localStartVal = this.printVal;
 			this.requestAnimationFrame(this.count);
@@ -194,7 +193,7 @@ export default {
 			} else {
 				this.printVal = this.printVal > this.endVal ? this.endVal : this.printVal;
 			}
-			this.displayValue = this.formatNumber(this.printVal);
+			this.displayValue = this.formatNumber(this.printVal) || 0;
 			if (progress < this.localDuration) {
 				this.rAF = this.requestAnimationFrame(this.count);
 			} else {

@@ -111,7 +111,8 @@ export default {
 		text: '',
 		duration: 1200,
 		timingFunction: 'ease-in-out',
-		show: true
+		show: true,
+		inactiveColor: ''
 	},
 
 	// button组件
@@ -378,6 +379,9 @@ export default {
 		closeOnClickOverly: true,
 		zIndex: 10075,
 		safeAreaInsetBottom: true,
+		closeIconPos: 'top-right',
+		round: false,
+		
 	},
 
 	// overlay组件

@@ -111,6 +111,10 @@
 </script>
 
 <style lang="scss">
+	.u-page {
+		padding: 0;
+	}
+	
 	.swipe-action {
 		&__content {
 			padding: 20rpx 0;

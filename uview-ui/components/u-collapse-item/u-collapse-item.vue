@@ -146,11 +146,11 @@
 		methods: {
 			// 异步获取内容，或者动态修改了内容时，需要重新初始化
 			init() {
-				this.parent = this.$u.$parent.call(this, 'u-collapse')
+				// 初始化数据
+				this.updateParentData()
 				if (!this.parent) {
 					return uni.$u.error('u-collapse-item必须要搭配u-collapse组件使用')
 				}
-				this.parent.children.push(this)
 				const {
 					value,
 					accordion,
@@ -172,6 +172,10 @@
 				this.$nextTick(function() {
 					this.setContentAnimate()
 				})
+			},
+			updateParentData() {
+				// 此方法在mixin中
+				this.getParentData('u-collapse')
 			},
 			async setContentAnimate() {
 				// 每次面板打开或者收起时，都查询元素尺寸

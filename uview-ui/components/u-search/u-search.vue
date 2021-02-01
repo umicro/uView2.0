@@ -4,7 +4,7 @@
 	    @tap="clickHandler"
 	    :style="[{
 			margin: margin,
-		}, customStyle]"
+		}, $u.addStyle(customStyle)]"
 	>
 		<view
 		    class="u-search__content"

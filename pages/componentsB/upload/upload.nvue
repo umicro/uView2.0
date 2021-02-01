@@ -81,19 +81,18 @@
 			<text class="u-demo-block__title">自定义上传样式</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__upload-item">
-				<u-upload
-				    :fileList="fileList6"
-				    @afterRead="afterRead"
-				    @delete="deletePic"
-				    name="6"
-				    multiple
-				    :maxCount="3"
-				>
-					<u-button
-					    color="linear-gradient(to right, #4bb0ff, #6149f6)"
-					    text="上传"
-					></u-button>
-				</u-upload>
+					<u-upload
+						:fileList="fileList6"
+						@afterRead="afterRead"
+						@delete="deletePic"
+						name="6"
+						multiple
+						:maxCount="1"
+						width="250"
+						height="150"
+					>
+						<image src="/static/common/image/upload/positive.png" mode="widthFix" style="width: 250px;height: 150px;"></image>
+					</u-upload>
 				</view>
 			</view>
 		</view>

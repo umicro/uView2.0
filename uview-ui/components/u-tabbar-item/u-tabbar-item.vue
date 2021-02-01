@@ -4,24 +4,31 @@
 	    :style="[$u.addStyle(customStyle)]"
 	    @tap="clickHandler"
 	>
-		<view class="u-tabbar-item__icon">
-			<u-icon
-			    v-if="icon"
-			    :name="icon"
-				:color="isActive? parentData.activeColor : parentData.inactiveColor"
-				:size="20"
-			></u-icon>
-			<template v-else>
-				<slot
-				    v-if="active"
-				    name="active-icon"
-				/>
-				<slot
-				    v-else
-				    name="inactive-icon"
-				/>
-			</template>
-		</view>
+		<u-badge
+		    :customStyle="badgeStyle"
+		    :isDot="dot"
+		    :value="badge"
+		    :show="dot || badge > 0"
+		>
+			<view class="u-tabbar-item__icon">
+				<u-icon
+				    v-if="icon"
+				    :name="icon"
+				    :color="isActive? parentData.activeColor : parentData.inactiveColor"
+				    :size="20"
+				></u-icon>
+				<template v-else>
+					<slot
+					    v-if="isActive"
+					    name="active-icon"
+					/>
+					<slot
+					    v-else
+					    name="inactive-icon"
+					/>
+				</template>
+			</view>
+		</u-badge>
 		<slot name="text">
 			<text
 			    class="u-tabbar-item__text"
@@ -62,7 +69,13 @@
 			text: {
 				type: String,
 				default: ''
+			},
+			// 控制徽标的位置，对象或者字符串形式，可以设置top和right属性
+			badgeStyle: {
+				type: [Object, String],
+				default: 'top: 6px;right:2px;'
 			}
+			
 		},
 		data() {
 			return {

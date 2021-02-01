@@ -222,6 +222,7 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
+	
     $u-slider-border-radius:999px !default;
 	$u-slider-bgColor:#ebedf0 !default;
 	$u-slider-gap-border-radius:999px !default;

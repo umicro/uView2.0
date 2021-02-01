@@ -14,6 +14,7 @@
 		</view>
 		<view
 		    class="u-tabbar__placeholder"
+			v-if="placeholder"
 		    :style="{
 				height: placeholderHeight + 'px',
 			}"

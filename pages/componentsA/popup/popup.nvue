@@ -63,7 +63,6 @@
 						popupData: {
 							overlay: true,
 							mode: 'top',
-							borderRadis: '',
 							round: false,
 							closeOnClickOverly: true
 						},
@@ -74,7 +73,6 @@
 						popupData: {
 							overlay: true,
 							mode: 'right',
-							borderRadis: '',
 							round: false,
 							closeOnClickOverly: true
 						},
@@ -85,7 +83,6 @@
 						popupData: {
 							overlay: true,
 							mode: 'bottom',
-							borderRadis: '',
 							round: false,
 							closeOnClickOverly: true
 						},
@@ -96,7 +93,6 @@
 						popupData: {
 							overlay: true,
 							mode: 'left',
-							borderRadis: '',
 							round: false,
 							closeOnClickOverly: true
 						},
@@ -107,7 +103,6 @@
 						popupData: {
 							overlay: true,
 							mode: 'center',
-							borderRadis: '',
 							round: true,
 							closeOnClickOverly: true
 						},
@@ -118,8 +113,7 @@
 						popupData: {
 							overlay: true,
 							mode: 'bottom',
-							borderRadis: 60,
-							round: false,
+							round: true,
 							closeOnClickOverly: true
 						},
 						title: '显示圆角',
@@ -129,7 +123,6 @@
 						popupData: {
 							overlay: true,
 							mode: 'bottom',
-							borderRadis: 30,
 							closeable: false,
 							round: false,
 							closeOnClickOverly: false
@@ -141,12 +134,10 @@
 						popupData: {
 							overlay: true,
 							mode: 'bottom',
-							borderRadis: 30,
 							closeable: true,
-							round: true,
 							closeOnClickOverly: true
 						},
-						title: '显示关闭按钮和圆角',
+						title: '显示关闭按钮',
 						iconUrl: '/static/common/image/popup/showCloseBtn.png'
 					}
 				]
@@ -167,7 +158,7 @@
 	.u-popup-slot {
 		width: 200px;
 		height: 150px;
-		/* #ifdef APP-NVUE */
+		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
 		justify-content: center;

@@ -2,7 +2,7 @@
 	<text
 	    class="u-link"
 	    @tap.stop="openLink"
-	    :style="[linkStyle, customStyle]"
+	    :style="[linkStyle, $u.addStyle(customStyle)]"
 	>{{text}}</text>
 </template>
 

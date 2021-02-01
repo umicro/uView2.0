@@ -123,7 +123,7 @@ Vue.use(uView);
 
 ## 捐赠uView的研发
 
-uView文档和源码全部开源免费，如果您认为uView帮到了您的开发工作，您可以捐赠uView的研发工作，捐赠无门槛，哪怕是一杯可乐也好(相信这比打赏主播更有意义)。
+uView文档内容和框架源码全部开源免费，如果您认为uView帮到了您的开发工作，您可以捐赠uView的研发工作，捐赠无门槛，哪怕是一杯可乐也好(相信这比打赏主播更有意义)。
 
 <img src="https://uviewui.com/common/wechat.png" width="220" >
 <img style="margin-left: 100px;" src="https://uviewui.com/common/alipay.png" width="220" >

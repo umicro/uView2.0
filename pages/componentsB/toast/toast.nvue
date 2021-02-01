@@ -11,6 +11,7 @@
 			    v-for="(item, index) in list"
 			    :key="index"
 			    isLink
+				:icon="item.iconUrl"
 			    @click="showToast(item)"
 			>
 				<!-- <image
@@ -33,41 +34,48 @@
 				list: [{
 						type: 'default',
 						title: '默认主题',
-						text: "锦瑟无端五十弦"
+						text: "锦瑟无端五十弦",
+						iconUrl: '/static/common/image/toast/default.png'
 					},
 					{
 						type: 'error',
 						icon: false,
 						title: '失败主题',
-						text: "一弦一柱思华年"
+						text: "一弦一柱思华年",
+						iconUrl: '/static/common/image/toast/error.png'
 					},
 					{
 						type: 'success',
 						title: '成功主题(带图标)',
-						text: "庄生晓梦迷蝴蝶"
+						text: "庄生晓梦迷蝴蝶",
+						iconUrl: '/static/common/image/toast/success.png'
 					},
 					{
 						type: 'warning',
 						position: "top",
 						title: '位置偏移上方',
-						text: "望帝春心托杜鹃"
+						text: "望帝春心托杜鹃",
+						iconUrl: '/static/common/image/toast/top.png'
 					},
 					{
 						type: 'default',
 						title: '正在加载',
 						loading: true,
-						text: "正在加载"
+						text: "正在加载",
+						iconUrl: '/static/common/image/toast/loading.png'
 					},
 					{
 						type: 'default',
 						title: '结束后跳转标签页',
 						text: "此情可待成追忆",
-						url: '/pages/componentsB/tag/tag'
+						url: '/pages/componentsB/tag/tag',
+						iconUrl: '/static/common/image/toast/jump.png'
 					},
 					{
 						title: '禁止触摸穿透',
 						overlay: true,
-						text: "只是当时已惘然"
+						text: "只是当时已惘然",
+						iconUrl: '/static/common/image/toast/overlay.png'
 					},
 				],
 			}

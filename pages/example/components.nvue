@@ -62,7 +62,7 @@
 
 <style lang="scss" >
 	
-	.u-cell-icon {
+	.u-cell-icon1 {
 		width: 36rpx;
 		height: 36rpx;
 		margin-right: 8rpx;

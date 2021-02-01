@@ -21,7 +21,7 @@
 	    @launchapp="launchapp"
 	    :hover-class="!disabled && !loading && 'u-button--active'"
 	    class="u-button u-reset-button"
-	    :style="[baseColor, customStyle]"
+	    :style="[baseColor, $u.addStyle(customStyle)]"
 	    @tap="clickHandler"
 	    :class="bemClass"
 	>
@@ -132,6 +132,7 @@
 	 */
 	export default {
 		name: 'u-button',
+		mixins: [uni.$u.mixin],
 		props: {
 			// 是否细边框
 			hairline: {
@@ -277,7 +278,6 @@
 				default: uni.$u.props.button.color
 			}
 		},
-		mixins: [uni.$u.mixin],
 		data() {
 			return {};
 		},

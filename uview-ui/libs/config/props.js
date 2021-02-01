@@ -516,8 +516,8 @@ export default {
 			return [];
 		},
 		uploadText: '',
-		width: 200,
-		height: 200
+		width: 80,
+		height: 80,
 	},
 	// notify组件
 	notify: {

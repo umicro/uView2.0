@@ -1,15 +1,17 @@
 <template>
-	<view class="u-badge" :style="[customStyle]">
+	<view class="u-badge">
 		<slot />
 		<template v-if="show">
 			<view
 			    class="u-badge__dot"
-				:class="[type && `u-badge--${type}`]"
+			    :class="[type && `u-badge--${type}`]"
 			    v-if="isDot"
+			    :style="[$u.addStyle(customStyle)]"
 			></view>
 			<text
 			    v-else
-				:class="[type && `u-badge--${type}`, shape === 'horn' && 'u-badge--horn']"
+			    :style="[$u.addStyle(customStyle)]"
+			    :class="[type && `u-badge--${type}`, shape === 'horn' && 'u-badge--horn']"
 			    class="u-badge__text"
 			>{{ showValue }}</text>
 		</template>
@@ -45,19 +47,19 @@
 			},
 			showValue() {
 				switch (this.numberType) {
-				    case "overflow":
-				            return Number(this.value) > Number(this.max) ? this.max + "+" : this.value
-				        break;
-				    case "ellipsis":
-				            return Number(this.value) > Number(this.max) ? "..." : this.value
-				        break;
-				    case "limit":
-				            return Number(this.value) > 999 ? Number(this.value) >= 9999 ?
-				                Math.floor(this.value / 1e4 * 100) / 100 + "w" : Math.floor(this.value /
-				                    1e3 * 100) / 100 + "k" : this.value
-				        break;
-				    default:
-				        return Number(this.value)
+					case "overflow":
+						return Number(this.value) > Number(this.max) ? this.max + "+" : this.value
+						break;
+					case "ellipsis":
+						return Number(this.value) > Number(this.max) ? "..." : this.value
+						break;
+					case "limit":
+						return Number(this.value) > 999 ? Number(this.value) >= 9999 ?
+							Math.floor(this.value / 1e4 * 100) / 100 + "w" : Math.floor(this.value /
+								1e3 * 100) / 100 + "k" : this.value
+						break;
+					default:
+						return Number(this.value)
 				}
 			},
 		}
@@ -81,7 +83,7 @@
 	$u-badge-text-padding: 2px 5px !default;
 	$u-badge-text-align: center !default;
 	$u-badge-text-color: #FFFFFF !default;
-	
+
 	.u-badge {
 		position: relative;
 
@@ -113,11 +115,11 @@
 		}
 
 		&__dot {
-			height: $u-badge-dot-size; 
+			height: $u-badge-dot-size;
 			width: $u-badge-dot-size;
 			right: $u-badge-dot-right;
 		}
-		
+
 		&--horn {
 			border-bottom-left-radius: 0;
 		}

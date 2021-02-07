@@ -23,6 +23,11 @@ export default [{
 			title: 'Button 按钮',
 			title_en: 'Button',
 		}, {
+			path: '/pages/componentsC/text/text',
+			icon: 'layout',
+			title: 'Text 文本',
+			title_en: 'Text',
+		}, {
 			path: '/pages/componentsC/layout/layout',
 			icon: 'layout',
 			title: 'Layout 布局',

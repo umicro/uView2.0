@@ -1,0 +1,19 @@
+<template>
+	<view class="u-page">
+		<u--text prefixIcon="tags" suffixIcon="map" text="15019479320" mode="name" :format="format"></u--text>
+	</view>
+</template>
+
+<script>
+	export default {
+		methods: {
+			format() {
+				return 231
+			}
+		},
+	}
+</script>
+
+<style lang="scss">
+	
+</style>

@@ -1,10 +1,10 @@
-import test from './test.js'
+import test from './test.js';
 
 /**
  * 如果value小于min，取min；如果value大于max，取max
  */
 function range(min = 0, max = 0, value = 0) {
-	return Math.max(0, Math.min(100, Number(value)))
+	return Math.max(0, Math.min(100, Number(value)));
 }
 
 /**
@@ -13,13 +13,13 @@ function range(min = 0, max = 0, value = 0) {
  */
 function getPx(value) {
 	if (test.number(value)) {
-		return value
+		return value;
 	}
 	// 如果带有rpx，先取出其数值部分，再转为px值
 	if (/rpx$/.test(value)) {
-		return uni.upx2px(parseInt(value))
+		return uni.upx2px(parseInt(value));
 	} else {
-		return parseInt(value)
+		return parseInt(value);
 	}
 }
 
@@ -30,9 +30,9 @@ function getPx(value) {
 function sleep(value = 30) {
 	return new Promise(resolve => {
 		setTimeout(() => {
-			resolve()
-		}, value)
-	})
+			resolve();
+		}, value);
+	});
 }
 
 function os() {
@@ -126,34 +126,34 @@ function addStyle(customStyle, target = 'object') {
 	// 字符串转字符串，对象转对象情形，直接返回
 	if (test.empty(customStyle) || typeof(customStyle) === 'object' && target === 'object' || target === 'string' &&
 		typeof(customStyle) === 'string') {
-		return customStyle
+		return customStyle;
 	} else {
 		// 字符串转对象
 		if (target === 'object') {
 			// 去除字符串样式中的两端空格(中间的空格不能去掉，比如padding: 20px 0如果去掉了就错了)，空格是无用的
-			customStyle = trim(customStyle)
+			customStyle = trim(customStyle);
 			// 根据";"将字符串转为数组形式
-			const styleArray = customStyle.split(';')
-			const style = {}
+			const styleArray = customStyle.split(';');
+			const style = {};
 			// 历遍数组，拼接成对象
 			for (let i = 0; i < styleArray.length; i++) {
 				// 'font-size:20px;color:red;'，如此最后字符串有";"的话，会导致styleArray最后一个元素为空字符串，这里需要过滤
 				if (styleArray[i]) {
-					let item = styleArray[i].split(':')
-					style[trim(item[0])] = trim(item[1])
+					let item = styleArray[i].split(':');
+					style[trim(item[0])] = trim(item[1]);
 				}
 			}
-			return style
+			return style;
 		} else {
 			// 这里为对象转字符串形式
-			let string = ''
+			let string = '';
 			for (let i in customStyle) {
 				// 驼峰转为中划线的形式，否则css内联样式，无法识别驼峰样式属性名
-				let key = i.replace(/([A-Z])/g, "-$1").toLowerCase()
-				string += `${key}:${customStyle[i]};`
+				let key = i.replace(/([A-Z])/g, '-$1').toLowerCase();
+				string += `${key}:${customStyle[i]};`;
 			}
 			// 去除两端空格
-			return trim(string)
+			return trim(string);
 		}
 	}
 }
@@ -169,14 +169,14 @@ function addUnit(value = 'auto', unit = 'px') {
 function deepClone(obj) {
 	// 对常见的“非”值，直接返回原来值
 	if ([null, undefined, NaN, false].includes(obj)) return obj;
-	if (typeof obj !== "object" && typeof obj !== 'function') {
+	if (typeof obj !== 'object' && typeof obj !== 'function') {
 		//原始类型直接返回
 		return obj;
 	}
 	var o = test.array(obj) ? [] : {};
 	for (let i in obj) {
 		if (obj.hasOwnProperty(i)) {
-			o[i] = typeof obj[i] === "object" ? deepClone(obj[i]) : obj[i];
+			o[i] = typeof obj[i] === 'object' ? deepClone(obj[i]) : obj[i];
 		}
 	}
 	return o;
@@ -211,8 +211,8 @@ function deepMerge(target = {}, source = {}) {
 
 function error(err) {
 	// 开发环境才提示，生产环境不会提示
-	if(process.env.NODE_ENV === 'development') {
-		console.error('uView提示：' + err)
+	if (process.env.NODE_ENV === 'development') {
+		console.error('uView提示：' + err);
 	}
 }
 
@@ -227,22 +227,22 @@ function randomArray(array = []) {
 if (!String.prototype.padStart) {
 	// 为了方便表示这里 fillString 用了ES6 的默认参数，不影响理解
 	String.prototype.padStart = function(maxLength, fillString = ' ') {
-		if (Object.prototype.toString.call(fillString) !== "[object String]") throw new TypeError(
-			'fillString must be String')
-		let str = this
+		if (Object.prototype.toString.call(fillString) !== '[object String]') throw new TypeError(
+			'fillString must be String');
+		let str = this;
 		// 返回 String(str) 这里是为了使返回的值是字符串字面量，在控制台中更符合直觉
-		if (str.length >= maxLength) return String(str)
+		if (str.length >= maxLength) return String(str);
 
 		let fillLength = maxLength - str.length,
-			times = Math.ceil(fillLength / fillString.length)
+			times = Math.ceil(fillLength / fillString.length);
 		while (times >>= 1) {
-			fillString += fillString
+			fillString += fillString;
 			if (times === 1) {
-				fillString += fillString
+				fillString += fillString;
 			}
 		}
 		return fillString.slice(0, fillLength) + str;
-	}
+	};
 }
 
 // 其他更多是格式化有如下:
@@ -255,18 +255,18 @@ function timeFormat(dateTime = null, fmt = 'yyyy-mm-dd') {
 	let date = new Date(dateTime);
 	let ret;
 	let opt = {
-		"y+": date.getFullYear().toString(), // 年
-		"m+": (date.getMonth() + 1).toString(), // 月
-		"d+": date.getDate().toString(), // 日
-		"h+": date.getHours().toString(), // 时
-		"M+": date.getMinutes().toString(), // 分
-		"s+": date.getSeconds().toString() // 秒
+		'y+': date.getFullYear().toString(), // 年
+		'm+': (date.getMonth() + 1).toString(), // 月
+		'd+': date.getDate().toString(), // 日
+		'h+': date.getHours().toString(), // 时
+		'M+': date.getMinutes().toString(), // 分
+		's+': date.getSeconds().toString() // 秒
 		// 有其他格式化字符需求可以继续添加，必须转化成字符串
 	};
 	for (let k in opt) {
-		ret = new RegExp("(" + k + ")").exec(fmt);
+		ret = new RegExp('(' + k + ')').exec(fmt);
 		if (ret) {
-			fmt = fmt.replace(ret[1], (ret[1].length == 1) ? (opt[k]) : (opt[k].padStart(ret[1].length, "0")))
+			fmt = fmt.replace(ret[1], (ret[1].length == 1) ? (opt[k]) : (opt[k].padStart(ret[1].length, '0')));
 		};
 	};
 	return fmt;
@@ -302,8 +302,8 @@ function timeFrom(timestamp = null, format = 'yyyy-mm-dd') {
 			break;
 		default:
 			// 如果format为false，则无论什么时间戳，都显示xx之前
-			if(format === false) {
-				if(timer >= 2592000 && timer < 365 * 86400) {
+			if (format === false) {
+				if (timer >= 2592000 && timer < 365 * 86400) {
 					tips = parseInt(timer / (86400 * 30)) + '个月前';
 				} else {
 					tips = parseInt(timer / (86400 * 365)) + '年前';
@@ -320,13 +320,13 @@ function timeFrom(timestamp = null, format = 'yyyy-mm-dd') {
  */
 function trim(str, pos = 'both') {
 	if (pos == 'both') {
-		return str.replace(/^\s+|\s+$/g, "");
-	} else if (pos == "left") {
+		return str.replace(/^\s+|\s+$/g, '');
+	} else if (pos == 'left') {
 		return str.replace(/^\s*/, '');
 	} else if (pos == 'right') {
-		return str.replace(/(\s*$)/g, "");
+		return str.replace(/(\s*$)/g, '');
 	} else if (pos == 'all') {
-		return str.replace(/\s+/g, "");
+		return str.replace(/\s+/g, '');
 	} else {
 		return str;
 	}
@@ -338,11 +338,11 @@ function trim(str, pos = 'both') {
  * @param {*} isPrefix,是否自动加上"?"
  */
 function queryParams(data = {}, isPrefix = true, arrayFormat = 'brackets') {
-	let prefix = isPrefix ? '?' : ''
-	let _result = []
+	let prefix = isPrefix ? '?' : '';
+	let _result = [];
 	if (['indices', 'brackets', 'repeat', 'comma'].indexOf(arrayFormat) == -1) arrayFormat = 'brackets';
 	for (let key in data) {
-		let value = data[key]
+		let value = data[key];
 		// 去掉为空的参数
 		if (['', undefined, null].indexOf(value) >= 0) {
 			continue;
@@ -354,39 +354,39 @@ function queryParams(data = {}, isPrefix = true, arrayFormat = 'brackets') {
 				case 'indices':
 					// 结果: ids[0]=1&ids[1]=2&ids[2]=3
 					for (let i = 0; i < value.length; i++) {
-						_result.push(key + '[' + i + ']=' + value[i])
+						_result.push(key + '[' + i + ']=' + value[i]);
 					}
 					break;
 				case 'brackets':
 					// 结果: ids[]=1&ids[]=2&ids[]=3
 					value.forEach(_value => {
-						_result.push(key + '[]=' + _value)
-					})
+						_result.push(key + '[]=' + _value);
+					});
 					break;
 				case 'repeat':
 					// 结果: ids=1&ids=2&ids=3
 					value.forEach(_value => {
-						_result.push(key + '=' + _value)
-					})
+						_result.push(key + '=' + _value);
+					});
 					break;
 				case 'comma':
 					// 结果: ids=1,2,3
-					let commaStr = "";
+					let commaStr = '';
 					value.forEach(_value => {
-						commaStr += (commaStr ? "," : "") + _value;
-					})
-					_result.push(key + '=' + commaStr)
+						commaStr += (commaStr ? ',' : '') + _value;
+					});
+					_result.push(key + '=' + commaStr);
 					break;
 				default:
 					value.forEach(_value => {
-						_result.push(key + '[]=' + _value)
-					})
+						_result.push(key + '[]=' + _value);
+					});
 			}
 		} else {
-			_result.push(key + '=' + value)
+			_result.push(key + '=' + value);
 		}
 	}
-	return _result.length ? prefix + _result.join('&') : ''
+	return _result.length ? prefix + _result.join('&') : '';
 }
 
 function toast(title, duration = 1500) {
@@ -394,7 +394,7 @@ function toast(title, duration = 1500) {
 		title: title,
 		icon: 'none',
 		duration: duration
-	})
+	});
 }
 
 /**
@@ -431,6 +431,37 @@ function type2icon(type = 'success', fill = false) {
 	return iconName;
 }
 
+/*
+ * 参数说明：
+ * number：要格式化的数字
+ * decimals：保留几位小数
+ * dec_point：小数点符号
+ * thousands_sep：千分位符号
+ * */
+function priceFormat(number, decimals, dec_point, thousands_sep) {
+	number = (number + '').replace(/[^0-9+-Ee.]/g, '');
+	var n = !isFinite(+number) ? 0 : +number,
+		prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+		sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+		dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+		s = '',
+		toFixedFix = function(n, prec) {
+			var k = Math.pow(10, prec);
+			return '' + Math.ceil(n * k) / k;
+		};
+
+	s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+	var re = /(-?\d+)(\d{3})/;
+	while (re.test(s[0])) {
+		s[0] = s[0].replace(re, '$1' + sep + '$2');
+	}
+
+	if ((s[1] || '').length < prec) {
+		s[1] = s[1] || '';
+		s[1] += new Array(prec - s[1].length + 1).join('0');
+	}
+	return s.join(dec);
+}
 
 export default {
 	range,
@@ -452,5 +483,6 @@ export default {
 	trim,
 	queryParams,
 	toast,
-	type2icon
-}
+	type2icon,
+	priceFormat
+};

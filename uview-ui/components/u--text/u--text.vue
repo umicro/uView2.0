@@ -1,14 +1,17 @@
 <template>
 	<view
 	    class="u-text"
-		:class="[]"
+	    :class="[]"
 	    v-if="show"
+		:style="{
+			margin: margin
+		}"
 	    @tap="clickHandler"
 	>
 		<text
 		    class="u-text__price"
 		    v-if="mode === 'price'"
-			:style="[valueStyle]"
+		    :style="[valueStyle]"
 		>￥</text>
 		<text
 		    class="u-text__prefix-icon"
@@ -28,7 +31,7 @@
 		<template v-else-if="openType && isMp">
 			<button
 			    class="u-reset-button u-text__value"
-				:style="[valueStyle]"
+			    :style="[valueStyle]"
 			    :data-index="index"
 			    :openType="openType"
 			    @getuserinfo="onGetUserInfo"
@@ -201,13 +204,12 @@
 				const style = {
 					textDecoration: this.decoration,
 					fontWeight: this.bold ? 'bold' : 'normal',
-					margin: this.margin,
 					textAlign: this.align,
-					wordWrap: this.wordWrap
+					wordWrap: this.wordWrap,
+					fontSize: uni.$u.addUnit(this.size)
 				}
 				this.isNvue && this.lines && (style.lines = this.lines)
-				this.margin && (style.margin = this.margin)
-				console.log(uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle)));
+				this.lineHeight && (style.lineHeight = uni.$u.addUnit(this.lineHeight))
 				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			},
 			isNvue() {
@@ -251,7 +253,7 @@
 		align-items: center;
 		flex-wrap: wrap;
 		flex: 1;
-		
+
 		&__price {
 			font-size: 14px;
 			color: $u-content-color;
@@ -264,6 +266,7 @@
 			flex-wrap: wrap;
 			flex: 1;
 			text-overflow: ellipsis;
+			align-items: center;
 
 			&--primary {
 				color: $u-primary;
@@ -285,6 +288,21 @@
 				color: $u-error;
 			}
 
+			&--main {
+				color: $u-main-color;
+			}
+
+			&--content {
+				color: $u-content-color;
+			}
+
+			&--tips {
+				color: $u-tips-color;
+			}
+
+			&--light {
+				color: $u-light-color;
+			}
 		}
 	}
 </style>

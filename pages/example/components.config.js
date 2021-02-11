@@ -331,7 +331,7 @@ export default [{
 			title: 'IndexList 索引列表',
 			title_en: 'IndexList',
 		}, {
-			path: '/pages/componentsCw/steps/steps',
+			path: '/pages/componentsC/steps/steps',
 			icon: 'steps',
 			title: 'Steps 步骤条',
 			title_en: 'Steps',

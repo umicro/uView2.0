@@ -29,6 +29,11 @@ export default {
 		inactiveIcon: {
 			type: String,
 			default: ''
+		},
+		// 是否显示点类型
+		dot: {
+			type: Boolean,
+			default: false
 		}
 	}
 }

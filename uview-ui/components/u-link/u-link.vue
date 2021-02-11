@@ -29,7 +29,7 @@
 				type: String,
 				default: uni.$u.props.link.color
 			},
-			// 字体大小，单位rpx
+			// 字体大小，单位px
 			fontSize: {
 				type: [String, Number],
 				default: uni.$u.props.link.fontSize
@@ -65,11 +65,14 @@
 				const style = {
 					color: this.color,
 					fontSize: uni.$u.addUnit(this.fontSize),
+					// line-height设置为比字体大小多2px
+					lineHeight: uni.$u.addUnit(uni.$u.getPx(this.fontSize) + 2),
+					textDecoration: this.underLine ? 'underline' : 'none'
 				}
-				if(this.underLine) {
-					style.borderBottomColor = this.lineColor || this.color
-					style.borderBottomWidth = '1px'
-				}
+				// if (this.underLine) {
+				// 	style.borderBottomColor = this.lineColor || this.color
+				// 	style.borderBottomWidth = '1px'
+				// }
 				return style
 			}
 		},
@@ -105,5 +108,8 @@
 		/* #ifndef APP-NVUE */
 		line-height: $u-link-line-height;
 		/* #endif */
+		@include flex;
+		flex-wrap: wrap;
+		flex: 1;
 	}
 </style>

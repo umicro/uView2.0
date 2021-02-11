@@ -1,12 +1,14 @@
 <template>
 	<view
 	    class="u-text"
+		:class="[]"
 	    v-if="show"
 	    @tap="clickHandler"
 	>
 		<text
 		    class="u-text__price"
 		    v-if="mode === 'price'"
+			:style="[valueStyle]"
 		>￥</text>
 		<text
 		    class="u-text__prefix-icon"
@@ -14,17 +16,49 @@
 		>
 			<u-icon
 			    :name="prefixIcon"
-			    :size="$u.getPx(size)"
+			    :customStyle="$u.addStyle(iconStyle)"
 			></u-icon>
 		</text>
-		<text class="u-text__value">{{ value }}</text>
+		<u-link
+		    v-if="mode === 'link'"
+		    :text="value"
+		    :href="href"
+		    underLine
+		></u-link>
+		<template v-else-if="openType && isMp">
+			<button
+			    class="u-reset-button u-text__value"
+				:style="[valueStyle]"
+			    :data-index="index"
+			    :openType="openType"
+			    @getuserinfo="onGetUserInfo"
+			    @contact="onContact"
+			    @getphonenumber="onGetPhoneNumber"
+			    @error="onError"
+			    @launchapp="onLaunchApp"
+			    @opensetting="onOpenSetting"
+			    :lang="lang"
+			    :session-from="sessionFrom"
+			    :send-message-title="sendMessageTitle"
+			    :send-message-path="sendMessagePath"
+			    :send-message-img="sendMessageImg"
+			    :show-message-card="showMessageCard"
+			    :app-parameter="appParameter"
+			>{{ value }}</button>
+		</template>
+		<text
+		    v-else
+		    class="u-text__value"
+		    :style="[valueStyle]"
+		    :class="[type && `u-text__value--${type}`, lines && `u-line-${lines}`]"
+		>{{ value }}</text>
 		<text
 		    class="u-text__suffix-icon"
 		    v-if="suffixIcon"
 		>
 			<u-icon
 			    :name="suffixIcon"
-			    :size="$u.getPx(size)"
+			    :customStyle="$u.addStyle(iconStyle)"
 			></u-icon>
 		</text>
 	</view>
@@ -34,8 +68,18 @@
 	import value from './value.js';
 	export default {
 		name: 'u--text',
+		// #ifdef MP
+		mixins: [uni.$u.mixin, value, button, openType],
+		// #endif
+		// #ifndef MP
 		mixins: [uni.$u.mixin, value],
+		// #endif
 		props: {
+			// 主题颜色
+			type: {
+				type: String,
+				default: ''
+			},
 			// 是否显示
 			show: {
 				type: Boolean,
@@ -57,8 +101,13 @@
 				default: ''
 			},
 			// 文本处理的匹配模式
-			// text-普通文本，price-价格，phone-手机号，name-姓名，date-日期
+			// text-普通文本，price-价格，phone-手机号，name-姓名，date-日期，link-超链接
 			mode: {
+				type: String,
+				default: ''
+			},
+			// mode=link下，配置的链接
+			href: {
 				type: String,
 				default: ''
 			},
@@ -76,6 +125,11 @@
 			encrypt: {
 				type: Boolean,
 				default: false
+			},
+			// 小程序的打开方式
+			openType: {
+				type: String,
+				default: uni.$u.props.actionSheet.openType
 			},
 			// 是否粗体，默认normal
 			bold: {
@@ -100,7 +154,16 @@
 			// 字体大小
 			size: {
 				type: [Number, String],
-				default: '15'
+				default: 15
+			},
+			// 图标的样式
+			iconStyle: {
+				type: [Object, String],
+				default () {
+					return {
+						fontSize: '15px'
+					}
+				}
 			},
 			// 是否显示金额的千分位，mode=price时有效
 			precision: {
@@ -133,6 +196,40 @@
 				default: 'normal'
 			}
 		},
+		computed: {
+			valueStyle() {
+				const style = {
+					textDecoration: this.decoration,
+					fontWeight: this.bold ? 'bold' : 'normal',
+					margin: this.margin,
+					textAlign: this.align,
+					wordWrap: this.wordWrap
+				}
+				this.isNvue && this.lines && (style.lines = this.lines)
+				this.margin && (style.margin = this.margin)
+				console.log(uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle)));
+				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
+			},
+			isNvue() {
+				let nvue = false
+				// #ifdef APP-NVUE
+				nvue = true
+				// #endif
+				return nvue
+			},
+			isMp() {
+				let mp = false
+				// #ifdef MP
+				mp = true
+				// #endif
+				return mp
+			}
+		},
+		data() {
+			return {
+
+			}
+		},
 		methods: {
 			clickHandler() {
 				// 如果为手机号模式，拨打电话
@@ -148,11 +245,46 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-	
+
 	.u-text {
-		font-size: 15px;
-		color: $u-main-color;
 		@include flex(row);
 		align-items: center;
+		flex-wrap: wrap;
+		flex: 1;
+		
+		&__price {
+			font-size: 14px;
+			color: $u-content-color;
+		}
+
+		&__value {
+			font-size: 14px;
+			@include flex;
+			color: $u-content-color;
+			flex-wrap: wrap;
+			flex: 1;
+			text-overflow: ellipsis;
+
+			&--primary {
+				color: $u-primary;
+			}
+
+			&--warning {
+				color: $u-warning;
+			}
+
+			&--success {
+				color: $u-success;
+			}
+
+			&--info {
+				color: $u-info;
+			}
+
+			&--error {
+				color: $u-error;
+			}
+
+		}
 	}
 </style>

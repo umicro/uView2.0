@@ -25,7 +25,6 @@
         "nvueCompiler" : "uni-app",
         "compilerVersion" : 3,
         "modules" : {},
-		"nvueLaunchMode" : "fast",
         "distribute" : {
             "android" : {
                 "permissions" : [
@@ -54,7 +53,9 @@
                 ],
                 "abiFilters" : [ "armeabi-v7a", "arm64-v8a" ]
             },
-            "ios" : {},
+            "ios" : {
+                "idfa" : false
+            },
             "sdkConfigs" : {
                 "ad" : {}
             },

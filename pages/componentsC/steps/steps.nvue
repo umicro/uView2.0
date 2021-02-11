@@ -1,0 +1,25 @@
+<template>
+	<view class="u-page">
+		<u-steps>
+			<u-steps-item>
+				
+			</u-steps-item>
+			<u-steps-item>
+				
+			</u-steps-item>
+			<u-steps-item>
+				
+			</u-steps-item>
+		</u-steps>
+	</view>
+</template>
+
+<script>
+	export default {
+		
+	}
+</script>
+
+<style>
+
+</style>

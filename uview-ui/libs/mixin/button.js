@@ -7,5 +7,7 @@ export default {
 		sendMessageImg: String,
 		showMessageCard: Boolean,
 		appParameter: String,
+		formType: String,
+		openType: String,
 	}
 }

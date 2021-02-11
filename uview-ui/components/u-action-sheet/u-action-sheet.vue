@@ -99,7 +99,7 @@
 </template>
 
 <script>
-	import openType from '../../libs/mixin/open-type'
+	import openType from '../../libs/mixin/openType'
 	import button from '../../libs/mixin/button'
 	/**
 	 * actionSheet 操作菜单

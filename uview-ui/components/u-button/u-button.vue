@@ -31,18 +31,24 @@
 			    :size="textSize * 1.15"
 			    :color="loadingColor"
 			></u-loading-icon>
-			<text class="u-button__loading-text" :style="{fontSize: textSize + 'px'}">{{ loadingText || text }}</text>
+			<text
+			    class="u-button__loading-text"
+			    :style="{fontSize: textSize + 'px'}"
+			>{{ loadingText || text }}</text>
 		</template>
 		<template v-else>
 			<u-icon
 			    v-if="icon"
 			    :name="icon"
 			    :color="iconColor"
-				:size="textSize * 1.35"
-				:customStyle="{marginRight: '2px'}"
+			    :size="textSize * 1.35"
+			    :customStyle="{marginRight: '2px'}"
 			></u-icon>
 			<slot>
-				<text class="u-button__text" :style="{fontSize: textSize + 'px'}">{{text}}</text>
+				<text
+				    class="u-button__text"
+				    :style="{fontSize: textSize + 'px'}"
+				>{{text}}</text>
 			</slot>
 		</template>
 	</button>
@@ -56,7 +62,7 @@
 	    :hover-class="!disabled && !loading && !color && (plain || type === 'info') ? 'u-button--active--plain' : !disabled && !loading && !plain ? 'u-button--active' : ''"
 	    @tap="clickHandler"
 	    :class="bemClass"
-		:style="[baseColor, $u.addStyle(customStyle)]"
+	    :style="[baseColor, $u.addStyle(customStyle)]"
 	>
 		<template v-if="loading">
 			<u-loading-icon
@@ -90,6 +96,8 @@
 </template>
 
 <script>
+	import button from '../../libs/mixin/button.js'
+	import openType from '../../libs/mixin/openType.js'
 	/**
 	 * button 按钮
 	 * @description Button 按钮
@@ -132,7 +140,12 @@
 	 */
 	export default {
 		name: 'u-button',
+		// #ifdef MP
+		mixins: [uni.$u.mixin, button, openType],
+		// #endif
+		// #ifndef MP
 		mixins: [uni.$u.mixin],
+		// #endif
 		props: {
 			// 是否细边框
 			hairline: {
@@ -285,7 +298,7 @@
 			// 生成bem风格的类名
 			bemClass() {
 				// this.bem为一个computed变量，在mixin中
-				if(!this.color) {
+				if (!this.color) {
 					return this.bem('button', ['type', 'shape', 'size'], ['disabled', 'plain', 'hairline'])
 				} else {
 					// 由于nvue的原因，在有color参数时，不需要传入type，否则会生成type相关的类型，影响最终的样式
@@ -355,11 +368,14 @@
 			},
 			// 字体大小
 			textSize() {
-				let fontSize = 14, { size } = this
-				if(size === 'large') fontSize = 16
-				if(size === 'normal') fontSize = 14
-				if(size === 'small') fontSize = 12
-				if(size === 'mini') fontSize = 10
+				let fontSize = 14,
+					{
+						size
+					} = this
+				if (size === 'large') fontSize = 16
+				if (size === 'normal') fontSize = 14
+				if (size === 'small') fontSize = 12
+				if (size === 'mini') fontSize = 10
 				return fontSize
 			}
 		},

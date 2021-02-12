@@ -210,6 +210,7 @@
 				}
 				this.isNvue && this.lines && (style.lines = this.lines)
 				this.lineHeight && (style.lineHeight = uni.$u.addUnit(this.lineHeight))
+				!this.isNvue && this.block && (style.display = 'block')
 				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			},
 			isNvue() {
@@ -252,7 +253,7 @@
 		@include flex(row);
 		align-items: center;
 		flex-wrap: wrap;
-		flex: 1;
+		// flex: 1;
 
 		&__price {
 			font-size: 14px;

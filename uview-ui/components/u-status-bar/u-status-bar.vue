@@ -11,9 +11,14 @@
 <script>
 	export default {
 		name: 'u-status-bar',
+		props: {
+			bgColor: {
+				type: String,
+				default: 'transparent'
+			}
+		},
 		data() {
 			return {
-				statusBarHeight: 0,
 				isNvue: false
 			}
 		},
@@ -22,8 +27,9 @@
 				const style = {}
 				// #ifdef APP-NVUE
 				// nvue下，高度使用js计算填充
-				style.statusBarHeight = uni.$u.sys().statusBarHeight + 'px'
+				style.height = uni.$u.sys().statusBarHeight + 'px'
 				// #endif
+				style.backgroundColor = this.bgColor
 				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			}
 		},

@@ -302,7 +302,7 @@ export default [{
 			title: 'BackTop 返回顶部',
 			title_en: 'BackTop',
 		},{
-			path: '/pages/componentsA/navbar/navbar',
+			path: '/pages/componentsC/navbar/navbar',
 			icon: 'navbar',
 			title: 'Navbar 导航栏',
 			title_en: 'Navbar',

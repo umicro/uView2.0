@@ -259,7 +259,7 @@ export default [{
 			title: 'TimeLine 时间轴',
 			title_en: 'TimeLine',
 		}, {
-			path: '/pages/componentsB/skeleton/skeleton',
+			path: '/pages/componentsC/skeleton/skeleton',
 			icon: 'skeleton',
 			title: 'Skeleton 骨架屏',
 			title_en: 'Skeleton',

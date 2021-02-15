@@ -108,13 +108,13 @@
 				],
 				fileList2: [],
 				fileList3: [{
-					url: 'http://pics.sc.chinaz.com/files/pic/pic9/201912/hpic1886.jpg',
+					url: 'https://cdn.uviewui.com/uview/swiper/1.jpg',
 				}],
 				fileList4: [{
-						url: 'http://pics.sc.chinaz.com/files/pic/pic9/201912/hpic1886.jpg',
+						url: 'https://cdn.uviewui.com/uview/swiper/1.jpg',
 					},
 					{
-						url: 'http://pics.sc.chinaz.com/files/pic/pic9/201912/hpic1886.jpg',
+						url: 'https://cdn.uviewui.com/uview/swiper/1.jpg',
 					}
 				],
 				fileList5: [],

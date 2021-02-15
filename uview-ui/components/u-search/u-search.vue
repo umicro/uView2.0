@@ -11,7 +11,7 @@
 		    :style="{
 				backgroundColor: bgColor,
 				borderRadius: shape == 'round' ? '100px' : '4px',
-				border: borderStyle,
+				borderColor: borderColor,
 				height: height + 'rpx'
 			}"
 		>
@@ -57,6 +57,7 @@
 				    name="close"
 				    size="11"
 				    color="#ffffff"
+					customStyle="line-height: 12px"
 				></u-icon>
 			</view>
 		</view>
@@ -163,10 +164,10 @@
 				type: Boolean,
 				default: false
 			},
-			// 边框颜色，只要配置了颜色，才会有边框
+			// 边框颜色
 			borderColor: {
 				type: String,
-				default: 'none'
+				default: 'transparent'
 			},
 			// 输入框的初始化内容
 			value: {
@@ -250,12 +251,7 @@
 			showActionBtn() {
 				if (!this.animation && this.showAction) return true;
 				else return false;
-			},
-			// 样式，根据用户传入的颜色值生成，如果不传入，默认为none
-			borderStyle() {
-				if (this.borderColor) return `1px solid ${this.borderColor}`;
-				else return 'none';
-			},
+			}
 		},
 		methods: {
 			// 目前HX2.6.9 v-model双向绑定无效，故监听input事件获取输入框内容的变化
@@ -342,6 +338,8 @@
 			padding: $u-search-content-padding;
 			flex: 1;
 			justify-content: space-between;
+			border-width: 1px;
+			border-color: transparent;
 
 			&__icon {
 				@include flex;

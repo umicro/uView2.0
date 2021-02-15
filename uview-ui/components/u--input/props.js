@@ -72,9 +72,14 @@ export default {
 			type: Boolean,
 			default: false
 		},
+		// 是否显示键盘上方带有”完成“按钮那一栏，type=texarea且只在微信，百度，QQ小程序有效
+		showConfirmBar: {
+			type: Boolean,
+			default: false
+		},
 		// focus时，点击页面的时候不收起键盘，type="textarea"时有效
 		holdKeyboard: {
-			type: boolean,
+			type: Boolean,
 			default: false
 		},
 		// 自动获取焦点
@@ -91,10 +96,10 @@ export default {
 		// 是否去掉 iOS 下的默认内边距，仅微信小程序，且type=textarea时有效
 		disableDefaultPadding: {
 			type: Boolean,
-			default: boolean
+			default: false
 		},
 		// 指定focus时光标的位置
-		space: {
+		cursor: {
 			type: [Number, String],
 			default: -1
 		},
@@ -134,10 +139,50 @@ export default {
 			type: Boolean,
 			default: true
 		},
-		// 指定focus时的光标位置
-		focus: {
-			type: [Number, String],
-			default: -1
+		// 输入框字体的大小
+		fontSize: {
+			type: [String, Number],
+			default: '15px'
+		},
+		// 输入框字体颜色
+		color: {
+			type: String,
+			default: '#606266'
+		},
+		// 输入框前置图标
+		prefixIcon: {
+			type: String,
+			default: ''
+		},
+		// 输入框后置图标
+		suffixIcon: {
+			type: String,
+			default: ''
+		},
+		// 后置图标样式，对象或字符串
+		suffixIconStyle: {
+			type: [String, Object],
+			default: ''
+		},
+		// 前置图标样式，对象或字符串
+		prefixIconStyle: {
+			type: [String, Object],
+			default: ''
+		},
+		// 是否显示边框
+		border: {
+			type: String,
+			default: 'surround'
+		},
+		// 是否只读，与disabled不同之处在于disabled会置灰组件，而readonly则不会
+		readonly: {
+			type: Boolean,
+			default: false
+		},
+		// 输入框形状，circle-圆形，square-方形
+		shape: {
+			type: String,
+			default: 'square'
 		}
 	}
 }

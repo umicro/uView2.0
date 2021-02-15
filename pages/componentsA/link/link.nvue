@@ -6,7 +6,7 @@
 				<view class="u-page__link-item">
 					<u-link
 					    href="https://uviewui.com/"
-					    text="打开uView UI文档"
+					    text="Go to uView dosc"
 					></u-link>
 				</view>
 			</view>

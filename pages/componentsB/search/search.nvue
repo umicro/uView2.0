@@ -100,7 +100,8 @@
 					<u-search
 					    v-model="value9"
 					    :show-action="false"
-					    search-icon-color="#FF0000"
+					    borderColor="rgb(230, 230, 230)"
+						bgColor="#fff"
 					></u-search>
 				</view>
 			</view>
@@ -109,7 +110,7 @@
 					<u-search
 					    v-model="value10"
 					    :show-action="false"
-					    placeholder-color="#FF0000"
+					    search-icon-color="#FF0000"
 					></u-search>
 				</view>
 			</view>
@@ -118,7 +119,7 @@
 					<u-search
 					    v-model="value11"
 					    :show-action="false"
-					    color="#FF0000"
+					    placeholder-color="#FF0000"
 					></u-search>
 				</view>
 			</view>
@@ -126,6 +127,15 @@
 				<view class="u-page__tag-item">
 					<u-search
 					    v-model="value12"
+					    :show-action="false"
+					    color="#FF0000"
+					></u-search>
+				</view>
+			</view>
+			<view class="u-demo-block__content m-t-10">
+				<view class="u-page__tag-item">
+					<u-search
+					    v-model="value13"
 					    label="手机"
 					    :show-action="false"
 					>
@@ -135,7 +145,7 @@
 			<view class="u-demo-block__content m-t-10">
 				<view class="u-page__tag-item">
 					<u-search
-					    v-model="value13"
+					    v-model="value14"
 					    search-icon="scan"
 					    :show-action="false"
 					>
@@ -162,7 +172,8 @@
 				value10: '',
 				value11: '',
 				value12: '',
-				value13: ''
+				value13: '',
+				value14: ''
 			}
 		},
 		methods: {

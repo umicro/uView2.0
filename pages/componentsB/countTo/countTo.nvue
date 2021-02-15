@@ -139,6 +139,12 @@
 </script>
 
 <style lang="scss">
+	.u-demo-block__content {
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+	
 	.u-grid-slot {
 		border-radius: 100px;
 		border-color: #dbfbdb;

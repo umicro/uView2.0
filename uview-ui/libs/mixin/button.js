@@ -2,7 +2,7 @@ export default {
 	props: {
 		lang: String,
 		sessionFrom: String,
-		sendMessageTitle: String,
+		sendMessageTitle: String, 
 		sendMessagePath: String,
 		sendMessageImg: String,
 		showMessageCard: Boolean,

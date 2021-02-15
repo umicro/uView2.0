@@ -1,0 +1,21 @@
+<template>
+	<view class="u-page">
+		<u--input></u--input>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+	.a {
+		color: red;
+	}
+</style>

@@ -113,10 +113,10 @@ export default [{
 			title: 'Code 验证码倒计时',
 			title_en: 'VerificationCode',
 		}, {
-			path: '/pages/componentsA/field/field',
+			path: '/pages/componentsC/input/input',
 			icon: 'field',
-			title: 'Field 输入框',
-			title_en: 'Field',
+			title: 'Input 输入框',
+			title_en: 'Input',
 		}, {
 			path: '/pages/componentsA/checkbox/checkbox',
 			icon: 'checkbox',

@@ -121,7 +121,7 @@
 				// 为了让opacity:1的状态保持一定时间，这里做一个延时
 				await uni.$u.sleep(500)
 				const skeleton = this.$refs['u-skeleton__wrapper'];
-				this.loading && this.animate && animation.transition(skeleton, {
+				skeleton && this.loading && this.animate && animation.transition(skeleton, {
 					styles: {
 						opacity: 0.5
 					},
@@ -152,7 +152,8 @@
 				// #endif
 
 				// #ifdef APP-NVUE
-				dom.getComponentRect(this.$refs['u-skeleton__wrapper__content'], (res) => {
+				const ref = this.$refs['u-skeleton__wrapper__content']
+				ref && dom.getComponentRect(ref, (res) => {
 					this.width = res.size.width
 				})
 				// #endif

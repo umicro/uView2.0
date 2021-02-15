@@ -4,7 +4,7 @@
 			<text class="u-demo-block__title">基本案列</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__loading-item">
-				<u-loading-icon></u-loading-icon>
+					<u-loading-icon></u-loading-icon>
 				</view>
 			</view>
 		</view>
@@ -12,15 +12,23 @@
 			<text class="u-demo-block__title">半圆loading</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__loading-item">
-				<u-loading-icon mode="semicircle"></u-loading-icon>
+					<u-loading-icon mode="semicircle"></u-loading-icon>
 				</view>
 			</view>
 		</view>
 		<view class="u-demo-block">
-			<text class="u-demo-block__title">圆loading</text>
+			<text class="u-demo-block__title">圆形loading</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__loading-item">
 					<u-loading-icon mode="circle"></u-loading-icon>
+				</view>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义动画</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__loading-item">
+					<u-loading-icon mode="circle" timingFunction="linear"></u-loading-icon>
 				</view>
 			</view>
 		</view>
@@ -36,26 +44,26 @@
 			<text class="u-demo-block__title">自定义文字</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__loading-item">
-				<u-loading-icon
-				    :vertical="true"
-				    text="加载中"
-				></u-loading-icon>
+					<u-loading-icon
+					    :vertical="true"
+					    text="加载中"
+					></u-loading-icon>
 				</view>
 			</view>
 		</view>
-		<view class="u-demo-block">
+		<!-- <view class="u-demo-block">
 			<text class="u-demo-block__title">自定义大小</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__loading-item">
-				<u-loading-icon
-				    size="40"
-				    textSize="16"
-				    :vertical="true"
-				    text="加载中"
-				></u-loading-icon>
+					<u-loading-icon
+					    size="40"
+					    textSize="16"
+					    :vertical="true"
+					    text="加载中"
+					></u-loading-icon>
 				</view>
 			</view>
-		</view>
+		</view> -->
 	</view>
 </template>
 
@@ -70,10 +78,15 @@
 </script>
 
 <style lang="scss">
-	.u-page{
-		&__loading-item{
-			margin-top:5px;
+	.u-page {
+		&__loading-item {
+			margin-top: 5px;
 		}
 	}
 
+	.u-demo-block__content {
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+	}
 </style>

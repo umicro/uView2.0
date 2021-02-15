@@ -314,4 +314,10 @@
 	.u-page__tag-item {
 		margin-right: 20px;
 	}
+	
+	.u-demo-block__content {
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+	}
 </style>

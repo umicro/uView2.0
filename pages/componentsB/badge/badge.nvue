@@ -1,6 +1,5 @@
 <template>
 	<view class="u-page">
-		 
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">直角边形状</text>
 			<view class="u-demo-block__content">
@@ -146,5 +145,11 @@
 		border-bottom-left-radius: 3px;
 		border-bottom-right-radius: 3px;
 		background-color: #E6E6E6;
+	}
+	
+	.u-demo-block__content {
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
 	}
 </style>

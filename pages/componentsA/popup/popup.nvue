@@ -1,6 +1,16 @@
 <template>
 	<view>
-		<u-gap height="20" bgColor="#fff"></u-gap>
+		<u-navbar
+		    title="弹窗"
+		    @leftClick="uni.navigateBack()"
+			safeAreaInsetTop
+			fixed
+			placeholder
+		></u-navbar>
+		<u-gap
+		    height="20"
+		    bgColor="#fff"
+		></u-gap>
 		<u-cell-group>
 			<u-cell
 			    :titleStyle="{fontWeight: 500}"

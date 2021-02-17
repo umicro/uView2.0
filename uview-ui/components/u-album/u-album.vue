@@ -4,6 +4,7 @@
 		    class="u-album__row"
 		    ref="u-album__row"
 		    v-for="(arr, index) in showUrls"
+			:forComputedUse="albumWidth"
 		>
 			<view
 			    class="u-album__row__wrapper"
@@ -46,8 +47,12 @@
 		mixins: [uni.$u.mixin, props],
 		data() {
 			return {
+				// 单图的宽度
 				singleWidth: 0,
-				singleHeight: 0
+				// 单图的高度
+				singleHeight: 0,
+				// 单图时，如果无法获取图片的尺寸信息，让图片宽度默认为容器的一定百分比
+				singlePercent: 0.45,
 			}
 		},
 		watch: {
@@ -107,6 +112,20 @@
 			},
 			imageHeight() {
 				return this.urls.length === 1 ? this.singleHeight : this.multipleSize
+			},
+			// 此变量无实际用途，仅仅是为了利用computed特性，让其在urls长度等变化时，重新计算图片的宽度
+			// 因为用户在某些特殊的情况下，需要让文字与相册的宽度相等，所以这里提供一个变量让用户通过refs获取
+			// 另外也通过事件的形式对外发送，推荐使用接收事件的形式，因为refs获取的形式可能时机不同而结果不同
+			albumWidth() {
+				let width = 0
+				if(this.urls.length === 1) {
+					width = this.singleWidth
+				} else {
+					width = this.showUrls[0].length * this.multipleSize + this.space * (this.showUrls[0].length - 1)
+				}
+				this.$emit('albumWidth', width)
+				this.width = width
+				return width
 			}
 		},
 		methods: {
@@ -126,7 +145,7 @@
 			},
 			// 单图时，获取图片的尺寸
 			// 在小程序中，需要将网络图片的的域名添加到小程序的download域名才可能获取尺寸
-			// 在没有添加的情况下，让单图宽度默认为盒子的三分之一
+			// 在没有添加的情况下，让单图宽度默认为盒子的一定宽度(singlePercent)
 			getImageRect() {
 				const src = this.getSrc(this.urls[0])
 				uni.getImageInfo({
@@ -148,17 +167,17 @@
 				await uni.$u.sleep(20)
 				// #ifndef APP-NVUE
 				this.$uGetRect('.u-album__row').then(size => {
-					this.singleWidth = size.width * 0.45
+					this.singleWidth = size.width * this.singlePercent
 				})
 				// #endif
 
 				// #ifdef APP-NVUE
 				const ref = this.$refs['u-album__row']
 				ref && dom.getComponentRect(ref, (res) => {
-					this.singleWidth = res.size.width * 0.45
+					this.singleWidth = res.size.width * this.singlePercent
 				})
 				// #endif
-			}
+			},
 		}
 	}
 </script>

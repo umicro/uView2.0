@@ -60,6 +60,44 @@
 			</view>
 		</view>
 		<view class="u-demo-block">
+			<text class="u-demo-block__title">图文对齐</text>
+			<view class="u-demo-block__content">
+				<view class="album">
+					<view class="album__avatar">
+						<image
+						    src="/static/uview/common/logo.png"
+						    mode=""
+						    style="width: 32px;height: 32px;"
+						></image>
+					</view>
+					<view class="album__content">
+						<u--text
+						    text="uView UI"
+						    type="primary"
+						    bold
+						    size="17"
+						></u--text>
+						<view :style="{
+							marginBottom: '8px',
+							width: albumWidth + 'px'
+						}">
+							<u--text
+							    text="全面的组件和便捷的工具会让您信手拈来，如鱼得水"
+								:customStyle="{
+									width: albumWidth + 'px'
+								}"
+							></u--text>
+						</view>
+						<u-album
+						    :urls="urls2"
+							@albumWidth="width => albumWidth = width"
+							multipleSize="68"
+						></u-album>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="u-demo-block">
 			<text class="u-demo-block__title">更改裁剪模式</text>
 			<view class="u-demo-block__content">
 				<view class="album">
@@ -130,6 +168,7 @@
 	export default {
 		data() {
 			return {
+				albumWidth: 0,
 				urls1: [{
 					src: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1775297416,2292225493&fm=26&gp=0.jpg',
 				}],

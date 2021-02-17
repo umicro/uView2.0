@@ -230,7 +230,6 @@
 		methods: {
 			// 点击遮罩
 			overlayClick() {
-				console.log('this.closeOnClickOverly', this.closeOnClickOverly);
 				if (this.closeOnClickOverly) {
 					console.log('close');
 					this.$emit('close')

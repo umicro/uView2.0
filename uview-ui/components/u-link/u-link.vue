@@ -90,7 +90,7 @@
 					success: () => {
 						uni.hideToast();
 						this.$nextTick(() => {
-							this.$u.toast(this.mpTips);
+							uni.$u.toast(this.mpTips);
 						})
 					}
 				});

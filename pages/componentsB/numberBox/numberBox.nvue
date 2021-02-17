@@ -180,7 +180,6 @@
 		},
 		methods: {
 			change(e) {
-				console.log(e);
 				// this.value1 = e
 			},
 			myAsyncChange(e) {

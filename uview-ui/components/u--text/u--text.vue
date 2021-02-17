@@ -208,6 +208,7 @@
 					wordWrap: this.wordWrap,
 					fontSize: uni.$u.addUnit(this.size)
 				}
+				!this.type && (style.color = this.color)
 				this.isNvue && this.lines && (style.lines = this.lines)
 				this.lineHeight && (style.lineHeight = uni.$u.addUnit(this.lineHeight))
 				!this.isNvue && this.block && (style.display = 'block')

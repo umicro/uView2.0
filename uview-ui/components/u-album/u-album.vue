@@ -1,32 +1,164 @@
 <template>
 	<view class="u-album">
 		<view
-		    class="u-album__wrapper"
-		    v-for="(item, index) in urls"
-		    :key="index"
+		    class="u-album__row"
+		    ref="u-album__row"
+		    v-for="(arr, index) in showUrls"
 		>
-			<image
-			    :src="$u.test.object(item) ? (key && item[key] || item.url) : item"
-			    :mode="urls.length === 1 ? singleMode : multipleMode"
-			    @tap.stop="onPreviewTap"
-			></image>
+			<view
+			    class="u-album__row__wrapper"
+			    v-for="(item, index1) in arr"
+			    :key="index1"
+			    :style="[imageStyle(index + 1, index1 + 1)]"
+				@tap="onPreviewTap(getSrc(item))"
+			>
+				<image
+				    :src="getSrc(item)"
+				    :mode="urls.length === 1 ? singleMode : multipleMode"
+				    :style="{
+						width: $u.addUnit(imageWidth),
+						height: $u.addUnit(imageHeight)
+					}"
+				></image>
+				<view
+				    v-if="urls.length > rowCount * showUrls.length && index === showUrls.length - 1 && index1 === showUrls[showUrls.length - 1].length - 1"
+				    class="u-album__row__wrapper__text"
+				>
+					<u--text
+					    :text="`+${urls.length - maxCount}`" 
+					    color="#fff"
+					    :size="multipleSize * 0.3"
+					></u--text>
+				</view>
+			</view>
 		</view>
 	</view>
 </template>
 
 <script>
 	import props from './props.js'
+	// #ifdef APP-NVUE
+	// 由于weex为阿里的KPI业绩考核的垃ji，所以不支持百分比单位，这里需要通过dom查询组件的宽度
+	const dom = uni.requireNativePlugin('dom')
+	// #endif
 	export default {
 		name: 'u-album',
 		mixins: [uni.$u.mixin, props],
 		data() {
 			return {
-
+				singleWidth: 0,
+				singleHeight: 0
 			}
 		},
-		// 预览图片
-		onPreviewTap() {
+		watch: {
+			urls: {
+				immediate: true,
+				handler(newVal) {
+					if (newVal.length === 1) {
+						this.getImageRect()
+					}
+				}
+			}
+		},
+		computed: {
+			imageStyle() {
+				return (index1, index2) => {
+					const {
+						space,
+						rowCount,
+						multipleSize,
+						urls
+					} = this, {
+						addUnit,
+						addStyle
+					} = uni.$u,
+						rowLen = this.showUrls.length,
+						allLen = this.urls.length
+					const style = {
+						marginRight: addUnit(space),
+						marginBottom: addUnit(space)
+					}
+					// 如果为最后一行，则每个图片都无需下边框
+					if (index1 === rowLen) style.marginBottom = 0
+					// 每行的最右边一张和总长度的最后一张无需右边框
+					if (index2 === rowCount || index1 === rowLen && index2 === this.showUrls[index1 - 1].length) style.marginRight =
+						0
+					return style
+				}
+			},
+			// 将数组划分为二维数组
+			showUrls() {
+				const arr = []
+				this.urls.map((item, index) => {
+					// 限制最大展示数量
+					if(index + 1 <= this.maxCount) {
+						// 计算该元素为第几个素组内
+						const page = Math.floor(index / this.rowCount)
+						if (!arr[page]) { // 判断是否存在
+							arr[page] = []
+						}
+						arr[page].push(item)
+					}
+				})
+				return arr
+			},
+			imageWidth() {
+				return this.urls.length === 1 ? this.singleWidth : this.multipleSize
+			},
+			imageHeight() {
+				return this.urls.length === 1 ? this.singleHeight : this.multipleSize
+			}
+		},
+		methods: {
+			// 预览图片
+			onPreviewTap(url) {
+				const urls = this.urls.map(item => {
+					return this.getSrc(item)
+				})
+				uni.previewImage({
+					current: url,
+					urls
+				});
+			},
+			// 获取图片的路径
+			getSrc(item) {
+				return uni.$u.test.object(item) ? this.keys && item[this.keys] || item.url : item
+			},
+			// 单图时，获取图片的尺寸
+			// 在小程序中，需要将网络图片的的域名添加到小程序的download域名才可能获取尺寸
+			// 在没有添加的情况下，让单图宽度默认为盒子的三分之一
+			getImageRect() {
+				const src = this.getSrc(this.urls[0])
+				uni.getImageInfo({
+					src,
+					success: (res) => {
+						// 判断图片横向还是竖向展示方式
+						const isHorizotal = res.width >= res.height
+						this.singleWidth = isHorizotal ? this.singleSize : res.width / res.height * this.singleSize
+						this.singleHeight = !isHorizotal ? this.singleSize : res.height / res.width * this.singleWidth
+					},
+					fail: () => {
+						this.getComponentWidth()
+					}
+				})
+			},
+			// 获取组件的宽度
+			async getComponentWidth() {
+				// 延时一定时间，以获取dom尺寸
+				await uni.$u.sleep(20)
+				// #ifndef APP-NVUE
+				this.$uGetRect('.u-album__row').then(size => {
+					this.singleWidth = size.width * 0.45
+				})
+				// #endif
 
+				// #ifdef APP-NVUE
+				const ref = this.$refs['u-album__row']
+				ref && dom.getComponentRect(ref, (res) => {
+					this.singleWidth = res.size.width * 0.45
+				})
+				// #endif
+			}
 		}
 	}
 </script>
@@ -34,5 +166,28 @@
 <style lang="scss">
 	@import "../../libs/css/components.scss";
 
-	.u-album {}
+	.u-album {
+		@include flex(column);
+
+		&__row {
+			@include flex(row);
+			flex-wrap: wrap;
+			
+			&__wrapper {
+				position: relative;
+				
+				&__text {
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					background-color: rgba(0, 0, 0, 0.3);
+					@include flex(row);
+					justify-content: center;
+					align-items: center;
+				}
+			}
+		}
+	}
 </style>

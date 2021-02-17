@@ -319,6 +319,7 @@ function timeFrom(timestamp = null, format = 'yyyy-mm-dd') {
  * 去除空格
  */
 function trim(str, pos = 'both') {
+	str = String(str)
 	if (pos == 'both') {
 		return str.replace(/^\s+|\s+$/g, '');
 	} else if (pos == 'left') {

@@ -609,7 +609,7 @@
 		methods: {
 			selectIcon(name) {
 				// #ifdef H5
-				return this.$u.toast('H5暂不支持复制');
+				return uni.$u.toast('H5暂不支持复制');
 				// #endif
 				uni.setClipboardData({
 					data: name,
@@ -618,7 +618,7 @@
 					}
 				});
 				uni.hideToast()
-				this.$u.toast('图标名称已复制');
+				uni.$u.toast('图标名称已复制');
 			}
 		}
 	}

@@ -6,6 +6,7 @@
 		<view
 		    v-for="(group, i) in abc ? engKeyBoardList : areaList"
 		    class="u-keyboard__button"
+			:index="i"
 		    :class="[i + 1 === 4 && 'u-keyboard__button--center']"
 		>
 			<view

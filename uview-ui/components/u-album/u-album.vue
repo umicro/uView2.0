@@ -5,6 +5,7 @@
 		    ref="u-album__row"
 		    v-for="(arr, index) in showUrls"
 			:forComputedUse="albumWidth"
+			:key="index"
 		>
 			<view
 			    class="u-album__row__wrapper"

@@ -1,0 +1,15 @@
+<template>
+	<view class="u-page">
+		<u-avatar text="张"  shape="square" src="https://img2.woyaogexing.com/2019/08/12/29d2212eb83f46a58c96737287ce10ee!60X60.jpeg"></u-avatar>
+	</view>
+</template>
+
+<script>
+	export default {
+		
+	}
+</script>
+
+<style lang="scss">
+	
+</style>

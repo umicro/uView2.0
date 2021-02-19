@@ -360,7 +360,7 @@ export default [{
 			title: 'MessageInput 验证码输入',
 			title_en: 'MessageInput',
 		}, {
-			path: '/pages/componentsA/avatarCropper/avatarCropper',
+			path: '/pages/componentsC/avatarCropper/avatarCropper',
 			icon: 'avatarCropper',
 			title: 'AvatarCropper 头像裁剪',
 			title_en: 'AvatarCropper',

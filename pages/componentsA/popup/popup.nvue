@@ -168,9 +168,7 @@
 	.u-popup-slot {
 		width: 200px;
 		height: 150px;
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
+		@include flex;
 		justify-content: center;
 		align-items: center;
 	}

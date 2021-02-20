@@ -109,10 +109,7 @@
 
 <style lang="scss">
 	.u-skeleton-slot {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
+		@include flex;
 		
 		&__image {
 			width: 40px;

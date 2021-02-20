@@ -1,11 +1,12 @@
 .u-view {
-		padding: 40px 20px 0px 20px;
-		&__title {
-			font-size: 14px;
-			color: rgb(143, 156, 162);
-			margin-bottom: 10px;
-		}
+	padding: 40px 20px 0px 20px;
+	&__title {
+		font-size: 14px;
+		color: rgb(143, 156, 162);
+		margin-bottom: 10px;
 	}
+}
+
 .u-block{
 	padding: 14px;
 	&__section{
@@ -23,6 +24,7 @@
 		/* #endif */
 	}
 }
+
 // 使用了cell组件的icon图片样式
 .u-cell-icon {
 	width: 36rpx;
@@ -53,3 +55,4 @@
 		margin-bottom: 8px;
 	}
 }
+

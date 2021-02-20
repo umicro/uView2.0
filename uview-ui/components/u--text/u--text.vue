@@ -68,7 +68,9 @@
 </template>
 
 <script>
-	import value from './value.js';
+	import value from './value.js'
+	import button from '../../libs/mixin/button.js'
+	import openType from '../../libs/mixin/openType.js'
 	export default {
 		name: 'u--text',
 		// #ifdef MP

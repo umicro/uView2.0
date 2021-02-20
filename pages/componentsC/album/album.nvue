@@ -52,9 +52,7 @@
 						    margin="0 0 8px 0"
 						    text="全面的组件和便捷的工具会让您信手拈来，如鱼得水"
 						></u--text>
-						<u-album
-						    :urls="urls2"
-						></u-album>
+						<u-album :urls="urls2"></u-album>
 					</view>
 				</view>
 			</view>
@@ -83,15 +81,15 @@
 						}">
 							<u--text
 							    text="全面的组件和便捷的工具会让您信手拈来，如鱼得水"
-								:customStyle="{
+							    :customStyle="{
 									width: albumWidth + 'px'
 								}"
 							></u--text>
 						</view>
 						<u-album
 						    :urls="urls2"
-							@albumWidth="width => albumWidth = width"
-							multipleSize="68"
+						    @albumWidth="width => albumWidth = width"
+						    multipleSize="68"
 						></u-album>
 					</view>
 				</view>
@@ -121,9 +119,9 @@
 						></u--text>
 						<u-album
 						    :urls="urls3"
-							rowCount="2"
-							maxCount="4"
-							multipleMode="scaleToFill"
+						    rowCount="2"
+						    maxCount="4"
+						    multipleMode="scaleToFill"
 						></u-album>
 					</view>
 				</view>
@@ -153,9 +151,9 @@
 						></u--text>
 						<u-album
 						    :urls="urls4"
-							rowCount="2"
-							maxCount="4"
-							multipleSize="50"
+						    rowCount="2"
+						    maxCount="4"
+						    multipleSize="50"
 						></u-album>
 					</view>
 				</view>
@@ -170,31 +168,31 @@
 			return {
 				albumWidth: 0,
 				urls1: [{
-					src: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1775297416,2292225493&fm=26&gp=0.jpg',
+					src: 'https://cdn.uviewui.com/uview/album/1.jpg',
 				}],
 				urls2: [
-					'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1775297416,2292225493&fm=26&gp=0.jpg',
-					'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2765458868,1811414377&fm=26&gp=0.jpg',
-					'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1261991547,3720438314&fm=26&gp=0.jpg',
-					'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=310660914,2361219137&fm=26&gp=0.jpg',
-					'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1369511624,462595697&fm=26&gp=0.jpg',
-					'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1708760552,1570400588&fm=26&gp=0.jpg',
-					'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3442064463,2328421976&fm=26&gp=0.jpg',
-					'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3880478576,1199725881&fm=26&gp=0.jpg',
-					'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1168494977,515846610&fm=26&gp=0.jpg',
-					'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1713880305,3235382689&fm=26&gp=0.jpg',
+					'https://cdn.uviewui.com/uview/album/1.jpg',
+					'https://cdn.uviewui.com/uview/album/2.jpg',
+					'https://cdn.uviewui.com/uview/album/3.jpg',
+					'https://cdn.uviewui.com/uview/album/4.jpg',
+					'https://cdn.uviewui.com/uview/album/5.jpg',
+					'https://cdn.uviewui.com/uview/album/6.jpg',
+					'https://cdn.uviewui.com/uview/album/7.jpg',
+					'https://cdn.uviewui.com/uview/album/8.jpg',
+					'https://cdn.uviewui.com/uview/album/9.jpg',
+					'https://cdn.uviewui.com/uview/album/10.jpg',
 				],
 				urls3: [
-					'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3442064463,2328421976&fm=26&gp=0.jpg',
-					'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3880478576,1199725881&fm=26&gp=0.jpg',
-					'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1168494977,515846610&fm=26&gp=0.jpg',
-					'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1713880305,3235382689&fm=26&gp=0.jpg',
+					'https://cdn.uviewui.com/uview/album/5.jpg',
+					'https://cdn.uviewui.com/uview/album/6.jpg',
+					'https://cdn.uviewui.com/uview/album/7.jpg',
+					'https://cdn.uviewui.com/uview/album/8.jpg',
 				],
 				urls4: [
-					'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1261991547,3720438314&fm=26&gp=0.jpg',
-					'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=310660914,2361219137&fm=26&gp=0.jpg',
-					'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1369511624,462595697&fm=26&gp=0.jpg',
-					'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1708760552,1570400588&fm=26&gp=0.jpg',
+					'https://cdn.uviewui.com/uview/album/7.jpg',
+					'https://cdn.uviewui.com/uview/album/8.jpg',
+					'https://cdn.uviewui.com/uview/album/9.jpg',
+					'https://cdn.uviewui.com/uview/album/10.jpg',
 				]
 			}
 		}
@@ -203,10 +201,7 @@
 
 <style lang="scss">
 	.album {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
+		@include flex;
 		align-items: flex-start;
 
 		&__avatar {

@@ -73,7 +73,7 @@
 	.u-button {
 		margin-top: 50rpx;
 		margin-bottom: 50rpx;
-		display: flex;
+		@include flex;
 		justify-content: center;
 		align-items: center;
 		height: 80rpx;
@@ -88,7 +88,7 @@
 	}
 	
 	.u-demo-result-line {
-		display: flex;
+		@include flex;
 		justify-content: center;
 	}
 </style>

@@ -231,7 +231,6 @@
 			// 点击遮罩
 			overlayClick() {
 				if (this.closeOnClickOverly) {
-					console.log('close');
 					this.$emit('close')
 				}
 			},

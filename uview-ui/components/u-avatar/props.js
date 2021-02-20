@@ -49,6 +49,25 @@ export  default {
 		mpAvatar: {
 			type: Boolean,
 			default: false
+		},
+		// 是否使用随机背景色
+		randomBgColor: {
+			type: Boolean,
+			default: false
+		},
+		// 加载失败的默认头像(组件有内置默认图片)
+		defaultUrl: {
+			type: String,
+			default: ''
+		},
+		// 如果配置了randomBgColor为true，且配置了此值，则从默认的背景色数组中取出对应索引的颜色值，取值0-19之间
+		colorIndex: {
+			type: [Number, String],
+			// 校验参数规则，索引在0-19之间
+			validator(n) {
+				return uni.$u.test.range(n, [0, 19]) || n === ''
+			},
+			default: ''
 		}
 	}
 } 

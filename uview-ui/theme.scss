@@ -16,14 +16,10 @@ $u-success: #5ac725;
 $u-error: #f56c6c;
 $u-info: #909399;
 
-$u-form-item-height: 70rpx;
-$u-form-item-border-color: #dcdfe6;
-
-
-/* #ifndef APP-NVUE */
-// nvue中，:export无效
-:export {
-	
+// scss混入，为了少写几行#ifndef
+@mixin flex($direction: row) {
+	/* #ifndef APP-NVUE */
+	display: flex;
+	/* #endif */
+	flex-direction: $direction;
 }
-/* #endif */
-

@@ -157,10 +157,7 @@
 	}
 
 	.time {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
+		@include flex;
 		align-items: center;
 
 		&__custom {
@@ -209,9 +206,7 @@
 		&__grid-item {
 			width: 70px;
 			height: 70px;
-			/* #ifndef APP-NVUE */
-			display: flex;
-			/* #endif */
+			@include flex;
 			justify-content: center;
 			align-items: center;
 

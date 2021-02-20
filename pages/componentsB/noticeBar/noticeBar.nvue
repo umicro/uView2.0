@@ -94,8 +94,6 @@
 
 <style lang="scss">
 	.u-demo-block__content {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
+		@include flex;
 	}
 </style>

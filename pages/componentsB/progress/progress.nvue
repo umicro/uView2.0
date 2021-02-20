@@ -153,9 +153,7 @@
 		border-radius: 100px;
 		border-color: #dbfbdb;
 		border-width: 2px;
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
+		@include flex;
 
 		&__circle {
 			width: 50px;

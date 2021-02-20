@@ -20,17 +20,13 @@
 <style lang="scss">
 	.u-content {
 		padding: 150px 60px 0;
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
+		@include flex(column);
 		align-items: center;
 		justify-content: center;
 	
 		&__circle {
 			background-color: $u-success;
-			/* #ifndef APP-NVUE */
-			display: flex;
-			/* #endif */
+			@include flex;
 			border-radius: 100px;
 			width: 60px;
 			height: 60px;

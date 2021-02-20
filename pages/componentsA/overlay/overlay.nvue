@@ -83,9 +83,7 @@
 	}
 	
 	.overlay-wrap {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
+		@include flex;
 		justify-content: center;
 		align-items: center;
 		flex: 1;

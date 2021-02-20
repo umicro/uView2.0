@@ -1,7 +1,7 @@
 <template>
 	<view
 	    class="u-steps"
-	    :class="`u-steps--${direction}`"
+	    :class="[`u-steps--${direction}`]"
 	>
 		<slot></slot>
 	</view>

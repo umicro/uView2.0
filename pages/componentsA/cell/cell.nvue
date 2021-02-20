@@ -176,9 +176,7 @@
 	}
 
 	.u-slot-title {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
+		@include flex;
 		flex-direction: row;
 		align-items: center;
 	}

@@ -370,7 +370,7 @@ export default [{
 			title: 'Loadmore 加载更多',
 			title_en: 'Loadmore',
 		}, {
-			path: '/pages/componentsB/readMore/readMore',
+			path: '/pages/componentsC/readMore/readMore',
 			icon: 'readMore',
 			title: 'ReadMore 展开阅读更多',
 			title_en: 'ReadMore',
@@ -385,7 +385,7 @@ export default [{
 			title: 'Gap 间隔槽',
 			title_en: 'Gap',
 		}, {
-			path: '/pages/componentsA/avatar/avatar',
+			path: '/pages/componentsC/avatar/avatar',
 			icon: 'avatar',
 			title: 'Avatar 头像',
 			title_en: 'Avatar',

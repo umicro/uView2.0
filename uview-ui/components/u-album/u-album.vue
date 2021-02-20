@@ -23,7 +23,7 @@
 					}"
 				></image>
 				<view
-				    v-if="urls.length > rowCount * showUrls.length && index === showUrls.length - 1 && index1 === showUrls[showUrls.length - 1].length - 1"
+				    v-if="showMore && urls.length > rowCount * showUrls.length && index === showUrls.length - 1 && index1 === showUrls[showUrls.length - 1].length - 1"
 				    class="u-album__row__wrapper__text"
 				>
 					<u--text
@@ -99,11 +99,12 @@
 					// 限制最大展示数量
 					if(index + 1 <= this.maxCount) {
 						// 计算该元素为第几个素组内
-						const page = Math.floor(index / this.rowCount)
-						if (!arr[page]) { // 判断是否存在
-							arr[page] = []
+						const itemIndex = Math.floor(index / this.rowCount)
+						// 判断对应的索引是否存在
+						if (!arr[itemIndex]) { 
+							arr[itemIndex] = []
 						}
-						arr[page].push(item)
+						arr[itemIndex].push(item)
 					}
 				})
 				return arr
@@ -115,8 +116,7 @@
 				return this.urls.length === 1 ? this.singleHeight : this.multipleSize
 			},
 			// 此变量无实际用途，仅仅是为了利用computed特性，让其在urls长度等变化时，重新计算图片的宽度
-			// 因为用户在某些特殊的情况下，需要让文字与相册的宽度相等，所以这里提供一个变量让用户通过refs获取
-			// 另外也通过事件的形式对外发送，推荐使用接收事件的形式，因为refs获取的形式可能时机不同而结果不同
+			// 因为用户在某些特殊的情况下，需要让文字与相册的宽度相等，所以这里事件的形式对外发送
 			albumWidth() {
 				let width = 0
 				if(this.urls.length === 1) {
@@ -125,7 +125,6 @@
 					width = this.showUrls[0].length * this.multipleSize + this.space * (this.showUrls[0].length - 1)
 				}
 				this.$emit('albumWidth', width)
-				this.width = width
 				return width
 			}
 		},
@@ -142,7 +141,7 @@
 			},
 			// 获取图片的路径
 			getSrc(item) {
-				return uni.$u.test.object(item) ? this.keys && item[this.keys] || item.url : item
+				return uni.$u.test.object(item) ? this.keyName && item[this.keyName] || item.url : item
 			},
 			// 单图时，获取图片的尺寸
 			// 在小程序中，需要将网络图片的的域名添加到小程序的download域名才可能获取尺寸

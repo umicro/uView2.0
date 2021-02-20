@@ -6,7 +6,7 @@ export default {
 			default: ''
 		},
 		// 指定从数组的对象元素中读取哪个属性作为图片地址
-		keys: {
+		keyName: {
 			type: String,
 			default: ''
 		},
@@ -49,6 +49,11 @@ export default {
 		rowCount: {
 			type: [String, Number],
 			default: 3
+		},
+		// 超出maxCount时是否显示查看更多的提示
+		showMore: {
+			type: Boolean,
+			default: true
 		},
 	}
 }

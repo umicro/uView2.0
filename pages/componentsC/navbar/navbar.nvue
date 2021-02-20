@@ -99,10 +99,7 @@
 	}
 
 	.u-nav-slot {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
+		@include flex;
 		align-items: center;
 		justify-content: space-between;
 		border-width: 0.5px;

@@ -322,7 +322,7 @@ export default {
 
 	// line组件
 	line: {
-		color: '#e1e2e4',
+		color: '#d6d7d9',
 		length: '100%',
 		direction: 'row',
 		hairline: true,

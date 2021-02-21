@@ -189,7 +189,7 @@
 			async checkSupportCssSticky() {
 				// #ifdef H5
 				// H5，一般都是现代浏览器，是支持css sticky的，这里使用创建元素嗅探的形式判断
-				if(this.checkCssStickyForH5()) {
+				if (this.checkCssStickyForH5()) {
 					this.cssSticky = true
 				}
 				// #endif
@@ -255,7 +255,7 @@
 	.u-sticky {
 		/* #ifdef APP-VUE || MP-WEIXIN */
 		// 此处默认写sticky属性，是为了给微信和APP通过uni.createSelectorQuery查询是否支持css sticky使用
-		position: sticky
-			/* #endif */
+		position: sticky;
+		/* #endif */
 	}
 </style>

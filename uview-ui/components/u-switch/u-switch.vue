@@ -178,7 +178,7 @@
 		background-color: #fff;
 		border-width: 1px;
 		border-radius: 100px;
-		transition: background-color 0.3s;
+		transition: background-color 0.4s;
 		border-color: rgba(0, 0, 0, 0.12);
 		border-style: solid;
 		justify-content: flex-end;
@@ -196,7 +196,7 @@
 			border-radius: 100px;
 			box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.25);
 			transition-property: transform;
-			transition-duration: 0.3s;
+			transition-duration: 0.4s;
 			transition-timing-function: cubic-bezier(0.3, 1.05, 0.4, 1.05);
 		}
 
@@ -205,7 +205,7 @@
 			border-radius: 100px;
 			background-color: #FFFFFF;
 			transition-property: transform;
-			transition-duration: 0.3s;
+			transition-duration: 0.4s;
 			border-top-left-radius: 0;
 			border-bottom-left-radius: 0;
 			transition-timing-function: ease;

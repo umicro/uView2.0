@@ -17,6 +17,7 @@
 			    @tap.stop="noop"
 				:class="[round && `u-popup__content--round-${mode}`]"
 			>
+				<u-status-bar v-if="safeAreaInsetTop"></u-status-bar>
 				<slot></slot>
 				<view
 				    v-if="closeable"
@@ -28,8 +29,10 @@
 					    name="close"
 					    color="#909399"
 					    size="18"
+						bold
 					></u-icon>
 				</view>
+				<u-safe-bottom v-if="safeAreaInsetBottom"></u-safe-bottom>
 			</view>
 		</u-transition>
 	</view>
@@ -175,15 +178,6 @@
 				const {
 					safeAreaInsets
 				} = uni.$u.sys()
-				if (this.safeAreaInsetTop & this.mode !== 'bottom') {
-					// 通过加入pandding-top避开安全局
-					style.paddingTop = uni.$u.addUnit(safeAreaInsets.top)
-				}
-				// 顶部弹出时，是不需要底部安全区的，因为它没有触及屏幕底部
-				// 底部弹出时，也是不需要顶部安全局内边距的
-				if (this.safeAreaInsetBottom & this.mode !== 'top') {
-					style.paddingBottom = uni.$u.addUnit(safeAreaInsets.bottom)
-				}
 				if (this.mode !== 'center') {
 					style.flex = 1
 				}

@@ -147,6 +147,5 @@
 	:host {
 		flex: 1
 	}
-
 	/* #endif */
 </style>

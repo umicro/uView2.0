@@ -1,20 +1,26 @@
 <template>
 	<view class="u-page">
-		<u-cell
-		    :titleStyle="{fontWeight: 500}"
-		    @click="openLoadingPage(index)"
-		    :title="item.title"
-		    v-for="(item, index) in list"
-		    :key="index"
-		    isLink
-		>
-			<image
-			    slot="icon"
-			    class="u-cell-icon"
-			    :src="item.iconUrl"
-			    mode="widthFix"
-			></image>
-		</u-cell>
+		<u-gap
+		    bgColor="#fff"
+		    height="30"
+		></u-gap>
+		<u-cell-group>
+			<u-cell
+			    :titleStyle="{fontWeight: 500}"
+			    @click="openLoadingPage(index)"
+			    :title="item.title"
+			    v-for="(item, index) in list"
+			    :key="index"
+			    isLink
+			>
+				<image
+				    slot="icon"
+				    class="u-cell-icon"
+				    :src="item.iconUrl"
+				    mode="widthFix"
+				></image>
+			</u-cell>
+		</u-cell-group>
 		<u-loading-page
 		    :loadingText="loadingPageData.loadingText"
 		    :image="loadingPageData.image"
@@ -58,7 +64,7 @@
 					{
 						title: '自定义背景色',
 						iconUrl: '/static/common/image/loading-page/customBgColor.png',
-						
+
 					},
 				]
 			}
@@ -82,27 +88,27 @@
 					this.loadingPageData.loadingMode = 'semicircle'
 					this.loadingPageData.loadingText = "Hello uView"
 					this.loadingPageData.color = '#C8C8C8',
-					this.loadingPageData.loadingColor = '#C8C8C8'
+						this.loadingPageData.loadingColor = '#C8C8C8'
 				} else if (indexNum == 1) {
 					// 自定义图片
 					this.loadingPageData.image =
 						"/static/uview/common/logo.png"
 					this.loadingPageData.loadingText = "uView UI"
 					this.loadingPageData.color = '#C8C8C8',
-					this.loadingPageData.loadingColor = '#C8C8C8'
+						this.loadingPageData.loadingColor = '#C8C8C8'
 				} else if (indexNum == 2) {
 					// 自定义加载动画模式
 					this.loadingPageData.loadingMode = 'circle'
 					this.loadingPageData.loadingText = "uView UI"
 					this.loadingPageData.color = '#C8C8C8',
-					this.loadingPageData.loadingColor = '#C8C8C8'
+						this.loadingPageData.loadingColor = '#C8C8C8'
 				} else if (indexNum == 3) {
 					// 自定义背景色
 					this.loadingPageData.loadingMode = 'spinner'
 					this.loadingPageData.bgColor = 'rgba(0, 0, 0, 0.3)'
 					this.loadingPageData.loadingText = "uView UI"
 					this.loadingPageData.color = '#eee',
-					this.loadingPageData.loadingColor = '#ddd'
+						this.loadingPageData.loadingColor = '#ddd'
 				}
 				this.loading = true
 				setTimeout(() => {

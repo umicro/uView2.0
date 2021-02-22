@@ -163,7 +163,8 @@
 				})
 			},
 			// 获取评分组件盒子的布局信息
-			getRateItemRect() {
+			async getRateItemRect() {
+				await uni.$u.sleep()
 				// uView封装的获取节点的方法，详见文档
 				// #ifndef APP-NVUE
 				this.$uGetRect('#' + this.elId).then(res => {

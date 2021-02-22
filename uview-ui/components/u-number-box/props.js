@@ -99,6 +99,11 @@ export default {
 		disableMinus: {
 			type: Boolean,
 			default: uni.$u.props.numberBox.disableMinus
+		},
+		// 加减按钮图标的样式
+		iconStyle: {
+			type: [Object, String],
+			default: uni.$u.props.numberBox.iconStyle
 		}
 	}
 }

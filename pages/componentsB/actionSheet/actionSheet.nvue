@@ -49,7 +49,8 @@
 		<u-action-sheet
 		    :show="show4"
 		    @close="show4 = false"
-		    title="标题位置"
+			title="标题位置"
+			round
 		>
 			<u--text
 			    type="content"
@@ -60,19 +61,8 @@
 		<u-action-sheet
 		    :show="show5"
 		    @close="show5 = false"
-		    title="标题位置"
-		>
-			<u--text
-			    type="content"
-			    text="这是一段通过slot传入的内容,您可以在此自定义操作面板"
-			    margin="10px 20px 30px 20px"
-			></u--text>
-		</u-action-sheet>
-		<u-action-sheet
-		    :show="show6"
-		    @close="show6 = false"
 		    title="微信开放能力"
-			:actions="actions6"
+			:actions="actions5"
 			@getuserinfo="getuserinfo"
 		></u-action-sheet>
 	</view>
@@ -87,7 +77,6 @@
 				show3: false,
 				show4: false,
 				show5: false,
-				show6: false,
 				actions0: [{
 						name: '选项1',
 					},
@@ -130,7 +119,7 @@
 						name: '选项3',
 					},
 				],
-				actions6: [{
+				actions5: [{
 					name: '获取用户信息',
 					openType: 'getUserInfo',
 					color: uni.$u.color['success']
@@ -153,7 +142,7 @@
 						iconUrl: '/static/common/image/actionSheet/closeSheet.png'
 					},
 					{
-						title: '显示标题',
+						title: '显示标题(显示圆角)',
 						iconUrl: '/static/common/image/actionSheet/closeSheet.png'
 					},
 					{

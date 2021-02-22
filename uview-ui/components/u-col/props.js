@@ -15,10 +15,10 @@ export default {
 			type: String,
 			default: 'start'
 		},
-		// 垂直对齐方式，可选值为top、center、bottom
+		// 垂直对齐方式，可选值为top、center、bottom、stretch
 		align: {
 			type: String,
-			default: 'center'
+			default: 'stretch'
 		},
 		// 文字对齐方式
 		textAlign: {

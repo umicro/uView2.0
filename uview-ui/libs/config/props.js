@@ -403,7 +403,8 @@ export default {
 		closeOnClickAction: true,
 		safeAreaInsetBottom: true,
 		openType: '',
-		closeOnClickOverly: true
+		closeOnClickOverly: true,
+		round: false
 	},
 
 	// toast组件
@@ -560,7 +561,8 @@ export default {
 		bgColor: '#EBECEE',
 		cursorSpacing: 100,
 		disablePlus: false,
-		disableMinus: false
+		disableMinus: false,
+		iconStyle: ''
 	},
 	
 	// 徽标数组件

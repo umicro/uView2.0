@@ -1,10 +1,11 @@
 <template>
 	<view
 	    class="u-row"
-	    :style="{
+		ref="u-row"
+	    :style="[{
 			alignItems: uAlignItem,
 			justifyContent: uJustify
-		}"
+		}, $u.addStyle(customStyle)]"
 	    @tap="clickHandler"
 	>
 		<slot />
@@ -12,6 +13,9 @@
 </template>
 
 <script>
+	// #ifdef APP-NVUE
+	const dom = uni.requireNativePlugin('dom')
+	// #endif
 	import props from './props.js'
 	export default {
 		name: "u-row",
@@ -36,11 +40,33 @@
 		methods: {
 			clickHandler(e) {
 				this.$emit('click')
-			}
+			},
+			async getComponentWidth() {
+				// 延时一定时间，以确保节点渲染完成
+				await uni.$u.sleep()
+				return new Promise(resolve => {
+					// uView封装的获取节点的方法，详见文档
+					// #ifndef APP-NVUE
+					this.$uGetRect('.u-row').then(res => {
+						resolve(res.width)
+					})
+					// #endif
+					// #ifdef APP-NVUE
+					// nvue的dom模块用于获取节点
+					dom.getComponentRect(this.$refs['u-row'], (res) => {
+						resolve(res.size.width)
+					})
+					// #endif
+				})
+			},
 		}
 	}
 </script>
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
+	
+	.u-row {
+		@include flex;
+	}
 </style>

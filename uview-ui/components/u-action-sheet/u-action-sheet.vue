@@ -5,6 +5,7 @@
 	    @close="close"
 	    :closeOnClickOverly="closeOnClickOverly"
 	    :safeAreaInsetBottom="safeAreaInsetBottom"
+	    :round="round"
 	>
 		<view class="u-action-sheet">
 			<view
@@ -18,8 +19,9 @@
 				>
 					<u-icon
 					    name="close"
-					    size="14"
+					    size="17"
 					    color="#c8c9cc"
+					    bold
 					></u-icon>
 				</view>
 			</view>
@@ -74,7 +76,7 @@
 								    v-else
 								    custom-class="van-action-sheet__loading"
 								    size="18"
-									mode="circle"
+								    mode="circle"
 								/>
 							</view>
 							<!-- #ifdef MP -->
@@ -85,9 +87,9 @@
 				</view>
 			</slot>
 			<u-gap
-			    bgColor="rgb(234, 234, 236)"
+			    bgColor="#eaeaec"
 			    height="6"
-				v-if="cancelText"
+			    v-if="cancelText"
 			></u-gap>
 			<view hover-class="u-action-sheet--hover">
 				<text
@@ -189,6 +191,11 @@
 			closeOnClickOverly: {
 				type: Boolean,
 				default: uni.$u.props.actionSheet.closeOnClickOverly
+			},
+			// 是否显示圆角
+			round: {
+				type: Boolean,
+				default: uni.$u.props.actionSheet.round
 			}
 		},
 		// 一些props参数和methods方法，通过mixin混入，因为其他文件也会用到

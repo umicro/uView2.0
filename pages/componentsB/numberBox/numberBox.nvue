@@ -129,17 +129,20 @@
 				    :buttonSize="buttonSize"
 				    :bgColor="bgColor"
 				    @change="change"
+					iconStyle="color: #fff"
 				>
 				</u-number-box>
 			</u-cell>
 			<u-cell
 			    :border="true"
-			    title="自定义"
+			    title="自定义(为0时减少按钮会消失)"
 			>
 				<u-number-box
 				    slot="right-icon"
 					v-model="value11"
 					step="1"
+					:min="0"
+					:showMinus="value11 > 0"
 				>
 					<view slot="minus" class="minus">
 						<u-icon name="minus" size="12"></u-icon>

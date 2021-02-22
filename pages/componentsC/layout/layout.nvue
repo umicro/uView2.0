@@ -37,16 +37,12 @@
 
 <style lang="scss">
 	.wrap {
-		padding: 24rpx;
-	}
-
-	.u-row {
-		margin: 40rpx 0;
+		padding: 12px;
 	}
 
 	.demo-layout {
-		height: 80rpx;
-		border-radius: 8rpx;
+		height: 25px;
+		border-radius: 4px;
 	}
 
 	.bg-purple {

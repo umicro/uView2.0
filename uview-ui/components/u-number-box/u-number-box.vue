@@ -5,12 +5,12 @@
 		    @tap.stop="clickHandler('minus')"
 		    @touchstart.stop="onTouchStart('minus')"
 		    @touchend.stop="clearTimeout"
-		    v-if="$slots.minus"
+		    v-if="showMinus && $slots.minus"
 		>
 			<slot name="minus" />
 		</view>
 		<view
-		    v-else
+		    v-else-if="showMinus"
 		    class="u-number-box__minus"
 		    @tap.stop="clickHandler('minus')"
 		    @touchstart.stop="onTouchStart('minus')"
@@ -25,6 +25,7 @@
 			    :color="isDisabled('minus') ? '#c8c9cc' : '#323233'"
 			    size="15"
 			    bold
+				:customStyle="iconStyle"
 			></u-icon>
 		</view>
 
@@ -47,12 +48,12 @@
 		    @tap.stop="clickHandler('plus')"
 		    @touchstart.stop="onTouchStart('plus')"
 		    @touchend.stop="clearTimeout"
-		    v-if="$slots.plus"
+		    v-if="showPlus && $slots.plus"
 		>
 			<slot name="plus" />
 		</view>
 		<view
-		    v-else
+		    v-else-if="showPlus"
 		    class="u-number-box__plus"
 		    @tap.stop="clickHandler('plus')"
 		    @touchstart.stop="onTouchStart('plus')"
@@ -67,6 +68,7 @@
 			    :color="isDisabled('plus') ? '#c8c9cc' : '#323233'"
 			    size="15"
 			    bold
+				:customStyle="iconStyle"
 			></u-icon>
 		</view>
 	</view>
@@ -336,15 +338,15 @@
 
 <style lang="scss">
 	@import '../../libs/css/components.scss';
-	
+
 	$u-numberBox-hover-bgColor: #E6E6E6 !default;
 	$u-numberBox-disabled-color: #c8c9cc !default;
 	$u-numberBox-disabled-bgColor: #f7f8fa !default;
 	$u-numberBox-plus-radius: 4px !default;
 	$u-numberBox-minus-radius: 4px !default;
-	$u-numberBox-input-text-align: center  !default;
+	$u-numberBox-input-text-align: center !default;
 	$u-numberBox-input-font-size: 15px !default;
-	$u-numberBox-input-padding: 0  !default;
+	$u-numberBox-input-padding: 0 !default;
 	$u-numberBox-input-margin: 0 2px !default;
 	$u-numberBox-input-disabled-color: #c8c9cc !default;
 	$u-numberBox-input-disabled-bgColor: #f2f3f5 !default;
@@ -352,7 +354,7 @@
 	.u-number-box {
 		@include flex(row);
 		align-items: center;
-		
+
 		&__slot {
 			/* #ifndef APP-NVUE */
 			touch-action: none;

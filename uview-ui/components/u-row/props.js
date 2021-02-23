@@ -3,7 +3,7 @@ export default {
 		// 给col添加间距，左右边距各占一半
 		gutter: {
 			type: [String, Number],
-			default: 20
+			default: 0
 		},
 		// 水平排列方式，可选值为`start`(或`flex-start`)、`end`(或`flex-end`)、`center`、`around`(或`space-around`)、`between`(或`space-between`)
 		justify: {

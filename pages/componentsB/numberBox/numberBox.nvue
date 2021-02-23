@@ -129,7 +129,7 @@
 				    :buttonSize="buttonSize"
 				    :bgColor="bgColor"
 				    @change="change"
-					iconStyle="color: #fff"
+				    iconStyle="color: #fff"
 				>
 				</u-number-box>
 			</u-cell>
@@ -139,17 +139,34 @@
 			>
 				<u-number-box
 				    slot="right-icon"
-					v-model="value11"
-					step="1"
-					:min="0"
-					:showMinus="value11 > 0"
+				    v-model="value11"
+				    step="1"
+				    :min="0"
+				    :showMinus="value11 > 0"
 				>
-					<view slot="minus" class="minus">
-						<u-icon name="minus" size="12"></u-icon>
+					<view
+					    slot="minus"
+					    class="minus"
+					>
+						<u-icon
+						    name="minus"
+						    size="12"
+						></u-icon>
 					</view>
-					<view slot="input" class="input">{{value11}}</view>
-					<view slot="plus" class="plus">
-						<u-icon name="plus" color="#FFFFFF" size="12"></u-icon>
+					<text
+					    slot="input"
+					    style="width: 40px;text-align: center;"
+					    class="input"
+					>{{value11}}</text>
+					<view
+					    slot="plus"
+					    class="plus"
+					>
+						<u-icon
+						    name="plus"
+						    color="#FFFFFF"
+						    size="12"
+						></u-icon>
 					</view>
 				</u-number-box>
 			</u-cell>
@@ -199,7 +216,7 @@
 </script>
 
 <style lang="scss">
-	.minus{
+	.minus {
 		width: 22px;
 		height: 22px;
 		border-width: 1px;
@@ -212,12 +229,12 @@
 		justify-content: center;
 		align-items: center;
 	}
-	
-	.input{
+
+	.input {
 		padding: 0 10px;
 	}
-	
-	.plus{
+
+	.plus {
 		width: 22px;
 		height: 22px;
 		background-color: #FF0000;

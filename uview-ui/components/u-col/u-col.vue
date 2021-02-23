@@ -49,13 +49,15 @@
 					// #ifndef APP-NVUE
 					// 在非nvue上，使用百分比形式
 					flex: `0 0 ${100 / this.gridNum * this.span}%`,
+					marginLeft: 100 / 12 * this.offset + '%',
 					// #endif
 					// #ifdef APP-NVUE
 					// 在nvue上，由于无法使用百分比单位，这里需要获取父组件的宽度，再计算得出该有对应的百分比尺寸
 					width: uni.$u.addUnit(Math.floor(this.width / this.gridNum * Number(this.span))),
+					marginLeft: uni.$u.addUnit(Math.floor(this.width / this.gridNum * Number(this.offset))),
 					// #endif
 				}
-				return uni.$u.deepMerge(style, this.customStyle)
+				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			}
 		},
 		mounted() {

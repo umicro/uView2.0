@@ -164,7 +164,7 @@
 			// 获取组件的宽度
 			async getComponentWidth() {
 				// 延时一定时间，以获取dom尺寸
-				await uni.$u.sleep(20)
+				await uni.$u.sleep(30)
 				// #ifndef APP-NVUE
 				this.$uGetRect('.u-album__row').then(size => {
 					this.singleWidth = size.width * this.singlePercent
@@ -172,7 +172,8 @@
 				// #endif
 
 				// #ifdef APP-NVUE
-				const ref = this.$refs['u-album__row']
+				// 这里ref="u-album__row"所在的标签为通过for循环出来，导致this.$refs['u-album__row']是一个数组
+				const ref = this.$refs['u-album__row'][0]
 				ref && dom.getComponentRect(ref, (res) => {
 					this.singleWidth = res.size.width * this.singlePercent
 				})

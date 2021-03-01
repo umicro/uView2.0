@@ -7,7 +7,7 @@
 		"current": 0, //当前激活的模式(list 的索引项)
 		"list": [{
 			"name": "test", //模式名称
-			"path": "pages/componentsC/layout/layout", //启动页面，必选
+			"path": "pages/componentsC/indexList/indexList", //启动页面，必选
 			"query": "" //启动参数，在页面的onLoad函数里面得到
 		}]
 	},
@@ -341,6 +341,11 @@
 			"path": "layout/layout",
 			"style": {
 				"navigationBarTitleText": "布局"
+			}
+		}, {
+			"path": "indexList/indexList",
+			"style": {
+				"navigationBarTitleText": "索引列表"
 			}
 		}]
 	}],

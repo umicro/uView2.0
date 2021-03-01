@@ -24,7 +24,7 @@ export default [{
 			title_en: 'Button',
 		}, {
 			path: '/pages/componentsC/text/text',
-			icon: 'layout',
+			icon: 'text',
 			title: 'Text 文本',
 			title_en: 'Text',
 		}, {
@@ -137,6 +137,11 @@ export default [{
 			icon: 'slider',
 			title: 'Slider 滑动选择器',
 			title_en: 'Slider',
+		}, {
+			path: '/pages/componentsC/album/album',
+			icon: 'album',
+			title: 'Album 相册',
+			title_en: 'Album',
 		}]
 	}, {
 		groupName: '数据组件',
@@ -326,7 +331,7 @@ export default [{
 			title: 'Subsection 分段器',
 			title_en: 'Subsection',
 		}, {
-			path: '/pages/componentsA/indexList/indexList',
+			path: '/pages/componentsC/indexList/indexList',
 			icon: 'indexList',
 			title: 'IndexList 索引列表',
 			title_en: 'IndexList',

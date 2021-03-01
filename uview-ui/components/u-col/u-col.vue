@@ -16,6 +16,12 @@
 	import props from './props.js'
 	export default {
 		name: 'u-row',
+		// #ifdef MP-WEIXIN
+		// 将自定义节点设置成虚拟的，更加接近Vue组件的表现，能更好的使用flex属性
+		options: {
+			virtualHost: true 
+		},
+		// #endif
 		mixins: [uni.$u.mixin, props],
 		data() {
 			return {
@@ -84,14 +90,10 @@
 
 	.u-col {
 		padding: 0;
+		/* #ifdef MP */
+		display: block;
+		/* #endif */
 	}
-
-	/* #ifdef MP */
-	// 由于小程序都使用shadow DOM形式实现，需要给影子宿主设置flex: 1才能让其撑开
-	:host {
-		flex: 1
-	}
-	/* #endif */
 
 	// nvue下百分比无效
 	/* #ifndef APP-NVUE */

@@ -112,6 +112,36 @@
 				</u-row>
 			</view>
 		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">对齐方式</text>
+			<view class="u-demo-block__content">
+				<u-row
+				    justify="space-between"
+					customStyle="margin-bottom: 10px"
+				>
+					<u-col
+					    span="3"
+					>
+						<view class="demo-layout bg-purple-light"></view>
+					</u-col>
+					<u-col
+					    span="3"
+					>
+						<view class="demo-layout bg-purple"></view>
+					</u-col>
+				</u-row>
+				<u-row>
+					<u-col span="3">
+						<view class="demo-layout bg-purple-light"></view>
+					</u-col>
+					<u-col
+					    span="3"
+					>
+						<view class="demo-layout bg-purple"></view>
+					</u-col>
+				</u-row>
+			</view>
+		</view>
 	</view>
 </template>
 

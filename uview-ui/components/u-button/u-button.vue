@@ -19,7 +19,7 @@
 	    @error="error"
 	    @opensetting="opensetting"
 	    @launchapp="launchapp"
-	    :hover-class="!disabled && !loading && 'u-button--active'"
+	    :hover-class="!disabled && !loading ? 'u-button--active' : ''"
 	    class="u-button u-reset-button"
 	    :style="[baseColor, $u.addStyle(customStyle)]"
 	    @tap="clickHandler"
@@ -313,7 +313,7 @@
 				if (this.type === 'info') {
 					return '#c9c9c9';
 				}
-				return 'rgb(255, 255, 255)';
+				return 'rgb(200, 200, 200)';
 			},
 			iconColor() {
 				// 如果是镂空状态，设置了color就用color值，否则使用主题颜色，
@@ -427,6 +427,7 @@
 	$u-button-large-width:100% !default;
 	$u-button-large-height:50px !default;
 	$u-button-normal-padding:0 12px !default;
+	$u-button-large-padding: 0 15px !default;
 	$u-button-normal-font-size:14px !default;
 	$u-button-small-min-width:60px !default;
 	$u-button-small-height:30px !default;
@@ -500,8 +501,11 @@
 		}
 
 		&--large {
+			/* #ifndef APP-NVUE */
 			width: $u-button-large-width;
+			/* #endif */
 			height: $u-button-large-height;
+			padding: $u-button-large-padding;
 		}
 
 		&--normal {

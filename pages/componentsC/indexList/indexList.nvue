@@ -1,0 +1,19 @@
+<template>
+	<view class="u-page">
+		<u-index-list></u-index-list>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+	
+</style>

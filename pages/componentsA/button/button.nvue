@@ -189,7 +189,8 @@
 					<u-button
 					    loadingText="加载中"
 					    size="normal"
-					    loading
+						loading
+					    loadingMode="circle"
 					    type="success"
 					></u-button>
 				</view>
@@ -256,24 +257,24 @@
 
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">自定义大小</text>
+			<view class="u-demo-block__content" style="padding-bottom: 15px; flex-direction: column;align-items: stretch;">
+				<u-button
+				    text="超大尺寸"
+				    size="large"
+				    type="success"
+				></u-button>
+			</view>
 			<view class="u-demo-block__content">
 				<view class="u-page__button-item">
 					<u-button
-					    text="成功按钮"
-					    size="large"
-					    type="success"
-					></u-button>
-				</view>
-				<view class="u-page__button-item">
-					<u-button
-					    text="危险按钮"
+					    text="普通尺寸"
 					    size="normal"
 					    type="error"
 					></u-button>
 				</view>
 				<view class="u-page__button-item">
 					<u-button
-					    text="主要按钮"
+					    text="小型尺寸"
 					    size="small"
 					    type="primary"
 					></u-button>
@@ -281,7 +282,7 @@
 				<view class="u-page__button-item">
 					<u-button
 					    class="button-layout__item"
-					    text="警告按钮"
+					    text="超小尺寸"
 					    size="mini"
 					    type="warning"
 					></u-button>
@@ -316,7 +317,7 @@
 			margin: 0 15px 15px 0;
 		}
 	}
-	
+
 	.u-demo-block__content {
 		flex-direction: row;
 		flex-wrap: wrap;

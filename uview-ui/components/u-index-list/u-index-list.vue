@@ -272,7 +272,7 @@
 					// 如果滚动条高度小于第一个item的top值，此时无需设置任意字母为高亮
 					if (scrollTop <= this.children[0].top || scrollTop >= this.children[len - 1].top + this.children[len - 1].height) {
 						if (scrollTop < item.top && scrollTop > item.top - anchorHeight) {
-							this.setFirstColorGradient(i, item, scrollTop)
+							this.setFirstColorGradient(item, scrollTop)
 						}
 						this.activeIndex = -1
 						return
@@ -281,8 +281,8 @@
 						this.activeIndex = len - 1
 						return
 					} else if (scrollTop > item.top && scrollTop < nextItem.top) {
-						if (scrollTop < nextItem.top && scrollTop > nextItem.top - anchorHeight) {
-							this.setColorGradient(i, item, scrollTop)
+						if (scrollTop > nextItem.top - anchorHeight) {
+							this.setColorGradient(item, nextItem, scrollTop)
 						}
 						this.activeIndex = i
 						return
@@ -290,24 +290,24 @@
 				}
 			},
 			// 设置非第一个背景和文字渐变色
-			setColorGradient(i, item, scrollTop) {
+			setColorGradient(item, nextItem, scrollTop) {
 				const anchorHeight = this.anchorHeight
 				const bgColorArr = uni.$u.colorGradient(this.anchorBgColor, this.anchorStickyBgColor, anchorHeight)
 				const colorArr = uni.$u.colorGradient(this.inactiveColor, this.activeColor, anchorHeight)
-				const colorIndex = anchorHeight - (item.top + item.height - scrollTop)
-				this.children[i].anchor.bgColor = bgColorArr[anchorHeight - colorIndex]
-				this.children[i].anchor.color = colorArr[anchorHeight - colorIndex]
-				this.children[i + 1].anchor.bgColor = bgColorArr[colorIndex]
-				this.children[i + 1].anchor.color = colorArr[colorIndex]
+				const colorIndex = nextItem.top-scrollTop
+				item.anchor.bgColor = bgColorArr[colorIndex]
+				item.anchor.color = colorArr[colorIndex]
+				nextItem.anchor.bgColor = bgColorArr[anchorHeight - colorIndex]
+				nextItem.anchor.color = colorArr[anchorHeight - colorIndex]
 			},
 			// 设置第一个背景和文字渐变色
-			setFirstColorGradient(i, item, scrollTop) {
+			setFirstColorGradient(item, scrollTop) {
 				const anchorHeight = this.anchorHeight
 				const bgColorArr = uni.$u.colorGradient(this.anchorBgColor, this.anchorStickyBgColor, anchorHeight)
 				const colorArr = uni.$u.colorGradient(this.inactiveColor, this.activeColor, anchorHeight)
 				const colorIndex = item.top - scrollTop
-				this.children[i].anchor.bgColor = bgColorArr[anchorHeight - colorIndex]
-				this.children[i].anchor.color = colorArr[anchorHeight - colorIndex]
+				item.anchor.bgColor = bgColorArr[anchorHeight - colorIndex]
+				item.anchor.color = colorArr[anchorHeight - colorIndex]
 			},
 		},
 	}

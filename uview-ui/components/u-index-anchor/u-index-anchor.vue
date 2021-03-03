@@ -1,22 +1,61 @@
 <template>
-	<view class="u-index-anchor">
-		
+	<view class="u-index-anchor u-border-bottom" :style="{
+		height: $u.addUnit(height),
+		backgroundColor: bgColor
+	}">
+		<text
+		    class="u-index-anchor__text"
+		    :style="{
+				fontSize: $u.addUnit(size),
+				color: color
+			}"
+		>{{ text }}</text>
 	</view>
 </template>
 
 <script>
-	import props from './props';
 	export default {
 		name: 'u-index-anchor',
-		mixinx: [uni.$u.mixin, props],
-		data() {
-			return {
-				
+		mixins: [uni.$u.mixin],
+		props: {
+			text: {
+				type: [String, Number],
+				default: ''
+			},
+			// color: {
+			// 	type: String,
+			// 	default: '#606266'
+			// },
+			size: {
+				type: [String, Number],
+				default: 14
+			},
+			// bgColor: {
+			// 	type: String,
+			// 	default: '#dedede'
+			// },
+			height: {
+				type: [String, Number],
+				default: 32
 			}
 		},
+		data() {
+			return {
+				bgColor: '#dedede',
+				color: '#606266'
+			}
+		},
+		created() {
+			this.init()
+		},
 		methods: {
-			name() {
-				
+			init() {
+				// 此处会活动父组件实例，并赋值给实例的parent属性
+				this.getParentData('u-index-item')
+				if (!this.parent) {
+					return uni.$u.error('u-index-anchor必须要搭配u-index-item组件使用')
+				}
+				this.parent.anchor = this
 			}
 		},
 	}
@@ -24,6 +63,18 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-	
-	
+
+	.u-index-anchor {
+		position: sticky;
+		z-index: 3;
+		top: 0;
+		@include flex;
+		align-items: center;
+		padding-left: 15px;
+
+		&__text {
+			@include flex;
+			align-items: center;
+		}
+	}
 </style>

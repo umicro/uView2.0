@@ -1,19 +1,43 @@
 <template>
-	<view class="u-page">
-		<u-index-list></u-index-list>
-	</view>
+	<u-index-list>
+		<view class="box">
+		</view>
+		<u-index-item
+		    v-for="(item, index) in indexList"
+		    :key="index"
+		>
+			<u-index-anchor :text="item"></u-index-anchor>
+			<text v-for="item in 20">{{item}}</text>
+		</u-index-item>
+	</u-index-list>
 </template>
 
 <script>
+	const indexList = () => {
+		const indexList = []
+		const charCodeOfA = 'A'.charCodeAt(0)
+		for (let i = 0; i < 26; i++) {
+			indexList.push(String.fromCharCode(charCodeOfA + i))
+		}
+		return indexList
+	}
 	export default {
 		data() {
 			return {
-				
+				indexList: indexList(),
 			}
+		},
+		computed: {
+		},
+		onLoad() {
+			
 		}
 	}
 </script>
 
 <style lang="scss">
-	
+	.box {
+		height: 200px;
+		background-color: $u-primary;
+	}
 </style>

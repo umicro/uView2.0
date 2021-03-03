@@ -1,39 +1,57 @@
 <template>
 	<view class="u-index-list">
-		<slot name="header"></slot>
-
-		<slot name="footer"></slot>
-		<view
-		    class="u-index-list__letter"
-			ref="u-index-list__letter"
-		    v-if="showSidebar"
-		    @touchstart.stop.prevent="onTouchMove"
-		    @touchmove.stop.prevent="onTouchMove"
-		    @touchend.stop.prevent="onTouchStop"
-		    @touchcancel.stop.prevent="onTouchStop"
+		<scroll-view
+		    scroll-y
+		    :scroll-top="scrollTop"
+		    :style="{
+				height: $u.addUnit(scrollViewHeight)
+			}"
+		    @scroll="scrollHandler"
 		>
+			<slot name="header" />
+			<slot />
+			<slot name="footer" />
 			<view
-			    class="u-index-list__letter__item"
-			    v-for="(item, index) in uIndexList"
-			    :key="index"
-				:style="{
-					backgroundColor: activeIndex === index ? activeColor : 'transparent'
-				}"
+			    class="u-index-list__letter"
+			    ref="u-index-list__letter"
+			    v-if="showSidebar"
+			    :style="{ top: $u.addUnit(letterInfo.top) }"
+			    @touchstart.stop.prevent="touchStart"
+			    @touchmove.stop.prevent="touchMove"
+			    @touchend.stop.prevent="touchEnd"
+			    @touchcancel.stop.prevent="touchEnd"
 			>
-				<text
-				    class="u-index-list__letter__item__index"
-				    :style="{color: activeIndex === index ? '#fff' : inactiveColor}"
-				    :data-index="index"
-				>{{ item }}</text>
+				<view
+				    class="u-index-list__letter__item"
+				    v-for="(item, index) in uIndexList"
+				    :key="index"
+				    :style="{
+						backgroundColor: activeIndex === index ? activeColor : 'transparent'
+					}"
+				>
+					<text
+					    class="u-index-list__letter__item__index"
+					    :style="{color: activeIndex === index ? '#fff' : inactiveColor}"
+					>{{ item }}</text>
+				</view>
+				<u-transition
+				    mode="fade"
+				    :show="touching"
+				>
+					<view
+					    class="u-index-list__indicator"
+					    :class="['u-index-list__indicator--show']"
+					    :style="{
+							top: $u.addUnit(indicatorTop),
+							height: $u.addUnit(indicatorHeight),
+							width: $u.addUnit(indicatorHeight)
+						}"
+					>
+						<text class="u-index-list__indicator__text">{{ uIndexList[activeIndex] }}</text>
+					</view>
+				</u-transition>
 			</view>
-			<view
-				class="u-index-list__indicator"
-				:class="['u-index-list__indicator--show']"
-				:style="{ top: $u.addUnit(indicatorTop) }"
-			>
-				<text class="u-index-list__indicator__text">{{ uIndexList[touchmoveIndex] }}</text>
-			</view>
-		</view>
+		</scroll-view>
 	</view>
 </template>
 
@@ -46,7 +64,11 @@
 		}
 		return indexList;
 	}
-	import props from './props';
+	import props from './props'
+	// #ifdef APP-NVUE
+	// 由于weex为阿里的KPI业绩考核的垃ji，所以不支持百分比单位，这里需要通过dom查询组件的宽度
+	const dom = uni.requireNativePlugin('dom')
+	// #endif
 	export default {
 		name: 'u-index-list',
 		mixins: [uni.$u.mixin, props],
@@ -55,21 +77,41 @@
 				// 是否显示右侧的索引列表字母，当子组件数量为0时，无需展示
 				showSidebar: true,
 				// 当前正在被选中的字母索引
-				activeIndex: 1,
+				activeIndex: -1,
 				touchmoveIndex: 1,
 				// 索引字母的信息
 				letterInfo: {
 					height: 0,
-					itemHeight: 0
+					itemHeight: 0,
+					top: 0
 				},
+				// 设置字母指示器的高度，后面为了让指示器跟随字母，并将尖角部分指向字母的中部，需要依赖此值
+				indicatorHeight: 50,
 				// 字母放大指示器的top值，为了让其指向当前激活的字母
-				indicatorTop: 0
+				// indicatorTop: 0
+				// 当前是否正在被触摸状态
+				touching: false,
+				// 滚动条顶部top值
+				scrollTop: 0,
+				// scroll-view的高度
+				scrollViewHeight: 0,
+				// 系统信息
+				sys: uni.$u.sys(),
+				scrolling: false
 			}
 		},
 		computed: {
 			// 如果有传入外部的indexList锚点数组则使用，否则使用内部生成A-Z字母
 			uIndexList() {
 				return this.indexList.length ? this.indexList : indexList()
+			},
+			// 字母放大指示器的top值，为了让其指向当前激活的字母
+			indicatorTop() {
+				const {
+					top,
+					itemHeight
+				} = this.letterInfo
+				return Math.floor(top + itemHeight * this.activeIndex + itemHeight / 2 - this.indicatorHeight / 2)
 			}
 		},
 		watch: {
@@ -82,48 +124,62 @@
 				}
 			}
 		},
+		created() {
+			this.children = []
+			this.init()
+		},
 		methods: {
+			init() {
+				this.scrollViewHeight = this.sys.windowHeight
+			},
 			// 索引列表被触摸
 			touchStart(e) {
 				// 获取触摸点信息
 				const touchStart = e.changedTouches[0]
-				if (!startTouch) return
+				if (!touchStart) return
 				this.touching = true
-				console.log(startTouch.pageY);
-				let treeItemCur = this.getCurrentTreeItem(startTouch.pageY)
-				this.setValue(treeItemCur)
+				const {
+					pageY
+				} = touchStart
+				const currentIndex = this.getIndexListLetter(pageY)
+				this.setValueForTouch(currentIndex)
 			},
-			/**
-			 * tree 触摸移动
-			 */
+			// 索引字母列表被触摸滑动中
 			touchMove(e) {
 				// 获取触摸点信息
-				let currentTouch = e.changedTouches[0];
-				if (!currentTouch) return;
-			
+				let touchMove = e.changedTouches[0]
+				if (!touchMove) return;
+
 				// 滑动结束后迅速开始第二次滑动时候 touching 为 false 造成不显示 indicator 问题
 				if (!this.touching) {
-					this.touching = true;
+					this.touching = true
 				}
-			
-				let treeItemCur = this.getCurrentTreeItem(currentTouch.pageY);
-				this.setValue(treeItemCur);
+				const {
+					pageY
+				} = touchMove
+				const currentIndex = this.getIndexListLetter(pageY)
+				this.setValueForTouch(currentIndex)
 			},
 			/**
 			 * tree 触摸结束
 			 */
 			touchEnd(e) {
-				let treeItemCur = this.treeItemCur;
-				let listItemCur = this.listItemCur;
-				if (treeItemCur !== listItemCur) {
-					this.treeItemCur = listItemCur;
-					this.indicatorTop = this.indicatorTopList[treeItemCur];
-				}
-				this.treeKeyTran = true;
-				setTimeout(() => {
-					this.touching = false;
-					this.treeKeyTran = false;
-				}, 300);
+				// 延时一定时间后再隐藏指示器，为了让用户看的更直观，同时也是为了消除快速切换u-transition的show带来的影响
+				uni.$u.sleep(300).then(() => {
+					this.touching = false
+				})
+
+				// let treeItemCur = this.treeItemCur;
+				// let listItemCur = this.listItemCur;
+				// if (treeItemCur !== listItemCur) {
+				// 	this.treeItemCur = listItemCur;
+				// 	this.indicatorTop = this.indicatorTopList[treeItemCur];
+				// }
+				// this.treeKeyTran = true;
+				// setTimeout(() => {
+				// 	this.touching = false;
+				// 	this.treeKeyTran = false;
+				// }, 300);
 			},
 			// 获取索引列表的尺寸以及单个字符的尺寸信息
 			getIndexListLetterRect() {
@@ -131,27 +187,128 @@
 					// 延时一定时间，以获取dom尺寸
 					// #ifndef APP-NVUE
 					this.$uGetRect('.u-index-list__letter').then(size => {
-						resolve(size.height)
+						resolve(size)
 					})
 					// #endif
-					
+
 					// #ifdef APP-NVUE
 					const ref = this.$refs['u-index-list__letter']
-					ref && dom.getComponentRect(ref, res => {
-						resolve(res.size.height)
+					dom.getComponentRect(ref, res => {
+						resolve(res.size)
 					})
 					// #endif
 				})
 			},
 			// 设置indexList索引的尺寸信息
 			setIndexListLetterInfo() {
-				this.getIndexListLetterRect().then(height => {
+				this.getIndexListLetterRect().then(size => {
+					const {
+						height
+					} = size
+					const sys = uni.$u.sys()
+					const windowHeight = sys.windowHeight
+					let customNavHeight = 0
+					// 消除各端导航栏非原生和原生导致的差异，让索引列表字母对屏幕垂直居中
+					if (this.customNavHeight == 0) {
+						// #ifdef H5
+						customNavHeight = sys.windowTop
+						// #endif
+						// #ifndef H5
+						customNavHeight = -(sys.statusBarHeight + 44)
+						// #endif
+					} else {
+						customNavHeight = uni.$u.getPx(this.customNavHeight)
+					}
 					this.letterInfo = {
 						height,
+						top: (windowHeight - height) / 2 + customNavHeight / 2,
 						itemHeight: Math.floor(height / this.uIndexList.length)
 					}
 				})
-			}
+			},
+			// 获取当前被触摸的索引字母
+			getIndexListLetter(pageY) {
+				const {
+					top,
+					height,
+					itemHeight
+				} = this.letterInfo
+				// 对H5的pageY进行修正，这是由于uni-app自作多情在H5中将触摸点的坐标跟H5的导航栏结合导致的问题
+				pageY += uni.$u.sys().windowTop
+				// 对第一和最后一个字母做边界处理，因为用户可能在字母列表上触摸到两端的尽头后依然继续滑动
+				if (pageY < top) {
+					return 0
+				} else if (pageY >= top + height) {
+					// 如果超出了，取最后一个字母
+					return this.uIndexList.length - 1
+				} else {
+					// 将触摸点的Y轴偏移值，减去索引字母的top值，除以每个字母的高度，即可得到当前触摸点落在哪个字母上
+					return Math.floor((pageY - top) / itemHeight);
+				}
+			},
+			// 设置各项由触摸而导致变化的值
+			setValueForTouch(currentIndex) {
+				// 如果偏移量太小，前后得出的会是同一个索引字母，为了防抖，进行返回
+				if (currentIndex === this.activeIndex) return
+				this.activeIndex = currentIndex
+				this.children[currentIndex].anchor.bgColor = this.anchorStickyBgColor
+				this.children[currentIndex].anchor.color = this.activeColor
+				this.scrollTop = this.children[this.activeIndex].top
+			},
+			// scroll-view的滚动事件
+			scrollHandler(e) {
+				if (this.touching || this.scrolling) return
+				// 每过一定时间取样一次，减少资源损耗以及可能带来的卡顿
+				// this.scrolling = true
+				// uni.$u.sleep(100).then(() => {
+				// 	this.scrolling = false
+				// })
+				const scrollTop = Math.ceil(e.detail.scrollTop)
+				const len = this.children.length
+				for (let i = 0; i < len; i++) {
+					const item = this.children[i],
+						nextItem = this.children[i + 1],
+						anchorHeight = this.anchorHeight
+					// 如果滚动条高度小于第一个item的top值，此时无需设置任意字母为高亮
+					if (scrollTop <= this.children[0].top || scrollTop >= this.children[len - 1].top + this.children[len - 1].height) {
+						if (scrollTop < item.top && scrollTop > item.top - anchorHeight) {
+							this.setFirstColorGradient(i, item, scrollTop)
+						}
+						this.activeIndex = -1
+						return
+					} else if (!nextItem) {
+						// 当不存在下一个item时，意味着历遍到了最后一个
+						this.activeIndex = len - 1
+						return
+					} else if (scrollTop > item.top && scrollTop < nextItem.top) {
+						if (scrollTop < nextItem.top && scrollTop > nextItem.top - anchorHeight) {
+							this.setColorGradient(i, item, scrollTop)
+						}
+						this.activeIndex = i
+						return
+					}
+				}
+			},
+			// 设置非第一个背景和文字渐变色
+			setColorGradient(i, item, scrollTop) {
+				const anchorHeight = this.anchorHeight
+				const bgColorArr = uni.$u.colorGradient(this.anchorBgColor, this.anchorStickyBgColor, anchorHeight)
+				const colorArr = uni.$u.colorGradient(this.inactiveColor, this.activeColor, anchorHeight)
+				const colorIndex = anchorHeight - (item.top + item.height - scrollTop)
+				this.children[i].anchor.bgColor = bgColorArr[anchorHeight - colorIndex]
+				this.children[i].anchor.color = colorArr[anchorHeight - colorIndex]
+				this.children[i + 1].anchor.bgColor = bgColorArr[colorIndex]
+				this.children[i + 1].anchor.color = colorArr[colorIndex]
+			},
+			// 设置第一个背景和文字渐变色
+			setFirstColorGradient(i, item, scrollTop) {
+				const anchorHeight = this.anchorHeight
+				const bgColorArr = uni.$u.colorGradient(this.anchorBgColor, this.anchorStickyBgColor, anchorHeight)
+				const colorArr = uni.$u.colorGradient(this.inactiveColor, this.activeColor, anchorHeight)
+				const colorIndex = item.top - scrollTop
+				this.children[i].anchor.bgColor = bgColorArr[anchorHeight - colorIndex]
+				this.children[i].anchor.color = colorArr[anchorHeight - colorIndex]
+			},
 		},
 	}
 </script>
@@ -178,11 +335,11 @@
 				@include flex;
 				align-items: center;
 				justify-content: center;
-				
+
 				&--active {
 					background-color: $u-error;
 				}
-				
+
 				&__index {
 					font-size: 12px;
 					text-align: center;
@@ -190,7 +347,7 @@
 				}
 			}
 		}
-		
+
 		&__indicator {
 			opacity: 0;
 			transition: opacity 0.3s;
@@ -207,12 +364,12 @@
 			@include flex;
 			justify-content: center;
 			align-items: center;
-			
+
 			&--show {
 				opacity: 1;
-				
+
 			}
-			
+
 			&__text {
 				font-size: 28px;
 				line-height: 28px;

@@ -23,6 +23,10 @@ function colorGradient(startColor = 'rgb(0, 0, 0)', endColor = 'rgb(255, 255, 25
 		//计算每一步的hex值 
 		let hex = rgbToHex('rgb(' + Math.round((sR * i + startR)) + ',' + Math.round((sG * i + startG)) + ',' + Math.round((sB *
 			i + startB)) + ')');
+		// 确保第一个颜色值为startColor的值
+		if(i === 0) hex = rgbToHex(startColor)
+		// 确保最后一个颜色值为endColor的值
+		if(i === step - 1) hex = rgbToHex(endColor)
 		colorArr.push(hex);
 	}
 	return colorArr;

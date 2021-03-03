@@ -3,7 +3,7 @@ export default {
 		// 右边锚点非激活的颜色
 		inactiveColor: {
 			type: String,
-			default: '#666'
+			default: '#606266'
 		},
 		// 右边锚点激活的颜色
 		activeColor: {
@@ -22,5 +22,22 @@ export default {
 			type: Boolean,
 			default: true
 		},
+		// 自定义导航栏的高度
+		customNavHeight: {
+			type: [String, Number],
+			default: 0
+		},
+		anchorHeight: {
+			type: [String, Number],
+			default: 35
+		},
+		anchorBgColor: {
+			type: String,
+			default: '#dedede'
+		},
+		anchorStickyBgColor: {
+			type: String,
+			default: '#f5f5f5'
+		}
 	}
 }

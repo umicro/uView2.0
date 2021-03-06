@@ -1,8 +1,12 @@
 <template>
-	<view class="u-index-anchor u-border-bottom" :style="{
-		height: $u.addUnit(height),
-		backgroundColor: bgColor
-	}">
+	<view
+	    class="u-index-anchor u-border-bottom"
+	    :id="`_${text}`"
+	    :style="{
+			height: $u.addUnit(height),
+			backgroundColor: bgColor
+		}"
+	>
 		<text
 		    class="u-index-anchor__text"
 		    :style="{
@@ -66,11 +70,11 @@
 
 	.u-index-anchor {
 		position: sticky;
-		z-index: 3;
 		top: 0;
 		@include flex;
 		align-items: center;
 		padding-left: 15px;
+		z-index: 1;
 
 		&__text {
 			@include flex;

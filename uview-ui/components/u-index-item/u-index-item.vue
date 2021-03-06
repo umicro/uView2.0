@@ -39,8 +39,8 @@
 				uni.$u.sleep().then(() =>{
 					this.getIndexItemRect().then(size => {
 						// 由于对象的引用特性，此处会同时生效到父组件的children数组的本实例的top属性中，供父组件判断读取
-						this.top = Math.floor(size.top)
-						this.height = Math.floor(size.height)
+						this.top = Math.ceil(size.top)
+						this.height = Math.ceil(size.height)
 					})
 				})
 			},

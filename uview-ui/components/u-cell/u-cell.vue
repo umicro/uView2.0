@@ -263,7 +263,7 @@
 			padding: $u-cell-padding;
 			font-size: $u-cell-font-size;
 			color: $u-cell-color;
-			line-height: $u-cell-line-height;
+			// line-height: $u-cell-line-height;
 			align-items: center;
 			
 			&__content {
@@ -282,7 +282,7 @@
 		&__right-icon-wrap {
 			@include flex();
 			align-items: center;
-			height: $u-cell-line-height;
+			// height: $u-cell-line-height;
 			font-size: $u-cell-icon-size;
 		}
 

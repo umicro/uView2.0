@@ -6,7 +6,7 @@
 		<view class="u-tag-wrapper">
 			<view
 			    class="u-tag"
-			    :class="[!plain && `u-tag--${type}`, plain && `u-tag--${type}--plain`, `u-tag--${size}`, plain && plainFill && `u-tag--${type}--plain--fill`]"
+			    :class="[`u-tag--${shape}`, !plain && `u-tag--${type}`, plain && `u-tag--${type}--plain`, `u-tag--${size}`, plain && plainFill && `u-tag--${type}--plain--fill`]"
 			    @tap.stop="clickHandler"
 			>
 				<slot name="icon">
@@ -104,10 +104,14 @@
 	.u-tag {
 		@include flex;
 		align-items: center;
-		border-top-left-radius: 3px;
-		border-top-right-radius: 3px;
-		border-bottom-left-radius: 3px;
-		border-bottom-right-radius: 3px;
+		
+		&--circle {
+			border-radius: 100px;
+		}
+		
+		&--square {
+			border-radius: 3px;
+		}
 
 		&__icon {
 			margin-right: 4px;
@@ -245,10 +249,7 @@
 			z-index: 999;
 			top: 0;
 			right: 0;
-			border-top-left-radius: 100px;
-			border-top-right-radius: 100px;
-			border-bottom-left-radius: 100px;
-			border-bottom-right-radius: 100px;
+			border-radius: 100px;
 			background-color: #C6C7CB;
 			@include flex(row);
 			align-items: center;

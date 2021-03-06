@@ -14,7 +14,7 @@ export default {
 			type: String,
 			default: 'medium'
 		},
-		// tag的形状，circle（两边半圆形）, square（方形，带圆角），circleLeft（左边是半圆），circleRight（右边是半圆）
+		// tag的形状，circle（两边半圆形）, square（方形，带圆角）
 		shape: {
 			type: String,
 			default: 'square'

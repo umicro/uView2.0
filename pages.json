@@ -3,14 +3,14 @@
 		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue",
 		"n-image": "@/uview-ui/components/u-image/u-image.vue"
 	},
-	"condition": { //模式配置，仅开发期间生效
-		"current": 0, //当前激活的模式(list 的索引项)
-		"list": [{
-			"name": "test", //模式名称
-			"path": "pages/componentsC/indexList/indexList", //启动页面，必选
-			"query": "" //启动参数，在页面的onLoad函数里面得到
-		}]
-	},
+	// "condition": { //模式配置，仅开发期间生效
+	// 	"current": 0, //当前激活的模式(list 的索引项)
+	// 	"list": [{
+	// 		"name": "test", //模式名称
+	// 		"path": "pages/componentsC/tabs/tabs", //启动页面，必选
+	// 		"query": "" //启动参数，在页面的onLoad函数里面得到
+	// 	}]
+	// },
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
 			"path": "pages/example/components",
@@ -346,6 +346,16 @@
 			"path": "indexList/indexList",
 			"style": {
 				"navigationBarTitleText": "索引列表"
+			}
+		}, {
+			"path": "tooltip/tooltip",
+			"style": {
+				"navigationBarTitleText": "长按提示"
+			}
+		}, {
+			"path": "tabs/tabs",
+			"style": {
+				"navigationBarTitleText": "标签"
 			}
 		}]
 	}],

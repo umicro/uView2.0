@@ -5,7 +5,8 @@
 	    :style="{
 			backgroundColor: (text || icon) ? (randomBgColor ? colors[colorIndex !== '' ? colorIndex : $u.random(0, 19)] : bgColor) : 'transparent',
 			width: $u.addUnit(size),
-			height: $u.addUnit(size)
+			height: $u.addUnit(size),
+			...$u.addStyle(customStyle)
 		}"
 	> 
 		<slot>

@@ -7,6 +7,7 @@
 				height: $u.addUnit(scrollViewHeight)
 			}"
 		    @scroll="scrollHandler"
+			enable-back-to-top
 		>
 			<slot name="header" />
 			<slot />
@@ -34,23 +35,28 @@
 					    :style="{color: activeIndex === index ? '#fff' : inactiveColor}"
 					>{{ item }}</text>
 				</view>
-				<u-transition
-				    mode="fade"
-				    :show="touching"
-				>
-					<view
-					    class="u-index-list__indicator"
-					    :class="['u-index-list__indicator--show']"
-					    :style="{
-							top: $u.addUnit(indicatorTop),
-							height: $u.addUnit(indicatorHeight),
-							width: $u.addUnit(indicatorHeight)
-						}"
-					>
-						<text class="u-index-list__indicator__text">{{ uIndexList[activeIndex] }}</text>
-					</view>
-				</u-transition>
 			</view>
+			<u-transition
+			    mode="fade"
+			    :show="touching"
+				:customStyle="{
+					position: 'fixed',
+					right: '50px',
+					top: $u.addUnit(indicatorTop),
+					zIndex: 2
+				}"
+			>
+				<view
+				    class="u-index-list__indicator"
+				    :class="['u-index-list__indicator--show']"
+				    :style="{
+						height: $u.addUnit(indicatorHeight),
+						width: $u.addUnit(indicatorHeight)
+					}"
+				>
+					<text class="u-index-list__indicator__text">{{ uIndexList[activeIndex] }}</text>
+				</view>
+			</u-transition>
 		</scroll-view>
 	</view>
 </template>
@@ -160,26 +166,12 @@
 				const currentIndex = this.getIndexListLetter(pageY)
 				this.setValueForTouch(currentIndex)
 			},
-			/**
-			 * tree 触摸结束
-			 */
+			// 触摸结束
 			touchEnd(e) {
 				// 延时一定时间后再隐藏指示器，为了让用户看的更直观，同时也是为了消除快速切换u-transition的show带来的影响
 				uni.$u.sleep(300).then(() => {
 					this.touching = false
 				})
-
-				// let treeItemCur = this.treeItemCur;
-				// let listItemCur = this.listItemCur;
-				// if (treeItemCur !== listItemCur) {
-				// 	this.treeItemCur = listItemCur;
-				// 	this.indicatorTop = this.indicatorTopList[treeItemCur];
-				// }
-				// this.treeKeyTran = true;
-				// setTimeout(() => {
-				// 	this.touching = false;
-				// 	this.treeKeyTran = false;
-				// }, 300);
 			},
 			// 获取索引列表的尺寸以及单个字符的尺寸信息
 			getIndexListLetterRect() {
@@ -251,13 +243,15 @@
 				// 如果偏移量太小，前后得出的会是同一个索引字母，为了防抖，进行返回
 				if (currentIndex === this.activeIndex) return
 				this.activeIndex = currentIndex
-				this.children[currentIndex].anchor.bgColor = this.anchorStickyBgColor
-				this.children[currentIndex].anchor.color = this.activeColor
 				this.scrollTop = this.children[this.activeIndex].top
+				this.children.map((item, index) => {
+					item.anchor.bgColor = currentIndex === index ? this.anchorStickyBgColor : this.anchorBgColor
+					item.anchor.color = currentIndex === index ? this.activeColor : this.inactiveColor
+				})
 			},
 			// scroll-view的滚动事件
 			scrollHandler(e) {
-				if (this.touching || this.scrolling) return
+				if (this.touching || this.scrolling) return 
 				// 每过一定时间取样一次，减少资源损耗以及可能带来的卡顿
 				// this.scrolling = true
 				// uni.$u.sleep(100).then(() => {
@@ -275,17 +269,22 @@
 							this.setFirstColorGradient(item, scrollTop)
 						}
 						this.activeIndex = -1
-						return
+						break
 					} else if (!nextItem) {
 						// 当不存在下一个item时，意味着历遍到了最后一个
 						this.activeIndex = len - 1
-						return
+						break
 					} else if (scrollTop > item.top && scrollTop < nextItem.top) {
 						if (scrollTop > nextItem.top - anchorHeight) {
 							this.setColorGradient(item, nextItem, scrollTop)
 						}
+						// 处理边界情况，防止快速滑动时，可能因为某些滚动位置没触发，导致某些item的anchor的背景色和color没完全修改过来
+						if(scrollTop < nextItem.top - anchorHeight) {
+							nextItem.anchor.bgColor !== this.anchorBgColor && (nextItem.anchor.bgColor = this.anchorBgColor)
+							nextItem.anchor.color !== this.inactiveColor && (nextItem.anchor.color = this.inactiveColor)
+						}
 						this.activeIndex = i
-						return
+						break
 					}
 				}
 			},
@@ -321,8 +320,6 @@
 		&__letter {
 			position: fixed;
 			right: 0;
-			// top: 50%;
-			// transform: translateY(-50%);
 			text-align: center;
 			z-index: 3;
 			padding: 0 6px;
@@ -337,7 +334,7 @@
 				justify-content: center;
 
 				&--active {
-					background-color: $u-error;
+					background-color: $u-primary;
 				}
 
 				&__index {
@@ -349,26 +346,16 @@
 		}
 
 		&__indicator {
-			opacity: 0;
-			transition: opacity 0.3s;
-			position: fixed;
-			right: 50px;
 			width: 50px;
 			height: 50px;
 			border-radius: 100px 100px 0 100px;
 			text-align: center;
 			color: #ffffff;
-			z-index: 10;
 			background-color: #c9c9c9;
 			transform: rotate(-45deg);
 			@include flex;
 			justify-content: center;
 			align-items: center;
-
-			&--show {
-				opacity: 1;
-
-			}
 
 			&__text {
 				font-size: 28px;

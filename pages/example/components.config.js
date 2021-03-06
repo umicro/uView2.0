@@ -171,6 +171,11 @@ export default [{
 		groupName: '反馈组件',
 		groupName_en: 'Feedback components',
 		list: [{
+			path: '/pages/componentsC/tooltip/tooltip',
+			icon: 'tooltip',
+			title: 'Tooltip 长按提示',
+			title_en: 'ActionSheet',
+		},{
 			path: '/pages/componentsB/actionSheet/actionSheet',
 			icon: 'actionSheet',
 			title: 'ActionSheet 上拉菜单',
@@ -312,7 +317,7 @@ export default [{
 			title: 'Navbar 导航栏',
 			title_en: 'Navbar',
 		}, {
-			path: '/pages/componentsA/tabs/tabs',
+			path: '/pages/componentsC/tabs/tabs',
 			icon: 'tabs',
 			title: 'Tabs 标签',
 			title_en: 'Tabs',

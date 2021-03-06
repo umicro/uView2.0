@@ -45,6 +45,27 @@
 			</view>
 		</view>
 		<view class="u-demo-block">
+			<text class="u-demo-block__title">圆形标签</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__tag-item">
+					<u-tag
+					    text="标签"
+					    plain
+						shape="circle"
+					>
+					</u-tag>
+				</view>
+				<view class="u-page__tag-item">
+					<u-tag
+					    text="标签"
+					    type="warning"
+						shape="circle"
+					>
+					</u-tag>
+				</view>
+			</view>
+		</view>
+		<view class="u-demo-block">
 			<text class="u-demo-block__title">镂空标签</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
@@ -152,10 +173,7 @@
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">可关闭标签</text>
 			<view class="u-demo-block__content">
-				<view
-				    class="u-page__tag-item"
-				    v-if="close1"
-				>
+				<view class="u-page__tag-item">
 					<u-tag
 					    text="标签"
 					    size="mini"
@@ -165,28 +183,24 @@
 					>
 					</u-tag>
 				</view>
-				<view
-				    class="u-page__tag-item"
-				    v-if="close2"
-				>
+				<view class="u-page__tag-item">
 					<u-tag
 					    text="标签"
 					    type="warning"
 					    closable
+						:show="close2"
 					    @close="close2 = false"
 					>
 					</u-tag>
 				</view>
-				<view
-				    class="u-page__tag-item"
-				    v-if="close3"
-				>
+				<view class="u-page__tag-item">
 					<u-tag
 					    text="标签"
 					    type="success"
 					    plain
 					    size="large"
 					    closable
+						:show="close3"
 					    @close="close3 = false"
 					>
 					</u-tag>
@@ -237,8 +251,8 @@
 					    :text="`选项${index + 1}`"
 					    :plain="!item.checked"
 					    type="warning"
-						:name="index"
-						@click="radioClick"
+					    :name="index"
+					    @click="radioClick"
 					>
 					</u-tag>
 				</view>
@@ -256,8 +270,8 @@
 					    :text="`选项${index + 1}`"
 					    :plain="!item.checked"
 					    type="warning"
-						:name="index"
-						@click="checkboxClick"
+					    :name="index"
+					    @click="checkboxClick"
 					>
 					</u-tag>
 				</view>
@@ -273,8 +287,7 @@
 				close1: true,
 				close2: true,
 				close3: true,
-				radios: [
-					{
+				radios: [{
 						checked: true
 					},
 					{
@@ -284,8 +297,7 @@
 						checked: false
 					}
 				],
-				checkboxs: [
-					{
+				checkboxs: [{
 						checked: true
 					},
 					{
@@ -314,7 +326,7 @@
 	.u-page__tag-item {
 		margin-right: 20px;
 	}
-	
+
 	.u-demo-block__content {
 		flex-direction: row;
 		flex-wrap: wrap;

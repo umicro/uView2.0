@@ -6,7 +6,7 @@
 			</slot>
         </view>
         <view class="u-cell-group">
-			<u-line></u-line>
+			<u-line v-if="border"></u-line>
             <slot />
         </view>
     </view>

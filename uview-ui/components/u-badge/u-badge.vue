@@ -1,7 +1,7 @@
 <template>
 	<view class="u-badge">
 		<slot />
-		<template v-if="show">
+		<template v-if="show && (Number(value) === 0 ? showZero : true)">
 			<view
 			    class="u-badge__dot"
 			    :class="[type && `u-badge--${type}`]"
@@ -107,11 +107,6 @@
 			font-size: $u-badge-text-font-size;
 			padding: $u-badge-text-padding;
 			color: $u-badge-text-color;
-			// nvue上写border，会导致边框带一丝的红色
-			/* #ifndef APP-NVUE */
-			border-width: 1px;
-			border-color: #FFFFFF;
-			/* #endif */
 		}
 
 		&__dot {

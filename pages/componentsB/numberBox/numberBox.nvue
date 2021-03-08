@@ -155,7 +155,7 @@
 					</view>
 					<text
 					    slot="input"
-					    style="width: 40px;text-align: center;"
+					    style="width: 50px;text-align: center;"
 					    class="input"
 					>{{value11}}</text>
 					<view

@@ -1,6 +1,6 @@
 <template>
-	<view class="u-pages">
-		
+	<view class="u-page">
+		<u-tabs></u-tabs>
 	</view>
 </template>
 
@@ -11,5 +11,7 @@
 </script>
 
 <style lang="scss">
-	
+	.u-page {
+		padding-top: 100px;
+	}
 </style>

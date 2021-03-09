@@ -7,12 +7,15 @@
 				    :scroll-x="scrollable"
 				    :scroll-left="scrollLeft"
 				>
-					<view class="u-tabs__nav">
+					<view
+					    class="u-tabs__nav"
+					    ref="u-tabs__nav"
+					>
 						<view
 						    class="u-tabs__nav__item"
 						    v-for="(item, index) in list"
 						    :key="index"
-						    @tap="clickHandler"
+						    @tap="clickHandler(index)"
 						    :ref="`u-tabs__nav__item-${index}`"
 						    :class="[`u-tabs__nav__item-${index}`]"
 						>
@@ -23,7 +26,11 @@
 								>{{ item.name }}</text>
 							</u-badge>
 						</view>
-						<view class="u-tabs__nav__line">
+						<view
+						    class="u-tabs__nav__line"
+						    ref="u-tabs__nav__line"
+						    :style="[wxsComputed.lineStyle({lineWidth, lineOffsetLeft, tabsRect})]"
+						>
 
 						</view>
 					</view>
@@ -34,11 +41,19 @@
 	</view>
 </template>
 
+<!-- #ifdef APP-VUE|| MP-WEIXIN || H5 || MP-QQ -->
+<script
+    src="./wxsComputed.wxs"
+    module="wxsComputed"
+    lang="wxs"
+></script>
+<!-- #endif -->
 <script>
 	// #ifdef APP-NVUE
 	const animation = uni.requireNativePlugin('animation')
 	const dom = uni.requireNativePlugin('dom')
 	// #endif
+
 	export default {
 		name: 'u-tabs',
 		mixins: [uni.$u.mixin],
@@ -46,63 +61,91 @@
 			return {
 				scrollLeft: 0,
 				scrollable: true,
+				scrollViewWidth: 0,
+				lineWidth: 30,
+				lineOffsetLeft: 0,
+				tabsRect: {
+					left: 0
+				},
 				list: [{
 					name: '标签1',
-					react: {}
+					rect: {}
 				}, {
 					name: '标签2',
-					react: {}
+					rect: {}
 				}, {
 					name: '标签3',
-					react: {}
+					rect: {}
 				}, {
 					name: '标签4',
-					react: {}
+					rect: {}
 				}, {
 					name: '标签5',
-					react: {}
+					rect: {}
 				}, {
 					name: '标签6',
-					react: {}
+					rect: {}
 				}, {
 					name: '标签7',
-					react: {}
+					rect: {}
 				}, {
 					name: '标签8',
-					react: {}
+					rect: {}
 				}, {
 					name: '标签9',
-					react: {}
+					rect: {}
 				}],
 			}
 		},
-		mounted() {
+		async mounted() {
 			this.init()
+
 		},
 		methods: {
 			// 点击某一个标签
 			clickHandler(index) {
-
+				const item = this.list[index].rect
+				this.lineOffsetLeft = item.center - this.lineWidth / 2 - this.tabsRect.left
 			},
 			init() {
 				this.getListItemRect()
+				this.resize()
+			},
+			// 获取导航栏的尺寸
+			resize() {
+				Promise.all([
+					this.queryRect('u-tabs__nav'),
+					this.queryRect('u-tabs__nav__line')
+				]).then(([tabsRect, lineRect]) => {
+					this.tabsRect = tabsRect
+					// this.lineOffsetLeft = tabsRect.left
+				})
 			},
 			// 获取所有标签的尺寸
 			getListItemRect() {
 				// 故意写成你看不懂的样子
 				uni.$u.sleep().then(() => {
-					Promise.all(this.list.map((item, index) => this.queryReact(`u-tabs__nav__item-${index}`))).then(sizes => {
-						
+					this.queryRect('u-tabs__nav').then(size => {
+						this.tabRect = size
+					})
+					Promise.all(this.list.map((item, index) => this.queryRect(`u-tabs__nav__item-${index}`))).then(sizes => {
+						sizes.map((item, index) => {
+							// 计算scroll-view的宽度，这里
+							this.scrollViewWidth += item.width
+							// 另外计算每一个item的中心点X轴坐标
+							item.center = item.left + item.width / 2
+							this.list[index].rect = item
+						})
 					})
 				})
 			},
 			// 获取各个标签的尺寸
-			queryReact(el) {
+			queryRect(el) {
 				// #ifndef APP-NVUE
 				// $uGetRect为uView自带的节点查询简化方法，详见文档介绍：https://www.uviewui.com/js/getRect.html
 				// 组件内部一般用this.$uGetRect，对外的为this.$u.getRect，二者功能一致，名称不同
 				return new Promise(resolve => {
-					this.$uGetRect(`.${el}`, true).then(size => {
+					this.$uGetRect(`.${el}`).then(size => {
 						resolve(size)
 					})
 				})
@@ -113,7 +156,6 @@
 				// 返回一个promise，让调用此方法的主体能使用then回调
 				return new Promise(resolve => {
 					dom.getComponentRect(this.$refs[el][0], res => {
-						console.log(res);
 						resolve(res.size)
 					})
 				})
@@ -148,7 +190,6 @@
 				height: 3px;
 				background-color: $u-primary;
 				width: 30px;
-				left: 100px;
 				position: absolute;
 				bottom: 0;
 				border-radius: 100px;

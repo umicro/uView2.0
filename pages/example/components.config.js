@@ -147,6 +147,11 @@ export default [{
 		groupName: '数据组件',
 		groupName_en: 'Data components',
 		list: [{
+			path: '/pages/componentsC/list/list',
+			icon: 'list',
+			title: 'List 列表',
+			title_en: 'List',
+		},{
 			path: '/pages/componentsB/progress/progress',
 			icon: 'progress',
 			title: 'Progress 进度条',

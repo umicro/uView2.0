@@ -4,6 +4,7 @@
 		class="u-list"
 		:enableBackToTop="enableBackToTop"
 		loadmoreoffset="15"
+		:showScrollbar="showScrollbar"
 		@scroll="onScroll"
 		:style="[$u.addStyle(customStyle)]"
 	>
@@ -13,9 +14,14 @@
 	<!-- #ifndef APP-NVUE -->
 	<scroll-view
 		:scroll-into-view="scrollIntoView"
-		:style="[$u.addStyle(customStyle)]"
+		:style="{
+			height: `${sys.windowHeight}px`
+		}"
 		scroll-y
 		@scroll="onScroll"
+		@scrolltolower="scrolltolower"
+		:lower-threshold="300"
+		:showScrollbar="showScrollbar"
 	>
 		<view class="u-list" :style="{
 			transform: `translateY(${offset}px)`
@@ -42,7 +48,7 @@
 			// 控制是否出现滚动条
 			showScrollbar: {
 				type: Boolean,
-				default: true
+				default: false
 			},
 			// 触发 loadmore 事件所需要的垂直偏移距离
 			loadmoreoffset: {
@@ -100,7 +106,8 @@
 				startIndex: 0,
 				endIndex: 50,
 				scrollTop: 0,
-				offset: 0
+				offset: 0,
+				sys: uni.$u.sys()
 			}
 		},
 		provide() {
@@ -116,7 +123,6 @@
 			}, 3000)
 		},
 		mounted() {
-			// console.log(this.children);
 			// let arr = [
 			// 	{show: false},
 			// 	{show: false},
@@ -135,7 +141,6 @@
 			onScroll(e) {
 				const scrollTop = e.target.scrollTop
 				this.scrollTop = scrollTop
-				console.log(scrollTop);
 				// // console.log(scrollTop, this.binarySearch(this.children, scrollTop));
 				// let len = this.children.length - 1
 				// let index = this.binarySearch(this.children, 0, Math.floor(len / 2))
@@ -166,9 +171,7 @@
 					let middleNext = list[middleIndex + 1]
 					if(!middleNext) return false
 					// console.log(middle, middleNext);
-					console.log(start, middleIndex, end);
 					if (middle.show === false && middleNext.show === true) {
-						console.log('合适', middleIndex);
 						return middleIndex
 					} 
 					if (middle.show === true) {
@@ -178,6 +181,12 @@
 					}
 				}
 				return 0
+			},
+			// 滚动到底部触发事件
+			scrolltolower() {
+				uni.$u.sleep(30).then(() => {
+					this.$emit('scrolltolower')
+				})
 			}
 		},
 	}

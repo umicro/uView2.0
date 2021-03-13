@@ -3,6 +3,7 @@
 		<u-list
 			ref="list"
 			customStyle="height: 400px"
+			@scrolltolower="scrolltolower"
 		>
 			<u-list-item
 				v-for="(item, index) in indexList"
@@ -10,7 +11,7 @@
 				:id="index"
 			>
 				<u-cell
-					:title="item.name"
+					:title="`列表长度-${index + 1}`"
 				>
 					<u-avatar
 						slot="icon"
@@ -59,7 +60,7 @@
 			itemArr() {
 				return this.indexList.map(item => {
 					const arr = []
-					for (let i = 0; i < 10; i++) {
+					for (let i = 0; i < 100; i++) {
 						arr.push({
 							name: this.names[uni.$u.random(0, this.names.length - 1)],
 							url: this.urls[uni.$u.random(0, this.urls.length - 1)]
@@ -70,16 +71,24 @@
 			}
 		},
 		onLoad() {
-			for (let i = 0; i < 100; i++) {
-				this.indexList.push({
-					name: this.names[uni.$u.random(0, this.names.length - 1)],
-					url: this.urls[uni.$u.random(0, this.urls.length - 1)]
-				})
-			}
 			// uni.$u.sleep(3000).then(() => {
 			// 	this.$refs.list.scrollIntoViewId('30')
 			// })
-		}
+			this.loadmore()
+		},
+		methods: {
+			scrolltolower() {
+				this.loadmore()
+			},
+			loadmore() {
+				for (let i = 0; i < 50; i++) {
+					this.indexList.push({
+						name: this.names[uni.$u.random(0, this.names.length - 1)],
+						url: this.urls[uni.$u.random(0, this.urls.length - 1)]
+					})
+				}
+			}
+		},
 	}
 </script>
 

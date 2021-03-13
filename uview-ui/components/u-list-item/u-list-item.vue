@@ -45,9 +45,9 @@
 		inject: ['uList'],
 		watch: {
 			'uList.scrollTop'(n) {
-				if (this.rect.top > this.sys.windowHeight * 2 || this.rect.top < n - 10 * 50) {
+				if (this.rect.top < n - 14 * 50 || this.rect.top > n + 26 * 50) {
 					this.show = false
-					if (this.rect.top < n - 10 * 50) {
+					if (this.rect.top < n - 5 * 50) {
 						this.parent.setTop(this.rect.top)
 					}
 				}
@@ -60,7 +60,6 @@
 			this.parent = {}
 		},
 		mounted() {
-			console.log(this.index);
 			this.init()
 		},
 		methods: {
@@ -81,12 +80,14 @@
 				this.getParentData('u-list')
 			},
 			resize() {
-				uni.$u.sleep().then(() => {
-					this.queryRect(`u-list-item-${this.id}`).then(size => {
-						// console.log(size);
-						this.rect = size
-						if (size.top >= 2 * this.sys.windowHeight) this.show = false
-					})
+				this.queryRect(`u-list-item-${this.id}`).then(size => {
+					// console.log(size);
+					const lastChild = this.parent.children[this.index - 1]
+					this.rect = size
+					if(lastChild) {
+						this.rect.top = lastChild.rect.top + lastChild.rect.height
+					}
+					if (size.top >= 2 * this.sys.windowHeight) this.show = false
 				})
 			},
 			// 查询元素尺寸

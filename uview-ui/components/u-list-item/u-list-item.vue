@@ -44,36 +44,39 @@
 		},
 		inject: ['uList'],
 		watch: {
-			'uList.scrollTop'(n) {
-				if (this.rect.top < n - 14 * 50 || this.rect.top > n + 26 * 50) {
+			// #ifndef APP-NVUE
+			'uList.innerScrollTop'(n) {
+				const preLoadScreen = this.uList.preLoadScreen
+				const windowHeight = this.sys.windowHeight
+				if (this.rect.top <= n - windowHeight * preLoadScreen || this.rect.top >= n + (1 + preLoadScreen) *
+					windowHeight) {
 					this.show = false
-					if (this.rect.top < n - 5 * 50) {
-						this.parent.setTop(this.rect.top)
-					}
-				}
-				else {
+				} else {
 					this.show = true
 				}
+				if(n <= windowHeight * preLoadScreen) {
+					this.parent.updateOffsetFromChild(0)
+				} else if (this.rect.top <= n - windowHeight * preLoadScreen) {
+					this.parent.updateOffsetFromChild(this.rect.top)
+				}
 			}
+			// #endif
 		},
 		created() {
 			this.parent = {}
 		},
 		mounted() {
+			console.log(321);
 			this.init()
 		},
 		methods: {
 			init() {
 				// 初始化数据
 				this.updateParentData()
-				this.resize()
 				this.index = this.parent.children.indexOf(this)
-				// uni.$on('change', ({
-				// 	start,
-				// 	end
-				// }) => {
-				// 	this.show = this.index >= start && this.index <= end
-				// })
+				// #ifndef APP-NVUE
+				this.resize()
+				// #endif
 			},
 			updateParentData() {
 				// 此方法在mixin中
@@ -81,13 +84,15 @@
 			},
 			resize() {
 				this.queryRect(`u-list-item-${this.id}`).then(size => {
-					// console.log(size);
 					const lastChild = this.parent.children[this.index - 1]
 					this.rect = size
-					if(lastChild) {
+					const preLoadScreen = this.uList.preLoadScreen
+					const windowHeight = this.sys.windowHeight
+					if (lastChild) {
 						this.rect.top = lastChild.rect.top + lastChild.rect.height
 					}
-					if (size.top >= 2 * this.sys.windowHeight) this.show = false
+					if (size.top >= this.uList.innerScrollTop + (1 + preLoadScreen) * windowHeight) this.show =
+						false
 				})
 			},
 			// 查询元素尺寸

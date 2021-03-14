@@ -1,8 +1,6 @@
 <template>
 	<view class="u-page">
 		<u-list
-			ref="list"
-			customStyle="height: 400px"
 			@scrolltolower="scrolltolower"
 		>
 			<u-list-item
@@ -27,14 +25,6 @@
 </template>
 
 <script>
-	const indexList = () => {
-		const indexList = []
-		const charCodeOfA = 'A'.charCodeAt(0)
-		for (let i = 0; i < 13; i++) {
-			indexList.push(String.fromCharCode(charCodeOfA + i))
-		}
-		return indexList
-	}
 	export default {
 		data() {
 			return {
@@ -50,30 +40,10 @@
 					'https://cdn.uviewui.com/uview/album/8.jpg',
 					'https://cdn.uviewui.com/uview/album/9.jpg',
 					'https://cdn.uviewui.com/uview/album/10.jpg',
-				],
-				names: ["勇往无敌", "疯狂的迪飙", "磊爱可", "梦幻梦幻梦", "枫中飘瓢", "飞翔天使",
-					"曾经第一", "追风幻影族长", "麦小姐", "胡格罗雅", "Red磊磊", "乐乐立立", "青龙爆风", "跑跑卡叮车", "山里狼", "supersonic超"
 				]
 			}
 		},
-		computed: {
-			itemArr() {
-				return this.indexList.map(item => {
-					const arr = []
-					for (let i = 0; i < 100; i++) {
-						arr.push({
-							name: this.names[uni.$u.random(0, this.names.length - 1)],
-							url: this.urls[uni.$u.random(0, this.urls.length - 1)]
-						})
-					}
-					return arr
-				})
-			}
-		},
 		onLoad() {
-			// uni.$u.sleep(3000).then(() => {
-			// 	this.$refs.list.scrollIntoViewId('30')
-			// })
 			this.loadmore()
 		},
 		methods: {
@@ -81,9 +51,8 @@
 				this.loadmore()
 			},
 			loadmore() {
-				for (let i = 0; i < 50; i++) {
+				for (let i = 0; i < 30; i++) {
 					this.indexList.push({
-						name: this.names[uni.$u.random(0, this.names.length - 1)],
 						url: this.urls[uni.$u.random(0, this.urls.length - 1)]
 					})
 				}
@@ -94,6 +63,6 @@
 
 <style lang="scss">
 	.u-page {
-		padding-top: 0;
+		padding: 0;
 	}
 </style>

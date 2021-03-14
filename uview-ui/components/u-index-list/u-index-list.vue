@@ -1,63 +1,70 @@
 <template>
 	<view class="u-index-list">
-		<scroll-view
-		    scroll-y
-		    :scroll-top="scrollTop"
-		    :style="{
-				height: $u.addUnit(scrollViewHeight)
-			}"
-		    @scroll="scrollHandler"
-			enable-back-to-top
+		<u-list
+			:scrollTop="scrollTop"
+			@scroll="scrollHandler"
 		>
 			<slot name="header" />
 			<slot />
 			<slot name="footer" />
+		</u-list>
+		<view
+			class="u-index-list__letter"
+			ref="u-index-list__letter"
+			v-if="showSidebar"
+			:style="{ top: $u.addUnit(letterInfo.top) }"
+			@touchstart.stop.prevent="touchStart"
+			@touchmove.stop.prevent="touchMove"
+			@touchend.stop.prevent="touchEnd"
+			@touchcancel.stop.prevent="touchEnd"
+		>
 			<view
-			    class="u-index-list__letter"
-			    ref="u-index-list__letter"
-			    v-if="showSidebar"
-			    :style="{ top: $u.addUnit(letterInfo.top) }"
-			    @touchstart.stop.prevent="touchStart"
-			    @touchmove.stop.prevent="touchMove"
-			    @touchend.stop.prevent="touchEnd"
-			    @touchcancel.stop.prevent="touchEnd"
-			>
-				<view
-				    class="u-index-list__letter__item"
-				    v-for="(item, index) in uIndexList"
-				    :key="index"
-				    :style="{
-						backgroundColor: activeIndex === index ? activeColor : 'transparent'
-					}"
-				>
-					<text
-					    class="u-index-list__letter__item__index"
-					    :style="{color: activeIndex === index ? '#fff' : inactiveColor}"
-					>{{ item }}</text>
-				</view>
-			</view>
-			<u-transition
-			    mode="fade"
-			    :show="touching"
-				:customStyle="{
-					position: 'fixed',
-					right: '50px',
-					top: $u.addUnit(indicatorTop),
-					zIndex: 2
+				class="u-index-list__letter__item"
+				v-for="(item, index) in uIndexList"
+				:key="index"
+				:style="{
+					backgroundColor: activeIndex === index ? activeColor : 'transparent'
 				}"
 			>
-				<view
-				    class="u-index-list__indicator"
-				    :class="['u-index-list__indicator--show']"
-				    :style="{
-						height: $u.addUnit(indicatorHeight),
-						width: $u.addUnit(indicatorHeight)
-					}"
-				>
-					<text class="u-index-list__indicator__text">{{ uIndexList[activeIndex] }}</text>
-				</view>
-			</u-transition>
-		</scroll-view>
+				<text
+					class="u-index-list__letter__item__index"
+					:style="{color: activeIndex === index ? '#fff' : inactiveColor}"
+				>{{ item }}</text>
+			</view>
+		</view>
+		<u-transition
+			mode="fade"
+			:show="touching"
+			:customStyle="{
+				position: 'fixed',
+				right: '50px',
+				top: $u.addUnit(indicatorTop),
+				zIndex: 2
+			}"
+		>
+			<view
+				class="u-index-list__indicator"
+				:class="['u-index-list__indicator--show']"
+				:style="{
+					height: $u.addUnit(indicatorHeight),
+					width: $u.addUnit(indicatorHeight)
+				}"
+			>
+				<text class="u-index-list__indicator__text">{{ uIndexList[activeIndex] }}</text>
+			</view>
+		</u-transition>
+		<!-- <scroll-view
+			scroll-y
+			:scroll-top="scrollTop"
+			:style="{
+				height: $u.addUnit(scrollViewHeight)
+			}"
+			@scroll="scrollHandler"
+			enable-back-to-top
+		>
+
+
+		</scroll-view> -->
 	</view>
 </template>
 
@@ -103,7 +110,8 @@
 				scrollViewHeight: 0,
 				// 系统信息
 				sys: uni.$u.sys(),
-				scrolling: false
+				scrolling: false,
+				scrollIntoView: ''
 			}
 		},
 		computed: {
@@ -243,7 +251,8 @@
 				// 如果偏移量太小，前后得出的会是同一个索引字母，为了防抖，进行返回
 				if (currentIndex === this.activeIndex) return
 				this.activeIndex = currentIndex
-				this.scrollTop = this.children[this.activeIndex].top
+				// this.scrollTop = this.children[this.activeIndex].top
+				this.scrollIntoView = `u-list-item-${this.indexList[currentIndex]}`
 				this.children.map((item, index) => {
 					item.anchor.bgColor = currentIndex === index ? this.anchorStickyBgColor : this.anchorBgColor
 					item.anchor.color = currentIndex === index ? this.activeColor : this.inactiveColor
@@ -251,7 +260,7 @@
 			},
 			// scroll-view的滚动事件
 			scrollHandler(e) {
-				if (this.touching || this.scrolling) return 
+				if (this.touching || this.scrolling) return
 				// 每过一定时间取样一次，减少资源损耗以及可能带来的卡顿
 				// this.scrolling = true
 				// uni.$u.sleep(100).then(() => {
@@ -264,7 +273,8 @@
 						nextItem = this.children[i + 1],
 						anchorHeight = this.anchorHeight
 					// 如果滚动条高度小于第一个item的top值，此时无需设置任意字母为高亮
-					if (scrollTop <= this.children[0].top || scrollTop >= this.children[len - 1].top + this.children[len - 1].height) {
+					if (scrollTop <= this.children[0].top || scrollTop >= this.children[len - 1].top + this.children[len -
+							1].height) {
 						if (scrollTop < item.top && scrollTop > item.top - anchorHeight) {
 							this.setFirstColorGradient(item, scrollTop)
 						}
@@ -279,8 +289,9 @@
 							this.setColorGradient(item, nextItem, scrollTop)
 						}
 						// 处理边界情况，防止快速滑动时，可能因为某些滚动位置没触发，导致某些item的anchor的背景色和color没完全修改过来
-						if(scrollTop < nextItem.top - anchorHeight) {
-							nextItem.anchor.bgColor !== this.anchorBgColor && (nextItem.anchor.bgColor = this.anchorBgColor)
+						if (scrollTop < nextItem.top - anchorHeight) {
+							nextItem.anchor.bgColor !== this.anchorBgColor && (nextItem.anchor.bgColor = this
+								.anchorBgColor)
 							nextItem.anchor.color !== this.inactiveColor && (nextItem.anchor.color = this.inactiveColor)
 						}
 						this.activeIndex = i
@@ -293,7 +304,7 @@
 				const anchorHeight = this.anchorHeight
 				const bgColorArr = uni.$u.colorGradient(this.anchorBgColor, this.anchorStickyBgColor, anchorHeight)
 				const colorArr = uni.$u.colorGradient(this.inactiveColor, this.activeColor, anchorHeight)
-				const colorIndex = nextItem.top-scrollTop
+				const colorIndex = nextItem.top - scrollTop
 				item.anchor.bgColor = bgColorArr[colorIndex]
 				item.anchor.color = colorArr[colorIndex]
 				nextItem.anchor.bgColor = bgColorArr[anchorHeight - colorIndex]

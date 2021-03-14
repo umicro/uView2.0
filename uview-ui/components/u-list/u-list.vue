@@ -3,27 +3,32 @@
 	<list
 		class="u-list"
 		:enableBackToTop="enableBackToTop"
-		loadmoreoffset="15"
+		:loadmoreoffset="lowerThreshold"
 		:showScrollbar="showScrollbar"
-		@scroll="onScroll"
-		:style="[$u.addStyle(customStyle)]"
+		:style="[listStyle]"
+		:offset-accuracy="Number(offsetAccuracy)"
+		@scroll="scrolltolower"
 	>
 		<slot />
 	</list>
 	<!-- #endif -->
 	<!-- #ifndef APP-NVUE -->
 	<scroll-view
+		class="u-list"
 		:scroll-into-view="scrollIntoView"
-		:style="{
-			height: `${sys.windowHeight}px`
-		}"
+		:style="[listStyle]"
 		scroll-y
+		:scroll-top="Number(scrollTop)"
+		:lower-threshold="Number(lowerThreshold)"
+		:upper-threshold="Number(upperThreshold)"
+		:show-scrollbar="Number(showScrollbar)"
+		:enable-back-to-top="enableBackToTop"
+		:scroll-with-animation="scrollWithAnimation"
 		@scroll="onScroll"
 		@scrolltolower="scrolltolower"
-		:lower-threshold="300"
-		:showScrollbar="showScrollbar"
+		@scrolltoupper="scrolltoupper"
 	>
-		<view class="u-list" :style="{
+		<view :style="{
 			transform: `translateY(${offset}px)`
 		}">
 			<slot />
@@ -40,25 +45,35 @@
 		name: 'u-list',
 		mixins: [uni.$u.mixin],
 		props: {
-			// 是否有回弹效果
-			bounce: {
-				type: Boolean,
-				default: true
-			},
-			// 控制是否出现滚动条
+			// 控制是否出现滚动条，仅nvue有效
 			showScrollbar: {
 				type: Boolean,
 				default: false
 			},
-			// 触发 loadmore 事件所需要的垂直偏移距离
-			loadmoreoffset: {
+			// 距底部多少时触发scrolltolower事件
+			lowerThreshold: {
+				type: [Number, String],
+				default: 50
+			},
+			// 距顶部多少时触发scrolltoupper事件，非nvue有效
+			upperThreshold: {
 				type: [Number, String],
 				default: 0
 			},
-			// 控制 onscroll 事件触发的频率
+			// 设置竖向滚动条位置
+			scrollTop: {
+				type: [Number, String],
+				default: 0
+			},
+			// 控制 onscroll 事件触发的频率，仅nvue有效
 			offsetAccuracy: {
 				type: [Number, String],
 				default: 10
+			},
+			// 启用 flexbox 布局。开启后，当前节点声明了display: flex就会成为flex container，并作用于其孩子节点，仅微信小程序有效
+			enableFlex: {
+				type: Boolean,
+				default: false
 			},
 			// 是否按分页模式显示List，默认值false
 			pagingEnabled: {
@@ -80,34 +95,52 @@
 				type: Boolean,
 				default: false
 			},
+			// iOS点击顶部状态栏、安卓双击标题栏时，滚动条返回顶部，只对微信小程序有效
 			enableBackToTop: {
 				type: Boolean,
 				default: false
-			}
+			},
+			// 列表的高度
+			height: {
+				type: [String, Number],
+				default: 0
+			},
+			// 列表宽度
+			width: {
+				type: [String, Number],
+				default: 0
+			},
+			// 列表前后预渲染的屏数，1代表一个屏幕的高度，1.5代表1个半屏幕高度
+			preLoadScreen: {
+				type: [String, Number],
+				default: 1
+			},
+			// vue下，是否开启虚拟列表
+			
 		},
 		watch: {
 			scrollIntoView(n) {
-
-			},
-			startIndex: {
-				immediate: true,
-				handler(n) {
-					// setTimeout(() => {
-					// 	uni.$emit('change', {
-					// 		start: this.startIndex, 
-					// 		end: this.endIndex
-					// 	})
-					// }, 1000);
-				}
+				this.scrollIntoViewById(n)
 			}
 		},
 		data() {
 			return {
-				startIndex: 0,
-				endIndex: 50,
-				scrollTop: 0,
+				// 记录内部滚动的距离
+				innerScrollTop: 0,
+				// vue下，scroll-view在上拉加载时的偏移值
 				offset: 0,
 				sys: uni.$u.sys()
+			}
+		},
+		computed: {
+			listStyle() {
+				const style = {},
+					addUnit = uni.$u.addUnit
+				if (this.width != 0) style.width = addUnit(this.width)
+				if (this.height != 0) style.height = addUnit(this.height)
+				// 如果没有定义列表高度，则默认使用屏幕高度
+				if (!style.height) style.height = addUnit(this.sys.windowHeight)
+				return uni.$u.deepMerge(style, this.customStyle)
 			}
 		},
 		provide() {
@@ -117,43 +150,17 @@
 		},
 		created() {
 			this.children = []
-			setTimeout(() => {
-				this.startIndex = 4
-				this.endIndex = 30
-			}, 3000)
 		},
-		mounted() {
-			// let arr = [
-			// 	{show: false},
-			// 	{show: false},
-			// 	{show: false},
-			// 	{show: false},
-			// 	{show: false},
-			// 	{show: true},
-			// 	{show: true}
-			// ]
-			// console.log(this.binarySearch(arr));
-		},
+		mounted() {},
 		methods: {
-			setTop(top) {
+			updateOffsetFromChild(top) {
 				this.offset = top
 			},
 			onScroll(e) {
 				const scrollTop = e.target.scrollTop
-				this.scrollTop = scrollTop
-				// // console.log(scrollTop, this.binarySearch(this.children, scrollTop));
-				// let len = this.children.length - 1
-				// let index = this.binarySearch(this.children, 0, Math.floor(len / 2))
-				// if(index === false) {
-				// 	index = this.binarySearch(this.children, Math.floor(len / 2), len)
-				// }
-				// console.log(index);
-				// this.offset = this.children[index].rect.top || 0
-				// this.startIndex = index
-				// this.endIndex = this.startIndex + 30
-				
+				this.innerScrollTop = scrollTop
 			},
-			scrollIntoViewId(id) {
+			scrollIntoViewById(id) {
 				// #ifdef APP-NVUE
 				// 根据id参数，找到所有u-list-item中匹配的节点，再通过dom模块滚动到对应的位置
 				const item = this.refs.find(item => item.id == id)
@@ -163,31 +170,22 @@
 				})
 				// #endif
 			},
-			// 计算
-			binarySearch(list, start, end) {
-				while (start <= end) {
-					let middleIndex = Math.floor((end + start) / 2)
-					let middle = list[middleIndex]
-					let middleNext = list[middleIndex + 1]
-					if(!middleNext) return false
-					// console.log(middle, middleNext);
-					if (middle.show === false && middleNext.show === true) {
-						return middleIndex
-					} 
-					if (middle.show === true) {
-						end = middleIndex - 1
-					} else {
-						start = middleIndex + 1
-					}
-				}
-				return 0
-			},
 			// 滚动到底部触发事件
-			scrolltolower() {
+			scrolltolower(e) {
 				uni.$u.sleep(30).then(() => {
 					this.$emit('scrolltolower')
 				})
+			},
+			// #ifndef APP-NVUE
+			// 滚动到底部时触发，非nvue有效
+			scrolltoupper(e) {
+				uni.$u.sleep(30).then(() => {
+					this.$emit('scrolltolower')
+					// 这一句很重要，能绝对保证在性功能障碍的webview，滚动条到顶时，取消偏移值，让页面置顶
+					this.offset = 0
+				})
 			}
+			// #endif
 		},
 	}
 </script>

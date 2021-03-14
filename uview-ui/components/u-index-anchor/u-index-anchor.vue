@@ -60,6 +60,7 @@
 					return uni.$u.error('u-index-anchor必须要搭配u-index-item组件使用')
 				}
 				this.parent.anchor = this
+				this.parent.id = this.text
 			}
 		},
 	}

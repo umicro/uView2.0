@@ -1,10 +1,12 @@
 <template>
-	<view
-	    class="u-index-item"
-	    ref="u-index-item"
-	>
-		<slot/>
-	</view>
+	<u-list-item :id="id">
+		<view
+		    class="u-index-item"
+		    ref="u-index-item"
+		>
+			<slot/>
+		</view>
+	</u-list-item>
 </template>
 
 <script>
@@ -20,6 +22,7 @@
 				// 本组件到滚动条顶部的距离
 				top: 0,
 				height: 0,
+				id: ''
 			}
 		},
 		created() {

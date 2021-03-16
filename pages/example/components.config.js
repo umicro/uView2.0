@@ -269,7 +269,7 @@ export default [{
 			title: 'Swiper 轮播图',
 			title_en: 'Swiper',
 		}, {
-			path: '/pages/componentsA/timeLine/timeLine',
+			path: '/pages/componentsC/timeLine/timeLine',
 			icon: 'timeLine',
 			title: 'TimeLine 时间轴',
 			title_en: 'TimeLine',

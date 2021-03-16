@@ -66,7 +66,6 @@
 			this.parent = {}
 		},
 		mounted() {
-			console.log(321);
 			this.init()
 		},
 		methods: {
@@ -74,9 +73,7 @@
 				// 初始化数据
 				this.updateParentData()
 				this.index = this.parent.children.indexOf(this)
-				// #ifndef APP-NVUE
 				this.resize()
-				// #endif
 			},
 			updateParentData() {
 				// 此方法在mixin中
@@ -88,11 +85,13 @@
 					this.rect = size
 					const preLoadScreen = this.uList.preLoadScreen
 					const windowHeight = this.sys.windowHeight
+					// #ifndef APP-NVUE
 					if (lastChild) {
 						this.rect.top = lastChild.rect.top + lastChild.rect.height
 					}
 					if (size.top >= this.uList.innerScrollTop + (1 + preLoadScreen) * windowHeight) this.show =
 						false
+					// #endif
 				})
 			},
 			// 查询元素尺寸

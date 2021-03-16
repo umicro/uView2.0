@@ -25,11 +25,6 @@ export default {
 			type: [String, Number],
 			default: 17
 		},
-		// 是否显示点图标类型
-		dot: {
-			type: Boolean,
-			default: false
-		},
 		// 当前步骤是否处于失败状态
 		error: {
 			type: Boolean,

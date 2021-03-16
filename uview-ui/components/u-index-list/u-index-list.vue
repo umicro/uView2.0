@@ -2,11 +2,26 @@
 	<view class="u-index-list">
 		<u-list
 			:scrollTop="scrollTop"
+			:scrollIntoView="scrollIntoView"
+			:offset-accuracy="1"
 			@scroll="scrollHandler"
+			ref="uList"
 		>
-			<slot name="header" />
+			<!-- #ifdef APP-NVUE -->
+			<cell v-if="$slots.header">
+				<!-- #endif -->
+				<slot name="header" />
+				<!-- #ifdef APP-NVUE -->
+			</cell>
+			<!-- #endif -->
 			<slot />
-			<slot name="footer" />
+			<!-- #ifdef APP-NVUE -->
+			<cell v-if="$slots.header">
+				<!-- #endif -->
+				<slot name="footer" />
+				<!-- #ifdef APP-NVUE -->
+			</cell>
+			<!-- #endif -->
 		</u-list>
 		<view
 			class="u-index-list__letter"
@@ -252,11 +267,11 @@
 				if (currentIndex === this.activeIndex) return
 				this.activeIndex = currentIndex
 				// this.scrollTop = this.children[this.activeIndex].top
-				this.scrollIntoView = `u-list-item-${this.indexList[currentIndex]}`
-				this.children.map((item, index) => {
-					item.anchor.bgColor = currentIndex === index ? this.anchorStickyBgColor : this.anchorBgColor
-					item.anchor.color = currentIndex === index ? this.activeColor : this.inactiveColor
-				})
+				this.scrollIntoView = `u-list-item-${this.uIndexList[currentIndex]}`
+				// this.children.map((item, index) => {
+				// 	item.anchor.bgColor = currentIndex === index ? this.anchorStickyBgColor : this.anchorBgColor
+				// 	item.anchor.color = currentIndex === index ? this.activeColor : this.inactiveColor
+				// })
 			},
 			// scroll-view的滚动事件
 			scrollHandler(e) {
@@ -266,17 +281,21 @@
 				// uni.$u.sleep(100).then(() => {
 				// 	this.scrolling = false
 				// })
-				const scrollTop = Math.ceil(e.detail.scrollTop)
+				const scrollTop = e
 				const len = this.children.length
+				const children = this.$refs.uList.children
+				const anchors = this.$refs.uList.anchors
 				for (let i = 0; i < len; i++) {
-					const item = this.children[i],
-						nextItem = this.children[i + 1],
+					const item = children[i].rect,
+						anchorsItem = anchors[i],
+						nextItem = (children[i + 1] || {}).rect,
+						anchorsNextItem = anchors[i + 1],
 						anchorHeight = this.anchorHeight
 					// 如果滚动条高度小于第一个item的top值，此时无需设置任意字母为高亮
-					if (scrollTop <= this.children[0].top || scrollTop >= this.children[len - 1].top + this.children[len -
-							1].height) {
+					if (scrollTop <= children[0].rect.top || scrollTop >= children[len - 1].rect.top + children[len -
+							1].rect.height) {
 						if (scrollTop < item.top && scrollTop > item.top - anchorHeight) {
-							this.setFirstColorGradient(item, scrollTop)
+							this.setFirstColorGradient(item, scrollTop, anchorsItem)
 						}
 						this.activeIndex = -1
 						break
@@ -286,13 +305,13 @@
 						break
 					} else if (scrollTop > item.top && scrollTop < nextItem.top) {
 						if (scrollTop > nextItem.top - anchorHeight) {
-							this.setColorGradient(item, nextItem, scrollTop)
+							this.setColorGradient(item, nextItem, scrollTop, anchorsItem, anchorsNextItem)
 						}
 						// 处理边界情况，防止快速滑动时，可能因为某些滚动位置没触发，导致某些item的anchor的背景色和color没完全修改过来
 						if (scrollTop < nextItem.top - anchorHeight) {
-							nextItem.anchor.bgColor !== this.anchorBgColor && (nextItem.anchor.bgColor = this
+							anchorsNextItem.bgColor !== this.anchorBgColor && (anchorsNextItem.bgColor = this
 								.anchorBgColor)
-							nextItem.anchor.color !== this.inactiveColor && (nextItem.anchor.color = this.inactiveColor)
+							anchorsNextItem.color !== this.inactiveColor && (anchorsNextItem.color = this.inactiveColor)
 						}
 						this.activeIndex = i
 						break
@@ -300,24 +319,24 @@
 				}
 			},
 			// 设置非第一个背景和文字渐变色
-			setColorGradient(item, nextItem, scrollTop) {
+			setColorGradient(item, nextItem, scrollTop, anchorsItem, anchorsNextItem) {
 				const anchorHeight = this.anchorHeight
 				const bgColorArr = uni.$u.colorGradient(this.anchorBgColor, this.anchorStickyBgColor, anchorHeight)
 				const colorArr = uni.$u.colorGradient(this.inactiveColor, this.activeColor, anchorHeight)
 				const colorIndex = nextItem.top - scrollTop
-				item.anchor.bgColor = bgColorArr[colorIndex]
-				item.anchor.color = colorArr[colorIndex]
-				nextItem.anchor.bgColor = bgColorArr[anchorHeight - colorIndex]
-				nextItem.anchor.color = colorArr[anchorHeight - colorIndex]
+				anchorsItem.bgColor = bgColorArr[colorIndex]
+				anchorsItem.color = colorArr[colorIndex]
+				anchorsNextItem.bgColor = bgColorArr[anchorHeight - colorIndex]
+				anchorsNextItem.color = colorArr[anchorHeight - colorIndex]
 			},
 			// 设置第一个背景和文字渐变色
-			setFirstColorGradient(item, scrollTop) {
+			setFirstColorGradient(item, scrollTop, anchorsItem) {
 				const anchorHeight = this.anchorHeight
 				const bgColorArr = uni.$u.colorGradient(this.anchorBgColor, this.anchorStickyBgColor, anchorHeight)
 				const colorArr = uni.$u.colorGradient(this.inactiveColor, this.activeColor, anchorHeight)
 				const colorIndex = item.top - scrollTop
-				item.anchor.bgColor = bgColorArr[anchorHeight - colorIndex]
-				item.anchor.color = colorArr[anchorHeight - colorIndex]
+				anchorsItem.bgColor = bgColorArr[anchorHeight - colorIndex]
+				anchorsItem.color = colorArr[anchorHeight - colorIndex]
 			},
 		},
 	}

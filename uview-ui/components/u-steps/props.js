@@ -34,6 +34,6 @@ export default {
 		dot: {
 			type: Boolean,
 			default: false
-		}
+		},
 	}
 }

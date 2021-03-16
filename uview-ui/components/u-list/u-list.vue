@@ -7,7 +7,8 @@
 		:showScrollbar="showScrollbar"
 		:style="[listStyle]"
 		:offset-accuracy="Number(offsetAccuracy)"
-		@scroll="scrolltolower"
+		@scroll="onScroll"
+		@loadmore="scrolltolower"
 	>
 		<slot />
 	</list>
@@ -29,7 +30,7 @@
 		@scrolltoupper="scrolltoupper"
 	>
 		<view :style="{
-			transform: `translateY(${offset}px)`
+			paddingTop: `${offset}px`
 		}">
 			<slot />
 		</view>
@@ -149,7 +150,9 @@
 			}
 		},
 		created() {
+			this.refs = []
 			this.children = []
+			this.anchors = []
 		},
 		mounted() {},
 		methods: {
@@ -157,14 +160,21 @@
 				this.offset = top
 			},
 			onScroll(e) {
-				const scrollTop = e.target.scrollTop
+				let scrollTop = 0
+				// #ifdef APP-NVUE
+				scrollTop = e.contentOffset.y
+				// #endif
+				// #ifndef APP-NVUE
+				scrollTop = e.detail.scrollTop
+				// #endif
 				this.innerScrollTop = scrollTop
+				this.$emit('scroll', Math.abs(scrollTop))
 			},
 			scrollIntoViewById(id) {
 				// #ifdef APP-NVUE
 				// 根据id参数，找到所有u-list-item中匹配的节点，再通过dom模块滚动到对应的位置
-				const item = this.refs.find(item => item.id == id)
-				dom.scrollToElement(item.$refs[`u-list-item-${id}`], {
+				const item = this.refs.find(item => item.$refs[id] ? true : false)
+				dom.scrollToElement(item.$refs[id], {
 					// 是否需要滚动动画
 					animated: this.scrollWithAnimation
 				})

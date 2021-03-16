@@ -1,0 +1,41 @@
+<template>
+	<view class="u-page">
+		<u-steps
+		    :activeIndex="1"
+		    direction="column"
+			dot
+		>
+			<u-steps-item
+			    title="已下单"
+			    desc="10:30"
+			>
+			</u-steps-item>
+			<u-steps-item
+			    title="您提交了订单,请等待系统确认您提交了订单,请等待系统确认您提交了订单,请等待系统确认您提交了订单,请等待系统确认"
+			    desc="10:35"
+			>
+			</u-steps-item>
+			<u-steps-item
+			    title="您提交了订单,请等待系统确认您提交了订单,请等待系统确认您提交了订单,请等待系统确认您提交了订单,请等待系统确认"
+			    desc="11:40"
+			>
+				<text slot="icon" class="tiny-dot"></text>
+			</u-steps-item>
+		</u-steps>
+	</view>
+</template>
+
+<script>
+	export default {
+		
+	}
+</script>
+
+<style lang="scss">
+	.tiny-dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 10px;
+		background-color: $u-tips-color;
+	}
+</style>

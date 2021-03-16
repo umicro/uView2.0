@@ -45,6 +45,27 @@
 					>
 					</u-steps-item>
 				</u-steps>
+				<u-steps
+				    :activeIndex="1"
+				    dot
+					direction="column"
+				>
+					<u-steps-item
+					    title="已下单"
+					    desc="10:30"
+					>
+					</u-steps-item>
+					<u-steps-item
+					    title="已出库"
+					    desc="10:35"
+					>
+					</u-steps-item>
+					<u-steps-item
+					    title="运输中"
+					    desc="11:40"
+					>
+					</u-steps-item>
+				</u-steps>
 			</view>
 		</view>
 		<view class="u-demo-block">

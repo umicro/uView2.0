@@ -1,72 +1,79 @@
 <template>
-	<u-index-list>
+	<u-index-list ref="abc">
 		<u-cell-group slot="header">
 			<u-cell title="新的朋友">
 				<u-avatar
-				    slot="icon"
-				    shape="square"
-				    size="35"
-				    icon="man-add-fill"
-				    fontSize="26"
-				    randomBgColor
-				    customStyle="margin: -3px 5px -3px 0"
+					slot="icon"
+					shape="square"
+					size="35"
+					icon="man-add-fill"
+					fontSize="26"
+					randomBgColor
+					customStyle="margin: -3px 5px -3px 0"
 				></u-avatar>
 			</u-cell>
 			<u-cell title="标签">
 				<u-avatar
-				    slot="icon"
-				    shape="square"
-				    size="35"
-				    icon="tags-fill"
-				    fontSize="26"
-				    randomBgColor
-				    customStyle="margin: -3px 5px -3px 0"
+					slot="icon"
+					shape="square"
+					size="35"
+					icon="tags-fill"
+					fontSize="26"
+					randomBgColor
+					customStyle="margin: -3px 5px -3px 0"
 				></u-avatar>
 			</u-cell>
 			<u-cell title="朋友圈">
 				<u-avatar
-				    slot="icon"
-				    shape="square"
-				    size="35"
-				    icon="chrome-circle-fill"
-				    fontSize="26"
-				    randomBgColor
-				    customStyle="margin: -3px 5px -3px 0"
+					slot="icon"
+					shape="square"
+					size="35"
+					icon="chrome-circle-fill"
+					fontSize="26"
+					randomBgColor
+					customStyle="margin: -3px 5px -3px 0"
 				></u-avatar>
 			</u-cell>
 			<u-cell
-			    title="QQ"
-			    :border="false"
+				title="QQ"
+				:border="false"
 			>
 				<u-avatar
-				    slot="icon"
-				    shape="square"
-				    size="35"
-				    icon="qq-fill"
-				    fontSize="26"
-				    randomBgColor
-				    customStyle="margin: -3px 5px -3px 0"
+					slot="icon"
+					shape="square"
+					size="35"
+					icon="qq-fill"
+					fontSize="26"
+					randomBgColor
+					customStyle="margin: -3px 5px -3px 0"
 				></u-avatar>
 			</u-cell>
 		</u-cell-group>
-		<u-index-item
-		    v-for="(item, index) in itemArr"
-		    :key="index"
+		<template
+			v-for="(item, index) in itemArr"
 		>
+			<!-- #ifdef APP-NVUE -->
 			<u-index-anchor :text="indexList[index]"></u-index-anchor>
-			<u-cell
-			    :title="item1.name"
-				v-for="(item1, index1) in item"
-			>
-				<u-avatar
-				    slot="icon"
-				    shape="square"
-				    size="35"
-				    :src="item1.url"
-				    customStyle="margin: -3px 5px -3px 0"
-				></u-avatar>
-			</u-cell>
-		</u-index-item>
+			<!-- #endif -->
+			<u-index-item>
+				<!-- #ifndef APP-NVUE -->
+				<u-index-anchor :text="indexList[index]"></u-index-anchor>
+				<!-- #endif -->
+				<u-cell
+					:title="item1.name"
+					v-for="(item1, index1) in item"
+					:border="index1 !== item.length - 1"
+				>
+					<u-avatar
+						slot="icon"
+						shape="square"
+						size="35"
+						:src="item1.url"
+						customStyle="margin: -3px 5px -3px 0"
+					></u-avatar>
+				</u-cell>
+			</u-index-item>
+		</template>
 	</u-index-list>
 </template>
 
@@ -79,6 +86,9 @@
 		}
 		return indexList
 	}
+	// #ifdef APP-NVUE
+	const dom = uni.requireNativePlugin('dom')
+	// #endif
 	export default {
 		data() {
 			return {
@@ -110,13 +120,10 @@
 							url: this.urls[uni.$u.random(0, this.urls.length - 1)]
 						})
 					}
-					return arr
+					return arr 
 				})
 			}
 		},
-		onLoad() {
-
-		}
 	}
 </script>
 

@@ -1,7 +1,11 @@
 <template>
+	<!-- #ifdef APP-NVUE -->
+	<header>
+	<!-- #endif -->
 	<view
 	    class="u-index-anchor u-border-bottom"
-	    :id="`_${text}`"
+	    :id="`u-list-item-${text}`"
+		:ref="`u-list-item-${text}`"
 	    :style="{
 			height: $u.addUnit(height),
 			backgroundColor: bgColor
@@ -15,9 +19,15 @@
 			}"
 		>{{ text }}</text>
 	</view>
+	<!-- #ifdef APP-NVUE -->
+	</header>
+	<!-- #endif -->
 </template>
 
 <script>
+	// #ifdef APP-NVUE
+	const dom = uni.requireNativePlugin('dom')
+	// #endif
 	export default {
 		name: 'u-index-anchor',
 		mixins: [uni.$u.mixin],
@@ -51,16 +61,18 @@
 		},
 		created() {
 			this.init()
+			
 		},
 		methods: {
 			init() {
 				// 此处会活动父组件实例，并赋值给实例的parent属性
-				this.getParentData('u-index-item')
-				if (!this.parent) {
-					return uni.$u.error('u-index-anchor必须要搭配u-index-item组件使用')
+				this.parent = uni.$u.$parent.call(this, 'u-list')
+				if (!this.parent) { 
+					return uni.$u.error('u-index-anchor必须要搭配u-index-list组件使用')
 				}
-				this.parent.anchor = this
+				this.parent.anchors.push(this)
 				this.parent.id = this.text
+				this.parent.refs.push(this)
 			}
 		},
 	}

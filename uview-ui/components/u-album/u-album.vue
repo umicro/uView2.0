@@ -141,7 +141,7 @@
 			},
 			// 获取图片的路径
 			getSrc(item) {
-				return uni.$u.test.object(item) ? this.keyName && item[this.keyName] || item.url : item
+				return uni.$u.test.object(item) ? this.keyName && item[this.keyName] || item.src : item
 			},
 			// 单图时，获取图片的尺寸
 			// 在小程序中，需要将网络图片的的域名添加到小程序的download域名才可能获取尺寸

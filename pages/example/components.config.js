@@ -264,7 +264,7 @@ export default [{
 			title: 'Grid 宫格布局',
 			title_en: 'Grid',
 		}, {
-			path: '/pages/componentsB/swiper/swiper',
+			path: '/pages/componentsC/swiper/swiper',
 			icon: 'swiper',
 			title: 'Swiper 轮播图',
 			title_en: 'Swiper',

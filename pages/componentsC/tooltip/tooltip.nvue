@@ -36,7 +36,7 @@
 			</view>
 		</view>
 		<view class="u-demo-block">
-			<text class="u-demo-block__title">显示背景色</text>
+			<text class="u-demo-block__title">高亮选中文本背景色</text>
 			<view class="u-demo-block__content">
 				<u-tooltip
 				    :text="text5"

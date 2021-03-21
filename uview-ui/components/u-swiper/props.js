@@ -20,8 +20,13 @@ export default {
 			type: String,
 			default: 'rgba(255, 255, 255, 0.35)'
 		},
-		// 指示器的形式，line-线型，dot-点型
+		// 指示器样式，可通过bottom，left，right进行定位
 		indicatorStyle: {
+			type: [String, Object],
+			default: ''
+		},
+		// 指示器模式，line-线型，dot-点型
+		indicatorMode: {
 			type: String,
 			default: 'line'
 		},

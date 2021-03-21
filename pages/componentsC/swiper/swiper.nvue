@@ -19,7 +19,7 @@
 			<u-swiper
 				:list="list3"
 				indicator
-				indicatorStyle="line"
+				indicatorMode="line"
 				circular
 			></u-swiper>
 		</view>
@@ -45,7 +45,10 @@
 				@change="e => current = e.current"
 				:autoplay="false"
 			>
-				<view slot="indicator" class="indicator">
+				<view
+					slot="indicator"
+					class="indicator"
+				>
 					<view
 						class="indicator__dot"
 						v-for="(item, index) in list5"
@@ -53,6 +56,20 @@
 						:class="[index === current && 'indicator__dot--active']"
 					>
 					</view>
+				</view>
+			</u-swiper>
+			<u-gap bgColor="transparent" height="15"></u-gap>
+			<u-swiper
+				:list="list6"
+				@change="e => currentNum = e.current"
+				:autoplay="false"
+				indicatorStyle="right: 20px"
+			>
+				<view
+					slot="indicator"
+					class="indicator-num"
+				>
+					<text class="indicator-num__text">{{ currentNum + 1 }}/{{ list6.length }}</text>
 				</view>
 			</u-swiper>
 		</view>
@@ -78,6 +95,7 @@
 		data() {
 			return {
 				current: 0,
+				currentNum: 0,
 				list: [{
 						// image: 'https://cdn.uviewui.com/uview/resources/video.mp4',
 						image: 'https://cdn.uviewui.com/uview/swiper/swiper1.png',
@@ -134,6 +152,11 @@
 					'https://cdn.uviewui.com/uview/swiper/swiper3.png',
 					'https://cdn.uviewui.com/uview/swiper/swiper2.png',
 					'https://cdn.uviewui.com/uview/swiper/swiper1.png',
+				],
+				list6: [
+					'https://cdn.uviewui.com/uview/swiper/swiper2.png',
+					'https://cdn.uviewui.com/uview/swiper/swiper3.png',
+					'https://cdn.uviewui.com/uview/swiper/swiper1.png',
 				]
 			}
 		}
@@ -144,7 +167,7 @@
 	.indicator {
 		@include flex(row);
 		justify-content: center;
-		
+
 		&__dot {
 			height: 6px;
 			width: 6px;
@@ -152,10 +175,24 @@
 			background-color: rgba(255, 255, 255, 0.35);
 			margin: 0 5px;
 			transition: background-color 0.3s;
-			
+
 			&--active {
 				background-color: #ffffff;
 			}
+		}
+	}
+
+	.indicator-num {
+		padding: 2px 0;
+		background-color: rgba(0, 0, 0, 0.35);
+		border-radius: 100px;
+		width: 35px;
+		@include flex;
+		justify-content: center;
+		
+		&__text {
+			color: #FFFFFF;
+			font-size: 12px;
 		}
 	}
 </style>

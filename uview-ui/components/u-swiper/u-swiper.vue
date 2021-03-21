@@ -72,7 +72,7 @@
 				</view>
 			</swiper-item>
 		</swiper>
-		<view class="u-swiper__indicator">
+		<view class="u-swiper__indicator" :style="[$u.addStyle(indicatorStyle)]">
 			<slot name="indicator">
 				<u-swiper-indicator
 					v-if="!loading && indicator && !showTitle"
@@ -80,7 +80,7 @@
 					:indicatorActiveColor="indicatorActiveColor"
 					:length="list.length"
 					:current="currentIndex"
-					:indicatorStyle="indicatorStyle"
+					:indicatorMode="indicatorMode"
 				></u-swiper-indicator>
 			</slot>
 		</view>

@@ -99,6 +99,7 @@
 				const x = Math.ceil(scrollLeft / (scrollWidth - this.scrollWidth) * barAllMoveWidth)
 				style.transform = `translateX(${ x }px)`
 				// #endif
+				style.width = uni.$u.addUnit(this.indicatorBarWidth)
 				style.backgroundColor = this.indicatorActiveColor
 				return style
 			},

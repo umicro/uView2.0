@@ -235,6 +235,11 @@ export default [{
 		groupName: '布局组件',
 		groupName_en: 'Layout components',
 		list: [{
+			path: '/pages/componentsC/scrollList/scrollList',
+			icon: 'line',
+			title: 'scrollList 横向滚动列表',
+			title_en: 'ScrollList',
+		},{
 			path: '/pages/componentsA/line/line',
 			icon: 'line',
 			title: 'Line 线条',

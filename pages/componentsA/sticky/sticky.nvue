@@ -4,7 +4,7 @@
 			<text class="u-demo-block__title">基础使用</text>
 			<!-- <u--text text="滚动页面,即可看到下方的按钮会吸顶"></u--text> -->
 		</view>
-		<u-sticky offsetTop="0">
+		<u-sticky>
 			<u-button text="吸顶按钮" type="success"></u-button>
 		</u-sticky>
 		<u-gap bgColor="#fff" height="1500px"></u-gap>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-	export default {
+	export default { 
 		data() {
 			return {
 

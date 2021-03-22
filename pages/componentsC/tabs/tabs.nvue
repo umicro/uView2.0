@@ -1,6 +1,33 @@
 <template>
 	<view class="u-page">
-		<u-tabs></u-tabs>
+		<u-tabs>
+			<swiper-item>
+				<u-list>
+					<u-list-item>
+						1234
+					</u-list-item>
+					<u-list-item>
+						1234
+					</u-list-item>
+					<u-list-item>
+						1234
+					</u-list-item>
+				</u-list>
+			</swiper-item>
+			<swiper-item>
+				<u-list>
+					<u-list-item>
+						1234
+					</u-list-item>
+					<u-list-item>
+						1234
+					</u-list-item>
+					<u-list-item>
+						1234
+					</u-list-item>
+				</u-list>
+			</swiper-item>
+		</u-tabs>
 	</view>
 </template>
 

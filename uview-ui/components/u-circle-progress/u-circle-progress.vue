@@ -73,7 +73,6 @@
 					},
 				}, () => {
 					this.rightBorderColor = 'rgb(66, 185, 131)'
-					console.log(333);
 					// animation.transition(this.$refs['right-circle'].ref, {
 					// 	styles: {
 					// 		transform: 'rotate(225deg)',

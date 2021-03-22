@@ -1,4 +1,7 @@
 <template>
+	<swiper-item>
+		<slot />
+	</swiper-item>
 </template>
 
 <script>

@@ -5,8 +5,6 @@
 			<u-scroll-list
 				indicatorColor="#fff0f0"
 				indicatorActiveColor="#f56c6c"
-				indicatorWidth="100"
-				indicatorBarWidth="40"
 			>
 				<view
 					class="scroll-list"

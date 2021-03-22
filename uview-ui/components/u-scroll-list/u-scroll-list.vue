@@ -5,67 +5,80 @@
 	>
 		<!-- #ifdef APP-NVUE -->
 		<!-- nvue使用bindingX实现，以得到更好的性能 -->
+		<scroller
+			class="u-scroll-list__scroll-view"
+			ref="u-scroll-list__scroll-view"
+			scroll-direction="horizontal"
+			:show-scrollbar="false"
+			:offset-accuracy="1"
+			@scroll="nvueScrollHandler"
+		>
+			<view class="u-scroll-list__scroll-view__content">
+				<slot />
+			</view>
+		</scroller>
+		<!-- #endif -->
+		<!-- #ifndef APP-NVUE -->
+		<!-- #ifdef MP-WEIXIN || APP-VUE || H5 || MP-QQ -->
+		<!-- 以上平台，支持wxs -->
 		<scroll-view
 			class="u-scroll-list__scroll-view"
 			scroll-x
-			@scroll="nvueScrollHandler"
-			ref="u-scroll-list__scroll-view"
+			@scroll="wxs.scroll"
+			@scrolltoupper="wxs.scrolltoupper"
+			@scrolltolower="wxs.scrolltolower"
+			:data-scrollWidth="scrollWidth"
+			:data-barWidth="$u.getPx(indicatorBarWidth)"
+			:data-indicatorWidth="$u.getPx(indicatorWidth)"
 			:show-scrollbar="false"
+			:upper-threshold="0"
+			:lower-threshold="0"
 		>
 			<!-- #endif -->
-			<!-- #ifdef MP-WEIXIN || APP-VUE || H5 || MP-QQ -->
-			<!-- 以上平台，支持wxs -->
+			<!-- #ifndef APP-NVUE || MP-WEIXIN || H5 || APP-VUE || MP-QQ -->
+			<!-- 非以上平台，只能使用普通js实现 -->
 			<scroll-view
 				class="u-scroll-list__scroll-view"
 				scroll-x
-				@scroll="wxs.scroll"
-				@scrolltoupper="wxs.scrolltoupper"
-				@scrolltolower="wxs.scrolltolower"
-				:data-scrollWidth="scrollWidth"
-				:data-barWidth="indicatorBarWidth"
-				:data-indicatorWidth="indicatorWidth"
+				@scroll="scrollHandler"
+				@scrolltoupper="scrolltoupperHandler"
+				@scrolltolower="scrolltolowerHandler"
 				:show-scrollbar="false"
+				:upper-threshold="0"
+				:lower-threshold="0"
 			>
 				<!-- #endif -->
-				<!-- #ifndef APP-NVUE || MP-WEIXIN || H5 || APP-VUE || MP-QQ -->
-				<!-- 非以上平台，只能使用普通js实现 -->
-				<scroll-view
-					class="u-scroll-list__scroll-view"
-					scroll-x
-					@scroll="scrollHandler"
-					@scrolltoupper="scrolltoupperHandler"
-					@scrolltolower="scrolltolowerHandler"
-					:show-scrollbar="false"
-				>
-					<!-- #endif -->
-					<view class="u-scroll-list__scroll-view__content">
-						<slot />
-					</view>
-				</scroll-view>
+				<view class="u-scroll-list__scroll-view__content">
+					<slot />
+				</view>
+			</scroll-view>
+			<!-- #endif -->
+			<view
+				class="u-scroll-list__indicator"
+				v-if="indicator"
+				:style="[$u.addStyle(indicatorStyle)]"
+			>
 				<view
-					class="u-scroll-list__indicator"
-					v-if="indicator"
-					:style="[$u.addStyle(indicatorStyle)]"
+					class="u-scroll-list__indicator__line"
+					:style="[lineStyle]"
 				>
 					<view
-						class="u-scroll-list__indicator__line"
-						:style="[lineStyle]"
-					>
-						<view
-							class="u-scroll-list__indicator__line__bar"
-							:style="[barStyle]"
-							ref="u-scroll-list__indicator__line__bar"
-						></view>
-					</view>
+						class="u-scroll-list__indicator__line__bar"
+						:style="[barStyle]"
+						ref="u-scroll-list__indicator__line__bar"
+					></view>
 				</view>
+			</view>
 	</view>
 </template>
 
+<!-- #ifndef APP-NVUE || MP-WEIXIN || H5 || APP-VUE || MP-QQ -->
 <script
 	src="./scrollWxs.wxs"
 	module="wxs"
 	lang="wxs"
 ></script>
+<!-- #endif -->
 
 <script>
 	// #ifdef APP-NVUE
@@ -93,18 +106,23 @@
 			barStyle() {
 				const style = {}
 				// #ifndef APP-NVUE || MP-WEIXIN || H5 || APP-VUE || MP-QQ
+				// 此为普通js方案，只有在非nvue和不支持wxs方案的端才使用、
+				// 此处的计算理由为：scroll-view的滚动距离与目标滚动距离(scroll-view的实际宽度减去包裹元素的宽度)之比，等于滑块当前移动距离与总需
+				// 滑动距离(指示器的总宽度减去滑块宽度)的比值
 				const scrollLeft = this.scrollInfo.scrollLeft,
 					scrollWidth = this.scrollInfo.scrollWidth,
 					barAllMoveWidth = this.indicatorWidth - this.indicatorBarWidth
-				const x = Math.ceil(scrollLeft / (scrollWidth - this.scrollWidth) * barAllMoveWidth)
+				const x = scrollLeft / (scrollWidth - this.scrollWidth) * barAllMoveWidth
 				style.transform = `translateX(${ x }px)`
 				// #endif
+				// 设置滑块的宽度和背景色，是每个平台都需要的
 				style.width = uni.$u.addUnit(this.indicatorBarWidth)
 				style.backgroundColor = this.indicatorActiveColor
 				return style
 			},
 			lineStyle() {
 				const style = {}
+				// 指示器整体的样式，需要设置其宽度和背景色
 				style.width = uni.$u.addUnit(this.indicatorWidth)
 				style.backgroundColor = this.indicatorColor
 				return style
@@ -126,6 +144,8 @@
 				this.scrollInfo.scrollLeft = 0
 			},
 			scrolltolowerHandler() {
+				// 在普通js方案中，滚动到右边时，通过设置this.scrollInfo，模拟出滚动到右边的情况
+				// 因为上方是用过computed计算的，设置后，会自动调整滑块的位置
 				this.scrollInfo.scrollLeft = uni.$u.getPx(this.indicatorWidth) - uni.$u.getPx(this.indicatorBarWidth)
 			},
 			// #endif
@@ -154,15 +174,13 @@
 	@import "../../libs/css/components.scss";
 
 	.u-scroll-list {
-		// justify-content: center;
 		padding-bottom: 10px;
-		// align-items: center;
 
 		&__scroll-view {
 			@include flex;
 
 			&__content {
-				// @include flex(column);
+				@include flex;
 				// // position: relative;
 				// justify-content: center;
 

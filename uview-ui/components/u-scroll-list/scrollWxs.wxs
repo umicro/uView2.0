@@ -12,7 +12,7 @@ function scroll(event, ownerInstance) {
 	var barWidth = dataset.barWidth
 	// 此处的计算理由为：scroll-view的滚动距离与目标滚动距离(scroll-view的实际宽度减去包裹元素的宽度)之比，等于滑块当前移动距离与总需
 	// 滑动距离(指示器的总宽度减去滑块宽度)的比值
-	var x = Math.ceil(scrollLeft / (scrollWidth - scrollComponentWidth) * (indicatorWidth - barWidth))
+	var x = scrollLeft / (scrollWidth - scrollComponentWidth) * (indicatorWidth - barWidth)
 	setBarStyle(ownerInstance, x)
 }
 

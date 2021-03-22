@@ -8,10 +8,11 @@ export default {
 		nvueScrollHandler(e) {
 			const anchor = this.$refs['u-scroll-list__scroll-view'].ref
 			const element = this.$refs['u-scroll-list__indicator__line__bar'].ref
-			const scrollLeft = e.detail.scrollLeft,
-				scrollWidth = e.detail.scrollWidth,
+			const scrollLeft = e.contentOffset.x,
+				contentSize = e.contentSize.width,
+				scrollWidth = this.scrollWidth,
 				barAllMoveWidth = this.indicatorWidth - this.indicatorBarWidth
-			const expression = `ceil((x / 2) / ${scrollWidth - this.scrollWidth} * ${barAllMoveWidth})`
+			const expression = `(x / 2) / ${contentSize - scrollWidth} * ${barAllMoveWidth}`
 			BindingX.bind({
 				anchor,
 				eventType: 'scroll',

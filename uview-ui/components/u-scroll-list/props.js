@@ -2,12 +2,12 @@ export default {
 	props: {
 		// 指示器的整体宽度
 		indicatorWidth: {
-			type: Number,
+			type: [Number, String],
 			default: 50
 		},
 		// 滑块的宽度
 		indicatorBarWidth: {
-			type: Number,
+			type: [Number, String],
 			default: 20
 		},
 		// 是否显示面板指示器

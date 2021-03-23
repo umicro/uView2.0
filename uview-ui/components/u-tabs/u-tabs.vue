@@ -9,6 +9,7 @@
 					scroll-with-animation
 					class="u-tabs__wrapper__scroll-view"
 					:show-scrollbar="false"
+					ref="u-tabs__wrapper__scroll-view"
 				>
 					<view
 						class="u-tabs__wrapper__nav"
@@ -53,9 +54,8 @@
 			</view>
 		</u-sticky>
 		<swiper
-			@transition="transition"
 			@change="change"
-			ref="swiper"
+			style="height: 723px;"
 		>
 			<slot />
 		</swiper>

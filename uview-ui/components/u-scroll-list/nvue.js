@@ -4,7 +4,6 @@ const BindingX = uni.requireNativePlugin('bindingx')
 export default {
 	methods: {
 		// 此处不写注释，请自行体会
-		// 一定程度上有意为之的复杂化写法
 		nvueScrollHandler(e) {
 			const anchor = this.$refs['u-scroll-list__scroll-view'].ref
 			const element = this.$refs['u-scroll-list__indicator__line__bar'].ref

@@ -17,15 +17,14 @@ export default {
 				},
 				duration: 300,
 			}, (res) => {
-				console.log(res);
+				// console.log(res);
 			})
 		},
 		// nvueTransition
 		nvueTransition(e) {
 			const anchor = this.$refs['swiper'].ref
 			const element = this.$refs['u-tabs__wrapper__nav__line'].ref
-			const expression = 'x'
-			
+			const expression = '1*x'
 			BindingX.bind({
 				anchor,
 				eventType: 'pan',
@@ -34,6 +33,8 @@ export default {
 					property: 'transform.translateX',
 					expression
 				}]
+			}, res => {
+				console.log(res);
 			})
 		}
 	}

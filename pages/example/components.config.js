@@ -375,10 +375,10 @@ export default [{
 			title: 'Parse 富文本解析器',
 			title_en: 'Parse',
 		},{
-			path: '/pages/componentsC/messageInput/messageInput',
-			icon: 'messageInput',
-			title: 'MessageInput 验证码输入',
-			title_en: 'MessageInput',
+			path: '/pages/componentsC/codeInput/codeInput',
+			icon: 'codeInput',
+			title: 'CodeInput 验证码输入',
+			title_en: 'CodeInput',
 		}, {
 			path: '/pages/componentsC/avatarCropper/avatarCropper',
 			icon: 'avatarCropper',

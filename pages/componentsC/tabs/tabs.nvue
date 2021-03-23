@@ -39,6 +39,6 @@
 
 <style lang="scss">
 	.u-page {
-		padding-top: 100px;
+		padding: 0;
 	}
 </style>

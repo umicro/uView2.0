@@ -126,6 +126,11 @@
 			round: {
 				type: Boolean,
 				default: uni.$u.props.popup.round
+			},
+			// mode=center，也即中部弹出时，是否使用缩放模式
+			zoom: {
+				type: Boolean,
+				default: true
 			}
 		},
 		mixins: [uni.$u.mixin],
@@ -205,7 +210,7 @@
 			},
 			position() {
 				if (this.mode === 'center') {
-					return 'fade'
+					return this.zoom ? 'zoom-in' : 'fade'
 				}
 				if (this.mode === 'left') {
 					return 'slide-left'

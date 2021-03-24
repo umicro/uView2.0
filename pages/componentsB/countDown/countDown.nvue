@@ -226,10 +226,10 @@
 			&__grid-text {
 				font-size: 14px;
 				color: #909399;
-				padding: 10rpx 0 20rpx 0rpx;
 				/* #ifndef APP-PLUS */
 				box-sizing: border-box;
 				/* #endif */
+				margin-left: 6px;
 			}
 		}
 	}

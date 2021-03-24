@@ -48,7 +48,7 @@ export default {
 		// 字体大小
 		fontSize: {
 			type: [String, Number],
-			default: 20
+			default: 18
 		},
 		// 输入框的大小，宽等于高
 		size: {

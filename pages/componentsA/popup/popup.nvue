@@ -1,56 +1,56 @@
 <template>
 	<view>
 		<u-navbar
-		    title="弹窗"
-		    @leftClick="uni.navigateBack()"
+			title="弹窗"
+			@leftClick="navigateBack"
 			safeAreaInsetTop
 			fixed
 			placeholder
 		></u-navbar>
 		<u-gap
-		    height="20"
-		    bgColor="#fff"
+			height="20"
+			bgColor="#fff"
 		></u-gap>
 		<u-cell-group>
 			<u-cell
-			    :titleStyle="{fontWeight: 500}"
-			    @click="openPopup(item.popupData)"
-			    :title="item.title"
-			    v-for="(item, index) in list"
-			    :key="index"
-			    isLink
+				:titleStyle="{fontWeight: 500}"
+				@click="openPopup(item.popupData)"
+				:title="item.title"
+				v-for="(item, index) in list"
+				:key="index"
+				isLink
 			>
 				<image
-				    slot="icon"
-				    class="u-cell-icon"
-				    :src="item.iconUrl"
-				    mode="widthFix"
+					slot="icon"
+					class="u-cell-icon"
+					:src="item.iconUrl"
+					mode="widthFix"
 				></image>
 			</u-cell>
 		</u-cell-group>
 		<u-popup
-		    :safeAreaInsetBottom="true"
-		    :safeAreaInsetTop="true"
-		    :mode="popupData.mode"
-		    :show="show"
-		    :round="popupData.round"
-		    :overlay="popupData.overlay"
-		    :borderRadis="popupData.borderRadis"
-		    :closeable="popupData.closeable"
-		    :closeOnClickOverly="popupData.closeOnClickOverly"
-		    @close="show = !show"
+			:safeAreaInsetBottom="true"
+			:safeAreaInsetTop="true"
+			:mode="popupData.mode"
+			:show="show"
+			:round="popupData.round"
+			:overlay="popupData.overlay"
+			:borderRadis="popupData.borderRadis"
+			:closeable="popupData.closeable"
+			:closeOnClickOverly="popupData.closeOnClickOverly"
+			@close="show = !show"
 		>
 			<view
-			    class="u-popup-slot"
-			    :style="{
+				class="u-popup-slot"
+				:style="{
 					width: ['bottom', 'top'].includes(popupData.mode) ? '750rpx' : '200px',
 					marginTop: ['left', 'right'].includes(popupData.mode) ? '480rpx' : '0',
 				}"
 			>
 				<u-button
-				    type="success"
-				    text="点我关闭"
-				    @click="show = !show"
+					type="success"
+					text="点我关闭"
+					@click="show = !show"
 				></u-button>
 			</view>
 		</u-popup>
@@ -159,6 +159,9 @@
 				uni.$u.sleep().then(() => {
 					this.show = !this.show
 				})
+			},
+			navigateBack() {
+				uni.navigateBack()
 			}
 		}
 	}

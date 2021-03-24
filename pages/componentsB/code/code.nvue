@@ -140,4 +140,8 @@
 			font-size: 15px;
 		}
 	}
+	
+	.u-demo-block__content {
+		@include flex;
+	}
 </style>

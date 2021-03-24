@@ -221,7 +221,7 @@ export default [{
 			title: 'Popup 弹出层',
 			title_en: 'Popup',
 		}, {
-			path: '/pages/componentsA/modal/modal',
+			path: '/pages/componentsC/modal/modal',
 			icon: 'modal',
 			title: 'Modal 模态框',
 			title_en: 'Modal',
@@ -376,7 +376,7 @@ export default [{
 			title_en: 'Parse',
 		},{
 			path: '/pages/componentsC/codeInput/codeInput',
-			icon: 'codeInput',
+			icon: 'messageInput',
 			title: 'CodeInput 验证码输入',
 			title_en: 'CodeInput',
 		}, {

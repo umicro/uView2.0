@@ -38,8 +38,8 @@
 					position: 'fixed',
 					top: `${uni.$u.sys().windowHeight / 2 - 50}px`,
 					left: `${uni.$u.sys().windowWidth / 2 - 50}px`,
-					width: '100px',
-					height: '100px',
+					width: '120px',
+					height: '120px',
 					backgroundColor: '#1989fa'
 				},
 				list: [{
@@ -50,6 +50,11 @@
 					{
 						mode: 'fade-up',
 						title: '上滑淡入',
+						iconUrl: '/static/common/image/transition/fadeUp.png'
+					},
+					{
+						mode: 'zoom-in',
+						title: '缩放',
 						iconUrl: '/static/common/image/transition/fadeUp.png'
 					},
 					{
@@ -97,7 +102,7 @@
 				this.show = true;
 				setTimeout(() => {
 					this.show = false;
-				}, 1000)
+				}, 1500)
 			}
 		}
 	}

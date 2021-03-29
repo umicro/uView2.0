@@ -1,15 +1,180 @@
 <template>
 	<view class="u-page">
-		<u-modal></u-modal>
+		<!-- <view class="u-demo-block">
+			<text class="u-demo-block__title">基础使用</text>
+			<view class="u-demo-block__content">
+				<u-modal
+					content="弹出模态框，常用于消息提示、消息确认、在当前页面内完成特定的交互操作。"
+					title="标题"
+					buttonReverse
+					showCancelButton
+					:show="show1"
+					@confrim="() => show1 = false"
+					@close="show1 = false"
+					asyncClose
+				></u-modal>
+			</view>
+		</view> -->
+		<u-navbar
+			title="模态框"
+			@leftClick="navigateBack"
+			safeAreaInsetTop
+			fixed
+			placeholder
+		></u-navbar>
+		<u-gap
+			height="20"
+			bgColor="#fff"
+		></u-gap>
+		<u-cell-group>
+			<u-cell
+				:titleStyle="{fontWeight: 500}"
+				@click="showModal(index)"
+				:title="item.title"
+				v-for="(item, index) in list"
+				:key="index"
+				isLink
+			>
+				<image
+					slot="icon"
+					class="u-cell-icon"
+					:src="item.iconUrl"
+					mode="widthFix"
+				></image>
+			</u-cell>
+		</u-cell-group>
+		<u-modal
+			content="弹出模态框，常用于消息提示、消息确认、在当前页面内完成特定的交互操作"
+			title="标题"
+			:show="show1"
+			@confrim="() => show1 = false"
+		></u-modal>
+		<u-modal
+			content="弹出模态框，常用于消息提示、消息确认、在当前页面内完成特定的交互操作"
+			:show="show2"
+			@confrim="() => show2 = false"
+		></u-modal>
+		<u-modal
+			content="弹出模态框，常用于消息提示、消息确认、在当前页面内完成特定的交互操作"
+			:show="show3"
+			showCancelButton
+			@confrim="() => show3 = false"
+			@cancel="() => show3 = false"
+		></u-modal>
+		<u-modal
+			content="弹出模态框，常用于消息提示、消息确认、在当前页面内完成特定的交互操作"
+			:show="show4"
+			showCancelButton
+			asyncClose
+			@confrim="confirm4"
+			@cancel="cancel4"
+		></u-modal>
+		<u-modal
+			content="弹出模态框，常用于消息提示、消息确认、在当前页面内完成特定的交互操作"
+			:show="show5"
+			showCancelButton
+			buttonReverse
+			@confrim="() => show5 = false"
+			@cancel="() => show5 = false"
+		></u-modal>
+		<u-modal
+			content="弹出模态框，常用于消息提示、消息确认、在当前页面内完成特定的交互操作"
+			title="标题"
+			:show="show6"
+			closeOnClickOverly
+			@confrim="() => show6 = false"
+			@close="() => show6 = false"
+		></u-modal>
+		<u-modal
+			title="标题"
+			:show="show7"
+			closeOnClickOverly
+			@confrim="() => show7 = false"
+		>
+			<image style="width: 80px;height: 80px;" src="/static/uview/common/logo.png"></image>
+		</u-modal>
+		<u-modal
+			title="标题"
+			:show="show8"
+			closeOnClickOverly
+			showCancelButton
+			@confrim="() => show8 = false"
+		>
+			<u-button slot="confirmButton" text="确定" type="success"></u-button>
+		</u-modal>
 	</view>
 </template>
 
 <script>
 	export default {
-		
+		data() {
+			return {
+				show1: false,
+				show2: false,
+				show3: false,
+				show4: false, 
+				show5: false,
+				show6: false,
+				show7: false,
+				show8: false,
+				list: [{
+						title: '基础使用',
+						iconUrl: '/static/common/image/popup/modeTop.png'
+					},
+					{
+						title: '无标题',
+						iconUrl: '/static/common/image/popup/modeRight.png'
+					},
+					{
+						title: '带取消按钮',
+						iconUrl: '/static/common/image/popup/modeBottom.png'
+					},
+					{
+						title: '异步关闭',
+						iconUrl: '/static/common/image/popup/modeLeft.png'
+					},
+					{
+						title: '对调取消和确认按钮',
+						iconUrl: '/static/common/image/popup/modeCenter.png'
+					},
+					{
+						title: '允许点击遮罩关闭',
+						iconUrl: '/static/common/image/popup/showRadis.png'
+					},
+					{
+						title: '传入slot',
+						iconUrl: '/static/common/image/popup/noClose.png'
+					},
+					{
+						title: '自定义按钮',
+						iconUrl: '/static/common/image/popup/noClose.png'
+					}
+				]
+			}
+		},
+		methods: {
+			showModal(index) {
+				this[`show${index + 1}`] = true
+			},
+			navigateBack() {
+				uni.navigateBack()
+			},
+			confirm4() {
+				setTimeout(() => {
+					this.show4 = false
+				}, 2000)
+			},
+			calcel4() {
+				setTimeout(() => {
+					this.show4 = false
+				}, 2000)
+			}
+		}
 	}
 </script>
 
 <style lang="scss">
-
+	.u-page {
+		padding: 0;
+	}
 </style>

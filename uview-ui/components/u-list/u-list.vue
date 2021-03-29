@@ -141,7 +141,7 @@
 				if (this.height != 0) style.height = addUnit(this.height)
 				// 如果没有定义列表高度，则默认使用屏幕高度
 				if (!style.height) style.height = addUnit(this.sys.windowHeight)
-				return uni.$u.deepMerge(style, this.customStyle)
+				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			}
 		},
 		provide() {

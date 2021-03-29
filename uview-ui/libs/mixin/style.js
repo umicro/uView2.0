@@ -244,7 +244,7 @@ export default {
 			// align-items
 			(this.alignItems || ai) && (this.alignItems = this.alignItems || ai)
 			
-			return uni.$u.deepMerge(style, this.customStyle)
+			return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 		}
 	},
 	methods: {

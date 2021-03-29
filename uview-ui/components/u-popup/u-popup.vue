@@ -1,34 +1,34 @@
 <template>
 	<view class="u-popup">
 		<u-overlay
-		    :show="show"
-		    @click="overlayClick"
-		    v-if="overlay"
+			:show="show"
+			@click="overlayClick"
+			v-if="overlay"
 		></u-overlay>
 		<u-transition
-		    :show="show"
-		    :custom-style="transitionStyle"
-		    :mode="position"
-		    @click="transitionClick"
+			:show="show"
+			:custom-style="transitionStyle"
+			:mode="position"
+			@click="transitionClick"
 		>
 			<view
-			    class="u-popup__content"
-			    :style="[contentStyle]"
-			    @tap.stop="noop"
+				class="u-popup__content"
+				:style="[contentStyle]"
+				@tap.stop="noop"
 				:class="[round && `u-popup__content--round-${mode}`]"
 			>
 				<u-status-bar v-if="safeAreaInsetTop"></u-status-bar>
 				<slot></slot>
 				<view
-				    v-if="closeable"
-				    @tap.stop="close"
-				    class="u-popup__content__close"
-				    :class="['u-popup__content__close--' + closeIconPos]"
+					v-if="closeable"
+					@tap.stop="close"
+					class="u-popup__content__close"
+					:class="['u-popup__content__close--' + closeIconPos]"
 				>
 					<u-icon
-					    name="close"
-					    color="#909399"
-					    size="18"
+						name="close"
+						color="#909399"
+						size="18"
 						bold
 					></u-icon>
 				</view>
@@ -206,7 +206,7 @@
 				// 	// 不加可能圆角无效
 				// 	style.overflow = 'hidden';
 				// }
-				return uni.$u.deepMerge(style, this.customStyle)
+				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			},
 			position() {
 				if (this.mode === 'center') {
@@ -254,61 +254,73 @@
 		&__content {
 			background-color: $u-popup-content-background-color;
 			position: relative;
-			
+
 			&--round-top {
 				border-top-left-radius: 0;
 				border-top-right-radius: 0;
-				border-bottom-left-radius: 10px;;
-				border-bottom-right-radius: 10px;;
+				border-bottom-left-radius: 10px;
+				;
+				border-bottom-right-radius: 10px;
+				;
 			}
-			
+
 			&--round-left {
 				border-top-left-radius: 0;
-				border-top-right-radius: 10px;;
+				border-top-right-radius: 10px;
+				;
 				border-bottom-left-radius: 0;
-				border-bottom-right-radius: 10px;;
+				border-bottom-right-radius: 10px;
+				;
 			}
-			
+
 			&--round-right {
-				border-top-left-radius: 10px;;
+				border-top-left-radius: 10px;
+				;
 				border-top-right-radius: 0;
-				border-bottom-left-radius: 10px;;
+				border-bottom-left-radius: 10px;
+				;
 				border-bottom-right-radius: 0;
 			}
-			
+
 			&--round-bottom {
-				border-top-left-radius: 10px;;
-				border-top-right-radius: 10px;;
+				border-top-left-radius: 10px;
+				;
+				border-top-right-radius: 10px;
+				;
 				border-bottom-left-radius: 0;
 				border-bottom-right-radius: 0;
 			}
-			
+
 			&--round-center {
-				border-top-left-radius: 10px;;
-				border-top-right-radius: 10px;;
-				border-bottom-left-radius: 10px;;
-				border-bottom-right-radius: 10px;;
+				border-top-left-radius: 10px;
+				;
+				border-top-right-radius: 10px;
+				;
+				border-bottom-left-radius: 10px;
+				;
+				border-bottom-right-radius: 10px;
+				;
 			}
-			
+
 			&__close {
 				position: absolute;
 			}
-			
+
 			&__close--top-left {
 				top: 15px;
 				left: 15px;
 			}
-			
+
 			&__close--top-right {
 				top: 15px;
 				right: 15px;
 			}
-			
+
 			&__close--bottom-left {
 				bottom: 15px;
 				left: 15px;
 			}
-			
+
 			&__close--bottom-right {
 				right: 15px;
 				bottom: 15px;

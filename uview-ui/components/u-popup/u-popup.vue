@@ -4,12 +4,14 @@
 			:show="show"
 			@click="overlayClick"
 			v-if="overlay"
+			:duration="duration"
 		></u-overlay>
 		<u-transition
 			:show="show"
 			:custom-style="transitionStyle"
 			:mode="position"
 			@click="transitionClick"
+			:duration="duration"
 		>
 			<view
 				class="u-popup__content"

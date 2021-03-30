@@ -1,0 +1,15 @@
+<template>
+	<view class="u-page">
+		
+	</view>
+</template>
+
+<script>
+	export default {
+		
+	}
+</script>
+
+<style lang="scss">
+	
+</style>

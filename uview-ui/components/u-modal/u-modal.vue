@@ -1,6 +1,7 @@
 <template>
 	<u-popup
 		mode="center"
+		:zoom="zoom"
 		:show="show"
 		:customStyle="{
 			borderRadius: '8px', 
@@ -9,12 +10,13 @@
 		}"
 		:closeOnClickOverly="closeOnClickOverly"
 		@close="close"
+		:safeAreaInsetBottom="false"
 	>
 		<view
 			class="u-modal"
 			:style="{
-			width: $u.addUnit(width),
-		}"
+				width: $u.addUnit(width),
+			}"
 		>
 			<text
 				class="u-modal__title"
@@ -30,47 +32,53 @@
 					<text class="u-modal__content__text">{{ content }}</text>
 				</slot>
 			</view>
-			<u-line v-if="showCancelButton || (!$slots.confirmButton)"></u-line>
 			<view
-				class="u-modal__button-group"
-				:style="{
-					flexDirection: buttonReverse ? 'row-reverse' : 'row'
-				}"
+				class="u-modal__button-group--confirm-button"
+				v-if="$slots.confirmButton"
 			>
+				<slot name="confirmButton"></slot>
+			</view>
+			<template v-else>
+				<u-line></u-line>
 				<view
-					class="u-modal__button-group__wrapper"
-					:hover-stay-time="150"
-					hover-class="u-modal__button-group__wrapper--hover"
-					v-if="showCancelButton"
-					@tap="cancelHandler"
+					class="u-modal__button-group"
+					:style="{
+						flexDirection: buttonReverse ? 'row-reverse' : 'row'
+					}"
 				>
-					<text
-						class="u-modal__button-group__wrapper__text"
-						:style="{
-							color: cancelColor
-						}"
-					>{{ cancelText }}</text>
-				</view>
-				<u-line direction="column"></u-line>
-				<view
-					class="u-modal__button-group__wrapper"
-					:hover-stay-time="150"
-					hover-class="u-modal__button-group__wrapper--hover"
-					v-if="showConfirmButton"
-					@tap="confirmHandler"
-				>
-					<slot name="confirmButton">
+					<view
+						class="u-modal__button-group__wrapper"
+						:hover-stay-time="150"
+						hover-class="u-modal__button-group__wrapper--hover"
+						v-if="showCancelButton"
+						@tap="cancelHandler"
+					>
+						<text
+							class="u-modal__button-group__wrapper__text"
+							:style="{
+									color: cancelColor
+								}"
+						>{{ cancelText }}</text>
+					</view>
+					<u-line direction="column"></u-line>
+					<view
+						class="u-modal__button-group__wrapper"
+						:hover-stay-time="150"
+						hover-class="u-modal__button-group__wrapper--hover"
+						v-if="showConfirmButton"
+						@tap="confirmHandler"
+					>
 						<u-loading-icon v-if="loading"></u-loading-icon>
 						<text
 							v-else
 							class="u-modal__button-group__wrapper__text"
 							:style="{
-								color: confirmColor
-							}"
+									color: confirmColor
+								}"
 						>{{ confirmText }}</text>
-					</slot>
+					</view>
 				</view>
-			</view>
+			</template>
 		</view>
 	</u-popup>
 </template>
@@ -136,15 +144,24 @@
 			&__text {
 				font-size: 15px;
 				color: $u-content-color;
+				flex: 1;
 			}
 		}
 
 		&__button-group {
 			@include flex;
 
+			&--confirm-button {
+				flex-direction: column;
+				padding: 0px 25px 15px 25px;
+			}
+
 			&__wrapper {
 				flex: 1;
-				padding: 15px 0;
+				@include flex;
+				justify-content: center;
+				align-items: center;
+				height: 48px;
 
 				&--hover {
 					background-color: $u-bg-color;

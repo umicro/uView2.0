@@ -236,8 +236,8 @@ export default [{
 		groupName_en: 'Layout components',
 		list: [{
 			path: '/pages/componentsC/scrollList/scrollList',
-			icon: 'line',
-			title: 'scrollList 横向滚动列表',
+			icon: 'scrollList',
+			title: 'ScrollList 横向滚动列表',
 			title_en: 'ScrollList',
 		},{
 			path: '/pages/componentsA/line/line',

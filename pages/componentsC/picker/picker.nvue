@@ -1,15 +1,33 @@
 <template>
 	<view class="u-page">
-		
+		<u-picker
+			:show="show"
+			:closeOnClickOverly="false"
+			@close="show = false"
+			:columns="columns"
+			@change="changeHandler"
+		></u-picker>
 	</view>
 </template>
 
 <script>
 	export default {
-		
+		data() {
+			return {
+				show: true,
+				columns: [
+					['杭州', '宁波', '温州', '嘉兴', '湖州']
+				],
+			}
+		},
+		methods: {
+			changeHandler(e) {
+				console.log(e);
+			}
+		},
 	}
 </script>
 
 <style lang="scss">
-	
+
 </style>

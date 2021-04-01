@@ -1,7 +1,9 @@
 <template>
-	<view class="u-picker-column">
+	<picker-view-column>
+		<view class="u-picker-column">
 
-	</view>
+		</view>
+	</picker-view-column>
 </template>
 
 <script>
@@ -12,5 +14,5 @@
 </script>
 
 <style lang="scss">
-
+	@import "../../libs/css/components.scss";
 </style>

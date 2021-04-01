@@ -285,6 +285,7 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
+	
 	$u-toast-color:#fff !default;
 	$u-toast-border-radius:4px !default;
 	$u-toast-border-background-color:#585858 !default;

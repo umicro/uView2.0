@@ -83,7 +83,7 @@ export default [{
 			title: 'Keyboard 键盘',
 			title_en: 'Keyboard',
 		}, {
-			path: '/pages/componentsB/picker/picker',
+			path: '/pages/componentsC/picker/picker',
 			icon: 'picker',
 			title: 'Picker 选择器',
 			title_en: 'Picker',

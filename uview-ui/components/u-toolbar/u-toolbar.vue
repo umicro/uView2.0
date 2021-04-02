@@ -1,24 +1,37 @@
 <template>
 	<view
 		class="u-toolbar"
+		@touchmove.stop.prevent="noop"
 		v-if="show"
 	>
-		<text
-			class="u-toolbar__cancel"
-			:style="{
-				color: cancelColor
-			}"
-		>{{ cancelText }}</text>
+		<view
+			class="u-toolbar__cancel__wrapper"
+			hover-class="u-hover-class"
+		>
+			<text
+				class="u-toolbar__wrapper__cancel"
+				@tap="cancel"
+				:style="{
+					color: cancelColor
+				}"
+			>{{ cancelText }}</text>
+		</view>
 		<text
 			class="u-toolbar__title u-line-1"
 			v-if="title"
 		>{{ title }}</text>
-		<text
-			class="u-toolbar__confirm"
-			:style="{
+		<view
+			class="u-toolbar__confirm__wrapper"
+			hover-class="u-hover-class"
+		>
+			<text
+				class="u-toolbar__wrapper__confirm"
+				@tap="confirm"
+				:style="{
 				color: confirmColor
 			}"
-		>{{ cancelText }}</text>
+			>{{ confirmText }}</text>
+		</view>
 	</view>
 </template>
 
@@ -40,7 +53,7 @@
 			// 确认按钮的文字
 			confirmText: {
 				type: String,
-				default: '取消'
+				default: '确认'
 			},
 			// 取消按钮的颜色
 			cancelColor: {
@@ -58,6 +71,16 @@
 				default: ''
 			}
 		},
+		methods: {
+			// 点击取消按钮
+			cancel() {
+				this.$emit('cancel')
+			},
+			// 点击确定按钮
+			confirm() {
+				this.$emit('confirm')
+			}
+		},
 	}
 </script>
 
@@ -70,22 +93,27 @@
 		justify-content: space-between;
 		align-items: center;
 
-		&__cancel {
-			color: $u-tips-color;
-			font-size: 14px;
-			padding: 0 15px;
+		&__wrapper {
+			&__cancel {
+				color: $u-tips-color;
+				font-size: 15px;
+				padding: 0 15px;
+			}
 		}
 
 		&__title {
 			color: $u-main-color;
-			padding: 0 50px;
+			padding: 0 60rpx;
 			font-size: 16px;
+			flex: 1;
 		}
 
-		&__confirm {
-			color: $u-primary;
-			font-size: 14px;
-			padding: 0 15px;
+		&__wrapper {
+			&__confirm {
+				color: $u-primary;
+				font-size: 15px;
+				padding: 0 15px;
+			}
 		}
 	}
 </style>

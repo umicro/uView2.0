@@ -13,7 +13,6 @@
 		></u-gap>
 		<u-cell-group>
 			<u-cell
-				:titleStyle="{fontWeight: 500}"
 				@click="showModal(index)"
 				:title="item.title"
 				v-for="(item, index) in list"

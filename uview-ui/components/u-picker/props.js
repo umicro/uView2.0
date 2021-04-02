@@ -69,6 +69,11 @@ export default {
 		closeOnClickOverly: {
 			type: Boolean,
 			default: false
+		},
+		// 各列的默认索引
+		defaultIndex: {
+			type: Array,
+			default: () => []
 		}
 	}
 }

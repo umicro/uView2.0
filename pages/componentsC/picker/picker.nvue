@@ -41,14 +41,15 @@
 			:columns="columns3"
 			@cancel="show3 = false"
 			@confirm="show3 = false"
-			@change="changeHandler"
+			@change="changeHandler1"
 		></u-picker>
 		<u-picker
 			:show="show4"
 			:columns="columns4"
 			@cancel="show4 = false"
 			@confirm="show4 = false"
-			loading
+			:loading="loading"
+			@change="changeHandler2"
 		></u-picker>
 		<u-picker
 			:show="show5"
@@ -72,20 +73,11 @@
 	export default {
 		data() {
 			return {
-				defaultIndex: [1, 1],
-				show: true,
-				columns: [
-					['浙江', '福建'],
-					[{
-						text: '福州',
-						disabled: true
-					}, '厦门', '莆田', '三明', '泉州']
-				],
+				loading: false,
 				columnData: [
 					['深圳', '厦门', '上海', '拉萨'],
 					['得州', '华盛顿', '纽约', '阿拉斯加']
 				],
-
 				columns1: [
 					['中国', '美国', '日本']
 				],
@@ -125,7 +117,7 @@
 						iconUrl: '/static/common/image/modal/2.png'
 					},
 					{
-						title: '加载中状态',
+						title: '加载中状态(切换第一列)',
 						iconUrl: '/static/common/image/modal/6.png'
 					},
 					{
@@ -139,7 +131,7 @@
 			}
 		},
 		methods: {
-			changeHandler(e) {
+			changeHandler1(e) {
 				const {
 					columnIndex,
 					value,
@@ -147,8 +139,24 @@
 					index,
 					picker
 				} = e
-				if (columnIndex === 0) {
+				if (columnIndex === 0) { 
 					picker.setColumnValues(1, this.columnData[index])
+				}
+			},
+			changeHandler2(e) {
+				const {
+					columnIndex,
+					value,
+					values,
+					index,
+					picker
+				} = e
+				if (columnIndex === 0) { 
+					this.loading = true
+					uni.$u.sleep(1500).then(() => {
+						picker.setColumnValues(1, this.columnData[index])
+						this.loading = false
+					})
 				}
 			},
 			navigateBack() {

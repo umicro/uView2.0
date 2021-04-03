@@ -1,41 +1,29 @@
 <template>
-	<view>
+	<view class="u-swipe-action">
 		<slot></slot>
 	</view>
 </template>
 
 <script>
-	/**
-	 * SwipeAction 滑动操作
-	 * @description 通过滑动触发选项的容器
-	 */
 	export default {
+		name: 'u-swipe-action',
 		data() {
-			return {};
+			return {}
 		},
 		provide() {
 			return {
-				swipeaction: this
-			};
+				swipeAction: this
+			}
 		},
 		created() {
-			this.children = [];
+			this.children = []
 		},
 		methods: {
-			closeOther(vm) {
-				if (this.openItem && this.openItem !== vm) {
-					// #ifdef APP-VUE || H5 || MP-WEIXIN
-					this.openItem.button.show = 'none'
-					// #endif
-
-					// #ifndef APP-VUE || H5 || MP-WEIXIN
-					this.openItem.close()
-					// #endif
-				}
-				this.openItem = vm
-			}
+			
 		}
-	};
+	}
 </script>
 
-<style></style>
+<style lang="scss">
+	
+</style>

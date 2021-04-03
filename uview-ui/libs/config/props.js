@@ -163,9 +163,10 @@ export default {
 		show: 'none',
 		disabled: false,
 		autoClose: false,
-		threshold: 20,
+		threshold: 30,
 		leftOptions: [],
-		rightOptions: []
+		rightOptions: [],
+		duration: 350
 	},
 
 	// sticky组件

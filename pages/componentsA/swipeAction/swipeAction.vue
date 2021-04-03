@@ -8,20 +8,10 @@
 					    v-for="(item,index) in swipeItemList"
 					    :key="index"
 					    :rightOptions="item.options"
-					    :disabled="index==2"
-					    :autoClose="index==1"
 					>
 						<view class="swipe-action">
 							<view class="swipe-action__content">
 								<text class="swipe-action__content__text">{{item.name}}</text>
-							</view>
-							<u-line></u-line>
-						</view>
-					</u-swipe-action-item>
-					<u-swipe-action-item :leftOptions="options">
-						<view class="swipe-action">
-							<view class="swipe-action__content">
-								<text class="swipe-action__content__text">左边滑出</text>
 							</view>
 							<u-line></u-line>
 						</view>

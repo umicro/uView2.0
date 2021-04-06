@@ -7,6 +7,13 @@
 <script>
 	export default {
 		name: 'u-swipe-action',
+		props: {
+			// 是否显示边框
+			border: {
+				type: Boolean,
+				default: true
+			}
+		},
 		data() {
 			return {}
 		},

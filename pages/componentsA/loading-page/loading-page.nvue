@@ -69,12 +69,6 @@
 				]
 			}
 		},
-		onLoad() {
-			console.log(uni.$u.addStyle({
-				fontWeight: 'bold',
-				color: 'red',
-			}, 'string'))
-		},
 		methods: {
 			openLoadingPage(indexNum) {
 				this.loadingPageData = {

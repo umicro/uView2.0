@@ -1,7 +1,7 @@
 <template>
 	<view class="u-page">
 		<u-navbar
-			title="模态框"
+			title="选择器"
 			@leftClick="navigateBack"
 			safeAreaInsetTop
 			fixed
@@ -106,26 +106,26 @@
 				show6: false,
 				list: [{
 						title: '基础使用',
-						iconUrl: '/static/common/image/modal/4.png'
+						iconUrl: '/static/common/image/picker/2.png'
 					},
 					{
 						title: '设置默认项',
-						iconUrl: '/static/common/image/modal/5.png'
+						iconUrl: '/static/common/image/picker/5.png'
 					},
 					{
 						title: '多列联动',
-						iconUrl: '/static/common/image/modal/2.png'
+						iconUrl: '/static/common/image/picker/1.png'
 					},
 					{
 						title: '加载中状态(切换第一列)',
-						iconUrl: '/static/common/image/modal/6.png'
+						iconUrl: '/static/common/image/picker/3.png'
 					},
 					{
 						title: '设置标题',
-						iconUrl: '/static/common/image/modal/3.png'
+						iconUrl: '/static/common/image/picker/4.png'
 					}, {
 						title: '允许点击遮罩关闭',
-						iconUrl: '/static/common/image/modal/3.png'
+						iconUrl: '/static/common/image/picker/6.png'
 					},
 				]
 			}

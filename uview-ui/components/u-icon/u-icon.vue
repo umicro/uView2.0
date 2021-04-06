@@ -278,6 +278,8 @@
 		&__icon {
 			font-family: uicon-iconfont;
 			position: relative;
+			@include flex;
+			align-items: center;
 
 			&--primary {
 				color: $u-icon-primary;

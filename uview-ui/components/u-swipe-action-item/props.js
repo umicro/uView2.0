@@ -20,13 +20,6 @@ export default {
 			type: Number,
 			default: uni.$u.props.swipeAction.threshold
 		},
-		// 左侧按钮内容
-		leftOptions: {
-			type: Array,
-			default () {
-				return uni.$u.props.swipeAction.leftOptions
-			}
-		},
 		// 右侧按钮内容
 		rightOptions: {
 			type: Array,
@@ -34,6 +27,7 @@ export default {
 				return uni.$u.props.swipeAction.rightOptions
 			}
 		},
+		// 动画过渡时间
 		duration: {
 			type: [Number, String],
 			default: uni.$u.props.swipeAction.duration

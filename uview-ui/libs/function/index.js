@@ -464,6 +464,13 @@ function priceFormat(number, decimals, dec_point, thousands_sep) {
 	return s.join(dec);
 }
 
+// 获取duration值，如果带有ms或者s直接返回，如果大于一定值，认为是ms单位，小于一定值，认为是s单位
+// 比如以30位阈值，那么300大于30，可以理解为用户想要的是300ms，而不是想花300s去执行一个动画
+function getDuration(value) {
+	if(/s$/.test(value)) return value
+	return value > 30 ? value + 'ms' : value + 's'
+}
+
 export default {
 	range,
 	getPx,
@@ -485,5 +492,6 @@ export default {
 	queryParams,
 	toast,
 	type2icon,
-	priceFormat
+	priceFormat,
+	getDuration
 };

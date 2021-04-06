@@ -106,6 +106,7 @@
 			padding: 0 60rpx;
 			font-size: 16px;
 			flex: 1;
+			text-align: center;
 		}
 
 		&__wrapper {

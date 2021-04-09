@@ -1,15 +1,21 @@
 <template>
 	<view class="u-calendar-header">
-		<text class="u-calendar-header__title">{{ title }}</text>
-		<text class="u-calendar-header__subtitle">{{ subtitle }}</text>
+		<text
+			class="u-calendar-header__title"
+			v-if="showTitle"
+		>{{ title }}</text>
+		<text
+			class="u-calendar-header__subtitle"
+			v-if="showSubtitle"
+		>{{ subtitle }}</text>
 		<view class="u-calendar-header__weekdays">
-			<text class="u-calendar-header__weekday">一</text>
-			<text class="u-calendar-header__weekday">二</text>
-			<text class="u-calendar-header__weekday">三</text>
-			<text class="u-calendar-header__weekday">四</text>
-			<text class="u-calendar-header__weekday">五</text>
-			<text class="u-calendar-header__weekday">六</text>
-			<text class="u-calendar-header__weekday">日</text>
+			<text class="u-calendar-header__weekdays__weekday">一</text>
+			<text class="u-calendar-header__weekdays__weekday">二</text>
+			<text class="u-calendar-header__weekdays__weekday">三</text>
+			<text class="u-calendar-header__weekdays__weekday">四</text>
+			<text class="u-calendar-header__weekdays__weekday">五</text>
+			<text class="u-calendar-header__weekdays__weekday">六</text>
+			<text class="u-calendar-header__weekdays__weekday">日</text>
 		</view>
 	</view>
 </template>
@@ -29,25 +35,25 @@
 				type: String,
 				default: ''
 			},
-			// 是否显示先标题
+			// 是否显示标题
 			showTitle: {
 				type: Boolean,
 				default: true
 			},
-			// 是否显示先标题
-			showTitle: {
+			// 是否显示副标题
+			showSubtitle: {
 				type: Boolean,
 				default: true
 			},
 		},
 		data() {
 			return {
-				
+
 			}
 		},
 		methods: {
 			name() {
-				
+
 			}
 		},
 	}
@@ -55,26 +61,35 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-	
+
 	.u-calendar-header {
-		
+
 		&__title {
 			font-size: 16px;
 			color: $u-main-color;
+			text-align: center;
+			height: 42px;
+			line-height: 42px;
 		}
-		
+
 		&__subtitle {
 			font-size: 14px;
-			color: $u-content-color;
+			color: $u-main-color;
+			height: 40px;
+			text-align: center;
+			line-height: 40px;
 		}
-		
+
 		&__weekdays {
 			@include flex;
-			
+			justify-content: space-between;
+
 			&__weekday {
-				font-size: 14px;
+				font-size: 13px;
 				color: $u-main-color;
-				justify-content: space-between;
+				line-height: 30px;
+				flex: 1;
+				text-align: center;
 			}
 		}
 	}

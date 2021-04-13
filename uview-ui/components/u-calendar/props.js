@@ -20,6 +20,11 @@ export default {
 			type: String,
 			default: 'single'
 		},
+		// 自定义列表
+		customList: {
+			type: Array,
+			default: () => [],
+		},
 		// 主题色，对底部按钮和选中日期有效
 		color: {
 			type: String,
@@ -69,6 +74,16 @@ export default {
 		confirmDisabledText: {
 			type: String,
 			default: '确定'
+		},
+		// 是否展示确定按钮，如不展示，则进行快捷选择
+		showConfirm: {
+			type: Boolean,
+			default: true
+		},
+		// 是否显示日历弹窗
+		show: {
+			type: Boolean,
+			default: false
 		}
 	}
 }

@@ -1,25 +1,32 @@
 <template>
 	<view
-		class="u-calendar-month"
+		class="u-calendar-month-wrapper"
 		ref="u-calendar-month"
 	>
-		<text class="u-calendar-month__title">3月4日</text>
-		<view class="u-calendar-month__days">
-			<view
-				v-if="showMark"
-				class="u-calendar-month__days__month-mark-wrapper"
-			>
-				<text class="u-calendar-month__days__month-mark-wrapper__text">5</text>
-			</view>
-			<view
-				class="u-calendar-month__days__day"
-				v-for="(item, index) in 30"
-				:style="dayStyle"
-			>
-				<view class="u-calendar-month__days__day__select-day">
-					<text class="u-calendar-month__days__day__select-day__top-info">清明节</text>
-					<text class="u-calendar-month__days__day__select-day__info">{{ index }}</text>
-					<text class="u-calendar-month__days__day__select-day__buttom-info">清明节</text>
+		<view
+			v-for="(item, index) in month"
+			:key="index"
+			class="u-calendar-month"
+		>
+			<text class="u-calendar-month__title">{{ item.year }}年{{ item.month }}月</text>
+			<view class="u-calendar-month__days">
+				<view
+					v-if="showMark"
+					class="u-calendar-month__days__month-mark-wrapper"
+				>
+					<text class="u-calendar-month__days__month-mark-wrapper__text">{{ item.month }}</text>
+				</view>
+				<view
+					class="u-calendar-month__days__day"
+					v-for="(item1, index1) in item.date"
+					:key="index1"
+					:style="dayStyle"
+				>
+					<view class="u-calendar-month__days__day__select-day">
+						<!-- <text class="u-calendar-month__days__day__select-day__top-info">清明节</text> -->
+						<text class="u-calendar-month__days__day__select-day__info">{{ item1.value }}</text>
+						<!-- <text class="u-calendar-month__days__day__select-day__buttom-info">清明节</text> -->
+					</view>
 				</view>
 			</view>
 		</view>
@@ -45,6 +52,11 @@
 				type: String,
 				default: '#3c9cff'
 			},
+			// 月份数据
+			month: {
+				type: Array,
+				default: () => []
+			}
 		},
 		data() {
 			return {
@@ -91,6 +103,7 @@
 			height: 42px;
 			color: $u-main-color;
 			text-align: center;
+			font-weight: bold;
 		}
 
 		&__days {

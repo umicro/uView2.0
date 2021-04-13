@@ -1,5 +1,5 @@
 <template>
-	<view class="u-calendar-header">
+	<view class="u-calendar-header u-border-bottom">
 		<text
 			class="u-calendar-header__title"
 			v-if="showTitle"
@@ -63,6 +63,7 @@
 	@import "../../libs/css/components.scss";
 
 	.u-calendar-header {
+		padding-bottom: 4px;
 
 		&__title {
 			font-size: 16px;
@@ -70,6 +71,7 @@
 			text-align: center;
 			height: 42px;
 			line-height: 42px;
+			font-weight: bold;
 		}
 
 		&__subtitle {
@@ -78,6 +80,7 @@
 			height: 40px;
 			text-align: center;
 			line-height: 40px;
+			font-weight: bold;
 		}
 
 		&__weekdays {

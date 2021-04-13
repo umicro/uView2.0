@@ -68,7 +68,7 @@ export default [{
 			title: 'Form 表单',
 			title_en: 'Form',
 		}, {
-			path: '/pages/componentsA/calendar/calendar',
+			path: '/pages/componentsC/calendar/calendar',
 			icon: 'calendar',
 			title: 'Calendar 日历',
 			title_en: 'Calendar',

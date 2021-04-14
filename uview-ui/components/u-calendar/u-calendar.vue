@@ -48,6 +48,7 @@
 	import util from './util.js';
 	import dayjs from './dayjs.js';
 	import Calendar from './calendar.js';
+	uni.dayjs = dayjs
 	export default {
 		name: 'u-calendar',
 		mixins: [uni.$u.mixin, props],
@@ -78,91 +79,35 @@
 			},
 			// 设置月份数据
 			setMonth() {
-				// 月初是周几
-				let day = dayjs(this.date).date(1).day();
-				let start = day == 0 ? 6 : day - 1;
-
-				// 本月天数
-				let days = dayjs(this.date).endOf("month").format("D");
-
-				// 上个月天数
-				let prevDays = dayjs(this.date).endOf("month").subtract(1, "month").format("D");
-
-				// 日期数据
-				let arr = [];
-				// 清空表格
-				this.month = [];
-
-				// 添加上月数据
-				arr.push({
-					date: new Array(days - 0).fill(1).map((e, i) => {
-						let day = i + 1;
-
-						return {
-							value: day,
-							disabled: true,
-							date: dayjs(this.date).subtract(1, "month").date(day).format("YYYY-MM-DD"),
-						};
-					}),
-					month: dayjs().subtract(1, "month").month() + 1,
-					year: dayjs().year()
-				});
-
-				// 添加本月数据
-				arr.push({
-					date: new Array(days - 0).fill(1).map((e, i) => {
-						let day = i + 1;
-
-						return {
-							value: day,
-							date: dayjs(this.date).date(day).format("YYYY-MM-DD"),
-						};
-					}),
-					month: dayjs().month() + 1,
-					year: dayjs().year()
-				});
-
-				// 添加下个月
-				arr.push({
-					date: new Array(days - 0).fill(1).map((e, i) => {
-						let day = i + 1;
-
-						return {
-							value: day,
-							disabled: true,
-							date: dayjs(this.date).add(1, "month").date(day).format("YYYY-MM-DD"),
-						};
-					}),
-					month: dayjs().add(1, "month").month() + 1,
-					year: dayjs().year()
-				});
-
-				// 分割数组
-				// for (let n = 0; n < arr.length; n += 7) {
-				// 	this.month.push(
-				// 		arr.slice(n, n + 7).map((e, i) => {
-				// 			e.index = i + n;
-
-				// 			// 自定义信息
-				// 			let custom = this.customList.find((c) => c.date == e.date);
-
-				// 			// 农历
-				// 			if (this.lunar) {
-				// 				let {
-				// 					IDayCn,
-				// 					IMonthCn
-				// 				} = this.getLunar(e.date);
-				// 				e.lunar = IDayCn == "初一" ? IMonthCn : IDayCn;
-				// 			}
-
-				// 			return {
-				// 				...e,
-				// 				...custom,
-				// 			};
-				// 		})
-				// 	);
-				// }
-				this.month = arr
+				// 最小日期的毫秒数
+				const minDate = Number(this.minDate) || dayjs().valueOf()
+				// 如果没有指定最大日期，则往后推6个月
+				const maxDate = Number(this.maxDate) || dayjs(minDate).add(5, 'month').valueOf()
+				// 最大与最小时间之间总的月份数
+				const months = Math.ceil((maxDate - minDate) / (86400000 * 30))
+				for(let i = 0; i < months; i ++) {
+					this.month.push({
+						date: new Array(dayjs(minDate).add(i, 'month').daysInMonth()).fill(1).map((item, index) => {
+							// 日期，取值1-31
+							let day = index + 1
+							// 星期，0-6，0为周日
+							let week = dayjs(minDate).add(i, "month").date(day).day()
+							let date = dayjs(minDate).add(i, "month").date(day).format("YYYY-MM-DD")
+							return {
+								day,
+								week,
+								// 小于最小允许的日期，或者大于最大的日期，则设置为disabled状态
+								disabled: dayjs(date).isBefore(dayjs(minDate).format("YYYY-MM-DD")) || dayjs(date).isSame(dayjs(maxDate).format("YYYY-MM-DD")) ,
+								date
+							};
+						}),
+						// 当前所属的月份
+						month: dayjs(minDate).add(i, "month").month() + 1,
+						// 当前年份
+						year: dayjs(minDate).add(i, "month").year()
+					});
+				}
+				console.log(this.month);
 			},
 		},
 	}

@@ -20,11 +20,14 @@
 					class="u-calendar-month__days__day"
 					v-for="(item1, index1) in item.date"
 					:key="index1"
-					:style="dayStyle"
+					:style="dayStyle(index1, item1.week)"
 				>
 					<view class="u-calendar-month__days__day__select-day">
 						<!-- <text class="u-calendar-month__days__day__select-day__top-info">清明节</text> -->
-						<text class="u-calendar-month__days__day__select-day__info">{{ item1.value }}</text>
+						<text
+							class="u-calendar-month__days__day__select-day__info"
+							:class="[item1.disabled && 'u-calendar-month__days__day__select-day__info--disabled']"
+						>{{ item1.day }}</text>
 						<!-- <text class="u-calendar-month__days__day__select-day__buttom-info">清明节</text> -->
 					</view>
 				</view>
@@ -65,11 +68,19 @@
 		},
 		computed: {
 			dayStyle() {
-				const style = {}
-				// #ifdef APP-NVUE
-				style.width = uni.$u.addUnit((this.width / 7).toFixed(2))
-				// #endif
-				return style
+				return (index, week) => {
+					const style = {}
+					// 保留2位小数
+					const dayWidth = (this.width / 7).toFixed(2)
+					// 得出每个日期的宽度
+					style.width = uni.$u.addUnit(dayWidth)
+					if (index === 0) {
+						// 获取当前为星期几，如果为0，则为星期天，减一为每月第一天时，需要向左偏移的item个数
+						week = (week === 0 ? 7 : week) - 1
+						style.marginLeft = uni.$u.addUnit(week * dayWidth)
+					}
+					return style
+				}
 			}
 		},
 		mounted() {
@@ -77,18 +88,23 @@
 		},
 		methods: {
 			init() {
-				// #ifdef APP-NVUE
 				uni.$u.sleep().then(() => {
 					this.queryRect()
 				})
-				// #endif
 			},
 			queryRect() {
+				// #ifdef APP-NVUE
 				dom.getComponentRect(this.$refs['u-calendar-month'], res => {
 					this.width = res.size.width
 				})
+				// #endif
+				// #ifndef APP-NVUE
+				this.$uGetRect('.u-calendar-month-wrapper').then(size => {
+					this.width = size.width
+				})
+				// #endif
 			}
-		},
+		}
 	}
 </script>
 
@@ -148,6 +164,10 @@
 					&__info {
 						text-align: center;
 						font-size: 16px;
+
+						&--disabled {
+							color: #cacbcd;
+						}
 					}
 				}
 			}

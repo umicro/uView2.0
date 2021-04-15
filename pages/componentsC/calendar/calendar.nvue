@@ -10,10 +10,14 @@
 		<u-calendar
 			@confirm="confirm"
 			:show="show"
+			:maxDate="1624064398000"
+			:formatter="formatter"
+			showLunar
+			mode="range"
+			:maxCount="3"
 		></u-calendar>
 	</view>
 </template>
-
 <script>
 	export default {
 		data() {
@@ -27,6 +31,15 @@
 			},
 			confirm() {
 				this.show = false
+			},
+			formatter(day) {
+				const month = day.date.getMonth() + 1
+				const date = day.date.getDate()
+				if(month === 5 && date === 1) {
+					day.bottomInfo = '劳动节'
+					day.dot = true
+				}
+				return day
 			}
 		},
 	}

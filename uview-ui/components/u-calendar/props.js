@@ -15,6 +15,11 @@ export default {
 			type: Boolean,
 			default: true
 		},
+		// 默认选中日期
+		defaultDate: {
+			type: [String, Array],
+			default: ''
+		},
 		// 日期类型选择，single-选择单个日期，multiple-可以选择多个日期，range-选择日期范围
 		mode: {
 			type: String,
@@ -45,15 +50,25 @@ export default {
 			type: [Number, Array],
 			default: 0
 		},
+		// mode=multiple时，最多可选多少个日期
+		maxCount: {
+			type: [String, Number],
+			default: Infinity
+		},
 		// 日期行高
 		rowHeight: {
 			type: [String, Number],
-			default: 60
+			default: 56
 		},
 		// 日期格式化函数
 		formatter: {
 			type: Function,
-			default: () => {}
+			default: null
+		},
+		// 是否显示农历
+		showLunar: {
+			type: Boolean,
+			default: false
 		},
 		// 是否显示月份背景色
 		showMark: {

@@ -15,15 +15,18 @@
 			></uHeader>
 			<scroll-view
 				:style="{
-					height: '400px'
+					height: $u.addUnit(listHeight)
 				}"
 				scroll-y
+				@scroll="onScroll"
 			>
 				<uMonth
 					:color="color"
 					:rowHeight="rowHeight"
 					:showMark="showMark"
-					:month="month"
+					:months="months"
+					:mode="mode"
+					:maxCount="maxCount"
 				></uMonth>
 			</scroll-view>
 			<view
@@ -58,9 +61,22 @@
 		},
 		data() {
 			return {
-				// 副标题，用于显示年月
-				subtitle: '2020年4月',
-				month: []
+				// 需要显示的月份的数组
+				months: [],
+				// 在月份滚动区域中，当前视图中月份的index索引
+				monthIndex: 0,
+				// 月份滚动区域的高度
+				listHeight: 320
+			}
+		},
+		computed: {
+			subtitle() {
+				// 初始化时，this.months为空数组，所以需要特别判断处理
+				if (this.months.length) {
+					return `${this.months[this.monthIndex].year}年${this.months[this.monthIndex].month}月`
+				} else {
+					return ''
+				}
 			}
 		},
 		mounted() {
@@ -68,6 +84,8 @@
 		},
 		methods: {
 			init() {
+				// 滚动区域的高度
+				this.listHeight = this.rowHeight * 5 + 30
 				this.setMonth()
 			},
 			close() {
@@ -83,23 +101,43 @@
 				const minDate = Number(this.minDate) || dayjs().valueOf()
 				// 如果没有指定最大日期，则往后推6个月
 				const maxDate = Number(this.maxDate) || dayjs(minDate).add(5, 'month').valueOf()
-				// 最大与最小时间之间总的月份数
-				const months = Math.ceil((maxDate - minDate) / (86400000 * 30))
-				for(let i = 0; i < months; i ++) {
-					this.month.push({
-						date: new Array(dayjs(minDate).add(i, 'month').daysInMonth()).fill(1).map((item, index) => {
+				// 最小与最大月份
+				let minMonth = dayjs(minDate).month() + 1
+				let maxMonth = dayjs(maxDate).month() + 1
+				// 如果maxMonth小于minMonth，则意味着maxMonth为下一年的月份，需要加上12，为的是计算出两个月份之间间隔着多少月份
+				maxMonth = minMonth >= maxMonth ? maxMonth + 12 : maxMonth
+				// 最大最小月份之间的共有多少个月份
+				const months = Math.abs(minMonth - maxMonth)
+				for (let i = 0; i <= months; i++) {
+					this.months.push({
+						date: new Array(dayjs(minDate).add(i, 'month').daysInMonth()).fill(1).map((item,
+						index) => {
 							// 日期，取值1-31
 							let day = index + 1
 							// 星期，0-6，0为周日
-							let week = dayjs(minDate).add(i, "month").date(day).day()
-							let date = dayjs(minDate).add(i, "month").date(day).format("YYYY-MM-DD")
-							return {
+							const week = dayjs(minDate).add(i, "month").date(day).day()
+							const date = dayjs(minDate).add(i, "month").date(day).format("YYYY-MM-DD")
+							let bottomInfo = ''
+							if(this.showLunar) {
+								// 将日期转为农历格式
+								const lunar = Calendar.solar2lunar(dayjs(date).year(), dayjs(date).month() + 1, dayjs(date).date())
+								bottomInfo = lunar.IDayCn
+							}
+							let config = {
 								day,
 								week,
 								// 小于最小允许的日期，或者大于最大的日期，则设置为disabled状态
-								disabled: dayjs(date).isBefore(dayjs(minDate).format("YYYY-MM-DD")) || dayjs(date).isSame(dayjs(maxDate).format("YYYY-MM-DD")) ,
-								date
-							};
+								disabled: dayjs(date).isBefore(dayjs(minDate).format("YYYY-MM-DD")) ||
+									dayjs(date).isAfter(dayjs(maxDate).format("YYYY-MM-DD")),
+								// 返回一个日期对象，供外部的formatter获取当前日期的年月日等信息，进行加工处理
+								date: new Date(date),
+								bottomInfo,
+								dot: false
+							}
+							if (this.formatter) {
+								config = this.formatter(config)
+							}
+							return config
 						}),
 						// 当前所属的月份
 						month: dayjs(minDate).add(i, "month").month() + 1,
@@ -107,8 +145,21 @@
 						year: dayjs(minDate).add(i, "month").year()
 					});
 				}
-				console.log(this.month);
+				// #ifdef H5
+				console.log(this.months);
+				// #endif
 			},
+			// scroll-view滚动监听
+			onScroll(event) {
+				// 不允许小于0的滚动值，如果scroll-view到顶了，继续下拉，会出现负数值
+				const scrollTop = Math.max(0, event.detail.scrollTop)
+				// 将当前滚动条数值，除以滚动区域的高度，可以得出当前滚动到了哪一个月份的索引
+				for (let i = 0; i < this.months.length; i++) {
+					if (scrollTop >= (this.months[i].top || this.listHeight)) {
+						this.monthIndex = i
+					}
+				}
+			}
 		},
 	}
 </script>

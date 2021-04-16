@@ -27,19 +27,25 @@
 					:months="months"
 					:mode="mode"
 					:maxCount="maxCount"
+					:startText="startText"
+					:endText="endText"
+					@monthSelected="monthSelected"
 				></uMonth>
 			</scroll-view>
-			<view
-				class="u-calendar__confirm"
-				v-if="showConfirm"
-			>
-				<u-button
-					shape="circle"
-					text="确定"
-					type="primary"
-					@click="confirm"
-				></u-button>
-			</view>
+			<slot name="footer">
+				<view
+					class="u-calendar__confirm"
+					v-if="showConfirm"
+				>
+					<u-button
+						shape="circle"
+						:text="buttonDisabled ? confirmDisabledText : confirmText"
+						:color="color"
+						@click="confirm"
+						:disabled="buttonDisabled"
+					></u-button>
+				</view>
+			</slot>
 		</view>
 	</u-popup>
 </template>
@@ -66,7 +72,9 @@
 				// 在月份滚动区域中，当前视图中月份的index索引
 				monthIndex: 0,
 				// 月份滚动区域的高度
-				listHeight: 320
+				listHeight: 320,
+				// month组件中选择的日期数组
+				selected: []
 			}
 		},
 		computed: {
@@ -77,30 +85,48 @@
 				} else {
 					return ''
 				}
+			},
+			buttonDisabled() {
+				// 如果为range类型，且选择的日期个数不足1个时，让底部的按钮出于disabled状态
+				if(this.mode === 'range') {
+					if(this.selected.length <= 1) {
+						return true
+					}
+					else {
+						return false
+					}
+				} else {
+					return false
+				}
 			}
 		},
 		mounted() {
 			this.init()
 		},
 		methods: {
+			// month组件内部选择日期后，通过事件通知给父组件
+			monthSelected(e) {
+				this.selected = e
+			},
 			init() {
 				// 滚动区域的高度
 				this.listHeight = this.rowHeight * 5 + 30
 				this.setMonth()
 			},
 			close() {
-				this.show = false
+				this.$emit('close')
 			},
 			// 点击确定按钮
 			confirm() {
+				if(this.buttonDisabled) return
 				this.$emit('confirm')
 			},
 			// 设置月份数据
 			setMonth() {
 				// 最小日期的毫秒数
 				const minDate = Number(this.minDate) || dayjs().valueOf()
-				// 如果没有指定最大日期，则往后推6个月
-				const maxDate = Number(this.maxDate) || dayjs(minDate).add(5, 'month').valueOf()
+				// 如果没有指定最大日期，则往后推3个月
+				const maxDate = Number(this.maxDate) || dayjs(minDate).add(2, 'month').valueOf()
 				// 最小与最大月份
 				let minMonth = dayjs(minDate).month() + 1
 				let maxMonth = dayjs(maxDate).month() + 1
@@ -145,9 +171,6 @@
 						year: dayjs(minDate).add(i, "month").year()
 					});
 				}
-				// #ifdef H5
-				console.log(this.months);
-				// #endif
 			},
 			// scroll-view滚动监听
 			onScroll(event) {

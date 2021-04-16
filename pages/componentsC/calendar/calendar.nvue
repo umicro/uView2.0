@@ -7,14 +7,37 @@
 			fixed
 			placeholder
 		></u-navbar>
-		<u-calendar
+		<u-cell-group>
+			<u-cell
+				@click="showCalendar(index)"
+				:title="item.title"
+				v-for="(item, index) in list"
+				:key="index"
+				isLink
+			>
+				<image
+					slot="icon"
+					class="u-cell-icon"
+					:src="item.iconUrl"
+					mode="widthFix"
+				></image>
+			</u-cell>
+		</u-cell-group>
+		<!-- <u-calendar
 			@confirm="confirm"
-			:show="show"
+			:show="show1"
 			:maxDate="1624064398000"
 			:formatter="formatter"
-			showLunar
 			mode="range"
 			:maxCount="3"
+			confirmDisabledText="请选择结束时间"
+		></u-calendar> -->
+		<u-calendar
+			:show="show1"
+		></u-calendar>
+		<u-calendar
+			:show="show2"
+			mode="multiple"
 		></u-calendar>
 	</view>
 </template>
@@ -22,10 +45,44 @@
 	export default {
 		data() {
 			return {
-				show: true
+				show1: false,
+				show2: false,
+				list: [{
+						title: '单个日期',
+						iconUrl: '/static/common/image/picker/2.png'
+					},
+					{
+						title: '多个日期',
+						iconUrl: '/static/common/image/picker/5.png'
+					},
+					{
+						title: '日期范围',
+						iconUrl: '/static/common/image/picker/1.png'
+					},
+					{
+						title: '快捷选择',
+						iconUrl: '/static/common/image/picker/3.png'
+					},
+					{
+						title: '自定义主题颜色',
+						iconUrl: '/static/common/image/picker/4.png'
+					}, {
+						title: '自定义日期范围',
+						iconUrl: '/static/common/image/picker/6.png'
+					},{
+						title: '自定义文案',
+						iconUrl: '/static/common/image/picker/6.png'
+					},{
+						title: '日期最大范围',
+						iconUrl: '/static/common/image/picker/6.png'
+					}
+				]
 			}
 		},
 		methods: {
+			showCalendar(index) {
+				this[`show${index + 1}`] = true
+			},
 			navigateBack() {
 				uni.navigateBack();
 			},

@@ -25,6 +25,16 @@ export default {
 			type: String,
 			default: 'single'
 		},
+		// mode=range时，第一个日期底部的提示文字
+		startText: {
+			type: String,
+			default: '开始'
+		},
+		// mode=range时，最后一个日期底部的提示文字
+		endText: {
+			type: String,
+			default: '结束'
+		},
 		// 自定义列表
 		customList: {
 			type: Array,

@@ -129,6 +129,13 @@
 						week = (week === 0 ? 7 : week) - 1
 						style.marginLeft = uni.$u.addUnit(week * dayWidth)
 					}
+					if(this.mode === 'range') {
+						// 之所以需要这么写，是因为DCloud公司的iOS客户端的开发者能力有限导致的bug
+						style.paddingLeft = 0
+						style.paddingRight = 0
+						style.paddingBottom = 0
+						style.paddingTop = 0
+					}
 					return style
 				}
 			},
@@ -139,9 +146,12 @@
 					if (this.selected.includes(date)) {
 						style.backgroundColor = this.color
 					}
-					if(this.mode === 'single') {
+					if (this.mode === 'single') {
 						if (date === this.selected[0]) {
-							style.borderRadius = '3px'
+							style.borderTopLeftRadius = '3px'
+							style.borderBottomLeftRadius = '3px'
+							style.borderTopRightRadius = '3px'
+							style.borderBottomRightRadius = '3px'
 						}
 					} else if (this.mode === 'range') {
 						if (this.selected.length >= 2) {
@@ -162,9 +172,17 @@
 								style.backgroundColor = uni.$u.colorGradient(this.color, '#ffffff', 100)[90]
 							}
 						} else if (this.selected.length === 1) {
+							// 之所以需要这么写，是因为DCloud公司的iOS客户端的开发者能力有限导致的bug
 							// 进行还原操作，否则在nvue的iOS，uni-app有bug，会导致诡异的表现
 							style.borderTopLeftRadius = '3px'
 							style.borderBottomLeftRadius = '3px'
+						}
+					} else {
+						if (this.selected.includes(date)) {
+							style.borderTopLeftRadius = '3px'
+							style.borderBottomLeftRadius = '3px'
+							style.borderTopRightRadius = '3px'
+							style.borderBottomRightRadius = '3px'
 						}
 					}
 					return style
@@ -315,7 +333,7 @@
 								// 将开始和结束日期之间的日期添加到数组中
 								arr.push(dayjs(startDate).add(i, 'day').format("YYYY-MM-DD"))
 								i++
-							// 累加的日期小于结束日期时，继续下一次的循环
+								// 累加的日期小于结束日期时，继续下一次的循环
 							} while (dayjs(startDate).add(i, 'day').isBefore(dayjs(endDate)))
 							// 为了一次性修改数组，避免computed中多次触发，这里才用arr变量一次性赋值的方式，同时将最后一个日期添加近来
 							arr.push(endDate)
@@ -365,8 +383,8 @@
 			}
 
 			&__day {
-				height: 62px;
 				@include flex;
+				padding: 2px;
 
 				&__select {
 					flex: 1;

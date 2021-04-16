@@ -56,6 +56,7 @@
 						:rightOptions="item.options"
 						v-for="(item, index) in options4"
 						:disabled="item.disabled"
+						:key="index"
 					>
 						<u-line v-if="index === 0"></u-line>
 						<view class="swipe-action">

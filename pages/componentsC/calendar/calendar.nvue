@@ -37,7 +37,7 @@
 		></u-calendar>
 		<u-calendar
 			:show="show2"
-			mode="multiple"
+			mode="range"
 		></u-calendar>
 	</view>
 </template>
@@ -46,7 +46,7 @@
 		data() {
 			return {
 				show1: false,
-				show2: false,
+				show2: true,
 				list: [{
 						title: '单个日期',
 						iconUrl: '/static/common/image/picker/2.png'

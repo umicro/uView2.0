@@ -34,47 +34,109 @@
 		></u-calendar> -->
 		<u-calendar
 			:show="show1"
+			@confirm="show1 = false"
+			@close="show1 = false"
 		></u-calendar>
 		<u-calendar
 			:show="show2"
+			mode="multiple"
+			@confirm="show2 = false"
+			@close="show2 = false"
+		></u-calendar>
+		<u-calendar
+			:show="show3"
 			mode="range"
+			@confirm="show3 = false"
+			@close="show3 = false"
+		></u-calendar>
+		<u-calendar
+			:show="show4"
+			mode="range"
+			@confirm="show4 = false"
+			@close="show4 = false"
+			color="#f56c6c"
+			:defaultDate="customThemeDefaultDate"
+		></u-calendar>
+		<u-calendar
+			:show="show5"
+			mode="range"
+			@confirm="show5 = false"
+			@close="show5 = false"
+			:defaultDate="customTextDefaultDate"
+			startText="住店"
+			endText="离店"
+			confirmDisabledText="请选择离店日期"
+			:formatter="formatter"
+		></u-calendar>
+		<u-calendar
+			:show="show6"
+			@confirm="show6 = false"
+			@close="show6 = false"
+			:maxDate="maxDate"
+		></u-calendar>
+		<u-calendar
+			:show="show7"
+			@confirm="show7 = false"
+			@close="show7 = false"
+			showLunar
+		></u-calendar>
+		<u-calendar
+			:show="show8"
+			@confirm="show8 = false"
+			@close="show8 = false"
+			mode="multiple"
+			:defaultDate="defaultDateMultiple"
 		></u-calendar>
 	</view>
 </template>
 <script>
 	export default {
 		data() {
+			const d = new Date()
+			const year = d.getFullYear()
+			let month = d.getMonth() + 1
+			month = month < 10 ? `0${month}` : month
+			const date = d.getDate()
 			return {
 				show1: false,
-				show2: true,
+				show2: false,
+				show3: false,
+				show4: false,
+				show5: false,
+				show6: false,
+				show7: false,
+				show8: false,
+				customThemeDefaultDate: [`${year}-${month}-${date}`, `${year}-${month}-${date + 5}`], 
+				customTextDefaultDate: [`${year}-${month}-${date}`],
+				maxDate: `${year}-${month}-${date + 10}`,
+				defaultDateMultiple: [`${year}-${month}-${date}`, `${year}-${month}-${date + 1}`, `${year}-${month}-${date + 2}`],
 				list: [{
 						title: '单个日期',
-						iconUrl: '/static/common/image/picker/2.png'
+						iconUrl: '/static/common/image/calendar/7.png'
 					},
 					{
 						title: '多个日期',
-						iconUrl: '/static/common/image/picker/5.png'
+						iconUrl: '/static/common/image/calendar/8.png'
 					},
 					{
 						title: '日期范围',
-						iconUrl: '/static/common/image/picker/1.png'
-					},
-					{
-						title: '快捷选择',
-						iconUrl: '/static/common/image/picker/3.png'
+						iconUrl: '/static/common/image/calendar/9.png'
 					},
 					{
 						title: '自定义主题颜色',
-						iconUrl: '/static/common/image/picker/4.png'
-					}, {
-						title: '自定义日期范围',
-						iconUrl: '/static/common/image/picker/6.png'
+						iconUrl: '/static/common/image/calendar/15.png'
 					},{
 						title: '自定义文案',
-						iconUrl: '/static/common/image/picker/6.png'
+						iconUrl: '/static/common/image/calendar/14.png'
 					},{
 						title: '日期最大范围',
-						iconUrl: '/static/common/image/picker/6.png'
+						iconUrl: '/static/common/image/calendar/13.png'
+					},{
+						title: '显示农历',
+						iconUrl: '/static/common/image/calendar/5.png'
+					},{
+						title: '默认日期',
+						iconUrl: '/static/common/image/calendar/10.png'
 					}
 				]
 			}
@@ -90,10 +152,11 @@
 				this.show = false
 			},
 			formatter(day) {
-				const month = day.date.getMonth() + 1
-				const date = day.date.getDate()
-				if(month === 5 && date === 1) {
-					day.bottomInfo = '劳动节'
+				const d = new Date()
+				let month = d.getMonth() + 1
+				const date = d.getDate()
+				if(day.month == month && day.day == date + 3) {
+					day.bottomInfo = '有优惠'
 					day.dot = true
 				}
 				return day

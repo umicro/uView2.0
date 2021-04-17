@@ -15,11 +15,6 @@ export default {
 			type: Boolean,
 			default: true
 		},
-		// 默认选中日期
-		defaultDate: {
-			type: [String, Array],
-			default: ''
-		},
 		// 日期类型选择，single-选择单个日期，multiple-可以选择多个日期，range-选择日期范围
 		mode: {
 			type: String,
@@ -57,8 +52,8 @@ export default {
 		},
 		// 默认选中的日期，mode为multiple或range是必须为数组格式
 		defaultDate: {
-			type: [Number, Array],
-			default: 0
+			type: [Array, String, Date],
+			default: null
 		},
 		// mode=multiple时，最多可选多少个日期
 		maxCount: {
@@ -85,11 +80,6 @@ export default {
 			type: Boolean,
 			default: true
 		},
-		// 是否显示确认按钮
-		showConfirm: {
-			type: Boolean,
-			default: true
-		},
 		// 确定按钮的文字
 		confirmText: {
 			type: String,
@@ -100,13 +90,13 @@ export default {
 			type: String,
 			default: '确定'
 		},
-		// 是否展示确定按钮，如不展示，则进行快捷选择
-		showConfirm: {
-			type: Boolean,
-			default: true
-		},
 		// 是否显示日历弹窗
 		show: {
+			type: Boolean,
+			default: false
+		},
+		// 是否允许点击遮罩关闭日历
+		closeOnClickOverly: {
 			type: Boolean,
 			default: false
 		}

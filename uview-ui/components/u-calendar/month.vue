@@ -8,6 +8,7 @@
 			:key="index"
 			:class="[`u-calendar-month-${index}`]"
 			:ref="`u-calendar-month-${index}`"
+			:id="`month-${item.month}`"
 		>
 			<text
 				v-if="index !== 0"
@@ -103,7 +104,27 @@
 			endText: {
 				type: String,
 				default: '结束'
-			}
+			},
+			// 默认选中的日期，mode为multiple或range是必须为数组格式
+			defaultDate: {
+				type: [Array, String, Date],
+				default: null
+			},
+			// 最小的可选日期
+			minDate: {
+				type: [Number, String],
+				default: 0
+			},
+			// 最大可选日期
+			maxDate: {
+				type: [Number, String],
+				default: 0
+			},
+			// 如果没有设置maxDate，则往后推多少个月
+			maxMonth: {
+				type: [Number, String],
+				default: 2
+			},
 		},
 		data() {
 			return {
@@ -114,7 +135,19 @@
 				selected: []
 			}
 		},
+		watch: {
+			selectedChange: {
+				immediate: true,
+				handler(n) {
+					this.setDefaultDate()
+				}
+			}
+		},
 		computed: {
+			// 多个条件的变化，会引起选中日期的变化，这里统一管理监听
+			selectedChange() {
+				return [this.minDate, this.maxDate, this.defaultDate]
+			},
 			dayStyle() {
 				return (index1, index2, item) => {
 					const style = {}
@@ -297,36 +330,40 @@
 			},
 			// 点击某一个日期
 			clickHandler(index1, index2, item) {
-				if (item.disabled) return
 				this.item = item
 				const date = dayjs(item.date).format("YYYY-MM-DD")
+				if (item.disabled) return
+				// 对上一次选择的日期数组进行深度克隆
+				let selected = uni.$u.deepClone(this.selected)
 				if (this.mode === 'single') {
 					// 单选情况下，让数组中的元素为当前点击的日期
-					this.selected = [date]
+					selected = [date]
 				} else if (this.mode === 'multiple') {
-					if (this.selected.includes(date)) {
+					if (selected.includes(date)) {
 						// 如果点击的日期已在数组中，则进行移除操作，也就是达到反选的效果
-						const itemIndex = this.selected.findIndex(item => item === date)
-						this.selected.splice(itemIndex, 1)
+						const itemIndex = selected.findIndex(item => item === date)
+						selected.splice(itemIndex, 1)
 					} else {
 						// 如果点击的日期不在数组中，且已有的长度小于总可选长度时，则添加到数组中去
-						if (this.selected.length < this.maxCount) this.selected.push(date)
+						if (selected.length < this.maxCount) selected.push(date)
 					}
 				} else {
 					// 选择区间形式
-					if (this.selected.length === 0 || this.selected.length >= 2) {
+					if (selected.length === 0 ||selected.length >= 2) {
 						// 如果原来就为0或者大于2的长度，则当前点击的日期，就是开始日期
-						this.selected = [date]
-					} else if (this.selected.length === 1) {
+						selected = [date]
+					} else if (selected.length === 1) {
+						// 选择区间时，只有一个日期的情况下，不允许选择自己
+						if(selected[0] === date) return
 						// 如果已经选择了开始日期
-						const existsDate = this.selected[0]
+						const existsDate = selected[0]
 						// 如果当前选择的日期小于上一次选择的日期，则当前的日期定为开始日期
-						if (dayjs(date).isBefore(existsDate)) this.selected = [date]
+						if (dayjs(date).isBefore(existsDate)) selected = [date]
 						else if (dayjs(date).isAfter(existsDate)) {
 							// 如果当前日期大于已有日期，将当前的添加到数组尾部
-							this.selected.push(date)
-							const startDate = this.selected[0]
-							const endDate = this.selected[1]
+							selected.push(date)
+							const startDate = selected[0]
+							const endDate = selected[1]
 							const arr = []
 							let i = 0
 							do {
@@ -337,10 +374,42 @@
 							} while (dayjs(startDate).add(i, 'day').isBefore(dayjs(endDate)))
 							// 为了一次性修改数组，避免computed中多次触发，这里才用arr变量一次性赋值的方式，同时将最后一个日期添加近来
 							arr.push(endDate)
-							this.selected = arr
+							selected = arr
 						}
 					}
 				}
+				this.setSelected(selected)
+			},
+			// 设置默认日期
+			setDefaultDate() {
+				if(!this.defaultDate) {
+					// 如果没有设置默认日期，则将当天日期设置为默认选中的日期
+					const selected = [dayjs().format("YYYY-MM-DD")]
+					return this.setSelected(selected)
+				}
+				let defaultDate = []
+				const minDate = this.minDate || dayjs().format("YYYY-MM-DD")
+				const maxDate = this.maxDate || dayjs(minDate).add(this.maxMonth - 1, 'month').format("YYYY-MM-DD")
+				if(this.mode === 'single') {
+					// 单选模式，可以是字符串或数组，Date对象等
+					if(!uni.$u.test.array(this.defaultDate)) {
+						defaultDate = [dayjs(this.defaultDate).format("YYYY-MM-DD")]
+					} else {
+						defaultDate = [this.defaultDate[0]]
+					}
+				} else {
+					// 如果为非数组，则不执行
+					if(!uni.$u.test.array(this.defaultDate)) return
+					defaultDate = this.defaultDate
+				}
+				// 过滤用户传递的默认数组，取出只在可允许最大值与最小值之间的元素
+				defaultDate = defaultDate.filter(item => {
+					return dayjs(item).isAfter(dayjs(minDate).subtract(1, 'day')) && dayjs(item).isBefore(dayjs(maxDate).add(1, 'day'))
+				})
+				this.setSelected(defaultDate)
+			},
+			setSelected(selected) {
+				this.selected = selected
 				this.$emit('monthSelected', this.selected)
 			}
 		}

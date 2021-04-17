@@ -5,6 +5,7 @@
 		closeable
 		@close="close"
 		round
+		:closeOnClickOverly="closeOnClickOverly"
 	>
 		<view class="u-calendar">
 			<uHeader
@@ -19,6 +20,7 @@
 				}"
 				scroll-y
 				@scroll="onScroll"
+				:scrollIntoView="scrollIntoView"
 			>
 				<uMonth
 					:color="color"
@@ -30,12 +32,16 @@
 					:startText="startText"
 					:endText="endText"
 					@monthSelected="monthSelected"
+					:defaultDate="defaultDate"
+					:minDate="minDate"
+					:maxDate="maxDate"
+					:maxMonth="maxMonth"
+					ref="month"
 				></uMonth>
 			</scroll-view>
 			<slot name="footer">
 				<view
 					class="u-calendar__confirm"
-					v-if="showConfirm"
 				>
 					<u-button
 						shape="circle"
@@ -74,10 +80,32 @@
 				// 月份滚动区域的高度
 				listHeight: 320,
 				// month组件中选择的日期数组
-				selected: []
+				selected: [],
+				// 如果没有设置最大可选日期，默认为往后推3个月
+				maxMonth: 3,
+				scrollIntoView: ''
 			}
 		},
+		watch: {
+			selectedChange: {
+				immediate: true,
+				handler(n) {
+					this.setMonth()
+				}
+			},
+			// 打开弹窗时，设置月份数据
+			show: {
+				immediate: true,
+				handler(n) {
+					this.setMonth()
+				}
+			},
+		},
 		computed: {
+			// 多个条件的变化，会引起选中日期的变化，这里统一管理监听
+			selectedChange() {
+				return [this.minDate, this.maxDate, this.defaultDate]
+			},
 			subtitle() {
 				// 初始化时，this.months为空数组，所以需要特别判断处理
 				if (this.months.length) {
@@ -88,11 +116,10 @@
 			},
 			buttonDisabled() {
 				// 如果为range类型，且选择的日期个数不足1个时，让底部的按钮出于disabled状态
-				if(this.mode === 'range') {
-					if(this.selected.length <= 1) {
+				if (this.mode === 'range') {
+					if (this.selected.length <= 1) {
 						return true
-					}
-					else {
+					} else {
 						return false
 					}
 				} else {
@@ -118,35 +145,41 @@
 			},
 			// 点击确定按钮
 			confirm() {
-				if(this.buttonDisabled) return
 				this.$emit('confirm')
+			},
+			// 点击按钮
+			buttonClickHandler() {
+				if (!this.buttonDisabled) this.$emit('confirm')
 			},
 			// 设置月份数据
 			setMonth() {
 				// 最小日期的毫秒数
-				const minDate = Number(this.minDate) || dayjs().valueOf()
+				const minDate = this.minDate || dayjs().valueOf()
 				// 如果没有指定最大日期，则往后推3个月
-				const maxDate = Number(this.maxDate) || dayjs(minDate).add(2, 'month').valueOf()
+				const maxDate = this.maxDate || dayjs(minDate).add(this.maxMonth - 1, 'month').valueOf()
 				// 最小与最大月份
 				let minMonth = dayjs(minDate).month() + 1
 				let maxMonth = dayjs(maxDate).month() + 1
 				// 如果maxMonth小于minMonth，则意味着maxMonth为下一年的月份，需要加上12，为的是计算出两个月份之间间隔着多少月份
-				maxMonth = minMonth >= maxMonth ? maxMonth + 12 : maxMonth
+				maxMonth = minMonth > maxMonth ? maxMonth + 12 : maxMonth
 				// 最大最小月份之间的共有多少个月份
 				const months = Math.abs(minMonth - maxMonth)
+				// 先清空数组
+				this.months = []
 				for (let i = 0; i <= months; i++) {
 					this.months.push({
 						date: new Array(dayjs(minDate).add(i, 'month').daysInMonth()).fill(1).map((item,
-						index) => {
+							index) => {
 							// 日期，取值1-31
 							let day = index + 1
 							// 星期，0-6，0为周日
 							const week = dayjs(minDate).add(i, "month").date(day).day()
 							const date = dayjs(minDate).add(i, "month").date(day).format("YYYY-MM-DD")
 							let bottomInfo = ''
-							if(this.showLunar) {
+							if (this.showLunar) {
 								// 将日期转为农历格式
-								const lunar = Calendar.solar2lunar(dayjs(date).year(), dayjs(date).month() + 1, dayjs(date).date())
+								const lunar = Calendar.solar2lunar(dayjs(date).year(), dayjs(date)
+								.month() + 1, dayjs(date).date())
 								bottomInfo = lunar.IDayCn
 							}
 							let config = {
@@ -158,7 +191,8 @@
 								// 返回一个日期对象，供外部的formatter获取当前日期的年月日等信息，进行加工处理
 								date: new Date(date),
 								bottomInfo,
-								dot: false
+								dot: false,
+								month: dayjs(minDate).add(i, "month").month() + 1
 							}
 							if (this.formatter) {
 								config = this.formatter(config)
@@ -171,6 +205,9 @@
 						year: dayjs(minDate).add(i, "month").year()
 					});
 				}
+				// #ifdef H5
+				// console.log(this.months);
+				// #endif
 			},
 			// scroll-view滚动监听
 			onScroll(event) {
@@ -182,7 +219,7 @@
 						this.monthIndex = i
 					}
 				}
-			}
+			},
 		},
 	}
 </script>

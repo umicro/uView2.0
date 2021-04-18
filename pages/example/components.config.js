@@ -88,6 +88,11 @@ export default [{
 			title: 'Picker 选择器',
 			title_en: 'Picker',
 		}, {
+			path: '/pages/componentsC/datetimePicker/datetimePicker',
+			icon: 'picker',
+			title: 'DatetimePicker 时间选择器',
+			title_en: 'Picker',
+		}, {
 			path: '/pages/componentsA/rate/rate',
 			icon: 'rate',
 			title: 'Rate 评分',

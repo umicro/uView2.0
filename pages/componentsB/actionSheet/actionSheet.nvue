@@ -1,9 +1,12 @@
 <template>
 	<view class="u-page">
-		<u-gap
-		    height="30"
-		    bgColor="#fff"
-		></u-gap>
+		<u-navbar
+			title="选择器"
+			@leftClick="navigateBack"
+			safeAreaInsetTop
+			fixed
+			placeholder
+		></u-navbar>
 		<u-cell-group>
 			<u-cell
 			    @click="openSheet(index)"
@@ -165,6 +168,9 @@
 			},
 			getuserinfo(res) {
 				uni.$u.toast(`用户名：${res.userInfo.nickName}`)
+			},
+			navigateBack() {
+				uni.navigateBack()
 			}
 		}
 	}

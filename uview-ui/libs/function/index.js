@@ -471,6 +471,11 @@ function getDuration(value) {
 	return value > 30 ? value + 'ms' : value + 's'
 }
 
+// 日期的月或日补零操作
+function padZero(value) {
+  return `00${value}`.slice(-2);
+}
+
 export default {
 	range,
 	getPx,
@@ -493,5 +498,6 @@ export default {
 	toast,
 	type2icon,
 	priceFormat,
-	getDuration
+	getDuration,
+	padZero
 };

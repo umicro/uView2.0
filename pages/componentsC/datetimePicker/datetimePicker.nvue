@@ -1,8 +1,33 @@
 <template>
+	<view class="u-page">
+		<u-navbar
+			title="时间选择器"
+			@leftClick="navigateBack"
+			safeAreaInsetTop
+			fixed
+			placeholder
+		></u-navbar>
+		<u-datetime-picker :show="show"></u-datetime-picker>
+	</view>
 </template>
 
 <script>
+	export default {
+		data() {
+			return {
+				show: true
+			}
+		},
+		methods: {
+			navigateBack() {
+				uni.navigateBack()
+			},
+		},
+	}
 </script>
 
-<style>
+<style lang="scss">
+	.u-page {
+		padding: 0;
+	}
 </style>

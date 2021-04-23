@@ -16,9 +16,20 @@
 
 			}
 		},
+		mounted() {
+			this.init()
+		},
 		methods: {
-			name() {
-
+			init() {
+				this.updateColumnValues(this.value)
+			},
+			// 更新各列的值
+			updateColumnValues(value) {
+				const innerValue = this.correctValue(value)
+			},
+			// 得出合法的时间
+			correctValue(value) {
+				
 			}
 		},
 	}

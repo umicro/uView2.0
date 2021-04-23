@@ -6,6 +6,7 @@
 			safeAreaInsetTop
 			fixed
 			placeholder
+			:style="[style1, style2]"
 		></u-navbar>
 		<u-datetime-picker :show="show"></u-datetime-picker>
 	</view>
@@ -15,7 +16,13 @@
 	export default {
 		data() {
 			return {
-				show: true
+				show: true,
+				style1: {
+					fontSize: '10px'
+				},
+				style2: {
+					color: 'red'
+				}
 			}
 		},
 		methods: {

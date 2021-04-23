@@ -10,15 +10,62 @@ export default {
 			type: Boolean,
 			default: true
 		},
+		// 绑定值
+		value: {
+			type: [String, Number],
+			default: ''
+		},
 		// 顶部标题
 		title: {
 			type: String,
 			default: ''
 		},
-		// 对象数组，设置每一列的数据
-		columns: {
-			type: Array,
-			default: () => []
+		// 展示格式，mode=date为日期选择，mode=time为时间选择，mode=year-month为年月选择，mode=datetime为日期时间选择
+		mode: {
+			type: String,
+			default: 'datetime'
+		},
+		// 可选的最大时间
+		maxDate: {
+			type: Number,
+			// 最大默认值为下一年
+			default: new Date(new Date().getFullYear() + 1, 0, 1).getTime()
+		},
+		// 可选的最小时间
+		minDate: {
+			type: Number,
+			// 最小默认值为上一年
+			default: new Date(new Date().getFullYear() - 1, 0, 1).getTime()
+		},
+		// 可选的最小小时，仅mode=time有效
+		minHour: {
+			type: Number,
+			default: 0
+		},
+		// 可选的最大小时，仅mode=time有效
+		maxHour: {
+			type: Number,
+			default: 0
+		},
+		// 可选的最小分钟，仅mode=time有效
+		minMinute: {
+			type: Number,
+			default: 0
+		},
+		// 可选的最大分钟，仅mode=time有效
+		maxMinute: {
+			type: Number,
+			default: 0
+		},
+		// 选项过滤函数
+		filter: {
+			type: Function,
+			default: () => {}
+		},
+		// 选项格式化函数
+		formatter: {
+			type: Function,
+			default: () => {}
 		},
 		// 是否显示加载中状态
 		loading: {
@@ -59,11 +106,6 @@ export default {
 		visibleItemCount: {
 			type: [Number, String],
 			default: 5
-		},
-		// 选项对象中，需要展示的属性键名
-		keyName: {
-			type: String,
-			default: 'text'
 		},
 		// 是否允许点击遮罩关闭选择器
 		closeOnClickOverly: {

@@ -24,6 +24,7 @@ function url(value) {
  * 验证日期格式
  */
 function date(value) {
+	if(!value) return false
 	// 判断是否数值或者字符串数值(意味着为时间戳)，转为数值，否则new Date无法识别字符串时间戳
 	if(number(value)) value = +value;
 	return !/Invalid|NaN/.test(new Date(value).toString());

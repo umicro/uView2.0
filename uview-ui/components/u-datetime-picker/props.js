@@ -45,7 +45,7 @@ export default {
 		// 可选的最大小时，仅mode=time有效
 		maxHour: {
 			type: Number,
-			default: 0
+			default: 23
 		},
 		// 可选的最小分钟，仅mode=time有效
 		minMinute: {
@@ -55,7 +55,7 @@ export default {
 		// 可选的最大分钟，仅mode=time有效
 		maxMinute: {
 			type: Number,
-			default: 0
+			default: 59
 		},
 		// 选项过滤函数
 		filter: {
@@ -65,7 +65,7 @@ export default {
 		// 选项格式化函数
 		formatter: {
 			type: Function,
-			default: () => {}
+			default: (type, value) => value
 		},
 		// 是否显示加载中状态
 		loading: {

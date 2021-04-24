@@ -61,8 +61,8 @@
 	import uMonth from './month.vue';
 	import props from './props.js';
 	import util from './util.js';
-	import dayjs from './dayjs.js';
-	import Calendar from './calendar.js';
+	import dayjs from '../../libs/util/dayjs.js';
+	import Calendar from '../../libs/util/calendar.js';
 	uni.dayjs = dayjs
 	export default {
 		name: 'u-calendar',

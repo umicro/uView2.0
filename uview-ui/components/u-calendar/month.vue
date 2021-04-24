@@ -60,7 +60,7 @@
 	// 由于nvue不支持百分比单位，需要查询宽度来计算每个日期的宽度
 	const dom = uni.requireNativePlugin('dom')
 	// #endif
-	import dayjs from './dayjs.js';
+	import dayjs from '../../libs/util/dayjs.js';
 	export default {
 		name: 'u-calendar-month',
 		mixins: [uni.$u.mixin],

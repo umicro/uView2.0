@@ -98,7 +98,7 @@
 				columns6: [
 					['中国', '美国', '日本']
 				],
-				show1: false,
+				show1: true,
 				show2: false,
 				show3: false,
 				show4: false,
@@ -139,7 +139,7 @@
 					index,
 					picker
 				} = e
-				if (columnIndex === 0) { 
+				if (columnIndex === 0) {
 					picker.setColumnValues(1, this.columnData[index])
 				}
 			},
@@ -151,7 +151,7 @@
 					index,
 					picker
 				} = e
-				if (columnIndex === 0) { 
+				if (columnIndex === 0) {
 					this.loading = true
 					uni.$u.sleep(1500).then(() => {
 						picker.setColumnValues(1, this.columnData[index])

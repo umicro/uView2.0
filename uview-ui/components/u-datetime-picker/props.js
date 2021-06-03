@@ -28,14 +28,14 @@ export default {
 		// 可选的最大时间
 		maxDate: {
 			type: Number,
-			// 最大默认值为下一年
-			default: new Date(new Date().getFullYear() + 1, 0, 1).getTime()
+			// 最大默认值为后10年
+			default: new Date(new Date().getFullYear() + 10, 0, 1).getTime()
 		},
 		// 可选的最小时间
 		minDate: {
 			type: Number,
-			// 最小默认值为上一年
-			default: new Date(new Date().getFullYear() - 1, 0, 1).getTime()
+			// 最小默认值为前10年
+			default: new Date(new Date().getFullYear() - 10, 0, 1).getTime()
 		},
 		// 可选的最小小时，仅mode=time有效
 		minHour: {

@@ -8,7 +8,23 @@
 			placeholder
 			:style="[style1, style2]"
 		></u-navbar>
-		<u-datetime-picker :value="value" :show="show"></u-datetime-picker>
+		<u-button
+			text="弹出"
+			@click="show = true"
+		></u-button>
+		<u-datetime-picker
+			:value="value"
+			:show="show"
+			mode="year-month"
+			:maxHour="20"
+			:minHour="15"
+			:maxMinute="30"
+			:minMinute="20"
+			@cancel="cancel"
+			@close="close"
+			@confirm="confirm"
+			closeOnClickOverly
+		></u-datetime-picker>
 	</view>
 </template>
 
@@ -16,7 +32,7 @@
 	export default {
 		data() {
 			return {
-				value: 1524576638000,
+				value: '12:23',
 				show: true,
 				style1: {
 					fontSize: '10px'
@@ -26,9 +42,23 @@
 				}
 			}
 		},
+		onLoad() {
+			// setTimeout(() => {
+			// 	this.value = '16:25'
+			// }, 5000)
+		},
 		methods: {
 			navigateBack() {
 				uni.navigateBack()
+			},
+			cancel() {
+				this.show = false
+			},
+			close() {
+				this.show = false
+			},
+			confirm() {
+				this.show = false
 			},
 		},
 	}

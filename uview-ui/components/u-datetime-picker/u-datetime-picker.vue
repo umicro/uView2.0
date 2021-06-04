@@ -57,6 +57,34 @@
 			// 列发生变化时触发
 			change(e) {
 				console.log(e);
+				const { value, values } = e
+				let selectValue = ''
+				if(this.mode === 'time') {
+					// 根据value各列索引，从各列数组中，取出当前时间的选中值
+					selectValue = `${values[0][value[0]]}:${values[1][value[1]]}`
+				} else {
+					// 将选择的值转为数值，比如'03'转为数值的3，'2019'转为数值的2019
+					const year = parseInt(values[0][value[0]])
+					const month = parseInt(values[1][value[1]])
+					const date = parseInt(values[2][value[2]])
+					let hour = 0, minute = 0
+					// 此月份的最大天数
+					const maxDate = dayjs(`${year}-${month}-${date}`).daysInMonth()
+					// year-month模式下，date不会出现在列中，设置为1，为了符合后边需要减1的需求
+					if (this.mode === 'year-month') {
+					    date = 1
+					}
+					// 不允许超过maxDate值
+					date = Math.min(maxDate, date)
+					if (this.mode === 'datetime') {
+					    hour = parseInt(values[3][value[3]])
+					    minute = parseInt(values[4][value[4]])
+					}
+					// 转为时间模式
+					value = new Date(year, month - 1, date, hour, minute)
+				}
+				// 取出准确的合法值，防止超越边界的情况
+				value = this.correctValue(value)
 			},
 			// 更新各列的值
 			updateColumnValues() {
@@ -125,7 +153,6 @@
 
 				// 如果找不到对应的索引下标，元素可能为-1，需要重置为0，nvue才能让某一列默认选中第一个项，否则它会选中一个空行
 				this.innerDefaultIndex = defaultIndex.map(item => item === -1 ? 0 : item)
-				console.log(this.innerDefaultIndex);
 			},
 			// 获取年的列值
 			getYearColumn() {
@@ -212,7 +239,84 @@
 					value = dayjs(value).isAfter(dayjs(this.maxDate)) ? this.maxDate : value
 					return value
 				}
-			}
+			},
+			getRanges() {
+			    if (this.mode === 'time') {
+			        return [
+			            {
+			                type: 'hour',
+			                range: [this.minHour, this.maxHour],
+			            },
+			            {
+			                type: 'minute',
+			                range: [this.minMinute, this.maxMinute],
+			            },
+			        ];
+			    }
+			    const { maxYear, maxDate, maxMonth, maxHour, maxMinute, } = this.getBoundary('max', this.innerValue);
+			    const { minYear, minDate, minMonth, minHour, minMinute, } = this.getBoundary('min', this.innerValue);
+			    const result = [
+			        {
+			            type: 'year',
+			            range: [minYear, maxYear],
+			        },
+			        {
+			            type: 'month',
+			            range: [minMonth, maxMonth],
+			        },
+			        {
+			            type: 'day',
+			            range: [minDate, maxDate],
+			        },
+			        {
+			            type: 'hour',
+			            range: [minHour, maxHour],
+			        },
+			        {
+			            type: 'minute',
+			            range: [minMinute, maxMinute],
+			        },
+			    ];
+			    if (this.mode === 'date')
+			        result.splice(3, 2);
+			    if (this.mode === 'year-month')
+			        result.splice(2, 3);
+			    return result;
+			},
+			getBoundary(type, innerValue) {
+			    const value = new Date(innerValue)
+			    const boundary = new Date(this[`${type}Date`])
+			    const year = boundary.getFullYear()
+			    let month = 1
+			    let date = 1
+			    let hour = 0
+			    let minute = 0
+			    if (type === 'max') {
+			        month = 12
+			        date = dayjs().daysInMonth(value)
+			        hour = 23
+			        minute = 59
+			    }
+			    if (value.year() === year) {
+			        month = boundary.month() + 1
+			        if (value.month() + 1 === month) {
+			            date = boundary.date()
+			            if (value.date() === date) {
+			                hour = boundary.hour()
+			                if (value.hour() === hour) {
+			                    minute = boundary.minute()
+			                }
+			            }
+			        }
+			    }
+			    return {
+			        [`${type}Year`]: year,
+			        [`${type}Month`]: month,
+			        [`${type}Date`]: date,
+			        [`${type}Hour`]: hour,
+			        [`${type}Minute`]: minute
+			    }
+			},
 		},
 	}
 </script>

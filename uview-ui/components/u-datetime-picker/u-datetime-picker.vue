@@ -1,5 +1,6 @@
 <template>
 	<u-picker
+		ref="picker"
 		:show="show"
 		:closeOnClickOverly="closeOnClickOverly"
 		:columns="columns"
@@ -13,8 +14,6 @@
 </template>
 
 <script>
-	// 默认的格式化方法，不进行任何处理
-	const defaultFormatter = (type, value) => value
 	function times(n, iteratee) {
 	    let index = -1
 	    const result = Array(n < 0 ? 0 : n)
@@ -30,7 +29,7 @@
 		mixins: [uni.$u.mixin, props],
 		data() {
 			return {
-				columns: [1, 23, 4, 66],
+				columns: [],
 				innerDefaultIndex: []
 			}
 		},
@@ -39,6 +38,15 @@
 				if (newValue) {
 					this.updateColumnValue(this.value)
 				}
+			},
+			propsChange() {
+				this.init()
+			}
+		},
+		computed: {
+			// 如果以下这些变量发生了变化，意味着需要重新初始化各列的值
+			propsChange() {
+				return [this.mode, this.maxDate, this.minDate, this.minHour, this.maxHour, this.minMinute, this.maxMinute, this.filter, ]
 			}
 		},
 		mounted() {
@@ -46,8 +54,8 @@
 		},
 		methods: {
 			init() {
-				const val = this.correctValue(this.value)
-				this.updateColumnValue(val)
+				this.innerValue = this.correctValue(this.value)
+				this.updateColumnValue(this.innerValue)
 			},
 			// 关闭选择器
 			close() {
@@ -61,7 +69,10 @@
 			},
 			// 点击工具栏的确定按钮
 			confirm() {
-				this.$emit('confirm')
+				this.$emit('confirm', {
+					value: this.innerValue,
+					mode: this.mode
+				})
 			},
 			// 列发生变化时触发
 			change(e) {
@@ -89,12 +100,18 @@
 					    minute = parseInt(values[4][value[4]])
 					}
 					// 转为时间模式
-					selectValue = new Date(year, month - 1, date, hour, minute)
+					selectValue = Number(new Date(year, month - 1, date, hour, minute))
 				}
 				// 取出准确的合法值，防止超越边界的情况
 				selectValue = this.correctValue(selectValue)
 				this.innerValue = selectValue
 				this.updateColumnValue(selectValue)
+				// 发出change时间，value为当前选中的时间戳
+				this.$emit('change', {
+					value: selectValue,
+					picker: this.$refs.picker,
+					mode: this.mode
+				})
 			},
 			// 更新各列的值，进行补0、格式化等操作
 			updateColumnValue(value) {
@@ -105,7 +122,7 @@
 			// 更新索引
 			updateIndexs(value) {
 				let values = []
-				const formatter = this.formatter || defaultFormatter
+				const formatter = this.formatter
 				const padZero = uni.$u.padZero
 				if (this.mode === 'time') {
 					// 将time模式的时间用:分隔成数组
@@ -131,7 +148,8 @@
 				
 				// 根据当前各列的所有值，从各列默认值中找到默认值在各列中的索引
 				const indexs = this.columns.map((column, index) => {
-					return column.findIndex(item => item === values[index])
+					// 通过取大值，可以保证不会出现找不到索引的-1情况
+					return Math.max(0, column.findIndex(item => item === values[index]))
 				})
 				this.innerDefaultIndex = indexs
 			},
@@ -171,16 +189,16 @@
 					value = this.minDate
 				} else if (!isDateMode && !value) {
 					// 如果是时间类型，而又没有默认值的话，就用最小时间
-					value = `${uni.$u.padZero(this.minHour)}:00`
+					value = `${uni.$u.padZero(this.minHour)}:uni.$u.padZero(this.minMinute)}`
 				}
 				// 时间类型
 				if (!isDateMode) {
 					if (String(value).indexOf(':') === -1) return uni.$u.error('时间错误，请传递如12:24的格式')
 					let [hour, minute] = value.split(':')
 					// 对时间补零，同时控制在最小值和最大值之间
-					hour = uni.$u.padZero(uni.$u.range(this.minHour, this.maxHour, hour))
-					minute = uni.$u.padZero(uni.$u.range(this.minMinute, this.maxMinute, minute))
-					return `${ hour }:${ minute }`;
+					hour = uni.$u.padZero(uni.$u.range(this.minHour, this.maxHour, Number(hour)))
+					minute = uni.$u.padZero(uni.$u.range(this.minMinute, this.maxMinute, Number(minute)))
+					return `${ hour }:${ minute }`
 				} else {
 					// 如果是日期格式，控制在最小日期和最大日期之间
 					value = dayjs(value).isBefore(dayjs(this.minDate)) ? this.minDate : value

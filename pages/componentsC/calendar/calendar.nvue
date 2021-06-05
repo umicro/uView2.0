@@ -23,15 +23,6 @@
 				></image>
 			</u-cell>
 		</u-cell-group>
-		<!-- <u-calendar
-			@confirm="confirm"
-			:show="show1"
-			:maxDate="1624064398000"
-			:formatter="formatter"
-			mode="range"
-			:maxCount="3"
-			confirmDisabledText="请选择结束时间"
-		></u-calendar> -->
 		<u-calendar
 			:show="show1"
 			@confirm="show1 = false"

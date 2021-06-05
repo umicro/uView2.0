@@ -4,7 +4,7 @@ import test from './test.js';
  * 如果value小于min，取min；如果value大于max，取max
  */
 function range(min = 0, max = 0, value = 0) {
-	return Math.max(0, Math.min(100, Number(value)));
+	return Math.max(min, Math.min(max, Number(value)));
 }
 
 /**

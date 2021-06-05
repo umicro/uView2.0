@@ -1,87 +1,227 @@
 <template>
 	<view class="u-page">
 		<u-navbar
-			title="时间选择器"
+			title="datetimePicker 时间日期选择器"
 			@leftClick="navigateBack"
 			safeAreaInsetTop
 			fixed
 			placeholder
-			:style="[style1, style2]"
 		></u-navbar>
-		<u-button
-			text="弹出"
-			@click="show = true"
-		></u-button>
+		<u-cell-group>
+			<u-cell
+				@click="showDatetimePicker(index)"
+				:title="item.title"
+				v-for="(item, index) in list"
+				:key="index"
+				isLink
+			>
+				<image
+					slot="icon"
+					class="u-cell-icon"
+					:src="item.iconUrl"
+					mode="widthFix"
+				></image>
+			</u-cell>
+		</u-cell-group>
 		<u-datetime-picker
-			:value="value"
-			:show="show"
+			:show="show1"
+			:value="value1"
 			mode="datetime"
-			:maxHour="20"
-			:minHour="15"
-			:maxMinute="30"
-			:minMinute="20"
-			:minDate="minDate"
-			:maxDate="maxDate"
-			:formatter="formatter"
-			:filter="filter"
-			@cancel="cancel"
-			@close="close"
-			@confirm="confirm"
 			closeOnClickOverly
+			@confirm="confirm"
+			@cancel="cancel"
+			@change="change"
+			@close="close"
+		></u-datetime-picker>
+		<u-datetime-picker
+			:show="show2"
+			:value="value2"
+			mode="date"
+			closeOnClickOverly
+			@confirm="confirm"
+			@cancel="cancel"
+			@change="change"
+			@close="close"
+		></u-datetime-picker>
+		<u-datetime-picker
+			:show="show3"
+			:value="value3"
+			mode="year-month"
+			closeOnClickOverly
+			@confirm="confirm"
+			@cancel="cancel"
+			@change="change"
+			@close="close"
+		></u-datetime-picker>
+		<u-datetime-picker
+			:show="show4"
+			:value="value4"
+			mode="time"
+			closeOnClickOverly
+			@confirm="confirm"
+			@cancel="cancel"
+			@change="change"
+			@close="close"
+		></u-datetime-picker>
+		<u-datetime-picker
+			:show="show5"
+			:value="value5"
+			:filter="filter"
+			mode="date"
+			closeOnClickOverly
+			@confirm="confirm"
+			@cancel="cancel"
+			@change="change"
+			@close="close"
+		></u-datetime-picker>
+		<u-datetime-picker
+			:show="show6"
+			:value="value6"
+			mode="date"
+			:formatter="formatter"
+			closeOnClickOverly
+			@confirm="confirm"
+			@cancel="cancel"
+			@change="change"
+			@close="close"
+		></u-datetime-picker>
+		<u-datetime-picker
+			:show="show7"
+			:value="value7"
+			mode="datetime"
+			:minDate="1587524800000"
+			:maxDate="1786778555000"
+			closeOnClickOverly
+			@confirm="confirm"
+			@cancel="cancel"
+			@change="change"
+			@close="close"
 		></u-datetime-picker>
 	</view>
 </template>
-
 <script>
 	export default {
 		data() {
+			const d = new Date()
+			const year = d.getFullYear()
+			let month = uni.$u.padZero(d.getMonth() + 1)
+			const date = d.getDate()
 			return {
-				value: 1587524800000, // 2020-04-22 11:06:40
-				minDate: 1527908800000, // 2018-06-02 11:06:40
-				maxDate: 1755745600000, // 2025-08-21 11:06:40
-				show: true,
-				style1: {
-					fontSize: '10px'
-				},
-				style2: {
-					color: 'red'
-				}
+				current: 0,
+				value1: Number(new Date()),
+				value2: Number(new Date()),
+				value3: Number(new Date()),
+				value4: '05:28',
+				value5: Number(new Date()),
+				value6: Number(new Date()),
+				value7: Number(new Date()),
+				show1: false,
+				show2: false,
+				show3: false,
+				show4: false,
+				show5: false,
+				show6: false,
+				show7: false,
+				list: [{
+						title: '完整日期时间',
+						iconUrl: '/static/common/image/calendar/7.png'
+					},
+					{
+						title: '年月日',
+						iconUrl: '/static/common/image/calendar/8.png'
+					},
+					{
+						title: '年月',
+						iconUrl: '/static/common/image/calendar/9.png'
+					},
+					{
+						title: '时间',
+						iconUrl: '/static/common/image/calendar/15.png'
+					}, {
+						title: '过滤器(保留偶数年)',
+						iconUrl: '/static/common/image/calendar/14.png'
+					}, {
+						title: '格式化',
+						iconUrl: '/static/common/image/calendar/13.png'
+					}, {
+						title: '限制最大最小值',
+						iconUrl: '/static/common/image/calendar/5.png'
+					}
+				]
 			}
 		},
-		onLoad() {
-			// setTimeout(() => {
-			// 	this.value = '16:25'
-			// }, 5000)
-		},
 		methods: {
-			formatter(type, value) {
-				if (type === 'year') {
+			close() {
+				this[`show${this.current}`] = false
+			},
+			cancel() {
+				this[`show${this.current}`] = false
+			},
+			confirm(e) {
+				console.log('confirm', e);
+				this[`show${this.current}`] = false
+				this.result(e.value, e.mode)
+			},
+			change(e) {
+				console.log('change', e)
+			},
+			navigateBack() {
+				uni.navigateBack()
+			},
+			formatter(mode, value) {
+				if (mode === 'year') {
 					return `${value}年`;
 				}
-				if (type === 'month') {
+				if (mode === 'month') {
 					return `${value}月`;
 				}
 				return value;
 			},
-			filter(type, options) {
-				console.log(type, options);
-				if (type === 'year') {
+			filter(mode, options) {
+				if (mode === 'year') {
 					return options.filter((option) => option % 2 === 0);
 				}
 
 				return options;
 			},
-			navigateBack() {
-				uni.navigateBack()
+			showDatetimePicker(index) {
+				this.current = index + 1
+				this[`show${index + 1}`] = true
 			},
-			cancel() {
-				this.show = false
+			result(time, mode) {
+				const timeFormat = uni.$u.timeFormat,
+					toast = uni.$u.toast
+				switch (mode) {
+					case 'datetime':
+						return toast(timeFormat(time, 'yyyy-mm-dd hh:MM'))
+					case 'date':
+						return toast(timeFormat(time, 'yyyy-mm-dd'))
+					case 'year-month':
+						return toast(timeFormat(time, 'yyyy-mm'))
+					case 'time':
+						return toast(time)
+					default:
+						return ''
+				}
 			},
-			close() {
-				this.show = false
+			filter(type, options) {
+				if (type === 'year') {
+					return options.filter((option) => option % 2 === 0)
+				}
+
+				return options;
 			},
-			confirm() {
-				this.show = false
+			formatter(type, value) {
+				if (type === 'year') {
+					return `${value}年`
+				}
+				if (type === 'month') {
+					return `${value}月`
+				}
+				if (type === 'day') {
+					return `${value}日`
+				}
+				return value
 			},
 		},
 	}

@@ -60,7 +60,7 @@ export default {
 		// 选项过滤函数
 		filter: {
 			type: Function,
-			default: () => {}
+			default: null
 		},
 		// 选项格式化函数
 		formatter: {

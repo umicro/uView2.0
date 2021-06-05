@@ -124,7 +124,7 @@
 					}
 				}
 				this.columnIndex = columnIndex
-				const values = this.innerColumns[columnIndex]
+				const values = this.innerColumns
 
 				// 将当前的各项变化索引，设置为"上一次"的索引变化值
 				this.setLastIndex(value)

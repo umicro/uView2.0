@@ -13,6 +13,16 @@
 </template>
 
 <script>
+	// 默认的格式化方法，不进行任何处理
+	const defaultFormatter = (type, value) => value
+	function times(n, iteratee) {
+	    let index = -1
+	    const result = Array(n < 0 ? 0 : n)
+	    while (++index < n) {
+	        result[index] = iteratee(index)
+	    }
+	    return result
+	}
 	import props from './props.js'
 	import dayjs from '../../libs/util/dayjs.js'
 	export default {
@@ -27,18 +37,17 @@
 		watch: {
 			show(newValue, oldValue) {
 				if (newValue) {
-					// 重新弹起之后，重置默认选中值
-					this.setDefaultIndex()
+					this.updateColumnValue(this.value)
 				}
 			}
 		},
 		mounted() {
 			this.init()
-			uni.dayjs = dayjs
 		},
 		methods: {
 			init() {
-				this.updateColumnValues()
+				const val = this.correctValue(this.value)
+				this.updateColumnValue(val)
 			},
 			// 关闭选择器
 			close() {
@@ -56,7 +65,6 @@
 			},
 			// 列发生变化时触发
 			change(e) {
-				console.log(e);
 				const { value, values } = e
 				let selectValue = ''
 				if(this.mode === 'time') {
@@ -66,7 +74,7 @@
 					// 将选择的值转为数值，比如'03'转为数值的3，'2019'转为数值的2019
 					const year = parseInt(values[0][value[0]])
 					const month = parseInt(values[1][value[1]])
-					const date = parseInt(values[2][value[2]])
+					let date = parseInt(values[2] ? values[2][value[2]] : 1)
 					let hour = 0, minute = 0
 					// 此月份的最大天数
 					const maxDate = dayjs(`${year}-${month}-${date}`).daysInMonth()
@@ -81,135 +89,75 @@
 					    minute = parseInt(values[4][value[4]])
 					}
 					// 转为时间模式
-					value = new Date(year, month - 1, date, hour, minute)
+					selectValue = new Date(year, month - 1, date, hour, minute)
 				}
 				// 取出准确的合法值，防止超越边界的情况
-				value = this.correctValue(value)
+				selectValue = this.correctValue(selectValue)
+				this.innerValue = selectValue
+				this.updateColumnValue(selectValue)
+			},
+			// 更新各列的值，进行补0、格式化等操作
+			updateColumnValue(value) {
+				this.innerValue = value
+				this.updateColumns()
+				this.updateIndexs(value)
+			},
+			// 更新索引
+			updateIndexs(value) {
+				let values = []
+				const formatter = this.formatter || defaultFormatter
+				const padZero = uni.$u.padZero
+				if (this.mode === 'time') {
+					// 将time模式的时间用:分隔成数组
+				    const timeArr = value.split(':')
+					// 使用formatter格式化方法进行管道处理
+				    values = [formatter('hour', timeArr[0]), formatter('minute', timeArr[1])]
+				} else {
+				    const date = new Date(value)
+				    values = [
+				        formatter('year', `${dayjs(value).year()}`),
+						// 月份补0
+				        formatter('month', padZero(dayjs(value).month() + 1))
+				    ]
+				    if (this.mode === 'date') {
+						// date模式，需要添加天列
+				        values.push(formatter('day', padZero(dayjs(value).date())))
+				    }
+				    if (this.mode === 'datetime') {
+						// 数组的push方法，可以写入多个参数
+				        values.push(formatter('day', padZero(dayjs(value).date())), formatter('hour', padZero(dayjs(value).hour())), formatter('minute', padZero(dayjs(value).minute())))
+				    }
+				}
+				
+				// 根据当前各列的所有值，从各列默认值中找到默认值在各列中的索引
+				const indexs = this.columns.map((column, index) => {
+					return column.findIndex(item => item === values[index])
+				})
+				this.innerDefaultIndex = indexs
 			},
 			// 更新各列的值
-			updateColumnValues() {
-				this.setColumns()
-				this.setDefaultIndex()
+			updateColumns() {
+				// 解构默认使用defaultFormatter(内部不做处理原样返回)
+			    const { formatter = defaultFormatter } = this
+				// 获取各列的值，并且map后，对各列的具体值进行补0操作
+			    const results = this.getOriginColumns().map((column) => column.values.map((value) => formatter(column.type, value)))
+				this.columns = results
 			},
-			// 获取datetime模式下的各列数值
-			setColumns() {
-				// 获得所有列的值
-				const yearColumn = this.getYearColumn(),
-					monthColumn = this.getMonthColumn(),
-					dateColumn = this.getDateColumn(),
-					hourColumn = this.getHourColumn(),
-					minuteColumn = this.getMinuteColumn()
-
-				// 根据选择的模式，拼接各列所需的值
-				if (this.mode === 'datetime') {
-					this.columns = [yearColumn, monthColumn, dateColumn, hourColumn, minuteColumn]
-				} else if (this.mode === 'year-month') {
-					this.columns = [yearColumn, monthColumn]
-				} else if (this.mode === 'time') {
-					this.columns = [hourColumn, minuteColumn]
-				} else {
-					this.columns = [yearColumn, monthColumn, dateColumn]
-				}
-			},
-			// 设置默认索引
-			setDefaultIndex() {
-				const value = this.correctValue(this.value)
-				const year = dayjs(value).year(),
-					padZero = uni.$u.padZero,
-					// 获取当前时间下，各个列的当前值，因为columns中月份的值是补0后的值，所以为了匹配查找索引，这里补0
-					month = padZero(dayjs(value).month() + 1),
-					date = padZero(dayjs(value).date()),
-					hour = padZero(dayjs(value).hour()),
-					minute = padZero(dayjs(value).minute())
-				let defaultIndex = []
-				// 根据当前的选择模式，从默认下标中取出对应默认值
-				if (this.mode === 'year-month') {
-					defaultIndex = [
-						this.columns[0].findIndex(item => item === year),
-						this.columns[1].findIndex(item => item === month)
-					]
-				} else if (this.mode === 'date') {
-					defaultIndex = [
-						this.columns[0].findIndex(item => item === year),
-						this.columns[1].findIndex(item => item === month),
-						this.columns[2].findIndex(item => item === date)
-					]
-				} else if (this.mode === 'time') {
-					const timeValue = value.split(':')
-					defaultIndex = [
-						// time模式下，需要分割value值，类似12:03的模式，取出小时和分钟，再进行补0
-						this.columns[0].findIndex(item => item === padZero(timeValue[0])),
-						this.columns[1].findIndex(item => item === padZero(timeValue[1]))
-					]
-				} else {
-					defaultIndex = [
-						this.columns[0].findIndex(item => item === year),
-						this.columns[1].findIndex(item => item === month),
-						this.columns[2].findIndex(item => item === date),
-						this.columns[3].findIndex(item => item === hour),
-						this.columns[4].findIndex(item => item === minute)
-					]
-				}
-
-				// 如果找不到对应的索引下标，元素可能为-1，需要重置为0，nvue才能让某一列默认选中第一个项，否则它会选中一个空行
-				this.innerDefaultIndex = defaultIndex.map(item => item === -1 ? 0 : item)
-			},
-			// 获取年的列值
-			getYearColumn() {
-				//最小的年、最大的年
-				const minYear = dayjs(this.minDate).year(),
-					maxYear = dayjs(this.maxDate).year()
-				// 生成一个最大值和最小值之间的年份数组
-				return this.generateArray(minYear, maxYear)
-			},
-			// 获取月的列值
-			getMonthColumn() {
-				// 最小的月、最大的月
-				// const minMonth = dayjs(this.minDate).month(),
-				// 	// 如果最大月份为0，为了获取月份数组，味着为12月，否则就是月份加1
-				// 	maxMonth = dayjs(this.maxDate).month() === 0 ? 12 : dayjs(this.maxDate).month() + 1
-				// 生成一个最大值和最小值之间的月份数组，并且进行补0
-				return this.generateArray(1, 12).map(item => uni.$u.padZero(item))
-			},
-			// 获取日的列值
-			getDateColumn(month) {
-				// 最小的日、最大的日
-				const minDate = dayjs(this.minDate).date(),
-					// 需要加1
-					maxDate = dayjs(this.maxDate).date()
-				// 生成一个最大值和最小值之间的日期数组，并且进行补0
-				return this.generateArray(1, 30).map(item => uni.$u.padZero(item))
-			},
-			// 获取小时的列值
-			getHourColumn(month) {
-				// 最小的小时、最大的小时
-				let minHour = 0,
-					maxHour = 0
-
-				if (this.mode === 'time') {
-					minHour = this.minHour
-					maxHour = this.maxHour
-				} else {
-					minHour = dayjs(this.minHour).date()
-					maxHour = dayjs(this.maxHour).date()
-				}
-				// 生成一个最大值和最小值之间的小时数组，并且进行补0
-				return this.generateArray(minHour, maxHour).map(item => uni.$u.padZero(item))
-			},
-			// 获取分钟的列值
-			getMinuteColumn(month) {
-				// 最小的分钟、最大的分钟
-				let minMinute = 0,
-					maxMinute = 0
-				if (this.mode === 'time') {
-					minMinute = this.minMinute
-					maxMinute = this.maxMinute
-				} else {
-					minMinute = dayjs(this.minMinute).date()
-					maxMinute = dayjs(this.maxMinute).date()
-				}
-				// 生成一个最大值和最小值之间的分钟数组，并且进行补0
-				return this.generateArray(minMinute, maxMinute).map(item => uni.$u.padZero(item))
+			getOriginColumns() {
+			    // 生成各列的值
+			    const results = this.getRanges().map(({ type, range }) => {
+			        let values = times(range[1] - range[0] + 1, (index) => {
+			            let value = range[0] + index
+			            value = type === 'year' ? `${value}` : uni.$u.padZero(value)
+			            return value
+			        })
+					// 进行过滤
+			        if (this.filter) {
+			            values = this.filter(type, values)
+			        }
+			        return { type, values }
+			    })
+			    return results
 			},
 			// 通过最大值和最小值生成数组
 			generateArray(start, end) {
@@ -240,6 +188,7 @@
 					return value
 				}
 			},
+			// 获取每列的最大和最小值
 			getRanges() {
 			    if (this.mode === 'time') {
 			        return [
@@ -283,28 +232,31 @@
 			        result.splice(2, 3);
 			    return result;
 			},
+			// 根据minDate、maxDate、minHour、maxHour等边界值，判断各列的开始和结束边界值
 			getBoundary(type, innerValue) {
 			    const value = new Date(innerValue)
 			    const boundary = new Date(this[`${type}Date`])
-			    const year = boundary.getFullYear()
+			    const year = dayjs(boundary).year()
 			    let month = 1
 			    let date = 1
 			    let hour = 0
 			    let minute = 0
 			    if (type === 'max') {
 			        month = 12
-			        date = dayjs().daysInMonth(value)
+					// 月份的天数
+			        date = dayjs(value).daysInMonth()
 			        hour = 23
 			        minute = 59
 			    }
-			    if (value.year() === year) {
-			        month = boundary.month() + 1
-			        if (value.month() + 1 === month) {
-			            date = boundary.date()
-			            if (value.date() === date) {
-			                hour = boundary.hour()
-			                if (value.hour() === hour) {
-			                    minute = boundary.minute()
+				// 获取边界值，逻辑是：当年达到了边界值(最大或最小年)，就检查月允许的最大和最小值，以此类推
+			    if (dayjs(value).year() === year) {
+			        month = dayjs(boundary).month() + 1
+			        if (dayjs(value).month() + 1 === month) {
+			            date = dayjs(boundary).date()
+			            if (dayjs(value).date() === date) {
+			                hour = dayjs(boundary).hour()
+			                if (dayjs(value).hour() === hour) {
+			                    minute = dayjs(boundary).minute()
 			                }
 			            }
 			        }

@@ -15,11 +15,15 @@
 		<u-datetime-picker
 			:value="value"
 			:show="show"
-			mode="year-month"
+			mode="datetime"
 			:maxHour="20"
 			:minHour="15"
 			:maxMinute="30"
 			:minMinute="20"
+			:minDate="minDate"
+			:maxDate="maxDate"
+			:formatter="formatter"
+			:filter="filter"
 			@cancel="cancel"
 			@close="close"
 			@confirm="confirm"
@@ -32,7 +36,9 @@
 	export default {
 		data() {
 			return {
-				value: '12:23',
+				value: 1587524800000, // 2020-04-22 11:06:40
+				minDate: 1527908800000, // 2018-06-02 11:06:40
+				maxDate: 1755745600000, // 2025-08-21 11:06:40
 				show: true,
 				style1: {
 					fontSize: '10px'
@@ -48,6 +54,23 @@
 			// }, 5000)
 		},
 		methods: {
+			formatter(type, value) {
+				if (type === 'year') {
+					return `${value}年`;
+				}
+				if (type === 'month') {
+					return `${value}月`;
+				}
+				return value;
+			},
+			filter(type, options) {
+				console.log(type, options);
+				if (type === 'year') {
+					return options.filter((option) => option % 2 === 0);
+				}
+
+				return options;
+			},
 			navigateBack() {
 				uni.navigateBack()
 			},

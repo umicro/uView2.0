@@ -158,12 +158,11 @@
 				this[`show${this.current}`] = false
 			},
 			confirm(e) {
-				console.log('confirm', e);
 				this[`show${this.current}`] = false
 				this.result(e.value, e.mode)
 			},
 			change(e) {
-				console.log('change', e)
+				// console.log('change', e)
 			},
 			navigateBack() {
 				uni.navigateBack()

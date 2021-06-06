@@ -4,12 +4,13 @@
 			<text class="u-demo-block__title">基本案例</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__image-item">
-					 <n-image
+					 <u--image
 					     :showLoading="true"
 					     src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1588620919,359805583&fm=26&gp=0.jpg"
 					     width="80px"
 					     height="80px"
-					 ></n-image>
+						 @click="click"
+					 ></u--image>
 				</view>
 			</view>
 		</view>
@@ -92,7 +93,9 @@
 			}
 		},
 		methods: {
-
+			click() {
+				console.log('click');
+			}
 		}
 	}
 </script>

@@ -294,14 +294,6 @@ export default [{
 			title: 'Sticky 吸顶',
 			title_en: 'Sticky',
 		}, 
-		// #ifndef MP-TOUTIAO
-		{
-			path: '/pages/componentsB/waterfall/waterfall',
-			icon: 'waterfall',
-			title: 'Waterfall 瀑布流',
-			title_en: 'Waterfall',
-		},
-		// #endif
 		{
 			path: '/pages/componentsA/divider/divider',
 			icon: 'divider',
@@ -346,7 +338,7 @@ export default [{
 		},
 		// #endif
 		{
-			path: '/pages/componentsA/subsection/subsection',
+			path: '/pages/componentsC/subsection/subsection',
 			icon: 'subsection',
 			title: 'Subsection 分段器',
 			title_en: 'Subsection',
@@ -365,11 +357,6 @@ export default [{
 			icon: 'empty',
 			title: 'Empty 内容为空',
 			title_en: 'Empty',
-		}, {
-			path: '/pages/componentsB/section/section',
-			icon: 'section',
-			title: 'Section 查看更多',
-			title_en: 'Section',
 		}]
 	}, {
 		groupName: '其他组件',

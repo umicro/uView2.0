@@ -590,5 +590,17 @@ export default {
 		effect: 'light',
 		center: false,
 		fontSize: 14
+	},
+	
+	// subsection组件
+	subsection: {
+		list: [],
+		current: 0,
+		activeColor: '#3c9cff',
+		inactiveColor: '#303133',
+		mode: 'button',
+		fontSize: 12,
+		bold: true,
+		bgColor: '#eeeeef'
 	}
 }

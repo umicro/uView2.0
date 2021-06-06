@@ -1,12 +1,12 @@
 <template>
 	<view
-	    class="u-sticky"
-	    :id="elId"
-	    :style="[style]"
+		class="u-sticky"
+		:id="elId"
+		:style="[style]"
 	>
 		<view
-		    :style="[stickyContent]"
-		    class="u-sticky__content"
+			:style="[stickyContent]"
+			class="u-sticky__content"
 		>
 			<slot />
 		</view>
@@ -24,7 +24,6 @@
 	 * @property {String} bgColor 组件背景颜色（默认#ffffff）
 	 * @property {String Number} z-index 吸顶时的z-index值
 	 * @property {String Number} index 自定义标识，用于区分是哪一个组件
-	 * @property {String} mode js还是css模式吸顶 （默认 auto）
 	 * @property {Object} customStyle  组件的样式，对象形式
 	 * @event {Function} fixed 组件吸顶时触发
 	 * @event {Function} unfixed 组件取消吸顶时触发
@@ -69,11 +68,6 @@
 				type: [Number, String],
 				default: uni.$u.props.sticky.index
 			},
-			// js还是css模式吸顶
-			mode: {
-				type: String,
-				default: uni.$u.props.sticky.mode
-			}
 		},
 		data() {
 			return {
@@ -90,15 +84,25 @@
 		computed: {
 			style() {
 				const style = {}
-				if (this.cssSticky) {
-					style.position = 'sticky'
-					style.zIndex = this.uZindex
-					style.top = this.$u.addUnit(this.stickyTop)
+				if(!this.disabled) {
+					if (this.cssSticky) {
+						style.position = 'sticky'
+						style.zIndex = this.uZindex
+						style.top = this.$u.addUnit(this.stickyTop)
+					} else {
+						style.height = this.fixed ? this.height + 'px' : 'auto'
+					}
 				} else {
-					style.height = this.fixed ? this.height + 'px' : 'auto'
+					// 无需吸顶时，设置会默认的relative(nvue)和非nvue的static静态模式即可
+					// #ifdef APP-NVUE
+					style.position = 'relative'
+					// #endif
+					// #ifndef APP-NVUE
+					style.position = 'static'
+					// #endif
 				}
 				style.backgroundColor = this.bgColor
-				return this.$u.deepMerge(this.customStyle, style)
+				return this.$u.deepMerge(uni.$u.addStyle(this.customStyle), style)
 			},
 			// 吸顶内容的样式
 			stickyContent() {
@@ -123,16 +127,10 @@
 			init() {
 				this.getStickyTop()
 				// 判断使用的模式
-				if (this.mode === 'css') {
-					this.cssSticky = true
-				} else if (this.mode === 'js') {
-					this.initObserveContent()
-				} else {
-					this.checkSupportCssSticky()
-					// 如果不支持css sticky，则使用js方案，此方案性能比不上css方案
-					if (!this.cssSticky) {
-						this.initObserveContent()
-					}
+				this.checkSupportCssSticky()
+				// 如果不支持css sticky，则使用js方案，此方案性能比不上css方案
+				if (!this.cssSticky) {
+					!this.disabled && this.initObserveContent()
 				}
 			},
 			initObserveContent() {
@@ -159,7 +157,6 @@
 				})
 				// 绑定观察的元素
 				contentObserver.observe(`#${this.elId}`, res => {
-					if (this.disabled) return
 					this.setFixed(res.boundingClientRect.top)
 				})
 				this.contentObserver = contentObserver
@@ -189,7 +186,7 @@
 			async checkSupportCssSticky() {
 				// #ifdef H5
 				// H5，一般都是现代浏览器，是支持css sticky的，这里使用创建元素嗅探的形式判断
-				if(this.checkCssStickyForH5()) {
+				if (this.checkCssStickyForH5()) {
 					this.cssSticky = true
 				}
 				// #endif
@@ -199,6 +196,7 @@
 					this.cssSticky = true
 				}
 
+				// APP-Vue和微信平台，通过computedStyle判断是否支持css sticky
 				// #ifdef APP-VUE || MP-WEIXIN
 				this.cssSticky = await this.checkComputedStyle()
 				// #endif
@@ -254,7 +252,7 @@
 	.u-sticky {
 		/* #ifdef APP-VUE || MP-WEIXIN */
 		// 此处默认写sticky属性，是为了给微信和APP通过uni.createSelectorQuery查询是否支持css sticky使用
-		position: sticky
-			/* #endif */
+		position: sticky;
+		/* #endif */
 	}
 </style>

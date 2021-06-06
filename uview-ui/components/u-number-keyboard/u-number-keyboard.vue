@@ -24,7 +24,7 @@
 			<u-icon
 			    name="backspace"
 				color="#303133"
-			    size="18"
+			    size="28"
 			    :bold="true"
 			></u-icon>
 		</view>

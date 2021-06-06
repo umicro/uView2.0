@@ -1,0 +1,176 @@
+<template>
+	<view class="u-page">
+		<u-navbar
+			title="选择器"
+			@leftClick="navigateBack"
+			safeAreaInsetTop
+			fixed
+			placeholder
+		></u-navbar>
+		<u-cell-group>
+			<u-cell
+				@click="showPicker(index)"
+				:title="item.title"
+				v-for="(item, index) in list"
+				:key="index"
+				isLink
+			>
+				<image
+					slot="icon"
+					class="u-cell-icon"
+					:src="item.iconUrl"
+					mode="widthFix"
+				></image>
+			</u-cell>
+		</u-cell-group>
+		<u-picker
+			:show="show1"
+			:columns="columns1"
+			@cancel="show1 = false"
+			@confirm="show1 = false"
+		></u-picker>
+		<u-picker
+			:show="show2"
+			:columns="columns2"
+			:defaultIndex="[1]"
+			@cancel="show2 = false"
+			@confirm="show2 = false"
+		></u-picker>
+		<u-picker
+			:show="show3"
+			:columns="columns3"
+			@cancel="show3 = false"
+			@confirm="show3 = false"
+			@change="changeHandler1"
+		></u-picker>
+		<u-picker
+			:show="show4"
+			:columns="columns4"
+			@cancel="show4 = false"
+			@confirm="show4 = false"
+			:loading="loading"
+			@change="changeHandler2"
+		></u-picker>
+		<u-picker
+			:show="show5"
+			:columns="columns5"
+			@cancel="show5 = false"
+			@confirm="show5 = false"
+			title="标题太长就会显示省略号"
+		></u-picker>
+		<u-picker
+			:show="show6"
+			:columns="columns6"
+			@cancel="show6 = false"
+			@confirm="show6 = false"
+			@close="show6 = false"
+			closeOnClickOverly
+		></u-picker>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				loading: false,
+				columnData: [
+					['深圳', '厦门', '上海', '拉萨'],
+					['得州', '华盛顿', '纽约', '阿拉斯加']
+				],
+				columns1: [
+					['中国', '美国', '日本']
+				],
+				columns2: [
+					['中国', '美国', '日本']
+				],
+				columns3: [
+					['中国', '美国'],
+					['深圳', '厦门', '上海', '拉萨']
+				],
+				columns4: [
+					['中国', '美国'],
+					['深圳', '厦门', '上海', '拉萨']
+				],
+				columns5: [
+					['中国', '美国', '日本']
+				],
+				columns6: [
+					['中国', '美国', '日本']
+				],
+				show1: true,
+				show2: false,
+				show3: false,
+				show4: false,
+				show5: false,
+				show6: false,
+				list: [{
+						title: '基础使用',
+						iconUrl: '/static/common/image/picker/2.png'
+					},
+					{
+						title: '设置默认项',
+						iconUrl: '/static/common/image/picker/5.png'
+					},
+					{
+						title: '多列联动',
+						iconUrl: '/static/common/image/picker/1.png'
+					},
+					{
+						title: '加载中状态(切换第一列)',
+						iconUrl: '/static/common/image/picker/3.png'
+					},
+					{
+						title: '设置标题',
+						iconUrl: '/static/common/image/picker/4.png'
+					}, {
+						title: '允许点击遮罩关闭',
+						iconUrl: '/static/common/image/picker/6.png'
+					},
+				]
+			}
+		},
+		methods: {
+			changeHandler1(e) {
+				const {
+					columnIndex,
+					value,
+					values,
+					index,
+					picker
+				} = e
+				if (columnIndex === 0) {
+					picker.setColumnValues(1, this.columnData[index])
+				}
+			},
+			changeHandler2(e) {
+				const {
+					columnIndex,
+					value,
+					values,
+					index,
+					picker
+				} = e
+				if (columnIndex === 0) {
+					this.loading = true
+					uni.$u.sleep(1500).then(() => {
+						picker.setColumnValues(1, this.columnData[index])
+						this.loading = false
+					})
+				}
+			},
+			navigateBack() {
+				uni.navigateBack()
+			},
+			showPicker(index) {
+				this[`show${index + 1}`] = true
+			},
+		},
+	}
+</script>
+
+<style lang="scss">
+	.u-page {
+		padding: 0;
+	}
+</style>

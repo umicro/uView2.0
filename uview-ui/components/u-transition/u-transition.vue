@@ -74,7 +74,7 @@
 		            display: `${this.display ? '' : 'none'}`,
 					transitionTimingFunction: this.timingFunction,
 		            // #endif
-		            ...customStyle, // 避免自定义样式影响到动画属性
+		            ...uni.$u.addStyle(customStyle), // 避免自定义样式影响到动画属性
 		            ...viewStyle
 		        }
 		    }

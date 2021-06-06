@@ -1,7 +1,8 @@
 <template>
 	<view
 	    class="u-checkbox"
-		:style="[checkboxStyle]"
+	    :style="[checkboxStyle]"
+	    @tap.stop="wrapperClickHandler"
 	    :class="[`u-checkbox-label--${iconPlacement}`, this.parentData.borderBottom && this.parentData.placement === 'column' && 'u-border-bottom']"
 	>
 		<view
@@ -22,9 +23,9 @@
 		<text
 		    @tap.stop="labelClickHandler"
 		    :style="{
-			color: elDisabled ? elInactiveColor : elLabelColor,
-			fontSize: elLabelSize
-		}"
+				color: elDisabled ? elInactiveColor : elLabelColor,
+				fontSize: elLabelSize
+			}"
 		>{{label}}</text>
 	</view>
 </template>
@@ -222,21 +223,21 @@
 				style.width = uni.$u.addUnit(this.elSize)
 				style.height = uni.$u.addUnit(this.elSize)
 				// 如果是图标在右边的话，移除它的右边距
-				if(this.iconPlacement === 'right') {
+				if (this.iconPlacement === 'right') {
 					style.marginRight = 0
 				}
 				return style
 			},
 			checkboxStyle() {
 				const style = {}
-				if(this.parentData.borderBottom && this.parentData.placement === 'row') {
+				if (this.parentData.borderBottom && this.parentData.placement === 'row') {
 					uni.$u.error('检测到您将borderBottom设置为true，需要同时将u-checkbox-group的placement设置为column才有效')
 				}
 				// 当父组件设置了显示下边框并且排列形式为纵向时，给内容和边框之间加上一定间隔
-				if(this.parentData.borderBottom && this.parentData.placement === 'column') {
+				if (this.parentData.borderBottom && this.parentData.placement === 'column') {
 					style.paddingBottom = '8px'
 				}
-				return uni.$u.deepMerge(style, this.customStyle)
+				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			}
 		},
 		mounted() {
@@ -244,17 +245,15 @@
 		},
 		methods: {
 			init() {
-				this.parent = {};
 				// 支付宝小程序不支持provide/inject，所以使用这个方法获取整个父组件，在created定义，避免循环引用
-				this.updateParentData();
+				this.updateParentData()
 				if (!this.parent) {
 					uni.$u.error('u-checkbox必须搭配u-checkbox-group组件使用')
 				}
-				this.parent.children && this.parent.children.push(this)
 				// 设置初始化时，是否默认选中的状态，父组件u-checkbox-group的value可能是array，所以额外判断
 				if (this.checked) {
 					this.isChecked = true
-				} else if(uni.$u.test.array(this.parentData.value)) {
+				} else if (uni.$u.test.array(this.parentData.value)) {
 					// 查找数组是是否存在this.name元素值
 					this.isChecked = this.parentData.value.some(item => {
 						return item === this.name
@@ -264,15 +263,21 @@
 			updateParentData() {
 				this.getParentData('u-checkbox-group')
 			},
+			// 横向两端排列时，点击组件即可触发选中事件
+			wrapperClickHandler(e) {
+				this.iconPlacement === 'right' && this.iconClickHandler(e)
+			},
 			// 点击图标
-			iconClickHandler() {
+			iconClickHandler(e) {
+				this.preventEvent(e)
 				// 如果整体被禁用，不允许被点击
 				if (!this.elDisabled) {
 					this.setRadioCheckedStatus()
 				}
 			},
 			// 点击label
-			labelClickHandler() {
+			labelClickHandler(e) {
+				this.preventEvent(e)
 				// 如果按钮整体被禁用或者label被禁用，则不允许点击文字修改状态
 				if (!this.elLabelDisabled && !this.elDisabled) {
 					this.setRadioCheckedStatus()
@@ -296,23 +301,24 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-         $u-checkbox-icon-wrap-margin-right:6px !default;
-         $u-checkbox-icon-wrap-font-size:6px !default;
-         $u-checkbox-icon-wrap-border-width:1px !default;
-         $u-checkbox-icon-wrap-border-color:#c8c9cc !default;
-         $u-checkbox-icon-wrap-icon-line-height:0 !default;
-         $u-checkbox-icon-wrap-circle-border-radius:100% !default;
-         $u-checkbox-icon-wrap-square-border-radius:3px !default;
-         $u-checkbox-icon-wrap-checked-color:#fff !default;
-         $u-checkbox-icon-wrap-checked-background-color:red !default;
-         $u-checkbox-icon-wrap-checked-border-color:#2979ff !default;
-         $u-checkbox-icon-wrap-disabled-background-color:#ebedf0 !default;
-         $u-checkbox-icon-wrap-disabled-checked-color:#c8c9cc !default;
-         $u-checkbox-label-margin-left:5px !default;
-         $u-checkbox-label-margin-right:12px !default;
-         $u-checkbox-label-color:$u-content-color !default;
-         $u-checkbox-label-font-size:15px !default;
-         $u-checkbox-label-disabled-color:#c8c9cc !default;
+	$u-checkbox-icon-wrap-margin-right:6px !default;
+	$u-checkbox-icon-wrap-font-size:6px !default;
+	$u-checkbox-icon-wrap-border-width:1px !default;
+	$u-checkbox-icon-wrap-border-color:#c8c9cc !default;
+	$u-checkbox-icon-wrap-icon-line-height:0 !default;
+	$u-checkbox-icon-wrap-circle-border-radius:100% !default;
+	$u-checkbox-icon-wrap-square-border-radius:3px !default;
+	$u-checkbox-icon-wrap-checked-color:#fff !default;
+	$u-checkbox-icon-wrap-checked-background-color:red !default;
+	$u-checkbox-icon-wrap-checked-border-color:#2979ff !default;
+	$u-checkbox-icon-wrap-disabled-background-color:#ebedf0 !default;
+	$u-checkbox-icon-wrap-disabled-checked-color:#c8c9cc !default;
+	$u-checkbox-label-margin-left:5px !default;
+	$u-checkbox-label-margin-right:12px !default;
+	$u-checkbox-label-color:$u-content-color !default;
+	$u-checkbox-label-font-size:15px !default;
+	$u-checkbox-label-disabled-color:#c8c9cc !default;
+
 	.u-checkbox {
 		/* #ifndef APP-NVUE */
 		@include flex(row);
@@ -320,11 +326,11 @@
 		overflow: hidden;
 		flex-direction: row;
 		align-items: center;
-		
+
 		&-label--left {
 			flex-direction: row
 		}
-		
+
 		&-label--right {
 			flex-direction: row-reverse;
 			justify-content: space-between
@@ -343,32 +349,32 @@
 			justify-content: center;
 			color: transparent;
 			text-align: center;
-			margin-right:$u-checkbox-icon-wrap-margin-right;
+			margin-right: $u-checkbox-icon-wrap-margin-right;
 
-			font-size:$u-checkbox-icon-wrap-font-size;
+			font-size: $u-checkbox-icon-wrap-font-size;
 			border-width: $u-checkbox-icon-wrap-border-width;
-			border-color:$u-checkbox-icon-wrap-border-color;
+			border-color: $u-checkbox-icon-wrap-border-color;
 
 			/* #ifdef MP-TOUTIAO */
 			// 头条小程序兼容性问题，需要设置行高为0，否则图标偏下
 			&__icon {
-				line-height:$u-checkbox-icon-wrap-icon-line-height;
+				line-height: $u-checkbox-icon-wrap-icon-line-height;
 			}
 
 			/* #endif */
 
 			&--circle {
-				border-radius:$u-checkbox-icon-wrap-circle-border-radius;
+				border-radius: $u-checkbox-icon-wrap-circle-border-radius;
 			}
 
 			&--square {
-				border-radius:$u-checkbox-icon-wrap-square-border-radius;
+				border-radius: $u-checkbox-icon-wrap-square-border-radius;
 			}
 
 			&--checked {
-				color:$u-checkbox-icon-wrap-checked-color;
-				background-color:$u-checkbox-icon-wrap-checked-background-color;
-				border-color:$u-checkbox-icon-wrap-checked-border-color;
+				color: $u-checkbox-icon-wrap-checked-color;
+				background-color: $u-checkbox-icon-wrap-checked-background-color;
+				border-color: $u-checkbox-icon-wrap-checked-border-color;
 			}
 
 			&--disabled {
@@ -376,7 +382,7 @@
 			}
 
 			&--disabled--checked {
-				color:$u-checkbox-icon-wrap-disabled-checked-color !important;
+				color: $u-checkbox-icon-wrap-disabled-checked-color !important;
 			}
 		}
 
@@ -385,12 +391,12 @@
 			word-wrap: break-word;
 			/* #endif */
 			margin-left: $u-checkbox-label-margin-left;
-			margin-right:  $u-checkbox-label-margin-right;
-			color:  $u-checkbox-label-color ;
-			font-size:$u-checkbox-label-font-size;
+			margin-right: $u-checkbox-label-margin-right;
+			color: $u-checkbox-label-color;
+			font-size: $u-checkbox-label-font-size;
 
 			&--disabled {
-				color:$u-checkbox-label-disabled-color;
+				color: $u-checkbox-label-disabled-color;
 			}
 		}
 	}

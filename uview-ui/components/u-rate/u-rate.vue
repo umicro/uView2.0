@@ -3,7 +3,7 @@
 	    class="u-rate"
 	    :id="elId"
 	    ref="u-rate"
-	    :style="[customStyle]"
+	    :style="[$u.addStyle(customStyle)]"
 	    @touchmove.stop.prevent="touchMove"
 	    @touchend.stop.prevent="touchEnd"
 	>
@@ -20,11 +20,11 @@
 			>
 				<u-icon
 				    :name="Math.floor(activeIndex) > index ? activeIcon : inactiveIcon"
-				    :color="Math.floor(activeIndex) > index ? activeColor : inactiveColor"
+				    :color="disabled ? '#c8c9cc' : Math.floor(activeIndex) > index ? activeColor : inactiveColor"
 				    :custom-style="{
-						fontSize: size + 'rpx',
 						padding: `0 ${gutter / 2 + 'rpx'}`
 					}"
+					:size="size"
 				></u-icon>
 			</view>
 			<view
@@ -38,11 +38,11 @@
 			>
 				<u-icon
 				    :name="Math.ceil(activeIndex) > index ? activeIcon : inactiveIcon"
-				    :color="Math.ceil(activeIndex) > index ? activeColor : inactiveColor"
+					:color="disabled ? '#c8c9cc' : Math.ceil(activeIndex) > index ? activeColor : inactiveColor"
 				    :custom-style="{
-						fontSize: size + 'rpx',
 						padding: `0 ${gutter / 2 + 'rpx'}`
 					}"
+					:size="size"
 				></u-icon>
 			</view>
 		</view>
@@ -163,7 +163,8 @@
 				})
 			},
 			// 获取评分组件盒子的布局信息
-			getRateItemRect() {
+			async getRateItemRect() {
+				await uni.$u.sleep()
 				// uView封装的获取节点的方法，详见文档
 				// #ifndef APP-NVUE
 				this.$uGetRect('#' + this.elId).then(res => {

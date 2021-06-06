@@ -4,14 +4,14 @@
 	    @tap="clickHandler"
 	    :style="[{
 			margin: margin,
-		}, customStyle]"
+		}, $u.addStyle(customStyle)]"
 	>
 		<view
 		    class="u-search__content"
 		    :style="{
 				backgroundColor: bgColor,
 				borderRadius: shape == 'round' ? '100px' : '4px',
-				border: borderStyle,
+				borderColor: borderColor,
 				height: height + 'rpx'
 			}"
 		>
@@ -57,6 +57,7 @@
 				    name="close"
 				    size="11"
 				    color="#ffffff"
+					customStyle="line-height: 12px"
 				></u-icon>
 			</view>
 		</view>
@@ -163,10 +164,10 @@
 				type: Boolean,
 				default: false
 			},
-			// 边框颜色，只要配置了颜色，才会有边框
+			// 边框颜色
 			borderColor: {
 				type: String,
-				default: 'none'
+				default: 'transparent'
 			},
 			// 输入框的初始化内容
 			value: {
@@ -250,12 +251,7 @@
 			showActionBtn() {
 				if (!this.animation && this.showAction) return true;
 				else return false;
-			},
-			// 样式，根据用户传入的颜色值生成，如果不传入，默认为none
-			borderStyle() {
-				if (this.borderColor) return `1px solid ${this.borderColor}`;
-				else return 'none';
-			},
+			}
 		},
 		methods: {
 			// 目前HX2.6.9 v-model双向绑定无效，故监听input事件获取输入框内容的变化
@@ -314,7 +310,23 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-
+	$u-search-content-padding: 0 10px !default;
+	$u-search-label-color: $u-main-color !default;
+	$u-search-label-font-size: 14px !default;
+	$u-search-label-margin: 0 4px !default;
+	$u-search-close-size: 20px !default;
+	$u-search-close-radius: 100px !default;
+	$u-search-close-bgColor: #C6C7CB !default;
+	$u-search-close-transform: scale(0.82) !default;
+	$u-search-input-font-size: 14px !default;
+	$u-search-input-margin: 0 5px !default;
+	$u-search-input-color: $u-main-color !default;
+	$u-search-input-placeholder-color: $u-tips-color !default;
+	$u-search-action-font-size: 14px !default;
+	$u-search-action-color: $u-main-color !default;
+	$u-search-action-width: 0 !default;
+	$u-search-action-active-width: 40px !default;
+	$u-search-action-margin-left: 5px !default;
 	.u-search {
 		@include flex(row);
 		align-items: center;
@@ -323,9 +335,11 @@
 		&__content {
 			@include flex;
 			align-items: center;
-			padding: 0 10px;
+			padding: $u-search-content-padding;
 			flex: 1;
 			justify-content: space-between;
+			border-width: 1px;
+			border-color: transparent;
 
 			&__icon {
 				@include flex;
@@ -333,42 +347,42 @@
 			}
 			
 			&__label {
-				color: $u-main-color;
-				font-size: 14px;
-				margin: 0 4px;
+				color: $u-search-label-color;
+				font-size: $u-search-label-font-size;
+				margin: $u-search-label-margin;
 			}
 			
 			&__close {
-				width: 20px;
-				height: 20px;
-				border-top-left-radius: 100px;
-				border-top-right-radius: 100px;
-				border-bottom-left-radius: 100px;
-				border-bottom-right-radius: 100px;
-				background-color: #C6C7CB;
+				width: $u-search-close-size;
+				height: $u-search-close-size;
+				border-top-left-radius: $u-search-close-radius;
+				border-top-right-radius: $u-search-close-radius;
+				border-bottom-left-radius: $u-search-close-radius;
+				border-bottom-right-radius: $u-search-close-radius;
+				background-color: $u-search-close-bgColor;
 				@include flex(row);
 				align-items: center;
 				justify-content: center;
-				transform: scale(0.82);
+				transform: $u-search-close-transform;
 			}
 
 			&__input {
 				flex: 1;
-				font-size: 14px;
+				font-size: $u-search-input-font-size;
 				line-height: 1;
-				margin: 0 5px;
-				color: $u-main-color;
+				margin: $u-search-input-margin;
+				color: $u-search-input-color;
 
 				&--placeholder {
-					color: $u-tips-color;
+					color: $u-search-input-placeholder-color;
 				}
 			}
 		}
 
 		&__action {
-			font-size: 14px;
-			color: $u-main-color;
-			width: 0;
+			font-size: $u-search-action-font-size;
+			color: $u-search-action-color;
+			width: $u-search-action-width;
 			overflow: hidden;
 			transition-property: width;
 			transition-duration: 0.3s;
@@ -378,8 +392,8 @@
 			text-align: center;
 
 			&--active {
-				width: 40px;
-				margin-left: 5px;
+				width: $u-search-action-active-width;
+				margin-left: $u-search-action-margin-left;
 			}
 		}
 	}

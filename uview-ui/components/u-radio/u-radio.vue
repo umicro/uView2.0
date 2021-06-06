@@ -1,6 +1,7 @@
 <template>
 	<view
 	    class="u-radio"
+		@tap.stop="wrapperClickHandler"
 	    :style="[radioStyle]"
 	    :class="[`u-radio-label--${iconPlacement}`, this.parentData.borderBottom && this.parentData.placement === 'column' && 'u-border-bottom']"
 	>
@@ -20,11 +21,13 @@
 			</slot>
 		</view>
 		<text
+			class="u-radio__text"
 		    @tap.stop="labelClickHandler"
 		    :style="{
-			color: elDisabled ? elInactiveColor : elLabelColor,
-			fontSize: elLabelSize
-		}"
+				color: elDisabled ? elInactiveColor : elLabelColor,
+				fontSize: elLabelSize,
+				lineHeight: elLabelSize
+			}"
 		>{{label}}</text>
 	</view>
 </template>
@@ -233,7 +236,7 @@
 					// ios像素密度高，需要多一点的距离
 					style.paddingBottom = uni.$u.os() === 'ios' ? '12px' : '8px'
 				}
-				return uni.$u.deepMerge(style, this.customStyle)
+				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			}
 		},
 		mounted() {
@@ -241,13 +244,11 @@
 		},
 		methods: {
 			init() {
-				this.parent = {};
 				// 支付宝小程序不支持provide/inject，所以使用这个方法获取整个父组件，在created定义，避免循环引用
 				this.updateParentData();
 				if (!this.parent) {
 					uni.$u.error('u-radio必须搭配u-radio-group组件使用')
 				}
-				this.parent.children && this.parent.children.push(this)
 				// 设置初始化时，是否默认选中的状态
 				this.checked = this.name === this.parentData.value
 			},
@@ -255,14 +256,20 @@
 				this.getParentData('u-radio-group')
 			},
 			// 点击图标
-			iconClickHandler() {
+			iconClickHandler(e) {
+				this.preventEvent(e)
 				// 如果整体被禁用，不允许被点击
 				if (!this.elDisabled) {
 					this.setRadioCheckedStatus()
 				}
 			},
+			// 横向两端排列时，点击组件即可触发选中事件
+			wrapperClickHandler(e) {
+				this.iconPlacement === 'right' && this.iconClickHandler(e)
+			},
 			// 点击label
-			labelClickHandler() {
+			labelClickHandler(e) {
+				this.preventEvent(e)
 				// 如果按钮整体被禁用或者label被禁用，则不允许点击文字修改状态
 				if (!this.elLabelDisabled && !this.elDisabled) {
 					this.setRadioCheckedStatus()

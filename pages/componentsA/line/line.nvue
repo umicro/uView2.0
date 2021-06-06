@@ -1,83 +1,54 @@
 <template>
 	<view class="u-page">
-		<u-gap></u-gap>
-		<view class="u-block">
-			<u-section
-			    title="基本案例"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-line></u-line>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">基本案例</text>
+				<view class="u-page__line-item">
+					<u-line></u-line>
+				</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="自定义颜色"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-line color="#2979ff"></u-line>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义颜色</text>
+				<view class="u-page__line-item">
+					<u-line color="#2979ff"></u-line>
+				</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="自定义长度"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-line length="200"></u-line>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义长度</text>
+				<view class="u-page__line-item">
+					<u-line length="200"></u-line>
+				</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="自定义方向"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-line
-			    length="30"
-			    color="#2979ff"
-			    direction="col"
-			></u-line>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义方向</text>
+				<view class="u-page__line-item">
+					<u-line
+					    length="30"
+					    color="#2979ff"
+					    direction="col"
+					></u-line>
+				</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="是否显示细边"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-line :hairline="true"></u-line>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">是否显示1px粗线条</text>
+				<view class="u-page__line-item">
+					<u-line :hairline="false"></u-line>
+				</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="线条与上下左右元素的间距"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-line margin="20"></u-line>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">线条与上下左右元素的间距</text>
+				<view class="u-page__line-item">
+						<u-line margin="20"></u-line>
+				</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="是否虚线"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-line
-			    color="#2979ff"
-			    :dashed="true"
-			></u-line>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">是否虚线</text>
+				<view class="u-page__line-item">
+					<u-line
+					    color="#2979ff"
+					    :dashed="true"
+					></u-line>
+				</view>
 		</view>
-		<u-gap></u-gap>
-
 	</view>
 </template>
 
@@ -95,5 +66,9 @@
 </script>
 
 <style lang="scss">
-
+.u-page{
+	&__line-item{
+		 margin-top:5px;
+	}
+}
 </style>

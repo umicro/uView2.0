@@ -19,9 +19,9 @@
 	    @error="error"
 	    @opensetting="opensetting"
 	    @launchapp="launchapp"
-	    :hover-class="[!disabled && !loading && 'u-button--active']"
+	    :hover-class="!disabled && !loading ? 'u-button--active' : ''"
 	    class="u-button u-reset-button"
-	    :style="[baseColor, customStyle]"
+	    :style="[baseColor, $u.addStyle(customStyle)]"
 	    @tap="clickHandler"
 	    :class="bemClass"
 	>
@@ -31,18 +31,24 @@
 			    :size="textSize * 1.15"
 			    :color="loadingColor"
 			></u-loading-icon>
-			<text class="u-button__loading-text" :style="{fontSize: textSize + 'px'}">{{ loadingText || text }}</text>
+			<text
+			    class="u-button__loading-text"
+			    :style="{fontSize: textSize + 'px'}"
+			>{{ loadingText || text }}</text>
 		</template>
 		<template v-else>
 			<u-icon
 			    v-if="icon"
 			    :name="icon"
 			    :color="iconColor"
-				:size="textSize * 1.35"
-				:customStyle="{marginRight: '2px'}"
+			    :size="textSize * 1.35"
+			    :customStyle="{marginRight: '2px'}"
 			></u-icon>
 			<slot>
-				<text class="u-button__text" :style="{fontSize: textSize + 'px'}">{{text}}</text>
+				<text
+				    class="u-button__text"
+				    :style="{fontSize: textSize + 'px'}"
+				>{{text}}</text>
 			</slot>
 		</template>
 	</button>
@@ -56,7 +62,7 @@
 	    :hover-class="!disabled && !loading && !color && (plain || type === 'info') ? 'u-button--active--plain' : !disabled && !loading && !plain ? 'u-button--active' : ''"
 	    @tap="clickHandler"
 	    :class="bemClass"
-		:style="[baseColor, customStyle]"
+	    :style="[baseColor, $u.addStyle(customStyle)]"
 	>
 		<template v-if="loading">
 			<u-loading-icon
@@ -90,13 +96,15 @@
 </template>
 
 <script>
+	import button from '../../libs/mixin/button.js'
+	import openType from '../../libs/mixin/openType.js'
 	/**
 	 * button 按钮
 	 * @description Button 按钮
 	 * @tutorial https://www.uviewui.com/components/button.html
 	 * @property {Boolean} hairline 是否显示按钮的细边框(默认true)
 	 * @property {String} type 按钮的预置样式，info，primary，error，warning，success (默认info)
-	 * @property {String} size 按钮尺寸，large，normal，medium，mini （默认 normal）
+	 * @property {String} size 按钮尺寸，large，normal，mini （默认 normal）
 	 * @property {String} shape  按钮形状，circle（两边为半圆），square（带圆角） （默认 square）
 	 * @property {Boolean} plain 按钮是否镂空，背景色透明 （默认 false）
 	 * @property {Boolean} disabled 是否禁用 （默认 false）
@@ -115,10 +123,10 @@
 	 * @property {String} sendMessageImg  会话内消息卡片图片，openType="contact"时有效
 	 * @property {Boolean} showMessageCard 是否显示会话内消息卡片，设置此参数为 true，用户进入客服会话会在右下角显示"可能要发送的小程序"提示，用户点击后可以快速发送小程序消息，openType="contact"时有效（默认false）
 	 * @property {String} dataName  额外传参参数，用于小程序的data-xxx属性，通过target.dataset.name获取
-	 * @property {String Number} throttleTime  节流，一定时间内只能触发一次
-	 * @property {String Number} hoverStartTime  按住后多久出现点击态，单位毫秒
-	 * @property {String Number} hoverStayTime  手指松开后点击态保留时间，单位毫秒
-	 * @property {String Number} text  按钮文字，之所以通过props传入，是因为slot传入的话（注：nvue中无法控制文字的样式）
+	 * @property {String | Number} throttleTime  节流，一定时间内只能触发一次
+	 * @property {String | Number} hoverStartTime  按住后多久出现点击态，单位毫秒
+	 * @property {String | Number} hoverStayTime  手指松开后点击态保留时间，单位毫秒
+	 * @property {String | Number} text  按钮文字，之所以通过props传入，是因为slot传入的话（注：nvue中无法控制文字的样式）
 	 * @property {String} icon 按钮图标
 	 * @property {String} color 按钮颜色，支持传入linear-gradient渐变色
 	 * @property {Object} customStyle  定义需要用到的外部样式
@@ -132,6 +140,12 @@
 	 */
 	export default {
 		name: 'u-button',
+		// #ifdef MP
+		mixins: [uni.$u.mixin, button, openType],
+		// #endif
+		// #ifndef MP
+		mixins: [uni.$u.mixin],
+		// #endif
 		props: {
 			// 是否细边框
 			hairline: {
@@ -143,7 +157,7 @@
 				type: String,
 				default: uni.$u.props.button.type
 			},
-			// 按钮尺寸，large，normal，medium，mini
+			// 按钮尺寸，large，normal，small，mini
 			size: {
 				type: String,
 				default: uni.$u.props.button.size
@@ -277,7 +291,6 @@
 				default: uni.$u.props.button.color
 			}
 		},
-		mixins: [uni.$u.mixin],
 		data() {
 			return {};
 		},
@@ -285,7 +298,7 @@
 			// 生成bem风格的类名
 			bemClass() {
 				// this.bem为一个computed变量，在mixin中
-				if(!this.color) {
+				if (!this.color) {
 					return this.bem('button', ['type', 'shape', 'size'], ['disabled', 'plain', 'hairline'])
 				} else {
 					// 由于nvue的原因，在有color参数时，不需要传入type，否则会生成type相关的类型，影响最终的样式
@@ -300,7 +313,7 @@
 				if (this.type === 'info') {
 					return '#c9c9c9';
 				}
-				return 'rgb(255, 255, 255)';
+				return 'rgb(200, 200, 200)';
 			},
 			iconColor() {
 				// 如果是镂空状态，设置了color就用color值，否则使用主题颜色，
@@ -355,11 +368,14 @@
 			},
 			// 字体大小
 			textSize() {
-				let fontSize = 14, { size } = this
-				if(size === 'large') fontSize = 16
-				if(size === 'normal') fontSize = 14
-				if(size === 'small') fontSize = 12
-				if(size === 'mini') fontSize = 10
+				let fontSize = 14,
+					{
+						size
+					} = this
+				if (size === 'large') fontSize = 16
+				if (size === 'normal') fontSize = 14
+				if (size === 'small') fontSize = 12
+				if (size === 'mini') fontSize = 10
 				return fontSize
 			}
 		},
@@ -404,18 +420,19 @@
 	@import "./nvue.scss";
 	/* #endif */
 
-	$u-button-u-button-height:44px !default;
+	$u-button-u-button-height:40px !default;
 	$u-button-text-font-size:15px !default;
 	$u-button-loading-text-font-size:15px !default;
 	$u-button-loading-text-margin-left:4px !default;
 	$u-button-large-width:100% !default;
 	$u-button-large-height:50px !default;
-	$u-button-normal-padding:0 15px !default;
+	$u-button-normal-padding:0 12px !default;
+	$u-button-large-padding: 0 15px !default;
 	$u-button-normal-font-size:14px !default;
 	$u-button-small-min-width:60px !default;
 	$u-button-small-height:30px !default;
 	$u-button-small-padding:0px 8px !default;
-	$u-button-mini-padding: 0px 5px !default;
+	$u-button-mini-padding: 0px 8px !default;
 	$u-button-small-font-size:12px !default;
 	$u-button-mini-height:22px !default;
 	$u-button-mini-font-size:10px !default;
@@ -484,8 +501,11 @@
 		}
 
 		&--large {
+			/* #ifndef APP-NVUE */
 			width: $u-button-large-width;
+			/* #endif */
 			height: $u-button-large-height;
+			padding: $u-button-large-padding;
 		}
 
 		&--normal {

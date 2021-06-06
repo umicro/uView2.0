@@ -1,10 +1,9 @@
 <template>
-	<text class="u-link" @tap.stop="openLink" :style="{
-		color: color,
-		fontSize: fontSize + 'rpx',
-		borderBottom: underLine ? `1px solid ${lineColor ? lineColor : color}` : 'none',
-		paddingBottom: underLine ? '0rpx' : '0'
-	}">{{text}}</text>
+	<text
+	    class="u-link"
+	    @tap.stop="openLink"
+	    :style="[linkStyle, $u.addStyle(customStyle)]"
+	>{{text}}</text>
 </template>
 
 <script>
@@ -23,13 +22,14 @@
 	 */
 	export default {
 		name: "u-link",
+		mixins: [uni.$u.mixin],
 		props: {
 			// 文字颜色
 			color: {
 				type: String,
 				default: uni.$u.props.link.color
 			},
-			// 字体大小，单位rpx
+			// 字体大小，单位px
 			fontSize: {
 				type: [String, Number],
 				default: uni.$u.props.link.fontSize
@@ -60,6 +60,22 @@
 				default: uni.$u.props.link.text
 			}
 		},
+		computed: {
+			linkStyle() {
+				const style = {
+					color: this.color,
+					fontSize: uni.$u.addUnit(this.fontSize),
+					// line-height设置为比字体大小多2px
+					lineHeight: uni.$u.addUnit(uni.$u.getPx(this.fontSize) + 2),
+					textDecoration: this.underLine ? 'underline' : 'none'
+				}
+				// if (this.underLine) {
+				// 	style.borderBottomColor = this.lineColor || this.color
+				// 	style.borderBottomWidth = '1px'
+				// }
+				return style
+			}
+		},
 		methods: {
 			openLink() {
 				// #ifdef APP-PLUS
@@ -74,7 +90,7 @@
 					success: () => {
 						uni.hideToast();
 						this.$nextTick(() => {
-							this.$u.toast(this.mpTips);
+							uni.$u.toast(this.mpTips);
 						})
 					}
 				});
@@ -86,10 +102,14 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-	 $u-link-line-height:1 !default;
+	$u-link-line-height:1 !default;
+
 	.u-link {
 		/* #ifndef APP-NVUE */
-		line-height:$u-link-line-height;
+		line-height: $u-link-line-height;
 		/* #endif */
+		@include flex;
+		flex-wrap: wrap;
+		flex: 1;
 	}
 </style>

@@ -1,37 +1,42 @@
 <template>
 	<view class="u-toast">
 		<u-overlay
-		    :show="overlay && show"
+		    :show="tmpConfig.overlay && isShow"
 		    :custom-style="overlayStyle"
 		></u-overlay>
 		<u-transition
 		    mode="fade"
-		    :show="show"
+		    :show="isShow"
 		    :custom-style="toastStyle"
 		>
 			<view
-			    class="u-toast__content "
-			    :class="['u-type-' + type]"
+			    class="u-toast__content"
+			    :class="['u-type-' + tmpConfig.type, tmpConfig.loading && 'u-toast__content--loading']"
 			>
 				<u-loading-icon
-				    v-if="loading"
-				    :mode="loadingMode"
-					:customStyle="iconStyle"
-					:color="loadingIconColor"
-					size="17"
+				    v-if="tmpConfig.loading"
+				    mode="circle"
+				    color="rgb(255, 255, 255)"
+				    inactiveColor="rgb(120, 120, 120)"
+				    size="25"
 				></u-loading-icon>
 				<u-icon
-				    v-else
+				    v-else-if="tmpConfig.type !== 'defalut' && tmpConfig.icon"
 				    :name="iconName"
-					size="17"
-				    :color="type"
+				    size="17"
+				    :color="tmpConfig.type"
 				    :customStyle="iconStyle"
 				></u-icon>
+				<u-gap
+				    v-if="tmpConfig.loading"
+				    height="12"
+				    bgColor="transparent"
+				></u-gap>
 				<text
 				    class="u-toast__content__text"
-				    :class="['u-toast__content__text--' + type]"
-					style="max-width: 400rpx;"
-				>{{text}}</text>
+				    :class="['u-toast__content__text--' + tmpConfig.type]"
+				    style="max-width: 400rpx;"
+				>{{ tmpConfig.text }}</text>
 			</view>
 		</u-transition>
 	</view>
@@ -89,10 +94,10 @@
 				default: uni.$u.props.toast.loadingMode
 			},
 			// show
-			show: {
-				type: Boolean,
-				default: uni.$u.props.toast.show
-			},
+			// show: {
+			// 	type: Boolean,
+			// 	default: uni.$u.props.toast.show
+			// },
 			// 是否显示透明遮罩，防止点击穿透
 			overlay: {
 				type: Boolean,
@@ -144,12 +149,14 @@
 					text: '', // 显示文本
 					type: '', // 主题类型，primary，success，error，warning，black
 					duration: 2000, // 显示的时间，毫秒
-					isTab: false, // 是否跳转tab页面
+					linkType: 'navigateTo', // 跳转的方式
 					url: '', // toast消失后是否跳转页面，有则跳转，优先级高于back参数
 					icon: true, // 显示的图标
 					position: 'center', // toast出现的位置
 					callback: null, // 执行完后的回调函数
 					back: false, // 结束toast是否自动返回上一页
+					overlay: false, // 是否防止触摸穿透
+					loading: false, // 是否加载中状态
 				},
 				tmpConfig: {}, // 将用户配置和内置配置合并后的临时配置变量
 			};
@@ -157,8 +164,8 @@
 		computed: {
 			iconName() {
 				// 只有不为none，并且type为error|warning|succes|info时候，才显示图标
-				if (['error', 'warning', 'success', 'primary'].includes(this.type) && !this.icon) {
-					let icon = this.$u.type2icon(this.type);
+				if (['error', 'warning', 'success', 'primary'].includes(this.tmpConfig.type) && !this.icon) {
+					let icon = this.$u.type2icon(this.tmpConfig.type);
 					return icon;
 				} else {
 					// 非主题类型，剩下的无论用户传入图标还是图片路径，统一是用u-icon组件解析
@@ -172,16 +179,20 @@
 				let left = sys.windowWidth / 2,
 					top = sys.windowHeight / 2
 				// 非H5端有原生导航栏，其高度不会算到windowHeight中，toast会在视觉上偏下，这里做一个向上的偏移
-				// #ifndef H5
 				// 原生导航栏的高度为44px
-				top = top - 22
+				// 同时由于H5端在chrome上，对Y轴进行transform偏移50%会产生字体模糊，后面将其设置偏移0，同时对其上移一定距离
+				// #ifndef H5
+				top = top - 44
+				// #endif
+				// #ifdef H5
+				top = top - 20
 				// #endif
 				style.position = 'fixed'
 				style.left = left + 'px'
 				// toast的弹出位置
-				if (this.position === 'center') {
+				if (this.tmpConfig.position === 'center') {
 					style.top = top + 'px'
-				} else if (this.position === 'top') {
+				} else if (this.tmpConfig.position === 'top') {
 					style.top = top - sys.windowHeight / 4 + 'px'
 				} else {
 					style.top = top + sys.windowHeight / 4 + 'px'
@@ -189,7 +200,10 @@
 				style.zIndex = this.zIndex
 				// 进行位移偏转，再通过left，top修正，以达到居中的效果
 				style.transform = 'translate(-50%, -50%)'
-				return uni.$u.deepMerge(style, this.customStyle)
+				// #ifdef H5
+				style.transform = 'translate(-50%, 0)'
+				// #endif
+				return uni.$u.deepMerge(style, uni.$u.addStyle(uni.customStyle))
 			},
 			overlayStyle() {
 				const style = {}
@@ -201,42 +215,48 @@
 				const style = {}
 				// 图标需要一个右边距，以跟右边的文字有隔开的距离
 				style.marginRight = '4px'
+				// #ifdef APP-NVUE
+				// iOSAPP下，图标有1px的向下偏移，这里进行修正
+				if (uni.$u.os() === 'ios') {
+					style.marginTop = '-1px'
+				}
+				// #endif
 				return style
 			},
 			loadingIconColor() {
 				let color = 'rgb(255, 255, 255)';
-				if(this.type !== 'default') {
+				if (this.type !== 'default') {
 					// loading-icon组件内部会对color参数进行一个透明度处理，该方法要求传入的颜色值
 					// 必须为rgb格式的，所以这里做一个处理
-					color = uni.$u.hexToRgb(uni.$u.config.color[`u-${this.type}`])
+					color = uni.$u.hexToRgb(uni.$u.color[this.tmpConfig.type])
 				}
-				return color
+				return 'rgb(255, 255, 255)'
 			}
 		},
 		methods: {
 			// 显示toast组件，由父组件通过this.$refs.xxx.show(options)形式调用
-			// show(options) {
-			// 	// 不降结果合并到this.config变量，避免多次调用u-toast，前后的配置造成混论
-			// 	this.tmpConfig = this.$u.deepMerge(this.config, options);
-			// 	if (this.timer) {
-			// 		// 清除定时器
-			// 		clearTimeout(this.timer);
-			// 		this.timer = null;
-			// 	}
-			// 	this.isShow = true;
-			// 	this.timer = setTimeout(() => {
-			// 		// 倒计时结束，清除定时器，隐藏toast组件
-			// 		this.isShow = false;
-			// 		clearTimeout(this.timer);
-			// 		this.timer = null;
-			// 		// 判断是否存在callback方法，如果存在就执行
-			// 		typeof(this.tmpConfig.callback) === 'function' && this.tmpConfig.callback();
-			// 		this.timeEnd();
-			// 	}, this.tmpConfig.duration);
-			// },
+			show(options) {
+				// 如果loading状态，type值只能为default
+				options.loading && (options.type = 'default')
+				// 不将结果合并到this.config变量，避免多次调用u-toast，前后的配置造成混乱
+				this.tmpConfig = this.$u.deepMerge(this.config, options)
+				// 清除定时器
+				clearTimeout(this.timer)
+				this.timer = null
+				this.isShow = true
+				this.timer = setTimeout(() => {
+					// 倒计时结束，清除定时器，隐藏toast组件
+					this.isShow = false;
+					clearTimeout(this.timer);
+					this.timer = null;
+					// 判断是否存在callback方法，如果存在就执行
+					typeof(this.tmpConfig.callback) === 'function' && this.tmpConfig.callback();
+					this.timeEnd()
+				}, this.tmpConfig.duration);
+			},
 			// 隐藏toast组件，由父组件通过this.$refs.xxx.hide()形式调用
 			hide() {
-				this.isShow = false;
+				this.isShow = false
 				if (this.timer) {
 					// 清除定时器
 					clearTimeout(this.timer);
@@ -247,33 +267,11 @@
 			timeEnd() {
 				// 如果带有url值，根据isTab为true或者false进行跳转
 				if (this.tmpConfig.url) {
-					// 如果url没有"/"开头，添加上，因为uni的路由跳转需要"/"开头
-					if (this.tmpConfig.url[0] != '/') this.tmpConfig.url = '/' + this.tmpConfig.url;
-					// 判断是否有传递显式的参数
-					if (Object.keys(this.tmpConfig.params).length) {
-						// 判断用户传递的url中，是否带有参数
-						// 使用正则匹配，主要依据是判断是否有"/","?","="等，如“/page/index/index?name=mary"
-						// 如果有params参数，转换后无需带上"?"
-						let query = '';
-						if (/.*\/.*\?.*=.*/.test(this.tmpConfig.url)) {
-							// object对象转为get类型的参数
-							query = this.$u.queryParams(this.tmpConfig.params, false);
-							this.tmpConfig.url = this.tmpConfig.url + "&" + query;
-						} else {
-							query = this.$u.queryParams(this.tmpConfig.params);
-							this.tmpConfig.url += query;
-						}
-					}
-					// 如果是跳转tab页面，就使用uni.switchTab
-					if (this.tmpConfig.isTab) {
-						uni.switchTab({
-							url: this.tmpConfig.url
-						});
-					} else {
-						uni.navigateTo({
-							url: this.tmpConfig.url
-						});
-					}
+					uni.$u.route({
+						type: this.tmpConfig.linkType,
+						url: this.tmpConfig.url,
+						params: this.tmpConfig.params
+					})
 				} else if (this.tmpConfig.back) {
 					// 回退到上一页
 					this.$u.route({
@@ -287,11 +285,13 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
+	
 	$u-toast-color:#fff !default;
-	$u-toast-border-radius:8rpx !default;
+	$u-toast-border-radius:4px !default;
 	$u-toast-border-background-color:#585858 !default;
-	$u-toast-border-font-size:28rpx !default;
-	$u-toast-border-padding:18rpx 40rpx !default;
+	$u-toast-border-font-size:14px !default;
+	$u-toast-border-padding:12px 20px !default;
+	$u-toast-loading-border-padding: 20px 20px !default;
 	$u-toast-content-text-color:#fff !default;
 	$u-toast-content-text-font-size:15px !default;
 	$u-toast-u-icon:10rpx !default;
@@ -332,10 +332,17 @@
 			/* #ifndef APP-NVUE */
 			max-width: 600rpx;
 			/* #endif */
+			position: relative;
+
+			&--loading {
+				flex-direction: column;
+				padding: $u-toast-loading-border-padding;
+			}
 
 			&__text {
 				color: $u-toast-content-text-color;
 				font-size: $u-toast-content-text-font-size;
+				line-height: $u-toast-content-text-font-size;
 
 				&--default {
 					color: $u-toast-content-text-color;

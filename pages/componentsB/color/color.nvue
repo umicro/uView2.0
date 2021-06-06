@@ -260,18 +260,12 @@
 			}
 
 			&__color-box {
-				/* #ifndef APP-NVUE */
-				display: flex;
-				/* #endif */
-				flex-direction: row;
+				@include flex;
 				justify-content: space-between;
 
 				&__item {
 					width: 160rpx;
-					/* #ifndef APP-NVUE */
-					display: flex;
-					/* #endif */
-					flex-direction: column;
+					@include flex(column);
 					align-items: center;
 					justify-content: center;
 					padding: 5px 0;

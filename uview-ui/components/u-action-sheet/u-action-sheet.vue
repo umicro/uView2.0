@@ -5,6 +5,7 @@
 	    @close="close"
 	    :closeOnClickOverly="closeOnClickOverly"
 	    :safeAreaInsetBottom="safeAreaInsetBottom"
+	    :round="round"
 	>
 		<view class="u-action-sheet">
 			<view
@@ -18,8 +19,9 @@
 				>
 					<u-icon
 					    name="close"
-					    size="14"
+					    size="17"
 					    color="#c8c9cc"
+					    bold
 					></u-icon>
 				</view>
 			</view>
@@ -27,63 +29,67 @@
 			    class="u-action-sheet__description"
 			    v-if="description"
 			>{{description}}</text>
-			<u-line v-if="title || description"></u-line>
-			<view class="u-action-sheet__item-wrap">
-				<template v-for="(item, index) in actions">
-					<!-- #ifdef MP -->
-					<button
-					    :key="index"
-					    class="u-reset-button"
-					    :data-index="index"
-					    :openType="openType"
-					    @getuserinfo="onGetUserInfo"
-					    @contact="onContact"
-					    @getphonenumber="onGetPhoneNumber"
-					    @error="onError"
-					    @launchapp="onLaunchApp"
-					    @opensetting="onOpenSetting"
-					    :lang="lang"
-					    :session-from="sessionFrom"
-					    :send-message-title="sendMessageTitle"
-					    :send-message-path="sendMessagePath"
-					    :send-message-img="sendMessageImg"
-					    :show-message-card="showMessageCard"
-					    :app-parameter="appParameter"
-					    @tap="selectHandler(index)"
-					    :hover-class="!item.disabled && !item.loading ? 'u-action-sheet--hover' : ''"
-					>
-						<!-- #endif -->
-						<view
-						    class="u-action-sheet__item-wrap__item"
-						    @tap.stop="selectHandler(index)"
-						    :hover-class="!item.disabled && !item.loading ? 'u-action-sheet--hover' : ''"
-						    :hover-stay-time="150"
-						>
-							<template v-if="!item.loading">
-								<text
-								    class="u-action-sheet__item-wrap__item__name"
-								    :style="[itemStyle(index)]"
-								>{{ item.name }}</text>
-								<text
-								    v-if="item.subname"
-								    class="u-action-sheet__item-wrap__item__subname"
-								>{{ item.subname }}</text>
-							</template>
-							<u-loading-icon
-							    v-else
-							    custom-class="van-action-sheet__loading"
-							    size="18"
-							/>
-						</view>
+			<slot>
+				<u-line v-if="description"></u-line>
+				<view class="u-action-sheet__item-wrap">
+					<template v-for="(item, index) in actions">
 						<!-- #ifdef MP -->
-					</button>
-					<!-- #endif -->
-					<u-line v-if="index !== actions.length - 1"></u-line>
-				</template>
-			</view>
+						<button
+						    :key="index"
+						    class="u-reset-button"
+						    :data-index="index"
+						    :openType="item.openType"
+						    @getuserinfo="onGetUserInfo"
+						    @contact="onContact"
+						    @getphonenumber="onGetPhoneNumber"
+						    @error="onError"
+						    @launchapp="onLaunchApp"
+						    @opensetting="onOpenSetting"
+						    :lang="lang"
+						    :session-from="sessionFrom"
+						    :send-message-title="sendMessageTitle"
+						    :send-message-path="sendMessagePath"
+						    :send-message-img="sendMessageImg"
+						    :show-message-card="showMessageCard"
+						    :app-parameter="appParameter"
+						    @tap="selectHandler(index)"
+						    :hover-class="!item.disabled && !item.loading ? 'u-action-sheet--hover' : ''"
+						>
+							<!-- #endif -->
+							<view
+							    class="u-action-sheet__item-wrap__item"
+							    @tap.stop="selectHandler(index)"
+							    :hover-class="!item.disabled && !item.loading ? 'u-action-sheet--hover' : ''"
+							    :hover-stay-time="150"
+							>
+								<template v-if="!item.loading">
+									<text
+									    class="u-action-sheet__item-wrap__item__name"
+									    :style="[itemStyle(index)]"
+									>{{ item.name }}</text>
+									<text
+									    v-if="item.subname"
+									    class="u-action-sheet__item-wrap__item__subname"
+									>{{ item.subname }}</text>
+								</template>
+								<u-loading-icon
+								    v-else
+								    custom-class="van-action-sheet__loading"
+								    size="18"
+								    mode="circle"
+								/>
+							</view>
+							<!-- #ifdef MP -->
+						</button>
+						<!-- #endif -->
+						<u-line v-if="index !== actions.length - 1"></u-line>
+					</template>
+				</view>
+			</slot>
 			<u-gap
-			    bgColor="rgb(234, 234, 236)"
+			    bgColor="#eaeaec"
 			    height="6"
+			    v-if="cancelText"
 			></u-gap>
 			<view hover-class="u-action-sheet--hover">
 				<text
@@ -99,7 +105,7 @@
 </template>
 
 <script>
-	import openType from '../../libs/mixin/open-type'
+	import openType from '../../libs/mixin/openType'
 	import button from '../../libs/mixin/button'
 	/**
 	 * actionSheet 操作菜单
@@ -185,6 +191,11 @@
 			closeOnClickOverly: {
 				type: Boolean,
 				default: uni.$u.props.actionSheet.closeOnClickOverly
+			},
+			// 是否显示圆角
+			round: {
+				type: Boolean,
+				default: uni.$u.props.actionSheet.round
 			}
 		},
 		// 一些props参数和methods方法，通过mixin混入，因为其他文件也会用到
@@ -228,7 +239,7 @@
 	@import "../../libs/css/components.scss";
 	$u-action-sheet-reset-button-width:100% !default;
 	$u-action-sheet-title-font-size: 16px !default;
-	$u-action-sheet-title-padding: 18px 30px !default;
+	$u-action-sheet-title-padding: 12px 30px !default;
 	$u-action-sheet-title-color: $u-main-color !default;
 	$u-action-sheet-header-icon-wrap-right:15px !default;
 	$u-action-sheet-header-icon-wrap-top:15px !default;
@@ -241,7 +252,7 @@
 	$u-action-sheet-item-wrap-subname-color: #c0c4cc !default;
 	$u-action-sheet-item-wrap-subname-margin-top:10px !default;
 	$u-action-sheet-cancel-text-font-size:16px !default;
-	$u-action-sheet-cancel-text-color:$u-main-color !default;
+	$u-action-sheet-cancel-text-color:$u-content-color !default;
 	$u-action-sheet-cancel-text-font-size:15px !default;
 	$u-action-sheet-cancel-text-hover-background-color:rgb(242, 243, 245) !default;
 

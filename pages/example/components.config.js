@@ -23,6 +23,11 @@ export default [{
 			title: 'Button 按钮',
 			title_en: 'Button',
 		}, {
+			path: '/pages/componentsC/text/text',
+			icon: 'text',
+			title: 'Text 文本',
+			title_en: 'Text',
+		}, {
 			path: '/pages/componentsC/layout/layout',
 			icon: 'layout',
 			title: 'Layout 布局',
@@ -63,7 +68,7 @@ export default [{
 			title: 'Form 表单',
 			title_en: 'Form',
 		}, {
-			path: '/pages/componentsA/calendar/calendar',
+			path: '/pages/componentsC/calendar/calendar',
 			icon: 'calendar',
 			title: 'Calendar 日历',
 			title_en: 'Calendar',
@@ -78,9 +83,14 @@ export default [{
 			title: 'Keyboard 键盘',
 			title_en: 'Keyboard',
 		}, {
-			path: '/pages/componentsB/picker/picker',
+			path: '/pages/componentsC/picker/picker',
 			icon: 'picker',
 			title: 'Picker 选择器',
+			title_en: 'Picker',
+		}, {
+			path: '/pages/componentsC/datetimePicker/datetimePicker',
+			icon: 'picker',
+			title: 'DatetimePicker 时间选择器',
 			title_en: 'Picker',
 		}, {
 			path: '/pages/componentsA/rate/rate',
@@ -103,15 +113,15 @@ export default [{
 			title: 'Upload 上传',
 			title_en: 'Upload',
 		}, {
-			path: '/pages/componentsA/verificationCode/verificationCode',
-			icon: 'verificationCode',
-			title: 'VerificationCode 验证码倒计时',
+			path: '/pages/componentsB/code/code',
+			icon: 'code',
+			title: 'Code 验证码倒计时',
 			title_en: 'VerificationCode',
 		}, {
-			path: '/pages/componentsA/field/field',
+			path: '/pages/componentsC/input/input',
 			icon: 'field',
-			title: 'Field 输入框',
-			title_en: 'Field',
+			title: 'Input 输入框',
+			title_en: 'Input',
 		}, {
 			path: '/pages/componentsA/checkbox/checkbox',
 			icon: 'checkbox',
@@ -132,12 +142,22 @@ export default [{
 			icon: 'slider',
 			title: 'Slider 滑动选择器',
 			title_en: 'Slider',
+		}, {
+			path: '/pages/componentsC/album/album',
+			icon: 'album',
+			title: 'Album 相册',
+			title_en: 'Album',
 		}]
 	}, {
 		groupName: '数据组件',
 		groupName_en: 'Data components',
 		list: [{
-			path: '/pages/componentsC/progress/progress',
+			path: '/pages/componentsC/list/list',
+			icon: 'list',
+			title: 'List 列表',
+			title_en: 'List',
+		},{
+			path: '/pages/componentsB/progress/progress',
 			icon: 'progress',
 			title: 'Progress 进度条',
 			title_en: 'Progress',
@@ -161,15 +181,20 @@ export default [{
 		groupName: '反馈组件',
 		groupName_en: 'Feedback components',
 		list: [{
+			path: '/pages/componentsC/tooltip/tooltip',
+			icon: 'tooltip',
+			title: 'Tooltip 长按提示',
+			title_en: 'ActionSheet',
+		},{
 			path: '/pages/componentsB/actionSheet/actionSheet',
 			icon: 'actionSheet',
 			title: 'ActionSheet 上拉菜单',
 			title_en: 'ActionSheet',
 		}, {
-			path: '/pages/componentsC/alertTips/alertTips',
-			icon: 'alertTips',
-			title: 'AlertTips 警告提示',
-			title_en: 'AlertTips',
+			path: '/pages/componentsB/alert/alert',
+			icon: 'alert',
+			title: 'Alert 警告提示',
+			title_en: 'Alert',
 		}, {
 			path: '/pages/componentsB/toast/toast',
 			icon: 'toast',
@@ -191,7 +216,7 @@ export default [{
 			title: 'SwipeAction 滑动单元格',
 			title_en: 'SwipeAction',
 		}, {
-			path: '/pages/componentsC/collapse/collapse',
+			path: '/pages/componentsB/collapse/collapse',
 			icon: 'collapse',
 			title: 'Collapse 折叠面板',
 			title_en: 'Collapse',
@@ -201,7 +226,7 @@ export default [{
 			title: 'Popup 弹出层',
 			title_en: 'Popup',
 		}, {
-			path: '/pages/componentsA/modal/modal',
+			path: '/pages/componentsC/modal/modal',
 			icon: 'modal',
 			title: 'Modal 模态框',
 			title_en: 'Modal',
@@ -215,6 +240,11 @@ export default [{
 		groupName: '布局组件',
 		groupName_en: 'Layout components',
 		list: [{
+			path: '/pages/componentsC/scrollList/scrollList',
+			icon: 'scrollList',
+			title: 'ScrollList 横向滚动列表',
+			title_en: 'ScrollList',
+		},{
 			path: '/pages/componentsA/line/line',
 			icon: 'line',
 			title: 'Line 线条',
@@ -232,7 +262,7 @@ export default [{
 		}, 
 		// #ifndef MP-TOUTIAO
 		{
-			path: '/pages/componentsA/noNetwork/noNetwork',
+			path: '/pages/componentsC/noNetwork/noNetwork',
 			icon: 'noNetwork',
 			title: 'NoNetwork 无网络提示',
 			title_en: 'NoNetwork',
@@ -244,17 +274,17 @@ export default [{
 			title: 'Grid 宫格布局',
 			title_en: 'Grid',
 		}, {
-			path: '/pages/componentsB/swiper/swiper',
+			path: '/pages/componentsC/swiper/swiper',
 			icon: 'swiper',
 			title: 'Swiper 轮播图',
 			title_en: 'Swiper',
 		}, {
-			path: '/pages/componentsA/timeLine/timeLine',
+			path: '/pages/componentsC/timeLine/timeLine',
 			icon: 'timeLine',
 			title: 'TimeLine 时间轴',
 			title_en: 'TimeLine',
 		}, {
-			path: '/pages/componentsB/skeleton/skeleton',
+			path: '/pages/componentsC/skeleton/skeleton',
 			icon: 'skeleton',
 			title: 'Skeleton 骨架屏',
 			title_en: 'Skeleton',
@@ -264,14 +294,6 @@ export default [{
 			title: 'Sticky 吸顶',
 			title_en: 'Sticky',
 		}, 
-		// #ifndef MP-TOUTIAO
-		{
-			path: '/pages/componentsB/waterfall/waterfall',
-			icon: 'waterfall',
-			title: 'Waterfall 瀑布流',
-			title_en: 'Waterfall',
-		},
-		// #endif
 		{
 			path: '/pages/componentsA/divider/divider',
 			icon: 'divider',
@@ -297,12 +319,12 @@ export default [{
 			title: 'BackTop 返回顶部',
 			title_en: 'BackTop',
 		},{
-			path: '/pages/componentsA/navbar/navbar',
+			path: '/pages/componentsC/navbar/navbar',
 			icon: 'navbar',
 			title: 'Navbar 导航栏',
 			title_en: 'Navbar',
 		}, {
-			path: '/pages/componentsA/tabs/tabs',
+			path: '/pages/componentsC/tabs/tabs',
 			icon: 'tabs',
 			title: 'Tabs 标签',
 			title_en: 'Tabs',
@@ -316,17 +338,17 @@ export default [{
 		},
 		// #endif
 		{
-			path: '/pages/componentsA/subsection/subsection',
+			path: '/pages/componentsC/subsection/subsection',
 			icon: 'subsection',
 			title: 'Subsection 分段器',
 			title_en: 'Subsection',
 		}, {
-			path: '/pages/componentsA/indexList/indexList',
+			path: '/pages/componentsC/indexList/indexList',
 			icon: 'indexList',
 			title: 'IndexList 索引列表',
 			title_en: 'IndexList',
 		}, {
-			path: '/pages/componentsB/steps/steps',
+			path: '/pages/componentsC/steps/steps',
 			icon: 'steps',
 			title: 'Steps 步骤条',
 			title_en: 'Steps',
@@ -335,11 +357,6 @@ export default [{
 			icon: 'empty',
 			title: 'Empty 内容为空',
 			title_en: 'Empty',
-		}, {
-			path: '/pages/componentsB/section/section',
-			icon: 'section',
-			title: 'Section 查看更多',
-			title_en: 'Section',
 		}]
 	}, {
 		groupName: '其他组件',
@@ -350,12 +367,12 @@ export default [{
 			title: 'Parse 富文本解析器',
 			title_en: 'Parse',
 		},{
-			path: '/pages/componentsC/messageInput/messageInput',
+			path: '/pages/componentsC/codeInput/codeInput',
 			icon: 'messageInput',
-			title: 'MessageInput 验证码输入',
-			title_en: 'MessageInput',
+			title: 'CodeInput 验证码输入',
+			title_en: 'CodeInput',
 		}, {
-			path: '/pages/componentsA/avatarCropper/avatarCropper',
+			path: '/pages/componentsC/avatarCropper/avatarCropper',
 			icon: 'avatarCropper',
 			title: 'AvatarCropper 头像裁剪',
 			title_en: 'AvatarCropper',
@@ -365,7 +382,7 @@ export default [{
 			title: 'Loadmore 加载更多',
 			title_en: 'Loadmore',
 		}, {
-			path: '/pages/componentsB/readMore/readMore',
+			path: '/pages/componentsC/readMore/readMore',
 			icon: 'readMore',
 			title: 'ReadMore 展开阅读更多',
 			title_en: 'ReadMore',
@@ -380,7 +397,7 @@ export default [{
 			title: 'Gap 间隔槽',
 			title_en: 'Gap',
 		}, {
-			path: '/pages/componentsA/avatar/avatar',
+			path: '/pages/componentsC/avatar/avatar',
 			icon: 'avatar',
 			title: 'Avatar 头像',
 			title_en: 'Avatar',

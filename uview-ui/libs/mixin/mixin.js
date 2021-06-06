@@ -1,8 +1,9 @@
 module.exports = {
 	// 定义每个组件都可能需要用到的外部样式以及类名
 	props: {
+		// 每个组件都有的父组件传递的样式，可以为字符串或者对象形式
 		customStyle: {
-			type: Object,
+			type: [Object, String],
 			default: () => {}
 		},
 		customClass: {
@@ -35,7 +36,7 @@ module.exports = {
 		// 在2.x版本中，将会把$u挂载到uni对象下，导致在模板中无法使用uni.$u.xxx形式
 		// 所以这里通过computed计算属性将其附加到this.$u上，就可以在模板或者js中使用this.$u.xxx
 		$u() {
-			return uni.$u;
+			return uni.$u
 		},
 		/**
 		 * 生成bem规则类名
@@ -70,7 +71,7 @@ module.exports = {
 	methods: {
 		// 跳转某一个页面
 		openPage(urlKey = 'url') {
-			const url = this[urlKey];
+			const url = this[urlKey]
 			if (url) {
 				// 执行类似uni.navigateTo的方法
 				uni[this.linkType]({
@@ -98,24 +99,30 @@ module.exports = {
 		},
 		getParentData(parentName = '') {
 			// 避免在created中去定义parent变量
-			if (!this.parent) this.parent = false;
+			if (!this.parent) this.parent = {}
 			// 这里的本质原理是，通过获取父组件实例(也即u-radio-group的this)
 			// 将父组件this中对应的参数，赋值给本组件(u-radio的this)的parentData对象中对应的属性
 			// 之所以需要这么做，是因为所有端中，头条小程序不支持通过this.parent.xxx去监听父组件参数的变化
-			this.parent = this.$u.$parent.call(this, parentName);
-			if (this.parent) {
+			this.parent = this.$u.$parent.call(this, parentName)
+			if(this.parent.children) {
+				// 如果父组件的children不存在本组件的实例，才将本实例添加到父组件的children中
+				this.parent.children.indexOf(this) === -1 && this.parent.children.push(this)
+			}
+			if (this.parent && this.parentData) {
 				// 历遍parentData中的属性，将parent中的同名属性赋值给parentData
 				Object.keys(this.parentData).map(key => {
-					this.parentData[key] = this.parent[key];
-				});
+					this.parentData[key] = this.parent[key]
+				})
 			}
 		},
 		// 阻止事件冒泡
 		preventEvent(e) {
-			e && e.stopPropagation && e.stopPropagation()
+			e && typeof(e.stopPropagation) === 'function' && e.stopPropagation()
 		},
 		// 空操作
-		noop() {},
+		noop(e) {
+			this.preventEvent(e)
+		},
 	},
 	onReachBottom() {
 		uni.$emit('uOnReachBottom')

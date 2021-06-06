@@ -1,23 +1,26 @@
 <template>
 	<view class="u-page">
-		<u-cell
-		    :titleStyle="{fontWeight: 500}"
-		    @click="openKeyboard(index)"
-		    :title="item.title"
-		    v-for="(item, index) in list"
-		    :key="index"
-		    isLink
-		>
-			<image
-			    slot="icon"
-			    class="u-cell-icon"
-			    :src="item.iconUrl"
-			    mode="widthFix"
-			></image>
-		</u-cell>
+		<u-gap height="20" bgColor="#fff"></u-gap>
+		<u-cell-group>
+			<u-cell
+			    :titleStyle="{fontWeight: 500}"
+			    @click="openKeyboard(index)"
+			    :title="item.title"
+			    v-for="(item, index) in list"
+			    :key="index"
+			    isLink
+			>
+				<image
+				    slot="icon"
+				    class="u-cell-icon"
+				    :src="item.iconUrl"
+				    mode="widthFix"
+				></image>
+			</u-cell>
+		</u-cell-group>
 		<u-keyboard
 		    :mode="keyData.mode"
-		    :dotEnable="keyData.dotEnable"
+		    :dotDisabled="keyData.dotDisabled"
 		    :random='keyData.random'
 		    :show="show"
 		    @close="show = false"
@@ -31,7 +34,7 @@
 			return {
 				keyData: {
 					mode: '',
-					dotEnable: false,
+					dotDisabled: false,
 					random: false,
 				},
 				list: [{
@@ -47,7 +50,7 @@
 						iconUrl: '/static/common/image/keyboard/IdCard.png'
 					},
 					{
-						title: '显示键盘的"."符号',
+						title: '隐藏键盘"."符号',
 						iconUrl: '/static/common/image/keyboard/dot.png'
 					},
 					{
@@ -63,7 +66,7 @@
 			openKeyboard(indexNum) {
 				this.keyData = {
 					mode: '',
-					dotEnable: false,
+					dotDisabled: false,
 					random: false,
 				}
 				if (indexNum == 0) {
@@ -73,7 +76,8 @@
 				} else if (indexNum == 2) {
 					this.keyData.mode = 'card'
 				} else if (indexNum == 3) {
-					this.keyData.dotEnable = true
+					this.keyData.mode = 'number'
+					this.keyData.dotDisabled = true
 				} else if (indexNum == 4) {
 					this.keyData.mode = 'number'
 					this.keyData.random = true
@@ -86,5 +90,7 @@
 </script>
 
 <style lang="scss">
-
+	.u-page {
+		padding: 0;
+	}
 </style>

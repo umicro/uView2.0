@@ -10,6 +10,7 @@
 		    :mode="mode"
 		    @error="onErrorHandler"
 		    @load="onLoadHandler"
+			:show-menu-by-longpress="showMenuByLongpress"
 		    :lazy-load="lazyLoad"
 		    class="u-image__image"
 		    :style="{
@@ -272,7 +273,6 @@
 	.u-image {
 		position: relative;
 		transition: opacity 0.5s ease-in-out;
-
 		&__loading,
 		&__error {
 			position: absolute;

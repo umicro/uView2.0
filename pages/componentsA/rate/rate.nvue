@@ -1,119 +1,98 @@
 <template>
 	<view class="u-page">
-		<u-gap></u-gap>
-		<view class="u-block">
-			<u-section
-			    class="u-block__section"
-			    title="基本案例"
-			    :right="false"
-			></u-section>
-			<u-rate></u-rate>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">基本案例</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__tag-item">
+				<u-rate></u-rate>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    class="u-block__section"
-			    title="自定义选中星星数量"
-			    :right="false"
-			></u-section>
-			<u-rate v-model="value"></u-rate>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义选中星星数量</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__tag-item">
+				<u-rate v-model="value"></u-rate>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    class="u-block__section"
-			    title="自定义星星数量"
-			    :right="false"
-			></u-section>
-			<u-rate count="6"></u-rate>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义星星数量</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__tag-item">
+					<u-rate count="6"></u-rate>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    class="u-block__section"
-			    title="是否禁用评分"
-			    :right="false"
-			></u-section>
-			<u-rate :disabled="true"></u-rate>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">是否禁用评分</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__rate-item">
+					<u-rate :disabled="true"></u-rate>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    class="u-block__section"
-			    title="自定义选中星星颜色"
-			    :right="false"
-			></u-section>
-			<u-rate
-			    v-model="activeColorValue"
-			    activeColor="#2979ff"
-			></u-rate>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义选中星星颜色</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__rate-item">
+					<u-rate
+					    v-model="activeColorValue"
+					    activeColor="#2979ff"
+					></u-rate>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    class="u-block__section"
-			    title="自定义未选中星星颜色"
-			    :right="false"
-			></u-section>
-			<u-rate
-			    v-model="value"
-			    inactiveColor="#2979ff"
-			></u-rate>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义未选中星星颜色</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__rate-item">
+					<u-rate
+					    v-model="value"
+					    inactiveColor="#2979ff"
+					></u-rate>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    class="u-block__section"
-			    title="自定义星星之间的距离"
-			    :right="false"
-			></u-section>
-			<u-rate gutter="20"></u-rate>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">禁止触摸选择</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__rate-item">
+				<u-rate :touchable="false"></u-rate>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    class="u-block__section"
-			    title="是否允许半星"
-			    :right="false"
-			></u-section>
-			<u-rate
-			    v-model="HalfValue"
-			    :allowHalf="true"
-			></u-rate>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">允许触摸选择</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__rate-item">
+				<u-rate :touchable="true"></u-rate>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    class="u-block__section"
-			    title="自定义选中的图标"
-			    :right="false"
-			></u-section>
-			<u-rate
-			    v-model="activeIconValue"
-			    inactiveIcon="heart"
-			    activeIcon="heart-fill"
-			></u-rate>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">是否允许半星</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__rate-item">
+				<u-rate
+				    v-model="HalfValue"
+				    :allowHalf="true"
+				></u-rate>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    class="u-block__section"
-			    title="是否可通过滑动手势选择评分"
-			    :right="false"
-			></u-section>
-			<u-rate :touchable="true"></u-rate>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义选中的图标</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__rate-item">
+				<u-rate
+				    v-model="activeIconValue"
+				    inactiveIcon="heart"
+				    activeIcon="heart-fill"
+				></u-rate>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
 	</view>
 </template>
 

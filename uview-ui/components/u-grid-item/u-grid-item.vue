@@ -58,7 +58,7 @@
 					background: this.bgColor,
 					width: this.width
 				}
-				return uni.$u.deepMerge(style, this.customStyle)
+				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			}
 		},
 		methods: {
@@ -68,11 +68,8 @@
 				uni.$on('$uGridItem', () => {
 					this.gridItemClasses()
 				})
-				this.parent = {}
 				// 父组件的实例
 				this.updateParentData('u-grid')
-				// this.parent在updateParentData()中定义
-				this.parent.children.push(this)
 				// #ifdef APP-NVUE
 				// 获取元素该有的长度，nvue下要延时才准确
 				this.$nextTick(function(){
@@ -127,15 +124,17 @@
 			gridItemClasses() {
 				if(this.parentData.border) {
 					const classes = []
-					this.parent.children.map((item, index) =>{
-						if(this === item) {
-							// 贴近右边屏幕边沿的item，无需右边框
-							if((index + 1) % this.parentData.col !== 0) {
+					this.parent.children.map((child, index) =>{
+						if(this === child) {
+							const len = this.parent.children.length
+							// 贴近右边屏幕边沿的child，并且最后一个（比如只有横向2个的时候），无需右边框
+							if((index + 1) % this.parentData.col !== 0 && index + 1 !== len) {
 								classes.push('u-border-right')
 							} 
-							const len = this.parent.children.length
-							const lessNum = len % this.parentData.col
-							// 最下面的一排item，无需下边框
+							// 总的宫格数量对列数取余的值
+							// 如果取余后，值为0，则意味着要将最后一排的宫格，都不需要下边框
+							const lessNum = len % this.parentData.col === 0 ? this.parentData.col : len % this.parentData.col
+							// 最下面的一排child，无需下边框
 							if(index < len - lessNum) {
 								classes.push('u-border-bottom')
 							}

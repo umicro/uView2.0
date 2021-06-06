@@ -1,6 +1,5 @@
 <template>
 	<view
-	    :style="[customStyle]"
 	    class="u-icon"
 	    @tap="clickHandler"
 	    :class="['u-icon--' + labelPos]"
@@ -16,7 +15,7 @@
 		    v-else
 		    class="u-icon__icon"
 		    :class="uClasses"
-		    :style="[iconStyle]"
+		    :style="[iconStyle, $u.addStyle(customStyle)]"
 		    :hover-class="hoverClass"
 		>{{icon}}</text>
 		<!-- 这里进行空字符串判断，如果仅仅是v-if="label"，可能会出现传递0的时候，结果也无法显示 -->
@@ -39,7 +38,7 @@
 	// #ifdef APP-NVUE
 	// nvue通过weex的dom模块引入字体，相关文档地址如下：
 	// https://weex.apache.org/zh/docs/modules/dom.html#addrule
-	const fontUrl = 'https://at.alicdn.com/t/font_2225171_2rdvt9v07p7.ttf'
+	const fontUrl = 'https://at.alicdn.com/t/font_2225171_8kdcwk4po24.ttf'
 	const domModule = weex.requireModule('dom')
 	domModule.addRule('fontFace', {
 		'fontFamily': "uicon-iconfont",
@@ -65,7 +64,7 @@
 	 * @property {String Number} labelSize label字体大小，单位rpx（默认28）
 	 * @property {String} labelColor 图标右侧的label文字颜色（默认color['u-content-color']）
 	 * @property {String Number} space label与图标的距离，单位rpx（默认3px）
-	 * @property {String} imgMode 图片的mode （默认 widthFix）
+	 * @property {String} imgMode 图片的mode
 	 * @property {String} width 显示图片小图标时的宽度
 	 * @property {String} height 显示图片小图标时的高度
 	 * @property {String} top 图标在垂直方向上的定位
@@ -245,7 +244,7 @@
 	// 非nvue下加载字体
 	@font-face {
 		font-family: 'uicon-iconfont';
-		src: url('https://at.alicdn.com/t/font_2225171_2rdvt9v07p7.ttf') format('truetype');
+		src: url('https://at.alicdn.com/t/font_2225171_8kdcwk4po24.ttf') format('truetype');
 	}
 
 	/* #endif */
@@ -279,6 +278,8 @@
 		&__icon {
 			font-family: uicon-iconfont;
 			position: relative;
+			@include flex;
+			align-items: center;
 
 			&--primary {
 				color: $u-icon-primary;

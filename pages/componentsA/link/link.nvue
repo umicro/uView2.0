@@ -1,76 +1,52 @@
 <template>
 	<view class="u-page">
-		<u-gap></u-gap>
-		<view class="u-block">
-			<u-section
-			    title="基本案例"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-link
-			    href="http://www.baidu.com"
-			    text="点击我进行跳转"
-			></u-link>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">基本案例</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__link-item">
+					<u-link
+					    href="https://uviewui.com/"
+					    text="Go to uView dosc"
+					></u-link>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="自定义颜色"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-link
-			    href="http://www.baidu.com"
-			    color="#19be6b"
-			    text="点击我进行跳转"
-			></u-link>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">显示下划线</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__link-item">
+					<u-link
+					    href="https://uviewui.com/"
+					    :underLine="true"
+					    text="打开uView UI文档"
+					></u-link>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="显示下划线"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-link
-			    href="http://www.baidu.com"
-			    :underLine="true"
-			    text="点击我进行跳转"
-			></u-link>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义颜色</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__link-item">
+					<u-link
+					    href="https://uviewui.com/"
+					    lineColor="#19be6b"
+					    color="#19be6b"
+					    text="打开uView UI文档"
+					></u-link>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="自定义下划线颜色"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-link
-			    href="http://www.baidu.com"
-			    lineColor="#19be6b"
-			    color="#19be6b"
-			    :underLine="true"
-			    text="点击我进行跳转"
-			></u-link>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义链接内容</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__link-item">
+					<u-link
+					    href="https://uniapp.dcloud.io/"
+					    text="打开uni-app文档"
+					></u-link>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="自定义链接内容"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-link
-			    href="http://www.baidu.com"
-			    :underLine="true"
-			    text="我是自定义链接内容"
-			></u-link>
-		</view>
-		<u-gap></u-gap>
 	</view>
 </template>
 
@@ -88,5 +64,9 @@
 </script>
 
 <style lang="scss">
-
+	.u-page {
+		&__link-item {
+			margin-top: 5px;
+		}
+	}
 </style>

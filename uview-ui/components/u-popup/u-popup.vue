@@ -1,24 +1,40 @@
 <template>
-	<view
-	    class="u-popup"
-	>
+	<view class="u-popup">
 		<u-overlay
-		    :show="show"
-		    @click="overlayClick"
+			:show="show"
+			@click="overlayClick"
 			v-if="overlay"
+			:duration="duration"
 		></u-overlay>
 		<u-transition
-		    :show="show"
-		    :custom-style="transitionStyle"
-		    :mode="position"
-		    @click="transitionClick"
+			:show="show"
+			:custom-style="transitionStyle"
+			:mode="position"
+			@click="transitionClick"
+			:duration="duration"
 		>
 			<view
-			    class="u-popup__content"
-			    :style="[contentStyle]"
-			    @tap.stop="noop"
+				class="u-popup__content"
+				:style="[contentStyle]"
+				@tap.stop="noop"
+				:class="[round && `u-popup__content--round-${mode}`]"
 			>
+				<u-status-bar v-if="safeAreaInsetTop"></u-status-bar>
 				<slot></slot>
+				<view
+					v-if="closeable"
+					@tap.stop="close"
+					class="u-popup__content__close"
+					:class="['u-popup__content__close--' + closeIconPos]"
+				>
+					<u-icon
+						name="close"
+						color="#909399"
+						size="18"
+						bold
+					></u-icon>
+				</view>
+				<u-safe-bottom v-if="safeAreaInsetBottom"></u-safe-bottom>
 			</view>
 		</u-transition>
 	</view>
@@ -46,7 +62,7 @@
 	 * @example <u-popup v-model="show"><view>出淤泥而不染，濯清涟而不妖</view></u-popup>
 	 */
 	export default {
-		name:'u-popup',
+		name: 'u-popup',
 		props: {
 			// 是否展示弹窗
 			show: {
@@ -103,6 +119,21 @@
 				type: Boolean,
 				default: uni.$u.props.popup.safeAreaInsetTop
 			},
+			// 自定义关闭图标位置，top-left为左上角，top-right为右上角，bottom-left为左下角，bottom-right为右下角
+			closeIconPos: {
+				type: String,
+				default: uni.$u.props.popup.closeIconPos
+			},
+			// 是否显示圆角
+			round: {
+				type: Boolean,
+				default: uni.$u.props.popup.round
+			},
+			// mode=center，也即中部弹出时，是否使用缩放模式
+			zoom: {
+				type: Boolean,
+				default: true
+			}
 		},
 		mixins: [uni.$u.mixin],
 		data() {
@@ -154,23 +185,34 @@
 				const {
 					safeAreaInsets
 				} = uni.$u.sys()
-				if (this.safeAreaInsetTop & this.mode !== 'bottom') {
-					// 通过加入pandding-top避开安全局
-					style.paddingTop = uni.$u.addUnit(safeAreaInsets.top)
-				}
-				// 顶部弹出时，是不需要底部安全区的，因为它没有触及屏幕底部
-				// 底部弹出时，也是不需要顶部安全局内边距的
-				if (this.safeAreaInsetBottom & this.mode !== 'top') {
-					style.paddingBottom = uni.$u.addUnit(safeAreaInsets.bottom)
-				}
 				if (this.mode !== 'center') {
 					style.flex = 1
 				}
-				return uni.$u.deepMerge(style, this.customStyle)
+				// // 如果用户设置了borderRadius值，添加弹窗的圆角
+				// if (this.round && this.mode === 'bottom' || this.mode === 'center') {
+				// 	switch (this.mode) {
+				// 		case 'left':
+				// 			style.borderRadius = `0 15px 15px 0`;
+				// 			break;
+				// 		case 'top':
+				// 			style.borderRadius = `0 0 15px 15px`;
+				// 			break;
+				// 		case 'right':
+				// 			style.borderRadius = `15px 0 0 15px`;
+				// 			break;
+				// 		case 'bottom':
+				// 			style.borderRadius = `15px 15px 0 0`;
+				// 			break;
+				// 		default:
+				// 	}
+				// 	// 不加可能圆角无效
+				// 	style.overflow = 'hidden';
+				// }
+				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			},
 			position() {
 				if (this.mode === 'center') {
-					return 'fade'
+					return this.zoom ? 'zoom-in' : 'fade'
 				}
 				if (this.mode === 'left') {
 					return 'slide-left'
@@ -193,25 +235,98 @@
 					this.$emit('close')
 				}
 			},
+			close(e) {
+				this.$emit('close')
+			},
 			transitionClick() {
-				if (this.mode === 'center') {
-					this.overlayClick()
-				}
+				this.$emit('close')
 			}
-
 		}
 	}
 </script>
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-    $u-popup-flex:1 !default;
-    $u-popup-content-background-color:#fff !default;
+	$u-popup-flex:1 !default;
+	$u-popup-content-background-color:#fff !default;
+
 	.u-popup {
 		flex: $u-popup-flex;
 
 		&__content {
 			background-color: $u-popup-content-background-color;
+			position: relative;
+
+			&--round-top {
+				border-top-left-radius: 0;
+				border-top-right-radius: 0;
+				border-bottom-left-radius: 10px;
+				;
+				border-bottom-right-radius: 10px;
+				;
+			}
+
+			&--round-left {
+				border-top-left-radius: 0;
+				border-top-right-radius: 10px;
+				;
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 10px;
+				;
+			}
+
+			&--round-right {
+				border-top-left-radius: 10px;
+				;
+				border-top-right-radius: 0;
+				border-bottom-left-radius: 10px;
+				;
+				border-bottom-right-radius: 0;
+			}
+
+			&--round-bottom {
+				border-top-left-radius: 10px;
+				;
+				border-top-right-radius: 10px;
+				;
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 0;
+			}
+
+			&--round-center {
+				border-top-left-radius: 10px;
+				;
+				border-top-right-radius: 10px;
+				;
+				border-bottom-left-radius: 10px;
+				;
+				border-bottom-right-radius: 10px;
+				;
+			}
+
+			&__close {
+				position: absolute;
+			}
+
+			&__close--top-left {
+				top: 15px;
+				left: 15px;
+			}
+
+			&__close--top-right {
+				top: 15px;
+				right: 15px;
+			}
+
+			&__close--bottom-left {
+				bottom: 15px;
+				left: 15px;
+			}
+
+			&__close--bottom-right {
+				right: 15px;
+				bottom: 15px;
+			}
 		}
 	}
 </style>

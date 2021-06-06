@@ -27,9 +27,7 @@ export default {
 		// 监听vlaue的变化，此变化可能是由于内部修改v-model的值，或者外部
 		// 从服务端获取一个值后，赋值给slider的v-model而导致的
 		value(n) {
-			console.log(this.changeFromInside)
 			if(!this.changeFromInside) {
-				console.log('变化了', n);
 				this.initX()
 			} else {
 				this.changeFromInside = false 

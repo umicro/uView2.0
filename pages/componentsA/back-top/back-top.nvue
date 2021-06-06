@@ -3,29 +3,28 @@
 	    class="u-page"
 	    ref="u-back-top"
 	>
-		<u-gap></u-gap>
-		<view class="u-block">
-			<u-section
-			    title="自定义backTop"
-			    :right="false"
-			></u-section>
-			<text class="u-block__title">请选出您想要定义的backTop样式</text>
-			<u-checkbox-group
-			    v-model="checkboxValue"
-			    placement="column"
-			    @change="checkboxChange"
-			>
-				<u-checkbox
-				    :customStyle="{marginBottom: '8px'}"
-				    v-for="(item, index) in checkboxList"
-				    :key="index"
-				    :label="item.name"
-				    :name="item.name"
+	<view class="u-demo-block">
+		<text class="u-demo-block__title">自定义backTop(滚动页面即可在右下角看到图标)</text>
+		<view class="u-demo-block__content">
+			<view class="u-page__backTop-item">
+				<u-checkbox-group
+				    placement="column"
+					shape="square"
+				    @change="checkboxChange"
+					:value="['自定义图标']"
 				>
-				</u-checkbox>
-			</u-checkbox-group>
+					<u-checkbox
+					    :customStyle="{marginBottom: '8px'}"
+					    v-for="(item, index) in checkboxList"
+					    :key="index"
+					    :label="item.name"
+					    :name="item.name"
+					>
+					</u-checkbox>
+				</u-checkbox-group>
+			</view>
 		</view>
-		<u-gap></u-gap>
+	</view>
 		<u-back-top
 		    :right="backTopData.right"
 		    :customStyle="backTopData.customStyle"
@@ -54,35 +53,27 @@
 				},
 				scrollTop: 0,
 				// 被自定义的样式
-				checkboxValue: ['', ],
 				checkboxList: [{
 						name: '显示方形',
-						disabled: false
 					},
 					{
 						name: '自定义图标',
-						disabled: false
 					},
 					{
 						name: '自定义距离',
-						disabled: false
 					},
 					{
 						name: '自定义样式',
-						disabled: false
 					},
 					{
 						name:'自定义返回顶部滚动时间',
-						disabled:false
 					}
 				]
 			}
 		},
 		onLoad() {
-			setTimeout(() => {
-				// console.log(234);
-				// dom.scrollToElement(this.$refs.item, { offset: 0 })  
-			}, 6000)
+			// 演示中默认勾选了自定义图标
+			this.backTopData.icon = "arrow-up"
 		},
 		onPageScroll(e) {
 			this.scrollTop = e.scrollTop;
@@ -129,5 +120,8 @@
 <style lang="scss">
 	.u-page {
 		height: 1200px;
+		&__backTop-item{
+			margin-top:10px;
+		}
 	}
 </style>

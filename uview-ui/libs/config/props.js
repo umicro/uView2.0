@@ -22,7 +22,7 @@ export default {
 		labelSize: '15px',
 		labelColor: color['u-content-color'],
 		space: '3px',
-		imgMode: 'widthFix',
+		imgMode: '',
 		customStyle: {},
 		width: '',
 		height: '',
@@ -60,7 +60,8 @@ export default {
 		rightIcon: 'arrow-right',
 		titleStyle: {},
 		size: '',
-		stop: true
+		stop: true,
+		disabled: false
 	},
 
 	// cell-group组件的props
@@ -92,7 +93,7 @@ export default {
 	// link超链接组件props参数
 	link: {
 		color: color['u-primary'],
-		fontSize: 28,
+		fontSize: 15,
 		underLine: false,
 		href: '',
 		mpTips: '链接已复制，请在浏览器打开',
@@ -109,7 +110,9 @@ export default {
 		textSize: 15,
 		text: '',
 		duration: 1200,
-		timingFunction: 'ease-in-out'
+		timingFunction: 'ease-in-out',
+		show: true,
+		inactiveColor: ''
 	},
 
 	// button组件
@@ -149,7 +152,10 @@ export default {
 		image: '',
 		loadingMode: 'circle',
 		loading: false,
-		bgColor: '#ffffff'
+		bgColor: '#ffffff',
+		color: '#C8C8C8',
+		fontSize: 19,
+		loadingColor: '#C8C8C8'
 	},
 
 	// swipe-action组件
@@ -157,9 +163,10 @@ export default {
 		show: 'none',
 		disabled: false,
 		autoClose: false,
-		threshold: 20,
+		threshold: 30,
 		leftOptions: [],
-		rightOptions: []
+		rightOptions: [],
+		duration: 350
 	},
 
 	// sticky组件
@@ -316,7 +323,7 @@ export default {
 
 	// line组件
 	line: {
-		color: '#e4e7ed',
+		color: '#d6d7d9',
 		length: '100%',
 		direction: 'row',
 		hairline: true,
@@ -329,7 +336,7 @@ export default {
 		value: 1,
 		count: 5,
 		disabled: false,
-		size: 16,
+		size: 18,
 		inactiveColor: '#b2b2b2',
 		activeColor: '#FA3534',
 		gutter: 5,
@@ -373,6 +380,9 @@ export default {
 		closeOnClickOverly: true,
 		zIndex: 10075,
 		safeAreaInsetBottom: true,
+		closeIconPos: 'top-right',
+		round: false,
+		
 	},
 
 	// overlay组件
@@ -394,7 +404,8 @@ export default {
 		closeOnClickAction: true,
 		safeAreaInsetBottom: true,
 		openType: '',
-		closeOnClickOverly: true
+		closeOnClickOverly: true,
+		round: false
 	},
 
 	// toast组件
@@ -507,8 +518,8 @@ export default {
 			return [];
 		},
 		uploadText: '',
-		width: 200,
-		height: 200
+		width: 80,
+		height: 80,
 	},
 	// notify组件
 	notify: {
@@ -529,4 +540,67 @@ export default {
 		autoStart: true,
 		millisecond: false
 	},
+	
+	// 步进器组件
+	numberBox: {
+		name: '',
+		value: 0,
+		min: 1,
+		max: Number.MAX_SAFE_INTEGER,
+		step: 1,
+		integer: false,
+		disabled: false,
+		disabledInput: false,
+		asyncChange: false,
+		inputWidth: 35,
+		showMinus: true,
+		showPlus: true,
+		decimalLength: null,
+		longPress: true,
+		color: '#323233',
+		buttonSize: 30,
+		bgColor: '#EBECEE',
+		cursorSpacing: 100,
+		disablePlus: false,
+		disableMinus: false,
+		iconStyle: ''
+	},
+	
+	// 徽标数组件
+	badge:{
+		isDot: false,
+		value: '',
+		show: true,
+		max: 999,
+		type: 'error',
+		showZero: false,
+		bgColor: '',
+		color: '#ffffff',
+		shape: 'circle',
+		numberType: 'overflow'
+	},
+	
+	// alert警告组件
+	alert: {
+		title: '',
+		type: 'warning',
+		description: '',
+		closable: false,
+		showIcon: false,
+		effect: 'light',
+		center: false,
+		fontSize: 14
+	},
+	
+	// subsection组件
+	subsection: {
+		list: [],
+		current: 0,
+		activeColor: '#3c9cff',
+		inactiveColor: '#303133',
+		mode: 'button',
+		fontSize: 12,
+		bold: true,
+		bgColor: '#eeeeef'
+	}
 }

@@ -60,7 +60,7 @@
 					bottom: 0,
 					'background-color': `rgba(0, 0, 0, ${this.opacity})`
 				}
-				return uni.$u.deepMerge(style, this.customStyle)
+				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			}
 		},
 		methods: {

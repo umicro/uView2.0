@@ -1,14 +1,12 @@
 <template>
-	<view
+	<text
 		class="u-count-num"
 		:style="{
-			fontSize: fontSize + 'rpx',
+			fontSize: $u.addUnit(fontSize),
 			fontWeight: bold ? 'bold' : 'normal',
 			color: color
 		}"
-	>
-		{{ displayValue }}
-	</view>
+	>{{ displayValue }}</text>
 </template>
 
 <script>
@@ -16,15 +14,15 @@
  * countTo 数字滚动
  * @description 该组件一般用于需要滚动数字到某一个值的场景，目标要求是一个递增的值。
  * @tutorial https://www.uviewui.com/components/countTo.html
- * @property {String Number} start-val 开始值
- * @property {String Number} end-val 结束值
- * @property {String Number} duration 滚动过程所需的时间，单位ms（默认2000）
+ * @property {String | Number} start-val 开始值
+ * @property {String | Number} end-val 结束值
+ * @property {String | Number} duration 滚动过程所需的时间，单位ms（默认2000）
  * @property {Boolean} autoplay 是否自动开始滚动（默认true）
- * @property {String Number} decimals 要显示的小数位数，见官网说明（默认0）
+ * @property {String | Number} decimals 要显示的小数位数，见官网说明（默认0）
  * @property {Boolean} use-easing 滚动结束时，是否缓动结尾，见官网说明（默认true）
  * @property {String} separator 千位分隔符，见官网说明
  * @property {String} color 字体颜色（默认#303133）
- * @property {String Number} font-size 字体大小，单位rpx（默认50）
+ * @property {String | Number} font-size 字体大小，单位rpx（默认50）
  * @property {Boolean} bold 字体是否加粗（默认false）
  * @event {Function} end 数值滚动到目标值时触发
  * @example <u-count-to ref="uCountTo" :end-val="endVal" :autoplay="autoplay"></u-count-to>
@@ -40,8 +38,7 @@ export default {
 		// 要滚动的目标数值，必须
 		endVal: {
 			type: [Number, String],
-			default: 0,
-			required: true
+			default: 0
 		},
 		// 滚动到目标数值的动画持续时间，单位为毫秒（ms）
 		duration: {
@@ -71,12 +68,12 @@ export default {
 		// 字体颜色
 		color: {
 			type: String,
-			default: '#303133'
+			default: '#606266'
 		},
 		// 字体大小
 		fontSize: {
 			type: [Number, String],
-			default: 50
+			default: 22
 		},
 		// 是否加粗字体
 		bold: {
@@ -103,6 +100,7 @@ export default {
 			lastTime: 0 // 上一次的时间
 		};
 	},
+	mixins: [uni.$u.mixin],
 	computed: {
 		countDown() {
 			return this.startVal > this.endVal;
@@ -161,7 +159,7 @@ export default {
 		},
 		// 重新开始(暂停的情况下)
 		resume() {
-			this.startTime = null;
+			this.startTime = 0;
 			this.localDuration = this.remaining;
 			this.localStartVal = this.printVal;
 			this.requestAnimationFrame(this.count);
@@ -195,7 +193,7 @@ export default {
 			} else {
 				this.printVal = this.printVal > this.endVal ? this.endVal : this.printVal;
 			}
-			this.displayValue = this.formatNumber(this.printVal);
+			this.displayValue = this.formatNumber(this.printVal) || 0;
 			if (progress < this.localDuration) {
 				this.rAF = this.requestAnimationFrame(this.count);
 			} else {

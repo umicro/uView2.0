@@ -1,36 +1,38 @@
 <template>
 	<view class="u-page">
 		<view class="u-page__top-box">
-			<u-section
-			    title="演示效果"
-			    :right="false"
-			></u-section>
+			 <text class="u-demo-block__title">演示效果</text>
 		</view>
 		<u-empty
 		    :mode="mode"
 		    :icon="imgList[mode]"
 		>
 			<u-button
+			size="small"
+			type="primary"
+			:style="{marginTop:10+'px'}"
 			    v-if="mode=='car'"
 			    text="查看更多商品"
 			>
 			</u-button>
 		</u-empty>
-		<u-cell
-		    :titleStyle="{fontWeight: 500}"
-		    @click="openImg(item.imgName)"
-		    :title="item.title"
-		    v-for="(item, index) in list"
-		    :key="index"
-		    isLink
-		>
-			<image
-			    slot="icon"
-			    class="u-cell-icon"
-			    :src="item.iconUrl"
-			    mode="widthFix"
-			></image>
-		</u-cell>
+<div class="empty-select">
+	<u-cell
+	    :titleStyle="{fontWeight: 500}"
+	    @click="openImg(item.imgName)"
+	    :title="item.title"
+	    v-for="(item, index) in list"
+	    :key="index"
+	    isLink
+	>
+		<image
+		    slot="icon"
+		    class="u-cell-icon"
+		    :src="item.iconUrl"
+		    mode="widthFix"
+		></image>
+	</u-cell>
+</div>
 	</view>
 </template>
 
@@ -138,5 +140,8 @@
 		&__top-box {
 			padding-left:40rpx;
 		}
+	}
+	.empty-select{
+	  margin-top:10px;
 	}
 </style>

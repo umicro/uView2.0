@@ -1,5 +1,5 @@
 <template>
-	<view class="u-upload" :style="[customStyle]">
+	<view class="u-upload" :style="[$u.addStyle(customStyle)]">
 		<view class="u-upload__wrap">
 			<view
 			    class="u-upload__wrap__preview"
@@ -9,9 +9,13 @@
 				<image
 				    v-if="item.isImage || (item.type && item.type === 'image')"
 				    :src="item.thumb || item.url"
-				    mode="aspectFill"
+				    :mode="imageMode"
 				    class="u-upload__wrap__preview__image"
 				    @tap="onPreviewImage(item)"
+					:style="{
+						width: $u.addUnit(width),
+						height: $u.addUnit(height)
+					}"
 				/>
 				<view
 				    v-else
@@ -264,7 +268,7 @@
 			height: {
 				type: [String, Number],
 				default: uni.$u.props.upload.height
-			}
+			},
 		},
 		mixins: [uni.$u.mixin, mixin],
 		data() {
@@ -451,8 +455,6 @@
 
 <style lang="scss">
 	@import '../../libs/css/components.scss';
-	$u-upload-preview-width:80px !default;
-	$u-upload-preview-height:$u-upload-preview-width;
 	$u-upload-preview-border-radius: 2px !default;
 	$u-upload-preview-margin: 0 8px 8px 0 !default;
 	$u-upload-image-width:80px !default;
@@ -511,8 +513,6 @@
 			@include flex;
 
 			&__preview {
-				width: $u-upload-preview-width;
-				height: $u-upload-preview-height;
 				border-radius: $u-upload-preview-border-radius;
 				margin: $u-upload-preview-margin;
 				position: relative;
@@ -570,7 +570,7 @@
 			bottom: $u-upload-success-bottom;
 			right: $u-upload-success-right;
 			@include flex;
-			// 由于weex(nvue)为阿里巴巴的KPI(部门业绩考核)的产物，不支持css绘制三角形
+			// 由于weex(nvue)为阿里巴巴的KPI(部门业绩考核)的laji产物，不支持css绘制三角形
 			// 所以在nvue下使用图片，非nvue下使用css实现
 			/* #ifndef APP-NVUE */
 			border-top-color: $u-upload-success-border-top-color;

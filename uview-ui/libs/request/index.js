@@ -1,10 +1,10 @@
-import deepMerge from "../function/deepMerge";
+import libs from "../function/index";
 import validate from "../function/test";
 class Request {
 	// 设置全局默认配置
 	setConfig(customConfig) {
 		// 深度合并对象，否则会造成对象深层属性丢失
-		this.config = deepMerge(this.config, customConfig);
+		this.config = libs.deepMerge(this.config, customConfig);
 	}
 
 	// 主要请求部分

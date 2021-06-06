@@ -182,7 +182,7 @@
 				const style = {}
 				style.marginTop = uni.$u.addUnit(this.marginTop)
 				// 合并customStyle样式，此参数通过mixin中的props传递
-				return uni.$u.deepMerge(this.customStyle, style)
+				return uni.$u.deepMerge(uni.$u.addStyle(this.customStyle), style)
 			},
 			// 文本样式
 			textStyle() {

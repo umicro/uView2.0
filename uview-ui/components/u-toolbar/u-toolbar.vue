@@ -1,0 +1,120 @@
+<template>
+	<view
+		class="u-toolbar"
+		@touchmove.stop.prevent="noop"
+		v-if="show"
+	>
+		<view
+			class="u-toolbar__cancel__wrapper"
+			hover-class="u-hover-class"
+		>
+			<text
+				class="u-toolbar__wrapper__cancel"
+				@tap="cancel"
+				:style="{
+					color: cancelColor
+				}"
+			>{{ cancelText }}</text>
+		</view>
+		<text
+			class="u-toolbar__title u-line-1"
+			v-if="title"
+		>{{ title }}</text>
+		<view
+			class="u-toolbar__confirm__wrapper"
+			hover-class="u-hover-class"
+		>
+			<text
+				class="u-toolbar__wrapper__confirm"
+				@tap="confirm"
+				:style="{
+				color: confirmColor
+			}"
+			>{{ confirmText }}</text>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		name: 'u-toolbar',
+		mixins: [uni.$u.mixin],
+		props: {
+			// 是否展示工具条
+			show: {
+				type: Boolean,
+				default: true
+			},
+			// 取消按钮的文字
+			cancelText: {
+				type: String,
+				default: '取消'
+			},
+			// 确认按钮的文字
+			confirmText: {
+				type: String,
+				default: '确认'
+			},
+			// 取消按钮的颜色
+			cancelColor: {
+				type: String,
+				default: '#909193'
+			},
+			// 确认按钮的颜色
+			confirmColor: {
+				type: String,
+				default: '#3c9cff'
+			},
+			// 标题文字
+			title: {
+				type: String,
+				default: ''
+			}
+		},
+		methods: {
+			// 点击取消按钮
+			cancel() {
+				this.$emit('cancel')
+			},
+			// 点击确定按钮
+			confirm() {
+				this.$emit('confirm')
+			}
+		},
+	}
+</script>
+
+<style lang="scss">
+	@import "../../libs/css/components.scss";
+
+	.u-toolbar {
+		height: 42px;
+		@include flex;
+		justify-content: space-between;
+		align-items: center;
+
+		&__wrapper {
+			&__cancel {
+				color: $u-tips-color;
+				font-size: 15px;
+				padding: 0 15px;
+			}
+		}
+
+		&__title {
+			color: $u-main-color;
+			padding: 0 60rpx;
+			font-size: 16px;
+			flex: 1;
+			text-align: center;
+		}
+
+		&__wrapper {
+			&__confirm {
+				color: $u-primary;
+				font-size: 15px;
+				padding: 0 15px;
+			}
+		}
+	}
+</style>

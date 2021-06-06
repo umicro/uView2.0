@@ -5,12 +5,12 @@
 		    @tap.stop="clickHandler('minus')"
 		    @touchstart.stop="onTouchStart('minus')"
 		    @touchend.stop="clearTimeout"
-		    v-if="$slots.minus"
+		    v-if="showMinus && $slots.minus"
 		>
 			<slot name="minus" />
 		</view>
 		<view
-		    v-else
+		    v-else-if="showMinus"
 		    class="u-number-box__minus"
 		    @tap.stop="clickHandler('minus')"
 		    @touchstart.stop="onTouchStart('minus')"
@@ -25,6 +25,7 @@
 			    :color="isDisabled('minus') ? '#c8c9cc' : '#323233'"
 			    size="15"
 			    bold
+				:customStyle="iconStyle"
 			></u-icon>
 		</view>
 
@@ -47,12 +48,12 @@
 		    @tap.stop="clickHandler('plus')"
 		    @touchstart.stop="onTouchStart('plus')"
 		    @touchend.stop="clearTimeout"
-		    v-if="$slots.plus"
+		    v-if="showPlus && $slots.plus"
 		>
 			<slot name="plus" />
 		</view>
 		<view
-		    v-else
+		    v-else-if="showPlus"
 		    class="u-number-box__plus"
 		    @tap.stop="clickHandler('plus')"
 		    @touchstart.stop="onTouchStart('plus')"
@@ -67,6 +68,7 @@
 			    :color="isDisabled('plus') ? '#c8c9cc' : '#323233'"
 			    size="15"
 			    bold
+				:customStyle="iconStyle"
 			></u-icon>
 		</view>
 	</view>
@@ -74,6 +76,36 @@
 
 <script>
 	import props from './props'
+	/**
+	 * numberBox 步进器
+	 * @description 该组件一般用于商城购物选择物品数量的场景。
+	 * @tutorial https://uviewui.com/components/numberBox.html
+	 * @property {Number | String} name 步进器标识符，在change回调返回
+	 * @property {Number | String} value 用于双向绑定的值，初始化时设置设为默认min值(最小值)  （默认0）
+	 * @property {Number | String} min 最小值 （默认1）
+	 * @property {Number | String} max 最大值 （默认Number.MAX_SAFE_INTEGER）
+	 * @property {Number | String} step 加减的步长，可为小数 （默认1）
+	 * @property {Boolean} integer 是否只允许输入整数 （默认true）
+	 * @property {Boolean} disabled 是否禁用，包括输入框，加减按钮 （默认false）
+	 * @property {Boolean} disabledInput 是否禁用输入框 （默认false）
+	 * @property {Boolean} asyncChange 是否开启异步变更，开启后需要手动控制输入值 （默认false）
+	 * @property {Number | String} inputWidth 输入框宽度，单位为px （默认35）
+	 * @property {Boolean} showMinus 是否显示减少按钮 （默认true）
+	 * @property {Boolean} showPlus 是否显示增加按钮 （默认true）
+	 * @property {Number | String} decimalLength 显示的小数位数
+	 * @property {Boolean} disableMinus 是否禁用减少按钮 （默认false）
+	 * @property {Boolean} disablePlus 是否禁用增加按钮 （默认false）
+	 * @property {Boolean} longPress 是否开启长按加减手势 （默认true）
+	 * @property {String} color 输入框文字和加减按钮图标的颜色 （默认#323233）
+	 * @property {Number | String} buttonSize 按钮大小，宽高等于此值，单位px，输入框高度和此值保持一致 （默认30）
+	 * @property {String} bgColor 输入框和按钮的背景颜色 （默认#EBECEE）
+	 * @property {Number | String} cursorSpacing 指定光标于键盘的距离，避免键盘遮挡输入框，单位px （默认100）
+	 * @event {Function} onFocus 输入框活动焦点
+	 * @event {Function} onBlur 输入框失去焦点
+	 * @event {Function} onInput 输入框值发生变化
+	 * @event {Function} onChange 
+	 * @example <u-number-box v-model="value" @change="valChange"></u-number-box>
+	 */
 	export default {
 		name: 'u-number-box',
 		mixins: [uni.$u.mixin, props],
@@ -93,7 +125,7 @@
 			// 监听v-mode的变化，重新初始化内部的值
 			value(n) {
 				if (n !== this.currentValue) {
-					this.currentValue = this.format(value)
+					this.currentValue = this.format(this.value)
 				}
 			}
 		},
@@ -307,10 +339,22 @@
 <style lang="scss">
 	@import '../../libs/css/components.scss';
 
+	$u-numberBox-hover-bgColor: #E6E6E6 !default;
+	$u-numberBox-disabled-color: #c8c9cc !default;
+	$u-numberBox-disabled-bgColor: #f7f8fa !default;
+	$u-numberBox-plus-radius: 4px !default;
+	$u-numberBox-minus-radius: 4px !default;
+	$u-numberBox-input-text-align: center !default;
+	$u-numberBox-input-font-size: 15px !default;
+	$u-numberBox-input-padding: 0 !default;
+	$u-numberBox-input-margin: 0 2px !default;
+	$u-numberBox-input-disabled-color: #c8c9cc !default;
+	$u-numberBox-input-disabled-bgColor: #f2f3f5 !default;
+
 	.u-number-box {
 		@include flex(row);
 		align-items: center;
-		
+
 		&__slot {
 			/* #ifndef APP-NVUE */
 			touch-action: none;
@@ -328,38 +372,38 @@
 			/* #endif */
 
 			&--hover {
-				background-color: #E6E6E6 !important;
+				background-color: $u-numberBox-hover-bgColor !important;
 			}
 
 			&--disabled {
-				color: #c8c9cc;
-				background-color: #f7f8fa;
+				color: $u-numberBox-disabled-color;
+				background-color: $u-numberBox-disabled-bgColor;
 			}
 		}
 
 		&__plus {
-			border-top-right-radius: 4px;
-			border-bottom-right-radius: 4px;
+			border-top-right-radius: $u-numberBox-plus-radius;
+			border-bottom-right-radius: $u-numberBox-plus-radius;
 		}
 
 		&__minus {
-			border-top-left-radius: 4px;
-			border-bottom-left-radius: 4px;
+			border-top-left-radius: $u-numberBox-minus-radius;
+			border-bottom-left-radius: $u-numberBox-minus-radius;
 		}
 
 		&__input {
 			position: relative;
-			text-align: center;
-			font-size: 15px;
-			padding: 0;
-			margin: 0 2px;
+			text-align: $u-numberBox-input-text-align;
+			font-size: $u-numberBox-input-font-size;
+			padding: $u-numberBox-input-padding;
+			margin: $u-numberBox-input-margin;
 			@include flex;
 			align-items: center;
 			justify-content: center;
 
 			&--disabled {
-				color: #c8c9cc;
-				background-color: #f2f3f5;
+				color: $u-numberBox-input-disabled-color;
+				background-color: $u-numberBox-input-disabled-bgColor;
 			}
 		}
 	}

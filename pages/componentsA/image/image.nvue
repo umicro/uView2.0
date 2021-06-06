@@ -1,102 +1,87 @@
 <template>
 	<view class="u-page">
-		<u-gap></u-gap>
-		<view class="u-block">
-			<u-section
-			    title="基本案例"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<n-image
-			    :showLoading="true"
-			    class="nImage"
-			    src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1588620919,359805583&fm=26&gp=0.jpg"
-			    width="100px"
-			    height="100px"
-				 
-			></n-image>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">基本案例</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__image-item">
+					 <u--image
+					     :showLoading="true"
+					     src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1588620919,359805583&fm=26&gp=0.jpg"
+					     width="80px"
+					     height="80px"
+						 @click="click"
+					 ></u--image>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="自定义形状"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<n-image
-			    class="nImage"
-			    shape="circle"
-			    src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1588620919,359805583&fm=26&gp=0.jpg"
-			    width="100px"
-			    height="100px"
-			></n-image>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义形状</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__image-item">
+					<n-image
+					    shape="circle"
+					    src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1588620919,359805583&fm=26&gp=0.jpg"
+					    width="80px"
+					    height="80px"
+					></n-image>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="自定义圆角"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<n-image
-			    class="nImage"
-			    borderRadius="20"
-			    src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1588620919,359805583&fm=26&gp=0.jpg"
-			    width="100px"
-			    height="100px"
-			></n-image>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义圆角</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__image-item">
+					<n-image
+					    borderRadius="4"
+					    src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1588620919,359805583&fm=26&gp=0.jpg"
+					    width="80px"
+					    height="80px"
+					></n-image>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="图片懒加载"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<n-image
-			    class="nImage"
-			    :lazyLoad="true"
-			    src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1588620919,359805583&fm=26&gp=0.jpg"
-			    width="100px"
-			    height="100px"
-			></n-image>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">图片懒加载</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__image-item">
+					<n-image
+					    :lazyLoad="true"
+						 borderRadius="4"
+					    src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1588620919,359805583&fm=26&gp=0.jpg"
+					    width="80px"
+					    height="80px"
+					></n-image>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="图片淡入效果"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<n-image
-			    class="nImage"
-			    :fade="true"
-			    src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1588620919,359805583&fm=26&gp=0.jpg"
-			    width="100px"
-			    height="100px"
-			></n-image>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">图片淡入效果</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__image-item">
+					<n-image
+					    :fade="true"
+						 borderRadius="4"
+					    src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1588620919,359805583&fm=26&gp=0.jpg"
+					    width="80px"
+					    height="80px"
+					></n-image>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
-
-		<view class="u-block">
-			<u-section
-			    title="自定义图片背景色"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<n-image
-			    class="nImage"
-			    bgColor="#2979ff"
-			    src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1588620919,359805583&fm=26&gp=0.jpg"
-			    width="100px"
-			    height="100px"
-			></n-image>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义图片背景色</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__image-item">
+				<n-image
+				    bgColor="orange"
+					 borderRadius="4"
+				    src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1588620919,359805583&fm=26&gp=0.jpg"
+				    width="80px"
+				    height="80px"
+				></n-image>
+				</view>
+			</view>
 		</view>
-		<u-gap></u-gap>
 	</view>
 </template>
 
@@ -108,18 +93,14 @@
 			}
 		},
 		methods: {
-
+			click() {
+				console.log('click');
+			}
 		}
 	}
 </script>
 
 <style lang="scss">
 	@import "@/uview-ui/libs/css/components.scss";
-
-	.nImage {
-		@include flex;
-		margin: 40rpx 0;
-		flex-direction: row;
-		justify-content: space-around;
-	}
+	 
 </style>

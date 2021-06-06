@@ -1,27 +1,18 @@
 <template>
 	<view class="u-page">
-		<u-gap></u-gap>
-		<view class="u-block">
-			<u-section
-			    title="自定义吸顶高度"
-			    :right="false"
-			    class="u-block__section"
-			></u-section>
-			<u-sticky offsetTop="0">
-				<view
-				    class="box"
-				    ref="box"
-				>
-					<text class="box__text">锦瑟无端五十弦</text>
-				</view>
-			</u-sticky>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">基础使用</text>
+			<!-- <u--text text="滚动页面,即可看到下方的按钮会吸顶"></u--text> -->
 		</view>
-		<u-gap></u-gap>
-	</view>
+		<u-sticky>
+			<u-button text="吸顶按钮" type="success"></u-button>
+		</u-sticky>
+		<u-gap bgColor="#fff" height="1500px"></u-gap>
+	</view> 
 </template>
 
 <script>
-	export default {
+	export default { 
 		data() {
 			return {
 
@@ -36,21 +27,6 @@
 
 <style lang="scss">
 	.u-page {
-		height: 2000px;
-	}
-	.box {
-		/* #ifndef APP-PLUS */
-		width: 100%;
-		/* #endif */
-		height:80rpx;
-		background-color: #2979ff;
-		color: #fff;
-		padding: 20rpx;
-		text-align: center;
-		border-radius: 20rpx;
-		&__text {
-			color: #fff;
-			font-size: 14px;
-		}
+		
 	}
 </style>

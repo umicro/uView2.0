@@ -1,16 +1,18 @@
 <template>
 	<view class="u-page">
-		<u-cell-group
-		    title-bg-color="rgb(243, 244, 246)"
-		    title=""
-		>
+		<u-gap
+		    height="30"
+		    bgColor="#fff"
+		></u-gap>
+		<u-cell-group title-bg-color="rgb(243, 244, 246)">
 			<u-cell
 			    :titleStyle="{fontWeight: 500}"
 			    :title="item.title"
 			    v-for="(item, index) in list"
 			    :key="index"
 			    isLink
-			    @click="clickIndex(index)"
+				:icon="item.iconUrl"
+			    @click="showToast(item)"
 			>
 				<!-- <image
 				    slot="icon"
@@ -20,11 +22,7 @@
 				></image> -->
 			</u-cell>
 		</u-cell-group>
-		<u-toast
-		    text="锦瑟无端五十弦"
-		    :show="show"
-		    position="top"
-		></u-toast>
+		<u-toast ref="uToast"></u-toast>
 	</view>
 </template>
 
@@ -34,24 +32,50 @@
 			return {
 				show: false,
 				list: [{
-						icon: 'color',
-						title: 'primary',
+						type: 'default',
+						title: '默认主题',
+						text: "锦瑟无端五十弦",
+						iconUrl: '/static/common/image/toast/default.png'
 					},
 					{
-						icon: 'icon',
-						title: 'success',
+						type: 'error',
+						icon: false,
+						title: '失败主题',
+						text: "一弦一柱思华年",
+						iconUrl: '/static/common/image/toast/error.png'
 					},
 					{
-						icon: 'icon',
-						title: 'error',
+						type: 'success',
+						title: '成功主题(带图标)',
+						text: "庄生晓梦迷蝴蝶",
+						iconUrl: '/static/common/image/toast/success.png'
 					},
 					{
-						icon: 'icon',
-						title: 'warning',
+						type: 'warning',
+						position: "top",
+						title: '位置偏移上方',
+						text: "望帝春心托杜鹃",
+						iconUrl: '/static/common/image/toast/top.png'
 					},
 					{
-						icon: 'icon',
-						title: 'default',
+						type: 'default',
+						title: '正在加载',
+						loading: true,
+						text: "正在加载",
+						iconUrl: '/static/common/image/toast/loading.png'
+					},
+					{
+						type: 'default',
+						title: '结束后跳转标签页',
+						text: "此情可待成追忆",
+						url: '/pages/componentsB/tag/tag',
+						iconUrl: '/static/common/image/toast/jump.png'
+					},
+					{
+						title: '禁止触摸穿透',
+						overlay: true,
+						text: "只是当时已惘然",
+						iconUrl: '/static/common/image/toast/overlay.png'
 					},
 				],
 			}
@@ -63,20 +87,21 @@
 				}
 			},
 		},
-		onLoad() {
-			// setTimeout(() => {
-			// 	this.show = false
-			// }, 3000)
-		},
 		methods: {
-			clickIndex() {
-				this.show = !this.show
+			showToast(params) {
+				this.$refs.uToast.show({
+					...params
+				})
 			}
 		}
 	}
 </script>
 
 <style lang="scss">
+	.u-page {
+		padding: 0;
+	}
+
 	.u-cell-icon {
 		width: 36rpx;
 		height: 36rpx;

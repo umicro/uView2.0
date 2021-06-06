@@ -9,7 +9,7 @@ function email(value) {
  * 验证手机格式
  */
 function mobile(value) {
-	return /^1[23456789]\d{9}$/.test(value)
+	return /^1[23456789]\d{9}$/.test(value);
 }
 
 /**
@@ -17,35 +17,38 @@ function mobile(value) {
  */
 function url(value) {
 	return /^((https|http|ftp|rtsp|mms):\/\/)(([0-9a-zA-Z_!~*'().&=+$%-]+: )?[0-9a-zA-Z_!~*'().&=+$%-]+@)?(([0-9]{1,3}.){3}[0-9]{1,3}|([0-9a-zA-Z_!~*'()-]+.)*([0-9a-zA-Z][0-9a-zA-Z-]{0,61})?[0-9a-zA-Z].[a-zA-Z]{2,6})(:[0-9]{1,4})?((\/?)|(\/[0-9a-zA-Z_!~*'().;?:@&=+$,%#-]+)+\/?)$/
-		.test(value)
+		.test(value);
 }
 
 /**
  * 验证日期格式
  */
 function date(value) {
-	return !/Invalid|NaN/.test(new Date(value).toString())
+	if(!value) return false
+	// 判断是否数值或者字符串数值(意味着为时间戳)，转为数值，否则new Date无法识别字符串时间戳
+	if(number(value)) value = +value;
+	return !/Invalid|NaN/.test(new Date(value).toString());
 }
 
 /**
  * 验证ISO类型的日期格式
  */
 function dateISO(value) {
-	return /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/.test(value)
+	return /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/.test(value);
 }
 
 /**
  * 验证十进制数字
  */
 function number(value) {
-	return /^(?:-?\d+|-?\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test(value)
+	return /^[\+-]?(\d+\.?\d*|\.\d+|\d\.\d+e\+\d+)$/.test(value);
 }
 
 /**
  * 验证整数
  */
 function digits(value) {
-	return /^\d+$/.test(value)
+	return /^\d+$/.test(value);
 }
 
 /**
@@ -53,7 +56,7 @@ function digits(value) {
  */
 function idCard(value) {
 	return /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/.test(
-		value)
+		value);
 }
 
 /**
@@ -109,21 +112,21 @@ function enOrNum(value) {
  * 验证是否包含某个值
  */
 function contains(value, param) {
-	return value.indexOf(param) >= 0
+	return value.indexOf(param) >= 0;
 }
 
 /**
  * 验证一个值范围[min, max]
  */
 function range(value, param) {
-	return value >= param[0] && value <= param[1]
+	return value >= param[0] && value <= param[1];
 }
 
 /**
  * 验证一个长度范围[min, max]
  */
 function rangeLength(value, param) {
-	return value.length >= param[0] && value.length <= param[1]
+	return value.length >= param[0] && value.length <= param[1];
 }
 
 /**
@@ -184,10 +187,10 @@ function jsonString(value) {
  * 是否数组
  */
 function array(value) {
-	if (typeof Array.isArray === "function") {
+	if (typeof Array.isArray === 'function') {
 		return Array.isArray(value);
 	} else {
-		return Object.prototype.toString.call(value) === "[object Array]";
+		return Object.prototype.toString.call(value) === '[object Array]';
 	}
 }
 
@@ -210,7 +213,7 @@ function code(value, len = 6) {
  * @param {Object} value
  */
 function func(value) {
-	return typeof val === 'function';
+	return typeof value === 'function';
 }
 
 /**
@@ -218,7 +221,7 @@ function func(value) {
  * @param {Object} value
  */
 function promise(value) {
-	return object(value) && func(value.then) && func(value.catch)
+	return object(value) && func(value.then) && func(value.catch);
 }
 
 /** 是否图片格式
@@ -236,6 +239,15 @@ function image(value) {
 function video(value) {
 	const VIDEO_REGEXP = /\.(mp4|mpg|mpeg|dat|asf|avi|rm|rmvb|mov|wmv|flv|mkv)/i;
 	return VIDEO_REGEXP.test(value);
+}
+
+/**
+ * 是否为正则对象
+ * @param {Object}
+ * @return {Boolean}
+ */
+function regExp(o) {
+	return o && Object.prototype.toString.call(o) === '[object RegExp]';
 }
 
 export default {
@@ -265,5 +277,6 @@ export default {
 	func,
 	promise,
 	video,
-	image
-}
+	image,
+	regExp
+};

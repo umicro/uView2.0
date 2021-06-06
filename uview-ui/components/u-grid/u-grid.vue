@@ -82,7 +82,7 @@
 					default:
 						style.justifyContent = 'flex-start';
 				};
-				return uni.$u.deepMerge(style, this.customStyle);
+				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle));
 			}
 		},
 		methods: {
@@ -104,7 +104,7 @@
 		overflow: hidden;
 		display: block;
 		/* #endif */
-
+		justify-content: center;
 		/* #ifndef MP */
 		@include flex;
 		flex-wrap: wrap;

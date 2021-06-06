@@ -222,6 +222,7 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
+	
     $u-slider-border-radius:999px !default;
 	$u-slider-bgColor:#ebedf0 !default;
 	$u-slider-gap-border-radius:999px !default;
@@ -248,6 +249,8 @@
 		&__gap {
 			position: relative;
 			border-radius:$u-slider-gap-border-radius;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
 			background-color:$u-slider-gap-bgColor;
 			width:$u-slider-gap-width;
 			width: 100px;

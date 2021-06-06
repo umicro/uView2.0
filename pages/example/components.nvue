@@ -9,7 +9,7 @@
 				</u-cell>
 			</u-cell-group>
 		</view>
-		<!-- <u-gap height="70"></u-gap> -->
+		<u-gap height="30" bgColor="#fff"></u-gap>
 		<!-- <u-tabbar :list="vuex_tabbar" :mid-button="true"></u-tabbar> -->
 	</view>
 </template>
@@ -62,7 +62,7 @@
 
 <style lang="scss" >
 	
-	.u-cell-icon {
+	.u-cell-icon1 {
 		width: 36rpx;
 		height: 36rpx;
 		margin-right: 8rpx;

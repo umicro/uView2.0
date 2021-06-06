@@ -1,8 +1,9 @@
 <template>
 	<view
 	    class="u-loading-icon"
-		:style="[customStyle]"
+		:style="[$u.addStyle(customStyle)]"
 	    :class="[vertical && 'u-loading-icon--vertical']"
+		v-if="show"
 	>
 		<view
 		    v-if="!webviewHide"
@@ -65,6 +66,7 @@
 	 * @tutorial https://www.uviewui.com/components/loading.html
 	 * @property {String} color 动画活动区域的颜色，只对 mode = flower 模式有效（默认color['u-tips-color']）
 	 * @property {Boolean} vertical 文字和图标是否垂直排列 (默认 false)
+	 * @property {Boolean} show 是否显示组件 (默认 true)
 	 * @property {String} mode 模式选择，见官网说明（默认circle）
 	 * @property {String Number} size 加载图标的大小，单位px（默认24）
 	 * @property {String Number} textSize 文字大小（默认15）
@@ -77,6 +79,11 @@
 	export default {
 		name:'u-loading-icon',
 		props: {
+			// 是否显示组件
+			show: {
+				type: Boolean,
+				default: uni.$u.props.loadingIcon.show
+			},
 			// 颜色
 			color: {
 				type: String,
@@ -116,6 +123,11 @@
 			duration: {
 				type: [String, Number],
 				default: uni.$u.props.loadingIcon.duration
+			},
+			// mode=circle时的暗边颜色
+			inactiveColor: {
+				type: String,
+				default: uni.$u.props.loadingIcon.inactiveColor
 			}
 		},
 		mixins: [uni.$u.mixin],
@@ -128,25 +140,48 @@
 				}),
 				aniAngel: 0, // 动画旋转角度
 				webviewHide: false, // 监听webview的状态，如果隐藏了页面，则停止动画，以免性能消耗
+				loading: false, // 是否运行中，针对nvue使用
 			}
 		},
 		computed: {
-			// 当为circle类型时，给其另外三边设置一个rgba透明度值
+			// 当为circle类型时，给其另外三边设置一个更轻一些的颜色
+			// 之所以需要这么做的原因是，比如父组件传了color为红色，那么需要另外的三个边为浅红色
+			// 而不能是固定的某一个其他颜色(因为这个固定的颜色可能浅蓝，导致效果没有那么细腻良好)
 			otherBorderColor() {
-				return this.mode === 'circle' ? this.$u.colorToRgba(this.color, '0.25') : 'transparent'
+				const lightColor = uni.$u.colorGradient(this.color, '#ffffff', 100)[80]
+				if(this.mode === 'circle') {
+					return this.inactiveColor ? this.inactiveColor : lightColor
+				} else {
+					return 'transparent'
+				}
+				// return this.mode === 'circle' ? this.inactiveColor ? this.inactiveColor : lightColor : 'transparent'
 			}
 		},
-		created() {
+		watch: {
+			show(n) {
+				// nvue中，show为true，且为非loading状态，就重新执行动画模块
+				// #ifdef APP-NVUE
+				if(n && !this.loading) {
+					setTimeout(() => {
+						this.startAnimate()
+					}, 30)
+				}
+				// #endif
+			}
+		},
+		mounted() {
 			this.init()
 		},
 		methods: {
 			init() {
-				// #ifdef APP-NVUE
-				this.nvueAnimate()
-				// #endif
-				// #ifdef APP-PLUS
-				this.addEventListenerToWebview()
-				// #endif
+				setTimeout(() => {
+					// #ifdef APP-NVUE
+					this.show && this.nvueAnimate()
+					// #endif
+					// #ifdef APP-PLUS
+					this.show && this.addEventListenerToWebview()
+					// #endif
+				}, 20)
 			},
 			nvueAnimate() {
 				// nvue下，非spinner类型时才需要旋转，因为nvue的spinner类型，使用了weex的
@@ -171,21 +206,23 @@
 			},
 			// 执行nvue的animate模块动画
 			startAnimate() {
-				const ani = this.$refs.ani;
+				this.loading = true
+				const ani = this.$refs.ani
+				if(!ani) return 
 				animation.transition(ani, {
 					// 进行角度旋转
 					styles: {
 						transform: `rotate(${this.aniAngel}deg)`,
 						transformOrigin: 'center center'
 					},
-					duration: this.duration,
+					duration: this.duration, 
 					timingFunction: this.timingFunction,
-					delay: 0
+					delay: 10
 				}, () => {
 					// 每次增加360deg，为了让其重新旋转一周
 					this.aniAngel += 360
 					// 动画结束后，继续循环执行动画
-					this.startAnimate()
+					this.show ? this.startAnimate() : this.loading = false
 				})
 			}
 		}
@@ -203,7 +240,7 @@
 	$u-loading-height:30px !default;
 	$u-loading-max-width:100% !default;
 	$u-loading-max-height:100% !default;
-	$u-loading-semicircle-border-width:1px!default;
+	$u-loading-semicircle-border-width: 2px!default;
 	$u-loading-semicircle-border-color:transparent!default;
 	$u-loading-semicircle-border-top-right-radius: 100px!default;
 	$u-loading-semicircle-border-top-left-radius: 100px!default;

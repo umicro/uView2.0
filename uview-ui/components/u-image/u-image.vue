@@ -1,62 +1,62 @@
 <template>
-	<view
-	    class="u-image"
-	    @tap="onClick"
-	    :style="[wrapStyle, backgroundStyle]"
+	<u-transition
+		mode="fade"
+		:show="show"
+		:duration="fade ? 1000 : 0"
 	>
-		<image
-		    v-if="!isError"
-		    :src="src"
-		    :mode="mode"
-		    @error="onErrorHandler"
-		    @load="onLoadHandler"
-			:show-menu-by-longpress="showMenuByLongpress"
-		    :lazy-load="lazyLoad"
-		    class="u-image__image"
-		    :style="{
-				borderRadius: shape == 'circle' ? '50%' : $u.addUnit(borderRadius),
-				width: $u.addUnit(width),
-				height: $u.addUnit(height)
-			}"
-		></image>
 		<view
-		    v-if="showLoading && loading"
-		    class="u-image__loading"
-		    :style="{
-				borderRadius: shape == 'circle' ? '50%' : $u.addUnit(borderRadius),
-				backgroundColor: this.bgColor
-			}"
+			class="u-image"
+			@tap="onClick"
+			:style="[wrapStyle, backgroundStyle]"
 		>
-			<slot
-			    v-if="$slots.loading"
-			    name="loading"
-			/>
-			<u-icon
-			    v-else
-			    :name="loadingIcon"
-			    :width="width"
-			    :height="height"
-			></u-icon>
+			<image
+				v-if="!isError"
+				:src="src"
+				:mode="mode"
+				@error="onErrorHandler"
+				@load="onLoadHandler"
+				:show-menu-by-longpress="showMenuByLongpress"
+				:lazy-load="lazyLoad"
+				class="u-image__image"
+				:style="{
+					borderRadius: shape == 'circle' ? '50%' : $u.addUnit(radius),
+					width: $u.addUnit(width),
+					height: $u.addUnit(height)
+				}"
+			></image>
+			<view
+				v-if="showLoading && loading"
+				class="u-image__loading"
+				:style="{
+					borderRadius: shape == 'circle' ? '50%' : $u.addUnit(radius),
+					backgroundColor: this.bgColor
+				}"
+			>
+				<slot name="loading">
+					<u-icon
+						:name="loadingIcon"
+						:width="width"
+						:height="height"
+					></u-icon>
+				</slot>
+			</view>
+			<view
+				v-if="showError && isError && !loading"
+				class="u-image__error"
+				:style="{
+					borderRadius: shape == 'circle' ? '50%' : $u.addUnit(borderRadius)
+				}"
+			>
+				<slot name="error">
+					<u-icon
+						:name="errorIcon"
+						:width="width"
+						:height="height"
+					></u-icon>
+				</slot>
+			</view>
 		</view>
-		<view
-		    v-if="showError && isError && !loading"
-		    class="u-image__error"
-		    :style="{
-				borderRadius: shape == 'circle' ? '50%' : $u.addUnit(borderRadius)
-			}"
-		>
-			<slot
-			    v-if="$slots.error"
-			    name="error"
-			/>
-			<u-icon
-			    v-else
-			    :name="errorIcon"
-			    :width="width"
-			    :height="height"
-			></u-icon>
-		</view>
-	</view>
+	</u-transition>
 </template>
 
 <script>
@@ -115,9 +115,9 @@
 				default: uni.$u.props.image.shape
 			},
 			// 圆角，单位任意
-			borderRadius: {
+			radius: {
 				type: [String, Number],
-				default: uni.$u.props.image.borderRadius
+				default: uni.$u.props.image.radius
 			},
 			// 是否懒加载，微信小程序、App、百度小程序、字节跳动小程序
 			lazyLoad: {
@@ -181,7 +181,9 @@
 				// 过渡时间，因为props的值无法修改，故需要一个中间值
 				durationTime: this.duration,
 				// 图片加载完成时，去掉背景颜色，因为如果是png图片，就会显示灰色的背景
-				backgroundStyle: {}
+				backgroundStyle: {},
+				// 用于fade模式的控制组件显示与否
+				show: false
 			};
 		},
 		watch: {
@@ -190,10 +192,10 @@
 				handler(n) {
 					if (!n) {
 						// 如果传入null或者''，或者false，或者undefined，标记为错误状态
-						this.isError = true;
-						this.loading = false;
+						this.isError = true
+						this.loading = false
 					} else {
-						this.isError = false;
+						this.isError = false
 					}
 				}
 			}
@@ -202,51 +204,56 @@
 		computed: {
 			wrapStyle() {
 				let style = {};
-				style.borderRadius = this.shape == 'circle' ? '50%' : this.$u.addUnit(this.borderRadius);
+				// 如果是显示圆形，设置一个很多的半径值即可
+				style.borderRadius = this.shape == 'circle' ? '10000px' : this.$u.addUnit(this.radius)
 				// 如果设置圆角，必须要有hidden，否则可能圆角无效
-				style.overflow = this.borderRadius > 0 ? 'hidden' : 'visible';
-				if (this.fade) {
-					style.opacity = this.opacity;
-					// nvue下，这几个属性必须要分开写
-					style.transitionDuration = `${this.durationTime}ms`;
-					style.transitionTimingFunction = 'ease-in-out';
-					style.transitionProperty = 'opacity';
-				}
-				return style;
+				style.overflow = this.borderRadius > 0 ? 'hidden' : 'visible'
+				// if (this.fade) {
+				// 	style.opacity = this.opacity
+				// 	// nvue下，这几个属性必须要分开写
+				// 	style.transitionDuration = `${this.durationTime}ms`
+				// 	style.transitionTimingFunction = 'ease-in-out'
+				// 	style.transitionProperty = 'opacity'
+				// }
+				return style
 			}
+		},
+		mounted() {
+			this.show = true
 		},
 		methods: {
 			// 点击图片
 			onClick() {
-				this.$emit('click');
+				this.$emit('click')
 			},
 			// 图片加载失败
 			onErrorHandler(err) {
-				this.loading = false;
-				this.isError = true;
-				this.$emit('error', err);
+				this.loading = false
+				this.isError = true
+				this.$emit('error', err)
 			},
 			// 图片加载完成，标记loading结束
 			onLoadHandler() {
-				this.loading = false;
-				this.isError = false;
-				this.$emit('load');
+				this.loading = false
+				this.isError = false
+				this.$emit('load')
+				this.removeBgColor()
 				// 如果不需要动画效果，就不执行下方代码，同时移除加载时的背景颜色
 				// 否则无需fade效果时，png图片依然能看到下方的背景色
-				if (!this.fade) return this.removeBgColor();
-				// 原来opacity为1(不透明，是为了显示占位图)，改成0(透明，意味着该元素显示的是背景颜色，默认的灰色)，再改成1，是为了获得过渡效果
-				this.opacity = 0;
-				// 这里设置为0，是为了图片展示到背景全透明这个过程时间为0，延时之后延时之后重新设置为duration，是为了获得背景透明(灰色)
-				// 到图片展示的过程中的淡入效果
-				this.durationTime = 0;
-				// 延时50ms，否则在浏览器H5，过渡效果无效
-				setTimeout(() => {
-					this.durationTime = this.duration;
-					this.opacity = 1;
-					setTimeout(() => {
-						this.removeBgColor();
-					}, this.durationTime);
-				}, 50);
+				// if (!this.fade) return this.removeBgColor();
+				// // 原来opacity为1(不透明，是为了显示占位图)，改成0(透明，意味着该元素显示的是背景颜色，默认的灰色)，再改成1，是为了获得过渡效果
+				// this.opacity = 0;
+				// // 这里设置为0，是为了图片展示到背景全透明这个过程时间为0，延时之后延时之后重新设置为duration，是为了获得背景透明(灰色)
+				// // 到图片展示的过程中的淡入效果
+				// this.durationTime = 0;
+				// // 延时50ms，否则在浏览器H5，过渡效果无效
+				// setTimeout(() => {
+				// 	this.durationTime = this.duration;
+				// 	this.opacity = 1;
+				// 	setTimeout(() => {
+				// 		this.removeBgColor();
+				// 	}, this.durationTime);
+				// }, 50);
 			},
 			// 移除图片的背景色
 			removeBgColor() {
@@ -261,7 +268,7 @@
 
 <style lang="scss">
 	@import '../../libs/css/components.scss';
-	
+
 	$u-image-error-top:0px !default;
 	$u-image-error-left:0px !default;
 	$u-image-error-width:100% !default;
@@ -273,6 +280,7 @@
 	.u-image {
 		position: relative;
 		transition: opacity 0.5s ease-in-out;
+
 		&__loading,
 		&__error {
 			position: absolute;
@@ -285,7 +293,7 @@
 			justify-content: center;
 			background-color: $u-image-error-background-color;
 			color: $u-image-error-color;
-			font-size:$u-image-error-font-size;
+			font-size: $u-image-error-font-size;
 		}
 	}
 </style>

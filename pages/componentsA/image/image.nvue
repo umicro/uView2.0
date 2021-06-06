@@ -6,7 +6,7 @@
 				<view class="u-page__image-item">
 					 <u--image
 					     :showLoading="true"
-					     src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1588620919,359805583&fm=26&gp=0.jpg"
+					     :src="src"
 					     width="80px"
 					     height="80px"
 						 @click="click"
@@ -18,12 +18,12 @@
 			<text class="u-demo-block__title">自定义形状</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__image-item">
-					<n-image
+					<u--image
 					    shape="circle"
-					    src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1588620919,359805583&fm=26&gp=0.jpg"
+					    :src="src"
 					    width="80px"
 					    height="80px"
-					></n-image>
+					></u--image>
 				</view>
 			</view>
 		</view>
@@ -31,54 +31,25 @@
 			<text class="u-demo-block__title">自定义圆角</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__image-item">
-					<n-image
-					    borderRadius="4"
-					    src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1588620919,359805583&fm=26&gp=0.jpg"
+					<u--image
+					    radius="4"
+					    :src="src"
 					    width="80px"
 					    height="80px"
-					></n-image>
+					></u--image>
 				</view>
 			</view>
 		</view>
 		<view class="u-demo-block">
-			<text class="u-demo-block__title">图片懒加载</text>
+			<text class="u-demo-block__title">图片模式(widthFit)</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__image-item">
-					<n-image
-					    :lazyLoad="true"
-						 borderRadius="4"
-					    src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1588620919,359805583&fm=26&gp=0.jpg"
+					<u--image
+					    :src="src"
 					    width="80px"
 					    height="80px"
-					></n-image>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">图片淡入效果</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__image-item">
-					<n-image
-					    :fade="true"
-						 borderRadius="4"
-					    src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1588620919,359805583&fm=26&gp=0.jpg"
-					    width="80px"
-					    height="80px"
-					></n-image>
-				</view>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">自定义图片背景色</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__image-item">
-				<n-image
-				    bgColor="orange"
-					 borderRadius="4"
-				    src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1588620919,359805583&fm=26&gp=0.jpg"
-				    width="80px"
-				    height="80px"
-				></n-image>
+						mode="widthFit"
+					></u--image>
 				</view>
 			</view>
 		</view>
@@ -89,7 +60,7 @@
 	export default {
 		data() {
 			return {
-
+				src: 'https://cdn.uviewui.com/uview/album/1.jpg'
 			}
 		},
 		methods: {
@@ -101,6 +72,5 @@
 </script>
 
 <style lang="scss">
-	@import "@/uview-ui/libs/css/components.scss";
 	 
 </style>

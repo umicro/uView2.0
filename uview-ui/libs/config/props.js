@@ -187,7 +187,7 @@ export default {
 		width: '300',
 		height: '225',
 		shape: 'square',
-		borderRadius: 0,
+		radius: 0,
 		lazyLoad: true,
 		showMenuByLongpress: true,
 		loadingIcon: 'photo',

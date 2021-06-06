@@ -73,11 +73,6 @@ export default [{
 			title: 'Calendar 日历',
 			title_en: 'Calendar',
 		}, {
-			path: '/pages/componentsA/select/select',
-			icon: 'select',
-			title: 'Select 列选择器',
-			title_en: 'Select',
-		}, {
 			path: '/pages/componentsB/keyboard/keyboard',
 			icon: 'keyboard',
 			title: 'Keyboard 键盘',

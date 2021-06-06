@@ -98,7 +98,7 @@
 				columns6: [
 					['中国', '美国', '日本']
 				],
-				show1: true,
+				show1: false,
 				show2: false,
 				show3: false,
 				show4: false,

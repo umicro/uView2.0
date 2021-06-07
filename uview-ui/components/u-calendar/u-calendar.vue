@@ -145,11 +145,9 @@
 			},
 			// 点击确定按钮
 			confirm() {
-				this.$emit('confirm')
-			},
-			// 点击按钮
-			buttonClickHandler() {
-				if (!this.buttonDisabled) this.$emit('confirm')
+				if (!this.buttonDisabled) {
+					this.$emit('confirm', this.selected)
+				}
 			},
 			// 设置月份数据
 			setMonth() {

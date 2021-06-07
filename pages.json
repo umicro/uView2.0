@@ -99,7 +99,8 @@
 			{
 				"path": "loading-page/loading-page",
 				"style": {
-					"navigationBarTitleText": "加载页"
+					"navigationBarTitleText": "加载页",
+					"navigationStyle": "custom"
 				}
 			},
 			{
@@ -191,7 +192,8 @@
 		}, {
 			"path": "keyboard/keyboard",
 			"style": {
-				"navigationBarTitleText": "键盘"
+				"navigationBarTitleText": "键盘",
+				"navigationStyle": "custom"
 			}
 		}, {
 			"path": "slider/slider",

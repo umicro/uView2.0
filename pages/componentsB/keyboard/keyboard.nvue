@@ -1,5 +1,12 @@
 <template>
 	<view class="u-page">
+		<u-navbar
+			title="键盘"
+			@leftClick="navigateBack"
+			safeAreaInsetTop
+			fixed
+			placeholder
+		></u-navbar>
 		<u-gap height="20" bgColor="#fff"></u-gap>
 		<u-cell-group>
 			<u-cell
@@ -23,7 +30,11 @@
 		    :dotDisabled="keyData.dotDisabled"
 		    :random='keyData.random'
 		    :show="show"
-		    @close="show = false"
+		    @close="close"
+			@cancel="cancel"
+			@confirm="confirm"
+			@change="change"
+			@backspace="backspace"
 		></u-keyboard>
 	</view>
 </template>
@@ -32,6 +43,7 @@
 	export default {
 		data() {
 			return {
+				input: '',
 				keyData: {
 					mode: '',
 					dotDisabled: false,
@@ -61,7 +73,15 @@
 				show: false
 			}
 		},
+		watch: {
+			input(newValue, oldValue) {
+				console.log('input', newValue);
+			}
+		},
 		methods: {
+			navigateBack() {
+				uni.navigateBack();
+			},
 			// 点击展示不同的键盘
 			openKeyboard(indexNum) {
 				this.keyData = {
@@ -82,7 +102,27 @@
 					this.keyData.mode = 'number'
 					this.keyData.random = true
 				}
+				this.input = ''
 				this.show = true
+			},
+			change(e) {
+				console.log('change');
+				this.input += e
+			},
+			close() {
+				console.log('close');
+				this.show = false
+			},
+			cancel() {
+				console.log('cancel');
+				this.show = false
+			},
+			confirm() {
+				console.log('confirm');
+				this.show = false
+			},
+			backspace() {
+				this.input = this.input.slice(0, -1)
 			}
 
 		}

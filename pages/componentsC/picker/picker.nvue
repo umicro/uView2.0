@@ -26,45 +26,49 @@
 		<u-picker
 			:show="show1"
 			:columns="columns1"
-			@cancel="show1 = false"
-			@confirm="show1 = false"
+			@change="change"
+			@cancel="cancel"
+			@confirm="confirm"
 		></u-picker>
 		<u-picker
 			:show="show2"
 			:columns="columns2"
 			:defaultIndex="[1]"
-			@cancel="show2 = false"
-			@confirm="show2 = false"
+			@cancel="cancel"
+			@confirm="confirm"
+			@change="change"
 		></u-picker>
 		<u-picker
 			:show="show3"
 			:columns="columns3"
-			@cancel="show3 = false"
-			@confirm="show3 = false"
+			@cancel="cancel"
+			@confirm="confirm"
 			@change="changeHandler1"
 		></u-picker>
 		<u-picker
 			:show="show4"
 			:columns="columns4"
-			@cancel="show4 = false"
-			@confirm="show4 = false"
+			@cancel="cancel"
+			@confirm="confirm"
 			:loading="loading"
 			@change="changeHandler2"
 		></u-picker>
 		<u-picker
 			:show="show5"
 			:columns="columns5"
-			@cancel="show5 = false"
-			@confirm="show5 = false"
 			title="标题太长就会显示省略号"
+			@cancel="cancel"
+			@confirm="confirm"
+			@change="change"
 		></u-picker>
 		<u-picker
 			:show="show6"
 			:columns="columns6"
-			@cancel="show6 = false"
-			@confirm="show6 = false"
-			@close="show6 = false"
 			closeOnClickOverly
+			@cancel="cancel"
+			@confirm="confirm"
+			@close="close"
+			@change="change"
 		></u-picker>
 	</view>
 </template>
@@ -73,6 +77,7 @@
 	export default {
 		data() {
 			return {
+				index: 0,
 				loading: false,
 				columnData: [
 					['深圳', '厦门', '上海', '拉萨'],
@@ -132,6 +137,7 @@
 		},
 		methods: {
 			changeHandler1(e) {
+				this.change(e)
 				const {
 					columnIndex,
 					value,
@@ -144,6 +150,7 @@
 				}
 			},
 			changeHandler2(e) {
+				this.change(e)
 				const {
 					columnIndex,
 					value,
@@ -162,9 +169,25 @@
 			navigateBack() {
 				uni.navigateBack()
 			},
+			change(e) {
+				console.log('change', e);
+			},
 			showPicker(index) {
+				this.index = index + 1
 				this[`show${index + 1}`] = true
 			},
+			close() {
+				console.log('close');
+				this[`show${this.index}`] = false
+			},
+			confirm(e) {
+				console.log('confirm', e);
+				this[`show${this.index}`] = false
+			},
+			cancel() {
+				console.log('cancel');
+				this[`show${this.index}`] = false
+			}
 		},
 	}
 </script>

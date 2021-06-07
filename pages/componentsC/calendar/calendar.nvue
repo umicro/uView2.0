@@ -25,34 +25,34 @@
 		</u-cell-group>
 		<u-calendar
 			:show="show1"
-			@confirm="show1 = false"
-			@close="show1 = false"
+			@confirm="confirm"
+			@close="close"
 		></u-calendar>
 		<u-calendar
 			:show="show2"
 			mode="multiple"
-			@confirm="show2 = false"
-			@close="show2 = false"
+			@confirm="confirm"
+			@close="close"
 		></u-calendar>
 		<u-calendar
 			:show="show3"
 			mode="range"
-			@confirm="show3 = false"
-			@close="show3 = false"
+			@confirm="confirm"
+			@close="close"
 		></u-calendar>
 		<u-calendar
 			:show="show4"
 			mode="range"
-			@confirm="show4 = false"
-			@close="show4 = false"
+			@confirm="confirm"
+			@close="close"
 			color="#f56c6c"
 			:defaultDate="customThemeDefaultDate"
 		></u-calendar>
 		<u-calendar
 			:show="show5"
 			mode="range"
-			@confirm="show5 = false"
-			@close="show5 = false"
+			@confirm="confirm"
+			@close="close"
 			:defaultDate="customTextDefaultDate"
 			startText="住店"
 			endText="离店"
@@ -61,20 +61,20 @@
 		></u-calendar>
 		<u-calendar
 			:show="show6"
-			@confirm="show6 = false"
-			@close="show6 = false"
+			@confirm="confirm"
+			@close="close"
 			:maxDate="maxDate"
 		></u-calendar>
 		<u-calendar
 			:show="show7"
-			@confirm="show7 = false"
-			@close="show7 = false"
+			@confirm="confirm"
+			@close="close"
 			showLunar
 		></u-calendar>
 		<u-calendar
 			:show="show8"
-			@confirm="show8 = false"
-			@close="show8 = false"
+			@confirm="confirm"
+			@close="close"
 			mode="multiple"
 			:defaultDate="defaultDateMultiple"
 		></u-calendar>
@@ -89,6 +89,7 @@
 			month = month < 10 ? `0${month}` : month
 			const date = d.getDate()
 			return {
+				index: 0,
 				show1: false,
 				show2: false,
 				show3: false,
@@ -134,13 +135,18 @@
 		},
 		methods: {
 			showCalendar(index) {
+				this.index = index + 1
 				this[`show${index + 1}`] = true
 			},
 			navigateBack() {
 				uni.navigateBack();
 			},
-			confirm() {
-				this.show = false
+			confirm(e) {
+				console.log(e);
+				this[`show${this.index}`] = false
+			},
+			close() {
+				this[`show${this.index}`] = false
 			},
 			formatter(day) {
 				const d = new Date()

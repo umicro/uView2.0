@@ -76,16 +76,16 @@
 			},
 			// 列发生变化时触发
 			change(e) {
-				const { value, values } = e
+				const { indexs, values } = e
 				let selectValue = ''
 				if(this.mode === 'time') {
 					// 根据value各列索引，从各列数组中，取出当前时间的选中值
-					selectValue = `${values[0][value[0]]}:${values[1][value[1]]}`
+					selectValue = `${values[0][value[0]]}:${values[1][indexs[1]]}`
 				} else {
 					// 将选择的值转为数值，比如'03'转为数值的3，'2019'转为数值的2019
-					const year = parseInt(values[0][value[0]])
-					const month = parseInt(values[1][value[1]])
-					let date = parseInt(values[2] ? values[2][value[2]] : 1)
+					const year = parseInt(values[0][indexs[0]])
+					const month = parseInt(values[1][indexs[1]])
+					let date = parseInt(values[2] ? values[2][indexs[2]] : 1)
 					let hour = 0, minute = 0
 					// 此月份的最大天数
 					const maxDate = dayjs(`${year}-${month}-${date}`).daysInMonth()
@@ -96,8 +96,8 @@
 					// 不允许超过maxDate值
 					date = Math.min(maxDate, date)
 					if (this.mode === 'datetime') {
-					    hour = parseInt(values[3][value[3]])
-					    minute = parseInt(values[4][value[4]])
+					    hour = parseInt(values[3][indexs[3]])
+					    minute = parseInt(values[4][indexs[4]])
 					}
 					// 转为时间模式
 					selectValue = Number(new Date(year, month - 1, date, hour, minute))

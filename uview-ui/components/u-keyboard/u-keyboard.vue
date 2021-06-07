@@ -186,25 +186,15 @@
 			},
 			// 输入完成
 			onConfirm() {
-				this.popupClose();
 				this.$emit('confirm');
 			},
 			// 取消输入
 			onCancel() {
-				this.popupClose();
 				this.$emit('cancel');
 			},
 			// 退格键
 			backspace() {
 				this.$emit('backspace');
-			},
-			// 关闭键盘
-			close() {
-				this.show = false;
-			},
-			// 打开键盘
-			open() {
-				this.show = true;
 			}
 		}
 	}

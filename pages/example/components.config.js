@@ -84,7 +84,7 @@ export default [{
 			title_en: 'Picker',
 		}, {
 			path: '/pages/componentsC/datetimePicker/datetimePicker',
-			icon: 'picker',
+			icon: 'datetimePicker',
 			title: 'DatetimePicker 时间选择器',
 			title_en: 'Picker',
 		}, {

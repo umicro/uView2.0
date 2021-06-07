@@ -176,7 +176,8 @@
 				return (index1, index2, item) => {
 					let date = dayjs(item.date).format("YYYY-MM-DD"),
 						style = {}
-					if (this.selected.includes(date)) {
+					// 判断date是否在selected数组中，因为月份可能会需要补0，所以使用dateSame判断，而不用数组的includes判断
+					if (this.selected.some(item => this.dateSame(item, date))) {
 						style.backgroundColor = this.color
 					}
 					if (this.mode === 'single') {
@@ -190,16 +191,16 @@
 						if (this.selected.length >= 2) {
 							const len = this.selected.length - 1
 							// 第一个日期设置左上角和左下角的圆角
-							if (date === this.selected[0]) {
+							if (this.dateSame(date, this.selected[0])) {
 								style.borderTopLeftRadius = '3px'
 								style.borderBottomLeftRadius = '3px'
 							}
 							// 最后一个日期设置右上角和右下角的圆角
-							if (date === this.selected[len]) {
+							if (this.dateSame(date, this.selected[len])) {
 								style.borderTopRightRadius = '3px'
 								style.borderBottomRightRadius = '3px'
 							}
-							// 出于第一和最后一个之间的日期，背景色设置为浅色，通过将对应颜色进行等分，再取其尾部的颜色值
+							// 处于第一和最后一个之间的日期，背景色设置为浅色，通过将对应颜色进行等分，再取其尾部的颜色值
 							if (dayjs(date).isAfter(dayjs(this.selected[0])) && dayjs(date).isBefore(dayjs(this
 									.selected[len]))) {
 								style.backgroundColor = uni.$u.colorGradient(this.color, '#ffffff', 100)[90]
@@ -211,7 +212,7 @@
 							style.borderBottomLeftRadius = '3px'
 						}
 					} else {
-						if (this.selected.includes(date)) {
+						if (this.selected.some(item => this.dateSame(item, date))) {
 							style.borderTopLeftRadius = '3px'
 							style.borderBottomLeftRadius = '3px'
 							style.borderTopRightRadius = '3px'
@@ -227,7 +228,7 @@
 					const date = dayjs(item.date).format("YYYY-MM-DD"),
 						style = {}
 					// 选中的日期，提示文字设置白色
-					if (this.selected.includes(date)) {
+					if (this.selected.some(item => this.dateSame(item, date))) {
 						style.color = '#ffffff'
 					}
 					if (this.mode === 'range') {
@@ -250,13 +251,13 @@
 					if (this.mode === 'range' && this.selected.length > 0) {
 						if (this.selected.length === 1) {
 							// 选择了一个日期时，如果当前日期为数组中的第一个日期，则显示底部文字为“开始”
-							if (dayjs(date).isSame(dayjs(this.selected[0]))) return this.startText
+							if (this.dateSame(date, this.selected[0])) return this.startText
 							else return bottomInfo
 						} else {
 							const len = this.selected.length - 1
 							// 如果数组中的日期大于2个时，第一个和最后一个显示为开始和结束日期
-							if (dayjs(date).isSame(dayjs(this.selected[0]))) return this.startText
-							else if (dayjs(date).isSame(dayjs(this.selected[len]))) return this.endText
+							if (this.dateSame(date, this.selected[0])) return this.startText
+							else if (this.dateSame(date, this.selected[len])) return this.endText
 							else return bottomInfo
 						}
 					} else {
@@ -277,6 +278,10 @@
 						this.getMonthRect()
 					})
 				})
+			},
+			// 判断两个日期是否相等
+			dateSame(date1, date2) {
+				return dayjs(date1).isSame(dayjs(date2))
 			},
 			// 获取月份数据区域的宽度，因为nvue不支持百分比，所以无法通过css设置每个日期item的宽度
 			getWrapperWidth() {
@@ -339,7 +344,7 @@
 					// 单选情况下，让数组中的元素为当前点击的日期
 					selected = [date]
 				} else if (this.mode === 'multiple') {
-					if (selected.includes(date)) {
+					if (selected.some(item => this.dateSame(item, date))) {
 						// 如果点击的日期已在数组中，则进行移除操作，也就是达到反选的效果
 						const itemIndex = selected.findIndex(item => item === date)
 						selected.splice(itemIndex, 1)

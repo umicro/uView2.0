@@ -103,7 +103,11 @@
 			},
 			// 点击工具栏的确定按钮
 			confirm() {
-				this.$emit('confirm')
+				this.$emit('confirm', {
+					indexs: this.innerIndex,
+					value: this.innerColumns.map((item, index) => item[this.innerIndex[index]]),
+					values: this.innerColumns
+				})
 			},
 			// 选择器某一列的数据发生变化时触发
 			changeHandler(e) {
@@ -125,15 +129,15 @@
 				}
 				this.columnIndex = columnIndex
 				const values = this.innerColumns
-
 				// 将当前的各项变化索引，设置为"上一次"的索引变化值
 				this.setLastIndex(value)
 				this.setIndexs(value)
 
 				this.$emit('change', {
 					picker: this,
-					value,
+					value: this.innerColumns.map((item, index) => item[value[index]]),
 					index,
+					indexs: value,
 					// values为当前变化列的数组内容
 					values,
 					columnIndex

@@ -1,8 +1,15 @@
 <template>
 	<view class="u-page">
+		<u-navbar
+			title="加载页"
+			@leftClick="navigateBack"
+			safeAreaInsetTop
+			fixed
+			placeholder
+		></u-navbar>
 		<u-gap
 		    bgColor="#fff"
-		    height="30"
+		    height="20"
 		></u-gap>
 		<u-cell-group>
 			<u-cell
@@ -70,6 +77,9 @@
 			}
 		},
 		methods: {
+			navigateBack() {
+				uni.navigateBack()
+			},
 			openLoadingPage(indexNum) {
 				this.loadingPageData = {
 					loadingText: '',

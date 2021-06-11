@@ -37,7 +37,6 @@
 						<button
 						    :key="index"
 						    class="u-reset-button"
-						    :data-index="index"
 						    :openType="item.openType"
 						    @getuserinfo="onGetUserInfo"
 						    @contact="onContact"
@@ -107,6 +106,7 @@
 <script>
 	import openType from '../../libs/mixin/openType'
 	import button from '../../libs/mixin/button'
+	import props from './props.js'
 	/**
 	 * actionSheet 操作菜单
 	 * @description 本组件用于从底部弹出一个操作菜单，供用户选择并返回结果。本组件功能类似于uni的uni.showActionSheetAPI，配置更加灵活，所有平台都表现一致。
@@ -141,65 +141,8 @@
 	 */
 	export default {
 		name: "u-action-sheet",
-		props: {
-			// 是否展示
-			show: {
-				type: Boolean,
-				default: uni.$u.props.actionSheet.show
-			},
-			// 标题
-			title: {
-				type: String,
-				default: uni.$u.props.actionSheet.title
-			},
-			// 选项上方的描述信息
-			description: {
-				type: String,
-				default: uni.$u.props.actionSheet.description
-			},
-			// 数据
-			actions: {
-				type: Array,
-				default: uni.$u.props.actionSheet.actions
-			},
-			// 额外传参参数，用于小程序的data-xxx属性，通过target.dataset.index获取
-			index: {
-				type: String,
-				default: uni.$u.props.actionSheet.index
-			},
-			// 取消按钮的文字，不为空时显示按钮
-			cancelText: {
-				type: String,
-				default: uni.$u.props.actionSheet.cancelText
-			},
-			// 点击某个菜单项时是否关闭弹窗
-			closeOnClickAction: {
-				type: Boolean,
-				default: uni.$u.props.actionSheet.closeOnClickAction
-			},
-			// 处理底部安全区
-			safeAreaInsetBottom: {
-				type: Boolean,
-				default: uni.$u.props.actionSheet.safeAreaInsetBottom
-			},
-			// 小程序的打开方式
-			openType: {
-				type: String,
-				default: uni.$u.props.actionSheet.openType
-			},
-			// 点击遮罩是否允许关闭
-			closeOnClickOverly: {
-				type: Boolean,
-				default: uni.$u.props.actionSheet.closeOnClickOverly
-			},
-			// 是否显示圆角
-			round: {
-				type: Boolean,
-				default: uni.$u.props.actionSheet.round
-			}
-		},
 		// 一些props参数和methods方法，通过mixin混入，因为其他文件也会用到
-		mixins: [openType, button, uni.$u.mixin],
+		mixins: [openType, button, uni.$u.mixin, props],
 		data() {
 			return {
 
@@ -220,14 +163,17 @@
 		},
 		methods: {
 			close() {
-				this.$emit('close')
+				// 允许点击遮罩关闭时，才发出close事件
+				if(this.closeOnClickOverly) {
+					this.$emit('close')
+				}
 			},
 			selectHandler(index) {
 				const item = this.actions[index]
 				if (item && !item.disabled && !item.loading) {
 					this.$emit('select', item)
 					if (this.closeOnClickAction) {
-						this.close()
+						this.$emit('close')
 					}
 				}
 			},

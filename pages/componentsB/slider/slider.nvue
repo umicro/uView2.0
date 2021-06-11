@@ -89,22 +89,22 @@
 			}
 		},
 		watch: {
-			value(n) {
-				// console.log(n);
+			value1(n) {
+				console.log('v-model', n);
 			}
 		},
 		methods: {
 			moving(value) {
-				// console.log('moving', value)
+				console.log('moving', value)
 			},
 			click(value) {
-				// console.log('click', value)
+				console.log('click', value)
 			},
 			end(value) {
-				// console.log('end', value)
+				console.log('end', value)
 			},
 			start(value) {
-				// console.log('start', value)
+				console.log('start', value)
 			}
 		}
 	}

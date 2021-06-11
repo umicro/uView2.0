@@ -8,6 +8,7 @@
 					<u-radio-group
 					    v-model="radiovalue1"
 					    placement="column"
+						@change="groupChange"
 					>
 						<u-radio
 						    :customStyle="{marginBottom: '8px'}"
@@ -15,6 +16,7 @@
 						    :key="index"
 						    :label="item.name"
 						    :name="item.name"
+							@change="radioChange"
 						>
 						</u-radio>
 					</u-radio-group>
@@ -294,12 +296,20 @@
 				radiovalue7: '可爱',
 			}
 		},
+		watch: {
+			radiovalue1(newValue, oldValue) {
+				console.log('v-model', newValue);
+			}
+		},
 		onLoad() {
 
 		},
 		methods: {
+			groupChange(n) {
+				console.log('groupChange', n);
+			},
 			radioChange(n) {
-
+				console.log('radioChange', n);
 			}
 		}
 	}

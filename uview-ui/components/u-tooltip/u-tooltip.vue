@@ -1,62 +1,82 @@
 <template>
-	<view class="u-tooltip">
+	<view
+		class="u-tooltip"
+		:style="[$u.addStyle(customStyle)]"
+	>
 		<!-- <u-overlay
 		    :show="showIndicator"
 		    customStyle="backgroundColor: rgba(0, 0, 0, 0.2)"
 		></u-overlay> -->
 		<view class="u-tooltip__wrapper">
 			<text
-			    class="u-tooltip__wrapper__text"
-			    :id="textId"
-			    :ref="textId"
-			    @longpress.stop="longpressHandler"
+				class="u-tooltip__wrapper__text"
+				:id="textId"
+				:ref="textId"
+				:userSelect="false"
+				:selectable="false"
+				@longpress.stop="longpressHandler"
 				:style="{
 					backgroundColor: bgColor && showTooltip && tooltipTop !== -10000 ? bgColor : 'transparent'
 				}"
 			>{{ text }}</text>
 			<u-transition
-			    mode="fade"
-			    :show="showTooltip"
-			    duration="300"
-			    :style="[{
+				mode="fade"
+				:show="showTooltip"
+				duration="300"
+				:style="[{
 					position: 'absolute', 
 					top: $u.addUnit(tooltipTop),
-					zIndex: 10071,
+					zIndex: zIndex,
 				}, tooltipStyle]"
 			>
 				<view
-				    class="u-tooltip__wrapper__popup"
-				    :id="tooltipId"
-				    :ref="tooltipId"
+					class="u-tooltip__wrapper__popup"
+					:id="tooltipId"
+					:ref="tooltipId"
 				>
 					<view
-					    class="u-tooltip__wrapper__popup__indicator"
-					    :style="[indicatorStyle, {
+						class="u-tooltip__wrapper__popup__indicator"
+						v-if="showCopy || buttons.length"
+						:style="[indicatorStyle, {
 							width: $u.addUnit(indicatorWidth),
 							height: $u.addUnit(indicatorWidth),
 						}]"
 					>
-						<!-- 由于nvue不支持三角形绘制，这里就做一个四方形，再旋转45deg，得到露出的一个圆角 -->
+						<!-- 由于nvue不支持三角形绘制，这里就做一个四方形，再旋转45deg，得到露出的一个三角 -->
 					</view>
 					<view class="u-tooltip__wrapper__popup__list">
-						<text
-						    class="u-tooltip__wrapper__popup__list__btn"
-						    @tap="btnClickHandler"
-						>复制</text>
+						<view
+							v-if="showCopy"
+							class="u-tooltip__wrapper__popup__list__btn"
+							hover-class="u-tooltip__wrapper__popup__list__btn--hover"
+							@tap="setClipboardData"
+						>
+							<text
+								class="u-tooltip__wrapper__popup__list__btn__text"
+								@tap="btnClickHandler"
+							>复制</text>
+						</view>
 						<u-line
-						    direction="column"
+							direction="column"
 							color="#8d8e90"
-						    v-if="buttons.length > 0"
+							v-if="showCopy && buttons.length > 0"
+							length="18"
 						></u-line>
 						<template v-for="(item , index) in buttons">
-							<text
-							    class="u-tooltip__wrapper__popup__list__btn"
-							    @tap="btnClickHandler"
-							>{{ item }}</text>
+							<view
+								class="u-tooltip__wrapper__popup__list__btn"
+								hover-class="u-tooltip__wrapper__popup__list__btn--hover"
+							>
+								<text
+									class="u-tooltip__wrapper__popup__list__btn__text"
+									@tap="btnClickHandler"
+								>{{ item }}</text>
+							</view>
 							<u-line
-							    direction="column"
+								direction="column"
 								color="#8d8e90"
-							    v-if="index < buttons.length - 1"
+								v-if="index < buttons.length - 1"
+								length="18"
 							></u-line>
 						</template>
 					</view>
@@ -70,6 +90,9 @@
 	import props from './props'
 	// #ifdef APP-NVUE 
 	const dom = uni.requireNativePlugin('dom')
+	// #endif
+	// #ifdef H5
+	import ClipboardJS from "./clipboard.min.js"
 	// #endif
 	export default {
 		name: 'u-tooltip',
@@ -107,6 +130,7 @@
 			}
 		},
 		computed: {
+			// 特别处理H5的复制，因为H5浏览器是自带系统复制功能的，在H5环境
 			// 当一些依赖参数变化时，需要重新计算气泡和指示器的位置信息
 			propsChange() {
 				return [this.text, this.buttons]
@@ -122,11 +146,14 @@
 				if (this.tooltipInfo.width / 2 > this.textInfo.left + this.textInfo.width / 2 - this.screenGap) {
 					this.indicatorStyle = {}
 					style.left = `-${addUnit(this.textInfo.left - this.screenGap)}`
-					this.indicatorStyle.left = addUnit(this.textInfo.width / 2 - getPx(style.left) - this.indicatorWidth / 2)
-				} else if (this.tooltipInfo.width / 2 > sys.windowWidth - this.textInfo.right + this.textInfo.width / 2 - this.screenGap) {
+					this.indicatorStyle.left = addUnit(this.textInfo.width / 2 - getPx(style.left) - this.indicatorWidth /
+						2)
+				} else if (this.tooltipInfo.width / 2 > sys.windowWidth - this.textInfo.right + this.textInfo.width / 2 -
+					this.screenGap) {
 					this.indicatorStyle = {}
 					style.right = `-${addUnit(sys.windowWidth - this.textInfo.right - this.screenGap)}`
-					this.indicatorStyle.right = addUnit(this.textInfo.width / 2 - getPx(style.right) - this.indicatorWidth / 2)
+					this.indicatorStyle.right = addUnit(this.textInfo.width / 2 - getPx(style.right) - this
+						.indicatorWidth / 2)
 				} else {
 					const left = Math.abs(this.textInfo.width / 2 - this.tooltipInfo.width / 2)
 					style.left = this.textInfo.width > this.tooltipInfo.width ? addUnit(left) : -addUnit(left)
@@ -195,6 +222,46 @@
 						this.textInfo = size
 					})
 				})
+			},
+			// 复制文本到粘贴板
+			setClipboardData() {
+				// #ifndef H5
+				uni.setClipboardData({
+					// 优先使用copyText字段，如果没有，则默认使用text字段当做复制的内容
+				    data: this.copyText || this.text,
+				    success() {
+				        uni.$u.toast('复制成功')
+				    },
+					fail() {
+						uni.$u.toast('复制失败')
+					},
+					complete() {
+						this.showTooltip = false
+					}
+				})
+				// #endif
+				
+				// #ifdef H5
+				let event = window.event || e || {}
+				let clipboard = new ClipboardJS('', {
+					text: () => this.copyText || this.text
+				})
+				clipboard.on('success', (e) => {
+					uni.$u.toast('复制成功')
+					clipboard.off('success')
+					clipboard.off('error')
+					// 在单页应用中，需要销毁DOM的监听
+					clipboard.destroy()
+				})
+				clipboard.on('error', (e) => {
+					uni.$u.toast('复制失败')
+					clipboard.off('success')
+					clipboard.off('error')
+					// 在单页应用中，需要销毁DOM的监听
+					clipboard.destroy()
+				})
+				clipboard.onClick(event)
+				// #endif
 			}
 		},
 	}
@@ -228,14 +295,23 @@
 					position: relative;
 					flex: 1;
 					border-radius: 5px;
-					padding: 7px 0;
-					@include flex;
+					padding: 0px 0;
+					@include flex(row);
+					align-items: center;
+					overflow: hidden;
 
 					&__btn {
-						color: #FFFFFF;
-						font-size: 13px;
-						line-height: 12px;
-						padding: 4px 13px;
+						padding: 11px 13px;
+
+						&--hover {
+							background-color: #58595B;
+						}
+
+						&__text {
+							line-height: 12px;
+							font-size: 13px;
+							color: #FFFFFF;
+						}
 					}
 				}
 

@@ -233,9 +233,7 @@
 				// 发出change事件
 				this.$emit('change', this.activeIndex)
 				// 同时修改双向绑定的value的值
-				if (this.value != -1) {
-					this.$emit('input', this.activeIndex)
-				}
+				this.$emit('input', this.activeIndex)
 			},
 			// 获取当前激活的评分图标
 			getActiveIndex(x) {

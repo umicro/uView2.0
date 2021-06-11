@@ -8,6 +8,7 @@
 				    format="HH:mm:ss"
 				    autoStart
 				    millisecond
+					@finish="finish"
 				>
 				</u-count-down>
 			</view>
@@ -146,6 +147,9 @@
 			},
 			onChange(e) {
 				this.timeData = e
+			},
+			finish() {
+				console.log('finish');
 			}
 		}
 	}

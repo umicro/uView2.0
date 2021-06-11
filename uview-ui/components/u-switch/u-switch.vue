@@ -153,12 +153,13 @@
 		methods: {
 			clickHandler() {
 				if (!this.disabled && !this.loading) {
+					const oldValue = this.value === this.activeValue ? this.inactiveValue : this.activeValue
 					if(!this.asyncChange) {
-						this.$emit('input', this.value === this.activeValue ? this.inactiveValue : this.activeValue)
+						this.$emit('input', oldValue)
 					}
 					// 放到下一个生命周期，因为双向绑定的value修改父组件状态需要时间，且是异步的
 					this.$nextTick(() => {
-						this.$emit('change', this.value === this.activeValue ? this.inactiveValue : this.activeValue)
+						this.$emit('change', oldValue)
 					})
 				}
 			}

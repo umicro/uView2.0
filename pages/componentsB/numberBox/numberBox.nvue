@@ -198,9 +198,14 @@
 				bgColor: '#2979ff'
 			}
 		},
+		watch: {
+			value1(newValue, oldValue) {
+				console.log(newValue);
+			}
+		},
 		methods: {
 			change(e) {
-				// this.value1 = e
+				console.log('change', e);
 			},
 			myAsyncChange(e) {
 				this.asyncChange = false

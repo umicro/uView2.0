@@ -4,7 +4,7 @@
 			<text class="u-demo-block__title">基本案例</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
-				<u-rate></u-rate>
+				<u-rate @change="change"></u-rate>
 				</view>
 			</view>
 		</view>
@@ -77,6 +77,7 @@
 				<u-rate
 				    v-model="HalfValue"
 				    :allowHalf="true"
+					@change="change"
 				></u-rate>
 				</view>
 			</view>
@@ -109,7 +110,18 @@
 				// 自定义图标星星个数
 				activeIconValue: 3,
 			}
-		}
+		},
+		watch: {
+			value(newValue, oldValue) {
+				console.log(newValue);
+			}
+		},
+		methods: {
+			change(e) {
+				// console.log(e);
+				console.log(1, this.value);
+			}
+		},
 	}
 </script>
 

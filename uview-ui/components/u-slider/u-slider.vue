@@ -196,16 +196,13 @@
 				const style = {
 					height: uni.$u.addUnit(this.blockHeight),
 					width: uni.$u.addUnit(this.blockHeight),
-					backgroundColor: this.blockColor,
+					backgroundColor: this.blockColor
 				}
 				return uni.$u.deepMerge(this.blockStyle, style)
 			},
 			buttomWrapStyle() {
 				// 让元素垂直居中，top需要设置为父元素的50%，但是nvue不支持%写法
-				let value = parseInt(this.height)
-				if(typeof this.height === 'string' && this.height.indexOf('rpx') >= 0){
-					value = uni.rpx2px(value)
-				}
+				let value = uni.$u.getPx(this.height)
 				return {
 					top: value / 2 + 'px'
 				}

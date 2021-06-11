@@ -1,10 +1,6 @@
 <template>
 	<view class="u-page">
-		<!-- <u-circle-progress percentage="30">
-			
-		</u-circle-progress> -->
 		<view class="u-demo-block">
-
 			<text class="u-demo-block__title">基础功能</text>
 			<view class="u-demo-block__content">
 				<u-line-progress :percentage="percentage1">

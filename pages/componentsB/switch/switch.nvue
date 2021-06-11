@@ -4,7 +4,10 @@
 			<text class="u-demo-block__title">基础功能</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
-					<u-switch v-model="value1"></u-switch>
+					<u-switch
+						v-model="value1"
+						@change="change"
+					></u-switch>
 				</view>
 				<view class="u-page__tag-item">
 					<u-switch v-model="value2"></u-switch>
@@ -16,14 +19,14 @@
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
 					<u-switch
-					    v-model="value3"
-					    loading
+						v-model="value3"
+						loading
 					></u-switch>
 				</view>
 				<view class="u-page__tag-item">
 					<u-switch
-					    v-model="value4"
-					    loading
+						v-model="value4"
+						loading
 					></u-switch>
 				</view>
 			</view>
@@ -33,14 +36,14 @@
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
 					<u-switch
-					    v-model="value5"
-					    disabled
+						v-model="value5"
+						disabled
 					></u-switch>
 				</view>
 				<view class="u-page__tag-item">
 					<u-switch
-					    v-model="value6"
-					    disabled
+						v-model="value6"
+						disabled
 					></u-switch>
 				</view>
 			</view>
@@ -50,14 +53,14 @@
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
 					<u-switch
-					    v-model="value7"
-					    size="28"
+						v-model="value7"
+						size="28"
 					></u-switch>
 				</view>
 				<view class="u-page__tag-item">
 					<u-switch
-					    v-model="value8"
-					    size="20"
+						v-model="value8"
+						size="20"
 					></u-switch>
 				</view>
 			</view>
@@ -67,16 +70,16 @@
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
 					<u-switch
-					    v-model="value9"
-					    activeColor="#f56c6c"
-					    loading
+						v-model="value9"
+						activeColor="#f56c6c"
+						loading
 					></u-switch>
 				</view>
 				<view class="u-page__tag-item">
 					<u-switch
-					    v-model="value10"
-					    activeColor="#5ac725"
-					    loading
+						v-model="value10"
+						activeColor="#5ac725"
+						loading
 					></u-switch>
 				</view>
 			</view>
@@ -86,18 +89,18 @@
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
 					<u-switch
-					    :space="2"
-					    v-model="value11"
-					    activeColor="#f56c6c"
-					    inactiveColor="rgb(230, 230, 230)"
+						:space="2"
+						v-model="value11"
+						activeColor="#f56c6c"
+						inactiveColor="rgb(230, 230, 230)"
 					></u-switch>
 				</view>
 				<view class="u-page__tag-item">
 					<u-switch
-					    space="2"
-					    v-model="value12"
-					    activeColor="#f9ae3d"
-					    inactiveColor="rgb(230, 230, 230)"
+						space="2"
+						v-model="value12"
+						activeColor="#f9ae3d"
+						inactiveColor="rgb(230, 230, 230)"
 					></u-switch>
 				</view>
 			</view>
@@ -107,9 +110,9 @@
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
 					<u-switch
-					    v-model="value13"
-					    asyncChange
-					    @change="asyncChange"
+						v-model="value13"
+						asyncChange
+						@change="asyncChange"
 					></u-switch>
 				</view>
 			</view>
@@ -136,7 +139,15 @@
 				value13: true,
 			}
 		},
+		watch: {
+			value1(newValue, oldValue) {
+				console.log('v-model', newValue);
+			}
+		},
 		methods: {
+			change(e) {
+				console.log('change', e);
+			},
 			asyncChange(e) {
 				uni.showModal({
 					content: e ? '确定要打开吗' : '确定要关闭吗',
@@ -157,7 +168,7 @@
 			margin-right: 30px;
 		}
 	}
-	
+
 	.u-demo-block__content {
 		flex-direction: row;
 		flex-wrap: wrap;

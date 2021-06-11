@@ -33,10 +33,10 @@ export default {
 		// 弹出提示的z-index，nvue无效
 		zIndex: {
 			type: [String, Number],
-			default: 6
+			default: 10071
 		},
 		// 是否显示复制按钮
-		showCopyBtn: {
+		showCopy: {
 			type: Boolean,
 			default: true
 		},

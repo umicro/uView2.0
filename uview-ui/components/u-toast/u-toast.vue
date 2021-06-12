@@ -43,7 +43,7 @@
 </template>
 
 <script>
-	import props from './props.js';
+	import props from './props.js'
 	/**
 	 * toast 消息提示
 	 * @description 此组件表现形式类似uni的uni.showToastAPI，但也有不同的地方。
@@ -53,7 +53,6 @@
 	 * @property {String Number} text 显示的文字内容
 	 * @property {String} icon 图标，或者绝对路径的图片
 	 * @property {String} type 主题类型 （默认 default）
-	 * @property {String} loadingMode 加载中的动画类型 （默认 circle）
 	 * @property {Boolean} show  是否显示该组件 （默认 false）
 	 * @property {Boolean} overlay  是否显示透明遮罩，防止点击穿透 （默认 false）
 	 * @property {String} position  位置 （默认 center）
@@ -62,35 +61,31 @@
 	 * @example <u-toast ref="uToast" />
 	 */
 	export default {
-		name: "u-toast",
-		mixins: [uni.$u.mixin, props],
+		name: 'u-toast',
+		mixins: [uni.$u.mixin],
 		data() {
 			return {
 				isShow: false,
 				timer: null, // 定时器
 				config: {
-					params: {}, // URL跳转的参数，对象
-					text: '', // 显示文本
+					message: '', // 显示文本
 					type: '', // 主题类型，primary，success，error，warning，black
 					duration: 2000, // 显示的时间，毫秒
-					linkType: 'navigateTo', // 跳转的方式
-					url: '', // toast消失后是否跳转页面，有则跳转，优先级高于back参数
 					icon: true, // 显示的图标
 					position: 'center', // toast出现的位置
-					callback: null, // 执行完后的回调函数
-					back: false, // 结束toast是否自动返回上一页
+					loading: null, // 执行完后的回调函数
 					overlay: false, // 是否防止触摸穿透
 					loading: false, // 是否加载中状态
 				},
 				tmpConfig: {}, // 将用户配置和内置配置合并后的临时配置变量
-			};
+			}
 		},
 		computed: {
 			iconName() {
 				// 只有不为none，并且type为error|warning|succes|info时候，才显示图标
 				if (['error', 'warning', 'success', 'primary'].includes(this.tmpConfig.type) && !this.icon) {
-					let icon = this.$u.type2icon(this.tmpConfig.type);
-					return icon;
+					let icon = this.$u.type2icon(this.tmpConfig.type)
+					return icon
 				} else {
 					// 非主题类型，剩下的无论用户传入图标还是图片路径，统一是用u-icon组件解析
 					return this.icon
@@ -148,7 +143,7 @@
 				return style
 			},
 			loadingIconColor() {
-				let color = 'rgb(255, 255, 255)';
+				let color = 'rgb(255, 255, 255)'
 				if (this.type !== 'default') {
 					// loading-icon组件内部会对color参数进行一个透明度处理，该方法要求传入的颜色值
 					// 必须为rgb格式的，所以这里做一个处理
@@ -170,21 +165,21 @@
 				this.isShow = true
 				this.timer = setTimeout(() => {
 					// 倒计时结束，清除定时器，隐藏toast组件
-					this.isShow = false;
-					clearTimeout(this.timer);
-					this.timer = null;
+					this.isShow = false
+					clearTimeout(this.timer)
+					this.timer = null
 					// 判断是否存在callback方法，如果存在就执行
-					typeof(this.tmpConfig.callback) === 'function' && this.tmpConfig.callback();
+					typeof(this.tmpConfig.callback) === 'function' && this.tmpConfig.callback()
 					this.timeEnd()
-				}, this.tmpConfig.duration);
+				}, this.tmpConfig.duration)
 			},
 			// 隐藏toast组件，由父组件通过this.$refs.xxx.hide()形式调用
 			hide() {
 				this.isShow = false
 				if (this.timer) {
 					// 清除定时器
-					clearTimeout(this.timer);
-					this.timer = null;
+					clearTimeout(this.timer)
+					this.timer = null
 				}
 			},
 			// 倒计时结束之后，进行的一些操作
@@ -203,8 +198,11 @@
 					})
 				}
 			}
+		},
+		beforeDestroy() {
+			clearTimeout(this.timer)
 		}
-	};
+	}
 </script>
 
 <style lang="scss">

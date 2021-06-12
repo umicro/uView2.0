@@ -25,11 +25,6 @@ export default {
 			type: String,
 			default: uni.$u.props.toast.type
 		},
-		// 加载中的动画类型
-		loadingMode: {
-			type: String,
-			default: uni.$u.props.toast.loadingMode
-		},
 		// show
 		// show: {
 		// 	type: Boolean,

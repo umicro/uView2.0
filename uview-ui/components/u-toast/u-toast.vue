@@ -1,42 +1,42 @@
 <template>
 	<view class="u-toast">
 		<u-overlay
-		    :show="tmpConfig.overlay && isShow"
-		    :custom-style="overlayStyle"
+			:show="tmpConfig.overlay && isShow"
+			:custom-style="overlayStyle"
 		></u-overlay>
 		<u-transition
-		    mode="fade"
-		    :show="isShow"
-		    :custom-style="toastStyle"
+			mode="fade"
+			:show="isShow"
+			:custom-style="toastStyle"
 		>
 			<view
-			    class="u-toast__content"
-			    :class="['u-type-' + tmpConfig.type, tmpConfig.loading && 'u-toast__content--loading']"
+				class="u-toast__content"
+				:class="['u-type-' + tmpConfig.type, tmpConfig.type === 'loading' && 'u-toast__content--loading']"
 			>
 				<u-loading-icon
-				    v-if="tmpConfig.loading"
-				    mode="circle"
-				    color="rgb(255, 255, 255)"
-				    inactiveColor="rgb(120, 120, 120)"
-				    size="25"
+					v-if="tmpConfig.type === 'loading'"
+					mode="circle"
+					color="rgb(255, 255, 255)"
+					inactiveColor="rgb(120, 120, 120)"
+					size="25"
 				></u-loading-icon>
 				<u-icon
-				    v-else-if="tmpConfig.type !== 'defalut' && tmpConfig.icon"
-				    :name="iconName"
-				    size="17"
-				    :color="tmpConfig.type"
-				    :customStyle="iconStyle"
+					v-else-if="tmpConfig.type !== 'defalut' && iconName"
+					:name="iconName"
+					size="17"
+					:color="tmpConfig.type"
+					:customStyle="iconStyle"
 				></u-icon>
 				<u-gap
-				    v-if="tmpConfig.loading"
-				    height="12"
-				    bgColor="transparent"
+					v-if="tmpConfig.type === 'loading'"
+					height="12"
+					bgColor="transparent"
 				></u-gap>
 				<text
-				    class="u-toast__content__text"
-				    :class="['u-toast__content__text--' + tmpConfig.type]"
-				    style="max-width: 400rpx;"
-				>{{ tmpConfig.text }}</text>
+					class="u-toast__content__text"
+					:class="['u-toast__content__text--' + tmpConfig.type]"
+					style="max-width: 400rpx;"
+				>{{ tmpConfig.message }}</text>
 			</view>
 		</u-transition>
 	</view>
@@ -83,18 +83,16 @@
 		computed: {
 			iconName() {
 				// 只有不为none，并且type为error|warning|succes|info时候，才显示图标
-				if (['error', 'warning', 'success', 'primary'].includes(this.tmpConfig.type) && !this.icon) {
-					let icon = this.$u.type2icon(this.tmpConfig.type)
-					return icon
+				if (['error', 'warning', 'success', 'primary'].includes(this.tmpConfig.type)) {
+					return this.$u.type2icon(this.tmpConfig.type)
 				} else {
-					// 非主题类型，剩下的无论用户传入图标还是图片路径，统一是用u-icon组件解析
-					return this.icon
+					return ''
 				}
 			},
 			// 整体样式
 			toastStyle() {
-				const style = {}
-				const sys = uni.$u.sys()
+				const style = {},
+					sys = uni.$u.sys()
 				let left = sys.windowWidth / 2,
 					top = sys.windowHeight / 2
 				// 非H5端有原生导航栏，其高度不会算到windowHeight中，toast会在视觉上偏下，这里做一个向上的偏移
@@ -144,70 +142,57 @@
 			},
 			loadingIconColor() {
 				let color = 'rgb(255, 255, 255)'
-				if (this.type !== 'default') {
+				if (['error', 'warning', 'success', 'primary'].includes(this.tmpConfig.type)) {
 					// loading-icon组件内部会对color参数进行一个透明度处理，该方法要求传入的颜色值
 					// 必须为rgb格式的，所以这里做一个处理
 					color = uni.$u.hexToRgb(uni.$u.color[this.tmpConfig.type])
 				}
-				return 'rgb(255, 255, 255)'
+				return color
 			}
+		},
+		created() {
+			// 通过主题的形式调用toast，批量生成方法函数
+			['primary', 'success', 'error', 'warning', 'default', 'loading'].map(item => {
+				this[item] = message => this.show({
+					type: item,
+					message
+				})
+			})
 		},
 		methods: {
 			// 显示toast组件，由父组件通过this.$refs.xxx.show(options)形式调用
 			show(options) {
-				// 如果loading状态，type值只能为default
-				options.loading && (options.type = 'default')
 				// 不将结果合并到this.config变量，避免多次调用u-toast，前后的配置造成混乱
 				this.tmpConfig = this.$u.deepMerge(this.config, options)
 				// 清除定时器
-				clearTimeout(this.timer)
-				this.timer = null
-				this.isShow = true
+				this.clearTimer()
 				this.timer = setTimeout(() => {
 					// 倒计时结束，清除定时器，隐藏toast组件
-					this.isShow = false
-					clearTimeout(this.timer)
-					this.timer = null
+					this.clearTimer()
 					// 判断是否存在callback方法，如果存在就执行
-					typeof(this.tmpConfig.callback) === 'function' && this.tmpConfig.callback()
-					this.timeEnd()
+					typeof(this.tmpConfig.complete) === 'function' && this.tmpConfig.complete()
 				}, this.tmpConfig.duration)
 			},
 			// 隐藏toast组件，由父组件通过this.$refs.xxx.hide()形式调用
 			hide() {
-				this.isShow = false
-				if (this.timer) {
-					// 清除定时器
-					clearTimeout(this.timer)
-					this.timer = null
-				}
+				this.clearTimer()
 			},
-			// 倒计时结束之后，进行的一些操作
-			timeEnd() {
-				// 如果带有url值，根据isTab为true或者false进行跳转
-				if (this.tmpConfig.url) {
-					uni.$u.route({
-						type: this.tmpConfig.linkType,
-						url: this.tmpConfig.url,
-						params: this.tmpConfig.params
-					})
-				} else if (this.tmpConfig.back) {
-					// 回退到上一页
-					this.$u.route({
-						type: 'back'
-					})
-				}
+			clearTimer() {
+				this.isShow = false
+				// 清除定时器
+				clearTimeout(this.timer)
+				this.timer = null
 			}
 		},
 		beforeDestroy() {
-			clearTimeout(this.timer)
+			this.clearTimer()
 		}
 	}
 </script>
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-	
+
 	$u-toast-color:#fff !default;
 	$u-toast-border-radius:4px !default;
 	$u-toast-border-background-color:#585858 !default;

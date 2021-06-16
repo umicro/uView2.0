@@ -1,12 +1,9 @@
 // 引入全局mixin
 import mixin from './libs/mixin/mixin.js'
-// 引入关于是否mixin集成小程序分享的配置
-// import wxshare from './libs/mixin/mpShare.js'
 // 全局挂载引入http相关请求拦截插件
 import http from './libs/request'
 
-// 尝试判断在根目录的/store中是否有$u.mixin.js，此文件uView默认为需要挂在到全局的vuex的state变量
-// HX2.6.11版本,放到try中,控制台依然会警告,暂时不用此方式，
+// // 尝试判断在根目录的/store中是否有$u.mixin.js，此文件uView默认为需要挂在到全局的vuex的state变量
 // let vuexStore = {};
 // try {
 // 	vuexStore = require("@/store/$u.mixin.js");

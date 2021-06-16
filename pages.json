@@ -5,9 +5,9 @@
 	"condition": { //模式配置，仅开发期间生效
 		"current": 0, //当前激活的模式(list 的索引项)
 		"list": [{
-			// "name": "test", //模式名称
-			// "path": "pages/componentsA/image/image", //启动页面，必选
-			// "query": "" //启动参数，在页面的onLoad函数里面得到
+			"name": "test", //模式名称
+			"path": "pages/componentsB/toast/toast", //启动页面，必选
+			"query": "" //启动参数，在页面的onLoad函数里面得到
 		}]
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages

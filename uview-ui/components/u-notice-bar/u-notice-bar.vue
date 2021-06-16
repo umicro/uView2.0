@@ -3,8 +3,7 @@
 	    class="u-notice-bar"
 	    v-if="show"
 	    :style="[{
-			borderRadius: $u.addUnit(borderRadius),
-			padding: padding,
+			borderRadius: $u.addUnit(radius),
 			backgroundColor: bgColor
 		}, $u.addStyle(customStyle)]"
 	>
@@ -20,11 +19,8 @@
 			    :fontSize="fontSize"
 			    :duration="duration"
 			    :playState="playState"
-			    :padding="padding"
-			    @getMore="getMore"
 			    @close="close"
 			    @click="click"
-			    @end="end"
 			></u-column-notice>
 		</template>
 		<template v-else>
@@ -36,11 +32,9 @@
 			    :fontSize="fontSize"
 			    :speed="speed"
 			    :playState="playState"
-			    :padding="padding"
 				:url="url"
 				:linkType="linkType"
 				:icon="icon"
-			    @getMore="getMore"
 			    @close="close"
 			    @click="click"
 			></u-row-notice>
@@ -84,9 +78,9 @@
 		props: {
 			// 显示的内容，数组
 			text: {
-				type: [Array],
+				type: [Array, String],
 				default () {
-					return [];
+					return []
 				}
 			},
 			// 通告滚动模式，row-横向滚动，column-竖向滚动
@@ -119,11 +113,6 @@
 				type: String,
 				default: '#fdf6ec'
 			},
-			// 字体大小，单位rpx
-			fontSize: {
-				type: [Number, String],
-				default: 14
-			},
 			// 水平滚动时的滚动速度，即每秒滚动多少px(rpx)，这有利于控制文字无论多少时，都能有一个恒定的速度
 			speed: {
 				type: [Number, String],
@@ -134,7 +123,7 @@
 				type: String,
 				default: 'play'
 			},
-			// 字体大小，单位rpx
+			// 字体大小
 			fontSize: {
 				type: [Number, String],
 				default: 14
@@ -151,19 +140,9 @@
 				default: true
 			},
 			// 滚动通知设置圆角
-			borderRadius: {
+			radius: {
 				type: [Number, String],
 				default: 0
-			},
-			// 通知的边距
-			padding: {
-				type: [Number, String],
-				default: '18rpx 24rpx'
-			},
-			// list列表为空时，是否显示组件
-			hideTextEmpty: {
-				type: Boolean,
-				default: true
 			}
 		},
 		data() {
@@ -171,30 +150,23 @@
 				show: true
 			}
 		},
-		computed: {
-			// 如果设置show为false，或者设置了hideTextEmpty为true，且text长度又为零的话，隐藏组件
-			// show() {
-			// 	if (this.show == false || (this.hideTextEmpty == true && this.text.length == 0)) return false;
-			// 	else return true;
-			// }
-		},
 		methods: {
 			// 点击通告栏
 			click(index) {
-				this.$emit('click', index);
+				this.$emit('click', index)
 			},
 			// 点击关闭按钮
 			close() {
 				this.show = false
-				this.$emit('close');
+				this.$emit('close')
 			},
 			// 点击更多箭头按钮
 			getMore() {
-				this.$emit('getMore');
+				this.$emit('getMore')
 			},
 			// 滚动一个周期结束，只对垂直，或者水平步进形式有效
 			end() {
-				this.$emit('end');
+				this.$emit('end')
 			}
 		}
 	};

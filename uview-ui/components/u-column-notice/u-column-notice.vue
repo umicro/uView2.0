@@ -125,33 +125,23 @@
 			},
 			// 垂直或者水平滚动
 			vertical() {
-				if (this.mode == 'horizontal') return false;
+				if (this.mode == 'horizontal') return false
 				else return true;
 			},
 		},
 		data() {
 			return {
-				// animation: false
-			};
+				
+			}
 		},
 		methods: {
 			// 点击通告栏
 			click(index) {
-				this.$emit('click', index);
+				this.$emit('click', index)
 			},
 			// 点击关闭按钮
 			close() {
-				this.$emit('close');
-			},
-			// 点击更多箭头按钮
-			getMore() {
-				this.$emit('getMore');
-			},
-			change(e) {
-				let index = e.detail.current;
-				// if (index == this.list.length - 1) {
-				// 	this.$emit('end');
-				// }
+				this.$emit('close')
 			}
 		}
 	};

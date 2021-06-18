@@ -4,7 +4,9 @@
 			<text class="u-demo-block__title">演示案例</text>
 			<view class="u-page__swipe-action-item">
 				<u-swipe-action>
-					<u-swipe-action-item :rightOptions="options1">
+					<u-swipe-action-item
+						:rightOptions="options1"
+					>
 						<u-line></u-line>
 						<view class="swipe-action">
 							<view class="swipe-action__content">
@@ -152,7 +154,23 @@
 							}
 						},
 					],
-				}, ],
+				}, {
+					text: '自动关闭',
+					disabled: false,
+					options: [{
+							text: '置顶',
+							style: {
+								backgroundColor: '#3c9cff',
+							}
+						},
+						{
+							text: '取消',
+							style: {
+								backgroundColor: '#f9ae3d',
+							}
+						},
+					],
+				}],
 				options5: [{
 					icon: 'trash-fill',
 					style: {

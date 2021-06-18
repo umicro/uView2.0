@@ -1,54 +1,55 @@
 <template>
-	<view class="u-notice">
+	<view
+		class="u-notice"
+		@tap="clickHandler"
+	>
 		<slot name="icon">
 			<view
-			    class="u-notice__left-icon"
-			    v-if="icon"
+				class="u-notice__left-icon"
+				v-if="icon"
 			>
 				<u-icon
-				    :name="icon"
-				    :color="color"
-				    size="19"
+					:name="icon"
+					:color="color"
+					size="19"
 				></u-icon>
 			</view>
 		</slot>
 		<swiper
-		    :disable-touch="disableTouch"
-		    @change="change"
-		    :vertical="step ? false : true"
-		    circular
-		    :interval="duration"
+			:disable-touch="disableTouch"
+			:vertical="step ? false : true"
+			circular
+			:interval="duration"
 			:autoplay="true"
-		    class="u-notice__swiper"
+			class="u-notice__swiper"
 		>
 			<swiper-item
-			    v-for="(item, index) in text"
-			    :key="index"
-			    class="u-notice__swiper__item"
+				v-for="(item, index) in text"
+				:key="index"
+				class="u-notice__swiper__item"
 			>
 				<text
-				    class="u-notice__swiper__item__text u-line-1"
-				    :style="[textStyle]"
-				    @tap="click(index)"
+					class="u-notice__swiper__item__text u-line-1"
+					:style="[textStyle]"
 				>{{ item }}</text>
 			</swiper-item>
 		</swiper>
 		<view
-		    class="u-notice__right-icon"
-		    @click.stop="rightIconHandle"
-		    v-if="mode"
+			class="u-notice__right-icon"
+			v-if="mode"
 		>
 			<u-icon
-			    v-if="mode === 'link'"
-			    name="arrow-right"
-			    :size="17"
-			    :color="color"
+				v-if="mode === 'link'"
+				name="arrow-right"
+				:size="17"
+				:color="color"
 			></u-icon>
 			<u-icon
-			    v-if="mode === 'closable'"
-			    name="close"
-			    :size="16"
-			    :color="color"
+				v-if="mode === 'closable'"
+				name="close"
+				:size="16"
+				:color="color"
+				@click="close"
 			></u-icon>
 		</view>
 	</view>
@@ -93,11 +94,6 @@
 				type: [Number, String],
 				default: 80
 			},
-			// 播放状态，play-播放，paused-暂停
-			playState: {
-				type: String,
-				default: 'play'
-			},
 			// direction = row时，是否使用步进形式滚动
 			step: {
 				type: Boolean,
@@ -115,10 +111,20 @@
 				default: true
 			},
 		},
+		watch: {
+			text: {
+				immediate: true,
+				handler(newValue, oldValue) {
+					if(!uni.$u.test.array(newValue)) {
+						uni.$u.error('column模式要求text参数为数组')
+					}
+				}
+			}
+		},
 		computed: {
 			// 文字内容的样式
 			textStyle() {
-				let style = {};
+				let style = {}
 				style.color = this.color
 				style.fontSize = uni.$u.addUnit(this.fontSize)
 				return style
@@ -126,17 +132,17 @@
 			// 垂直或者水平滚动
 			vertical() {
 				if (this.mode == 'horizontal') return false
-				else return true;
+				else return true
 			},
 		},
 		data() {
 			return {
-				
+
 			}
 		},
 		methods: {
 			// 点击通告栏
-			click(index) {
+			clickHandler(index) {
 				this.$emit('click', index)
 			},
 			// 点击关闭按钮
@@ -175,7 +181,7 @@
 				@include flex;
 				align-items: center;
 				overflow: hidden;
-				
+
 				&__text {
 					font-size: 14px;
 					color: $u-warning;

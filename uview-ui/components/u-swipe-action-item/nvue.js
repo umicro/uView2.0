@@ -37,8 +37,23 @@ export default {
 			return duration < 30 ? duration * 1000 : duration
 		}
 	},
+	watch: {
+		show: {
+			immediate: true,
+			handler(n) {
+				console.log('变化', n);
+				if(n === true) {
+					uni.$u.sleep(50).then(() => { 
+						this.openSwipeAction()
+					})
+				} else {
+					this.closeSwipeAction()
+				}
+			}
+		}
+	},
 	mounted() {
-		uni.$u.sleep().then(() => {
+		uni.$u.sleep(20).then(() => {
 			this.queryRect()
 		})
 	},
@@ -163,6 +178,7 @@ export default {
 		},
 		// 关闭菜单
 		closeSwipeAction() {
+			if(this.status === 'close') return
 			this.moving = true
 			const buttonsWidth = this.buttonsWidth
 			animation.transition(this.$refs['u-swipe-action-item__content'].ref, {
@@ -174,6 +190,7 @@ export default {
 			}, () => {
 				this.status = 'close'
 				this.moving = false
+				this.closeHandler()
 			})
 			// 按钮的组的长度  
 			const len = this.buttons.length
@@ -193,6 +210,7 @@ export default {
 		},
 		// 打开菜单
 		openSwipeAction() {
+			if(this.status === 'open') return
 			this.moving = true
 			const buttonsWidth = -this.buttonsWidth
 			let previewButtonsMoveX = 0
@@ -205,6 +223,7 @@ export default {
 			}, () => {
 				this.status = 'open'
 				this.moving = false
+				this.openHandler()
 			})
 			// 按钮的组的长度  
 			const len = this.buttons.length
@@ -239,7 +258,7 @@ export default {
 				this.buttonsWidth = sizes.reduce((sum, cur) => sum + cur.width, 0)
 			})
 		},
-		// 通过nvue的dom模块，查询节点信息
+		// 通过nvue的dom模块，查询节点信息 
 		getRectByDom(ref) {
 			return new Promise(resolve => {
 				dom.getComponentRect(ref, res => {

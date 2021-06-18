@@ -1,34 +1,27 @@
 <template>
 	<view class="u-page">
-		<u-gap height="30" bgColor="#fff"></u-gap>
+		<u-gap
+			height="30"
+			bgColor="#fff"
+		></u-gap>
 		<u-cell-group>
 			<u-cell
-			    :titleStyle="{fontWeight: 500}"
-			    @click="openNotify(item.notifyData)"
-			    :title="item.title"
-			    v-for="(item, index) in list"
-			    :key="index"
-			    isLink
+				:titleStyle="{fontWeight: 500}"
+				@click="openNotify(item.notifyData)"
+				:title="item.title"
+				v-for="(item, index) in list"
+				:key="index"
+				isLink
 			>
 				<image
-				    slot="icon"
-				    class="u-cell-icon"
-				    :src="item.iconUrl"
-				    mode="widthFix"
+					slot="icon"
+					class="u-cell-icon"
+					:src="item.iconUrl"
+					mode="widthFix"
 				></image>
 			</u-cell>
 		</u-cell-group>
-		<u-notify
-		    :message="notifyData.message"
-		    :type="notifyData.type"
-		    :color="notifyData.color"
-		    :bgColor="notifyData.bgColor"
-		    :fontSize="notifyData.fontSize"
-		    :duration="notifyData.duration"
-		    :show="show"
-			:safeAreaInsetTop="notifyData.safeAreaInsetTop"
-		    @close="show = false"
-		></u-notify>
+		<u-notify ref="uNotify"></u-notify>
 	</view>
 </template>
 
@@ -133,12 +126,14 @@
 				]
 			}
 		},
-		onLoad() {
-		},
+		onLoad() {},
 		methods: {
-			openNotify(item) {
-				this.notifyData = item;
-				this.show = true;
+			openNotify(params) {
+				this.$refs.uNotify.show({
+					...params
+				})
+				// 也可以通过主题形式调用，如：
+				// this.$refs.uNotify.primary('Primary主题')
 			}
 		}
 	}

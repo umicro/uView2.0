@@ -2,8 +2,13 @@ export default {
 	props: {
 		// 控制打开或者关闭
 		show: {
-			type: String,
+			type: Boolean,
 			default: uni.$u.props.swipeAction.show
+		},
+		// 标识符，如果是v-for，可用index索引
+		index: {
+			type: [Number, String],
+			default: ''
 		},
 		// 是否禁用
 		disabled: {

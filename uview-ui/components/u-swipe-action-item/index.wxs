@@ -76,7 +76,7 @@ function touchend(event, ownerInstance) {
 	var moveX = pageX - state.startX
 	if (state.status === 'open') {
 		// 在展开的状态下，继续左滑，无需操作
-		if(moveX < 0) return
+		if (moveX < 0) return
 		// 在开启状态下，点击一下内容区域，moveX为0，也即没有进行移动，这时执行收起菜单逻辑
 		if (moveX === 0) {
 			return closeSwipeAction(instance, ownerInstance)
@@ -90,7 +90,7 @@ function touchend(event, ownerInstance) {
 		}
 	} else {
 		// 在关闭的状态下，右滑，无需操作
-		if(moveX > 0) return
+		if (moveX > 0) return
 		// 理由同上
 		if (Math.abs(moveX) < state.threshold) {
 			closeSwipeAction(instance, ownerInstance)
@@ -186,6 +186,8 @@ function openSwipeAction(instance, ownerInstance) {
 function setStatus(status, instance) {
 	var state = instance.getState()
 	state.status = status
+	console.log('callMethod');
+	instance.callMethod('statusHandler')
 }
 
 // 一次性收起滑动菜单

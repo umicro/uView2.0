@@ -160,9 +160,9 @@ export default {
 
 	// swipe-action组件
 	swipeAction: {
-		show: 'none',
+		show: false,
 		disabled: false,
-		autoClose: false,
+		autoClose: true,
 		threshold: 30,
 		leftOptions: [],
 		rightOptions: [],

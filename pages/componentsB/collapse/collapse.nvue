@@ -3,6 +3,9 @@
 		<view class="u-page__item">
 			<text class="u-page__item__title">基础功能</text>
 			<u-collapse
+				@change="change"
+				@close="close"
+				@open="open"
 			>
 				<u-collapse-item
 				    title="文档指南"
@@ -103,13 +106,13 @@
 		},
 		methods: {
 			open(e) {
-				// console.log('open', e)
+				console.log('open', e)
 			},
 			close(e) {
-				// console.log('close', e)
+				console.log('close', e)
 			},
 			change(e) {
-				// console.log('change', e)
+				console.log('change', e)
 			}
 		}
 	}

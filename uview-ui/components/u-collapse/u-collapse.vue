@@ -82,7 +82,7 @@
 					changeArr.push({
 						// 如果没有定义name属性，则默认返回组件的index索引
 						name: child.name || index,
-						status: child.isShow ? 'open' : 'close'
+						status: child.expanded ? 'open' : 'close'
 					})
 				}) 
 				

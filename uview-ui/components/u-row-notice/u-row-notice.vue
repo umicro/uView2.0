@@ -1,46 +1,46 @@
 <template>
 	<view
-	    class="u-notice"
+		class="u-notice"
+		@tap="clickHandler"
 	>
 		<slot name="icon">
 			<view
-			    class="u-notice__left-icon"
-			    v-if="icon"
+				class="u-notice__left-icon"
+				v-if="icon"
 			>
 				<u-icon
-				    :name="icon"
-				    :color="color"
-				    size="19"
+					:name="icon"
+					:color="color"
+					size="19"
 				></u-icon>
 			</view>
 		</slot>
 		<view
-		    class="u-notice__content"
-		    ref="u-notice__content"
+			class="u-notice__content"
+			ref="u-notice__content"
 		>
 			<text
-			    ref="u-notice__content__text"
-			    class="u-notice__content__text"
-			    @tap="click"
-			    :style="[textStyle]"
+				ref="u-notice__content__text"
+				class="u-notice__content__text"
+				:style="[textStyle]"
 			>{{text}}</text>
 		</view>
 		<view
-		    class="u-notice__right-icon"
-		    @click.stop="rightIconHandle"
+			class="u-notice__right-icon"
 			v-if="mode"
 		>
 			<u-icon
-			    v-if="mode === 'link'"
-			    name="arrow-right"
-			    :size="17"
-			    :color="color"
+				v-if="mode === 'link'"
+				name="arrow-right"
+				:size="17"
+				:color="color"
 			></u-icon>
 			<u-icon
-			    v-if="mode === 'closable'"
-			    name="close"
-			    :size="16"
-			    :color="color"
+				v-if="mode === 'closable'"
+				@click="close"
+				name="close"
+				:size="16"
+				:color="color"
 			></u-icon>
 		</view>
 	</view>
@@ -87,12 +87,7 @@
 			speed: {
 				type: [Number, String],
 				default: 80
-			},
-			// 播放状态，play-播放，paused-暂停
-			playState: {
-				type: String,
-				default: 'play'
-			},
+			}
 		},
 		data() {
 			return {
@@ -128,16 +123,12 @@
 				// #ifndef APP-NVUE
 				this.vue()
 				// #endif
-			},
-			playState(val) {
-				if (val == 'play') this.animationPlayState = 'running'
-				else this.animationPlayState = 'paused'
 			}
 		},
 		computed: {
 			// 文字内容的样式
 			textStyle() {
-				let style = {};
+				let style = {}
 				style.color = this.color
 				style.animationDuration = this.animationDuration
 				style.animationPlayState = this.animationPlayState
@@ -149,9 +140,9 @@
 			// #ifdef APP-PLUS
 			// 在APP上(含nvue)，监听当前webview是否处于隐藏状态(进入下一页时即为hide状态)
 			// 如果webivew隐藏了，为了节省性能的损耗，应停止动画的执行，同时也是为了保持进入下一页返回后，滚动位置保持不变
-			var pages = getCurrentPages();
-			var page = pages[pages.length - 1];
-			var currentWebview = page.$getAppWebview();
+			var pages = getCurrentPages()
+			var page = pages[pages.length - 1]
+			var currentWebview = page.$getAppWebview()
 			currentWebview.addEventListener('hide', () => {
 				this.webviewHide = true
 			})
@@ -188,8 +179,8 @@
 				// 这里必须这样开始动画，否则在APP上动画速度不会改变
 				this.animationPlayState = 'paused'
 				setTimeout(() => {
-					if (this.playState == 'play') this.animationPlayState = 'running';
-				}, 10);
+					this.animationPlayState = 'running'
+				}, 10)
 				// #endif
 			},
 			// nvue版处理
@@ -255,17 +246,12 @@
 				// #endif
 			},
 			// 点击通告栏
-			click(index) {
+			clickHandler(index) {
 				this.$emit('click')
 			},
 			// 点击右侧按钮，需要判断点击的是关闭图标还是箭头图标
-			rightIconHandle() {
-				if (this.mode === 'link') {
-					// 此方法写在mixin中，另外跳转的url和linkType参数也在mixin的props中
-					this.openPage()
-				} else {
-					this.$emit('close')
-				}
+			close() {
+				this.$emit('close')
 			}
 		},
 		// #ifdef APP-NVUE

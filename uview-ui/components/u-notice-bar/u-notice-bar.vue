@@ -1,42 +1,39 @@
 <template>
 	<view
-	    class="u-notice-bar"
-	    v-if="show"
-	    :style="[{
-			borderRadius: $u.addUnit(radius),
+		class="u-notice-bar"
+		v-if="show"
+		:style="[{
 			backgroundColor: bgColor
 		}, $u.addStyle(customStyle)]"
 	>
 		<template v-if="direction === 'column' || (direction === 'row' && step)">
 			<u-column-notice
-			    :color="color"
-			    :bgColor="bgColor"
-			    :text="text"
-			    :mode="mode"
+				:color="color"
+				:bgColor="bgColor"
+				:text="text"
+				:mode="mode"
 				:step="step"
 				:icon="icon"
-			    :disable-touch="disableTouch"
-			    :fontSize="fontSize"
-			    :duration="duration"
-			    :playState="playState"
-			    @close="close"
-			    @click="click"
+				:disable-touch="disableTouch"
+				:fontSize="fontSize"
+				:duration="duration"
+				@close="close"
+				@click="click"
 			></u-column-notice>
 		</template>
 		<template v-else>
 			<u-row-notice
-			    :color="color"
-			    :bgColor="bgColor"
-			    :text="text"
-			    :mode="mode"
-			    :fontSize="fontSize"
-			    :speed="speed"
-			    :playState="playState"
+				:color="color"
+				:bgColor="bgColor"
+				:text="text"
+				:mode="mode"
+				:fontSize="fontSize"
+				:speed="speed"
 				:url="url"
 				:linkType="linkType"
 				:icon="icon"
-			    @close="close"
-			    @click="click"
+				@close="close"
+				@click="click"
 			></u-row-notice>
 		</template>
 	</view>
@@ -118,11 +115,6 @@
 				type: [Number, String],
 				default: 80
 			},
-			// 播放状态，play-播放，paused-暂停
-			playState: {
-				type: String,
-				default: 'play'
-			},
 			// 字体大小
 			fontSize: {
 				type: [Number, String],
@@ -139,10 +131,15 @@
 				type: Boolean,
 				default: true
 			},
-			// 滚动通知设置圆角
-			radius: {
-				type: [Number, String],
-				default: 0
+			// 跳转的页面路径
+			url: {
+				type: String,
+				default: ''
+			},
+			// 页面跳转的类型
+			linkType: {
+				type: String,
+				default: 'navigateTo'
 			}
 		},
 		data() {
@@ -154,19 +151,15 @@
 			// 点击通告栏
 			click(index) {
 				this.$emit('click', index)
+				if (this.url && this.linkType) {
+					// 此方法写在mixin中，另外跳转的url和linkType参数也在mixin的props中
+					this.openPage()
+				}
 			},
 			// 点击关闭按钮
 			close() {
 				this.show = false
 				this.$emit('close')
-			},
-			// 点击更多箭头按钮
-			getMore() {
-				this.$emit('getMore')
-			},
-			// 滚动一个周期结束，只对垂直，或者水平步进形式有效
-			end() {
-				this.$emit('end')
 			}
 		}
 	};

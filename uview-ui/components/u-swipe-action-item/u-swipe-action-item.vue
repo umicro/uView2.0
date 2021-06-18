@@ -107,15 +107,13 @@
 		},
 		mounted() {
 			this.init()
-			uni.$u.sleep(3000).then(() => {
-				this.abc = 34
-			})
 		},
 		methods: {
 			init() {
 				// #ifndef APP-NVUE
 				this.queryRect()
 				// #endif
+				this.getParentData('u-swipe-action')
 			},
 			// #ifndef APP-NVUE
 			// 查询节点
@@ -129,8 +127,25 @@
 						duration: this.duration
 					}
 				})
-			}
+			},
 			// #endif
+			// 打开时执行
+			openHandler() {
+				if (this.parent) {
+					this.parent.closeOther(this)
+				}
+			},
+			// 关闭时执行
+			closeHandler() {
+				this.$emit('close', {
+					index: this.index
+				})
+			},
+			statusHandler({
+				status
+			}) {
+				console.log(111, status);
+			}
 		},
 	}
 </script>

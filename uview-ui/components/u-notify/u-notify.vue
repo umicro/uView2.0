@@ -1,37 +1,32 @@
 <template>
 	<u-transition
-	    mode="slide-down"
-	    :customStyle="containerStyle"
-	    :show="show"
+		mode="slide-down"
+		:customStyle="containerStyle"
+		:show="open"
 	>
 		<view
-		    class="u-notify"
-		    :class="[`u-notify--${type}`]"
-		    :style="[backgroundColor, $u.addStyle(customStyle)]"
+			class="u-notify"
+			:class="[`u-notify--${tmpConfig.type}`]"
+			:style="[backgroundColor, $u.addStyle(customStyle)]"
 		>
-			<view
-			    v-if="safeAreaInsetTop"
-			    :style="{
-					height: `${statusBarHeight}px`
-				}"
-			/>
+			<u-status-bar v-if="tmpConfig.safeAreaInsetTop"></u-status-bar>
 			<view class="u-notify__warpper">
 				<slot name="icon">
 					<u-icon
-					    v-if="['success', 'warning', 'error'].includes(type)"
-					    :name="icon"
-						:color="color"
-						:size="1.3 * fontSize"
+						v-if="['success', 'warning', 'error'].includes(tmpConfig.type)"
+						:name="tmpConfig.icon"
+						:color="tmpConfig.color"
+						:size="1.3 * tmpConfig.fontSize"
 						:customStyle="{marginRight: '4px'}"
 					></u-icon>
 				</slot>
 				<text
-				    class="u-notify__warpper__text"
-				    :style="{
-						fontSize: $u.addUnit(fontSize),
-						color: color 
+					class="u-notify__warpper__text"
+					:style="{
+						fontSize: $u.addUnit(tmpConfig.fontSize),
+						color: tmpConfig.color 
 					}"
-				>{{ message }}</text>
+				>{{ tmpConfig.message }}</text>
 			</view>
 		</view>
 	</u-transition>
@@ -59,25 +54,38 @@
 	 */
 	export default {
 		name: 'u-notify',
-		mixins: [uni.$u.mixin, props],
+		mixins: [uni.$u.mixin],
 		data() {
 			return {
+				// 是佛展示组件
+				open: false,
 				timer: null,
-			}
-		},
-		watch: {
-			show: {
-				immediate: true,
-				handler(n) {
-					// 根据true或者false，开启或者关闭组件
-					n === true ? this.open() : this.close()
-				}
+				config: {
+					// 到顶部的距离
+					top: uni.$u.props.notify.top,
+					// type主题，primary，success，warning，error
+					type: uni.$u.props.notify.type,
+					// 字体颜色
+					color: uni.$u.props.notify.color,
+					// 背景颜色
+					bgColor: uni.$u.props.notify.bgColor,
+					// 展示的文字内容
+					message: uni.$u.props.notify.message,
+					// 展示时长，为0时不消失，单位ms
+					duration: uni.$u.props.notify.duration,
+					// 字体大小
+					fontSize: uni.$u.props.notify.fontSize,
+					// 是否留出顶部安全距离（状态栏高度）
+					safeAreaInsetTop: uni.$u.props.notify.safeAreaInsetTop
+				},
+				// 合并后的配置，避免多次调用组件后，可能会复用之前使用的配置参数
+				tmpConfig: {}
 			}
 		},
 		computed: {
 			containerStyle() {
 				let top = 0
-				if (this.top === 0) {
+				if (this.tmpConfig.top === 0) {
 					// #ifdef H5
 					// H5端，导航栏为普通元素，需要将组件移动到导航栏的下边沿
 					// H5的导航栏高度为44px
@@ -85,7 +93,7 @@
 					// #endif
 				}
 				const style = {
-					top: uni.$u.addUnit(this.top === 0 ? top : this.top),
+					top: uni.$u.addUnit(this.tmpConfig.top === 0 ? top : this.tmpConfig.top),
 					// 因为组件底层为u-transition组件，必须将其设置为fixed定位
 					// 让其出现在导航栏底部
 					position: 'fixed',
@@ -97,61 +105,70 @@
 			// 组件背景颜色
 			backgroundColor() {
 				const style = {}
-				if (this.bgColor) {
-					style.backgroundColor = this.bgColor
+				if (this.tmpConfig.bgColor) {
+					style.backgroundColor = this.tmpConfig.bgColor
 				}
 				return style
-			},
-			// 状态栏高度
-			statusBarHeight() {
-				const {
-					statusBarHeight
-				} = uni.$u.sys()
-				return statusBarHeight
 			},
 			// 默认主题下的图标
 			icon() {
 				let icon
-				if(this.type === 'success') {
+				if (this.tmpConfig.type === 'success') {
 					icon = 'checkmark-circle'
-				} else if(this.type === 'error') {
+				} else if (this.tmpConfig.type === 'error') {
 					icon = 'close-circle'
-				} else if(this.type === 'warning') {
+				} else if (this.tmpConfig.type === 'warning') {
 					icon = 'error-circle'
 				}
 				return icon
 			}
 		},
+		created() {
+			// 通过主题的形式调用toast，批量生成方法函数
+			['primary', 'success', 'error', 'warning'].map(item => {
+				this[item] = message => this.show({
+					type: item,
+					message
+				})
+			})
+		},
 		methods: {
-			open() {
+			show(options) {
+				// 不将结果合并到this.config变量，避免多次调用u-toast，前后的配置造成混乱
+				this.tmpConfig = this.$u.deepMerge(this.config, options)
 				// 任何定时器初始化之前，都要执行清除操作，否则可能会造成混乱
-				clearTimeout(this.timer)
-				this.timer = null
-				if (this.duration > 0 && this.duration !== Infinity) {
-					this.$emit('open')
-					// 定时结束后，关闭组件
+				this.clearTimer()
+				this.open = true
+				if (this.tmpConfig.duration > 0) {
 					this.timer = setTimeout(() => {
-						this.close()
-					}, this.duration)
+						this.open = false
+						// 倒计时结束，清除定时器，隐藏toast组件
+						this.clearTimer()
+						// 判断是否存在callback方法，如果存在就执行
+						typeof(this.tmpConfig.complete) === 'function' && this.tmpConfig.complete()
+					}, this.tmpConfig.duration)
 				}
 			},
 			// 关闭notify
 			close() {
+				this.clearTimer()
+			},
+			clearTimer() {
+				this.isShow = false
+				// 清除定时器
 				clearTimeout(this.timer)
 				this.timer = null
-				this.$emit('close')
 			}
 		},
-		destroyed() {
-		    clearTimeout(this.timer);
-		    this.timer = null;
-		},
+		beforeDestroy() {
+			this.clearTimer()
+		}
 	}
 </script>
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
-	
+
 	$u-notify-padding: 8px 10px !default;
 	$u-notify-text-font-size: 15px !default;
 	$u-notify-primary-bgColor: $u-primary !default;
@@ -162,13 +179,13 @@
 
 	.u-notify {
 		padding: $u-notify-padding;
-		
+
 		&__warpper {
 			@include flex;
 			align-items: center;
 			text-align: center;
 			justify-content: center;
-			
+
 			&__text {
 				font-size: $u-notify-text-font-size;
 				text-align: center;

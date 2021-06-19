@@ -33,6 +33,7 @@
 				    size="mini"
 				    text="重试"
 				    type="primary"
+					plain
 				    @click="retry"
 				></u-button>
 			</view>
@@ -79,113 +80,120 @@
 		},
 		computed: {
 			uZIndex() {
-				return this.zIndex ? this.zIndex : this.$u.zIndex.noNetwork;
+				return this.zIndex ? this.zIndex : this.$u.zIndex.noNetwork
 			}
 		},
 		mounted() {
-			this.isIOS = (uni.getSystemInfoSync().platform === 'ios');
+			this.isIOS = (uni.getSystemInfoSync().platform === 'ios')
 			uni.onNetworkStatusChange((res) => {
-				this.isConnected = res.isConnected;
-				this.networkType = res.networkType;
-			});
+				this.isConnected = res.isConnected
+				this.networkType = res.networkType
+				this.emitEvent(this.networkType)
+			})
 			uni.getNetworkType({
 				success: (res) => {
-					this.networkType = res.networkType;
+					this.networkType = res.networkType
+					this.emitEvent(this.networkType)
 					if (res.networkType == 'none') {
-						this.isConnected = false;
+						this.isConnected = false
 					} else {
-						this.isConnected = true;
+						this.isConnected = true
 					}
 				}
-			});
+			})
 		},
 		methods: {
 			retry() {
 				// 重新检查网络
 				uni.getNetworkType({
 					success: (res) => {
-						this.networkType = res.networkType;
+						this.networkType = res.networkType
+						this.emitEvent(this.networkType)
 						if (res.networkType == 'none') {
 							uni.$u.toast('无网络连接')
-							this.isConnected = false;
+							this.isConnected = false
 						} else {
 							uni.$u.toast('网络已连接')
-							this.isConnected = true;
+							this.isConnected = true
 						}
 					}
-				});
-				this.$emit('retry');
+				})
+				this.$emit('retry')
+			},
+			// 发出事件给父组件
+			emitEvent(networkType) {
+				this.$emit(networkType === 'none' ? 'disconnected' : 'connected')
 			},
 			async openSettings() {
 				if (this.networkType == "none") {
-					this.openSystemSettings();
-					return;
+					this.openSystemSettings()
+					return
 				}
 			},
 			openAppSettings() {
-				this.gotoAppSetting();
+				this.gotoAppSetting()
 			},
 			openSystemSettings() {
 				// 以下方法来自5+范畴，如需深究，请自行查阅相关文档
 				// https://ask.dcloud.net.cn/docs/
 				if (this.isIOS) {
-					this.gotoiOSSetting();
+					this.gotoiOSSetting()
 				} else {
-					this.gotoAndroidSetting();
+					this.gotoAndroidSetting()
 				}
 			},
 			network() {
-				var result = null;
-				var cellularData = plus.ios.newObject("CTCellularData");
-				var state = cellularData.plusGetAttribute("restrictedState");
+				var result = null
+				var cellularData = plus.ios.newObject("CTCellularData")
+				var state = cellularData.plusGetAttribute("restrictedState")
 				if (state == 0) {
-					result = null;
+					result = null
 				} else if (state == 2) {
-					result = 1;
+					result = 1
 				} else if (state == 1) {
-					result = 2;
+					result = 2
 				}
-				plus.ios.deleteObject(cellularData);
-				return result;
+				plus.ios.deleteObject(cellularData)
+				return result
 			},
 			gotoAppSetting() {
 				if (this.isIOS) {
-					var UIApplication = plus.ios.import("UIApplication");
-					var application2 = UIApplication.sharedApplication();
-					var NSURL2 = plus.ios.import("NSURL");
-					var setting2 = NSURL2.URLWithString("app-settings:");
-					application2.openURL(setting2);
-					plus.ios.deleteObject(setting2);
-					plus.ios.deleteObject(NSURL2);
-					plus.ios.deleteObject(application2);
+					var UIApplication = plus.ios.import("UIApplication")
+					var application2 = UIApplication.sharedApplication()
+					var NSURL2 = plus.ios.import("NSURL")
+					var setting2 = NSURL2.URLWithString("app-settings:")
+					application2.openURL(setting2)
+					plus.ios.deleteObject(setting2)
+					plus.ios.deleteObject(NSURL2)
+					plus.ios.deleteObject(application2)
 				} else {
-					var Intent = plus.android.importClass("android.content.Intent");
-					var Settings = plus.android.importClass("android.provider.Settings");
-					var Uri = plus.android.importClass("android.net.Uri");
-					var mainActivity = plus.android.runtimeMainActivity();
-					var intent = new Intent();
-					intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-					var uri = Uri.fromParts("package", mainActivity.getPackageName(), null);
-					intent.setData(uri);
-					mainActivity.startActivity(intent);
+					var Intent = plus.android.importClass("android.content.Intent")
+					var Settings = plus.android.importClass("android.provider.Settings")
+					var Uri = plus.android.importClass("android.net.Uri")
+					var mainActivity = plus.android.runtimeMainActivity()
+					var intent = new Intent()
+					intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+					var uri = Uri.fromParts("package", mainActivity.getPackageName(), null)
+					intent.setData(uri)
+					mainActivity.startActivity(intent)
 				}
 			},
 			gotoiOSSetting() {
-				var UIApplication = plus.ios.import("UIApplication");
-				var application2 = UIApplication.sharedApplication();
-				var NSURL2 = plus.ios.import("NSURL");
-				var setting2 = NSURL2.URLWithString("App-prefs:root=General");
-				application2.openURL(setting2);
-				plus.ios.deleteObject(setting2);
-				plus.ios.deleteObject(NSURL2);
-				plus.ios.deleteObject(application2);
+				var UIApplication = plus.ios.import("UIApplication")
+				var application2 = UIApplication.sharedApplication()
+				var NSURL2 = plus.ios.import("NSURL")
+				var setting2 = NSURL2.URLWithString("App-prefs:root=General")
+				application2.openURL(setting2)
+				plus.ios.deleteObject(setting2)
+				plus.ios.deleteObject(NSURL2)
+				plus.ios.deleteObject(application2)
 			},
 			gotoAndroidSetting() {
-				var Intent = plus.android.importClass("android.content.Intent");
-				var Settings = plus.android.importClass("android.provider.Settings");
-				var mainActivity = plus.android.runtimeMainActivity();
-				var intent = new Intent(Settings.ACTION_SETTINGS);
-				mainActivity.startActivity(intent);
+				var Intent = plus.android.importClass("android.content.Intent")
+				var Settings = plus.android.importClass("android.provider.Settings")
+				var mainActivity = plus.android.runtimeMainActivity()
+				var intent = new Intent(Settings.ACTION_SETTINGS)
+				mainActivity.startActivity(intent)
 			}
 		}
 	}

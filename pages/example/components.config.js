@@ -245,15 +245,10 @@ export default [{
 			title: 'Line 线条',
 			title_en: 'Line',
 		}, {
-			path: '/pages/componentsA/card/card',
-			icon: 'card',
-			title: 'Card 卡片',
-			title_en: 'Card',
-		}, {
 			path: '/pages/componentsA/overlay/overlay',
 			icon: 'mask',
-			title: 'Mask 遮罩层',
-			title_en: 'Mask',
+			title: 'Overlay 遮罩层',
+			title_en: 'Overlay',
 		}, 
 		// #ifndef MP-TOUTIAO
 		{

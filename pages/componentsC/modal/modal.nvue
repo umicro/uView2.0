@@ -42,8 +42,10 @@
 			content="模态框，常用于消息提示、消息确认、在当前页面内完成特定的交互操作"
 			:show="show3"
 			showCancelButton
-			@confrim="() => show3 = false"
-			@cancel="() => show3 = false"
+			closeOnClickOverly
+			@confrim="confrim"
+			@cancel="cancel"
+			@close="close"
 		></u-modal>
 		<u-modal
 			content="模态框，常用于消息提示、消息确认、在当前页面内完成特定的交互操作"
@@ -168,6 +170,18 @@
 				setTimeout(() => {
 					this.show4 = false
 				}, 2000)
+			},
+			confrim() {
+				this.show3 = false
+				console.log('confirm');
+			},
+			cancel() {
+				this.show3 = false
+				console.log('cancel');
+			},
+			close() {
+				this.show3 = false
+				console.log('close');
 			}
 		}
 	}

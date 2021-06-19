@@ -141,14 +141,20 @@
 				this.scrollInfo = e.detail
 			},
 			scrolltoupperHandler() {
+				this.scrollEvent('left')
 				this.scrollInfo.scrollLeft = 0
 			},
 			scrolltolowerHandler() {
+				this.scrollEvent('right')
 				// 在普通js方案中，滚动到右边时，通过设置this.scrollInfo，模拟出滚动到右边的情况
 				// 因为上方是用过computed计算的，设置后，会自动调整滑块的位置
 				this.scrollInfo.scrollLeft = uni.$u.getPx(this.indicatorWidth) - uni.$u.getPx(this.indicatorBarWidth)
 			},
 			// #endif
+			// 
+			scrollEvent(status) {
+				this.$emit(status)
+			},
 			// 获取组件的宽度
 			async getComponentWidth() {
 				// 延时一定时间，以获取dom尺寸

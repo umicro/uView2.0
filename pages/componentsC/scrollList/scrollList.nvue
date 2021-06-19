@@ -5,6 +5,8 @@
 			<u-scroll-list
 				indicatorColor="#fff0f0"
 				indicatorActiveColor="#f56c6c"
+				@right="right"
+				@left="left"
 			>
 				<view
 					class="scroll-list"
@@ -172,6 +174,12 @@
 		methods: {
 			showMore() {
 				uni.$u.toast('查看更多')
+			},
+			left() {
+				console.log('left');
+			},
+			right() {
+				console.log('right');
 			}
 		},
 	}

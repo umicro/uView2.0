@@ -10,8 +10,9 @@
 			:show="show"
 			:custom-style="transitionStyle"
 			:mode="position"
-			@click="transitionClick"
 			:duration="duration"
+			@after-enter="afterEnter"
+			@click="clickHandler"
 		>
 			<view
 				class="u-popup__content"
@@ -238,8 +239,11 @@
 			close(e) {
 				this.$emit('close')
 			},
-			transitionClick() {
-				this.$emit('close')
+			afterEnter() {
+				this.$emit('open')
+			},
+			clickHandler() {
+				this.$emit('click')
 			}
 		}
 	}

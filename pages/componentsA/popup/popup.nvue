@@ -38,7 +38,8 @@
 			:borderRadis="popupData.borderRadis"
 			:closeable="popupData.closeable"
 			:closeOnClickOverly="popupData.closeOnClickOverly"
-			@close="show = !show"
+			@close="close"
+			@open="open"
 		>
 			<view
 				class="u-popup-slot"
@@ -162,6 +163,13 @@
 			},
 			navigateBack() {
 				uni.navigateBack()
+			},
+			open() {
+				console.log('open');
+			},
+			close() {
+				this.show = false
+				console.log('close');
 			}
 		}
 	}

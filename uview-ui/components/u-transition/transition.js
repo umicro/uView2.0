@@ -105,7 +105,7 @@ export default {
 						delay: 0
 					}, () => {
 						// 动画执行完毕，发出事件
-						this.$emit('after-enter')
+						this.$emit('afterEnter')
 					})
 				})
 				.catch(() => {})

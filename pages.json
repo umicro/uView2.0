@@ -6,7 +6,7 @@
 		"current": 0, //当前激活的模式(list 的索引项)
 		"list": [{
 			"name": "test", //模式名称
-			"path": "pages/componentsB/collapse/collapse", //启动页面，必选
+			"path": "pages/componentsA/grid/grid", //启动页面，必选
 			"query": "" //启动参数，在页面的onLoad函数里面得到
 		}]
 	},
@@ -73,12 +73,6 @@
 				}
 			},
 			{
-				"path": "card/card",
-				"style": {
-					"navigationBarTitleText": "卡片"
-				}
-			},
-			{
 				"path": "button/button",
 				"style": {
 					"navigationBarTitleText": "按钮"
@@ -93,7 +87,8 @@
 			{
 				"path": "overlay/overlay",
 				"style": {
-					"navigationBarTitleText": "遮罩层"
+					"navigationBarTitleText": "遮罩层",
+					"navigationStyle": "custom"
 				}
 			},
 			{

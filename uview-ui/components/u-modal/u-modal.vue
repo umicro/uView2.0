@@ -9,8 +9,8 @@
 			marginTop: `-${$u.addUnit(negativeTop)}`
 		}"
 		:closeOnClickOverly="closeOnClickOverly"
-		@close="close"
 		:safeAreaInsetBottom="false"
+		@click="clickHandler"
 	>
 		<view
 			class="u-modal"
@@ -25,8 +25,8 @@
 			<view
 				class="u-modal__content"
 				:style="{
-				paddingTop: `${title ? 12 : 25}px`
-			}"
+					paddingTop: `${title ? 12 : 25}px`
+				}"
 			>
 				<slot>
 					<text class="u-modal__content__text">{{ content }}</text>
@@ -56,8 +56,8 @@
 						<text
 							class="u-modal__button-group__wrapper__text"
 							:style="{
-									color: cancelColor
-								}"
+								color: cancelColor
+							}"
 						>{{ cancelText }}</text>
 					</view>
 					<u-line direction="column"></u-line>
@@ -73,8 +73,8 @@
 							v-else
 							class="u-modal__button-group__wrapper__text"
 							:style="{
-									color: confirmColor
-								}"
+								color: confirmColor
+							}"
 						>{{ confirmText }}</text>
 					</view>
 				</view>
@@ -95,12 +95,15 @@
 		},
 		watch: {
 			show(n) {
-				if (n && this.asyncClose) this.loading = false
+				// 为了避免第一次打开modal，又使用了异步关闭的loading
+				// 第二次打开modal时，loading依然存在的情况
+				if (n && this.loading) this.loading = false
 			}
 		},
 		methods: {
 			// 点击确定按钮
 			confirmHandler() {
+				// 如果配置了异步关闭，将按钮值为loading状态
 				if (this.asyncClose) {
 					this.loading = true;
 				}
@@ -111,10 +114,13 @@
 				this.$emit('cancel')
 			},
 			// 点击遮罩
-			close() {
+			// 从原理上来说，modal的遮罩点击，并不是真的点击到了遮罩
+			// 因为modal依赖于popup的中部弹窗类型，中部弹窗比较特殊，虽有然遮罩，但是为了让弹窗内容能flex居中
+			// 多了一个透明的遮罩，此透明的遮罩会覆盖在灰色的遮罩上，所以实际上是点击不到灰色遮罩的，popup内部在
+			// 透明遮罩的子元素做了.stop处理，所以点击内容区，也不会导致误触发
+			clickHandler() {
 				if (this.closeOnClickOverly) {
 					this.$emit('close')
-					this.$emit('cancel')
 				}
 			}
 		}

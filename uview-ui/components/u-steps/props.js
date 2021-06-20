@@ -6,7 +6,7 @@ export default {
 			default: 'row'
 		},
 		// 设置第几个步骤
-		activeIndex: {
+		current: {
 			type: [String, Number],
 			default: 0
 		},

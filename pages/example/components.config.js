@@ -269,11 +269,6 @@ export default [{
 			title: 'Swiper 轮播图',
 			title_en: 'Swiper',
 		}, {
-			path: '/pages/componentsC/timeLine/timeLine',
-			icon: 'timeLine',
-			title: 'TimeLine 时间轴',
-			title_en: 'TimeLine',
-		}, {
 			path: '/pages/componentsC/skeleton/skeleton',
 			icon: 'skeleton',
 			title: 'Skeleton 骨架屏',
@@ -304,7 +299,7 @@ export default [{
 			title: 'Tabbar 底部导航栏',
 			title_en: 'Tabbar',
 		},{
-			path: '/pages/componentsA/back-top/back-top',
+			path: '/pages/componentsA/backTop/backTop',
 			icon: 'backTop',
 			title: 'BackTop 返回顶部',
 			title_en: 'BackTop',

@@ -166,6 +166,7 @@
 				this.tmpConfig = this.$u.deepMerge(this.config, options)
 				// 清除定时器
 				this.clearTimer()
+				this.isShow = true
 				this.timer = setTimeout(() => {
 					// 倒计时结束，清除定时器，隐藏toast组件
 					this.clearTimer()

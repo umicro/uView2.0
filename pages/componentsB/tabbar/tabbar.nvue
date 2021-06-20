@@ -4,7 +4,7 @@
 			<text class="u-page__item__title">基础功能</text>
 			<u-tabbar
 			    :value="value1"
-			    @change="name => value1 = name"
+			    @change="change1"
 			    :fixed="false"
 			    :placeholder="false"
 			    :safeAreaInsetBottom="false"
@@ -12,18 +12,22 @@
 				<u-tabbar-item
 				    text="首页"
 				    icon="home"
+					@click="click1"
 				></u-tabbar-item>
 				<u-tabbar-item
 				    text="放映厅"
 				    icon="photo"
+					@click="click1"
 				></u-tabbar-item>
 				<u-tabbar-item
 				    text="直播"
 				    icon="play-right"
+					@click="click1"
 				></u-tabbar-item>
 				<u-tabbar-item
 				    text="我的"
 				    icon="account"
+					@click="click1"
 				></u-tabbar-item>
 			</u-tabbar>
 		</view>
@@ -231,6 +235,13 @@
 			change5(name) {
 				if (name === 1) return uni.$u.toast('请您先登录')
 				else this.value5 = name
+			},
+			change1(e) {
+				this.value1 = e
+				console.log('change1', e);
+			},
+			click1(e) {
+				console.log('click1', e);
 			}
 		},
 	}

@@ -100,9 +100,10 @@ module.exports = {
 		getParentData(parentName = '') {
 			// 避免在created中去定义parent变量
 			if (!this.parent) this.parent = {}
-			// 这里的本质原理是，通过获取父组件实例(也即u-radio-group的this)
+			// 这里的本质原理是，通过获取父组件实例(也即类似u-radio的父组件u-radio-group的this)
 			// 将父组件this中对应的参数，赋值给本组件(u-radio的this)的parentData对象中对应的属性
 			// 之所以需要这么做，是因为所有端中，头条小程序不支持通过this.parent.xxx去监听父组件参数的变化
+			// 此处并不会自动更新子组件的数据，而是依赖父组件u-radio-group去监听data的变化，手动调用更新子组件的方法去重新获取
 			this.parent = this.$u.$parent.call(this, parentName)
 			if(this.parent.children) {
 				// 如果父组件的children不存在本组件的实例，才将本实例添加到父组件的children中

@@ -2,7 +2,11 @@
 	<view class="u-page">
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">基础功能</text>
-			<u-swiper :list="list1"></u-swiper>
+			<u-swiper
+				:list="list1"
+				@change="change"
+				@click="click"
+			></u-swiper>
 		</view>
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">带标题</text>
@@ -58,7 +62,10 @@
 					</view>
 				</view>
 			</u-swiper>
-			<u-gap bgColor="transparent" height="15"></u-gap>
+			<u-gap
+				bgColor="transparent"
+				height="15"
+			></u-gap>
 			<u-swiper
 				:list="list6"
 				@change="e => currentNum = e.current"
@@ -159,7 +166,15 @@
 					'https://cdn.uviewui.com/uview/swiper/swiper1.png',
 				]
 			}
-		}
+		},
+		methods: {
+			change(e) {
+				// console.log('change', e);
+			},
+			click(e) {
+				console.log('click', e);
+			}
+		},
 	}
 </script>
 
@@ -189,7 +204,7 @@
 		width: 35px;
 		@include flex;
 		justify-content: center;
-		
+
 		&__text {
 			color: #FFFFFF;
 			font-size: 12px;

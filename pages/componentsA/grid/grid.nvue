@@ -3,15 +3,18 @@
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">基本案例</text>
 			<view>
-				<u-grid :border="false">
+				<u-grid
+					:border="false"
+					@click="click"
+				>
 					<u-grid-item
-					    v-for="(baseListItem,baseListIndex) in baseList"
-					    :key="baseListIndex"
+						v-for="(baseListItem,baseListIndex) in baseList"
+						:key="baseListIndex"
 					>
 						<u-icon
-						    :customStyle="{paddingTop:20+'rpx'}"
-						    :name="baseListItem.name"
-						    :size="22"
+							:customStyle="{paddingTop:20+'rpx'}"
+							:name="baseListItem.name"
+							:size="22"
 						></u-icon>
 						<text class="grid-text">{{baseListItem.title}}</text>
 					</u-grid-item>
@@ -23,14 +26,14 @@
 			<view>
 				<u-grid :border="true">
 					<u-grid-item
-					    :customStyle="{width:220+'rpx',height:220+'rpx'}"
-					    v-for="(listItem,listIndex) in list"
-					    :key="listIndex"
+						:customStyle="{width:220+'rpx',height:220+'rpx'}"
+						v-for="(listItem,listIndex) in list"
+						:key="listIndex"
 					>
 						<u-icon
-						    :customStyle="{paddingTop:20+'rpx'}"
-						    :name="listItem.name"
-						    :size="22"
+							:customStyle="{paddingTop:20+'rpx'}"
+							:name="listItem.name"
+							:size="22"
 						></u-icon>
 						<text class="grid-text">{{listItem.title}}</text>
 					</u-grid-item>
@@ -41,18 +44,17 @@
 			<text class="u-demo-block__title">绑定点击事件&自定义列数</text>
 			<view>
 				<u-grid
-				    :border="false"
-				    col="4"
+					:border="false"
+					col="4"
 				>
 					<u-grid-item
-					    @click="clickItem(listItem.title)"
-					    v-for="(listItem,listIndex) in list"
-					    :key="listIndex"
+						v-for="(listItem,listIndex) in list"
+						:key="listIndex"
 					>
 						<u-icon
-						    :customStyle="{paddingTop:20+'rpx'}"
-						    :name="listItem.name"
-						    :size="22"
+							:customStyle="{paddingTop:20+'rpx'}"
+							:name="listItem.name"
+							:size="22"
 						></u-icon>
 						<text class="grid-text">{{listItem.title}}</text>
 					</u-grid-item>
@@ -63,21 +65,21 @@
 			<text class="u-demo-block__title">可滑动</text>
 			<view>
 				<swiper
-				    :indicator-dots="true"
-				    class="swiper"
+					:indicator-dots="true"
+					class="swiper"
 				>
 					<swiper-item>
 						<u-grid :border="true">
 							<u-grid-item
-							    :customStyle="{width:220+'rpx',height:220+'rpx'}"
-							    v-for="(item, index) in swiperList"
-							    :index="index"
-							    :key="index"
+								:customStyle="{width:220+'rpx',height:220+'rpx'}"
+								v-for="(item, index) in swiperList"
+								:index="index"
+								:key="index"
 							>
 								<u-icon
-								    :customStyle="{paddingTop:20+'rpx'}"
-								    :name="item"
-								    :size="22"
+									:customStyle="{paddingTop:20+'rpx'}"
+									:name="item"
+									:size="22"
 								></u-icon>
 								<text class="grid-text">{{ '宫格' + (index + 1) }}</text>
 							</u-grid-item>
@@ -86,15 +88,15 @@
 					<swiper-item>
 						<u-grid :border="true">
 							<u-grid-item
-							    :customStyle="{width:220+'rpx',height:220+'rpx'}"
-							    v-for="(item, index) in swiperList"
-							    :index="index + 9"
-							    :key="index"
+								:customStyle="{width:220+'rpx',height:220+'rpx'}"
+								v-for="(item, index) in swiperList"
+								:index="index + 9"
+								:key="index"
 							>
 								<u-icon
-								    :customStyle="{paddingTop:20+'rpx'}"
-								    :name="item"
-								    :size="22"
+									:customStyle="{paddingTop:20+'rpx'}"
+									:name="item"
+									:size="22"
 								></u-icon>
 								<text class="grid-text">{{ '宫格' + (index + 1) }}</text>
 							</u-grid-item>
@@ -103,15 +105,15 @@
 					<swiper-item>
 						<u-grid :border="true">
 							<u-grid-item
-							    :customStyle="{width:220+'rpx',height:220+'rpx'}"
-							    v-for="(item, index) in swiperList"
-							    :index="index + 18"
-							    :key="index"
+								:customStyle="{width:220+'rpx',height:220+'rpx'}"
+								v-for="(item, index) in swiperList"
+								:index="index + 18"
+								:key="index"
 							>
 								<u-icon
-								    :customStyle="{paddingTop:20+'rpx'}"
-								    :name="item"
-								    :size="22"
+									:customStyle="{paddingTop:20+'rpx'}"
+									:name="item"
+									:size="22"
 								></u-icon>
 								<text class="grid-text">{{ "宫格" + (index + 1) }}</text>
 							</u-grid-item>
@@ -120,11 +122,7 @@
 				</swiper>
 			</view>
 		</view>
-		<u-toast
-		    type="success"
-		    :text="text"
-		    :show="show"
-		/>
+		<u-toast ref="uToast" />
 	</view>
 </template>
 
@@ -132,10 +130,6 @@
 	export default {
 		data() {
 			return {
-				// 是否显示弹窗组件
-				show: false,
-				//弹窗组件显示的文字
-				text: '',
 				baseList: [{
 						name: 'photo',
 						title: '图片'
@@ -178,10 +172,9 @@
 			}
 		},
 		methods: {
-			clickItem(itemTitle) {
-				this.show = true;
-				this.text = itemTitle
-			},
+			click(name) {
+				this.$refs.uToast.success(`点击了第${name}个`)
+			}
 		}
 	}
 </script>

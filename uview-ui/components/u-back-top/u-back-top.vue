@@ -157,6 +157,7 @@
 					duration: this.duration
 				});
 				// #endif
+				this.$emit('click')
 			}
 		}
 	}

@@ -6,7 +6,7 @@
 			:class="[`u-swiper-indicator__wrapper--${indicatorStyle}`]"
 			:style="{
 				width: $u.addUnit(lineWidth * length),
-				backgroundColor: indicatorActiveColor
+				backgroundColor: indicatorInactiveColor
 			}"
 		>
 			<view
@@ -47,14 +47,14 @@
 				let style = {}
 				style.width = uni.$u.addUnit(this.lineWidth)
 				style.transform = `translateX(${ this.current * this.lineWidth }px)`
-				style.backgroundColor = this.indicatorColor
+				style.backgroundColor = this.indicatorActiveColor
 				return style
 			},
 			// 指示器为点型的样式
 			dotStyle() {
 				return index => {
 					let style = {}
-					style.backgroundColor = index === this.current ? this.indicatorColor : this.indicatorActiveColor
+					style.backgroundColor = index === this.current ? this.indicatorActiveColor : this.indicatorInactiveColor
 					return style
 				}
 			}

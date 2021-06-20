@@ -7,7 +7,7 @@
 		<u-badge
 		    :customStyle="badgeStyle"
 		    :isDot="dot"
-		    :value="badge"
+		    :value="badge || (dot ? 1 : null)"
 		    :show="dot || badge > 0"
 		>
 			<view class="u-tabbar-item__icon">
@@ -119,7 +119,7 @@
 					if (name !== this.parent.value) {
 						this.parent.$emit('change', name)
 					}
-					this.$emit('click')
+					this.$emit('click', name)
 				})
 			}
 		},

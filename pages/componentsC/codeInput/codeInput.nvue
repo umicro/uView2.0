@@ -6,6 +6,8 @@
 				<u-code-input
 					v-model="value1"
 					:maxlength="4"
+					@change="change"
+					@finish="finish"
 				></u-code-input>
 			</view>
 		</view>
@@ -132,11 +134,15 @@
 				value7: '',
 				value8: '',
 				value9: '123',
+				value10: '34'
 			}
 		},
 		methods: {
-			name() {
-
+			change(e) {
+				console.log('change', e);
+			},
+			finish(e) {
+				console.log('finish', e);
 			}
 		},
 	}

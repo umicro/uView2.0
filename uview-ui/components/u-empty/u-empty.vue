@@ -129,51 +129,7 @@
 					list: '列表为空',
 					data: '数据为空',
 					comment: '暂无评论',
-				},
-				// icons: [{
-				// 	icon: 'car',
-				// 	text: '购物车为空'
-				// },{
-				// 	icon: 'page',
-				// 	text: '页面不存在'
-				// },{
-				// 	icon: 'search',
-				// 	text: '没有搜索结果'
-				// },{
-				// 	icon: 'address',
-				// 	text: '没有收货地址'
-				// },{
-				// 	icon: 'wifi',
-				// 	text: '没有WiFi'
-				// },{
-				// 	icon: 'order',
-				// 	text: '订单为空'
-				// },{
-				// 	icon: 'coupon',
-				// 	text: '没有优惠券'
-				// },{
-				// 	icon: 'favor',
-				// 	text: '暂无收藏'
-				// },{
-				// 	icon: 'permission',
-				// 	text: '无权限'
-				// },{
-				// 	icon: 'history',
-				// 	text: '无历史记录'
-				// },{
-				// 	icon: 'news',
-				// 	text: '无新闻列表'
-				// },{
-				// 	icon: 'message',
-				// 	text: '消息列表为空'
-				// },{
-				// 	icon: 'list',
-				// 	text: '列表为空'
-				// },{
-				// 	icon: 'data',
-				// 	text: '数据为空'
-				// }],
-
+				}
 			}
 		},
 		computed: {

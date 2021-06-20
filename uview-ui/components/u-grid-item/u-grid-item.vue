@@ -29,6 +29,11 @@
 				type: String,
 				default: uni.$u.props.gridItem.bgColor
 			},
+			// 宫格的name
+			name: {
+				type: [Number, String],
+				default: null
+			}
 		},
 		mixins: [uni.$u.mixin],
 		data() {
@@ -86,17 +91,16 @@
 				this.getParentData('u-grid');
 			},
 			clickHandler() {
-				let itemIndex, children = this.parent.children
-				// 历遍父组件的children数组，判断当前的元素是否和本实例this相等，找出当前组件的索引
-				if(children.length) {
-					children.map((item, index) => {
-						if(item === this) {
-							itemIndex = index
-						}
-					})
+				let name = this.name
+				// 如果没有设置name属性，历遍父组件的children数组，判断当前的元素是否和本实例this相等，找出当前组件的索引
+				const children = this.parent?.children
+				if(children && this.name === null) {
+					name = children.findIndex(child => child === this)
 				}
-				this.$emit('click', itemIndex)
-				this.parent && this.parent.click(itemIndex)
+				// 调用父组件方法，发出事件
+				this.parent && this.parent.childClick(name)
+				console.log(31);
+				this.$emit('click', name)
 			},
 			async getItemWidth() {
 				// 如果是nvue，不能使用百分比，只能使用固定宽度

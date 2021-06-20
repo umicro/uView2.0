@@ -11,12 +11,12 @@ export default {
 			default: 0
 		},
 		// 指示器非激活颜色
-		indicatorColor: {
+		indicatorActiveColor: {
 			type: String,
 			default: ''
 		},
 		// 指示器的激活颜色
-		indicatorActiveColor: {
+		indicatorInactiveColor: {
 			type: String,
 			default: ''
 		},

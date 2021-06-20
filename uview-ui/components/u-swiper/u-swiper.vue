@@ -76,8 +76,8 @@
 			<slot name="indicator">
 				<u-swiper-indicator
 					v-if="!loading && indicator && !showTitle"
-					:indicatorColor="indicatorColor"
 					:indicatorActiveColor="indicatorActiveColor"
+					:indicatorInactiveColor="indicatorInactiveColor"
 					:length="list.length"
 					:current="currentIndex"
 					:indicatorMode="indicatorMode"
@@ -142,12 +142,11 @@
 			},
 			// 当一个轮播item为视频时，获取它的视频海报
 			getPoster(item) {
-				if (typeof item === 'object' && item.poster) return item.poster
-				else return ''
+				return typeof item === 'object' && item.poster ? item.poster : ''
 			},
 			// 点击某个item
 			clickHandler(index) {
-				this.$emit(index)
+				this.$emit('click', index)
 			}
 		},
 	}

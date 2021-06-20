@@ -1,6 +1,6 @@
 export default {
 	props: {
-		// 是否展示组件
+		// 是否展示骨架组件
 		loading: {
 			type: Boolean,
 			default: true
@@ -33,7 +33,7 @@ export default {
 		// 段落占位图的高度
 		rowsHeight: {
 			type: [Number, String, Array],
-			default: '18px'
+			default: 18
 		},
 		// 是否展示标题占位图
 		title: {
@@ -48,7 +48,7 @@ export default {
 		// 头像占位图大小
 		avatarSize: {
 			type: [Number, String],
-			default: '32px'
+			default: 32
 		},
 		// 头像占位图的形状，circle-圆形，square-方形
 		avatarShape: {

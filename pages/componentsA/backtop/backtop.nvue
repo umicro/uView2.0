@@ -34,6 +34,7 @@
 		    :iconStyle="backTopData.iconStyle"
 			:duration="backTopData.duration"
 		    :scrollTop="scrollTop"
+			@click="click"
 		></u-back-top>
 	</view>
 </template>
@@ -49,7 +50,8 @@
 					bottom: 100,
 					customStyle: {},
 					iconStyle: {},
-					right:20
+					right:20,
+					duration: 300
 				},
 				scrollTop: 0,
 				// 被自定义的样式
@@ -110,8 +112,11 @@
 				if (n.includes('自定义返回顶部滚动时间')) {
 					this.backTopData.duration =1500 
 				} else {
-					this.backTopData.duration =1000
+					this.backTopData.duration =300
 				}
+			},
+			click() {
+				console.log('click');
 			}
 		}
 	}

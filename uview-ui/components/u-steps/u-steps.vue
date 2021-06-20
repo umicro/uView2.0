@@ -22,10 +22,16 @@
 		watch: {
 			children() {
 				this.updateChildData()
+			},
+			parentData() {
+				this.updateChildData()
 			}
 		},
 		computed: {
-
+			// 监听参数的变化，通过watch中，手动去更新子组件的数据，否则子组件不会自动变化
+			parentData() {
+				return [this.current, this.direction, this.activeColor, this.inactiveColor, this.activeIcon, this.inactiveIcon, this.dot]
+			}
 		},
 		methods: {
 			// 更新子组件的数据

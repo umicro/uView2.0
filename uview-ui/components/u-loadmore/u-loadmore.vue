@@ -3,8 +3,8 @@
 	    class="u-loadmore"
 	    :style="{
 		backgroundColor: bgColor,
-		marginBottom: marginBottom + 'rpx',
-		marginTop: marginTop + 'rpx',
+		marginBottom: $u.addUnit(marginBottom),
+		marginTop: $u.addUnit(marginTop),
 		height: $u.addUnit(height)
 	}"
 	>

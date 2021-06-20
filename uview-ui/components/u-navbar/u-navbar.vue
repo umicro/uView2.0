@@ -52,6 +52,7 @@
 				></u--text>
 				<view
 				    class="u-navbar__content__right"
+					v-if="$slots.right || rightIcon || rightText"
 				    @tap="rightClick"
 				>
 					<slot name="right">
@@ -106,6 +107,7 @@
 			left: 0;
 			right: 0;
 			top: 0;
+			z-index: 11;
 		}
 
 		&__content {

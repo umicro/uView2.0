@@ -1,18 +1,34 @@
 <template>
 	<view class="u-page">
+		<!-- <u-navbar
+			title="吸顶"
+			@leftClick="navigateBack"
+			safeAreaInsetTop
+			fixed
+			placeholder
+		></u-navbar> -->
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">基础使用</text>
-			<!-- <u--text text="滚动页面,即可看到下方的按钮会吸顶"></u--text> -->
+			<u--text
+				type="content"
+				text="滚动页面,即可看到下方的按钮会吸顶,目前由于nvue的bug,设置sticky的top值无效"
+			></u--text>
 		</view>
 		<u-sticky>
-			<u-button text="吸顶按钮" type="success"></u-button>
+			<u-button
+				text="吸顶按钮"
+				type="success"
+			></u-button>
 		</u-sticky>
-		<u-gap bgColor="#fff" height="1500px"></u-gap>
-	</view> 
+		<u-gap
+			bgColor="#fff"
+			height="1500px"
+		></u-gap>
+	</view>
 </template>
 
 <script>
-	export default { 
+	export default {
 		data() {
 			return {
 
@@ -20,7 +36,9 @@
 		},
 		mixins: [uni.$u.mixin],
 		methods: {
-
+			navigateBack() {
+				uni.navigateBack()
+			}
 		}
 	}
 </script>

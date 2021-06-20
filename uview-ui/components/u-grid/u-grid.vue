@@ -86,8 +86,9 @@
 			}
 		},
 		methods: {
-			click(index) {
-				this.$emit('click', index);
+			// 此方法由u-grid-item触发，用于在u-grid发出事件
+			childClick(name) {
+				this.$emit('click', name)
 			}
 		}
 	};

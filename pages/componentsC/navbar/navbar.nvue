@@ -1,51 +1,55 @@
 <template>
 	<view class="u-page">
 		<u-navbar
-		    title="步骤条"
-		    safeAreaInsetTop
-		    fixed
-		    placeholder
+			title="步骤条"
+			safeAreaInsetTop
+			fixed
+			placeholder
 			@leftClick="navigateBack"
 		>
 		</u-navbar>
 		<view class="u-page__item">
 			<text class="u-page__item__title">基础功能</text>
-			<u-navbar title="个人中心">
+			<u-navbar
+				title="个人中心"
+				@rightClick="rightClick"
+				@leftClick="leftClick"
+			>
 			</u-navbar>
 		</view>
 		<view class="u-page__item">
 			<text class="u-page__item__title">自定义文本</text>
 			<u-navbar
-			    title="个人中心"
-			    left-text="返回"
-			    rightIcon="map"
+				title="个人中心"
+				left-text="返回"
+				rightIcon="map"
 			>
 			</u-navbar>
 		</view>
 		<view class="u-page__item">
 			<text class="u-page__item__title">自定义插槽</text>
 			<u-navbar
-			    leftText="返回"
-			    title="个人中心"
-			    :safeAreaInsetTop="false"
+				leftText="返回"
+				title="个人中心"
+				:safeAreaInsetTop="false"
 			>
 				<view
-				    class="u-nav-slot"
-				    slot="left"
+					class="u-nav-slot"
+					slot="left"
 				>
 					<u-icon
-					    name="arrow-left"
-					    size="19"
+						name="arrow-left"
+						size="19"
 					></u-icon>
 					<u-line
-					    direction="column"
-					    :hairline="false"
-					    length="16"
-					    margin="0 8px"
+						direction="column"
+						:hairline="false"
+						length="16"
+						margin="0 8px"
 					></u-line>
 					<u-icon
-					    name="home"
-					    size="20"
+						name="home"
+						size="20"
 					></u-icon>
 				</view>
 			</u-navbar>
@@ -64,8 +68,14 @@
 		methods: {
 			navigateBack() {
 				uni.navigateBack({
-				    delta: 1
+					delta: 1
 				})
+			},
+			rightClick() {
+				console.log('rightClick');
+			},
+			leftClick() {
+				console.log('leftClick');
 			}
 		}
 	}

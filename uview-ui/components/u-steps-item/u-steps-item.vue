@@ -29,9 +29,9 @@
 					v-else-if="parentData.activeIcon || parentData.inactiveIcon"
 				>
 					<u-icon
-						:name="index <= parentData.activeIndex ? parentData.activeIcon : parentData.inactiveIcon"
+						:name="index <= parentData.current ? parentData.activeIcon : parentData.inactiveIcon"
 						:size="iconSize"
-						:color="index <= parentData.activeIndex ? parentData.activeColor : parentData.inactiveColor"
+						:color="index <= parentData.current ? parentData.activeColor : parentData.inactiveColor"
 					></u-icon>
 				</view>
 				<view
@@ -46,7 +46,7 @@
 						v-if="statusClass === 'process' || statusClass === 'wait'"
 						class="u-steps-item__wrapper__circle__text"
 						:style="{
-							color: index === parentData.activeIndex ? '#ffffff' : parentData.inactiveColor
+							color: index === parentData.current ? '#ffffff' : parentData.inactiveColor
 						}"
 					>{{ index + 1}}</text>
 					<u-icon
@@ -65,9 +65,9 @@
 		>
 			<u--text
 				:text="title"
-				:type="parentData.activeIndex === index ? 'main' : 'content'"
+				:type="parentData.current === index ? 'main' : 'content'"
 				lineHeight="20px"
-				:size="parentData.activeIndex === index ? 14 : 13"
+				:size="parentData.current === index ? 14 : 13"
 			></u--text>
 			<slot name="desc">
 				<u--text
@@ -108,13 +108,18 @@
 				},
 				parentData: {
 					direction: 'row',
-					activeIndex: 0,
+					current: 0,
 					activeColor: '',
 					inactiveColor: '',
 					activeIcon: '',
 					inactiveIcon: '',
 					dot: false
 				}
+			}
+		},
+		watch: {
+			'parentData'(newValue, oldValue) {
+				console.log(newValue, 33);
 			}
 		},
 		created() {
@@ -132,7 +137,7 @@
 				}
 				style.backgroundColor = this.parent.children[this.index + 1].error ? uni.$u.color.error : this.index < this
 					.parentData
-					.activeIndex ? this.parentData.activeColor : this.parentData.inactiveColor
+					.current ? this.parentData.activeColor : this.parentData.inactiveColor
 				return style
 			},
 			statusClass() {
@@ -141,13 +146,13 @@
 					error
 				} = this
 				const {
-					activeIndex
+					current
 				} = this.parentData
-				if (activeIndex === index) {
+				if (current === index) {
 					return error === true ? 'error' : 'process'
 				} else if (error) {
 					return 'error'
-				} else if (activeIndex > index) {
+				} else if (current > index) {
 					return 'finish'
 				} else {
 					return 'wait'

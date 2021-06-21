@@ -48,7 +48,7 @@ export default {
 			}
 		},
 		// open和close事件时，将此参数返回在回调参数中
-		index: {
+		name: {
 			type: [Number, String],
 			default: ''
 		}

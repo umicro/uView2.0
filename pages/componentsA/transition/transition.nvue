@@ -21,6 +21,13 @@
 			    :mode="mode"
 			    :show="show"
 			    :custom-style="style"
+				@click="click"
+				@beforeEnter="beforeEnter"
+				@enter="enter"
+				@afterEnter="afterEnter"
+				@beforeLeave="beforeLeave"
+				@leave="leave"
+				@afterLeave="afterLeave"
 			>
 				<view class="transition"></view>
 			</u-transition>
@@ -103,6 +110,27 @@
 				setTimeout(() => {
 					this.show = false;
 				}, 1500)
+			},
+			click() {
+				console.log('click');
+			},
+			beforeEnter() {
+				console.log('beforeEnter');
+			},
+			enter() {
+				console.log('enter');
+			},
+			afterEnter() {
+				console.log('afterEnter');
+			},
+			beforeLeave() {
+				console.log('beforeLeave');
+			},
+			leave() {
+				console.log('leave');
+			},
+			afterLeave() {
+				console.log('afterLeave');
 			}
 		}
 	}

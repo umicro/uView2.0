@@ -6,7 +6,8 @@
 				<view class="u-page__link-item">
 					<u-link
 					    href="https://uviewui.com/"
-					    text="Go to uView dosc"
+					    text="打开uView UI文档"
+						@click="click"
 					></u-link>
 				</view>
 			</view>
@@ -18,7 +19,7 @@
 					<u-link
 					    href="https://uviewui.com/"
 					    :underLine="true"
-					    text="打开uView UI文档"
+					    text="Go to uView doc"
 					></u-link>
 				</view>
 			</view>
@@ -58,7 +59,9 @@
 			}
 		},
 		methods: {
-
+			click() {
+				console.log('click');
+			}
 		}
 	}
 </script>

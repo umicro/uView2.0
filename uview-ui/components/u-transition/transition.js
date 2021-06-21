@@ -33,7 +33,7 @@ export default {
 			const classNames = getClassNames(this.mode);
 			// 定义状态和发出动画进入前事件
 			this.status = 'enter';
-			this.$emit('before-enter');
+			this.$emit('beforeEnter');
 			// 此处nextTick等待了几十ms，是为了等待元素创建完成
 			Promise.resolve().then(nextTick).then(() => {
 				// 组件正在进入中的事件
@@ -43,7 +43,7 @@ export default {
 				this.classes = classNames.enter;
 			}).then(nextTick).then(() => {
 				// 组件动画进入后触发的事件
-				this.$emit('after-enter');
+				this.$emit('afterEnter');
 				// 标识动画尚未结束
 				this.transitionEnded = false;
 				// 赋予组件enter-to类名
@@ -57,7 +57,7 @@ export default {
 			const classNames = getClassNames(this.mode)
 			// 标记离开状态和发出事件
 			this.status = 'leave';
-			this.$emit('before-leave');
+			this.$emit('beforeLeave');
 			Promise.resolve()
 				.then(nextTick)
 				.then(() => {
@@ -84,7 +84,7 @@ export default {
 			const currentStyle = getStyle(this.mode);
 			// 组件动画状态和发出事件
 			this.status = 'enter'
-			this.$emit('before-enter')
+			this.$emit('beforeEnter')
 			// 展示生成组件元素
 			this.inited = true
 			this.display = true 
@@ -117,7 +117,7 @@ export default {
 		    const currentStyle = getStyle(this.mode)
 			// 定义状态和事件
 		    this.status = 'leave'
-		    this.$emit('before-leave')
+		    this.$emit('beforeLeave')
 			// 合并样式
 		    this.viewStyle = Object.assign({}, this.viewStyle, currentStyle.leave)
 			// 放到promise中处理执行过程
@@ -126,7 +126,7 @@ export default {
 		        .then(() => {
 		            this.transitionEnded = false
 					// 动画正在离场的状态
-		            this.$emit('leave-to')
+		            this.$emit('leave')
 		            animation.transition(this.$refs['u-transition'].ref, {
 		                styles: currentStyle['leave-to'],
 		                duration: this.duration,
@@ -146,7 +146,7 @@ export default {
 			if (this.transitionEnded) return;
 			this.transitionEnded = true;
 			// 发出组件动画执行后的事件
-			this.$emit(`after-${this.status}`)
+			this.$emit(this.status === 'leave' ? 'afterLeave' : 'afterEnter')
 			if (!this.show && this.display) {
 				this.display = false
 				this.inited = false

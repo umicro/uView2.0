@@ -1,49 +1,55 @@
 <template>
 	<view
-	    class="u-rate"
-	    :id="elId"
-	    ref="u-rate"
-	    :style="[$u.addStyle(customStyle)]"
-	    @touchmove.stop.prevent="touchMove"
-	    @touchend.stop.prevent="touchEnd"
+		class="u-rate"
+		:id="elId"
+		ref="u-rate"
+		:style="[$u.addStyle(customStyle)]"
 	>
 		<view
-		    class="u-rate__item"
-		    v-for="(item, index) in Number(count)"
-		    :key="index"
-		    :class="[elClass]"
+			class="u-rate__content"
+			@touchmove.stop="touchMove"
+			@touchend.stop="touchEnd"
 		>
 			<view
-			    class="u-rate__item__icon-wrap"
-			    ref="u-rate__item__icon-wrap"
-			    @tap.stop="clickHandler($event, index + 1)"
+				class="u-rate__content__item"
+				v-for="(item, index) in Number(count)"
+				:key="index"
+				:class="[elClass]"
+				@touchmove.stop="noop"
+				@touchend.stop="noop"
 			>
-				<u-icon
-				    :name="Math.floor(activeIndex) > index ? activeIcon : inactiveIcon"
-				    :color="disabled ? '#c8c9cc' : Math.floor(activeIndex) > index ? activeColor : inactiveColor"
-				    :custom-style="{
-						padding: `0 ${gutter / 2 + 'rpx'}`
-					}"
-					:size="size"
-				></u-icon>
-			</view>
-			<view
-			    v-if="allowHalf"
-			    @tap.stop="clickHandler($event, index + 1)"
-			    class="u-rate__item__icon-wrap u-rate__item__icon-wrap--half"
-			    :style="{
-				width: rateWidth / 2 + 'px'
-			}"
-			    ref="u-rate__item__icon-wrap"
-			>
-				<u-icon
-				    :name="Math.ceil(activeIndex) > index ? activeIcon : inactiveIcon"
-					:color="disabled ? '#c8c9cc' : Math.ceil(activeIndex) > index ? activeColor : inactiveColor"
-				    :custom-style="{
-						padding: `0 ${gutter / 2 + 'rpx'}`
-					}"
-					:size="size"
-				></u-icon>
+				<view
+					class="u-rate__content__item__icon-wrap"
+					ref="u-rate__content__item__icon-wrap"
+					@tap.stop="clickHandler($event, index + 1)"
+				>
+					<u-icon
+						:name="Math.floor(activeIndex) > index ? activeIcon : inactiveIcon"
+						:color="disabled ? '#c8c9cc' : Math.floor(activeIndex) > index ? activeColor : inactiveColor"
+						:custom-style="{
+							padding: `0 ${gutter / 2 + 'rpx'}`
+						}"
+						:size="size"
+					></u-icon>
+				</view>
+				<view
+					v-if="allowHalf"
+					@tap.stop="clickHandler($event, index + 1)"
+					class="u-rate__content__item__icon-wrap u-rate__content__item__icon-wrap--half"
+					:style="{
+					width: rateWidth / 2 + 'px'
+				}"
+					ref="u-rate__content__item__icon-wrap"
+				>
+					<u-icon
+						:name="Math.ceil(activeIndex) > index ? activeIcon : inactiveIcon"
+						:color="disabled ? '#c8c9cc' : Math.ceil(activeIndex) > index ? activeColor : inactiveColor"
+						:custom-style="{
+							padding: `0 ${gutter / 2 + 'rpx'}`
+						}"
+						:size="size"
+					></u-icon>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -186,7 +192,7 @@
 				})
 				// #endif
 				// #ifdef APP-NVUE
-				dom.getComponentRect(this.$refs['u-rate__item__icon-wrap'][0], (res) => {
+				dom.getComponentRect(this.$refs['u-rate__content__item__icon-wrap'][0], (res) => {
 					this.rateWidth = res.size.width
 				})
 				// #endif
@@ -194,7 +200,7 @@
 			// 手指滑动
 			touchMove(e) {
 				// 如果禁止通过手动滑动选择，返回
-				if(!this.touchable) {
+				if (!this.touchable) {
 					return
 				}
 				this.preventEvent(e)
@@ -204,7 +210,7 @@
 			// 停止滑动
 			touchEnd(e) {
 				// 如果禁止通过手动滑动选择，返回
-				if(!this.touchable) {
+				if (!this.touchable) {
 					return
 				}
 				this.preventEvent(e)
@@ -218,13 +224,14 @@
 					return
 				}
 				this.preventEvent(e)
+				let x = 0
 				// 点击时，在nvue上，无法获得点击的坐标，所以无法实现点击半星选择
 				// #ifndef APP-NVUE
-				const x = e.changedTouches[0].pageX
+				x = e.changedTouches[0].pageX
 				// #endif
 				// #ifdef APP-NVUE
-				// 模拟坐标
-				const x = index * this.rateWidth + this.rateBoxLeft
+				// nvue下，无法通过点击获得坐标信息，这里通过元素的位置尺寸值模拟坐标
+				x = index * this.rateWidth + this.rateBoxLeft
 				// #endif
 				this.getActiveIndex(x)
 			},
@@ -242,15 +249,10 @@
 				}
 				// 判断当前操作的点的x坐标值，是否在允许的边界范围内
 				const allRateWidth = this.rateWidth * this.count + this.rateBoxLeft
-				// 如果小于第一个图标的左边界，设置为最小值
-				if (x <= this.rateBoxLeft) {
-					x = this.rateBoxLeft
-				} else if (x >= allRateWidth) {
-					// 如果大于所有图标的宽度，则设置为最大值
-					x = allRateWidth
-				}
+				// 如果小于第一个图标的左边界，设置为最小值，如果大于所有图标的宽度，则设置为最大值
+				x = uni.$u.range(this.rateBoxLeft, allRateWidth, x)
 				// 滑动点相对于评分盒子左边的距离
-				const distance = x - this.rateBoxLeft
+				const distance = x
 				// 滑动的距离，相当于多少颗星星
 				let index
 				// 判断是否允许半星
@@ -272,9 +274,11 @@
 						index++
 					}
 				}
-				this.activeIndex = index > this.count ? this.count : index
+				this.activeIndex = Math.min(index, this.count)
 				// 对最少颗星星的限制
-				if (this.activeIndex < this.minCount) this.activeIndex = this.minCount
+				if (this.activeIndex < this.minCount) {
+					this.activeIndex = this.minCount
+				}
 				this.moving = true
 				// 一定时间后，取消标识为移动中状态，是为了让click事件无效
 				setTimeout(() => {
@@ -285,6 +289,7 @@
 		},
 		mounted() {
 			this.init()
+			
 		}
 	}
 </script>
@@ -304,6 +309,10 @@
 		/* #ifndef APP-NVUE */
 		touch-action: none;
 		/* #endif */
+
+		&__content {
+			@include flex;
+		}
 
 		&__item {
 			position: relative;

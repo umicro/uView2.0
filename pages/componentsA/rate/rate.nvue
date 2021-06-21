@@ -4,7 +4,7 @@
 			<text class="u-demo-block__title">基本案例</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
-				<u-rate @change="change"></u-rate>
+					<u-rate></u-rate>
 				</view>
 			</view>
 		</view>
@@ -12,7 +12,10 @@
 			<text class="u-demo-block__title">自定义选中星星数量</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
-				<u-rate v-model="value"></u-rate>
+					<u-rate
+						v-model="value"
+						@change="change"
+					></u-rate>
 				</view>
 			</view>
 		</view>
@@ -37,8 +40,8 @@
 			<view class="u-demo-block__content">
 				<view class="u-page__rate-item">
 					<u-rate
-					    v-model="activeColorValue"
-					    activeColor="#2979ff"
+						v-model="activeColorValue"
+						activeColor="#2979ff"
 					></u-rate>
 				</view>
 			</view>
@@ -48,8 +51,8 @@
 			<view class="u-demo-block__content">
 				<view class="u-page__rate-item">
 					<u-rate
-					    v-model="value"
-					    inactiveColor="#2979ff"
+						v-model="value1"
+						inactiveColor="#2979ff"
 					></u-rate>
 				</view>
 			</view>
@@ -58,7 +61,7 @@
 			<text class="u-demo-block__title">禁止触摸选择</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__rate-item">
-				<u-rate :touchable="false"></u-rate>
+					<u-rate :touchable="false"></u-rate>
 				</view>
 			</view>
 		</view>
@@ -66,7 +69,7 @@
 			<text class="u-demo-block__title">允许触摸选择</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__rate-item">
-				<u-rate :touchable="true"></u-rate>
+					<u-rate :touchable="true"></u-rate>
 				</view>
 			</view>
 		</view>
@@ -74,11 +77,11 @@
 			<text class="u-demo-block__title">是否允许半星</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__rate-item">
-				<u-rate
-				    v-model="HalfValue"
-				    :allowHalf="true"
-					@change="change"
-				></u-rate>
+					<u-rate
+						v-model="HalfValue"
+						:allowHalf="true"
+						@change="change"
+					></u-rate>
 				</view>
 			</view>
 		</view>
@@ -86,11 +89,11 @@
 			<text class="u-demo-block__title">自定义选中的图标</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__rate-item">
-				<u-rate
-				    v-model="activeIconValue"
-				    inactiveIcon="heart"
-				    activeIcon="heart-fill"
-				></u-rate>
+					<u-rate
+						v-model="activeIconValue"
+						inactiveIcon="heart"
+						activeIcon="heart-fill"
+					></u-rate>
 				</view>
 			</view>
 		</view>
@@ -103,6 +106,7 @@
 			return {
 				//自定义星星的个数
 				value: 3,
+				value1: 2,
 				// 自定义选择星星颜色个数
 				activeColorValue: 3,
 				// 是否允许半星的个数
@@ -113,13 +117,12 @@
 		},
 		watch: {
 			value(newValue, oldValue) {
-				console.log(newValue);
+				// console.log(newValue);
 			}
 		},
 		methods: {
 			change(e) {
-				// console.log(e);
-				console.log(1, this.value);
+				console.log('change', e);
 			}
 		},
 	}

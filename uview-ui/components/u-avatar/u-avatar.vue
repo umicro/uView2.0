@@ -8,6 +8,7 @@
 			height: $u.addUnit(size),
 			...$u.addStyle(customStyle)
 		}"
+		@tap.stop="clickHandler"
 	> 
 		<slot>
 			<open-data
@@ -99,6 +100,9 @@
 			errorHandler() {
 				this.avatarUrl = this.defaultUrl || base64Avatar
 			},
+			clickHandler() {
+				this.$emit('click', this.name)
+			}
 		}
 	}
 </script>

@@ -95,6 +95,7 @@
 					}
 				});
 				// #endif
+				this.$emit('click')
 			}
 		}
 	}

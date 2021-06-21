@@ -68,6 +68,11 @@ export  default {
 				return uni.$u.test.range(n, [0, 19]) || n === ''
 			},
 			default: ''
+		},
+		// 组件标识符
+		name: {
+			type: [Number, String],
+			default: ''
 		}
 	}
 } 

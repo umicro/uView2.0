@@ -36,6 +36,13 @@ export default {
 		keyName: {
 			type: String,
 			default: ''
+		},
+		gap: {
+			type: [String, Number],
+			validator(value) {
+				return value >= 0 && value <= 1
+			},
+			default: 0.5
 		}
 	}
 }

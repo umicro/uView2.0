@@ -64,7 +64,7 @@
 		computed: {
 			// 展开后无需阴影，收起时才需要阴影样式
 			innerShadowStyle() {
-				if (this.status === 'open') return {};
+				if (this.status === 'open') return {}
 				else return this.shadowStyle
 			}
 		},
@@ -103,11 +103,11 @@
 			},
 			// 展开或者收起
 			toggleReadMore() {
-				this.status = this.status === 'close' ? 'open' : 'close';
+				this.status = this.status === 'close' ? 'open' : 'close'
 				// 如果toggle为false，隐藏"收起"部分的内容
-				if (this.toggle == false) this.isLongContent = false;
+				if (this.toggle == false) this.isLongContent = false
 				// 发出打开或者收齐的事件
-				this.$emit(this.showMore ? 'open' : 'close', this.index);
+				this.$emit(this.status, this.name)
 			}
 		},
 	}

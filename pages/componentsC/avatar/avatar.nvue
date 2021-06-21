@@ -1,9 +1,9 @@
 <template>
 	<page-meta
-	    background-color="#0000ff"
-	    background-color-top="#000000"
-	    background-color-bottom="#000000"
-	    page-style="color: green, background-color: #000000"
+		background-color="#0000ff"
+		background-color-top="#000000"
+		background-color-bottom="#000000"
+		page-style="color: green, background-color: #000000"
 	></page-meta>
 	<view class="u-page">
 		<view class="u-demo-block">
@@ -17,14 +17,15 @@
 			<view class="u-demo-block__content">
 				<view class="u-avatar-item">
 					<u-avatar
-					    :src="src2"
-					    shape="circle"
+						:src="src2"
+						shape="circle"
+						@click="click"
 					></u-avatar>
 				</view>
 				<view class="u-avatar-item">
 					<u-avatar
-					    :src="src3"
-					    shape="square"
+						:src="src3"
+						shape="square"
 					></u-avatar>
 				</view>
 			</view>
@@ -34,20 +35,20 @@
 			<view class="u-demo-block__content">
 				<view class="u-avatar-item">
 					<u-avatar
-					    :src="src4"
-					    size="30"
+						:src="src4"
+						size="30"
 					></u-avatar>
 				</view>
 				<view class="u-avatar-item">
 					<u-avatar
-					    :src="src5"
-					    size="40"
+						:src="src5"
+						size="40"
 					></u-avatar>
 				</view>
 				<view class="u-avatar-item">
 					<u-avatar
-					    :src="src6"
-					    size="50"
+						:src="src6"
+						size="50"
 					></u-avatar>
 				</view>
 			</view>
@@ -57,14 +58,14 @@
 			<view class="u-demo-block__content">
 				<view class="u-avatar-item">
 					<u-avatar
-					    icon="red-packet-fill"
-					    fontSize="22"
+						icon="red-packet-fill"
+						fontSize="22"
 					></u-avatar>
 				</view>
 				<view class="u-avatar-item">
 					<u-avatar
-					    icon="star-fill"
-					    fontSize="22"
+						icon="star-fill"
+						fontSize="22"
 					></u-avatar>
 				</view>
 			</view>
@@ -74,31 +75,31 @@
 			<view class="u-demo-block__content">
 				<view class="u-avatar-item">
 					<u-avatar
-					    text="U"
-					    fontSize="20"
-					    randomBgColor
-					    :colorIndex="0"
+						text="U"
+						fontSize="20"
+						randomBgColor
+						:colorIndex="0"
 					></u-avatar>
 				</view>
 				<view class="u-avatar-item">
 					<u-avatar
-					    text="邓"
-					    fontSize="18"
-					    randomBgColor
+						text="邓"
+						fontSize="18"
+						randomBgColor
 					></u-avatar>
 				</view>
 				<view class="u-avatar-item">
 					<u-avatar
-					    text="张"
-					    fontSize="18"
-					    randomBgColor
+						text="张"
+						fontSize="18"
+						randomBgColor
 					></u-avatar>
 				</view>
 				<view class="u-avatar-item">
 					<u-avatar
-					    text="王"
-					    fontSize="18"
-					    randomBgColor
+						text="王"
+						fontSize="18"
+						randomBgColor
 					></u-avatar>
 				</view>
 			</view>
@@ -115,8 +116,8 @@
 			<view class="u-demo-block__content">
 				<view class="u-avatar-item">
 					<u-avatar
-					    mpAvatar
-					    size="60"
+						mpAvatar
+						size="60"
 					></u-avatar>
 				</view>
 			</view>
@@ -126,8 +127,16 @@
 			<text class="u-demo-block__title">头像组</text>
 			<view class="u-demo-block__content">
 				<u-avatar-group
-				    :urls="urls"
-				    size="35"
+					:urls="urls"
+					size="35"
+					gap="0.4"
+				></u-avatar-group>
+			</view>
+			<view class="u-demo-block__content" style="margin-top: 20px">
+				<u-avatar-group
+					:urls="urls"
+					size="35"
+					gap="0.6"
 				></u-avatar-group>
 			</view>
 		</view>
@@ -158,7 +167,12 @@
 		},
 		onLoad() {
 
-		}
+		},
+		methods: {
+			click(name) {
+				console.log('click', name);
+			}
+		},
 	}
 </script>
 

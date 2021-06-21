@@ -4,7 +4,9 @@
 		    class="u-avatar-group__item"
 		    v-for="(item, index) in showUrl"
 		    :key="index"
-		    :class="[index === 0 && 'u-avatar-group__item--no-indent']"
+		    :style="{
+				marginLeft: index === 0 ? 0 : $u.addUnit(-size * gap)
+			}"
 		>
 			<u-avatar
 			    :size="size"

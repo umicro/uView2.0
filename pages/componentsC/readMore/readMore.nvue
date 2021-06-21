@@ -4,6 +4,8 @@
 		    ref="uReadMore"
 		    :showHeight="showHeight"
 			toggle
+			@open="open"
+			@close="close"
 		>
 			<u-parse
 			    :content="content"
@@ -31,6 +33,12 @@
 		methods: {
 			load() {
 				this.$refs.uReadMore.init()
+			},
+			open(name) {
+				console.log('open', name);
+			},
+			close(name) {
+				console.log('close', name);
 			}
 		},
 	}

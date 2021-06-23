@@ -66,13 +66,13 @@
 		methods: {
 			init() {
 				// 此处会活动父组件实例，并赋值给实例的parent属性
-				this.parent = uni.$u.$parent.call(this, 'u-list')
+				this.parent = uni.$u.$parent.call(this, 'u-index-list')
 				if (!this.parent) { 
 					return uni.$u.error('u-index-anchor必须要搭配u-index-list组件使用')
 				}
-				this.parent.anchors.push(this)
-				this.parent.id = this.text
-				this.parent.refs.push(this)
+				// this.parent.anchors.push(this)
+				// this.parent.id = this.text
+				// this.parent.refs.push(this)
 			}
 		},
 	}

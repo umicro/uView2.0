@@ -41,14 +41,13 @@ export default {
 		show: {
 			immediate: true,
 			handler(n) {
-				console.log('变化', n);
-				if(n === true) {
-					uni.$u.sleep(50).then(() => { 
-						this.openSwipeAction()
-					})
-				} else {
-					this.closeSwipeAction()
-				}
+				// if(n === true) {
+				// 	uni.$u.sleep(50).then(() => { 
+				// 		this.openSwipeAction()
+				// 	})
+				// } else {
+				// 	this.closeSwipeAction()
+				// }
 			}
 		}
 	},
@@ -58,9 +57,13 @@ export default {
 		})
 	},
 	methods: {
+		close() {
+			this.closeSwipeAction()
+		},
 		// 触摸单元格
 		touchstart(event) {
 			if (this.disabled) return
+			this.closeOther()
 			const touches = event.touches
 			// 记录触摸开始点的坐标值
 			this.startX = touches[0].pageX

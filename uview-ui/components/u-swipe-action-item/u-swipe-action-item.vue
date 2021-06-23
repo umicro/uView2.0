@@ -129,11 +129,17 @@
 				})
 			},
 			// #endif
-			// 打开时执行
-			openHandler() {
-				if (this.parent) {
+			// 关闭其他已经打开的菜单
+			closeOther() {
+				if (this.parent && this.parent.autoClose) {
 					this.parent.closeOther(this)
 				}
+			},
+			// 打开时执行
+			openHandler() {
+				this.$emit('open', {
+					index: this.index
+				})
 			},
 			// 关闭时执行
 			closeHandler() {

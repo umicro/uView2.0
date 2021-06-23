@@ -7,7 +7,6 @@
 			:ref="`u-list-item-${id}`"
 			:id="`u-list-item-${id}`"
 			:class="[`u-list-item-${id}`]"
-			v-if="show"
 		>
 			<slot />
 		</view>
@@ -44,23 +43,17 @@
 		},
 		inject: ['uList'],
 		watch: {
-			// #ifndef APP-NVUE
-			'uList.innerScrollTop'(n) {
-				const preLoadScreen = this.uList.preLoadScreen
-				const windowHeight = this.sys.windowHeight
-				if (this.rect.top <= n - windowHeight * preLoadScreen || this.rect.top >= n + (1 + preLoadScreen) *
-					windowHeight) {
-					this.show = false
-				} else {
-					this.show = true
-				}
-				if(n <= windowHeight * preLoadScreen) {
-					this.parent.updateOffsetFromChild(0)
-				} else if (this.rect.top <= n - windowHeight * preLoadScreen) {
-					this.parent.updateOffsetFromChild(this.rect.top)
-				}
-			}
-			// #endif
+			// // #ifndef APP-NVUE
+			// 'uList.innerScrollTop'(n) {
+			// 	const preLoadScreen = this.uList.preLoadScreen
+			// 	const windowHeight = this.sys.windowHeight
+			// 	if(n <= windowHeight * preLoadScreen) {
+			// 		this.parent.updateOffsetFromChild(0)
+			// 	} else if (this.rect.top <= n - windowHeight * preLoadScreen) {
+			// 		this.parent.updateOffsetFromChild(this.rect.top)
+			// 	}
+			// }
+			// // #endif
 		},
 		created() {
 			this.parent = {}
@@ -77,7 +70,7 @@
 			},
 			updateParentData() {
 				// 此方法在mixin中
-				this.getParentData('u-list')
+				this.getParentData('u-index-list')
 			},
 			resize() {
 				this.queryRect(`u-list-item-${this.id}`).then(size => {

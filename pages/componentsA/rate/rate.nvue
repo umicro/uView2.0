@@ -122,7 +122,7 @@
 		},
 		methods: {
 			change(e) {
-				console.log('change', e);
+				// console.log('change', e);
 			}
 		},
 	}

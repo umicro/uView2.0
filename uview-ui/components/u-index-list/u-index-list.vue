@@ -1,28 +1,39 @@
 <template>
 	<view class="u-index-list">
-		<u-list
+		<!-- #ifdef APP-NVUE -->
+		<list
 			:scrollTop="scrollTop"
 			:scrollIntoView="scrollIntoView"
 			:offset-accuracy="1"
 			@scroll="scrollHandler"
 			ref="uList"
 		>
-			<!-- #ifdef APP-NVUE -->
 			<cell v-if="$slots.header">
-				<!-- #endif -->
 				<slot name="header" />
-				<!-- #ifdef APP-NVUE -->
 			</cell>
-			<!-- #endif -->
 			<slot />
-			<!-- #ifdef APP-NVUE -->
 			<cell v-if="$slots.header">
-				<!-- #endif -->
 				<slot name="footer" />
-				<!-- #ifdef APP-NVUE -->
 			</cell>
-			<!-- #endif -->
-		</u-list>
+		</list>
+		<!-- #endif -->
+		<!-- #ifndef APP-NVUE -->
+		<scroll-view
+			:scrollTop="scrollTop"
+			:scrollIntoView="scrollIntoView"
+			:offset-accuracy="1"
+			@scroll="scrollHandler"
+			ref="uList"
+		>
+			<cell v-if="$slots.header">
+				<slot name="header" />
+			</cell>
+			<slot />
+			<cell v-if="$slots.header">
+				<slot name="footer" />
+			</cell>
+		</scroll-view>
+		<!-- #endif -->
 		<view
 			class="u-index-list__letter"
 			ref="u-index-list__letter"

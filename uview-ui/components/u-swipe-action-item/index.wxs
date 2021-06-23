@@ -186,8 +186,6 @@ function openSwipeAction(instance, ownerInstance) {
 function setStatus(status, instance) {
 	var state = instance.getState()
 	state.status = status
-	console.log('callMethod');
-	instance.callMethod('statusHandler')
 }
 
 // 一次性收起滑动菜单

@@ -59,18 +59,27 @@
 				color: '#606266'
 			}
 		},
-		created() {
+		mounted() {
 			this.init()
 			
 		},
 		methods: {
 			init() {
 				// 此处会活动父组件实例，并赋值给实例的parent属性
-				this.parent = uni.$u.$parent.call(this, 'u-index-list')
-				if (!this.parent) { 
+				const indexList = uni.$u.$parent.call(this, 'u-index-list')
+				if (!indexList) { 
 					return uni.$u.error('u-index-anchor必须要搭配u-index-list组件使用')
 				}
-				// this.parent.anchors.push(this)
+				indexList.anchors.push(this)
+				// 
+				const indexListItem = uni.$u.$parent.call(this, 'u-index-item')
+				// #ifndef APP-NVUE
+				if (!indexListItem) {
+					return uni.$u.error('u-index-anchor必须要搭配u-index-item组件使用')
+				}
+				// #endif
+				// console.log(indexListItem);
+				indexListItem.id = this.text
 				// this.parent.id = this.text
 				// this.parent.refs.push(this)
 			}

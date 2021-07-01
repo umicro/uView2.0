@@ -3,8 +3,11 @@
 		<!-- #ifdef APP-NVUE -->
 		<list
 			:scrollTop="scrollTop"
-			:scrollIntoView="scrollIntoView"
+			enable-back-to-top
 			:offset-accuracy="1"
+			:style="{
+				height: $u.addUnit(scrollViewHeight)
+			}"
 			@scroll="scrollHandler"
 			ref="uList"
 		>
@@ -22,16 +25,20 @@
 			:scrollTop="scrollTop"
 			:scrollIntoView="scrollIntoView"
 			:offset-accuracy="1"
+			:style="{
+				height: $u.addUnit(scrollViewHeight)
+			}"
+			scroll-y
 			@scroll="scrollHandler"
 			ref="uList"
 		>
-			<cell v-if="$slots.header">
+			<view v-if="$slots.header">
 				<slot name="header" />
-			</cell>
+			</view>
 			<slot />
-			<cell v-if="$slots.header">
+			<view v-if="$slots.header">
 				<slot name="footer" />
-			</cell>
+			</view>
 		</scroll-view>
 		<!-- #endif -->
 		<view
@@ -79,18 +86,6 @@
 				<text class="u-index-list__indicator__text">{{ uIndexList[activeIndex] }}</text>
 			</view>
 		</u-transition>
-		<!-- <scroll-view
-			scroll-y
-			:scroll-top="scrollTop"
-			:style="{
-				height: $u.addUnit(scrollViewHeight)
-			}"
-			@scroll="scrollHandler"
-			enable-back-to-top
-		>
-
-
-		</scroll-view> -->
 	</view>
 </template>
 
@@ -166,6 +161,7 @@
 		},
 		created() {
 			this.children = []
+			this.anchors = []
 			this.init()
 		},
 		methods: {
@@ -278,11 +274,15 @@
 				if (currentIndex === this.activeIndex) return
 				this.activeIndex = currentIndex
 				// this.scrollTop = this.children[this.activeIndex].top
+				// #ifndef APP-NVUE
 				this.scrollIntoView = `u-list-item-${this.uIndexList[currentIndex]}`
-				// this.children.map((item, index) => {
-				// 	item.anchor.bgColor = currentIndex === index ? this.anchorStickyBgColor : this.anchorBgColor
-				// 	item.anchor.color = currentIndex === index ? this.activeColor : this.inactiveColor
-				// })
+				// #endif
+				// #ifdef APP-NVUE
+				dom.scrollToElement(this.anchors[currentIndex].$refs[this.scrollIntoView], {
+					offset: 0,
+					animated: false
+				})
+				// #endif
 			},
 			// scroll-view的滚动事件
 			scrollHandler(e) {
@@ -292,22 +292,29 @@
 				// uni.$u.sleep(100).then(() => {
 				// 	this.scrolling = false
 				// })
-				const scrollTop = e
+				let scrollTop = 0
+				// #ifdef APP-NVUE
+				scrollTop = Math.abs(e.contentOffset.y)
+				// #endif
+				// #ifndef APP-NVUE
+				scrollTop = e.detail.scrollTop
+				// #endif
 				const len = this.children.length
-				const children = this.$refs.uList.children
-				const anchors = this.$refs.uList.anchors
+				const children = this.children
+				const anchors = this.anchors
 				for (let i = 0; i < len; i++) {
-					const item = children[i].rect,
+					const item = children[i],
 						anchorsItem = anchors[i],
-						nextItem = (children[i + 1] || {}).rect,
+						nextItem = (children[i + 1] || {}),
 						anchorsNextItem = anchors[i + 1],
 						anchorHeight = this.anchorHeight
 					// 如果滚动条高度小于第一个item的top值，此时无需设置任意字母为高亮
-					if (scrollTop <= children[0].rect.top || scrollTop >= children[len - 1].rect.top + children[len -
-							1].rect.height) {
+					if (scrollTop <= children[0].top || scrollTop >= children[len - 1].top + children[len -
+							1].height) {
 						if (scrollTop < item.top && scrollTop > item.top - anchorHeight) {
 							this.setFirstColorGradient(item, scrollTop, anchorsItem)
 						}
+						console.log(scrollTop, children[len - 1].top, children[len - 1].height);
 						this.activeIndex = -1
 						break
 					} else if (!nextItem) {
@@ -328,6 +335,8 @@
 						break
 					}
 				}
+				console.log('this.activeIndex', this.activeIndex);
+				this.setValueForTouch(this.activeIndex)
 			},
 			// 设置非第一个背景和文字渐变色
 			setColorGradient(item, nextItem, scrollTop, anchorsItem, anchorsNextItem) {

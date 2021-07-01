@@ -180,6 +180,11 @@
 				"navigationBarTitleText": "富文本解析器"
 			}
 		}, {
+			"path": "parse/jump",
+			"style": {
+				"navigationBarTitleText": "内部链接"
+			}
+		}, {
 			"path": "toast/toast",
 			"style": {
 				"navigationBarTitleText": "提示消息"

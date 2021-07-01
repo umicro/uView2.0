@@ -1,12 +1,18 @@
 <template>
-	<u-list-item :id="id">
+	<!-- #ifdef APP-NVUE -->
+	<cell>
+		<!-- #endif -->
 		<view
-		    class="u-index-item"
-		    ref="u-index-item"
+			class="u-index-item"
+			ref="u-index-item"
+			:id="`u-index-item-${id}`"
+			:class="[`u-index-item-${id}`]"
 		>
-			<slot/>
+			<slot />
 		</view>
-	</u-list-item>
+		<!-- #ifdef APP-NVUE -->
+	</cell>
+	<!-- #endif -->
 </template>
 
 <script>

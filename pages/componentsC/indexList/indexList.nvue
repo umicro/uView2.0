@@ -1,5 +1,5 @@
 <template>
-	<u-index-list ref="abc">
+	<u-index-list>
 		<u-cell-group slot="header">
 			<u-cell title="新的朋友">
 				<u-avatar

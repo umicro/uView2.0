@@ -43,17 +43,17 @@
 		},
 		inject: ['uList'],
 		watch: {
-			// // #ifndef APP-NVUE
-			// 'uList.innerScrollTop'(n) {
-			// 	const preLoadScreen = this.uList.preLoadScreen
-			// 	const windowHeight = this.sys.windowHeight
-			// 	if(n <= windowHeight * preLoadScreen) {
-			// 		this.parent.updateOffsetFromChild(0)
-			// 	} else if (this.rect.top <= n - windowHeight * preLoadScreen) {
-			// 		this.parent.updateOffsetFromChild(this.rect.top)
-			// 	}
-			// }
-			// // #endif
+			// #ifndef APP-NVUE
+			'uList.innerScrollTop'(n) {
+				const preLoadScreen = this.uList.preLoadScreen
+				const windowHeight = this.sys.windowHeight
+				if(n <= windowHeight * preLoadScreen) {
+					this.parent.updateOffsetFromChild(0)
+				} else if (this.rect.top <= n - windowHeight * preLoadScreen) {
+					this.parent.updateOffsetFromChild(this.rect.top)
+				}
+			}
+			// #endif
 		},
 		created() {
 			this.parent = {}

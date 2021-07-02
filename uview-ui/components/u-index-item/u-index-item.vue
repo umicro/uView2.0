@@ -1,10 +1,9 @@
 <template>
 	<!-- #ifdef APP-NVUE -->
-	<cell>
+	<cell ref="u-index-item">
 		<!-- #endif -->
 		<view
 			class="u-index-item"
-			ref="u-index-item"
 			:id="`u-index-item-${id}`"
 			:class="[`u-index-item-${id}`]"
 		>
@@ -67,7 +66,7 @@
 						resolve(res.size)
 					})
 					// #endif
-				})
+				}) 
 			}
 		},
 	}

@@ -136,7 +136,7 @@
 				}
 			},
 			{
-				"path": "backTop/backTop",
+				"path": "backtop/backtop",
 				"style": {
 					"navigationBarTitleText": "返回顶部"
 				}

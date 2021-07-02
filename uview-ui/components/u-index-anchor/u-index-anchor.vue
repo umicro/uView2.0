@@ -61,7 +61,6 @@
 		},
 		mounted() {
 			this.init()
-			
 		},
 		methods: {
 			init() {

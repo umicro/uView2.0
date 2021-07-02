@@ -11,7 +11,10 @@
 			@scroll="scrollHandler"
 			ref="uList"
 		>
-			<cell v-if="$slots.header">
+			<cell
+				v-if="$slots.header"
+				ref="header"
+			>
 				<slot name="header" />
 			</cell>
 			<slot />
@@ -274,9 +277,7 @@
 				if (currentIndex === this.activeIndex) return
 				this.activeIndex = currentIndex
 				// this.scrollTop = this.children[this.activeIndex].top
-				// #ifndef APP-NVUE
 				this.scrollIntoView = `u-list-item-${this.uIndexList[currentIndex]}`
-				// #endif
 				// #ifdef APP-NVUE
 				dom.scrollToElement(this.anchors[currentIndex].$refs[this.scrollIntoView], {
 					offset: 0,
@@ -284,8 +285,15 @@
 				})
 				// #endif
 			},
+			getHeaderRect() {
+				return new Promise(resolve => {
+					dom.getComponentRect(this.$refs.header, res => {
+						resolve(res.size)
+					})
+				})
+			},
 			// scroll-view的滚动事件
-			scrollHandler(e) {
+			async scrollHandler(e) {
 				if (this.touching || this.scrolling) return
 				// 每过一定时间取样一次，减少资源损耗以及可能带来的卡顿
 				// this.scrolling = true
@@ -293,70 +301,49 @@
 				// 	this.scrolling = false
 				// })
 				let scrollTop = 0
+				const len = this.children.length
+				let children = this.children
+				const anchors = this.anchors
 				// #ifdef APP-NVUE
 				scrollTop = Math.abs(e.contentOffset.y)
+				const header = await this.getHeaderRect()
+				let height = 0
+				children = this.children.map((item, index) => {
+					const child = {
+						height: item.height,
+						top: height + header.height
+					}
+					height = height + item.height
+					return child
+				})
 				// #endif
 				// #ifndef APP-NVUE
 				scrollTop = e.detail.scrollTop
 				// #endif
-				const len = this.children.length
-				const children = this.children
-				const anchors = this.anchors
 				for (let i = 0; i < len; i++) {
 					const item = children[i],
 						anchorsItem = anchors[i],
-						nextItem = (children[i + 1] || {}),
+						nextItem = children[i + 1],
 						anchorsNextItem = anchors[i + 1],
 						anchorHeight = this.anchorHeight
 					// 如果滚动条高度小于第一个item的top值，此时无需设置任意字母为高亮
 					if (scrollTop <= children[0].top || scrollTop >= children[len - 1].top + children[len -
 							1].height) {
-						if (scrollTop < item.top && scrollTop > item.top - anchorHeight) {
-							this.setFirstColorGradient(item, scrollTop, anchorsItem)
-						}
-						console.log(scrollTop, children[len - 1].top, children[len - 1].height);
+						console.log(scrollTop >= children[len - 1].top + children[len -
+							1].height);
 						this.activeIndex = -1
 						break
-					} else if (!nextItem) {
+					} else if (!nextItem) { 
 						// 当不存在下一个item时，意味着历遍到了最后一个
 						this.activeIndex = len - 1
 						break
 					} else if (scrollTop > item.top && scrollTop < nextItem.top) {
-						if (scrollTop > nextItem.top - anchorHeight) {
-							this.setColorGradient(item, nextItem, scrollTop, anchorsItem, anchorsNextItem)
-						}
-						// 处理边界情况，防止快速滑动时，可能因为某些滚动位置没触发，导致某些item的anchor的背景色和color没完全修改过来
-						if (scrollTop < nextItem.top - anchorHeight) {
-							anchorsNextItem.bgColor !== this.anchorBgColor && (anchorsNextItem.bgColor = this
-								.anchorBgColor)
-							anchorsNextItem.color !== this.inactiveColor && (anchorsNextItem.color = this.inactiveColor)
-						}
 						this.activeIndex = i
 						break
 					}
 				}
 				console.log('this.activeIndex', this.activeIndex);
-				this.setValueForTouch(this.activeIndex)
-			},
-			// 设置非第一个背景和文字渐变色
-			setColorGradient(item, nextItem, scrollTop, anchorsItem, anchorsNextItem) {
-				const anchorHeight = this.anchorHeight
-				const bgColorArr = uni.$u.colorGradient(this.anchorBgColor, this.anchorStickyBgColor, anchorHeight)
-				const colorArr = uni.$u.colorGradient(this.inactiveColor, this.activeColor, anchorHeight)
-				const colorIndex = nextItem.top - scrollTop
-				anchorsItem.bgColor = bgColorArr[colorIndex]
-				anchorsItem.color = colorArr[colorIndex]
-				anchorsNextItem.bgColor = bgColorArr[anchorHeight - colorIndex]
-				anchorsNextItem.color = colorArr[anchorHeight - colorIndex]
-			},
-			// 设置第一个背景和文字渐变色
-			setFirstColorGradient(item, scrollTop, anchorsItem) {
-				const anchorHeight = this.anchorHeight
-				const bgColorArr = uni.$u.colorGradient(this.anchorBgColor, this.anchorStickyBgColor, anchorHeight)
-				const colorArr = uni.$u.colorGradient(this.inactiveColor, this.activeColor, anchorHeight)
-				const colorIndex = item.top - scrollTop
-				anchorsItem.bgColor = bgColorArr[anchorHeight - colorIndex]
-				anchorsItem.color = colorArr[anchorHeight - colorIndex]
+				// this.setValueForTouch(this.activeIndex)
 			},
 		},
 	}

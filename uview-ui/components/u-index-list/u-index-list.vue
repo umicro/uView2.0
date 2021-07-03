@@ -47,8 +47,7 @@
 		<view
 			class="u-index-list__letter"
 			ref="u-index-list__letter"
-			v-if="showSidebar"
-			:style="{ top: $u.addUnit(letterInfo.top) }"
+			:style="{ top: $u.addUnit(letterInfo.top || 100) }"
 			@touchstart.stop.prevent="touchStart"
 			@touchmove.stop.prevent="touchMove"
 			@touchend.stop.prevent="touchEnd"
@@ -111,8 +110,6 @@
 		mixins: [uni.$u.mixin, props],
 		data() {
 			return {
-				// 是否显示右侧的索引列表字母，当子组件数量为0时，无需展示
-				showSidebar: true,
 				// 当前正在被选中的字母索引
 				activeIndex: -1,
 				touchmoveIndex: 1,
@@ -135,7 +132,7 @@
 				// 系统信息
 				sys: uni.$u.sys(),
 				scrolling: false,
-				scrollIntoView: ''
+				scrollIntoView: '',
 			}
 		},
 		computed: {
@@ -153,6 +150,7 @@
 			}
 		},
 		watch: {
+			// 监听字母索引的变化，重新设置尺寸
 			uIndexList: {
 				immediate: true,
 				handler() {
@@ -167,8 +165,12 @@
 			this.anchors = []
 			this.init()
 		},
+		mounted() {
+			this.setIndexListLetterInfo()
+		},
 		methods: {
 			init() {
+				// 设置列表的高度为整个屏幕的高度
 				this.scrollViewHeight = this.sys.windowHeight
 			},
 			// 索引列表被触摸
@@ -180,6 +182,7 @@
 				const {
 					pageY
 				} = touchStart
+				// 根据当前触摸点的坐标，获取当前触摸的为第几个字母
 				const currentIndex = this.getIndexListLetter(pageY)
 				this.setValueForTouch(currentIndex)
 			},
@@ -239,6 +242,7 @@
 						customNavHeight = sys.windowTop
 						// #endif
 						// #ifndef H5
+						// 在非H5中，为原生导航栏，其高度不算在windowHeight内，这里设置为负值，后面相加时变成减去其高度的一半
 						customNavHeight = -(sys.statusBarHeight + 44)
 						// #endif
 					} else {
@@ -246,6 +250,7 @@
 					}
 					this.letterInfo = {
 						height,
+						// 为了让字母列表对屏幕绝对居中，让其对导航栏进行修正，也即往上偏移导航栏的一半高度
 						top: (windowHeight - height) / 2 + customNavHeight / 2,
 						itemHeight: Math.floor(height / this.uIndexList.length)
 					}
@@ -276,16 +281,21 @@
 				// 如果偏移量太小，前后得出的会是同一个索引字母，为了防抖，进行返回
 				if (currentIndex === this.activeIndex) return
 				this.activeIndex = currentIndex
-				// this.scrollTop = this.children[this.activeIndex].top
-				this.scrollIntoView = `u-list-item-${this.uIndexList[currentIndex]}`
+				// #ifndef APP-NVUE
+				// 在非nvue中，由于anchor和item都在u-index-item中，所以需要对index-item进行偏移
+				this.scrollIntoView = `u-index-item-${this.uIndexList[currentIndex]}`
+				// #endif
 				// #ifdef APP-NVUE
-				dom.scrollToElement(this.anchors[currentIndex].$refs[this.scrollIntoView], {
+				// 在nvue中，由于cell和header为同级元素，所以实际是需要对header(anchor)进行偏移
+				const anchor = `u-index-anchor-${this.uIndexList[currentIndex]}`
+				dom.scrollToElement(this.anchors[currentIndex].$refs[anchor], {
 					offset: 0,
 					animated: false
 				})
 				// #endif
 			},
 			getHeaderRect() {
+				// 获取header slot的高度，因为list组件中获取元素的尺寸是没有top值的
 				return new Promise(resolve => {
 					dom.getComponentRect(this.$refs.header, res => {
 						resolve(res.size)
@@ -296,41 +306,42 @@
 			async scrollHandler(e) {
 				if (this.touching || this.scrolling) return
 				// 每过一定时间取样一次，减少资源损耗以及可能带来的卡顿
-				// this.scrolling = true
-				// uni.$u.sleep(100).then(() => {
-				// 	this.scrolling = false
-				// })
+				this.scrolling = true
+				uni.$u.sleep(10).then(() => {
+					this.scrolling = false
+				})
 				let scrollTop = 0
 				const len = this.children.length
 				let children = this.children
 				const anchors = this.anchors
 				// #ifdef APP-NVUE
+				// nvue下获取的滚动条偏移为负数，需要转为正数
 				scrollTop = Math.abs(e.contentOffset.y)
+				// 获取header slot的尺寸信息
 				const header = await this.getHeaderRect()
-				let height = 0
+				// item的top值，在nvue下，模拟出的anchor的top，类似非nvue下的index-item的top
+				let top = header.height
+				// 由于list组件无法获取cell的top值，这里通过header slot和各个item之间的height，模拟出类似非nvue下的位置信息
 				children = this.children.map((item, index) => {
 					const child = {
 						height: item.height,
-						top: height + header.height
+						top
 					}
-					height = height + item.height
+					// 进行累加，给下一个item提供计算依据
+					top += item.height + anchors[index].height
 					return child
 				})
 				// #endif
 				// #ifndef APP-NVUE
+				// 非nvue通过detail获取滚动条位移
 				scrollTop = e.detail.scrollTop
 				// #endif
 				for (let i = 0; i < len; i++) {
 					const item = children[i],
-						anchorsItem = anchors[i],
-						nextItem = children[i + 1],
-						anchorsNextItem = anchors[i + 1],
-						anchorHeight = this.anchorHeight
+						nextItem = children[i + 1]
 					// 如果滚动条高度小于第一个item的top值，此时无需设置任意字母为高亮
 					if (scrollTop <= children[0].top || scrollTop >= children[len - 1].top + children[len -
 							1].height) {
-						console.log(scrollTop >= children[len - 1].top + children[len -
-							1].height);
 						this.activeIndex = -1
 						break
 					} else if (!nextItem) { 
@@ -342,8 +353,6 @@
 						break
 					}
 				}
-				console.log('this.activeIndex', this.activeIndex);
-				// this.setValueForTouch(this.activeIndex)
 			},
 		},
 	}

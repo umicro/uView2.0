@@ -26,18 +26,6 @@ export default {
 		customNavHeight: {
 			type: [String, Number],
 			default: 0
-		},
-		anchorHeight: {
-			type: [String, Number],
-			default: 35
-		},
-		anchorBgColor: {
-			type: String,
-			default: '#dedede'
-		},
-		anchorStickyBgColor: {
-			type: String,
-			default: '#f5f5f5'
 		}
 	}
 }

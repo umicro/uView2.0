@@ -169,7 +169,7 @@ export default {
 			type: [String, Object],
 			default: ''
 		},
-		// 是否显示边框
+		// 边框类型，surround-四周边框，bottom-底部边框
 		border: {
 			type: String,
 			default: 'surround'

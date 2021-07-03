@@ -118,6 +118,11 @@ export default [{
 			title: 'Input 输入框',
 			title_en: 'Input',
 		}, {
+			path: '/pages/componentsC/textarea/textarea',
+			icon: 'textarea',
+			title: 'Textarea 文本域',
+			title_en: 'Textarea',
+		}, {
 			path: '/pages/componentsA/checkbox/checkbox',
 			icon: 'checkbox',
 			title: 'Checkbox 复选框',

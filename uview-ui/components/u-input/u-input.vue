@@ -100,7 +100,6 @@
 			},
 			// 组件的类名
 			inputClass() {
-				[border === 'bottom' ? 'u-border-bottom' : 'u-border', border === 'surround' && 'u-input--radius', disabled && 'u-input--disabled']
 				let classes = [],
 					{ border, disabled, shape } = this
 				border === 'surround' && (classes = classes.concat(['u-border', 'u-input--radius']))
@@ -201,7 +200,6 @@
 				padding: 0;
 				line-height: 26px;
 				text-align: left;
-				border: 0;
 				color: $u-content-color;
 				height: 24px;
 				font-size: 14px;

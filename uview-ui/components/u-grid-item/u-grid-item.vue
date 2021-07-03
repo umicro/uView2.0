@@ -99,7 +99,6 @@
 				}
 				// 调用父组件方法，发出事件
 				this.parent && this.parent.childClick(name)
-				console.log(31);
 				this.$emit('click', name)
 			},
 			async getItemWidth() {

@@ -4,8 +4,7 @@
 	<!-- #endif -->
 	<view
 	    class="u-index-anchor u-border-bottom"
-	    :id="`u-list-item-${text}`"
-		:ref="`u-list-item-${text}`"
+		:ref="`u-index-anchor-${text}`"
 	    :style="{
 			height: $u.addUnit(height),
 			backgroundColor: bgColor
@@ -36,18 +35,18 @@
 				type: [String, Number],
 				default: ''
 			},
-			// color: {
-			// 	type: String,
-			// 	default: '#606266'
-			// },
+			color: {
+				type: String,
+				default: '#606266'
+			},
 			size: {
 				type: [String, Number],
 				default: 14
 			},
-			// bgColor: {
-			// 	type: String,
-			// 	default: '#dedede'
-			// },
+			bgColor: {
+				type: String,
+				default: '#dedede'
+			},
 			height: {
 				type: [String, Number],
 				default: 32
@@ -55,8 +54,6 @@
 		},
 		data() {
 			return {
-				bgColor: '#dedede',
-				color: '#606266'
 			}
 		},
 		mounted() {
@@ -69,18 +66,17 @@
 				if (!indexList) { 
 					return uni.$u.error('u-index-anchor必须要搭配u-index-list组件使用')
 				}
+				// 将当前实例放入到u-index-list中
 				indexList.anchors.push(this)
-				// 
 				const indexListItem = uni.$u.$parent.call(this, 'u-index-item')
 				// #ifndef APP-NVUE
+				// 只有在非nvue下，u-index-anchor才是嵌套在u-index-item中的
 				if (!indexListItem) {
 					return uni.$u.error('u-index-anchor必须要搭配u-index-item组件使用')
 				}
-				// #endif
-				// console.log(indexListItem);
+				// 设置u-index-item的id为anchor的text标识符，因为非nvue下滚动列表需要依赖scroll-view滚动到元素的特性
 				indexListItem.id = this.text
-				// this.parent.id = this.text
-				// this.parent.refs.push(this)
+				// #endif
 			}
 		},
 	}

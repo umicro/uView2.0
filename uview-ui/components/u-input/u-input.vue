@@ -126,6 +126,8 @@
 				uni.$u.sleep(50).then(() => {
 					this.focused = false
 				})
+				// 尝试调用u-form的验证方法
+				uni.$u.formValidate(this, 'blur')
 			},
 			// 输入框聚焦时触发
 			onFocus(event) {
@@ -147,6 +149,8 @@
 				this.$nextTick(() => {
 					this.$emit('input', value)
 					this.$emit('change', value)
+					// 尝试调用u-form的验证方法
+					uni.$u.formValidate(this, 'change')
 				})
 			},
 			// 点击清除控件
@@ -170,6 +174,7 @@
 		align-items: center;
 		justify-content: space-between;
 		padding: 6px 9px;
+		flex: 1;
 		
 		&--disabled {
 			background-color: #f5f7fa;

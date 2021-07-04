@@ -467,13 +467,24 @@ function priceFormat(number, decimals, dec_point, thousands_sep) {
 // 获取duration值，如果带有ms或者s直接返回，如果大于一定值，认为是ms单位，小于一定值，认为是s单位
 // 比如以30位阈值，那么300大于30，可以理解为用户想要的是300ms，而不是想花300s去执行一个动画
 function getDuration(value) {
-	if(/s$/.test(value)) return value
+	if (/s$/.test(value)) return value
 	return value > 30 ? value + 'ms' : value + 's'
 }
 
 // 日期的月或日补零操作
 function padZero(value) {
-  return `00${value}`.slice(-2);
+	return `00${value}`.slice(-2);
+}
+
+// 在u-form的子组件内容发生变化，或者失去焦点时，尝试通知u-form执行校验方法
+function formValidate(instance, event) {
+	const formItem = uni.$u.$parent.call(instance, 'u-form-item')
+	const form = uni.$u.$parent.call(instance, 'u-form')
+	// 如果发生变化的input或者textarea等，其父组件中有u-form-item或者u-form等，就执行form的validate方法
+	// 同时将form-item的pros传递给form，让其进行精确对象验证
+	if (formItem && form) {
+		form.validateField(formItem.prop, event)
+	}
 }
 
 export default {
@@ -499,5 +510,6 @@ export default {
 	type2icon,
 	priceFormat,
 	getDuration,
-	padZero
+	padZero,
+	formValidate
 };

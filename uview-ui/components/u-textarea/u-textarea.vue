@@ -161,12 +161,16 @@
 			},
 			onBlur(e) {
 				this.$emit('blur', e);
+				// 尝试调用u-form的验证方法
+				uni.$u.formValidate(this, 'blur')
 			},
 			onLinechange(e) {
 				this.$emit('linechange', e);
 			},
 			onInput(e) {
 				this.$emit('input', e.detail.value);
+				// 尝试调用u-form的验证方法
+				uni.$u.formValidate(this, 'change')
 			},
 			onConfirm(e) {
 				this.$emit('confirm', e);
@@ -187,6 +191,7 @@
 		position: relative;
 		padding: 5px;
 		@include flex;
+		flex: 1;
 
 		&--radius {
 			border-radius: 4px;
@@ -205,7 +210,7 @@
 			font-size: 14px;
 			color: $u-content-color;
 			margin: 0;
-			padding: 0;
+			padding: 5px;
 		}
 
 		&__count {

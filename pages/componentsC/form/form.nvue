@@ -1,0 +1,64 @@
+<template>
+	<view class="u-page">
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">基础使用</text>
+			<view class="u-demo-block__content">
+				<u--form
+					labelPosition="row"
+					:model="model1"
+					:rules="rules"
+					ref="form1"
+				>
+					<u-form-item
+						label="姓名"
+						labelWidth="120"
+					>
+						<u--input v-model="model1.name"></u--input>
+					</u-form-item>
+					<u-form-item
+						label="电话"
+						required
+					>
+						<u--input></u--input>
+					</u-form-item>
+					<u-form-item
+						label="电话"
+						required
+					>
+						<u--input></u--input>
+					</u-form-item>
+				</u--form>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				model1: {
+					c: 3
+				},
+				rules: {
+					name: {
+						type: 'string',
+						required: true,
+						message: '姓名必填'
+					},
+				}
+			}
+		},
+		onLoad() {
+			setTimeout(() => {
+				// this.$refs.form1.validate().then(res => {
+				// 	console.log('then', res);
+				// })
+			}, 1000);
+		}
+	}
+</script>
+
+<style lang="scss">
+
+</style>

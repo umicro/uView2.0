@@ -74,7 +74,7 @@
 					this.gridItemClasses()
 				})
 				// 父组件的实例
-				this.updateParentData('u-grid')
+				this.updateParentData()
 				// #ifdef APP-NVUE
 				// 获取元素该有的长度，nvue下要延时才准确
 				this.$nextTick(function(){

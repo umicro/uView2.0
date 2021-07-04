@@ -279,6 +279,8 @@
 				// u-radio的checked不为true时(意味着未选中)，才发出事件，避免多次点击触发事件
 				if (!this.checked) {
 					this.$emit('change', this.name)
+					// 尝试调用u-form的验证方法
+					uni.$u.formValidate(this, 'change')
 				}
 			},
 			// 改变组件选中状态

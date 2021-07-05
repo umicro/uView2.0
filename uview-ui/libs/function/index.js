@@ -487,6 +487,21 @@ function formValidate(instance, event) {
 	}
 }
 
+// 获取某个对象下的属性，用于通过类似'a.b.c'的形式去获取一个对象的的属性的形式
+function getProperty(object, property) {
+	// 将属性进行历遍
+	const propertyArr = property.split('.')
+	// 取出第一个匹配的属性
+	let obj = object[propertyArr[0]],
+		i = 1
+	// 进行while历遍，往下寻找对应值
+	while (typeof obj === 'object') {
+		obj = obj[propertyArr[i++]]
+	}
+	// 通过判断i自增的结果是否等于数组的长度，如果不等于说明在某一个属性时，找不到对应的值，此时需要返回undefined
+	return propertyArr.length === i ? obj : undefined
+}
+
 export default {
 	range,
 	getPx,
@@ -511,5 +526,6 @@ export default {
 	priceFormat,
 	getDuration,
 	padZero,
-	formValidate
+	formValidate,
+	getProperty
 };

@@ -53,12 +53,10 @@
 						<slot name="right" />
 					</view>
 				</view>
-				<u-transition
-					:show="true"
-					mode="fade"
-				>
-					<text class="u-form-item__body__right__message">u-form-item需要结合u-form组件使用</text>
-				</u-transition>
+				<text
+					v-if="!!message"
+					class="u-form-item__body__right__message"
+				>{{ message }}</text>
 			</view>
 		</view>
 	</view>
@@ -71,6 +69,8 @@
 		mixins: [uni.$u.mixin, props],
 		data() {
 			return {
+				// 错误提示语
+				message: '',
 				parentData: {
 					// 提示文本的位置
 					labelPosition: 'left',
@@ -87,16 +87,6 @@
 		mounted() {
 			this.init()
 		},
-		
-		// 组件销毁前，将实例从u-form的缓存中移除
-		beforeDestroy() {
-			// 如果当前没有prop的话表示当前不要进行删除（因为没有注入）
-			if (this.parent && this.prop) {
-				this.parent.fields.map((item, index) => {
-					if (item === this) this.parent.fields.splice(index, 1);
-				})
-			}
-		},
 		methods: {
 			init() {
 				// 父组件的实例
@@ -112,7 +102,8 @@
 			},
 			broadcastInputError() {
 				// 子组件发出事件，第三个参数为true或者false，true代表有错误
-				this.broadcast('u-input', 'on-form-item-error', this.validateState === 'error' && this.showError('border'));
+				this.broadcast('u-input', 'on-form-item-error', this.validateState === 'error' && this.showError(
+				'border'));
 			},
 			// 判断是否需要required校验
 			setRules() {

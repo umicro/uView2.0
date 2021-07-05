@@ -80,16 +80,37 @@
 			},
 			// 对部分表单字段进行校验
 			validateField(value, callback) {
-				if(uni.$u.test.string(value)) {
-					// 如果为字符串，转为数组
-					value = [value]
-				}
-				if(uni.$u.test.array(value)) {
-					// 对一个或者多个u-form-item进行校验
-					
-					// 执行回调函数
-					typeof callback === 'function' && callback()
-				}
+				this.$nextTick(() => {
+					if (uni.$u.test.string(value)) {
+						// 如果为字符串，转为数组
+						value = [value]
+					}
+					if (uni.$u.test.array(value)) {
+						// 对一个或者多个u-form-item进行校验
+						value.map((item, index) => {
+							// 获取对应的属性，通过类似'a.b.c'的形式
+							const val = uni.$u.getProperty(this.model, item)
+							const propertyArr = item.split('.')
+							const property = propertyArr[propertyArr.length - 1]
+							// 历遍children所有子form-item
+							this.children.map(child => {
+								if (child.prop === item) {
+									const validator = new Schema({
+										[property]: this.formRules[item]
+									})
+									validator.validate({
+										[property]: val
+									}, (errors, fields) => {
+										console.log('errors fields', errors, fields);
+										child.message = errors?.[0]?.message
+									})
+								}
+							})
+						})
+						// 执行回调函数
+						typeof callback === 'function' && callback()
+					}
+				})
 			},
 			// 校验全部数据
 			validate(callback) {

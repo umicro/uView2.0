@@ -12,8 +12,9 @@
 					<u-form-item
 						label="姓名"
 						labelWidth="120"
+						prop="type.name"
 					>
-						<u--input v-model="model1.name"></u--input>
+						<u--input v-model="model1.type.name"></u--input>
 					</u-form-item>
 					<u-form-item
 						label="电话"
@@ -38,10 +39,12 @@
 		data() {
 			return {
 				model1: {
-					c: 3
+					type: {
+						name: '张三'
+					}
 				},
 				rules: {
-					name: {
+					'type.name': {
 						type: 'string',
 						required: true,
 						message: '姓名必填'

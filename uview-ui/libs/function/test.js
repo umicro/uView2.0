@@ -45,6 +45,13 @@ function number(value) {
 }
 
 /**
+ * 验证字符串
+ */
+function string(value) {
+	return typeof value === 'string'
+}
+
+/**
  * 验证整数
  */
 function digits(value) {
@@ -278,5 +285,6 @@ export default {
 	promise,
 	video,
 	image,
-	regExp
+	regExp,
+	string
 };

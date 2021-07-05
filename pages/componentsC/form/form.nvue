@@ -16,7 +16,7 @@
 					>
 						<u--input v-model="model1.type.name"></u--input>
 					</u-form-item>
-					<u-form-item
+					<!-- <u-form-item
 						label="电话"
 						required
 					>
@@ -27,7 +27,7 @@
 						required
 					>
 						<u--input></u--input>
-					</u-form-item>
+					</u-form-item> -->
 				</u--form>
 			</view>
 		</view>
@@ -41,24 +41,56 @@
 				model1: {
 					type: {
 						name: '张三'
-					}
+					},
+					types: ['张三', '李四']
 				},
 				rules: {
 					'type.name': {
 						type: 'string',
 						required: true,
-						message: '姓名必填'
+						message: '姓名必填',
+						trigger: ['blur', 'change']
 					},
 				}
 			}
 		},
 		onLoad() {
-			setTimeout(() => {
-				// this.$refs.form1.validate().then(res => {
-				// 	console.log('then', res);
-				// })
-			}, 1000);
-		}
+			// setTimeout(() => {
+			// 	// this.$refs.form1.validate().then(res => {
+			// 	// 	console.log('then', res);
+			// 	// }).catch(res => {
+			// 	// 	console.log('catch', res);
+			// 	// })
+			// 	// this.$refs.form1.validateField(['type.name'], res => {
+			// 	// 	console.log('res', res);
+			// 	// })
+			// 	this.$refs.form1.resetFields()
+			// 	console.log('model1', this.model1);
+			// }, 3000);
+			// var obj = {}
+			// uni.$u.setProperty(obj, 'a.b.c', 1);
+			// console.log(obj);
+			
+			var obj = { a: { b: { c: 1 } } }
+			console.log(uni.$u.getProperty(obj,'a.b.c'));
+			// const obj = {
+			// 	type: {
+			// 		name: '张三'
+			// 	}
+			// };
+			// console.log('o', this.clone(obj));
+		},
+		methods: {
+			clone(obj) {
+				var o = {}
+				for (let i in obj) {
+					if (obj.hasOwnProperty(i)) {
+						o[i] = typeof obj[i] === 'object' ? this.clone(obj[i]) : obj[i];
+					}
+				}
+				return o
+			}
+		},
 	}
 </script>
 

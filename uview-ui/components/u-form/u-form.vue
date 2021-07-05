@@ -21,7 +21,9 @@
 			return {
 				formRules: {},
 				// 规则校验器
-				validator: {}
+				validator: {},
+				// 原始的model快照，用于resetFields方法重置表单时使用
+				originalModel: null
 			}
 		},
 		watch: {
@@ -41,13 +43,13 @@
 					})
 				}
 			},
-			// 深度监听model绑定的变化
+			// 监听model的初始值作为重置表单的快照
 			model: {
 				immediate: true,
-				deep: true,
 				handler(n) {
-					// console.log('watch', n);
-					// this.validate()
+					if(!this.originalModel) {
+						this.originalModel = uni.$u.deepClone(n)
+					}
 				}
 			}
 		},
@@ -74,42 +76,58 @@
 			},
 			// 清空所有u-form-item组件的内容，本质上是调用了u-form-item组件中的resetField()方法
 			resetFields() {
+				this.resetModel()
+			},
+			// 重置model为初始值的快照
+			resetModel(obj) {
 				this.children.map(child => {
-					child.resetField()
+					const prop = child?.prop
+					const value = uni.$u.getProperty(this.originalModel, prop)
+					console.log(prop, value);
+					uni.$u.setProperty(this.model, prop, value)
 				})
 			},
 			// 对部分表单字段进行校验
-			validateField(value, callback) {
+			validateField(value, callback, event = null) {
+				// $nextTick是必须的，否则model的变更，可能会延后于此方法的执行
 				this.$nextTick(() => {
-					if (uni.$u.test.string(value)) {
-						// 如果为字符串，转为数组
-						value = [value]
-					}
-					if (uni.$u.test.array(value)) {
-						// 对一个或者多个u-form-item进行校验
-						value.map((item, index) => {
-							// 获取对应的属性，通过类似'a.b.c'的形式
-							const val = uni.$u.getProperty(this.model, item)
-							const propertyArr = item.split('.')
-							const property = propertyArr[propertyArr.length - 1]
-							// 历遍children所有子form-item
-							this.children.map(child => {
-								if (child.prop === item) {
-									const validator = new Schema({
-										[property]: this.formRules[item]
-									})
-									validator.validate({
-										[property]: val
-									}, (errors, fields) => {
-										console.log('errors fields', errors, fields);
-										child.message = errors?.[0]?.message
-									})
-								}
-							})
+					// 校验错误信息，返回给回调方法
+					const errorsRes = []
+					// 如果为字符串，转为数组
+					value = [].concat(value)
+					// 对一个或者多个u-form-item进行校验
+					value.map((item, index) => {
+						// 获取对应的属性，通过类似'a.b.c'的形式
+						const propertyVal = uni.$u.getProperty(this.model, item)
+						// 属性链数组
+						const propertyChain = item.split('.')
+						const propertyName = propertyChain[propertyChain.length - 1]
+						// 历遍children所有子form-item
+						this.children.map(child => {
+							if (child.prop === item) {
+								const rule = this.formRules[item]
+								// 将u-form-item的触发器转为数组形式
+								const trigger = [].concat(rule?.trigger)
+								// 如果是有传入触发事件，但是此form-item却没有配置此触发器的话，不执行校验操作
+								if (event && !trigger.includes(event)) return
+								// 实例化校验对象，传入构造规则
+								const validator = new Schema({
+									[propertyName]: rule
+								})
+								validator.validate({
+									[propertyName]: propertyVal
+								}, (errors, fields) => {
+									if (uni.$u.test.array(errors)) {
+										errorsRes.push(...errors)
+										// 取出第0个错误
+										child.message = errors[0].message
+									}
+								})
+							}
 						})
-						// 执行回调函数
-						typeof callback === 'function' && callback()
-					}
+					})
+					// 执行回调函数
+					typeof callback === 'function' && callback(errorsRes)
 				})
 			},
 			// 校验全部数据
@@ -117,11 +135,10 @@
 				return new Promise((resolve, reject) => {
 					// $nextTick是必须的，否则model的变更，可能会延后于validate方法
 					this.$nextTick(() => {
-						this.validator.validate(this.model, (errors, fields) => {
-							console.log('errors fields', errors, fields);
-							if (errors) {
-								console.log('errors', errors);
-							}
+						// 获取所有form-item的prop，交给validateField方法进行校验
+						const formItemProps = this.children.map(item => item.prop)
+						this.validateField(formItemProps, errors => {
+							errors.length ? reject(errors) : resolve(true)
 						})
 					})
 				})

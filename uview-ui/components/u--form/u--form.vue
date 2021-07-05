@@ -25,6 +25,12 @@
 		methods: {
 			validate() {
 				return this.$refs.uForm.validate()
+			},
+			validateField(value, callback) {
+				return this.$refs.uForm.validateField(value, callback)
+			},
+			resetFields() {
+				return this.$refs.uForm.resetFields()
 			}
 		},
 	}

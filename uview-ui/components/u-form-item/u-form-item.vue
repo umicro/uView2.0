@@ -250,7 +250,7 @@
 					font-size: 12px;
 					line-height: 12px;
 					color: $u-error;
-					margin-top: 6px;
+					margin-top: 4px;
 				}
 			}
 		}

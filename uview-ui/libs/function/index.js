@@ -483,23 +483,67 @@ function formValidate(instance, event) {
 	// 如果发生变化的input或者textarea等，其父组件中有u-form-item或者u-form等，就执行form的validate方法
 	// 同时将form-item的pros传递给form，让其进行精确对象验证
 	if (formItem && form) {
-		form.validateField(formItem.prop, event)
+		form.validateField(formItem.prop, () => {}, event)
 	}
 }
 
 // 获取某个对象下的属性，用于通过类似'a.b.c'的形式去获取一个对象的的属性的形式
-function getProperty(object, property) {
-	// 将属性进行历遍
-	const propertyArr = property.split('.')
-	// 取出第一个匹配的属性
-	let obj = object[propertyArr[0]],
-		i = 1
-	// 进行while历遍，往下寻找对应值
-	while (typeof obj === 'object') {
-		obj = obj[propertyArr[i++]]
+function getProperty(obj, key) {
+	if (!obj) {
+		return;
 	}
-	// 通过判断i自增的结果是否等于数组的长度，如果不等于说明在某一个属性时，找不到对应的值，此时需要返回undefined
-	return propertyArr.length === i ? obj : undefined
+	if (typeof key !== 'string' || key === '') {
+		return "";
+	} else if (key.indexOf(".") !== -1) {
+		var keys = key.split('.');
+		var firstObj = obj[keys[0]] || {};
+
+		for (var i = 1; i < keys.length; i++) {
+			if (firstObj) {
+				firstObj = firstObj[keys[i]];
+			}
+		}
+		return firstObj;
+	} else {
+		return obj[key];
+	}
+}
+
+// 设置对象的属性值，如果'a.b.c'的形式进行设置
+function setProperty(obj, key, value) {
+	if (!obj) {
+		return;
+	}
+	// 递归赋值
+	var inFn = function(_obj, keys, v) {
+		// 最后一个属性key
+		if (keys.length === 1) {
+			_obj[keys[0]] = v;
+			return;
+		}
+		// 0~length-1个key
+		while (keys.length > 1) {
+			var k = keys[0];
+			if (!_obj[k] || (typeof _obj[k] !== 'object')) {
+				_obj[k] = {};
+			}
+			var key = keys.shift();
+			// 自调用判断是否存在属性，不存在则自动创建对象
+			inFn(_obj[k], keys, v);
+		}
+
+	}
+
+	if (typeof key !== 'string' || key === '') {
+		return;
+	} else if (key.indexOf(".") !== -1) { // 支持多层级赋值操作
+		var keys = key.split('.');
+		inFn(obj, keys, value);
+		return;
+	} else {
+		obj[key] = value;
+		return;
+	}
 }
 
 export default {
@@ -527,5 +571,6 @@ export default {
 	getDuration,
 	padZero,
 	formValidate,
-	getProperty
+	getProperty,
+	setProperty
 };

@@ -63,7 +63,7 @@ export default [{
 		groupName: '表单组件',
 		groupName_en: 'Form components',
 		list: [{
-			path: '/pages/componentsA/form/form',
+			path: '/pages/componentsC/form/form',
 			icon: 'form',
 			title: 'Form 表单',
 			title_en: 'Form',

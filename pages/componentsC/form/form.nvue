@@ -13,6 +13,7 @@
 						label="姓名"
 						labelWidth="120"
 						prop="type.name"
+						ref="item1"
 					>
 						<u--input v-model="model1.type.name"></u--input>
 					</u-form-item>
@@ -55,41 +56,22 @@
 			}
 		},
 		onLoad() {
-			// setTimeout(() => {
-			// 	// this.$refs.form1.validate().then(res => {
-			// 	// 	console.log('then', res);
-			// 	// }).catch(res => {
-			// 	// 	console.log('catch', res);
-			// 	// })
-			// 	// this.$refs.form1.validateField(['type.name'], res => {
-			// 	// 	console.log('res', res);
-			// 	// })
-			// 	this.$refs.form1.resetFields()
-			// 	console.log('model1', this.model1);
-			// }, 3000);
-			// var obj = {}
-			// uni.$u.setProperty(obj, 'a.b.c', 1);
-			// console.log(obj);
-			
-			var obj = { a: { b: { c: 1 } } }
-			console.log(uni.$u.getProperty(obj,'a.b.c'));
-			// const obj = {
-			// 	type: {
-			// 		name: '张三'
-			// 	}
-			// };
-			// console.log('o', this.clone(obj));
+			setTimeout(() => {
+				// this.$refs.form1.validate().then(res => {
+				// 	console.log('then', res);
+				// }).catch(res => {
+				// 	console.log('catch', res);
+				// })
+				// this.$refs.form1.validateField(['type.name'], res => {
+				// 	console.log('res', res);
+				// })
+				this.$refs.item1.resetField()
+				console.log(this.model1);
+				// console.log('model1', this.model1);
+			}, 3000);
 		},
 		methods: {
-			clone(obj) {
-				var o = {}
-				for (let i in obj) {
-					if (obj.hasOwnProperty(i)) {
-						o[i] = typeof obj[i] === 'object' ? this.clone(obj[i]) : obj[i];
-					}
-				}
-				return o
-			}
+			
 		},
 	}
 </script>

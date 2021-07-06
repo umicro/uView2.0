@@ -7,40 +7,42 @@
 			}"
 		>
 			<!-- 微信小程序中，将一个参数设置空字符串，结果会变成字符串"true" -->
-			<view
-				class="u-form-item__body__left"
-				:style="{
-					width: $u.addUnit(labelWidth || parentData.labelWidth),
-					marginBottom: parentData.labelPosition === 'left' ? 0 : '5px',
-				}"
-			>
-				<!-- 为了块对齐 -->
+			<slot name="label">
 				<view
-					class="u-form-item__body__left__content"
-					v-if="required || leftIcon || label"
+					class="u-form-item__body__left"
+					:style="{
+						width: $u.addUnit(labelWidth || parentData.labelWidth),
+						marginBottom: parentData.labelPosition === 'left' ? 0 : '5px',
+					}"
 				>
-					<!-- nvue不支持伪元素before -->
-					<text
-						v-if="required"
-						class="u-form-item__body__left__content__required"
-					>*</text>
+					<!-- 为了块对齐 -->
 					<view
-						class="u-form-item__body__left__content__icon"
-						v-if="leftIcon"
+						class="u-form-item__body__left__content"
+						v-if="required || leftIcon || label"
 					>
-						<u-icon
-							:name="leftIcon"
-							:custom-style="leftIconStyle"
-						></u-icon>
+						<!-- nvue不支持伪元素before -->
+						<text
+							v-if="required"
+							class="u-form-item__body__left__content__required"
+						>*</text>
+						<view
+							class="u-form-item__body__left__content__icon"
+							v-if="leftIcon"
+						>
+							<u-icon
+								:name="leftIcon"
+								:custom-style="leftIconStyle"
+							></u-icon>
+						</view>
+						<text
+							class="u-form-item__body__left__content__label"
+							:style="[parentData.labelStyle, {
+								justifyContent: parentData.labelAlign === 'left' ? 'flex-start' : elLabelAlign === 'center' ? 'center' : 'flex-end'
+							}]"
+						>{{ label }}</text>
 					</view>
-					<text
-						class="u-form-item__body__left__content__label"
-						:style="[parentData.labelStyle, {
-							justifyContent: parentData.labelAlign === 'left' ? 'flex-start' : elLabelAlign === 'center' ? 'center' : 'flex-end'
-						}]"
-					>{{ label }}</text>
 				</view>
-			</view>
+			</slot>
 			<view class="u-form-item__body__right">
 				<view class="u-form-item__body__right__content">
 					<view class="u-form-item__body__right__content__slot">
@@ -53,10 +55,12 @@
 						<slot name="right" />
 					</view>
 				</view>
-				<text
-					v-if="!!message"
-					class="u-form-item__body__right__message"
-				>{{ message }}</text>
+				<slot name="error">
+					<text
+						v-if="!!message"
+						class="u-form-item__body__right__message"
+					>{{ message }}</text>
+				</slot>
 			</view>
 		</view>
 	</view>
@@ -100,78 +104,18 @@
 				// 此方法写在mixin中
 				this.getParentData('u-form');
 			},
-			broadcastInputError() {
-				// 子组件发出事件，第三个参数为true或者false，true代表有错误
-				this.broadcast('u-input', 'on-form-item-error', this.validateState === 'error' && this.showError(
-				'border'));
+			// 移除u-form-item的校验结果
+			clearValidate() {
+				this.message = null
 			},
-			// 判断是否需要required校验
-			setRules() {
-				// blur事件
-				this.$on('on-form-blur', this.onFieldBlur);
-				// change事件
-				this.$on('on-form-change', this.onFieldChange);
-			},
-			// 从u-form的rules属性中，取出当前u-form-item的校验规则
-			getRules() {
-				// 父组件的所有规则
-				let rules = this.parent.rules;
-				rules = rules ? rules[this.prop] : [];
-				// 保证返回的是一个数组形式
-				return [].concat(rules || []);
-			},
-			// blur事件时进行表单校验
-			onFieldBlur() {
-				this.validation('blur');
-			},
-			// change事件进行表单校验
-			onFieldChange() {
-				this.validation('change');
-			},
-			// 过滤出符合要求的rule规则
-			getFilteredRule(triggerType = '') {
-				let rules = this.getRules();
-				// 整体验证表单时，triggerType为空字符串，此时返回所有规则进行验证
-				if (!triggerType) return rules;
-				// 历遍判断规则是否有对应的事件，比如blur，change触发等的事件
-				// 使用indexOf判断，是因为某些时候设置的验证规则的trigger属性可能为多个，比如['blur','change']
-				// 某些场景可能的判断规则，可能不存在trigger属性，故先判断是否存在此属性
-				return rules.filter(res => res.trigger && res.trigger.indexOf(triggerType) !== -1);
-			},
-			// 校验数据
-			validation(trigger, callback = () => {}) {
-				// 检验之间，先获取需要校验的值
-				this.fieldValue = this.parent.model[this.prop];
-				// blur和change是否有当前方式的校验规则
-				let rules = this.getFilteredRule(trigger);
-				// 判断是否有验证规则，如果没有规则，也调用回调方法，否则父组件u-form会因为
-				// 对count变量的统计错误而无法进入上一层的回调
-				if (!rules || rules.length === 0) {
-					return callback('');
-				}
-				// 设置当前的装填，标识为校验中
-				this.validateState = 'validating';
-				// 调用async-validator的方法
-				let validator = new schema({
-					[this.prop]: rules
-				});
-				validator.validate({
-					[this.prop]: this.fieldValue
-				}, {
-					firstFields: true
-				}, (errors, fields) => {
-					// 记录状态和报错信息
-					this.validateState = !errors ? 'success' : 'error';
-					this.validateMessage = errors ? errors[0].message : '';
-					// 调用回调方法
-					callback(this.validateMessage);
-				});
-			},
-			// 清空当前的u-form-item
+			// 清空当前的组件的校验结果，并重置为初始值
 			resetField() {
-				this.parent.model[this.prop] = this.initialValue;
-				// 设置为`success`状态，只是为了清空错误标记
-				this.validateState = 'success';
+				// 找到原始值
+				const value = uni.$u.getProperty(this.parent.originalModel, this.prop)
+				// 将u-form的model的prop属性链还原原始值
+				uni.$u.setProperty(this.parent.model, this.prop, value)
+				// 移除校验结果
+				this.message = null
 			}
 		},
 	}

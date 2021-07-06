@@ -47,7 +47,7 @@
 			model: {
 				immediate: true,
 				handler(n) {
-					if(!this.originalModel) {
+					if (!this.originalModel) {
 						this.originalModel = uni.$u.deepClone(n)
 					}
 				}
@@ -80,11 +80,21 @@
 			},
 			// 重置model为初始值的快照
 			resetModel(obj) {
+				// 历遍所有u-form-item，根据其prop属性，还原model的原始快照
 				this.children.map(child => {
 					const prop = child?.prop
 					const value = uni.$u.getProperty(this.originalModel, prop)
-					console.log(prop, value);
 					uni.$u.setProperty(this.model, prop, value)
+				})
+			},
+			// 清空校验结果
+			clearValidate(props) {
+				props = [].concat(props)
+				this.children.map(child => {
+					// 如果u-form-item的prop在props数组中，则清除对应的校验结果信息
+					if(props.includes(child.props)) {
+						child.message = null
+					}
 				})
 			},
 			// 对部分表单字段进行校验
@@ -95,36 +105,37 @@
 					const errorsRes = []
 					// 如果为字符串，转为数组
 					value = [].concat(value)
-					// 对一个或者多个u-form-item进行校验
-					value.map((item, index) => {
-						// 获取对应的属性，通过类似'a.b.c'的形式
-						const propertyVal = uni.$u.getProperty(this.model, item)
-						// 属性链数组
-						const propertyChain = item.split('.')
-						const propertyName = propertyChain[propertyChain.length - 1]
-						// 历遍children所有子form-item
-						this.children.map(child => {
-							if (child.prop === item) {
-								const rule = this.formRules[item]
-								// 将u-form-item的触发器转为数组形式
-								const trigger = [].concat(rule?.trigger)
-								// 如果是有传入触发事件，但是此form-item却没有配置此触发器的话，不执行校验操作
-								if (event && !trigger.includes(event)) return
-								// 实例化校验对象，传入构造规则
-								const validator = new Schema({
-									[propertyName]: rule
-								})
-								validator.validate({
-									[propertyName]: propertyVal
-								}, (errors, fields) => {
-									if (uni.$u.test.array(errors)) {
-										errorsRes.push(...errors)
-										// 取出第0个错误
-										child.message = errors[0].message
-									}
-								})
-							}
-						})
+					
+					// 历遍children所有子form-item
+					this.children.map(child => {
+						if (value.includes(child.prop)) {
+							// 获取对应的属性，通过类似'a.b.c'的形式
+							const propertyVal = uni.$u.getProperty(this.model, child.prop)
+							// 属性链数组
+							const propertyChain = child.prop.split('.')
+							const propertyName = propertyChain[propertyChain.length - 1]
+							
+							const rule = this.formRules[child.prop]
+							// 将u-form-item的触发器转为数组形式
+							const trigger = [].concat(rule?.trigger)
+							// 如果是有传入触发事件，但是此form-item却没有配置此触发器的话，不执行校验操作
+							if (event && !trigger.includes(event)) return
+							// 实例化校验对象，传入构造规则
+							const validator = new Schema({
+								[propertyName]: rule
+							})
+							validator.validate({
+								[propertyName]: propertyVal
+							}, (errors, fields) => {
+								if (uni.$u.test.array(errors)) {
+									errorsRes.push(...errors)
+									// 取出第0个错误
+									child.message = errors[0].message
+								} else {
+									child.message = null
+								}
+							})
+						}
 					})
 					// 执行回调函数
 					typeof callback === 'function' && callback(errorsRes)

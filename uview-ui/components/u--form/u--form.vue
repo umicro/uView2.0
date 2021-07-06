@@ -31,6 +31,9 @@
 			},
 			resetFields() {
 				return this.$refs.uForm.resetFields()
+			},
+			clearValidate(props) {
+				return this.$refs.uForm.clearValidate(props)
 			}
 		},
 	}

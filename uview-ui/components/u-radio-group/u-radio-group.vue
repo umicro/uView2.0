@@ -95,6 +95,11 @@
 			borderBottom: {
 				type: Boolean,
 				default: uni.$u.props.radioGroup.borderBottom
+			},
+			// 图标与文字的对齐方式
+			iconPlacement: {
+				type: String,
+				default: uni.$u.props.radio.iconPlacement
 			}
 		},
 		mixins: [uni.$u.mixin],
@@ -156,6 +161,7 @@
 	@import "../../libs/css/components.scss";
 
 	.u-radio-group {
+		flex: 1;
 
 		&--row {
 			@include flex;

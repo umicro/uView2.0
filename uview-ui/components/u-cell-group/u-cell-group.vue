@@ -1,11 +1,11 @@
 <template>
-    <view :style="[$u.addStyle(customStyle)]" :class="[customClass]">
+    <view :style="[$u.addStyle(customStyle)]" :class="[customClass]" class="u-cell-group">
         <view v-if="title" class="u-cell-group__title">
             <slot name="title">
 				<text class="u-cell-group__title__text">{{ title }}</text>
 			</slot>
         </view>
-        <view class="u-cell-group">
+        <view class="u-cell-group__wrapper">
 			<u-line v-if="border"></u-line>
             <slot />
         </view>
@@ -50,7 +50,8 @@ export default {
 	$u-cell-group-title-color: $u-main-color !default;
 
     .u-cell-group {
-        position: relative;
+		flex: 1;
+		
         &__title {
             padding: $u-cell-group-title-padding;
 
@@ -60,6 +61,10 @@ export default {
                 color: $u-cell-group-title-color;
             }
         }
+		
+		&__wrapper {
+			position: relative;
+		}
     }
 </style>
 

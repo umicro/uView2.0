@@ -70,7 +70,7 @@
 			},
 			updateParentData() {
 				// 此方法在mixin中
-				this.getParentData('u-index-list')
+				this.getParentData('u-list')
 			},
 			resize() {
 				this.queryRect(`u-list-item-${this.id}`).then(size => {

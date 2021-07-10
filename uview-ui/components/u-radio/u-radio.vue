@@ -3,7 +3,7 @@
 	    class="u-radio"
 		@tap.stop="wrapperClickHandler"
 	    :style="[radioStyle]"
-	    :class="[`u-radio-label--${iconPlacement}`, this.parentData.borderBottom && this.parentData.placement === 'column' && 'u-border-bottom']"
+	    :class="[`u-radio-label--${parentData.iconPlacement}`, this.parentData.borderBottom && this.parentData.placement === 'column' && 'u-border-bottom']"
 	>
 		<view
 		    class="u-radio__icon-wrap"
@@ -117,11 +117,6 @@
 			labelColor: {
 				type: String,
 				default: uni.$u.props.radio.labelColor
-			},
-			// 图标与文字的对齐方式
-			iconPlacement: {
-				type: String,
-				default: uni.$u.props.radio.iconPlacement
 			}
 		},
 		mixins: [uni.$u.mixin],
@@ -142,7 +137,8 @@
 					value: null,
 					iconColor: null,
 					placement: 'row',
-					borderBottom: false
+					borderBottom: false,
+					iconPlacement: 'left'
 				}
 			}
 		},
@@ -221,7 +217,7 @@
 				style.width = uni.$u.addUnit(this.elSize)
 				style.height = uni.$u.addUnit(this.elSize)
 				// 如果是图标在右边的话，移除它的右边距
-				if (this.iconPlacement === 'right') {
+				if (this.parentData.iconPlacement === 'right') {
 					style.marginRight = 0
 				}
 				return style
@@ -265,7 +261,7 @@
 			},
 			// 横向两端排列时，点击组件即可触发选中事件
 			wrapperClickHandler(e) {
-				this.iconPlacement === 'right' && this.iconClickHandler(e)
+				this.parentData.iconPlacement === 'right' && this.iconClickHandler(e)
 			},
 			// 点击label
 			labelClickHandler(e) {

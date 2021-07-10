@@ -1,72 +1,64 @@
 <template>
 	<view class="u-navbar">
 		<view
-		    class="u-navbar__placeholder"
-		    v-if="fixed && placeholder"
-		    :style="{
+			class="u-navbar__placeholder"
+			v-if="fixed && placeholder"
+			:style="{
 				height: $u.addUnit($u.getPx(height) + $u.sys().statusBarHeight),
 			}"
 		></view>
 		<view :class="[fixed && 'u-navbar--fixed']">
 			<u-status-bar
-			    v-if="safeAreaInsetTop"
-			    :bgColor="bgColor"
+				v-if="safeAreaInsetTop"
+				:bgColor="bgColor"
 			></u-status-bar>
 			<view
-			    class="u-navbar__content"
-			    :class="[border && 'u-border-bottom']"
-			    :style="{
+				class="u-navbar__content"
+				:class="[border && 'u-border-bottom']"
+				:style="{
 					height: $u.addUnit(height),
 					backgroundColor: bgColor,
 				}"
 			>
 				<view
-				    class="u-navbar__content__left"
-				    @tap="leftClick"
+					class="u-navbar__content__left"
+					hover-class="u-navbar__content__left--hover"
+					hover-start-time="150"
+					@tap="leftClick"
 				>
 					<slot name="left">
 						<u-icon
-						    v-if="leftIcon"
-						    :name="leftIcon"
-						    size="20"
+							v-if="leftIcon"
+							:name="leftIcon"
+							size="20"
 						></u-icon>
-						<u--text
-						    v-if="leftText"
-						    :text="leftText"
-						    size="15"
-						    margin="0 0 0 3px"
-						    :customStyle="{
-								width: $u.addUnit(titleWidth)
-							}"
-						></u--text>
+						<text
+							v-if="leftText"
+							class="u-navbar__content__left__text"
+						>{{ leftText }}</text>
 					</slot>
 				</view>
-				<u--text
-				    class="u-navbar__content__title"
-				    :text="title"
-				    lines="1"
-				    align="center"
-				    size="16"
-				    type="main"
-				    block
-				></u--text>
+				<text
+					class="u-line-1 u-navbar__content__title"
+					:style="{
+					width: $u.addUnit(titleWidth)
+				}"
+				>{{ title }}</text>
 				<view
-				    class="u-navbar__content__right"
+					class="u-navbar__content__right"
 					v-if="$slots.right || rightIcon || rightText"
-				    @tap="rightClick"
+					@tap="rightClick"
 				>
 					<slot name="right">
 						<u-icon
-						    v-if="rightIcon"
-						    :name="rightIcon"
-						    size="20"
+							v-if="rightIcon"
+							:name="rightIcon"
+							size="20"
 						></u-icon>
-						<u--text
-						    v-if="rightText"
-						    :text="rightText"
-						    size="15"
-						    margin="0 0 0 3px"
-						></u--text>
+						<text
+							v-if="rightText"
+							class="u-navbar__content__right__text"
+						>{{ rightText }}</text>
 					</slot>
 				</view>
 			</view>
@@ -101,7 +93,7 @@
 	@import "../../libs/css/components.scss";
 
 	.u-navbar {
-		
+
 		&--fixed {
 			position: fixed;
 			left: 0;
@@ -117,7 +109,7 @@
 			background-color: #9acafc;
 			position: relative;
 			justify-content: center;
-			
+
 			&__left,
 			&__right {
 				padding: 0 13px;
@@ -130,12 +122,30 @@
 
 			&__left {
 				left: 0;
+				
+				&--hover {
+					opacity: 0.7;
+				}
+
+				&__txet {
+					font-size: 15px;
+					margin-left: 3px;
+				}
 			}
 
-			&__title {}
+			&__title {
+				text-align: center;
+				font-size: 16px;
+				color: $u-main-color;
+			}
 
 			&__right {
 				right: 0;
+
+				&__txet {
+					font-size: 15px;
+					margin-left: 3px;
+				}
 			}
 		}
 	}

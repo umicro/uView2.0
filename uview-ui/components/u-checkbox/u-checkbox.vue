@@ -3,7 +3,7 @@
 	    class="u-checkbox"
 	    :style="[checkboxStyle]"
 	    @tap.stop="wrapperClickHandler"
-	    :class="[`u-checkbox-label--${iconPlacement}`, this.parentData.borderBottom && this.parentData.placement === 'column' && 'u-border-bottom']"
+	    :class="[`u-checkbox-label--${parentData.iconPlacement}`, this.parentData.borderBottom && this.parentData.placement === 'column' && 'u-border-bottom']"
 	>
 		<view
 		    class="u-checkbox__icon-wrap"
@@ -24,7 +24,8 @@
 		    @tap.stop="labelClickHandler"
 		    :style="{
 				color: elDisabled ? elInactiveColor : elLabelColor,
-				fontSize: elLabelSize
+				fontSize: elLabelSize,
+				lineHeight: elLabelSize
 			}"
 		>{{label}}</text>
 	</view>
@@ -116,11 +117,6 @@
 				type: String,
 				default: uni.$u.props.checkbox.labelColor
 			},
-			// 图标与文字的对齐方式
-			iconPlacement: {
-				type: String,
-				default: uni.$u.props.checkbox.iconPlacement
-			},
 			// 是否默认选中
 			checked: {
 				type: Boolean,
@@ -144,7 +140,8 @@
 					value: null,
 					iconColor: null,
 					placement: 'row',
-					borderBottom: false
+					borderBottom: false,
+					iconPlacement: 'left'
 				}
 			}
 		},
@@ -223,7 +220,7 @@
 				style.width = uni.$u.addUnit(this.elSize)
 				style.height = uni.$u.addUnit(this.elSize)
 				// 如果是图标在右边的话，移除它的右边距
-				if (this.iconPlacement === 'right') {
+				if (this.parentData.iconPlacement === 'right') {
 					style.marginRight = 0
 				}
 				return style
@@ -265,7 +262,7 @@
 			},
 			// 横向两端排列时，点击组件即可触发选中事件
 			wrapperClickHandler(e) {
-				this.iconPlacement === 'right' && this.iconClickHandler(e)
+				this.parentData.iconPlacement === 'right' && this.iconClickHandler(e)
 			},
 			// 点击图标
 			iconClickHandler(e) {

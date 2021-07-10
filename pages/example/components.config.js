@@ -162,7 +162,7 @@ export default [{
 			title: 'Progress 进度条',
 			title_en: 'Progress',
 		}, {
-			path: '/pages/componentsB/table/table',
+			path: '/pages/componentsC/table/table',
 			icon: 'table',
 			title: 'Table 表格',
 			title_en: 'Table',

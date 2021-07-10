@@ -2,6 +2,7 @@
 	<view
 	    class="u-input"
 	    :class="inputClass"
+		:style="[$u.addStyle(customStyle), inputStyle]"
 	>
 		<view class="u-input__content">
 			<view
@@ -78,7 +79,6 @@
 		data() {
 			return {
 				// 输入框的值
-				inputValue: '',
 				innerValue: '',
 				// 是否处于获得焦点状态
 				focused: false
@@ -88,7 +88,8 @@
 			value: {
 				immediate: true,
 				handler(newVal, oldVal) {
-					this.inputValue = newVal
+					this.innerValue = newVal
+					// this.valueChange()
 				}
 			}
 		},
@@ -105,8 +106,26 @@
 				border === 'surround' && (classes = classes.concat(['u-border', 'u-input--radius']))
 				classes.push(`u-input--${shape}`)
 				border === 'bottom' && (classes = classes.concat(['u-border-bottom', 'u-input--no-radius']))
-				disabled && classes.push('u-input--disabled')
 				return classes.join(' ')
+			},
+			// 仅用时的样式
+			inputStyle() {
+				const style = {}
+				// 禁用状态下，被背景色加上对应的样式
+				if(this.disabled) {
+					style.backgroundColor = this.disabledColor
+				}
+				// 无边框时，去除内边距
+				if(this.border === 'none') {
+					style.padding = '0'
+				} else {
+					// 由于uni-app的iOS开发者能力有限，导致需要分开写才有效
+					style.paddingTop = '6px'
+					style.paddingBottom = '6px'
+					style.paddingLeft = '9px'
+					style.paddingRight = '9px'
+				}
+				return style
 			}
 		},
 		methods: {
@@ -156,7 +175,6 @@
 			// 点击清除控件
 			onClear() {
 				this.innerValue = ''
-				this.inputValue = ''
 				this.$nextTick(() => {
 					this.valueChange()
 					this.$emit('clear')
@@ -173,13 +191,8 @@
 		@include flex(row);
 		align-items: center;
 		justify-content: space-between;
-		padding: 6px 9px;
 		flex: 1;
 		
-		&--disabled {
-			background-color: #f5f7fa;
-		}
-
 		&--radius, &--square {
 			border-radius: 4px;
 		}
@@ -202,12 +215,11 @@
 				position: relative;
 				@include flex;
 				margin: 0;
-				padding: 0;
 				line-height: 26px;
 				text-align: left;
 				color: $u-content-color;
 				height: 24px;
-				font-size: 14px;
+				font-size: 15px;
 				flex: 1;
 			}
 

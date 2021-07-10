@@ -25,6 +25,11 @@ export default {
 			type: Boolean,
 			default: false
 		},
+		// 禁用状态时的背景色
+		disabledColor: {
+			type: String,
+			default: '#f5f7fa'
+		},
 		// 是否显示清除控件
 		clearable: {
 			type: Boolean,
@@ -169,7 +174,7 @@ export default {
 			type: [String, Object],
 			default: ''
 		},
-		// 边框类型，surround-四周边框，bottom-底部边框
+		// 边框类型，surround-四周边框，bottom-底部边框，none-无边框
 		border: {
 			type: String,
 			default: 'surround'

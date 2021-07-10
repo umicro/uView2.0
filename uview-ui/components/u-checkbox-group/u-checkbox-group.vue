@@ -103,6 +103,11 @@
 			borderBottom: {
 				type: Boolean,
 				default: uni.$u.props.checkboxGroup.borderBottom
+			},
+			// 勾选图标的对齐方式，left-左边，right-右边
+			iconPlacement: {
+				type: String,
+				default: uni.$u.props.checkboxGroup.iconPlacement
 			}
 		},
 		mixins: [uni.$u.mixin],

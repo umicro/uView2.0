@@ -189,7 +189,7 @@
 		border-radius: 4px;
 		background-color: #fff;
 		position: relative;
-		padding: 5px;
+		// padding: 5px;
 		@include flex;
 		flex: 1;
 
@@ -207,10 +207,16 @@
 
 		&__field {
 			flex: 1;
-			font-size: 14px;
+			font-size: 15px;
 			color: $u-content-color;
 			margin: 0;
-			padding: 5px;
+			/* #ifdef APP-NVUE */
+			padding: 6px 6px;
+			/* #endif */
+			/* #ifndef APP-NVUE */
+			width: auto;
+			padding: 6px 9px;
+			/* #endif */
 		}
 
 		&__count {

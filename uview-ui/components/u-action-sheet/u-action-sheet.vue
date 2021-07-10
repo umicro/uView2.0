@@ -27,6 +27,9 @@
 			</view>
 			<text
 			    class="u-action-sheet__description"
+				:style="{
+					marginTop: `${title && description ? 0 : '18px'}`
+				}"
 			    v-if="description"
 			>{{description}}</text>
 			<slot>
@@ -189,7 +192,7 @@
 	$u-action-sheet-title-color: $u-main-color !default;
 	$u-action-sheet-header-icon-wrap-right:15px !default;
 	$u-action-sheet-header-icon-wrap-top:15px !default;
-	$u-action-sheet-description-font-size:14px !default;
+	$u-action-sheet-description-font-size:13px !default;
 	$u-action-sheet-description-color:14px !default;
 	$u-action-sheet-description-margin: 18px 15px !default;
 	$u-action-sheet-item-wrap-item-padding:15px !default;

@@ -244,6 +244,7 @@
 						phoneNumber: this.text
 					});
 				}
+				this.$emit('click')
 			}
 		}
 	}
@@ -256,7 +257,7 @@
 		@include flex(row);
 		align-items: center;
 		flex-wrap: wrap;
-		// flex: 1;
+		flex: 1;
 
 		&__price {
 			font-size: 14px;

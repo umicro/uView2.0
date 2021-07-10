@@ -6,16 +6,16 @@
 			<view class="u-demo-block__content">
 				<view class="u-page__checkbox-item">
 					<u-checkbox-group
-					    v-model="checkboxValue1"
-					    placement="column"
-					    @change="checkboxChange"
+						v-model="checkboxValue1"
+						placement="column"
+						@change="checkboxChange"
 					>
 						<u-checkbox
-						    :customStyle="{marginBottom: '8px'}"
-						    v-for="(item, index) in checkboxList1"
-						    :key="index"
-						    :label="item.name"
-						    :name="item.name"
+							:customStyle="{marginBottom: '8px'}"
+							v-for="(item, index) in checkboxList1"
+							:key="index"
+							:label="item.name"
+							:name="item.name"
 						>
 						</u-checkbox>
 					</u-checkbox-group>
@@ -28,135 +28,134 @@
 			<view class="u-demo-block__content">
 				<view class="u-page__checkbox-item">
 					<u-checkbox-group
-					    v-model="checkboxValue2"
-					    placement="column"
-					    @change="checkboxChange"
-					    shape="square"
+						v-model="checkboxValue2"
+						placement="column"
+						@change="checkboxChange"
+						shape="square"
 					>
 						<u-checkbox
-						    :customStyle="{marginBottom: '8px'}"
-						    v-for="(item, index) in checkboxList2"
-						    :key="index"
-						    :label="item.name"
-						    :name="item.name"
+							:customStyle="{marginBottom: '8px'}"
+							v-for="(item, index) in checkboxList2"
+							:key="index"
+							:label="item.name"
+							:name="item.name"
 						>
 						</u-checkbox>
 					</u-checkbox-group>
 				</view>
 			</view>
 		</view>
-			<view class="u-demo-block">
+		<view class="u-demo-block">
 			<text class="u-demo-block__title">是否禁用</text>
 			<text class="u-block__title">下面什么东西不能吃？</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__checkbox-item">
 					<u-checkbox-group
-					    v-model="checkboxValue3"
-					    placement="column"
-					    @change="checkboxChange"
+						v-model="checkboxValue3"
+						placement="column"
+						@change="checkboxChange"
 					>
 						<u-checkbox
-						    :customStyle="{marginBottom: '8px'}"
-						    v-for="(item, index) in checkboxList3"
-						    :key="index"
-						    :label="item.name"
-						    :name="item.name"
-						    :disabled="index===0"
+							:customStyle="{marginBottom: '8px'}"
+							v-for="(item, index) in checkboxList3"
+							:key="index"
+							:label="item.name"
+							:name="item.name"
+							:disabled="index===0"
 						>
 						</u-checkbox>
 					</u-checkbox-group>
 				</view>
 			</view>
 		</view>
-				<view class="u-demo-block">
+		<view class="u-demo-block">
 			<text class="u-demo-block__title">是否禁止点击提示语选中复选框</text>
 			<text class="u-block__title">北宋四大家是谁？</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__checkbox-item">
 					<u-checkbox-group
-					    v-model="checkboxValue4"
-					    placement="column"
-					    @change="checkboxChange"
-					    :labelDisabled="true"
+						v-model="checkboxValue4"
+						placement="column"
+						@change="checkboxChange"
+						:labelDisabled="true"
 					>
 						<u-checkbox
-						    :customStyle="{marginBottom: '8px'}"
-						    v-for="(item, index) in checkboxList4"
-						    :key="index"
-						    :label="item.name"
-						    :name="item.name"
+							:customStyle="{marginBottom: '8px'}"
+							v-for="(item, index) in checkboxList4"
+							:key="index"
+							:label="item.name"
+							:name="item.name"
 						>
 						</u-checkbox>
 					</u-checkbox-group>
 				</view>
 			</view>
-		</view>		
-			<view class="u-demo-block">
+		</view>
+		<view class="u-demo-block">
 			<text class="u-demo-block__title">自定义颜色</text>
 			<text class="u-block__title">那个颜色最好看？</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__checkbox-item">
 					<u-checkbox-group
-					    v-model="checkboxValue5"
-					    placement="column"
-					    @change="checkboxChange"
-					    activeColor="#19be6b"
-						
+						v-model="checkboxValue5"
+						placement="column"
+						@change="checkboxChange"
+						activeColor="#19be6b"
 					>
 						<u-checkbox
-						    :customStyle="{marginBottom: '8px'}"
-						    v-for="(item, index) in checkboxList5"
-						    :key="index"
-						    :label="item.name"
-						    :name="item.name"
+							:customStyle="{marginBottom: '8px'}"
+							v-for="(item, index) in checkboxList5"
+							:key="index"
+							:label="item.name"
+							:name="item.name"
 						>
 						</u-checkbox>
 					</u-checkbox-group>
 				</view>
 			</view>
-		</view>	
-			<view class="u-demo-block">
+		</view>
+		<view class="u-demo-block">
 			<text class="u-demo-block__title">横向排列形式</text>
 			<text class="u-block__title">什么东西不能飞？</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__checkbox-item">
-			<u-checkbox-group
-			    v-model="checkboxValue6"
-			    @change="checkboxChange"
-			>
-				<u-checkbox
-				    :customStyle="{marginRight: '16px'}"
-				    v-for="(item, index) in checkboxList6"
-				    :key="index"
-				    :label="item.name"
-				    :name="item.name"
-				>
-				</u-checkbox>
-			</u-checkbox-group>
+					<u-checkbox-group
+						v-model="checkboxValue6"
+						@change="checkboxChange"
+					>
+						<u-checkbox
+							:customStyle="{marginRight: '16px'}"
+							v-for="(item, index) in checkboxList6"
+							:key="index"
+							:label="item.name"
+							:name="item.name"
+						>
+						</u-checkbox>
+					</u-checkbox-group>
 				</view>
 			</view>
 		</view>
-				<view class="u-demo-block">
+		<view class="u-demo-block">
 			<text class="u-demo-block__title">横向两端排列形式</text>
 			<text class="u-block__title">什么东西不能吃？</text>
 			<view>
 				<view class="u-page__checkbox-item">
-			<u-checkbox-group
-			    v-model="checkboxValue7"
-			    @change="checkboxChange"
-			    :borderBottom="true"
-			    placement="column"
-			>
-				<u-checkbox
-				    :customStyle="{marginBottom: '16px'}"
-				    v-for="(item, index) in checkboxList7"
-				    :key="index"
-				    :label="item.name"
-				    :name="item.name"
-				    iconPlacement="right"
-				>
-				</u-checkbox>
-			</u-checkbox-group>
+					<u-checkbox-group
+						v-model="checkboxValue7"
+						@change="checkboxChange"
+						:borderBottom="true"
+						placement="column"
+						iconPlacement="right"
+					>
+						<u-checkbox
+							:customStyle="{marginBottom: '16px'}"
+							v-for="(item, index) in checkboxList7"
+							:key="index"
+							:label="item.name"
+							:name="item.name"
+						>
+						</u-checkbox>
+					</u-checkbox-group>
 				</view>
 			</view>
 		</view>
@@ -318,7 +317,7 @@
 			}
 		},
 		onLoad() {
-			
+
 		},
 		methods: {
 			checkboxChange(n) {
@@ -329,7 +328,5 @@
 </script>
 
 <style lang="scss">
-	.u-page {
-		 
-	}
+	.u-page {}
 </style>

@@ -1,25 +1,24 @@
 <template>
-	<view class="u-from-item">
+	<view class="u-form-item">
 		<view
 			class="u-form-item__body"
-			:style="{
+			@tap.stop="clickHandler"
+			:style="[$u.addStyle(customStyle), {
 				flexDirection: parentData.labelPosition === 'left' ? 'row' : 'column'
-			}"
+			}]"
 		>
 			<!-- 微信小程序中，将一个参数设置空字符串，结果会变成字符串"true" -->
 			<slot name="label">
 				<view
 					class="u-form-item__body__left"
+					v-if="required || leftIcon || label"
 					:style="{
 						width: $u.addUnit(labelWidth || parentData.labelWidth),
 						marginBottom: parentData.labelPosition === 'left' ? 0 : '5px',
 					}"
 				>
 					<!-- 为了块对齐 -->
-					<view
-						class="u-form-item__body__left__content"
-						v-if="required || leftIcon || label"
-					>
+					<view class="u-form-item__body__left__content">
 						<!-- nvue不支持伪元素before -->
 						<text
 							v-if="required"
@@ -55,14 +54,21 @@
 						<slot name="right" />
 					</view>
 				</view>
-				<slot name="error">
-					<text
-						v-if="!!message"
-						class="u-form-item__body__right__message"
-					>{{ message }}</text>
-				</slot>
 			</view>
 		</view>
+		<slot name="error">
+			<text
+				v-if="!!message"
+				class="u-form-item__body__right__message"
+				:style="{
+					marginLeft: $u.addUnit(labelWidth || parentData.labelWidth)
+				}"
+			>{{ message }}</text>
+		</slot>
+		<u-line
+			v-if="borderBottom"
+			:customStyle="`margin-top: ${message ? '5px' : 0}`"
+		></u-line>
 	</view>
 </template>
 
@@ -116,6 +122,10 @@
 				uni.$u.setProperty(this.parent.model, this.prop, value)
 				// 移除校验结果
 				this.message = null
+			},
+			// 点击组件
+			clickHandler() {
+				this.$emit('click')
 			}
 		},
 	}
@@ -125,13 +135,13 @@
 	@import "../../libs/css/components.scss";
 
 	.u-form-item {
-		@include flex;
-		padding: 10px 0;
+		@include flex(column);
 		font-size: 14px;
 		color: $u-main-color;
 
 		&__body {
 			@include flex;
+			padding: 10px 0;
 
 			&__left {
 				@include flex;
@@ -194,7 +204,6 @@
 					font-size: 12px;
 					line-height: 12px;
 					color: $u-error;
-					margin-top: 4px;
 				}
 			}
 		}

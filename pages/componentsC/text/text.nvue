@@ -139,6 +139,7 @@
 				    text="分享到微信"
 				    openType="share"
 				    type="success"
+					@click="clickHandler"
 				></u--text>
 			</view>
 		</view>
@@ -149,7 +150,11 @@
 	export default {
 		onLoad() {},
 		methods: {
-
+			clickHandler() {
+				// #ifndef MP-WEIXIN
+				uni.$u.toast('请在微信小程序内查看效果')
+				// #endif
+			}
 		},
 	}
 </script>

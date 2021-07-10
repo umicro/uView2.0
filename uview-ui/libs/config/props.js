@@ -215,7 +215,6 @@ export default {
 		size: '',
 		iconColor: '',
 		placement: '',
-		iconPlacement: 'left'
 	},
 
 	// radio-group组件
@@ -234,7 +233,8 @@ export default {
 		label: '',
 		size: 18,
 		iconColor: '#ffffff',
-		borderBottom: false
+		borderBottom: false,
+		iconPlacement: 'left'
 	},
 
 	// checkbox组件

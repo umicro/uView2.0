@@ -123,7 +123,7 @@ module.exports = {
 		// 空操作
 		noop(e) {
 			this.preventEvent(e)
-		},
+		}
 	},
 	onReachBottom() {
 		uni.$emit('uOnReachBottom')

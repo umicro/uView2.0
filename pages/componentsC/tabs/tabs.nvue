@@ -1,29 +1,22 @@
 <template>
-	<view class="u-page">
+	<view
+		class="u-page"
+		ref="page"
+	>
 		<u-tabs>
-			<swiper-item>
+			<swiper-item
+				v-for="(item, index) in 9"
+				:key="index"
+			>
 				<u-list>
 					<u-list-item>
-						1234
+						{{index + 1}}
 					</u-list-item>
 					<u-list-item>
-						1234
+						{{index + 1}}
 					</u-list-item>
 					<u-list-item>
-						1234
-					</u-list-item>
-				</u-list>
-			</swiper-item>
-			<swiper-item>
-				<u-list>
-					<u-list-item>
-						1234
-					</u-list-item>
-					<u-list-item>
-						1234
-					</u-list-item>
-					<u-list-item>
-						1234
+						{{index + 1}}
 					</u-list-item>
 				</u-list>
 			</swiper-item>
@@ -33,7 +26,10 @@
 
 <script>
 	export default {
-		
+		mixins: [uni.$u.mixin],
+		onLoad() {
+
+		}
 	}
 </script>
 

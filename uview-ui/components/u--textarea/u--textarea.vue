@@ -1,5 +1,30 @@
 <template>
-	<uvTextarea v-bind="$attrs" v-on="$listeners"></uvTextarea>
+	<uvTextarea
+		:value="value"
+		:placeholder="placeholder"
+		:height="height"
+		:confirmType="confirmType"
+		:disabled="disabled"
+		:count="count"
+		:focus="focus"
+		:autoHeight="autoHeight"
+		:fixed="fixed"
+		:cursorSpacing="cursorSpacing"
+		:cursor="cursor"
+		:showConfirmBar="showConfirmBar"
+		:selectionStart="selectionStart"
+		:selectionEnd="selectionEnd"
+		:adjustPosition="adjustPosition"
+		:disableDefaultPadding="disableDefaultPadding"
+		:holdKeyboard="holdKeyboard"
+		:maxlength="maxlength"
+		:border="border"
+		@focus="$emit('focus')"
+		@blur="$emit('blur')"
+		@linechange="$emit('linechange')"
+		@confirm="$emit('confirm')"
+		@keyboardheightchange="$emit('keyboardheightchange')"
+	></uvTextarea>
 </template>
 
 <script>
@@ -8,8 +33,10 @@
 	 * 所以在nvue下，取名为u--textarea，内部其实还是u-textarea.vue，只不过做一层中转
 	 */
 	import uvTextarea from '../u-textarea/u-textarea.vue';
+	import props from '../u-textarea/props.js'
 	export default {
 		name: 'u--textarea',
+		mixins: [props],
 		components: {
 			uvTextarea
 		},

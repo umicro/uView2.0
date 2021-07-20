@@ -4,9 +4,9 @@
 		<!-- #endif -->
 		<view
 			class="u-list-item"
-			:ref="`u-list-item-${id}`"
-			:id="`u-list-item-${id}`"
-			:class="[`u-list-item-${id}`]"
+			:ref="`u-list-item-${anchor}`"
+			:anchor="`u-list-item-${anchor}`"
+			:class="[`u-list-item-${anchor}`]"
 		>
 			<slot />
 		</view>
@@ -24,7 +24,7 @@
 		mixins: [uni.$u.mixin],
 		props: {
 			// 用于滚动到指定item
-			id: {
+			anchor: {
 				type: [String, Number],
 				default: ''
 			},
@@ -73,7 +73,7 @@
 				this.getParentData('u-list')
 			},
 			resize() {
-				this.queryRect(`u-list-item-${this.id}`).then(size => {
+				this.queryRect(`u-list-item-${this.anchor}`).then(size => {
 					const lastChild = this.parent.children[this.index - 1]
 					this.rect = size
 					const preLoadScreen = this.uList.preLoadScreen

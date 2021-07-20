@@ -25,7 +25,7 @@
 					class="u-calendar-month__days__day"
 					v-for="(item1, index1) in item.date"
 					:key="index1"
-					:style="dayStyle(index, index1, item1)"
+					:style="[dayStyle(index, index1, item1)]"
 					@tap="clickHandler(index, index1, item1)"
 					:class="[item1.selected && 'u-calendar-month__days__day__select--selected']"
 				>
@@ -148,7 +148,7 @@
 			selectedChange() {
 				return [this.minDate, this.maxDate, this.defaultDate]
 			},
-			dayStyle() {
+			dayStyle(index1, index2, item) {
 				return (index1, index2, item) => {
 					const style = {}
 					let week = item.week

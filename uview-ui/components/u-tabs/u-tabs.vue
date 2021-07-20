@@ -134,14 +134,14 @@
 		},
 		watch: {
 			current(newValue, oldValue) {
-				this.setLineOffsetLeft(newValue)
+				// this.setLineLeft(newValue)
 			}
 		},
 		async mounted() {
 			this.init()
 		},
 		methods: {
-			setLineOffsetLeft() {
+			setLineLeft() {
 				const item = this.list[this.current].rect
 				// 获取滑块该移动的位置
 				this.lineOffsetLeft = item.center - this.lineWidth / 2 - this.tabsRect.left
@@ -178,6 +178,7 @@
 				console.log('change');
 				this.current = e.detail.current
 				this.setScrollLeft()
+				this.setLineLeft()
 			},
 			// 点击某一个标签
 			clickHandler(index) {
@@ -231,7 +232,8 @@
 								this.list[index].rect = item
 							})
 							// 获取了tabs的尺寸之后，设置滑块的位置
-							this.setLineOffsetLeft()
+							this.setLineLeft()
+							this.setScrollLeft()
 						})
 				})
 			},

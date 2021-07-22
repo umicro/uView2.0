@@ -131,28 +131,28 @@
 				}],
 				list: [{
 						title: '普通使用',
-						iconUrl: '/static/common/image/actionSheet/custom.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/actionSheet/custom.png'
 
 					},
 					{
 						title: '设置状态',
-						iconUrl: '/static/common/image/actionSheet/status.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/actionSheet/status.png'
 					},
 					{
 						title: '显示取消按钮',
-						iconUrl: '/static/common/image/actionSheet/cancel.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/actionSheet/cancel.png'
 					},
 					{
 						title: '描述内容',
-						iconUrl: '/static/common/image/actionSheet/desc.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/actionSheet/desc.png'
 					},
 					{
 						title: '显示标题(显示圆角)',
-						iconUrl: '/static/common/image/actionSheet/title.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/actionSheet/title.png'
 					},
 					{
 						title: '微信开放能力',
-						iconUrl: '/static/common/image/actionSheet/open.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/actionSheet/open.png'
 					}
 				]
 			}

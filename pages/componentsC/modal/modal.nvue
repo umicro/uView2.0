@@ -122,39 +122,39 @@
 				show9: false,
 				list: [{
 						title: '基础使用',
-						iconUrl: '/static/common/image/modal/4.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/modal/4.png'
 					},
 					{
 						title: '无标题',
-						iconUrl: '/static/common/image/modal/5.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/modal/5.png'
 					},
 					{
 						title: '带取消按钮',
-						iconUrl: '/static/common/image/modal/2.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/modal/2.png'
 					},
 					{
 						title: '异步关闭',
-						iconUrl: '/static/common/image/modal/6.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/modal/6.png'
 					},
 					{
 						title: '对调取消和确认按钮',
-						iconUrl: '/static/common/image/modal/3.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/modal/3.png'
 					},
 					{
 						title: '允许点击遮罩关闭',
-						iconUrl: '/static/common/image/modal/7.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/modal/7.png'
 					},
 					{
 						title: '传入slot',
-						iconUrl: '/static/common/image/modal/1.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/modal/1.png'
 					},
 					{
 						title: '自定义按钮',
-						iconUrl: '/static/common/image/modal/8.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/modal/8.png'
 					},
 					{
 						title: '淡入淡出动画',
-						iconUrl: '/static/common/image/modal/9.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/modal/9.png'
 					}
 				]
 			}

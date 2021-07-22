@@ -104,31 +104,31 @@
 				defaultDateMultiple: [`${year}-${month}-${date}`, `${year}-${month}-${date + 1}`, `${year}-${month}-${date + 2}`],
 				list: [{
 						title: '单个日期',
-						iconUrl: '/static/common/image/calendar/7.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/calendar/7.png'
 					},
 					{
 						title: '多个日期',
-						iconUrl: '/static/common/image/calendar/8.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/calendar/8.png'
 					},
 					{
 						title: '日期范围',
-						iconUrl: '/static/common/image/calendar/9.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/calendar/9.png'
 					},
 					{
 						title: '自定义主题颜色',
-						iconUrl: '/static/common/image/calendar/15.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/calendar/15.png'
 					},{
 						title: '自定义文案',
-						iconUrl: '/static/common/image/calendar/14.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/calendar/14.png'
 					},{
 						title: '日期最大范围',
-						iconUrl: '/static/common/image/calendar/13.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/calendar/13.png'
 					},{
 						title: '显示农历',
-						iconUrl: '/static/common/image/calendar/5.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/calendar/5.png'
 					},{
 						title: '默认日期',
-						iconUrl: '/static/common/image/calendar/10.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/calendar/10.png'
 					}
 				]
 			}

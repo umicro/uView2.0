@@ -52,52 +52,52 @@
 				list: [{
 						mode: 'fade',
 						title: '淡入',
-						iconUrl: '/static/common/image/transition/fade.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/transition/fade.png'
 					},
 					{
 						mode: 'fade-up',
 						title: '上滑淡入',
-						iconUrl: '/static/common/image/transition/fadeUp.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/transition/fadeUp.png'
 					},
 					{
 						mode: 'zoom-in',
 						title: '缩放',
-						iconUrl: '/static/common/image/transition/fadeUp.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/transition/fadeUp.png'
 					},
 					{
 						mode: 'fade-down',
 						title: '下滑淡入',
-						iconUrl: '/static/common/image/transition/fadeDown.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/transition/fadeDown.png'
 					},
 					{
 						mode: 'fade-left',
 						title: '左滑淡入',
-						iconUrl: '/static/common/image/transition/fadeLeft.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/transition/fadeLeft.png'
 					},
 					{
 						mode: 'fade-right',
 						title: '右滑淡入',
-						iconUrl: '/static/common/image/transition/fadeRight.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/transition/fadeRight.png'
 					},
 					{
 						mode: 'slide-up',
 						title: '上滑进入',
-						iconUrl: '/static/common/image/transition/slideUp.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/transition/slideUp.png'
 					},
 					{
 						mode: 'slide-down',
 						title: '下滑进入',
-						iconUrl: '/static/common/image/transition/slideDown.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/transition/slideDown.png'
 					},
 					{
 						mode: 'slide-left',
 						title: '左滑进入',
-						iconUrl: '/static/common/image/transition/slideLeft.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/transition/slideLeft.png'
 					},
 					{
 						mode: 'slide-right',
 						title: '右滑进入',
-						iconUrl: '/static/common/image/transition/slideRight.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/transition/slideRight.png'
 					},
 				]
 			}

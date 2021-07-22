@@ -51,23 +51,23 @@
 				},
 				list: [{
 						title: '车牌号键盘',
-						iconUrl: '/static/common/image/keyboard/car.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/keyboard/car.png'
 					},
 					{
 						title: '数字键盘',
-						iconUrl: '/static/common/image/keyboard/number.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/keyboard/number.png'
 					},
 					{
 						title: '身份证键盘',
-						iconUrl: '/static/common/image/keyboard/IdCard.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/keyboard/IdCard.png'
 					},
 					{
 						title: '隐藏键盘"."符号',
-						iconUrl: '/static/common/image/keyboard/dot.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/keyboard/dot.png'
 					},
 					{
 						title: '打乱键盘按键的顺序',
-						iconUrl: '/static/common/image/keyboard/order.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/keyboard/order.png'
 					},
 				],
 				show: false

@@ -53,15 +53,15 @@
 				showOpcatiy: false,
 				list: [{
 						title: '基本案列',
-						iconUrl: '/static/common/image/overlay/baseCases.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/overlay/baseCases.png'
 					},
 					{
 						title: '嵌入内容',
-						iconUrl: '/static/common/image/overlay/embeddedContent.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/overlay/embeddedContent.png'
 					},
 					{
 						title: '设置透明度',
-						iconUrl: '/static/common/image/overlay/setTransparency.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/overlay/setTransparency.png'
 					},
 				]
 			}

@@ -78,7 +78,7 @@
 							closeOnClickOverly: true
 						},
 						title: '顶部弹出',
-						iconUrl: '/static/common/image/popup/modeTop.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/popup/modeTop.png'
 					},
 					{
 						popupData: {
@@ -88,7 +88,7 @@
 							closeOnClickOverly: true
 						},
 						title: '右侧弹出',
-						iconUrl: '/static/common/image/popup/modeRight.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/popup/modeRight.png'
 					},
 					{
 						popupData: {
@@ -98,7 +98,7 @@
 							closeOnClickOverly: true
 						},
 						title: '底部弹出',
-						iconUrl: '/static/common/image/popup/modeBottom.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/popup/modeBottom.png'
 					},
 					{
 						popupData: {
@@ -108,7 +108,7 @@
 							closeOnClickOverly: true
 						},
 						title: '左侧弹出',
-						iconUrl: '/static/common/image/popup/modeLeft.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/popup/modeLeft.png'
 					},
 					{
 						popupData: {
@@ -118,7 +118,7 @@
 							closeOnClickOverly: true
 						},
 						title: '居中弹出',
-						iconUrl: '/static/common/image/popup/modeCenter.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/popup/modeCenter.png'
 					},
 					{
 						popupData: {
@@ -128,7 +128,7 @@
 							closeOnClickOverly: true
 						},
 						title: '显示圆角',
-						iconUrl: '/static/common/image/popup/showRadis.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/popup/showRadis.png'
 					},
 					{
 						popupData: {
@@ -139,7 +139,7 @@
 							closeOnClickOverly: false
 						},
 						title: '禁止点击遮罩关闭',
-						iconUrl: '/static/common/image/popup/noClose.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/popup/noClose.png'
 					},
 					{
 						popupData: {
@@ -149,7 +149,7 @@
 							closeOnClickOverly: true
 						},
 						title: '显示关闭按钮',
-						iconUrl: '/static/common/image/popup/showCloseBtn.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/popup/showCloseBtn.png'
 					}
 				]
 			}

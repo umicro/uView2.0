@@ -63,56 +63,56 @@
 				list: [{
 						imgName: 'car',
 						title: '购物车为空(同时传入slot)',
-						iconUrl: '/static/common/image/empty/car.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/empty/car.png'
 					},
 					{
 						imgName: 'data',
 						title: '数据为空',
-						iconUrl: '/static/common/image/empty/data.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/empty/data.png'
 					}, {
 						imgName: 'comment',
 						title: '评论为空',
-						iconUrl: '/static/common/image/empty/comment.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/empty/comment.png'
 					}, {
 						imgName: 'coupon',
 						title: '没有优惠券',
-						iconUrl: '/static/common/image/empty/coupon.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/empty/coupon.png'
 					}, {
 						imgName: 'history',
 						title: '无历史记录',
-						iconUrl: '/static/common/image/empty/history.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/empty/history.png'
 					}, {
 						imgName: 'list',
 						title: '列表为空',
-						iconUrl: '/static/common/image/empty/list.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/empty/list.png'
 					}, {
 						imgName: 'message',
 						title: '消息列表为空',
-						iconUrl: '/static/common/image/empty/message.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/empty/message.png'
 					}, {
 						imgName: 'news',
 						title: '无新闻列表',
-						iconUrl: '/static/common/image/empty/news.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/empty/news.png'
 					}, {
 						imgName: 'order',
 						title: '订单为空',
-						iconUrl: '/static/common/image/empty/order.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/empty/order.png'
 					}, {
 						imgName: 'page',
 						title: '页面不存在',
-						iconUrl: '/static/common/image/empty/page.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/empty/page.png'
 					}, {
 						imgName: 'permission',
 						title: '无权限',
-						iconUrl: '/static/common/image/empty/permission.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/empty/permission.png'
 					}, {
 						imgName: 'search',
 						title: '没有搜索结果',
-						iconUrl: '/static/common/image/empty/search.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/empty/search.png'
 					}, {
 						imgName: 'wifi',
 						title: '没有WiFi',
-						iconUrl: '/static/common/image/empty/wifi.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/empty/wifi.png'
 					},
 				]
 

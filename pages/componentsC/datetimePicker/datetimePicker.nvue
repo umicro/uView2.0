@@ -124,28 +124,28 @@
 				show7: false,
 				list: [{
 						title: '完整日期时间',
-						iconUrl: '/static/common/image/datetime-picker/6.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/datetime-picker/6.png'
 					},
 					{
 						title: '年月日',
-						iconUrl: '/static/common/image/datetime-picker/4.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/datetime-picker/4.png'
 					},
 					{
 						title: '年月',
-						iconUrl: '/static/common/image/datetime-picker/3.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/datetime-picker/3.png'
 					},
 					{
 						title: '时间',
-						iconUrl: '/static/common/image/datetime-picker/5.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/datetime-picker/5.png'
 					}, {
 						title: '过滤器(保留偶数年)',
-						iconUrl: '/static/common/image/datetime-picker/2.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/datetime-picker/2.png'
 					}, {
 						title: '格式化',
-						iconUrl: '/static/common/image/datetime-picker/1.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/datetime-picker/1.png'
 					}, {
 						title: '限制最大最小值',
-						iconUrl: '/static/common/image/datetime-picker/7.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/datetime-picker/7.png'
 					}
 				]
 			}

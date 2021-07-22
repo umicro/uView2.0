@@ -6,7 +6,6 @@
 			<u-list-item
 				v-for="(item, index) in indexList"
 				:key="index"
-				:id="index"
 			>
 				<u-cell
 					:title="`列表长度-${index + 1}`"

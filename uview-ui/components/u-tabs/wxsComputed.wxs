@@ -1,6 +1,6 @@
 function lineStyle(data) {
 	return {
-		transform: `translateX(${uni.$u.addUnit(data.lineOffsetLeft)})`,
+		transform: 'translateX(' + data.lineOffsetLeft +  'px)})',
 		// height: data.lineHeight !== -1 ? utils.addUnit(data.lineHeight) : null,
 		
 	}

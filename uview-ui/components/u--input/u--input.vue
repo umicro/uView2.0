@@ -1,5 +1,46 @@
 <template>
-	<uvInput v-bind="$attrs" v-on="$listeners"></uvInput>
+	<uvInput 
+		:value="value"
+		:type="type"
+		:fixed="fixed"
+		:disabled="disabled"
+		:disabledColor="disabledColor"
+		:clearable="clearable"
+		:password="password"
+		:maxlength="maxlength"
+		:placeholder="placeholder"
+		:placeholderClass="placeholderClass"
+		:placeholderStyle="placeholderStyle"
+		:showWordLimit="showWordLimit"
+		:confirmType="confirmType"
+		:confirmHold="confirmHold"
+		:showConfirmBar="showConfirmBar"
+		:holdKeyboard="holdKeyboard"
+		:focus="focus"
+		:autoBlur="autoBlur"
+		:disableDefaultPadding="disableDefaultPadding"
+		:cursor="cursor"
+		:cursorSpacing="cursorSpacing"
+		:selectionStart="selectionStart"
+		:selectionEnd="selectionEnd"
+		:adjustPosition="adjustPosition"
+		:inputAlign="inputAlign"
+		:autosize="autosize"
+		:fontSize="fontSize"
+		:color="color"
+		:prefixIcon="prefixIcon"
+		:suffixIcon="suffixIcon"
+		:suffixIconStyle="suffixIconStyle"
+		:prefixIconStyle="prefixIconStyle"
+		:border="border"
+		:readonly="readonly"
+		:shape="shape"
+		@focus="$emit('focus')"
+		@blur="$emit('blur')"
+		@keyboardheightchange="$emit('keyboardheightchange')"
+		@change="$emit('change')"
+		@clear="$emit('clear')"
+	></uvInput>
 </template>
 
 <script>
@@ -8,8 +49,10 @@
 	 * 所以在nvue下，取名为u--input，内部其实还是u-input.vue，只不过做一层中转
 	 */
 	import uvInput from '../u-input/u-input.vue';
+	import props from '../u-input/props.js'
 	export default {
 		name: 'u--input',
+		mixins: [props],
 		components: {
 			uvInput
 		},

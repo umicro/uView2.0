@@ -11,7 +11,7 @@
 		></view>
 		<view
 			class="u-subsection__item"
-			:class="[`u-subsection__item--${index}`, index < list.length - 1 && 'u-subsection__item--no-border-right', index === 0 && 'u-subsection__item--first', , index === list.length - 1 && 'u-subsection__item--last']"
+			:class="[`u-subsection__item--${index}`, index < list.length - 1 && 'u-subsection__item--no-border-right', index === 0 && 'u-subsection__item--first', index === list.length - 1 && 'u-subsection__item--last']"
 			:ref="`u-subsection__item--${index}`"
 			:style="[itemStyle(index)]"
 			@tap="clickHandler(index)"

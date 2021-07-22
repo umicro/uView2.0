@@ -82,7 +82,7 @@ export default {
 			type: Boolean,
 			default: false
 		},
-		// focus时，点击页面的时候不收起键盘，type="textarea"时有效
+		// focus时，点击页面的时候不收起键盘，微信小程序有效
 		holdKeyboard: {
 			type: Boolean,
 			default: false

@@ -32,7 +32,7 @@ export default {
 				return uni.$u.props.swipeAction.rightOptions
 			}
 		},
-		// 动画过渡时间
+		// 动画过渡时间，单位ms
 		duration: {
 			type: [Number, String],
 			default: uni.$u.props.swipeAction.duration

@@ -75,6 +75,7 @@
 				this.$emit('input', e.detail.value);
 				// 尝试调用u-form的验证方法
 				uni.$u.formValidate(this, 'change')
+				this.value = e.detail.value
 			},
 			onConfirm(e) {
 				this.$emit('confirm', e);

@@ -23,6 +23,7 @@
 		@blur="$emit('blur')"
 		@linechange="$emit('linechange')"
 		@confirm="$emit('confirm')"
+		@input="e => $emit('input', e)"
 		@keyboardheightchange="$emit('keyboardheightchange')"
 	></uvTextarea>
 </template>

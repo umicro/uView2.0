@@ -7,7 +7,7 @@
 
 <script>
 	/**
-	 * collapse 手风琴
+	 * collapse 折叠面板
 	 * @description 通过折叠面板收纳内容区域
 	 * @tutorial https://www.uviewui.com/components/collapse.html
 	 * @property {Boolean} accordion 是否手风琴模式（默认true）
@@ -84,8 +84,8 @@
 						name: child.name || index,
 						status: child.expanded ? 'open' : 'close'
 					})
-				}) 
-				
+				})
+
 				this.$emit('change', changeArr)
 				this.$emit(target.expanded ? 'open' : 'close', target.name)
 			}

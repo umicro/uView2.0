@@ -51,7 +51,7 @@
 	const dom = uni.requireNativePlugin('dom')
 	// #endif
 	/**
-	 * collapseItem 手风琴Item
+	 * collapseItem 折叠面板Item
 	 * @description 通过折叠面板收纳内容区域（搭配u-collapse使用）
 	 * @tutorial https://www.uviewui.com/components/collapse.html
 	 * @property {String} title 面板标题
@@ -127,7 +127,7 @@
 				// 是否展开状态
 				expanded: false,
 				// 根据expanded确定是否显示border，为了控制展开时，cell的下划线更好的显示效果，进行一定时间的延时
-				showBorder: false, 
+				showBorder: false,
 			};
 		},
 		watch: {

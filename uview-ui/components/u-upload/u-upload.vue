@@ -193,16 +193,12 @@
 			// 读取后的处理函数
 			afterRead: {
 				type: Function,
-				default () {
-					return null
-				}
+				default: null
 			},
 			// 读取前的处理函数
 			beforeRead: {
 				type: Function,
-				default () {
-					return null
-				}
+				default: null
 			},
 			// 是否显示组件自带的图片预览功能
 			previewFullImage: {

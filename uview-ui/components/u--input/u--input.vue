@@ -39,6 +39,7 @@
 		@blur="$emit('blur')"
 		@keyboardheightchange="$emit('keyboardheightchange')"
 		@change="e => $emit('change', e)"
+		@input="e => $emit('input', e)"
 		@clear="$emit('clear')"
 	></uvInput>
 </template>

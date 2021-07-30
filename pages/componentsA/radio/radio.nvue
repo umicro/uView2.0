@@ -68,7 +68,7 @@
 			</view>
 		</view>
 		<view class="u-demo-block">
-			<text class="u-demo-block__title">狙击枪用哪个倍镜最好？</text>
+			<text class="u-demo-block__title">纵向排列</text>
 			<text class="u-block__title">苹果、香蕉和橙子那个最甜？</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__radio-item">

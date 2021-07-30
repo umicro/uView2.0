@@ -36,6 +36,7 @@
 			}"
 			v-if="count"
 		>{{ value.length }}/{{ maxlength }}</text>
+		<!-- >{{ (value||value.length) ? value.length : 0 }}/{{ maxlength }}</text> -->
 	</view>
 </template>
 
@@ -72,6 +73,8 @@
 				this.$emit('linechange', e);
 			},
 			onInput(e) {
+				// console.log(this.$props.value)
+				// 得到 this.$props.value 不变  直接使用 e.detail.value也行
 				this.$emit('input', e.detail.value);
 				// 尝试调用u-form的验证方法
 				uni.$u.formValidate(this, 'change')

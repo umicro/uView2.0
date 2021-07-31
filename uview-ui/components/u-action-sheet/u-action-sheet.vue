@@ -210,15 +210,13 @@
 	}
 
 	.u-action-sheet {
-
+		text-align: center;
 		&__header {
 			position: relative;
-
+			padding: $u-action-sheet-title-padding;
 			&__title {
 				font-size: $u-action-sheet-title-font-size;
 				color: $u-action-sheet-title-color;
-				padding: $u-action-sheet-title-padding;
-				text-align: center;
 				font-weight: bold;
 			}
 

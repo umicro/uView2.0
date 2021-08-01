@@ -102,7 +102,7 @@
 				this.avatarUrl = this.defaultUrl || base64Avatar
 			},
 			clickHandler() {
-				// this.$emit('click', this.name)
+				this.$emit('click', this.name)
 			}
 		}
 	}

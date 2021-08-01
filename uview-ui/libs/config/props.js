@@ -382,7 +382,7 @@ export default {
 		safeAreaInsetBottom: true,
 		closeIconPos: 'top-right',
 		round: false,
-		
+
 	},
 
 	// overlay组件
@@ -427,10 +427,6 @@ export default {
 		back: false
 	},
 
-	// subsection组件
-	subsection: {
-
-	},
 	//u-section组件
 	section: {
 		title: '',
@@ -540,7 +536,7 @@ export default {
 		autoStart: true,
 		millisecond: false
 	},
-	
+
 	// 步进器组件
 	numberBox: {
 		name: '',
@@ -565,7 +561,7 @@ export default {
 		disableMinus: false,
 		iconStyle: ''
 	},
-	
+
 	// 徽标数组件
 	badge:{
 		isDot: false,
@@ -579,7 +575,7 @@ export default {
 		shape: 'circle',
 		numberType: 'overflow'
 	},
-	
+
 	// alert警告组件
 	alert: {
 		title: '',
@@ -591,7 +587,7 @@ export default {
 		center: false,
 		fontSize: 14
 	},
-	
+
 	// subsection组件
 	subsection: {
 		list: [],

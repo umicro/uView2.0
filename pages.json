@@ -43,6 +43,12 @@
 				}
 			},
 			{
+				"path": "test/test",
+				"style": {
+					"navigationBarTitleText": "测试"
+				}
+			},
+			{
 				"path": "icon/icon",
 				"style": {
 					"navigationBarTitleText": "图标"

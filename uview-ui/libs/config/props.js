@@ -174,7 +174,7 @@ export default {
 		offsetTop: 0,
 		customNavHeight: 0,
 		disabled: false,
-		bgColor: '#ffffff',
+		bgColor: 'transparent',
 		zIndex: '',
 		index: '',
 		mode: 'auto'
@@ -598,5 +598,26 @@ export default {
 		fontSize: 12,
 		bold: true,
 		bgColor: '#eeeeef'
+	},
+	
+	// steps组件
+	steps: {
+		direction: 'row',
+		current: 0,
+		activeColor: '#3c9cff',
+		inactiveColor: '#969799',
+		activeIcon: '',
+		inactiveIcon: '',
+		dot: false
+	},
+	
+	// steps-item组件
+	stepsItem: {
+		title: '',
+		desc: '',
+		icon: '',
+		iconColor: '',
+		iconSize: 17,
+		error: false
 	}
 }

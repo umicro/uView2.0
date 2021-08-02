@@ -14,6 +14,7 @@
 </template>
 
 <script>
+	import props from './props.js';
 	/**
 	 * sticky 吸顶
 	 * @description 该组件与CSS中position: sticky属性实现的效果一致，当组件达到预设的到顶部距离时， 就会固定在指定位置，组件位置大于预设的顶部距离时，会重新按照正常的布局排列。
@@ -31,44 +32,7 @@
 	 */
 	export default {
 		name: 'u-sticky',
-		props: {
-			// 吸顶容器到顶部某个距离的时候，进行吸顶，在H5平台，NavigationBar为44px
-			offsetTop: {
-				type: [Number, String],
-				default: uni.$u.props.sticky.offsetTop
-			},
-			// 自定义导航栏的高度
-			customNavHeight: {
-				type: [Number, String],
-				// #ifdef H5
-				// H5端的导航栏属于“自定义”导航栏的范畴，因为它是非原生的，与普通元素一致
-				default: 44
-				// #endif
-				// #ifndef H5
-				default: uni.$u.props.sticky.customNavHeight
-				// #endif
-			},
-			// 是否开启吸顶功能
-			disabled: {
-				type: Boolean,
-				default: uni.$u.props.sticky.disabled
-			},
-			// 吸顶区域的背景颜色
-			bgColor: {
-				type: String,
-				default: uni.$u.props.sticky.bgColor
-			},
-			// z-index值
-			zIndex: {
-				type: [Number, String],
-				default: uni.$u.props.sticky.zIndex
-			},
-			//列表中的索引值
-			index: {
-				type: [Number, String],
-				default: uni.$u.props.sticky.index
-			},
-		},
+		mixins: [uni.$u.mixin, props],
 		data() {
 			return {
 				cssSticky: false, // 是否使用css的sticky实现

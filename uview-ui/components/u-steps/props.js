@@ -3,37 +3,37 @@ export default {
 		// 排列方向
 		direction: {
 			type: String,
-			default: 'row'
+			default: uni.$u.props.steps.direction
 		},
 		// 设置第几个步骤
 		current: {
 			type: [String, Number],
-			default: 0
+			default: uni.$u.props.steps.current
 		},
 		// 激活状态颜色
 		activeColor: {
 			type: String,
-			default: '#07c160'
+			default: uni.$u.props.steps.activeColor
 		},
 		// 未激活状态颜色
 		inactiveColor: {
 			type: String,
-			default: '#969799'
+			default: uni.$u.props.steps.inactiveColor
 		},
 		// 激活状态的图标
 		activeIcon: {
 			type: String,
-			default: ''
+			default: uni.$u.props.steps.activeIcon
 		},
 		// 未激活状态图标
 		inactiveIcon: {
 			type: String,
-			default: ''
+			default: uni.$u.props.steps.inactiveIcon
 		},
 		// 是否显示点类型
 		dot: {
 			type: Boolean,
-			default: false
+			default: uni.$u.props.steps.dot
 		},
 	}
 }

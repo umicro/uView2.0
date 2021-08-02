@@ -120,7 +120,6 @@
 				}
 			}
 		},
-		mixins: [uni.$u.mixin],
 		computed: {
 			wrapStyle() {
 				let style = {};

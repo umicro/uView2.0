@@ -46,7 +46,7 @@
 						v-if="statusClass === 'process' || statusClass === 'wait'"
 						class="u-steps-item__wrapper__circle__text"
 						:style="{
-							color: index === parentData.current ? '#ffffff' : parentData.inactiveColor
+							color: index == parentData.current ? '#ffffff' : parentData.inactiveColor
 						}"
 					>{{ index + 1}}</text>
 					<u-icon
@@ -65,9 +65,9 @@
 		>
 			<u--text
 				:text="title"
-				:type="parentData.current === index ? 'main' : 'content'"
+				:type="parentData.current == index ? 'main' : 'content'"
 				lineHeight="20px"
-				:size="parentData.current === index ? 14 : 13"
+				:size="parentData.current == index ? 14 : 13"
 			></u--text>
 			<slot name="desc">
 				<u--text
@@ -148,7 +148,7 @@
 				const {
 					current
 				} = this.parentData
-				if (current === index) {
+				if (current == index) {
 					return error === true ? 'error' : 'process'
 				} else if (error) {
 					return 'error'
@@ -176,7 +176,6 @@
 				}
 				return color
 			},
-			// 
 			contentStyle() {
 				const style = {}
 				if(this.parentData.direction === 'column') {

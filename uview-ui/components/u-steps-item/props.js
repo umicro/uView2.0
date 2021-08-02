@@ -3,32 +3,22 @@ export default {
 		// 标题
 		title: {
 			type: [String, Number],
-			default: ''
+			default: uni.$u.props.steps.title
 		},
 		// 描述文本
 		desc: {
 			type: [String, Number],
-			default: ''
-		},
-		// 自定义图标
-		icon: {
-			type: String,
-			default: ''
-		},
-		// 图标颜色
-		iconColor: {
-			type: String,
-			default: ''
+			default: uni.$u.props.steps.desc
 		},
 		// 图标大小
 		iconSize: {
 			type: [String, Number],
-			default: 17
+			default: uni.$u.props.steps.iconSize
 		},
 		// 当前步骤是否处于失败状态
 		error: {
 			type: Boolean,
-			default: false
+			default: uni.$u.props.steps.error
 		}
 	}
 }

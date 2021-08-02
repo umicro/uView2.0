@@ -201,7 +201,7 @@
 		}
 	}
 </script>
-z
+
 <style lang="scss">
 	.slot-icon {
 		width: 21px;
@@ -213,5 +213,4 @@ z
 		line-height: 21px;
 		text-align: center;
 	}
-		
 </style>

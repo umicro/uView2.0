@@ -101,6 +101,7 @@
 	// #ifdef APP-NVUE
 	import mixins from './nvue'
 	// #endif
+	import props from './props.js'
 	/**
 	 * slider 滑块选择器
 	 * @description 该组件一般用于表单中，手动选择一个区间范围的场景.
@@ -124,64 +125,7 @@
 	 */
 	export default {
 		name: 'u-slider',
-		props: {
-			// 当前进度百分比值，范围0-100
-			value: {
-				type: [Number, String],
-				default:uni.$u.props.slider.value,
-			},
-			// 是否禁用滑块
-			disabled: {
-				type: Boolean,
-				default:uni.$u.props.slider.disabled,
-			},
-			// 滑块宽度，高等于宽，单位rpx
-			blockHeight: {
-				type: [Number, String],
-				default:uni.$u.props.slider.blockHeight,
-			},
-			// 最小值
-			min: {
-				type: [Number, String],
-				default:uni.$u.props.slider.min,
-			},
-			// 最大值
-			max: {
-				type: [Number, String],
-				default:uni.$u.props.slider.max,
-			},
-			// 步进值
-			step: {
-				type: [Number, String],
-				default:uni.$u.props.slider.step,
-			},
-			// 滑块条高度，单位rpx
-			height: {
-				type: [Number, String],
-				default:uni.$u.props.slider.height,
-			},
-			// 进度条的激活部分颜色
-			activeColor: {
-				type: String,
-				default:uni.$u.props.slider.activeColor,
-			},
-			// 进度条的背景颜色
-			inactiveColor: {
-				type: String,
-				default:uni.$u.props.slider.inactiveColor,
-			},
-			// 滑块的背景颜色
-			blockColor: {
-				type: String,
-				default:uni.$u.props.slider.blockColor
-			},
-			// 用户对滑块的自定义颜色
-			blockStyle: {
-				type: Object,
-				default:uni.$u.props.slider.blockStyle
-			},
-		},
-		mixins: [uni.$u.mixin, mixins],
+		mixins: [uni.$u.mixin, mixins, props],
 		data() {
 			return {
 				// 滑动的状态有3个，start-开始 -> moving-移动中 -> end-结束
@@ -198,7 +142,7 @@
 					width: uni.$u.addUnit(this.blockHeight),
 					backgroundColor: this.blockColor
 				}
-				return uni.$u.deepMerge(this.blockStyle, style)
+				return uni.$u.deepMerge(uni.$u.addStyle(this.blockStyle), style)
 			},
 			buttomWrapStyle() {
 				// 让元素垂直居中，top需要设置为父元素的50%，但是nvue不支持%写法

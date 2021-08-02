@@ -28,7 +28,7 @@ export default {
 		// 段落标题的高度
 		titleHeight: {
 			type: [Number, String],
-			default: '18px'
+			default: 18
 		},
 		// 段落占位图的高度
 		rowsHeight: {

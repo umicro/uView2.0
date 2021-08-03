@@ -38,7 +38,7 @@ export default {
 		// 确认按钮的文字
 		confirmText: {
 			type: String,
-			default: '取消'
+			default: '确定'
 		},
 		// 取消按钮的颜色
 		cancelColor: {
@@ -50,7 +50,7 @@ export default {
 			type: String,
 			default: '#3c9cff'
 		},
-		// 选择器只有一列时，默认选中项的索引，从0开始 
+		// 选择器只有一列时，默认选中项的索引，从0开始
 		singleIndex: {
 			type: [Number, String],
 			default: 0

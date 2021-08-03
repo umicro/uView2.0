@@ -15,7 +15,7 @@
  * mp-html v2.0.4
  * @description 富文本组件
  * @tutorial https://github.com/jin-yufeng/mp-html
- * @property {String} content 用于渲染的 html 字符串
+ * @property {String} content 用于渲染的富文本字符串
  * @property {Boolean} copyLink 是否允许外部链接被点击时自动复制
  * @property {String} domain 主域名，用于拼接链接
  * @property {String} errorImg 图片出错时的占位图链接

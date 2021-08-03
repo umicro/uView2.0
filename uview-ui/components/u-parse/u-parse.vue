@@ -108,7 +108,7 @@ export default {
   },
   created() {
     this.plugins = []
-    for (var i = plugins.length; i--;)
+    for (let i = plugins.length; i--;)
       this.plugins.push(new plugins[i](this))
   },
   mounted() {
@@ -164,11 +164,11 @@ export default {
         }
         // #endif
         // #ifndef APP-PLUS-NVUE
-        var deep = ' '
+        let deep = ' '
         // #ifdef MP-WEIXIN || MP-QQ || MP-TOUTIAO
         deep = '>>>'
         // #endif
-        var selector = uni.createSelectorQuery()
+        const selector = uni.createSelectorQuery()
           // #ifndef MP-ALIPAY
           .in(this._in ? this._in.page : this)
           // #endif
@@ -181,7 +181,7 @@ export default {
         selector.exec(res => {
           if (!res[0])
             return reject('Label not found')
-          var scrollTop = res[1].scrollTop + res[0].top - (res[2] ? res[2].top : 0) + offset
+          const scrollTop = res[1].scrollTop + res[0].top - (res[2] ? res[2].top : 0) + offset
           if (this._in)
             // scroll-view 跳转
             this._in.page[this._in.scrollTop] = scrollTop
@@ -202,17 +202,17 @@ export default {
      * @return {String}
      */
     getText() {
-      var text = '';
+      let text = '';
       (function traversal(nodes) {
-        for (var i = 0; i < nodes.length; i++) {
-          var node = nodes[i]
+        for (let i = 0; i < nodes.length; i++) {
+          const node = nodes[i]
           if (node.type == 'text')
             text += node.text.replace(/&amp;/g, '&')
           else if (node.name == 'br')
             text += '\n'
           else {
             // 块级标签前后加换行
-            var isBlock = node.name == 'p' || node.name == 'div' || node.name == 'tr' || node.name == 'li' || (node.name[0] == 'h' && node.name[1] > '0' && node.name[1] < '7')
+            const isBlock = node.name == 'p' || node.name == 'div' || node.name == 'tr' || node.name == 'li' || (node.name[0] == 'h' && node.name[1] > '0' && node.name[1] < '7')
             if (isBlock && text && text[text.length - 1] != '\n')
               text += '\n'
             // 递归获取子节点的文本
@@ -250,7 +250,7 @@ export default {
     setContent(content, append) {
       if (!append || !this.imgList)
         this.imgList = []
-      var nodes = new parser(this).parse(content)
+      const nodes = new parser(this).parse(content)
       // #ifdef APP-PLUS-NVUE
       if (this._ready)
         this._set(nodes, append)
@@ -265,7 +265,7 @@ export default {
       })
 
       // 等待图片加载完毕
-      var height
+      let height
       clearInterval(this._timer)
       this._timer = setInterval(() => {
         this.getRect().then(rect => {
@@ -284,7 +284,7 @@ export default {
      * @description 调用插件钩子函数
      */
     _hook(name) {
-      for (var i = plugins.length; i--;)
+      for (let i = plugins.length; i--;)
         if (this.plugins[i][name])
           this.plugins[i][name]()
     },
@@ -301,7 +301,7 @@ export default {
      * @description 接收到 web-view 消息
      */
     _onMessage(e) {
-      var message = e.detail.data[0]
+      const message = e.detail.data[0]
       switch (message.action) {
         // web-view 初始化完毕
         case 'onJSBridgeReady':
@@ -336,7 +336,7 @@ export default {
           break
         // 链接点击
         case 'onLinkTap':
-          var href = message.attrs.href
+          const href = message.attrs.href
           this.$emit('linkTap', message.attrs)
           if (href) {
             // 锚点跳转

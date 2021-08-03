@@ -5,6 +5,7 @@
 	>
 		<view
 		    v-for="(group, i) in abc ? engKeyBoardList : areaList"
+			:key="i"
 		    class="u-keyboard__button"
 			:index="i"
 		    :class="[i + 1 === 4 && 'u-keyboard__button--center']"
@@ -58,7 +59,7 @@
 	 * keyboard 键盘组件
 	 * @description 此为uView自定义的键盘面板，内含了数字键盘，车牌号键，身份证号键盘3种模式，都有可以打乱按键顺序的选项。
 	 * @tutorial https://uviewui.com/components/keyboard.html
-	 * @property {Boolean} random 是否打乱键盘的顺序 
+	 * @property {Boolean} random 是否打乱键盘的顺序
 	 * @event {Function} change 点击键盘触发
 	 * @event {Function} backspace 点击退格键触发
 	 * @example <u-keyboard ref="uKeyboard" mode="car" v-model="show"></u-keyboard>

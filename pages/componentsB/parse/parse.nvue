@@ -25,7 +25,18 @@
 			}, 200)
 		},
 		methods: {
+			load() {
 
+			},
+			ready() {
+
+			},
+			imgtap() {
+
+			},
+			linktap() {
+
+			}
 		}
 	}
 </script>

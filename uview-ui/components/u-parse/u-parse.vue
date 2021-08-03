@@ -16,19 +16,19 @@
  * @description 富文本组件
  * @tutorial https://github.com/jin-yufeng/mp-html
  * @property {String} content 用于渲染的 html 字符串
- * @property {Boolean} copy-link 是否允许外部链接被点击时自动复制
+ * @property {Boolean} copyLink 是否允许外部链接被点击时自动复制
  * @property {String} domain 主域名，用于拼接链接
- * @property {String} error-img 图片出错时的占位图链接
- * @property {Boolean} lazy-load 是否开启图片懒加载
- * @property {string} loading-img 图片加载过程中的占位图链接
- * @property {Boolean} pause-video 是否在播放一个视频时自动暂停其他视频
- * @property {Boolean} preview-img 是否允许图片被点击时自动预览
- * @property {Boolean} scroll-table 是否给每个表格添加一个滚动层使其能单独横向滚动
+ * @property {String} errorImg 图片出错时的占位图链接
+ * @property {Boolean} lazyLoad 是否开启图片懒加载
+ * @property {string} loadingImg 图片加载过程中的占位图链接
+ * @property {Boolean} pauseVideo 是否在播放一个视频时自动暂停其它视频
+ * @property {Boolean} previewImg 是否允许图片被点击时自动预览
+ * @property {Boolean} scrollTable 是否给每个表格添加一个滚动层使其能单独横向滚动
  * @property {Boolean} selectable 是否开启长按复制
- * @property {Boolean} set-title 是否将 title 标签的内容设置到页面标题
- * @property {Boolean} show-img-menu 是否允许图片被长按时显示菜单
- * @property {Object} tag-style 标签的默认样式
- * @property {Boolean | Number} use-anchor 是否使用锚点链接
+ * @property {Boolean} setTitle 是否将 title 标签的内容设置到页面标题
+ * @property {Boolean} showImgMenu 是否允许图片被长按时显示菜单
+ * @property {Object} tagStyle 标签的默认样式
+ * @property {Boolean | Number} useAnchor 是否使用锚点链接
  * @event {Function} load dom 结构加载完毕时触发
  * @event {Function} ready 所有图片加载完毕时触发
  * @event {Function} imgTap 图片被点击时触发
@@ -327,7 +327,7 @@ export default {
           break
         // 图片点击
         case 'onImgTap':
-          this.$emit('imgtap', message.attrs)
+          this.$emit('imgTap', message.attrs)
           if (this.previewImg)
             uni.previewImage({
               current: parseInt(message.attrs.i),
@@ -337,7 +337,7 @@ export default {
         // 链接点击
         case 'onLinkTap':
           var href = message.attrs.href
-          this.$emit('linktap', message.attrs)
+          this.$emit('linkTap', message.attrs)
           if (href) {
             // 锚点跳转
             if (href[0] == '#') {

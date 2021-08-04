@@ -77,26 +77,26 @@
  * @tutorial https://www.uviewui.com/components/search.html
  * @property {String} shape 搜索框形状，round-圆形，square-方形（默认round）
  * @property {String} bgColor 搜索框背景颜色（默认#f2f2f2）
- * @property {String} border-color 边框颜色，配置了颜色，才会有边框
  * @property {String} placeholder 占位文字内容（默认“请输入关键字”）
  * @property {Boolean} clearabled 是否启用清除控件（默认true）
  * @property {Boolean} focus 是否自动获得焦点（默认false）
- * @property {Boolean} show-action 是否显示右侧控件（默认true）
- * @property {String} action-text 右侧控件文字（默认“搜索”）
- * @property {Object} action-style 右侧控件的样式，对象形式
- * @property {String} input-align 输入框内容水平对齐方式（默认left）
- * @property {Object} input-style 自定义输入框样式，对象形式
+ * @property {Boolean} showAction 是否显示右侧控件（默认true）
+ * @property {String} actionText 右侧控件文字（默认“搜索”）
+ * @property {Object} actionStyle 右侧控件的样式，对象形式
+ * @property {String} inputAlign 输入框内容水平对齐方式（默认left）
+ * @property {Object} inputStyle 自定义输入框样式，对象形式
  * @property {Boolean} disabled 是否启用输入框（默认false）
- * @property {String} search-icon-color 搜索图标的颜色，默认同输入框字体颜色
+ * @property {String} borderColor 边框颜色，配置了颜色，才会有边框
+ * @property {String} searchIconColor 搜索图标的颜色，默认同输入框字体颜色
  * @property {String} color 输入框字体颜色（默认#606266）
- * @property {String} placeholder-color placeholder的颜色（默认#909399）
- * @property {String} search-icon 输入框左边的图标，可以为uView图标名称或图片路径
+ * @property {String} placeholderColor placeholder的颜色（默认#909399）
+ * @property {String} searchIcon 输入框左边的图标，可以为uView图标名称或图片路径
  * @property {String} margin 组件与其他上下左右元素之间的距离，带单位的字符串形式，如"30rpx"
  * @property {Boolean} animation 是否开启动画，见上方说明（默认false）
  * @property {String} value 输入框初始值
  * @property {String | Number} maxlength 输入框最大能输入的长度，-1为不限制长度
- * @property {Boolean} input-style input输入框的样式，可以定义文字颜色，大小等，对象形式
  * @property {String | Number} height 输入框高度，单位rpx（默认64）
+ * @property {String | Number} label 搜索框左边显示内容
  * @event {Function} change 输入框内容发生变化时触发
  * @event {Function} search 用户确定搜索时触发，用户按回车键，或者手机键盘右下角的"搜索"键时触发
  * @event {Function} custom 用户点击右侧控件时触发

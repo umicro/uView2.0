@@ -35,7 +35,7 @@
 			:show="show"
 			:round="popupData.round"
 			:overlay="popupData.overlay"
-			:borderRadis="popupData.borderRadis"
+			:borderRadius="popupData.borderRadius"
 			:closeable="popupData.closeable"
 			:closeOnClickOverly="popupData.closeOnClickOverly"
 			@close="close"
@@ -66,7 +66,7 @@
 				popupData: {
 					overlay: true,
 					mode: 'bottom',
-					borderRadis: '',
+					borderRadius: '',
 					closeable: true,
 					closeOnClickOverly: true
 				},

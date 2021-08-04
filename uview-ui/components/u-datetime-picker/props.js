@@ -85,7 +85,7 @@ export default {
 		// 确认按钮的文字
 		confirmText: {
 			type: String,
-			default: '取消'
+			default: '确认'
 		},
 		// 取消按钮的颜色
 		cancelColor: {

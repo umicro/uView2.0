@@ -53,15 +53,16 @@
 			v-for="(item, index) in itemArr"
 		>
 			<!-- #ifdef APP-NVUE -->
-			<u-index-anchor :text="indexList[index]"></u-index-anchor>
+			<u-index-anchor :text="indexList[index]" :key="index"></u-index-anchor>
 			<!-- #endif -->
-			<u-index-item>
+			<u-index-item :key="index">
 				<!-- #ifndef APP-NVUE -->
 				<u-index-anchor :text="indexList[index]"></u-index-anchor>
 				<!-- #endif -->
 				<u-cell
-					:title="item1.name"
 					v-for="(item1, index1) in item"
+					:key="index1"
+					:title="item1.name"
 					:border="index1 !== item.length - 1"
 				>
 					<u-avatar
@@ -120,7 +121,7 @@
 							url: this.urls[uni.$u.random(0, this.urls.length - 1)]
 						})
 					}
-					return arr 
+					return arr
 				})
 			}
 		},

@@ -15,20 +15,20 @@
  * mp-html v2.0.4
  * @description 富文本组件
  * @tutorial https://github.com/jin-yufeng/mp-html
- * @property {String} content 用于渲染的 html 字符串
- * @property {Boolean} copy-link 是否允许外部链接被点击时自动复制
+ * @property {String} content 用于渲染的富文本字符串
+ * @property {Boolean} copyLink 是否允许外部链接被点击时自动复制
  * @property {String} domain 主域名，用于拼接链接
- * @property {String} error-img 图片出错时的占位图链接
- * @property {Boolean} lazy-load 是否开启图片懒加载
- * @property {string} loading-img 图片加载过程中的占位图链接
- * @property {Boolean} pause-video 是否在播放一个视频时自动暂停其他视频
- * @property {Boolean} preview-img 是否允许图片被点击时自动预览
- * @property {Boolean} scroll-table 是否给每个表格添加一个滚动层使其能单独横向滚动
+ * @property {String} errorImg 图片出错时的占位图链接
+ * @property {Boolean} lazyLoad 是否开启图片懒加载
+ * @property {string} loadingImg 图片加载过程中的占位图链接
+ * @property {Boolean} pauseVideo 是否在播放一个视频时自动暂停其它视频
+ * @property {Boolean} previewImg 是否允许图片被点击时自动预览
+ * @property {Boolean} scrollTable 是否给每个表格添加一个滚动层使其能单独横向滚动
  * @property {Boolean} selectable 是否开启长按复制
- * @property {Boolean} set-title 是否将 title 标签的内容设置到页面标题
- * @property {Boolean} show-img-menu 是否允许图片被长按时显示菜单
- * @property {Object} tag-style 标签的默认样式
- * @property {Boolean | Number} use-anchor 是否使用锚点链接
+ * @property {Boolean} setTitle 是否将 title 标签的内容设置到页面标题
+ * @property {Boolean} showImgMenu 是否允许图片被长按时显示菜单
+ * @property {Object} tagStyle 标签的默认样式
+ * @property {Boolean | Number} useAnchor 是否使用锚点链接
  * @event {Function} load dom 结构加载完毕时触发
  * @event {Function} ready 所有图片加载完毕时触发
  * @event {Function} imgTap 图片被点击时触发
@@ -108,7 +108,7 @@ export default {
   },
   created() {
     this.plugins = []
-    for (var i = plugins.length; i--;)
+    for (let i = plugins.length; i--;)
       this.plugins.push(new plugins[i](this))
   },
   mounted() {
@@ -164,11 +164,11 @@ export default {
         }
         // #endif
         // #ifndef APP-PLUS-NVUE
-        var deep = ' '
+        let deep = ' '
         // #ifdef MP-WEIXIN || MP-QQ || MP-TOUTIAO
         deep = '>>>'
         // #endif
-        var selector = uni.createSelectorQuery()
+        const selector = uni.createSelectorQuery()
           // #ifndef MP-ALIPAY
           .in(this._in ? this._in.page : this)
           // #endif
@@ -181,7 +181,7 @@ export default {
         selector.exec(res => {
           if (!res[0])
             return reject('Label not found')
-          var scrollTop = res[1].scrollTop + res[0].top - (res[2] ? res[2].top : 0) + offset
+          const scrollTop = res[1].scrollTop + res[0].top - (res[2] ? res[2].top : 0) + offset
           if (this._in)
             // scroll-view 跳转
             this._in.page[this._in.scrollTop] = scrollTop
@@ -202,17 +202,17 @@ export default {
      * @return {String}
      */
     getText() {
-      var text = '';
+      let text = '';
       (function traversal(nodes) {
-        for (var i = 0; i < nodes.length; i++) {
-          var node = nodes[i]
+        for (let i = 0; i < nodes.length; i++) {
+          const node = nodes[i]
           if (node.type == 'text')
             text += node.text.replace(/&amp;/g, '&')
           else if (node.name == 'br')
             text += '\n'
           else {
             // 块级标签前后加换行
-            var isBlock = node.name == 'p' || node.name == 'div' || node.name == 'tr' || node.name == 'li' || (node.name[0] == 'h' && node.name[1] > '0' && node.name[1] < '7')
+            const isBlock = node.name == 'p' || node.name == 'div' || node.name == 'tr' || node.name == 'li' || (node.name[0] == 'h' && node.name[1] > '0' && node.name[1] < '7')
             if (isBlock && text && text[text.length - 1] != '\n')
               text += '\n'
             // 递归获取子节点的文本
@@ -250,7 +250,7 @@ export default {
     setContent(content, append) {
       if (!append || !this.imgList)
         this.imgList = []
-      var nodes = new parser(this).parse(content)
+      const nodes = new parser(this).parse(content)
       // #ifdef APP-PLUS-NVUE
       if (this._ready)
         this._set(nodes, append)
@@ -265,7 +265,7 @@ export default {
       })
 
       // 等待图片加载完毕
-      var height
+      let height
       clearInterval(this._timer)
       this._timer = setInterval(() => {
         this.getRect().then(rect => {
@@ -284,7 +284,7 @@ export default {
      * @description 调用插件钩子函数
      */
     _hook(name) {
-      for (var i = plugins.length; i--;)
+      for (let i = plugins.length; i--;)
         if (this.plugins[i][name])
           this.plugins[i][name]()
     },
@@ -301,7 +301,7 @@ export default {
      * @description 接收到 web-view 消息
      */
     _onMessage(e) {
-      var message = e.detail.data[0]
+      const message = e.detail.data[0]
       switch (message.action) {
         // web-view 初始化完毕
         case 'onJSBridgeReady':
@@ -327,7 +327,7 @@ export default {
           break
         // 图片点击
         case 'onImgTap':
-          this.$emit('imgtap', message.attrs)
+          this.$emit('imgTap', message.attrs)
           if (this.previewImg)
             uni.previewImage({
               current: parseInt(message.attrs.i),
@@ -336,8 +336,8 @@ export default {
           break
         // 链接点击
         case 'onLinkTap':
-          var href = message.attrs.href
-          this.$emit('linktap', message.attrs)
+          const href = message.attrs.href
+          this.$emit('linkTap', message.attrs)
           if (href) {
             // 锚点跳转
             if (href[0] == '#') {

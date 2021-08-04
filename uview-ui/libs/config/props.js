@@ -373,7 +373,7 @@ export default {
 		overlay: true,
 		mode: 'bottom',
 		duration: 300,
-		borderRadis: 0,
+		borderRadius: 0,
 		closeable: false,
 		safeAreaInsetTop: false,
 		overlayStyle: () => {},
@@ -382,7 +382,6 @@ export default {
 		safeAreaInsetBottom: true,
 		closeIconPos: 'top-right',
 		round: false,
-
 	},
 
 	// overlay组件
@@ -599,7 +598,7 @@ export default {
 		bold: true,
 		bgColor: '#eeeeef'
 	},
-	
+
 	// steps组件
 	steps: {
 		direction: 'row',
@@ -610,7 +609,7 @@ export default {
 		inactiveIcon: '',
 		dot: false
 	},
-	
+
 	// steps-item组件
 	stepsItem: {
 		title: '',

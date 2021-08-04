@@ -47,6 +47,11 @@ export default {
 				}
 			}
 		},
+		// 段落首行缩进的字符个数
+		textIndent: {
+			type: String,
+			default: '2em'
+		},
 		// open和close事件时，将此参数返回在回调参数中
 		name: {
 			type: [Number, String],

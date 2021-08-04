@@ -58,6 +58,7 @@
  * @property {Object} shadowStyle 显示阴影的样式
  * @property {String | Number} name 用于在 open 和 close 事件中当作回调参数返回
  * @property {String} color 提示文字的颜色（默认#2979ff）
+ * @property {String} textIndent 段落首行缩进的字符个数
  * @event {Function} open 内容被展开时触发
  * @event {Function} close 内容被收起时触发
  * @example <u-read-more><rich-text :nodes="content"></rich-text></u-read-more>
@@ -125,7 +126,7 @@ export default {
 			// 发出打开或者收齐的事件
 			this.$emit(this.status, this.name)
 		}
-	},
+	}
 }
 </script>
 

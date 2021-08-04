@@ -29,6 +29,6 @@ export default {
 		indicatorStyle: {
 			type: [String, Object],
 			default: ''
-		},
+		}
 	}
 }

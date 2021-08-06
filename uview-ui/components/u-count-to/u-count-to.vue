@@ -131,7 +131,6 @@ export default {
 			this.lastTime = currTime + timeToCall;
 			return id;
 		},
-
 		cancelAnimationFrame(id) {
 			clearTimeout(id);
 		},
@@ -159,8 +158,9 @@ export default {
 		},
 		// 重新开始(暂停的情况下)
 		resume() {
+			if (!this.remaining) return
 			this.startTime = 0;
-			this.localDuration = this.remaining || this.duration;
+			this.localDuration = this.remaining;
 			this.localStartVal = this.printVal;
 			this.requestAnimationFrame(this.count);
 		},

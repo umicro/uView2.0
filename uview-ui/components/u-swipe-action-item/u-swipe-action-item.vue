@@ -147,10 +147,8 @@
 					index: this.index
 				})
 			},
-			statusHandler({
-				status
-			}) {
-				console.log(111, status);
+			statusHandler({ status }) {
+				console.log('statusHandler', status);
 			}
 		},
 	}

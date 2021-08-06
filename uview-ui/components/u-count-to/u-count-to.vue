@@ -131,7 +131,6 @@ export default {
 			this.lastTime = currTime + timeToCall;
 			return id;
 		},
-
 		cancelAnimationFrame(id) {
 			clearTimeout(id);
 		},
@@ -159,6 +158,7 @@ export default {
 		},
 		// 重新开始(暂停的情况下)
 		resume() {
+			if (!this.remaining) return
 			this.startTime = 0;
 			this.localDuration = this.remaining;
 			this.localStartVal = this.printVal;
@@ -232,7 +232,7 @@ export default {
 
 .u-count-num {
 	/* #ifndef APP-NVUE */
-	display: inline-flex;		
+	display: inline-flex;
 	/* #endif */
 	text-align: center;
 }

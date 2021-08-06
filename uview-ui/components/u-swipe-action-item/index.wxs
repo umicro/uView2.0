@@ -102,7 +102,7 @@ function touchend(event, ownerInstance) {
 
 // 获取过渡时间
 function getDuration(value) {
-	if (value.indexOf('s') >= 0) return value
+	if (value.toString().indexOf('s') >= 0) return value
 	return value > 30 ? value + 'ms' : value + 's'
 }
 

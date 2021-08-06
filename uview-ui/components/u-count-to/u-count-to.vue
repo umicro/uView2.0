@@ -160,7 +160,7 @@ export default {
 		// 重新开始(暂停的情况下)
 		resume() {
 			this.startTime = 0;
-			this.localDuration = this.remaining;
+			this.localDuration = this.remaining || this.duration;
 			this.localStartVal = this.printVal;
 			this.requestAnimationFrame(this.count);
 		},

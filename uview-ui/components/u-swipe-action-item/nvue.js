@@ -20,8 +20,7 @@ export default {
 			// 记录上一次移动的位置值
 			moveX: 0,
 			// 记录上一次滑动的位置，用于前后两次做对比，如果移动的距离小于某一阈值，则认为前后之间没有移动，为了解决可能存在的通信阻塞问题
-			lastX: 0,
-			moving: false
+			lastX: 0
 		}
 	},
 	computed: {
@@ -42,7 +41,7 @@ export default {
 			immediate: true,
 			handler(n) {
 				// if(n === true) {
-				// 	uni.$u.sleep(50).then(() => { 
+				// 	uni.$u.sleep(50).then(() => {
 				// 		this.openSwipeAction()
 				// 	})
 				// } else {
@@ -149,7 +148,7 @@ export default {
 		moveSwipeAction(moveX) {
 			if(this.moving) return
 			this.moving = true
-			
+
 			let previewButtonsMoveX = 0
 			const len = this.buttons.length
 			animation.transition(this.$refs['u-swipe-action-item__content'].ref, {
@@ -160,7 +159,7 @@ export default {
 			}, () => {
 				this.moving = false
 			})
-			// 按钮的组的长度  
+			// 按钮的组的长度
 			for (let i = len - 1; i >= 0; i--) {
 				const buttonRef = this.$refs[`u-swipe-action-item__right__button-${i}`][0].ref
 				// 通过比例，得出元素自身该移动的距离
@@ -195,7 +194,7 @@ export default {
 				this.moving = false
 				this.closeHandler()
 			})
-			// 按钮的组的长度  
+			// 按钮的组的长度
 			const len = this.buttons.length
 			for (let i = len - 1; i >= 0; i--) {
 				const buttonRef = this.$refs[`u-swipe-action-item__right__button-${i}`][0].ref
@@ -228,7 +227,7 @@ export default {
 				this.moving = false
 				this.openHandler()
 			})
-			// 按钮的组的长度  
+			// 按钮的组的长度
 			const len = this.buttons.length
 			for (let i = len - 1; i >= 0; i--) {
 				const buttonRef = this.$refs[`u-swipe-action-item__right__button-${i}`][0].ref
@@ -261,7 +260,7 @@ export default {
 				this.buttonsWidth = sizes.reduce((sum, cur) => sum + cur.width, 0)
 			})
 		},
-		// 通过nvue的dom模块，查询节点信息 
+		// 通过nvue的dom模块，查询节点信息
 		getRectByDom(ref) {
 			return new Promise(resolve => {
 				dom.getComponentRect(ref, res => {

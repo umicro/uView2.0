@@ -232,7 +232,7 @@ export default {
 
 .u-count-num {
 	/* #ifndef APP-NVUE */
-	display: inline-flex;		
+	display: inline-flex;
 	/* #endif */
 	text-align: center;
 }

@@ -19,7 +19,7 @@
      * @property {String} activeColor 选中时的颜色，应用到所有子Radio组件（默认#2979ff）
      * @property {String} inactiveColor 未选中的颜色 (默认#c8c9cc)
      * @property {String} name 标识符
-     * @property {String Number} size 组件整体的大小，单位rpx（默认40）
+     * @property {String Number} size 组件整体的大小，单位px（默认40）
 	 * @property {String} placement 布局方式，row-横向，column-纵向 （默认 row）
 	 * @property {String Number} labelSize label的字体大小，px单位 （默认 15）
 	 * @property {String} iconColor 图标颜色 （默认 #ffffff）

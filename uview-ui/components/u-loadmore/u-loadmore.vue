@@ -133,7 +133,7 @@
 				type: [String, Number],
 				default: 10
 			},
-			// 高度，单位rpx
+			// 高度，单位px
 			height: {
 				type: [String, Number],
 				default: 'auto'

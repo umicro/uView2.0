@@ -29,21 +29,6 @@
 			</view>
 		</view>
 		<view class="u-demo-block">
-			<text class="u-demo-block__title">自定义范围(0—50)</text>
-			<view class="u-page__slide-item">
-				<u-slider
-				    v-model="value2"
-				    @moving="moving"
-				    @click="click"
-				    @start="start"
-				    :step="1"
-				    @end="end"
-				    min="0"
-				    max="50"
-				></u-slider>
-			</view>
-		</view>
-		<view class="u-demo-block">
 			<text class="u-demo-block__title">指定步长</text>
 			<view class="u-page__slide-item">
 				<u-slider

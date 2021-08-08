@@ -52,15 +52,15 @@
 	 * @property {String Number} bg-color 背景颜色
 	 * @property {String} mode 滚动模式（默认horizontal）
 	 * @property {Boolean} show 是否显示（默认true）
-	 * @property {String Number} font-size 字体大小，单位rpx（默认28）
+	 * @property {String Number} font-size 字体大小，单位px（默认28）
 	 * @property {String Number} volume-size 左边喇叭的大小（默认34）
 	 * @property {String Number} duration 滚动周期时长，只对步进模式有效，横向衔接模式无效，单位ms（默认2000）
-	 * @property {String Number} speed 水平滚动时的滚动速度，即每秒移动多少距离，只对水平衔接方式有效，单位rpx（默认160）
-	 * @property {String Number} font-size 字体大小，单位rpx（默认28）
+	 * @property {String Number} speed 水平滚动时的滚动速度，即每秒移动多少距离，只对水平衔接方式有效，单位px（默认160）
+	 * @property {String Number} font-size 字体大小，单位px（默认28）
 	 * @property {Boolean} is-circular mode为horizontal时，指明是否水平衔接滚动（默认true）
 	 * @property {String} play-state 播放状态，play - 播放，paused - 暂停（默认play）
 	 * @property {String Nubmer} border-radius 通知栏圆角（默认为0）
-	 * @property {String Nubmer} padding 内边距，字符串，与普通的内边距css写法一直（默认"18rpx 24rpx"）
+	 * @property {String Nubmer} padding 内边距，字符串，与普通的内边距css写法一直（默认"18px 24px"）
 	 * @property {Boolean} no-list-hidden 列表为空时，是否显示组件（默认false）
 	 * @property {Boolean} disable-touch 是否禁止通过手动滑动切换通知，只有mode = vertical，或者mode = horizontal且is-circular = false时有效（默认true）
 	 * @event {Function} click 点击通告文字触发，只有mode = vertical，或者mode = horizontal且is-circular = false时有效
@@ -110,7 +110,7 @@
 				type: String,
 				default: '#fdf6ec'
 			},
-			// 水平滚动时的滚动速度，即每秒滚动多少px(rpx)，这有利于控制文字无论多少时，都能有一个恒定的速度
+			// 水平滚动时的滚动速度，即每秒滚动多少px(px)，这有利于控制文字无论多少时，都能有一个恒定的速度
 			speed: {
 				type: [Number, String],
 				default: 80

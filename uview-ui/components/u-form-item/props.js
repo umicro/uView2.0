@@ -15,7 +15,7 @@ export default {
 			type: [String, Boolean],
 			default: ''
 		},
-		// label的宽度，单位rpx
+		// label的宽度，单位px
 		labelWidth: {
 			type: [String, Number],
 			default: ''

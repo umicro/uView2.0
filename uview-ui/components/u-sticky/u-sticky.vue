@@ -19,7 +19,7 @@
 	 * sticky 吸顶
 	 * @description 该组件与CSS中position: sticky属性实现的效果一致，当组件达到预设的到顶部距离时， 就会固定在指定位置，组件位置大于预设的顶部距离时，会重新按照正常的布局排列。
 	 * @tutorial https://www.uviewui.com/components/sticky.html
-	 * @property {String Number} offsetTop 吸顶时与顶部的距离，单位rpx（默认0）
+	 * @property {String Number} offsetTop 吸顶时与顶部的距离，单位px（默认0）
 	 * @property {String Number} customNavHeight 自定义导航栏的高度 （h5 默认44  其他默认 0）
 	 * @property {Boolean} disabled 是否开启吸顶功能 （默认 false）
 	 * @property {String} bgColor 组件背景颜色（默认#ffffff）
@@ -128,9 +128,6 @@
 			setFixed(top) {
 				// 判断是否出于吸顶条件范围
 				const fixed = top <= this.stickyTop
-				// 发出事件
-				if (fixed) this.$emit('fixed', this.index)
-				else if (this.fixed) this.$emit('unfixed', this.index)
 				this.fixed = fixed
 			},
 			disconnectObserver(observerName) {

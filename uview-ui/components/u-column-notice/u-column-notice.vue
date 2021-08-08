@@ -84,12 +84,12 @@
 				type: String,
 				default: '#fdf6ec'
 			},
-			// 字体大小，单位rpx
+			// 字体大小，单位px
 			fontSize: {
 				type: [Number, String],
 				default: 14
 			},
-			// 水平滚动时的滚动速度，即每秒滚动多少px(rpx)，这有利于控制文字无论多少时，都能有一个恒定的速度
+			// 水平滚动时的滚动速度，即每秒滚动多少px(px)，这有利于控制文字无论多少时，都能有一个恒定的速度
 			speed: {
 				type: [Number, String],
 				default: 80

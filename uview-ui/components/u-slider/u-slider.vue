@@ -112,7 +112,7 @@
 	 * @property {Number String} min 最小值 
 	 * @property {Number String} max 最大值 
 	 * @property {Number String} step 步长 
-	 * @property {Number String} height 滑块条高度，单位rpx
+	 * @property {Number String} height 滑块条高度，单位px
 	 * @property {String} activeColor 底部选择部分的背景颜色
 	 * @property {String} inactiveColor 底部条背景颜色 
 	 * @property {String} blockColor 滑块颜色 

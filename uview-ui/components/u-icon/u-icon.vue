@@ -54,16 +54,16 @@
 	 * @tutorial https://www.uviewui.com/components/icon.html
 	 * @property {String} name 图标名称，见示例图标集
 	 * @property {String} color 图标颜色（默认 color['u-content-color']）
-	 * @property {String Number} size 图标字体大小，单位rpx（默认32）
+	 * @property {String Number} size 图标字体大小，单位px（默认32）
 	 * @property {Boolean} bold 是否显示粗体（默认false）
 	 * @property {String} index 一个用于区分多个图标的值，点击图标时通过click事件传出
 	 * @property {String} hoverClass 图标按下去的样式类，用法同uni的view组件的hoverClass参数，详情见官网
 	 * @property {String} customPrefix 自定义扩展前缀，方便用户扩展自己的图标库 （默认 uicon）
 	 * @property {String} label 图标右侧的label文字（默认28）
 	 * @property {String} labelPos label相对于图标的位置，只能right或bottom（默认right）
-	 * @property {String Number} labelSize label字体大小，单位rpx（默认28）
+	 * @property {String Number} labelSize label字体大小，单位px（默认28）
 	 * @property {String} labelColor 图标右侧的label文字颜色（默认color['u-content-color']）
-	 * @property {String Number} space label与图标的距离，单位rpx（默认3px）
+	 * @property {String Number} space label与图标的距离，单位px（默认3px）
 	 * @property {String} imgMode 图片的mode
 	 * @property {String} width 显示图片小图标时的宽度
 	 * @property {String} height 显示图片小图标时的高度
@@ -87,7 +87,7 @@
 				type: String,
 				default: uni.$u.props.icon.color
 			},
-			// 字体大小，单位rpx
+			// 字体大小，单位px
 			size: {
 				type: [Number, String],
 				default: uni.$u.props.icon.size

@@ -131,7 +131,7 @@
 		},
 		computed: {
 			getCursorSpacing() {
-				// 判断传入的单位，如果为rpx单位，需要转成px
+				// 判断传入的单位，如果为px单位，需要转成px
 				const number = parseInt(this.cursorSpacing)
 				return /rpx$/.test(String(this.cursorSpacing)) ? uni.upx2px(number) : number
 			},

@@ -78,7 +78,7 @@
 				type: String,
 				default: '#fdf6ec'
 			},
-			// 字体大小，单位rpx
+			// 字体大小，单位px
 			fontSize: {
 				type: [Number, String],
 				default: 14

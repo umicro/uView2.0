@@ -26,7 +26,7 @@ export default {
 			default: uni.$u.props.swipeAction.threshold
 		},
 		// 右侧按钮内容
-		rightOptions: {
+		options: {
 			type: Array,
 			default () {
 				return uni.$u.props.swipeAction.rightOptions

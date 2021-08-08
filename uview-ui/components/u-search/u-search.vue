@@ -91,11 +91,11 @@
  * @property {String} color 输入框字体颜色（默认#606266）
  * @property {String} placeholderColor placeholder的颜色（默认#909399）
  * @property {String} searchIcon 输入框左边的图标，可以为uView图标名称或图片路径
- * @property {String} margin 组件与其他上下左右元素之间的距离，带单位的字符串形式，如"30rpx"
+ * @property {String} margin 组件与其他上下左右元素之间的距离，带单位的字符串形式，如"30px"
  * @property {Boolean} animation 是否开启动画，见上方说明（默认false）
  * @property {String} value 输入框初始值
  * @property {String | Number} maxlength 输入框最大能输入的长度，-1为不限制长度
- * @property {String | Number} height 输入框高度，单位rpx（默认64）
+ * @property {String | Number} height 输入框高度，单位px（默认64）
  * @property {String | Number} label 搜索框左边显示内容
  * @event {Function} change 输入框内容发生变化时触发
  * @event {Function} search 用户确定搜索时触发，用户按回车键，或者手机键盘右下角的"搜索"键时触发
@@ -174,7 +174,7 @@ export default {
 			type: String,
 			default: ''
 		},
-		// 搜索框高度，单位rpx
+		// 搜索框高度，单位px
 		height: {
 			type: [Number, String],
 			default: 64
@@ -206,7 +206,7 @@ export default {
 			type: String,
 			default: '#909399'
 		},
-		// 组件与其他上下左右元素之间的距离，带单位的字符串形式，如"30rpx"、"30rpx 20rpx"等写法
+		// 组件与其他上下左右元素之间的距离，带单位的字符串形式，如"30px"、"30px 20px"等写法
 		margin: {
 			type: String,
 			default: '0'

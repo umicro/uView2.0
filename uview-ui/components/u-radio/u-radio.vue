@@ -43,8 +43,8 @@
 	 * @property {Boolean} labelDisabled 点击文本是否可以操作radio（
 	 * @property {String} activeColor 选中时的颜色，如设置parent的active-color将失效
 	 * @property {String} inactiveColor  未选中的颜色
-	 * @property {String Number} iconSize 图标大小，单位rpx（默认24）
-	 * @property {String Number} labelSize label字体大小，单位rpx（默认28）
+	 * @property {String Number} iconSize 图标大小，单位px（默认24）
+	 * @property {String Number} labelSize label字体大小，单位px（默认28）
 	 * @property {String Number} label label提示文字，因为nvue下，直接slot进来的文字，由于特殊的结构，无法修改样式
 	 * @property {String Number} size 整体的大小
 	 * @property {String} iconColor 图标颜色

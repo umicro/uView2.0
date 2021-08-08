@@ -36,9 +36,9 @@
 	 * @property {String} text  提示文字 
 	 * @property {Number | String}  duration  返回顶部滚动时间 （默认 100）
 	 * @property {Number | String}  scrollTop  滚动距离 （默认 0）
-	 * @property {Number | String}  top  距离顶部多少距离显示，单位rpx （默认 400）
-	 * @property {Number | String}  bottom  返回顶部按钮到底部的距离，单位rpx （默认 100）
-	 * @property {Number | String}  right  返回顶部按钮到右边的距离，单位rpx （默认 20）
+	 * @property {Number | String}  top  距离顶部多少距离显示，单位px （默认 400）
+	 * @property {Number | String}  bottom  返回顶部按钮到底部的距离，单位px （默认 100）
+	 * @property {Number | String}  right  返回顶部按钮到右边的距离，单位px （默认 20）
 	 * @property {Number | String}  zIndex 层级   （默认 9）
 	 * @property {Object<Object>}  iconStyle 图标的样式，对象形式   （默认 {color: '#909399',fontSize: '19px'}）
 	 * @property {Object} customStyle  定义需要用到的外部样式
@@ -72,17 +72,17 @@
 				type: [Number, String],
 				default: uni.$u.props.backtop.scrollTop
 			},
-			// 距离顶部多少距离显示，单位rpx
+			// 距离顶部多少距离显示，单位px
 			top: {
 				type: [Number, String],
 				default: uni.$u.props.backtop.top
 			},
-			// 返回顶部按钮到底部的距离，单位rpx
+			// 返回顶部按钮到底部的距离，单位px
 			bottom: {
 				type: [Number, String],
 				default: uni.$u.props.backtop.bottom
 			},
-			// 返回顶部按钮到右边的距离，单位rpx
+			// 返回顶部按钮到右边的距离，单位px
 			right: {
 				type: [Number, String],
 				default: uni.$u.props.backtop.right

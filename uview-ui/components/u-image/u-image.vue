@@ -67,10 +67,10 @@
 	 * @tutorial https://uviewui.com/components/image.html
 	 * @property {String} src 图片地址
 	 * @property {String} mode 裁剪模式，见官网说明
-	 * @property {String Number} width 宽度，单位任意，如果为数值，则为rpx单位（默认100%）
-	 * @property {String Number} height 高度，单位任意，如果为数值，则为rpx单位（默认 auto）
+	 * @property {String Number} width 宽度，单位任意，如果为数值，则为px单位（默认100%）
+	 * @property {String Number} height 高度，单位任意，如果为数值，则为px单位（默认 auto）
 	 * @property {String} shape 图片形状，circle-圆形，square-方形（默认square）
-	 * @property {String Number} borderRadius 圆角值，单位任意，如果为数值，则为rpx单位（默认 0）
+	 * @property {String Number} borderRadius 圆角值，单位任意，如果为数值，则为px单位（默认 0）
 	 * @property {Boolean} lazyLoad 是否懒加载，仅微信小程序、App、百度小程序、字节跳动小程序有效（默认 true）
 	 * @property {Boolean} showMenuByLongpress 是否开启长按图片显示识别小程序码菜单，仅微信小程序有效（默认 false）
 	 * @property {String} loadingIcon 加载中的图标，或者小图片（默认 photo）
@@ -85,7 +85,7 @@
 	 * @event {Function} click 点击图片时触发
 	 * @event {Function} error 图片加载失败时触发
 	 * @event {Function} load 图片加载成功时触发
-	 * @example <u-image width="100%" height="300rpx" :src="src"></u-image>
+	 * @example <u-image width="100%" height="300px" :src="src"></u-image>
 	 */
 	export default {
 		name: 'u-image',

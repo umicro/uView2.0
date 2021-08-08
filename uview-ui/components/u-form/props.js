@@ -32,7 +32,7 @@ export default {
 			type: String,
 			default: 'left'
 		},
-		// label的宽度，单位rpx
+		// label的宽度，单位px
 		labelWidth: {
 			type: [String, Number],
 			default: 45

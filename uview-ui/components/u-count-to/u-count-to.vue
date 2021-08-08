@@ -22,7 +22,7 @@
  * @property {Boolean} use-easing 滚动结束时，是否缓动结尾，见官网说明（默认true）
  * @property {String} separator 千位分隔符，见官网说明
  * @property {String} color 字体颜色（默认#303133）
- * @property {String | Number} font-size 字体大小，单位rpx（默认50）
+ * @property {String | Number} font-size 字体大小，单位px（默认50）
  * @property {Boolean} bold 字体是否加粗（默认false）
  * @event {Function} end 数值滚动到目标值时触发
  * @example <u-count-to ref="uCountTo" :end-val="endVal" :autoplay="autoplay"></u-count-to>

@@ -84,7 +84,7 @@
 	 * @property {String Number} label  标题下方的描述信息
 	 * @property {String Number} value  右侧的内容
 	 * @property {String} icon  左侧图标名称，或者图片链接(本地文件建议使用绝对地址)
-	 * @property {String Number} titleWidth  标题的宽度，单位任意，数值默认为rpx单位
+	 * @property {String Number} titleWidth  标题的宽度，单位任意，数值默认为px单位
 	 * @property {Boolean} border  是否显示下边框 (默认 true)
 	 * @property {Boolean} center  内容是否垂直居中(主要是针对右侧的value部分) (默认 false)
 	 * @property {String} url  点击后跳转的URL地址
@@ -125,7 +125,7 @@
 				type: String,
 				default: uni.$u.props.cell.icon
 			},
-			// 标题的宽度，单位任意，数值默认为rpx单位
+			// 标题的宽度，单位任意，数值默认为px单位
 			titleWidth: {
 				type: [String, Number],
 				default: uni.$u.props.cell.titleWidth

@@ -339,7 +339,7 @@ export default {
 		size: 18,
 		inactiveColor: '#b2b2b2',
 		activeColor: '#FA3534',
-		gutter: 5,
+		gutter: 4,
 		minCount: 1,
 		allowHalf: false,
 		activeIcon: 'star-fill',
@@ -373,7 +373,7 @@ export default {
 		overlay: true,
 		mode: 'bottom',
 		duration: 300,
-		borderRadius: 0,
+		borderRadis: 0,
 		closeable: false,
 		safeAreaInsetTop: false,
 		overlayStyle: () => {},
@@ -382,6 +382,7 @@ export default {
 		safeAreaInsetBottom: true,
 		closeIconPos: 'top-right',
 		round: false,
+
 	},
 
 	// overlay组件
@@ -598,7 +599,7 @@ export default {
 		bold: true,
 		bgColor: '#eeeeef'
 	},
-
+	
 	// steps组件
 	steps: {
 		direction: 'row',
@@ -609,7 +610,7 @@ export default {
 		inactiveIcon: '',
 		dot: false
 	},
-
+	
 	// steps-item组件
 	stepsItem: {
 		title: '',

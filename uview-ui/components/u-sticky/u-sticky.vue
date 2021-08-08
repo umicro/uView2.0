@@ -128,9 +128,6 @@
 			setFixed(top) {
 				// 判断是否出于吸顶条件范围
 				const fixed = top <= this.stickyTop
-				// 发出事件
-				if (fixed) this.$emit('fixed', this.index)
-				else if (this.fixed) this.$emit('unfixed', this.index)
 				this.fixed = fixed
 			},
 			disconnectObserver(observerName) {

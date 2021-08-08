@@ -29,7 +29,7 @@
 			<view class="u-swipe-action-item__right">
 				<slot name="button">
 					<view
-						v-for="(item,index) in rightOptions"
+						v-for="(item,index) in options"
 						:key="index"
 						class="u-swipe-action-item__right__button"
 						:ref="`u-swipe-action-item__right__button-${index}`"
@@ -102,7 +102,7 @@
 		},
 		computed: {
 			wxsInit() {
-				return [this.disabled, this.autoClose, this.threshold, this.rightOptions, this.duration]
+				return [this.disabled, this.autoClose, this.threshold, this.options, this.duration]
 			}
 		},
 		mounted() {

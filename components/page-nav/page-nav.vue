@@ -3,8 +3,8 @@
 		<view class="nav-title">
 			<image class="logo" src="https://cdn.uviewui.com/uview/common/logo.png" mode="widthFix"></image>
 			<view class="nav-info">
-				<text class="nav-title__text">uView UI</text>
-				<text class="nav-slogan">多平台快速开发的UI框架</text>
+				<text class="nav-title__text">uView UI 2.0（内测）</text>
+				<text class="nav-slogan">内测版本不代表最终品质</text>
 			</view>
 		</view>
 		<text class="nav-desc">{{desc}}</text>

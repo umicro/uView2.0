@@ -44,7 +44,6 @@
 				fixed: false, // js模式时，是否处于吸顶模式
 			}
 		},
-		mixins: [uni.$u.mixin],
 		computed: {
 			style() {
 				const style = {}

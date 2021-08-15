@@ -9,6 +9,7 @@
 		:labelWidth="labelWidth"
 		:labelAlign="labelAlign"
 		:labelStyle="labelStyle"
+		:customStyle="customStyle"
 	>
 		<slot />
 	</uvForm>

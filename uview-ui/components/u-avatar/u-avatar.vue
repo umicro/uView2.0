@@ -29,6 +29,7 @@
 				:text="text"
 				:size="fontSize"
 				:color="color"
+				customStyle="justify-content: center"
 			></u--text>
 			<image
 				class="u-avatar__image"

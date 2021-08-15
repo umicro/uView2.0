@@ -23,6 +23,7 @@
 		:lineHeight="lineHeight"
 		:align="align"
 		:wordWrap="wordWrap"
+		:customStyle="customStyle"
 		@click="$emit('click')"
 	></uvText>
 </template>

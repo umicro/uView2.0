@@ -35,6 +35,7 @@
 		:border="border"
 		:readonly="readonly"
 		:shape="shape"
+		:customStyle="customStyle"
 		@focus="$emit('focus')"
 		@blur="$emit('blur')"
 		@keyboardheightchange="$emit('keyboardheightchange')"

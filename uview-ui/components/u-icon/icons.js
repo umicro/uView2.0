@@ -172,7 +172,7 @@ export default {
 	"uicon-photo": "\ue98d",
 	"uicon-volume-off-fill": "\ue659",
 	"uicon-volume-off": "\ue644",
-	"uicon-volume-fill": "\ue65a",
+	"uicon-volume-fill": "\ue670",
 	"uicon-volume": "\ue633",
 	"uicon-red-packet": "\ue691",
 	"uicon-download": "\ue635",

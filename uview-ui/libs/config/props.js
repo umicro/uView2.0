@@ -373,7 +373,7 @@ export default {
 		overlay: true,
 		mode: 'bottom',
 		duration: 300,
-		borderRadis: 0,
+		borderRadius: 0,
 		closeable: false,
 		safeAreaInsetTop: false,
 		overlayStyle: () => {},

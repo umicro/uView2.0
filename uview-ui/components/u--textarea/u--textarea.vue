@@ -19,6 +19,7 @@
 		:holdKeyboard="holdKeyboard"
 		:maxlength="maxlength"
 		:border="border"
+		:customStyle="customStyle"
 		@focus="$emit('focus')"
 		@blur="$emit('blur')"
 		@linechange="$emit('linechange')"

@@ -44,6 +44,11 @@ export default {
 		buttons: {
 			type: Array,
 			default: () => []
+		},
+		// 是否显示透明遮罩以防止触摸穿透
+		overlay: {
+			type: Boolean,
+			default: true
 		}
 	}
 }

@@ -16,6 +16,7 @@
 		:webp="webp"
 		:duration="duration"
 		:bgColor="bgColor"
+		:customStyle="customStyle"
 		@click="$emit('click')"
 		@error="$emit('error')"
 		@load="$emit('load')"

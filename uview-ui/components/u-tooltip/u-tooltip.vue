@@ -3,10 +3,11 @@
 		class="u-tooltip"
 		:style="[$u.addStyle(customStyle)]"
 	>
-		<!-- <u-overlay
-		    :show="showIndicator"
-		    customStyle="backgroundColor: rgba(0, 0, 0, 0.2)"
-		></u-overlay> -->
+		<u-overlay
+			:show="showTooltip && tooltipTop !== -10000 && overlay"
+			customStyle="backgroundColor: rgba(0, 0, 0, 0)"
+			@click="btnClickHandler"
+		></u-overlay>
 		<view class="u-tooltip__wrapper">
 			<text
 				class="u-tooltip__wrapper__text"
@@ -36,6 +37,7 @@
 				>
 					<view
 						class="u-tooltip__wrapper__popup__indicator"
+						hover-class="u-tooltip__wrapper__popup__indicator--hover"
 						v-if="showCopy || buttons.length"
 						:style="[indicatorStyle, {
 							width: $u.addUnit(indicatorWidth),
@@ -53,7 +55,6 @@
 						>
 							<text
 								class="u-tooltip__wrapper__popup__list__btn__text"
-								@tap="btnClickHandler"
 							>复制</text>
 						</view>
 						<u-line
@@ -64,6 +65,7 @@
 						></u-line>
 						<template v-for="(item , index) in buttons">
 							<view
+								:key="index"
 								class="u-tooltip__wrapper__popup__list__btn"
 								hover-class="u-tooltip__wrapper__popup__list__btn--hover"
 							>
@@ -73,6 +75,7 @@
 								>{{ item }}</text>
 							</view>
 							<u-line
+								:key="index"
 								direction="column"
 								color="#8d8e90"
 								v-if="index < buttons.length - 1"
@@ -225,13 +228,15 @@
 			},
 			// 复制文本到粘贴板
 			setClipboardData() {
+				// 关闭组件
+				this.btnClickHandler()
 				// #ifndef H5
 				uni.setClipboardData({
 					// 优先使用copyText字段，如果没有，则默认使用text字段当做复制的内容
-				    data: this.copyText || this.text,
-				    success() {
-				        uni.$u.toast('复制成功')
-				    },
+					data: this.copyText || this.text,
+					success() {
+						uni.$u.toast('复制成功')
+					},
 					fail() {
 						uni.$u.toast('复制失败')
 					},
@@ -240,7 +245,7 @@
 					}
 				})
 				// #endif
-				
+
 				// #ifdef H5
 				let event = window.event || e || {}
 				let clipboard = new ClipboardJS('', {
@@ -324,6 +329,10 @@
 					transform: rotate(45deg);
 					border-radius: 2px;
 					z-index: -1;
+
+					&--hover {
+						background-color: #58595B;
+					}
 				}
 			}
 		}

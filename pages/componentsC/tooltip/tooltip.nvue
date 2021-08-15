@@ -5,6 +5,7 @@
 			<view class="u-demo-block__content">
 				<u-tooltip
 				    :text="text1"
+					overlay
 				></u-tooltip>
 			</view>
 		</view>

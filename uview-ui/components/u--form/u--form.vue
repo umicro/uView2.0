@@ -24,7 +24,7 @@
 	import props from '../u-form/props.js'
 	export default {
 		name: 'u-form',
-		mixins: [props],
+		mixins: [props, uni.$u.mixin],
 		components: {
 			uvForm
 		},

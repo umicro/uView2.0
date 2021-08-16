@@ -23,6 +23,8 @@
 				    color="#ffffff"
 				    :size="size * 0.4"
 				    :text="`+${urls.length - showUrl.length}`"
+					align="center"
+					customStyle="justify-content: center"
 				></u--text>
 			</view>
 		</view>

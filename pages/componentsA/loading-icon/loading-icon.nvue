@@ -1,6 +1,14 @@
 <template>
 	<view class="u-page">
 		<view class="u-demo-block">
+			<text class="u-demo-block__title">圆形loading</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__loading-item">
+					<u-loading-icon mode="circle"></u-loading-icon>
+				</view>
+			</view>
+		</view>
+		<!-- <view class="u-demo-block">
 			<text class="u-demo-block__title">基本案列</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__loading-item">
@@ -50,7 +58,7 @@
 					></u-loading-icon>
 				</view>
 			</view>
-		</view>
+		</view> -->
 		<!-- <view class="u-demo-block">
 			<text class="u-demo-block__title">自定义大小</text>
 			<view class="u-demo-block__content">

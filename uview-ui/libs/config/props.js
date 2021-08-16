@@ -258,7 +258,7 @@ export default {
 	checkboxGroup: {
 		name: '',
 		value: () => [],
-		shape: 'circle',
+		shape: 'square',
 		disabled: false,
 		labelDisabled: false,
 		activeColor: '#2979ff',

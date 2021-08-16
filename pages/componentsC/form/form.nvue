@@ -325,7 +325,6 @@
 				// console.log('radioChange', n);
 			},
 			navigateBack() {
-				console.log(333);
 				uni.navigateBack()
 			},
 			sexSelect(e) {

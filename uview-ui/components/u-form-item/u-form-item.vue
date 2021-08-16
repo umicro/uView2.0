@@ -89,7 +89,7 @@
 					// 提示文本的样式
 					labelStyle: {},
 					// 提示文本的宽度
-					labelWidth: 90
+					labelWidth: 45
 				}
 			}
 		},

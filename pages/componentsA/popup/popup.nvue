@@ -165,11 +165,11 @@
 				uni.navigateBack()
 			},
 			open() {
-				console.log('open');
+				// console.log('open');
 			},
 			close() {
 				this.show = false
-				console.log('close');
+				// console.log('close');
 			}
 		}
 	}

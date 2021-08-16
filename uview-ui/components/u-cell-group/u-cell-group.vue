@@ -13,6 +13,7 @@
 </template>
 
 <script>
+	import props from './props.js';
 	/**
 	 * cellGroup  单元格
 	 * @description cell单元格一般用于一组列表的情况，比如个人中心页，设置页等。
@@ -23,22 +24,10 @@
 	 * @event {Function} click 	点击cell列表时触发
 	 * @example <u-cell-group title="设置喜好">
 	 */
-export default {
-    name: 'u-cell-group',
-    mixins: [uni.$u.mixin],
-    props: {
-		// 分组标题
-        title: {
-            type: String,
-            default: uni.$u.props.cellGroup.title
-        },
-		// 是否显示外边框
-        border: {
-            type: Boolean,
-            default: uni.$u.props.cellGroup.border
-        }
-    }
-}
+	export default {
+		name: 'u-cell-group',
+		mixins: [uni.$u.mixin,props],
+	}
 </script>
 
 <style lang="scss">

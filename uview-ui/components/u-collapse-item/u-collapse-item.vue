@@ -46,6 +46,7 @@
 </template>
 
 <script>
+	import props from './props.js'
 	// #ifdef APP-NVUE
 	const animation = uni.requireNativePlugin('animation')
 	const dom = uni.requireNativePlugin('dom')
@@ -66,59 +67,7 @@
 	 */
 	export default {
 		name: "u-collapse-item",
-		mixins: [uni.$u.mixin],
-		props: {
-			// 标题
-			title: {
-				type: String,
-				default: ''
-			},
-			// 标题右侧内容
-			value: {
-				type: String,
-				default: ''
-			},
-			// 标题下方的描述信息
-			label: {
-				type: String,
-				default: ''
-			},
-			// 是否禁用折叠面板
-			disabled: {
-				type: Boolean,
-				default: false
-			},
-			// 是否展示右侧箭头并开启点击反馈
-			isLink: {
-				type: Boolean,
-				default: true
-			},
-			// 是否开启点击反馈
-			clickable: {
-				type: Boolean,
-				default: true
-			},
-			// 是否显示内边框
-			border: {
-				type: Boolean,
-				default: true
-			},
-			// 标题的对齐方式
-			align: {
-				type: String,
-				default: 'left'
-			},
-			// 唯一标识符
-			name: {
-				type: [Number, String],
-				default: ''
-			},
-			// 标题左侧图片，可为绝对路径的图片或内置图标
-			icon: {
-				type: String,
-				default: ''
-			},
-		},
+		mixins: [uni.$u.mixin,props],
 		data() {
 			return {
 				elId: uni.$u.guid(),

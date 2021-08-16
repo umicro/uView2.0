@@ -67,7 +67,8 @@ export default {
 	// cell-group组件的props
 	cellGroup: {
 		title: '',
-		border: true
+		border: true,
+		customStyle:{},
 	},
 
 	// img组件的props
@@ -619,5 +620,218 @@ export default {
 		iconColor: '',
 		iconSize: 17,
 		error: false
-	}
+	},
+
+	// album 组件
+	album:{
+		urls:'',
+		keyName:'',
+		singleSize:180,
+		multipleSize:70,
+		space:6,
+		singleMode:'scaleToFill',
+		multipleMode:'aspectFill',
+		maxCount:9,
+		previewFullImage:true,
+		rowCount:3,
+		showMore:true
+	},
+
+	// avatar 组件
+	avatar:{
+		src:'',
+		shape:'circle',
+		size:40,
+		mode:'scaleToFill',
+		text:'',
+		bgColor:'#c0c4cc',
+		color:'#ffffff',
+		fontSize:18,
+		icon:'',
+		mpAvatar:false,
+		randomBgColor:false,
+		defaultUrl:'',
+		colorIndex:'',
+		name:''
+	},
+
+	// avatarGroup 组件
+	avatarGroup:{
+		urls:() => {
+			return [];
+		},
+		maxCount:5,
+		shape:'circle',
+		mode:'scaleToFill',
+		showMore:true,
+		size:40,
+		keyName:'',
+		gap:0.5
+	},
+
+	// calendar 组件
+	calendar:{
+		title:'日期选择',
+		showTitle:true,
+		showSubtitle:true,
+		mode:'single',
+		startText:'开始',
+		customList:() => {
+			return [];
+		},
+		color:'#3c9cff',
+		minDate:0,
+		defaultDate:null,
+		maxCount:Number.MAX_SAFE_INTEGER,
+		rowHeight:56,
+		formatter:null,
+		showLunar:false,
+		showMark:true,
+		confirmText:'确定',
+		show:false,
+		closeOnClickOverly:false
+	},
+
+	// circleProgress 组件
+	circleProgress:{
+		percentage:30
+	},
+
+	// code 组件
+	code:{
+		seconds:60,
+		startText:'获取验证码',
+		changeText:'X秒重新获取',
+		endText:'重新获取',
+		keepRunning:false,
+		uniqueKey:''
+	},
+
+	// codeInput 组件
+	codeInput:{
+		maxlength:60,
+		dot:false,
+		mode:'box',
+		hairline:false,
+		space:10,
+		value:'',
+		focus:false,
+		bold:false,
+		color:'#606266',
+		fontSize:18,
+		size:35,
+		disabledKeyboard:false,
+		borderColor:'#c9cacc'
+	}, 
+
+	// col 组件
+	col:{
+		span:12,
+		offset:0,
+		justify:'start',
+		align:'stretch',
+		textAlign:'left'
+	},
+
+	// collapse 组件
+	collapse:{
+		value:null,
+		accordion:false,
+		border:false
+	},
+
+	// collapseItem 组件
+	collapseItem:{
+		title:'',
+		value:'',
+		label:'',
+		disabled:false,
+		isLink:true,
+		clickable:true,
+		border:true,
+		align:'left',
+		name:'',
+		icon:''
+	},
+
+	// columnNotice 组件
+	columnNotice:{
+		text:'',
+		icon:'volume',
+		mode:'',
+		color:'#f9ae3d',
+		bgColor:'#fdf6ec',
+		fontSize:14,
+		speed:80,
+		step:false,
+		duration:1500,
+		disableTouch:true
+	}, 
+
+	// countTo 组件
+	countTo:{
+		startVal:0,
+		endVal:0,
+		duration:2000,
+		autoplay:true,
+		decimals:0,
+		useEasing:true,
+		decimal:'.',
+		color:'#606266',
+		fontSize:22,
+		bold:false,
+		separator:''
+	}, 
+
+	// datetimePicker 组件
+	datetimePicker:{
+		show:false,
+		showToolbar:true,
+		value:'',
+		title:'',
+		mode:'datetime',
+		maxDate:()=>{
+			return new Date(new Date().getFullYear() + 10, 0, 1).getTime()
+		},
+		minDate:()=>{
+			return new Date(new Date().getFullYear() - 10, 0, 1).getTime()
+		},
+		minHour:0,
+		maxHour:23,
+		minMinute:0,
+		maxMinute:59,
+		filter:null,
+		formatter:(type, value) => {
+			return value
+		},
+		loading:false,
+		itemHeight:44,
+		cancelText:'取消',
+		confirmText:'确认',
+		cancelColor:'#909193',
+		confirmColor:'#3c9cff',
+		visibleItemCount:5,
+		closeOnClickOverly:false,
+		defaultIndex:() => {
+			return [];
+		}
+	}, 
+
+	// form 组件
+	form:{
+		model:()=>{
+			return{}
+		},
+		rules:()=>{
+			return{}
+		},
+		errorType:()=>{
+			return ['message', 'toast']
+		},
+		borderBottom:true,
+		labelPosition:'left',
+		labelWidth:45,
+		labelAlign:'left',
+		labelStyle:()=>{}
+	}, 
 }

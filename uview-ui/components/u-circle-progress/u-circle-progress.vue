@@ -27,17 +27,13 @@
 </template>
 
 <script>
+	import props from './props.js';
 	// #ifdef APP-NVUE
 	const animation = uni.requireNativePlugin('animation')
 	// #endif
 	export default {
 		name: 'u-circle-progress',
-		props: {
-			percentage: {
-				type: [Number, String],
-				default: 30
-			}
-		},
+		mixins: [uni.$u.mixin,props],
 		data() {
 			return {
 				leftBorderColor: 'rgb(200, 200, 200)',

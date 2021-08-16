@@ -21,7 +21,7 @@
 	 * 所以在nvue下，取名为u--form，内部其实还是u-form.vue，只不过做一层中转
 	 */
 	import uvForm from '../u-form/u-form.vue';
-	import props from '../u-form/props.js'
+	import props from '../u-form/props.js';
 	export default {
 		name: 'u-form',
 		mixins: [props],

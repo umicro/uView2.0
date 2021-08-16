@@ -55,6 +55,7 @@
 </template>
 
 <script>
+	import props from './props.js';
 	/**
 	 * keyboard 键盘组件
 	 * @description 此为uView自定义的键盘面板，内含了数字键盘，车牌号键，身份证号键盘3种模式，都有可以打乱按键顺序的选项。
@@ -66,14 +67,7 @@
 	 */
 	export default {
 		name: "u-keyboard",
-		props: {
-			// 是否打乱键盘按键的顺序
-			random: {
-				type: Boolean,
-				default: uni.$u.props.carKeyboard.random
-			}
-		},
-		mixins: [uni.$u.mixin],
+		mixins: [uni.$u.mixin,props],
 		data() {
 			return {
 				// 车牌输入时，abc=true为输入车牌号码，bac=false为输入省份中文简称

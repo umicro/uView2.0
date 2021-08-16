@@ -6,6 +6,7 @@
 </template>
 
 <script>
+	import props from './props.js'
 	/**
 	 * collapse 折叠面板
 	 * @description 通过折叠面板收纳内容区域
@@ -21,24 +22,7 @@
 	 */
 	export default {
 		name: "u-collapse",
-		mixins: [uni.$u.mixin],
-		props: {
-			// 当前展开面板的name，非手风琴模式：[<string | number>]，手风琴模式：string | number
-			value: {
-				type: [String, Number, Array],
-				default: null
-			},
-			// 是否手风琴模式
-			accordion: {
-				type: Boolean,
-				default: false
-			},
-			// 是否显示外边框
-			border: {
-				type: Boolean,
-				default: true
-			},
-		},
+		mixins: [uni.$u.mixin,props],
 		watch: {
 			needInit() {
 				this.init()

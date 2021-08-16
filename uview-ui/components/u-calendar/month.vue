@@ -16,7 +16,7 @@
 			>{{ item.year }}年{{ item.month }}月</text>
 			<!-- 设定一个minHeight，避免在安卓上造成闪动，因为安卓渲染慢，导致先渲染mark字符，后需要一定时间才渲染具体的日期 -->
 			<view class="u-calendar-month__days" :style="{
-				minHeight: $u.addUnit(rowHeight * 7)
+				minHeight: index === 0 ? $u.addUnit(rowHeight * 7) : 'auto'
 			}">
 				<view
 					v-if="showMark"
@@ -135,8 +135,7 @@
 				width: 0,
 				// 当前选中的日期item
 				item: {},
-				selected: [],
-				show: false
+				selected: []
 			}
 		},
 		watch: {
@@ -274,9 +273,6 @@
 		},
 		mounted() {
 			this.init()
-			// uni.$u.sleep(70).then(() => {
-			// 	this.show = true
-			// })
 		},
 		methods: {
 			init() {

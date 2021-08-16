@@ -4,7 +4,7 @@
 			<text class="u-demo-block__title">基本案例</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
-					<u-rate size="25"></u-rate>
+					<u-rate size="20"></u-rate>
 				</view>
 			</view>
 		</view>
@@ -13,7 +13,7 @@
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
 					<u-rate
-						size="25"
+						size="20"
 						v-model="value"
 						@change="change"
 					></u-rate>
@@ -24,7 +24,7 @@
 			<text class="u-demo-block__title">自定义星星大小</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
-					<u-rate size="45" count="4"></u-rate>
+					<u-rate size="30" count="4"></u-rate>
 				</view>
 			</view>
 		</view>
@@ -32,7 +32,7 @@
 			<text class="u-demo-block__title">是否禁用评分</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__rate-item">
-					<u-rate size="25" :disabled="true"></u-rate>
+					<u-rate size="20" :disabled="true"></u-rate>
 				</view>
 			</view>
 		</view>
@@ -41,7 +41,7 @@
 			<view class="u-demo-block__content">
 				<view class="u-page__rate-item">
 					<u-rate
-						size="25"
+						size="20"
 						v-model="activeColorValue"
 						activeColor="#2979ff"
 					></u-rate>
@@ -53,7 +53,7 @@
 			<view class="u-demo-block__content">
 				<view class="u-page__rate-item">
 					<u-rate
-						size="25"
+						size="20"
 						v-model="value1"
 						inactiveColor="#2979ff"
 					></u-rate>
@@ -64,7 +64,7 @@
 			<text class="u-demo-block__title">禁止触摸选择</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__rate-item">
-					<u-rate size="25" :touchable="false"></u-rate>
+					<u-rate size="20" :touchable="false"></u-rate>
 				</view>
 			</view>
 		</view>
@@ -72,7 +72,7 @@
 			<text class="u-demo-block__title">允许触摸选择</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__rate-item">
-					<u-rate size="25" :touchable="true"></u-rate>
+					<u-rate size="20" :touchable="true"></u-rate>
 				</view>
 			</view>
 		</view>
@@ -81,7 +81,7 @@
 			<view class="u-demo-block__content">
 				<view class="u-page__rate-item">
 					<u-rate
-						size="25"
+						size="20"
 						v-model="HalfValue"
 						:allowHalf="true"
 						@change="change"
@@ -94,7 +94,7 @@
 			<view class="u-demo-block__content">
 				<view class="u-page__rate-item">
 					<u-rate
-						size="25"
+						size="20"
 						v-model="activeIconValue"
 						inactiveIcon="heart"
 						activeIcon="heart-fill"

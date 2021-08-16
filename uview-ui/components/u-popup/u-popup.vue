@@ -27,6 +27,8 @@
 					@tap.stop="close"
 					class="u-popup__content__close"
 					:class="['u-popup__content__close--' + closeIconPos]"
+					hover-class="u-popup__content__close--hover"
+					hover-stay-time="150"
 				>
 					<u-icon
 						name="close"
@@ -301,6 +303,10 @@ $u-popup-content-background-color:#fff !default;
 
 		&__close {
 			position: absolute;
+			
+			&--hover {
+				opacity: 0.4;
+			}
 		}
 
 		&__close--top-left {

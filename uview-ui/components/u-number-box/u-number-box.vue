@@ -153,8 +153,8 @@
 			inputStyle() {
 				const disabled = this.disabled || this.disabledInput
 				const style = {
-					color: disabled ? '#c8c9cc' : this.color,
-					backgroundColor: disabled ? '#f7f8fa' : this.bgColor,
+					color: this.color,
+					backgroundColor: this.bgColor,
 					height: this.$u.addUnit(this.buttonSize),
 					width: this.$u.addUnit(this.inputWidth)
 				}

@@ -30,6 +30,7 @@
 					    :text="`+${urls.length - maxCount}`" 
 					    color="#fff"
 					    :size="multipleSize * 0.3"
+						align="center"
 						customStyle="justify-content: center"
 					></u--text>
 				</view>

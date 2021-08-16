@@ -54,7 +54,7 @@
 	import props from '../u-input/props.js'
 	export default {
 		name: 'u--input',
-		mixins: [props],
+		mixins: [props, uni.$u.mixin],
 		components: {
 			uvInput
 		},

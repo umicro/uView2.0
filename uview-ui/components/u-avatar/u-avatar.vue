@@ -29,6 +29,7 @@
 				:text="text"
 				:size="fontSize"
 				:color="color"
+				align="center"
 				customStyle="justify-content: center"
 			></u--text>
 			<image

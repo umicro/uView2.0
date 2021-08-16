@@ -32,7 +32,7 @@
 	import props from '../u-image/props.js';
 	export default {
 		name: 'u--image',
-		mixins: [props],
+		mixins: [props, uni.$u.mixin],
 		components: {
 			uvImage
 		},

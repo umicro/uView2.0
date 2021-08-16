@@ -38,7 +38,7 @@
 	import props from '../u-textarea/props.js'
 	export default {
 		name: 'u--textarea',
-		mixins: [props],
+		mixins: [props, uni.$u.mixin],
 		components: {
 			uvTextarea
 		},

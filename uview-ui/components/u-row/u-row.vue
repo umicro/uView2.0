@@ -13,7 +13,7 @@
 	// #ifdef APP-NVUE
 	const dom = uni.requireNativePlugin('dom')
 	// #endif
-	import props from './props.js'
+	import props from './props.js';
 	export default {
 		name: "u-row",
 		// #ifdef MP-WEIXIN

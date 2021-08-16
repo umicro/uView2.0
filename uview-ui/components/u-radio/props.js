@@ -1,74 +1,65 @@
 export default {
 	props: {
-		// 是否展示弹窗
-		show: {
-			type: Boolean,
-			default: uni.$u.props.popup.show
+		// radio的名称
+		name: {
+			type: [String, Number, Boolean],
+			default: uni.$u.props.radio.name
 		},
-		// 是否显示遮罩
-		overlay: {
-			type: Boolean,
-			default: uni.$u.props.popup.overlay
-		},
-		// 弹出的方向，可选值为 top bottom right left center
-		mode: {
+		
+		// 形状，square为方形，circle为圆型
+		shape: {
 			type: String,
-			default: uni.$u.props.popup.mode
+			default: uni.$u.props.radio.shape
 		},
-		// 动画时长，单位ms
-		duration: {
-			type: [String, Number],
-			default: uni.$u.props.popup.duration
+		// 是否禁用
+		disabled: {
+			type: [String, Boolean],
+			default: uni.$u.props.radio.disabled
 		},
-		// 圆角值
-		borderRadius: {
-			type: [String, Number],
-			default: uni.$u.props.popup.borderRadius
+		// 是否禁止点击提示语选中单选框
+		labelDisabled: {
+			type: [String, Boolean],
+			default: uni.$u.props.radio.labelDisabled
 		},
-		// 是否显示关闭图标
-		closeable: {
-			type: Boolean,
-			default: uni.$u.props.popup.closeable
-		},
-		// 自定义遮罩的样式
-		overlayStyle: {
-			type: Object,
-			default: uni.$u.props.popup.overlayStyle
-		},
-		// 点击遮罩是否关闭弹窗
-		closeOnClickOverly: {
-			type: Boolean,
-			default: uni.$u.props.popup.closeOnClickOverly
-		},
-		// 层级
-		zIndex: {
-			type: [String, Number],
-			default: uni.$u.props.popup.zIndex
-		},
-		// 是否为iPhoneX留出底部安全距离
-		safeAreaInsetBottom: {
-			type: Boolean,
-			default: uni.$u.props.popup.safeAreaInsetBottom
-		},
-		// 是否留出顶部安全距离（状态栏高度）
-		safeAreaInsetTop: {
-			type: Boolean,
-			default: uni.$u.props.popup.safeAreaInsetTop
-		},
-		// 自定义关闭图标位置，top-left为左上角，top-right为右上角，bottom-left为左下角，bottom-right为右下角
-		closeIconPos: {
+		// 选中状态下的颜色，如设置此值，将会覆盖parent的activeColor值
+		activeColor: {
 			type: String,
-			default: uni.$u.props.popup.closeIconPos
+			default: uni.$u.props.radio.activeColor
 		},
-		// 是否显示圆角
-		round: {
-			type: Boolean,
-			default: uni.$u.props.popup.round
+		// 未选中的颜色
+		inactiveColor: {
+			type: String,
+			default: uni.$u.props.radio.inactiveColor
 		},
-		// mode=center，也即中部弹出时，是否使用缩放模式
-		zoom: {
-			type: Boolean,
-			default: true
+		// 图标的大小，单位px
+		iconSize: {
+			type: [String, Number],
+			default: uni.$u.props.radio.iconSize
+		},
+		// label的字体大小，px单位
+		labelSize: {
+			type: [String, Number],
+			default: uni.$u.props.radio.labelSize
+		},
+		// label提示文字，因为nvue下，直接slot进来的文字，由于特殊的结构，无法修改样式
+		label: {
+			type: [String, Number],
+			default: uni.$u.props.radio.label
+		},
+		// 整体的大小
+		size: {
+			type: [String, Number],
+			default: uni.$u.props.radio.size
+		},
+		// 图标颜色
+		iconColor: {
+			type: String,
+			default: uni.$u.props.radio.iconColor
+		},
+		// label的颜色
+		labelColor: {
+			type: String,
+			default: uni.$u.props.radio.labelColor
 		}
 	},
 }

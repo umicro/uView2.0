@@ -66,7 +66,7 @@
 // #ifdef APP-NVUE
 const dom = uni.requireNativePlugin('dom')
 // #endif
-import props from './props.js'
+import props from './props.js';
 export default {
 	name: 'u-read-more',
 	mixins: [uni.$u.mixin, props],

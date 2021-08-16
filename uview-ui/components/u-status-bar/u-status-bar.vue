@@ -9,14 +9,10 @@
 </template>
 
 <script>
+	import props from './props.js';
 	export default {
 		name: 'u-status-bar',
-		props: {
-			bgColor: {
-				type: String,
-				default: 'transparent'
-			}
-		},
+		mixins: [uni.$u.mixin, props],
 		data() {
 			return {
 				isNvue: false

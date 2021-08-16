@@ -11,7 +11,7 @@
 </template>
 
 <script>
-	import props from './props'
+	import props from './props.js';
 /**
  * mp-html v2.0.4
  * @description 富文本组件

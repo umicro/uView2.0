@@ -75,7 +75,7 @@
 </template>
 
 <script>
-	import props from './props'
+	import props from './props.js';
 	/**
 	 * numberBox 步进器
 	 * @description 该组件一般用于商城购物选择物品数量的场景。

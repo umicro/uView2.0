@@ -9,7 +9,7 @@
 </template>
 
 <script>
-	import props from './props.js'
+	import props from './props.js';
 	/**
 	 * grid 宫格布局
 	 * @description 宫格组件一般用于同时展示多个同类项目的场景，可以给宫格的项目设置徽标组件(badge)，或者图标等，也可以扩展为左右滑动的轮播形式。

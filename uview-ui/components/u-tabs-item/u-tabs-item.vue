@@ -5,6 +5,16 @@
 </template>
 
 <script>
+	import props from './props.js';
+	export default {
+		name: 'u-tabs-item',
+		mixins: [uni.$u.mixin,props],
+		data() {
+			return {
+				
+			}
+		}
+	}
 </script>
 
 <style>

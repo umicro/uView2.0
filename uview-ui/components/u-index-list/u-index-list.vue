@@ -100,7 +100,7 @@
 		}
 		return indexList;
 	}
-	import props from './props'
+	import props from './props.js';
 	// #ifdef APP-NVUE
 	// 由于weex为阿里的KPI业绩考核的垃ji，所以不支持百分比单位，这里需要通过dom查询组件的宽度
 	const dom = uni.requireNativePlugin('dom')

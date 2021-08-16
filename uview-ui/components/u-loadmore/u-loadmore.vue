@@ -47,7 +47,7 @@
 </template>
 
 <script>
-	import props from './props.js'
+	import props from './props.js';
 
 	/**
 	 * loadmore 加载更多

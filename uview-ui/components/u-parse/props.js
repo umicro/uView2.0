@@ -6,38 +6,38 @@ export default {
 		content: String,
 		copyLink: {
 		  type: Boolean,
-		  default: true
+		  default: uni.$u.props.parse.copyLink
 		},
 		domain: String,
 		errorImg: {
 		  type: String,
-		  default: ''
+		  default: uni.$u.props.parse.errorImg
 		},
 		lazyLoad: {
 		  type: Boolean,
-		  default: false
+		  default: uni.$u.props.parse.lazyLoad
 		},
 		loadingImg: {
 		  type: String,
-		  default: ''
+		  default: uni.$u.props.parse.loadingImg
 		},
 		pauseVideo: {
 		  type: Boolean,
-		  default: true
+		  default: uni.$u.props.parse.pauseVideo
 		},
 		previewImg: {
 		  type: Boolean,
-		  default: true
+		  default: uni.$u.props.parse.previewImg
 		},
 		scrollTable: Boolean,
 		selectable: Boolean,
 		setTitle: {
 		  type: Boolean,
-		  default: true
+		  default: uni.$u.props.parse.setTitle
 		},
 		showImgMenu: {
 		  type: Boolean,
-		  default: true
+		  default: uni.$u.props.parse.showImgMenu
 		},
 		tagStyle: Object,
 		useAnchor: null

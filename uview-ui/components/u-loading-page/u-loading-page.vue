@@ -41,7 +41,7 @@
 </template>
 
 <script>
-	import props from './props.js'
+	import props from './props.js';
 	/**
 	 * loadingPage 加载动画
 	 * @description 警此组件为一个小动画，目前用在uView的loadmore加载更多和switch开关等组件的正在加载状态场景。

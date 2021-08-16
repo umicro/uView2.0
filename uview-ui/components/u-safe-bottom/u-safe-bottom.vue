@@ -9,8 +9,10 @@
 </template>
 
 <script>
+	import props from './props.js';
 	export default {
 		name: 'u-safe-bottom',
+		mixins: [uni.$u.mixin,props],
 		data() {
 			return {
 				safeAreaBottomHeight: 0,

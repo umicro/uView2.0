@@ -32,7 +32,7 @@
 </template>
 
 <script>
-	import props from './props'
+	import props from './props.js';
 
 	/**
 	 * keyboard 键盘组件

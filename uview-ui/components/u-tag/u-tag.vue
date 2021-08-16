@@ -49,7 +49,7 @@
 </template>
 
 <script>
-	import props from './props.js'
+	import props from './props.js';
 	export default {
 		name: 'u-tag',
 		mixins: [uni.$u.mixin, props],

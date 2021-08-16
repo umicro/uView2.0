@@ -74,7 +74,7 @@
 	const animation = uni.requireNativePlugin('animation')
 	const dom = uni.requireNativePlugin('dom')
 	// #endif
-	import props from './props.js'
+	import props from './props.js';
 	// #ifdef APP-NVUE
 	import nvue from './nvue.js'
 	// #endif

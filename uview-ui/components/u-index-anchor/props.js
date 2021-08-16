@@ -2,23 +2,23 @@ export default {
 	props: {
 		text: {
 			type: [String, Number],
-			default: ''
+			default: uni.$u.props.indexAnchor.text
 		},
 		color: {
 			type: String,
-			default: '#606266'
+			default: uni.$u.props.indexAnchor.color
 		},
 		size: {
 			type: [String, Number],
-			default: 14
+			default: uni.$u.props.indexAnchor.size
 		},
 		bgColor: {
 			type: String,
-			default: '#dedede'
+			default: uni.$u.props.indexAnchor.bgColor
 		},
 		height: {
 			type: [String, Number],
-			default: 32
+			default: uni.$u.props.indexAnchor.height
 		}
 	},
 }

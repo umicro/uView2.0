@@ -22,7 +22,7 @@
 	    }
 	    return result
 	}
-	import props from './props.js'
+	import props from './props.js';
 	import dayjs from '../../libs/util/dayjs.js'
 	export default {
 		name: 'datetime-picker',

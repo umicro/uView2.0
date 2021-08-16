@@ -3,7 +3,7 @@
 </template>
 
 <script>
-	import props from './props.js'
+	import props from './props.js';
 	/**
 	 * gap 间隔槽
 	 * @description 该组件一般用于内容块之间的用一个灰色块隔开的场景，方便用户风格统一，减少工作量

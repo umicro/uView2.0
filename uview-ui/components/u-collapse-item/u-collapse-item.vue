@@ -46,7 +46,7 @@
 </template>
 
 <script>
-	import props from './props.js'
+	import props from './props.js';
 	// #ifdef APP-NVUE
 	const animation = uni.requireNativePlugin('animation')
 	const dom = uni.requireNativePlugin('dom')

@@ -5,9 +5,10 @@
 </template>
 
 <script>
+	import props from './props.js';
 	export default {
 		name: 'u-tr',
-		mixins: [uni.$u.mixin],
+		mixins: [uni.$u.mixin,props],
 		data() {
 			return {
 				

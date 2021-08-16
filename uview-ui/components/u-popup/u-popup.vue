@@ -44,7 +44,7 @@
 </template>
 
 <script>
-	import props from './props.js'
+	import props from './props.js';
 
 /**
  * popup 弹窗

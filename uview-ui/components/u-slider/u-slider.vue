@@ -101,7 +101,7 @@
 	// #ifdef APP-NVUE
 	import mixins from './nvue'
 	// #endif
-	import props from './props.js'
+	import props from './props.js';
 	/**
 	 * slider 滑块选择器
 	 * @description 该组件一般用于表单中，手动选择一个区间范围的场景.

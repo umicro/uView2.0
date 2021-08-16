@@ -33,7 +33,7 @@
 </template>
 
 <script>
-	import props from './props.js'
+	import props from './props.js';
 	/**
 	 * notify 顶部提示
 	 * @description 该组件一般用于页面顶部向下滑出一个提示，尔后自动收起的场景

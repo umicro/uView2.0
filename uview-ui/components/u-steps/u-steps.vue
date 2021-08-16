@@ -12,9 +12,6 @@
 	export default {
 		name: 'u-steps',
 		mixins: [uni.$u.mixin, props],
-		props: {
-
-		},
 		data() {
 			return {
 			}

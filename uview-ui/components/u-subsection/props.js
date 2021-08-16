@@ -3,42 +3,42 @@ export default {
 		// tab的数据
 		list: {
 			type: Array,
-			default: () => []
+			default: uni.$u.props.subsection.list
 		},
 		// 当前活动的tab的index
 		current: {
 			type: [Number, String],
-			default: 0
+			default: uni.$u.props.subsection.current
 		},
 		// 激活的颜色
 		activeColor: {
 			type: String,
-			default: '#3c9cff'
+			default: uni.$u.props.subsection.activeColor
 		},
 		// 未激活的颜色
 		inactiveColor: {
 			type: String,
-			default: '#303133'
+			default: uni.$u.props.subsection.inactiveColor
 		},
 		// 模式选择，mode=button为按钮形式，mode=subsection时为分段模式
 		mode: {
 			type: String,
-			default: 'button'
+			default: uni.$u.props.subsection.mode
 		},
 		// 字体大小
 		fontSize: {
 			type: [Number, String],
-			default: 12
+			default: uni.$u.props.subsection.fontSize
 		},
 		// 激活tab的字体是否加粗
 		bold: {
 			type: Boolean,
-			default: true
+			default: uni.$u.props.subsection.bold
 		},
 		// mode = button时，组件背景颜色
 		bgColor: {
 			type: String,
-			default: '#eeeeef'
+			default: uni.$u.props.subsection.bgColor
 		}
 	}
 }

@@ -31,7 +31,7 @@
 </template>
 
 <script>
-	import props from './props.js'
+	import props from './props.js';
 
 	/**
 	 * empty 内容为空

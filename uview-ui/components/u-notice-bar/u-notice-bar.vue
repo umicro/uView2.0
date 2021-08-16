@@ -39,7 +39,7 @@
 	</view>
 </template>
 <script>
-	import props from './props.js'
+	import props from './props.js';
 
 	/**
 	 * noticeBar 滚动通知

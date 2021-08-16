@@ -73,7 +73,7 @@
  * @event {Function} change 当选择值变化时触发
  * @event {Function} confirm 点击确定按钮，返回当前选择的值
  */
-import props from './props.js'
+import props from './props.js';
 export default {
 	name: 'u-picker',
 	mixins: [uni.$u.mixin, props],

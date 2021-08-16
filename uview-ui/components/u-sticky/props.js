@@ -10,7 +10,7 @@ export default {
 			type: [Number, String],
 			// #ifdef H5
 			// H5端的导航栏属于“自定义”导航栏的范畴，因为它是非原生的，与普通元素一致
-			default: 44
+			default: 44,
 			// #endif
 			// #ifndef H5
 			default: uni.$u.props.sticky.customNavHeight

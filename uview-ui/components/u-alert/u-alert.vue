@@ -60,7 +60,7 @@
 </template>
 
 <script>
-	import props from './props'
+	import props from './props.js';
 	export default {
 		name: 'u-alert',
 		mixins: [uni.$u.mixin, props],

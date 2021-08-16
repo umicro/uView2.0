@@ -94,9 +94,6 @@
 	export default {
 		name: 'u-steps-item',
 		mixins: [uni.$u.mixin, props],
-		props: {
-
-		},
 		data() {
 			return {
 				index: 0,

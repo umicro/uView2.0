@@ -43,7 +43,7 @@
 </template>
 
 <script>
-	import props from './props.js'
+	import props from './props.js';
 	/**
 	 * toast 消息提示
 	 * @description 此组件表现形式类似uni的uni.showToastAPI，但也有不同的地方。
@@ -62,7 +62,7 @@
 	 */
 	export default {
 		name: 'u-toast',
-		mixins: [uni.$u.mixin],
+		mixins: [uni.$u.mixin,props],
 		data() {
 			return {
 				isShow: false,

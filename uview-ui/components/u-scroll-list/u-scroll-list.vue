@@ -99,7 +99,7 @@
 const dom = uni.requireNativePlugin('dom')
 import nvueMixin from "./nvue.js"
 // #endif
-import props from './props.js'
+import props from './props.js';
 export default {
 	name: 'u-scroll-list',
 	mixins: [uni.$u.mixin, props],

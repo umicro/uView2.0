@@ -6,7 +6,7 @@
 </template>
 
 <script>
-	import props from './props.js'
+	import props from './props.js';
 	/**
 	 * collapse 折叠面板
 	 * @description 通过折叠面板收纳内容区域

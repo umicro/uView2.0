@@ -14,7 +14,7 @@
 </template>
 
 <script>
-	import props from './props.js';
+	import props from './props.js';;
 	/**
 	 * sticky 吸顶
 	 * @description 该组件与CSS中position: sticky属性实现的效果一致，当组件达到预设的到顶部距离时， 就会固定在指定位置，组件位置大于预设的顶部距离时，会重新按照正常的布局排列。

@@ -98,7 +98,7 @@
 <script>
 	import button from '../../libs/mixin/button.js'
 	import openType from '../../libs/mixin/openType.js'
-	import props from './props.js'
+	import props from './props.js';
 	/**
 	 * button 按钮
 	 * @description Button 按钮

@@ -68,7 +68,7 @@ export default {
 		// mode=center，也即中部弹出时，是否使用缩放模式
 		zoom: {
 			type: Boolean,
-			default: true
+			default: uni.$u.props.popup.zoom
 		}
 	},
 }

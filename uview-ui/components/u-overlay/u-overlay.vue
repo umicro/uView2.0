@@ -11,7 +11,7 @@
 </template>
 
 <script>
-	import props from './props'
+	import props from './props.js';
 
 	/**
 	 * overlay 遮罩

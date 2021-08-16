@@ -31,7 +31,7 @@
 	// #ifdef APP-NVUE
 	const dom = uni.requireNativePlugin('dom')
 	// #endif
-	import props from './props.js'
+	import props from './props.js';
 	export default {
 		name: 'u-subsection',
 		mixins: [uni.$u.mixin, props],

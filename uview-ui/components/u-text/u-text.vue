@@ -71,7 +71,7 @@
 	import value from './value.js'
 	import button from '../../libs/mixin/button.js'
 	import openType from '../../libs/mixin/openType.js'
-	import props from './props.js'
+	import props from './props.js';
 	export default {
 		name: 'u--text',
 		// #ifdef MP

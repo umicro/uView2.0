@@ -28,6 +28,7 @@
 </template>
 
 <script>
+	import props from './props.js';
 	/**
 	 * switch 开关选择器
 	 * @description 选择开关一般用于只有两个选择，且只能选其一的场景。
@@ -44,59 +45,7 @@
 	 */
 	export default {
 		name: "u-switch",
-		mixins: [uni.$u.mixin],
-		props: {
-			// 是否为加载中状态
-			loading: {
-				type: Boolean,
-				default: false
-			},
-			// 是否为禁用装填
-			disabled: {
-				type: Boolean,
-				default: false
-			},
-			// 开关尺寸，单位px
-			size: {
-				type: [Number, String],
-				default: 25
-			},
-			// 打开时的背景颜色
-			activeColor: {
-				type: String,
-				default: '#2979ff'
-			},
-			// 关闭时的背景颜色
-			inactiveColor: {
-				type: String,
-				default: '#ffffff'
-			},
-			// 通过v-model双向绑定的值
-			value: {
-				type: [Boolean, String, Number],
-				default: false
-			},
-			// 打开选择器时的值
-			activeValue: {
-				type: [Number, String, Boolean],
-				default: true
-			},
-			// 关闭选择器时的值
-			inactiveValue: {
-				type: [Number, String, Boolean],
-				default: false
-			},
-			// 是否开启异步变更，开启后需要手动控制输入值
-			asyncChange: {
-				type: Boolean,
-				default: false
-			},
-			// 圆点与外边框的距离
-			space: {
-				type: [String, Number],
-				default: 0
-			}
-		},
+		mixins: [uni.$u.mixin,props],
 		watch: {
 			value: {
 				immediate: true,

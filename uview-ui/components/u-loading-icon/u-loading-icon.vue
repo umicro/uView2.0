@@ -138,7 +138,9 @@
 				array12: Array.from({
 					length: 12
 				}),
-				aniAngel: 0, // 动画旋转角度
+				// 这里需要设置默认值为360，否则在安卓nvue上，会延迟一个duration周期后才执行
+				// 在iOS nvue上，则会一开始默认执行两个周期的动画，这就是阿里的weex的垃圾之处
+				aniAngel: 360, // 动画旋转角度
 				webviewHide: false, // 监听webview的状态，如果隐藏了页面，则停止动画，以免性能消耗
 				loading: false, // 是否运行中，针对nvue使用
 			}
@@ -178,15 +180,10 @@
 					// #ifdef APP-NVUE
 					this.show && this.nvueAnimate()
 					// #endif
-					// #ifdef APP-PLUS
+					// #ifdef APP-PLUS 
 					this.show && this.addEventListenerToWebview()
 					// #endif
 				}, 20)
-			},
-			nvueAnimate() {
-				// nvue下，非spinner类型时才需要旋转，因为nvue的spinner类型，使用了weex的
-				// loading-indicator组件，自带旋转功能
-				this.mode !== 'spinner' && this.startAnimate()
 			},
 			// 监听webview的显示与隐藏
 			addEventListenerToWebview() {
@@ -204,6 +201,12 @@
 					this.webviewHide = false
 				})
 			},
+			// #ifdef APP-NVUE
+			nvueAnimate() {
+				// nvue下，非spinner类型时才需要旋转，因为nvue的spinner类型，使用了weex的
+				// loading-indicator组件，自带旋转功能
+				this.mode !== 'spinner' && this.startAnimate()
+			},
 			// 执行nvue的animate模块动画
 			startAnimate() {
 				this.loading = true
@@ -217,14 +220,16 @@
 					},
 					duration: this.duration, 
 					timingFunction: this.timingFunction,
-					delay: 10
+					// delay: 10
 				}, () => {
 					// 每次增加360deg，为了让其重新旋转一周
 					this.aniAngel += 360
-					// 动画结束后，继续循环执行动画
-					this.show ? this.startAnimate() : this.loading = false
+					// 动画结束后，继续循环执行动画，需要同时判断webviewHide变量
+					// 否则垃圾weex配上垃圾安卓，页面隐藏后依然会继续执行startAnimate方法
+					this.show && !this.webviewHide ? this.startAnimate() : this.loading = false
 				})
 			}
+			// #endif
 		}
 	}
 </script>

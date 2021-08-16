@@ -14,7 +14,10 @@
 				v-if="index !== 0"
 				class="u-calendar-month__title"
 			>{{ item.year }}年{{ item.month }}月</text>
-			<view class="u-calendar-month__days">
+			<!-- 设定一个minHeight，避免在安卓上造成闪动，因为安卓渲染慢，导致先渲染mark字符，后需要一定时间才渲染具体的日期 -->
+			<view class="u-calendar-month__days" :style="{
+				minHeight: index === 0 ? $u.addUnit(rowHeight * 7) : 'auto'
+			}">
 				<view
 					v-if="showMark"
 					class="u-calendar-month__days__month-mark-wrapper"
@@ -152,8 +155,8 @@
 				return (index1, index2, item) => {
 					const style = {}
 					let week = item.week
-					// 保留2位小数
-					const dayWidth = (this.width / 7).toFixed(2)
+					// 不进行四舍五入的形式保留2位小数
+					const dayWidth = Number(parseFloat(this.width / 7).toFixed(3).slice(0, -1))
 					// 得出每个日期的宽度
 					style.width = uni.$u.addUnit(dayWidth)
 					style.height = uni.$u.addUnit(this.rowHeight)
@@ -204,6 +207,8 @@
 							if (dayjs(date).isAfter(dayjs(this.selected[0])) && dayjs(date).isBefore(dayjs(this
 									.selected[len]))) {
 								style.backgroundColor = uni.$u.colorGradient(this.color, '#ffffff', 100)[90]
+								// 增加一个透明度，让范围区间的背景色也能看到底部的mark水印字符
+								style.opacity = 0.7
 							}
 						} else if (this.selected.length === 1) {
 							// 之所以需要这么写，是因为DCloud公司的iOS客户端的开发者能力有限导致的bug

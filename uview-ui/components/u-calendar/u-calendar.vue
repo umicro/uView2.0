@@ -40,9 +40,7 @@
 				></uMonth>
 			</scroll-view>
 			<slot name="footer">
-				<view
-					class="u-calendar__confirm"
-				>
+				<view class="u-calendar__confirm">
 					<u-button
 						shape="circle"
 						:text="buttonDisabled ? confirmDisabledText : confirmText"
@@ -128,6 +126,7 @@
 			}
 		},
 		mounted() {
+			this.start = Date.now()
 			this.init()
 		},
 		methods: {
@@ -177,7 +176,7 @@
 							if (this.showLunar) {
 								// 将日期转为农历格式
 								const lunar = Calendar.solar2lunar(dayjs(date).year(), dayjs(date)
-								.month() + 1, dayjs(date).date())
+									.month() + 1, dayjs(date).date())
 								bottomInfo = lunar.IDayCn
 							}
 							let config = {
@@ -203,9 +202,6 @@
 						year: dayjs(minDate).add(i, "month").year()
 					});
 				}
-				// #ifdef H5
-				// console.log(this.months);
-				// #endif
 			},
 			// scroll-view滚动监听
 			onScroll(event) {

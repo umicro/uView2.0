@@ -32,7 +32,6 @@
 </template>
 
 <script>
-	import props from './props.js';
 	/**
 	 * checkbox  复选框
 	 * @description 复选框组件一般用于需要多个选择的场景，该组件功能完整，使用方便
@@ -57,20 +56,87 @@
 	 */
 	export default {
 		name: "u-checkbox",
-		mixins: [uni.$u.mixin,props],
+		props: {
+			// checkbox的名称
+			name: {
+				type: [String, Number, Boolean],
+				default: uni.$u.props.checkbox.name
+			},
+			// 形状，square为方形，circle为圆型
+			shape: {
+				type: String,
+				default: uni.$u.props.checkbox.shape
+			},
+			// 是否禁用
+			disabled: {
+				type: [String, Boolean],
+				default: uni.$u.props.checkbox.disabled
+			},
+			// 是否禁止点击提示语选中复选框
+			labelDisabled: {
+				type: [String, Boolean],
+				default: uni.$u.props.checkbox.labelDisabled
+			},
+			// 选中状态下的颜色，如设置此值，将会覆盖parent的activeColor值
+			activeColor: {
+				type: String,
+				default: uni.$u.props.checkbox.activeColor
+			},
+			// 未选中的颜色
+			inactiveColor: {
+				type: String,
+				default: uni.$u.props.checkbox.inactiveColor
+			},
+			// 图标的大小，单位px
+			iconSize: {
+				type: [String, Number],
+				default: uni.$u.props.checkbox.iconSize
+			},
+			// label的字体大小，px单位
+			labelSize: {
+				type: [String, Number],
+				default: uni.$u.props.checkbox.labelSize
+			},
+			// label提示文字，因为nvue下，直接slot进来的文字，由于特殊的结构，无法修改样式
+			label: {
+				type: [String, Number],
+				default: uni.$u.props.checkbox.label
+			},
+			// 整体的大小
+			size: {
+				type: [String, Number],
+				default: uni.$u.props.checkbox.size
+			},
+			// 图标颜色
+			iconColor: {
+				type: String,
+				default: uni.$u.props.checkbox.iconColor
+			},
+			// label的颜色
+			labelColor: {
+				type: String,
+				default: uni.$u.props.checkbox.labelColor
+			},
+			// 是否默认选中
+			checked: {
+				type: Boolean,
+				default: uni.$u.props.checkbox.checked
+			}
+		},
+		mixins: [uni.$u.mixin],
 		data() {
 			return {
 				isChecked: false,
 				// 父组件的默认值，因为头条小程序不支持在computed中使用this.parent.shape的形式
 				// 故只能使用如此方法
 				parentData: {
-					iconSize: null,
+					iconSize: 12,
 					labelDisabled: null,
 					disabled: null,
-					shape: null,
+					shape: 'square',
 					activeColor: null,
 					inactiveColor: null,
-					size: null,
+					size: 18,
 					value: null,
 					iconColor: null,
 					placement: 'row',

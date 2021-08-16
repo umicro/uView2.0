@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import props from './props';
 	/**
 	 * gridItem 提示
 	 * @description 宫格组件一般用于同时展示多个同类项目的场景，可以给宫格的项目设置徽标组件(badge)，或者图标等，也可以扩展为左右滑动的轮播形式。搭配u-grid使用
@@ -23,19 +24,7 @@
 	 */
 	export default {
 		name: "u-grid-item",
-		props: {
-			// 背景颜色
-			bgColor: {
-				type: String,
-				default: uni.$u.props.gridItem.bgColor
-			},
-			// 宫格的name
-			name: {
-				type: [Number, String],
-				default: null
-			}
-		},
-		mixins: [uni.$u.mixin],
+		mixins: [uni.$u.mixin,props],
 		data() {
 			return {
 				parentData: {

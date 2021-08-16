@@ -32,6 +32,8 @@
 </template>
 
 <script>
+	import props from './props'
+
 	/**
 	 * keyboard 键盘组件
 	 * @description  
@@ -44,24 +46,7 @@
 	 * @example 
 	 */
 	export default {
-		props: {
-			// 键盘的类型，number-数字键盘，card-身份证键盘
-			mode: {
-				type: String,
-				default: uni.$u.props.carKeyboard.mode
-			},
-			// 是否显示键盘的"."符号
-			dotDisabled: {
-				type: Boolean,
-				default: uni.$u.props.carKeyboard.dotDisabled
-			},
-			// 是否打乱键盘按键的顺序
-			random: {
-				type: Boolean,
-				default: uni.$u.props.carKeyboard.random
-			}
-		},
-		mixins: [uni.$u.mixin],
+		mixins: [uni.$u.mixin,props],
 		data() {
 			return {
 				backspace: 'backspace', // 退格键内容

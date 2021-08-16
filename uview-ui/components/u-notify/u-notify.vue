@@ -54,7 +54,7 @@
 	 */
 	export default {
 		name: 'u-notify',
-		mixins: [uni.$u.mixin],
+		mixins: [uni.$u.mixin,props],
 		data() {
 			return {
 				// 是佛展示组件

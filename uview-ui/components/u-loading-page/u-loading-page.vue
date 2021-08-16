@@ -41,6 +41,7 @@
 </template>
 
 <script>
+	import props from './props.js'
 	/**
 	 * loadingPage 加载动画
 	 * @description 警此组件为一个小动画，目前用在uView的loadmore加载更多和switch开关等组件的正在加载状态场景。
@@ -55,49 +56,7 @@
 	 */
 	export default {
 		name: 'u-loading-page',
-		mixins: [uni.$u.mixin],
-		props: {
-			// 提示内容
-			loadingText: {
-				type: [Number, String],
-				default: uni.$u.props.loadingPage.loadingText
-			},
-			// 文字上方用于替换loading动画的图片
-			image: {
-				type: String,
-				default: uni.$u.props.loadingPage.image
-			},
-			// 加载动画的模式，circle-圆形，spinner-花朵形，semicircle-半圆形
-			loadingMode: {
-				type: String,
-				default: uni.$u.props.loadingPage.loadingMode
-			},
-			// 是否加载中
-			loading: {
-				type: Boolean,
-				default: uni.$u.props.loadingPage.loading
-			},
-			// 背景色
-			bgColor: {
-				type: String,
-				default: uni.$u.props.loadingPage.bgColor
-			},
-			// 文字大小
-			fontSize: {
-				type: [String, Number],
-				default: uni.$u.props.loadingPage.fontSize
-			},
-			// 文字颜色
-			color: {
-				type: String,
-				default: uni.$u.props.loadingPage.color
-			},
-			// 加载中图标的颜色，只能rgb或者十六进制颜色值
-			loadingColor: {
-				type: String,
-				default: uni.$u.props.loadingPage.loadingColor
-			}
-		},
+		mixins: [uni.$u.mixin,props],
 		data() {
 			return {
 

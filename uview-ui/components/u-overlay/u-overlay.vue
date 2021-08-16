@@ -11,6 +11,8 @@
 </template>
 
 <script>
+	import props from './props'
+
 	/**
 	 * overlay 遮罩
 	 * @description 创建一个遮罩层，用于强调特定的页面元素，并阻止用户对遮罩下层的内容进行操作，一般用于弹窗场景
@@ -25,29 +27,7 @@
 	 */
 	export default {
 		name: "u-overlay",
-		props: {
-			// 是否显示遮罩
-			show: {
-				type: Boolean,
-				default: uni.$u.props.overlay.show
-			},
-			// 层级z-index
-			zIndex: {
-				type: [Number, String],
-				default: uni.$u.props.overlay.zIndex
-			},
-			// 遮罩的过渡时间，单位为ms
-			duration: {
-				type: [Number, String],
-				default: uni.$u.props.overlay.duration
-			},
-			// 不透明度值，当做rgba的第四个参数
-			opacity: {
-				type: [Number, String],
-				default: uni.$u.props.overlay.opacity
-			}
-		},
-		mixins: [uni.$u.mixin],
+		mixins: [uni.$u.mixin,props],
 		computed: {
 			overlyStyle() {
 				const style = {

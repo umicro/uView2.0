@@ -44,6 +44,8 @@
 </template>
 
 <script>
+	import props from './props.js'
+
 /**
  * popup 弹窗
  * @description 弹出层容器，用于展示弹窗、信息提示等内容，支持上、下、左、右和中部弹出。组件只提供容器，内部内容由用户自定义
@@ -69,79 +71,7 @@
  */
 export default {
 	name: 'u-popup',
-	props: {
-		// 是否展示弹窗
-		show: {
-			type: Boolean,
-			default: uni.$u.props.popup.show
-		},
-		// 是否显示遮罩
-		overlay: {
-			type: Boolean,
-			default: uni.$u.props.popup.overlay
-		},
-		// 弹出的方向，可选值为 top bottom right left center
-		mode: {
-			type: String,
-			default: uni.$u.props.popup.mode
-		},
-		// 动画时长，单位ms
-		duration: {
-			type: [String, Number],
-			default: uni.$u.props.popup.duration
-		},
-		// 圆角值
-		borderRadius: {
-			type: [String, Number],
-			default: uni.$u.props.popup.borderRadius
-		},
-		// 是否显示关闭图标
-		closeable: {
-			type: Boolean,
-			default: uni.$u.props.popup.closeable
-		},
-		// 自定义遮罩的样式
-		overlayStyle: {
-			type: Object,
-			default: uni.$u.props.popup.overlayStyle
-		},
-		// 点击遮罩是否关闭弹窗
-		closeOnClickOverly: {
-			type: Boolean,
-			default: uni.$u.props.popup.closeOnClickOverly
-		},
-		// 层级
-		zIndex: {
-			type: [String, Number],
-			default: uni.$u.props.popup.zIndex
-		},
-		// 是否为iPhoneX留出底部安全距离
-		safeAreaInsetBottom: {
-			type: Boolean,
-			default: uni.$u.props.popup.safeAreaInsetBottom
-		},
-		// 是否留出顶部安全距离（状态栏高度）
-		safeAreaInsetTop: {
-			type: Boolean,
-			default: uni.$u.props.popup.safeAreaInsetTop
-		},
-		// 自定义关闭图标位置，top-left为左上角，top-right为右上角，bottom-left为左下角，bottom-right为右下角
-		closeIconPos: {
-			type: String,
-			default: uni.$u.props.popup.closeIconPos
-		},
-		// 是否显示圆角
-		round: {
-			type: Boolean,
-			default: uni.$u.props.popup.round
-		},
-		// mode=center，也即中部弹出时，是否使用缩放模式
-		zoom: {
-			type: Boolean,
-			default: true
-		}
-	},
-	mixins: [uni.$u.mixin],
+	mixins: [uni.$u.mixin,props],
 	data() {
 		return {}
 	},

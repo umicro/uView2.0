@@ -16,19 +16,13 @@
 </template>
 
 <script>
+	import props from './props.js'
 	// #ifdef APP-NVUE
 	const dom = uni.requireNativePlugin('dom')
 	// #endif
 	export default {
 		name: 'u-list-item',
-		mixins: [uni.$u.mixin],
-		props: {
-			// 用于滚动到指定item
-			anchor: {
-				type: [String, Number],
-				default: ''
-			},
-		},
+		mixins: [uni.$u.mixin,props],
 		data() {
 			return {
 				// 节点信息

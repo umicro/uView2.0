@@ -353,7 +353,8 @@ export default {
 		bgColor: 'transparent',
 		height: 20,
 		marginTop: 0,
-		marginBottom: 0
+		marginBottom: 0,
+		customStyle:{}
 	},
 
 	// grid组件
@@ -833,5 +834,16 @@ export default {
 		labelWidth:45,
 		labelAlign:'left',
 		labelStyle:()=>{}
+	}, 
+
+	// formItem 组件
+	formItem:{
+		label:'',
+		prop:'',
+		borderBottom:'',
+		labelWidth:'',
+		rightIcon:'',
+		leftIcon:'',
+		required:false,
 	}, 
 }

@@ -7,6 +7,8 @@
 </template>
 
 <script>
+	import props from './props.js'
+
 	/**
 	 * link 超链接
 	 * @description 该组件为超链接组件，在不同平台有不同表现形式：在APP平台会通过plus环境打开内置浏览器，在小程序中把链接复制到粘贴板，同时提示信息，在H5中通过window.open打开链接。
@@ -22,44 +24,7 @@
 	 */
 	export default {
 		name: "u-link",
-		mixins: [uni.$u.mixin],
-		props: {
-			// 文字颜色
-			color: {
-				type: String,
-				default: uni.$u.props.link.color
-			},
-			// 字体大小，单位px
-			fontSize: {
-				type: [String, Number],
-				default: uni.$u.props.link.fontSize
-			},
-			// 是否显示下划线
-			underLine: {
-				type: Boolean,
-				default: uni.$u.props.link.underLine
-			},
-			// 要跳转的链接
-			href: {
-				type: String,
-				default: uni.$u.props.link.href
-			},
-			// 小程序中复制到粘贴板的提示语
-			mpTips: {
-				type: String,
-				default: uni.$u.props.link.mpTips
-			},
-			// 下划线颜色
-			lineColor: {
-				type: String,
-				default: uni.$u.props.link.lineColor
-			},
-			// 超链接的问题，不使用slot形式传入，是因为nvue下无法修改颜色
-			text: {
-				type: String,
-				default: uni.$u.props.link.text
-			}
-		},
+		mixins: [uni.$u.mixin,props],
 		computed: {
 			linkStyle() {
 				const style = {

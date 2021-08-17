@@ -4,6 +4,7 @@
 			height="30"
 			bgColor="#fff"
 		></u-gap>
+		<u-toast ref="uToast"></u-toast>
 		<u-cell-group title-bg-color="rgb(243, 244, 246)">
 			<u-cell
 				:titleStyle="{fontWeight: 500}"
@@ -22,7 +23,6 @@
 				></image> -->
 			</u-cell>
 		</u-cell-group>
-		<u-toast ref="uToast"></u-toast>
 	</view>
 </template>
 
@@ -69,13 +69,7 @@
 						message: "此情可待成追忆",
 						url: '/pages/componentsB/tag/tag',
 						iconUrl: 'https://cdn.uviewui.com/uview/demo/toast/jump.png'
-					},
-					{
-						title: '禁止触摸穿透',
-						overlay: true,
-						message: "只是当时已惘然",
-						iconUrl: 'https://cdn.uviewui.com/uview/demo/toast/overlay.png'
-					},
+					}
 				],
 			}
 		},
@@ -84,7 +78,7 @@
 				return path => {
 					return 'https://cdn.uviewui.com/uview/example/' + path + '.png';
 				}
-			},
+			}, 
 		},
 		methods: {
 			showToast(params) {

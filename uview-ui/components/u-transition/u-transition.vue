@@ -13,8 +13,9 @@
 </template>
 
 <script>
-	import props from './props.js';
-
+import props from './props.js';
+// 组件的methods方法，由于内容较长，写在外部文件中通过mixin引入
+import transition from "./transition.js";
 /**
  * transition  动画组件
  * @description
@@ -32,8 +33,6 @@
  * @event {Function} after-leave 离开后触发
  * @example
  */
-// 组件的methods方法，由于内容较长，写在外部文件中通过mixin引入
-import transition from "./transition.js";
 export default {
 	name: 'u-transition',
 	data() {

@@ -52,6 +52,16 @@ export default {
 		numberType: {
 			type: String,
 			default: uni.$u.props.badge.numberType
+		},
+		// 设置badge的位置偏移，格式为 [x, y]，也即设置的为top和right的值，absolute为true时有效
+		offset: {
+			type: Array,
+			default: uni.$u.props.badge.offset
+		},
+		// 是否反转背景和字体颜色
+		inverted: {
+			type: Boolean,
+			default: uni.$u.props.badge.inverted
 		}
 	}
 }

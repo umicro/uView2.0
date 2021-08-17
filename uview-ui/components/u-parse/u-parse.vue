@@ -54,7 +54,7 @@ export default {
       // #endif
     }
   },
-  mixin:[props],
+  mixins:[props],
   // #ifndef APP-PLUS-NVUE
   components: {
     node

@@ -8,7 +8,7 @@ export default {
 		// 是否展示顶部的操作栏
 		showToolbar: {
 			type: Boolean,
-			default: tuni.$u.props.datetimePicker.showToolbar
+			default: uni.$u.props.datetimePicker.showToolbar
 		},
 		// 绑定值
 		value: {

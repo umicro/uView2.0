@@ -24,12 +24,13 @@
 </template>
 
 <script>
+	import props from './props.js';
 	// #ifdef APP-NVUE
 	const dom = uni.requireNativePlugin('dom')
 	// #endif
 	export default {
 		name: 'u-index-anchor',
-		mixins: [uni.$u.mixin],
+		mixins: [uni.$u.mixin,props],
 		data() {
 			return {
 			}

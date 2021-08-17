@@ -8,7 +8,7 @@ export default {
 		// 是否显示
 		show: {
 			type: Boolean,
-			default: uni.$u.props.text.type
+			default: uni.$u.props.text.show
 		},
 		// 显示的值
 		text: {

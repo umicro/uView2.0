@@ -6,10 +6,10 @@ export default {
 			default: uni.$u.props.notify.top
 		},
 		// 是否展示组件
-		show: {
-			type: Boolean, 
-			default: uni.$u.props.notify.show
-		},
+		// show: {
+		// 	type: Boolean, 
+		// 	default: uni.$u.props.notify.show
+		// },
 		// type主题，primary，success，warning，error
 		type: {
 			type: String,

@@ -170,6 +170,7 @@ export default {
 		index:'',
 		disabled: false,
 		threshold: 30,
+		autoClose: true,
 		leftOptions: [],
 		rightOptions: [],
 		duration: 350

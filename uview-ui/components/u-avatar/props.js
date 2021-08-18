@@ -71,7 +71,7 @@ export  default {
 		},
 		// 组件标识符
 		name: {
-			type: [Number, String],
+			type: String,
 			default: uni.$u.props.avatar.name
 		}
 	}

@@ -33,6 +33,23 @@
 
 <script>
 	import props from './props.js';
+	/**
+	 * AvatarGroup  头像
+	 * @description 本组件一般用于展示头像的地方，如个人中心，或者评论列表页的用户头像展示等场所。
+	 * @tutorial https://www.uviewui.com/components/avatar.html
+	 * 
+	 * @property {Array}           urls     头像图片组 （默认 [] ）
+	 * @property {String | Number} maxCount 最多展示的头像数量 （ 默认 5 ）
+	 * @property {String}          shape    头像形状（ circle (默认) | square）
+	 * @property {String}          mode     图片裁剪模式（默认 aspectFill ）
+	 * @property {Boolean}         showMore 超出maxCount时是否显示查看更多的提示 （默认 true ）
+	 * @property {String | Number} ize      头像大小 （默认 40 ）
+	 * @property {String}          keyName  指定从数组的对象元素中读取哪个属性作为图片地址 
+	 * @property {String | Number} gap      头像之间的遮挡比例（0.4代表遮挡40%）  （默认 0.5 ）
+	 * 
+	 * @event    {Function}        showMore 头像组更多点击
+	 * @example  <u-avatar-group:urls="urls" size="35" gap="0.4" ></u-avatar-group:urls=>
+	 */
 	export default {
 		name: 'u-avatar-group',
 		mixins: [uni.$u.mixin, props],

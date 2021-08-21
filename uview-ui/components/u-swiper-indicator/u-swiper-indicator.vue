@@ -33,6 +33,17 @@
 
 <script>
 	import props from './props.js';
+	/**
+	 * SwiperIndicator 轮播图指示器
+	 * @description 该组件一般用于导航轮播，广告展示等场景,可开箱即用，
+	 * @tutorial https://www.uviewui.com/components/swiper.html
+	 * @property {String | Number}	length					轮播的长度
+	 * @property {String | Number}	current					当前处于活动状态的轮播的索引
+	 * @property {String}			indicatorActiveColor	指示器非激活颜色
+	 * @property {String}			indicatorInactiveColor	指示器的激活颜色
+	 * @property {String}			indicatorStyle			指示器样式，可通过bottom，left，right进行定位
+	 * @example	<u-swiper :list="list4" indicator keyName="url" :autoplay="false"></u-swiper>
+	 */
 	export default {
 		name: 'u-swiper-indicator',
 		mixins: [uni.$u.mixin, props],

@@ -37,6 +37,19 @@
 
 <script>
 	import props from './props.js';
+	/**
+	 * Toolbar 工具条
+	 * @description 
+	 * @tutorial https://www.uviewui.com/components/toolbar.html
+	 * @property {Boolean}	show			是否展示工具条
+	 * @property {String}	cancelText		取消按钮的文字
+	 * @property {String}	confirmText		确认按钮的文字
+	 * @property {String}	cancelColor		取消按钮的颜色
+	 * @property {String}	confirmColor	确认按钮的颜色
+	 * @property {String}	title			标题文字
+	 * @event {Function} 
+	 * @example 
+	 */
 	export default {
 		name: 'u-toolbar',
 		mixins: [uni.$u.mixin,props],

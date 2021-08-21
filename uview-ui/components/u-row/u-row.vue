@@ -14,6 +14,18 @@
 	const dom = uni.requireNativePlugin('dom')
 	// #endif
 	import props from './props.js';
+	/**
+	 * Row 栅格系统中的行
+	 * @description 通过基础的 12 分栏，迅速简便地创建布局 
+	 * @tutorial https://www.uviewui.com/components/layout.html
+	 * @property {String | Number}	gutter	栅格间隔，左右各为此值的一半，单位px
+	 * @property {String}			justify	水平排列方式(微信小程序暂不支持)
+	 * @property {String}			align	垂直排列方式
+	 * @property {Object}			customStyle			定义需要用到的外部样式
+	 * 
+	 * @event {Function} click row被点击
+	 * @example <u-row justify="space-between" customStyle="margin-bottom: 10px"></u-row>
+	 */
 	export default {
 		name: "u-row",
 		// #ifdef MP-WEIXIN

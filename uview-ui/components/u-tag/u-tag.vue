@@ -50,6 +50,29 @@
 
 <script>
 	import props from './props.js';
+	/**
+	 * Tag 标签
+	 * @description tag组件一般用于标记和选择，我们提供了更加丰富的表现形式，能够较全面的涵盖您的使用场景
+	 * @tutorial https://www.uviewui.com/components/tag.html
+	 * @property {String}			type		主题类型
+	 * @property {Boolean | String}	disabled	不可用
+	 * @property {String}			size		标签大小
+	 * @property {String}			shape		标签形状
+	 * @property {String | Number}	text		标签的文字内容
+	 * @property {String}			bgColor		背景颜色，默认为空字符串，即不处理
+	 * @property {String}			color		标签字体颜色，默认为空字符串，即不处理
+	 * @property {String}			borderColor	镂空形式标签的边框颜色
+	 * @property {String}			closeColor	关闭按钮图标的颜色
+	 * @property {String | Number}	name		点击时返回的索引值，用于区分例遍的数组哪个元素被点击了
+	 * @property {Boolean}			plainFill	镂空时是否填充背景色
+	 * @property {Boolean}			plain		是否镂空
+	 * @property {Boolean}			closeable	是否可关闭，设置为true，文字右边会出现一个关闭图标
+	 * @property {Boolean}			show		标签显示与否
+	 * @property {String}			icon		内置图标，或绝对路径的图片
+	 * @event {Function(index)} click 点击标签时触发 index: 传递的index参数值
+	 * @event {Function(index)} close closeable为true时，点击标签关闭按钮触发 index: 传递的index参数值	
+	 * @example <u-tag text="标签" type="error" plain plainFill></u-tag>
+	 */
 	export default {
 		name: 'u-tag',
 		mixins: [uni.$u.mixin, props],

@@ -51,13 +51,13 @@
 	 * @description 本组件提供一个类似相册的功能，让开发者开发起来更加得心应手。减少重复的模板代码
 	 * @tutorial https://www.uviewui.com/components/album.html
 	 * 
-	 * @property {Array}           url              图片地址列表 
+	 * @property {Array}           urls             图片地址列表 Array<String>|Array<Object>形式
 	 * @property {String}          keyName          指定从数组的对象元素中读取哪个属性作为图片地址 
 	 * @property {String | Number} singleSize       单图时，图片长边的长度  （默认 180 ）
 	 * @property {String | Number} multipleSize     多图时，图片边长 （默认 70 ）
 	 * @property {String | Number} space            多图时，图片水平和垂直之间的间隔 （默认 6 ）
-	 * @property {String}          singleMode       单图时，图片缩放裁剪的模式 （默认 scaleToFill ）
-	 * @property {String}          multipleMode     多图时，图片缩放裁剪的模式 （默认 aspectFill ）
+	 * @property {String}          singleMode       单图时，图片缩放裁剪的模式 （默认 'scaleToFill' ）
+	 * @property {String}          multipleMode     多图时，图片缩放裁剪的模式 （默认 'aspectFill' ）
 	 * @property {String | Number} maxCount         取消按钮的提示文字 （默认 9 ）
 	 * @property {Boolean}         previewFullImage 是否可以预览图片 （默认 true ）
 	 * @property {String | Number} rowCount         每行展示图片数量，如设置，singleSize和multipleSize将会无效	（默认 3 ）

@@ -57,20 +57,21 @@
 	 * @description 本组件一般用于展示头像的地方，如个人中心，或者评论列表页的用户头像展示等场所。
 	 * @tutorial https://www.uviewui.com/components/avatar.html
 	 * 
-	 * @property {String}          src           头像路径，如加载失败，将会显示默认头像(不能为相对路径) 
-	 * @property {String}          shape         头像形状  （ circle (默认) | square）
-	 * @property {String | Number} size          头像尺寸，可以为指定字符串(large, default, mini)，或者数值 （默认 default ）
-	 * @property {String}          mode          头像图片的裁剪类型，与uni的image组件的mode参数一致，如效果达不到需求，可尝试传widthFix值 （默认 aspectFill ）
-	 * @property {String}          text          用文字替代图片，级别优先于src
-	 * @property {String}          bgColor       背景颜色，一般显示文字时用 （默认 #ffffff ）
-	 * @property {String}          color         文字颜色 （默认 #ffffff ）
-	 * @property {String | Number} fontSize      文字大小  （默认 18 ）
-	 * @property {String}          icon          显示的图标 
-	 * @property {Boolean}         mpAvatar      显示小程序头像，只对百度，微信，QQ小程序有效  （默认 false ）
-	 * @property {Boolean}         randomBgColor 是否使用随机背景色  （默认 false ）
-	 * @property {String}          defaultUrl    加载失败的默认头像(组件有内置默认图片)  
-	 * @property {String | Number} colorIndex    如果配置了randomBgColor为true，且配置了此值，则从默认的背景色数组中取出对应索引的颜色值，取值0-19之间 
-	 * @property {String}          name          组件标识符  （默认 level ）
+	 * @property {String}			src				头像路径，如加载失败，将会显示默认头像(不能为相对路径) 
+	 * @property {String}			shape			头像形状  （ circle (默认) | square）
+	 * @property {String | Number}	size			头像尺寸，可以为指定字符串(large, default, mini)，或者数值 （默认 40 ）
+	 * @property {String}			mode			头像图片的裁剪类型，与uni的image组件的mode参数一致，如效果达不到需求，可尝试传widthFix值 （默认 'scaleToFill' ）
+	 * @property {String}			text			用文字替代图片，级别优先于src
+	 * @property {String}			bgColor			背景颜色，一般显示文字时用 （默认 '#c0c4cc' ）
+	 * @property {String}			color			文字颜色 （默认 '#ffffff' ）
+	 * @property {String | Number}	fontSize		文字大小  （默认 18 ）
+	 * @property {String}			icon			显示的图标 
+	 * @property {Boolean}			mpAvatar		显示小程序头像，只对百度，微信，QQ小程序有效  （默认 false ）
+	 * @property {Boolean}			randomBgColor	是否使用随机背景色  （默认 false ）
+	 * @property {String}			defaultUrl		加载失败的默认头像(组件有内置默认图片)  
+	 * @property {String | Number}	colorIndex		如果配置了randomBgColor为true，且配置了此值，则从默认的背景色数组中取出对应索引的颜色值，取值0-19之间 
+	 * @property {String}			name			组件标识符  （默认 'level' ）
+	 * @property {Object}			customStyle		定义需要用到的外部样式
 	 * 
 	 * @event    {Function}        click       点击组件时触发   index: 用户传递的标识符
 	 * @example  <u-avatar :src="src" mode="square"></u-avatar>

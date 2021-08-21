@@ -2,12 +2,12 @@ export default {
 	props: {
 		// 轮播的长度
 		length: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.swipterIndicator.length
 		},
 		// 当前处于活动状态的轮播的索引
 		current: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.swipterIndicator.current
 		},
 		// 指示器非激活颜色

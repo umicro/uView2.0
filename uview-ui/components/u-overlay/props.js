@@ -7,17 +7,17 @@ export default {
 		},
 		// 层级z-index
 		zIndex: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.overlay.zIndex
 		},
 		// 遮罩的过渡时间，单位为ms
 		duration: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.overlay.duration
 		},
 		// 不透明度值，当做rgba的第四个参数
 		opacity: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.overlay.opacity
 		}
 	},

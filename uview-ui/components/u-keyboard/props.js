@@ -62,7 +62,7 @@ export default {
 		},
 		// z-index值
 		zIndex: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.keyboard.zIndex
 		},
 		// 取消按钮的文字

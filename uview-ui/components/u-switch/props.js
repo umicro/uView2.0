@@ -12,7 +12,7 @@ export default {
 		},
 		// 开关尺寸，单位px
 		size: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.switch.size
 		},
 		// 打开时的背景颜色
@@ -32,12 +32,12 @@ export default {
 		},
 		// 打开选择器时的值
 		activeValue: {
-			type: [Number, String, Boolean],
+			type: [String, Number, Boolean],
 			default: uni.$u.props.switch.activeValue
 		},
 		// 关闭选择器时的值
 		inactiveValue: {
-			type: [Number, String, Boolean],
+			type: [String, Number, Boolean],
 			default: uni.$u.props.switch.inactiveValue
 		},
 		// 是否开启异步变更，开启后需要手动控制输入值

@@ -6,6 +6,14 @@
 
 <script>
 	import props from './props.js';
+	/** 
+	 * Td 表格中的单元格
+	 * @description 
+	 * @tutorial url
+	 * @property {String | Number} 
+	 * @event {Function}
+	 * @example
+	 */
 	export default {
 		name: 'u-td',
 		mixins: [uni.$u.mixin,props],

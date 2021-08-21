@@ -12,27 +12,27 @@ export default {
 		},
 		// 段落占位图行数
 		rows: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.skeleton.rows,
 		},
 		// 段落占位图的宽度
 		rowsWidth: {
-			type: [Number, String, Array],
+			type: [String, Number, Array],
 			default: uni.$u.props.skeleton.rowsWidth,
 		},
 		// 段落标题的宽度
 		titleWidth: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.skeleton.titleWidth,
 		},
 		// 段落标题的高度
 		titleHeight: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.skeleton.titleHeight,
 		},
 		// 段落占位图的高度
 		rowsHeight: {
-			type: [Number, String, Array],
+			type: [String, Number, Array],
 			default: uni.$u.props.skeleton.rowsHeight,
 		},
 		// 是否展示标题占位图
@@ -47,7 +47,7 @@ export default {
 		},
 		// 头像占位图大小
 		avatarSize: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.skeleton.avatarSize,
 		},
 		// 头像占位图的形状，circle-圆形，square-方形

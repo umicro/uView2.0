@@ -112,39 +112,35 @@
 	import button from '../../libs/mixin/button'
 	import props from './props.js';
 	/**
-	 * actionSheet 操作菜单
+	 * ActionSheet 操作菜单
 	 * @description 本组件用于从底部弹出一个操作菜单，供用户选择并返回结果。本组件功能类似于uni的uni.showActionSheetAPI，配置更加灵活，所有平台都表现一致。
 	 * @tutorial https://www.uviewui.com/components/actionSheet.html
 	 * 
-	 * @property {Boolean}       show                操作菜单是否展示 （默认false）
-	 * @property {String}        title               操作菜单标题
-	 * @property {String}        description         选项上方的描述信息
-	 * @property {Array<Object>} actions             按钮的文字数组，见官方文档示例
-	 * @property {String}        index               额外传参参数，用于小程序的data-xxx属性，通过target.dataset.index获取，见官方文档示例
-	 * @property {String}        cancelText          取消按钮的提示文字
-	 * @property {Boolean}       closeOnClickAction  点击某个菜单项时是否关闭弹窗（默认true）
-	 * @property {Boolean}       safeAreaInsetBottom 处理底部安全区（默认true）
-	 * @property {String}        openType            小程序的打开方式
-	 * @property {Boolean}       closeOnClickOverly  点击遮罩是否允许关闭 (默认true)
-	 * @property {Boolean}       round               是否显示圆角 (默认false)
-	 * 
-	 * @property {Object}        customStyle         定义需要用到的外部样式
-	 * @property {String}        lang                指定返回用户信息的语言，zh_CN 简体中文，zh_TW 繁体中文，en 英文
-	 * @property {String}        sessionFrom         会话来源，openType="contact"时有效
-	 * @property {String}        sendMessageTitle    会话内消息卡片标题，openType="contact"时有效
-	 * @property {String}        sendMessagePath     会话内消息卡片点击跳转小程序路径，openType="contact"时有效
-	 * @property {String}        sendMessageImg      会话内消息卡片图片，openType="contact"时有效
-	 * @property {Boolean}       showMessageCard     是否显示会话内消息卡片，设置此参数为 true，用户进入客服会话会在右下角显示"可能要发送的小程序"提示，用户点击后可以快速发送小程序消息，openType="contact"时有效（默认false）
-	 * @property {String}        appParameter        打开 APP 时，向 APP 传递的参数，openType=launchApp 时有效
-	 *     
-	 * @event {Function} select         点击ActionSheet列表项时触发 （默认true）
-	 * @event {Function} close          点击取消按钮时触发
-	 * @event {Function} getuserinfo    用户点击该按钮时，会返回获取到的用户信息，回调的 detail 数据与 wx.getUserInfo 返回的一致，openType="getUserInfo"时有效
-	 * @event {Function} contact        客服消息回调，openType="contact"时有效
-	 * @event {Function} getphonenumber 获取用户手机号回调，openType="getPhoneNumber"时有效
-	 * @event {Function} error          当使用开放能力时，发生错误的回调，openType="launchApp"时有效
-	 * @event {Function} launchapp      打开 APP 成功的回调，openType="launchApp"时有效
-	 * @event {Function} opensetting    在打开授权设置页后回调，openType="openSetting"时有效
+	 * @property {Boolean}			show				操作菜单是否展示 （默认 false ）
+	 * @property {String}			title				操作菜单标题
+	 * @property {String}			description			选项上方的描述信息
+	 * @property {Array<Object>}	actions				按钮的文字数组，见官方文档示例
+	 * @property {String}			cancelText			取消按钮的提示文字,不为空时显示按钮
+	 * @property {Boolean}			closeOnClickAction	点击某个菜单项时是否关闭弹窗 （默认 true ）
+	 * @property {Boolean}			safeAreaInsetBottom	处理底部安全区 （默认 true ）
+	 * @property {String}			openType			小程序的打开方式 (contact | launchApp | getUserInfo | openSetting ｜getPhoneNumber ｜error )
+	 * @property {Boolean}			closeOnClickOverly	点击遮罩是否允许关闭  (默认 true )
+	 * @property {Boolean}			round				是否显示圆角  (默认 false )
+	 * @property {String}			lang				指定返回用户信息的语言，zh_CN 简体中文，zh_TW 繁体中文，en 英文
+	 * @property {String}			sessionFrom			会话来源，openType="contact"时有效
+	 * @property {String}			sendMessageTitle	会话内消息卡片标题，openType="contact"时有效
+	 * @property {String}			sendMessagePath		会话内消息卡片点击跳转小程序路径，openType="contact"时有效
+	 * @property {String}			sendMessageImg		会话内消息卡片图片，openType="contact"时有效
+	 * @property {Boolean}			showMessageCard		是否显示会话内消息卡片，设置此参数为 true，用户进入客服会话会在右下角显示"可能要发送的小程序"提示，用户点击后可以快速发送小程序消息，openType="contact"时有效 （默认 false ）
+	 * @property {String}			appParameter		打开 APP 时，向 APP 传递的参数，openType=launchApp 时有效
+	 * @event {Function} select			点击ActionSheet列表项时触发 
+	 * @event {Function} close			点击取消按钮时触发
+	 * @event {Function} getuserinfo	用户点击该按钮时，会返回获取到的用户信息，回调的 detail 数据与 wx.getUserInfo 返回的一致，openType="getUserInfo"时有效
+	 * @event {Function} contact		客服消息回调，openType="contact"时有效
+	 * @event {Function} getphonenumber	获取用户手机号回调，openType="getPhoneNumber"时有效
+	 * @event {Function} error			当使用开放能力时，发生错误的回调，openType="error"时有效
+	 * @event {Function} launchapp		打开 APP 成功的回调，openType="launchApp"时有效
+	 * @event {Function} opensetting	在打开授权设置页后回调，openType="openSetting"时有效
 	 * @example <u-action-sheet :actions="actions" @click="click" v-model="show"></u-action-sheet>
 	 */
 	export default {

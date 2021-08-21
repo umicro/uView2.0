@@ -33,13 +33,15 @@
 	 * switch 开关选择器
 	 * @description 选择开关一般用于只有两个选择，且只能选其一的场景。
 	 * @tutorial https://www.uviewui.com/components/switch.html
-	 * @property {Boolean} loading 是否处于加载中（默认false） 
-	 * @property {Boolean} disabled 是否禁用（默认false）
-	 * @property {String Number} size 开关尺寸，单位px（默认50）
-	 * @property {String} active-color 打开时的背景色（默认#2979ff）
-	 * @property {Boolean} inactive-color 关闭时的背景色（默认#ffffff）
-	 * @property {Boolean | Number | String} active-value 打开选择器时通过change事件发出的值（默认true）
-	 * @property {Boolean | Number | String} inactive-value 关闭选择器时通过change事件发出的值（默认false）
+	 * @property {Boolean}						loading			是否处于加载中（默认false） 
+	 * @property {Boolean}						disabled		是否禁用（默认false）
+	 * @property {String | Number}				size			开关尺寸，单位px（默认50）
+	 * @property {String}						active-color	打开时的背景色（默认#2979ff）
+	 * @property {Boolean} 						inactive-color	关闭时的背景色（默认#ffffff）
+	 * @property {Boolean | String | Number}	active-value	打开选择器时通过change事件发出的值（默认true）
+	 * @property {Boolean | String | Number}	inactive-value	关闭选择器时通过change事件发出的值（默认false）
+	 * @property {Object}			customStyle			定义需要用到的外部样式
+	 * 
 	 * @event {Function} change 在switch打开或关闭时触发
 	 * @example <u-switch v-model="checked" active-color="red" inactive-color="#eee"></u-switch>
 	 */

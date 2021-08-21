@@ -7,7 +7,7 @@ export default {
 		},
 		// 显示的内容
 		value: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.badge.value
 		},
 		// 是否显示
@@ -17,7 +17,7 @@ export default {
 		},
 		// 最大值，超过最大值会显示 '{max}+'
 		max: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.badge.max
 		},
 		// 主题类型，error|warning|success|primary

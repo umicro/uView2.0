@@ -2,7 +2,7 @@ export default {
 	props: {
 		// 当前进度百分比值，范围0-100
 		value: {
-			type: [Number, String],
+			type: [String, Number],
 			default:uni.$u.props.slider.value,
 		},
 		// 是否禁用滑块
@@ -12,27 +12,27 @@ export default {
 		},
 		// 滑块宽度，高等于宽
 		blockHeight: {
-			type: [Number, String],
+			type: [String, Number],
 			default:uni.$u.props.slider.blockHeight,
 		},
 		// 最小值
 		min: {
-			type: [Number, String],
+			type: [String, Number],
 			default:uni.$u.props.slider.min,
 		},
 		// 最大值
 		max: {
-			type: [Number, String],
+			type: [String, Number],
 			default:uni.$u.props.slider.max,
 		},
 		// 步进值
 		step: {
-			type: [Number, String],
+			type: [String, Number],
 			default:uni.$u.props.slider.step,
 		},
 		// 滑块条高度，单位px
 		height: {
-			type: [Number, String],
+			type: [String, Number],
 			default:uni.$u.props.slider.height,
 		},
 		// 进度条的激活部分颜色

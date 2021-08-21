@@ -2,7 +2,7 @@ export default {
 	props: {
 		// 分成几列
 		col: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.grid.col
 		},
 		// 是否显示边框

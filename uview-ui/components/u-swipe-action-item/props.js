@@ -7,7 +7,7 @@ export default {
 		},
 		// 标识符，如果是v-for，可用index索引
 		index: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.swipeActionItem.index
 		},
 		// 是否禁用
@@ -34,7 +34,7 @@ export default {
 		},
 		// 动画过渡时间，单位ms
 		duration: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.swipeActionItem.duration
 		},
 	}

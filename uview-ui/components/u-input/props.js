@@ -2,7 +2,7 @@ export default {
 	props: {
 		// 输入的值
 		value: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.input.value
 		},
 		// 输入框类型
@@ -42,7 +42,7 @@ export default {
 		},
 		// 最大输入长度，设置为 -1 的时候不限制最大长度
 		maxlength: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.input.maxlength
 		},
 		// 	输入框为空时的占位符
@@ -77,11 +77,6 @@ export default {
 			type: Boolean,
 			default: uni.$u.props.input.confirmHold
 		},
-		// 是否显示键盘上方带有”完成“按钮那一栏，type=texarea且只在微信，百度，QQ小程序有效
-		showConfirmBar: {
-			type: Boolean,
-			default: uni.$u.props.input.showConfirmBar
-		},
 		// focus时，点击页面的时候不收起键盘，微信小程序有效
 		holdKeyboard: {
 			type: Boolean,
@@ -105,22 +100,22 @@ export default {
 		},
 		// 指定focus时光标的位置
 		cursor: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.input.cursor
 		},
 		// 输入框聚焦时底部与键盘的距离
 		cursorSpacing: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.input.cursorSpacing
 		},
 		// 光标起始位置，自动聚集时有效，需与selection-end搭配使用
 		selectionStart: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.input.selectionStart
 		},
 		// 光标结束位置，自动聚集时有效，需与selection-start搭配使用
 		selectionEnd: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.input.selectionEnd
 		},
 		// 键盘弹起时，是否自动上推页面
@@ -138,12 +133,6 @@ export default {
 			type: Boolean,
 			default: uni.$u.props.input.autosize
 		},
-		// 是否显示键盘上方带有”完成“按钮那一栏
-		// 只对type=textarea且为微信小程序、百度小程序、QQ小程序
-		showConfirmBar: {
-			type: Boolean,
-			default: uni.$u.props.input.showConfirmBar
-		},
 		// 输入框字体的大小
 		fontSize: {
 			type: [String, Number],
@@ -159,6 +148,11 @@ export default {
 			type: String,
 			default: uni.$u.props.input.prefixIcon
 		},
+		// 前置图标样式，对象或字符串
+		prefixIconStyle: {
+			type: [String, Object],
+			default: uni.$u.props.input.prefixIconStyle
+		},
 		// 输入框后置图标
 		suffixIcon: {
 			type: String,
@@ -168,11 +162,6 @@ export default {
 		suffixIconStyle: {
 			type: [String, Object],
 			default: uni.$u.props.input.suffixIconStyle
-		},
-		// 前置图标样式，对象或字符串
-		prefixIconStyle: {
-			type: [String, Object],
-			default: uni.$u.props.input.prefixIconStyle
 		},
 		// 边框类型，surround-四周边框，bottom-底部边框，none-无边框
 		border: {

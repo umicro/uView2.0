@@ -50,21 +50,21 @@
  * popup 弹窗
  * @description 弹出层容器，用于展示弹窗、信息提示等内容，支持上、下、左、右和中部弹出。组件只提供容器，内部内容由用户自定义
  * @tutorial https://www.uviewui.com/components/popup.html
- * @property {Boolean} show  是否展示弹窗 (默认 false)
- * @property {Boolean} overlay  是否显示遮罩 （默认 true）
- * @property {String} mode 弹出方向（默认left）
- * @property {String | Number} duration  动画时长，单位ms （默认 3000）
- * @property {String | Number} borderRadius 弹窗圆角值（默认0）
- * @property {Boolean} closeable 是否显示关闭图标（默认false）
- * @property {Object} overlayStyle 自定义遮罩的样式
- * @property {Boolean} closeOnClickOverly  点击遮罩是否关闭弹窗 （默认  true）
- * @property {String | Number} zIndex  层级 （默认 10075）
- * @property {Boolean} safeAreaInsetBottom  是否为iPhoneX留出底部安全距离 （默认 true）
- * @property {Boolean} safeAreaInsetTop  是否留出顶部安全距离（状态栏高度） （默认 false）
- * @property {String} closeIconPos  自定义关闭图标位置
- * @property {Boolean} round  是否显示圆角
- * @property {Boolean} zoom  当mode=center时 是否开启缩放
- * @property {Object} customStyle  组件的样式，对象形式
+ * @property {Boolean}			show				是否展示弹窗 (默认 false )
+ * @property {Boolean}			overlay				是否显示遮罩 （默认 true ）
+ * @property {String}			mode				弹出方向（默认 'bottom' ）
+ * @property {String | Number}	duration			动画时长，单位ms （默认 300 ）
+ * @property {String | Number}	borderRadius		弹窗圆角值（默认 0 ）
+ * @property {Boolean}			closeable			是否显示关闭图标（默认 false ）
+ * @property {Object}			overlayStyle		自定义遮罩的样式
+ * @property {Boolean}			closeOnClickOverly	点击遮罩是否关闭弹窗 （默认  true ）
+ * @property {String | Number}	zIndex				层级 （默认 10075 ）
+ * @property {Boolean}			safeAreaInsetBottom	是否为iPhoneX留出底部安全距离 （默认 true ）
+ * @property {Boolean}			safeAreaInsetTop	是否留出顶部安全距离（状态栏高度） （默认 false ）
+ * @property {String}			closeIconPos		自定义关闭图标位置（默认 'top-right' ）
+ * @property {Boolean}			round				是否显示圆角（默认 false ）
+ * @property {Boolean}			zoom				当mode=center时 是否开启缩放（默认 false ）
+ * @property {Object}			customStyle			组件的样式，对象形式
  * @event {Function} open 弹出层打开
  * @event {Function} close 弹出层收起
  * @example <u-popup v-model="show"><text>出淤泥而不染，濯清涟而不妖</text></u-popup>

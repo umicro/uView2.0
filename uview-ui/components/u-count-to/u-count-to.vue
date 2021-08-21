@@ -15,16 +15,17 @@
  * countTo 数字滚动
  * @description 该组件一般用于需要滚动数字到某一个值的场景，目标要求是一个递增的值。
  * @tutorial https://www.uviewui.com/components/countTo.html
- * @property {String | Number} start-val 开始值
- * @property {String | Number} end-val 结束值
- * @property {String | Number} duration 滚动过程所需的时间，单位ms（默认2000）
- * @property {Boolean} autoplay 是否自动开始滚动（默认true）
- * @property {String | Number} decimals 要显示的小数位数，见官网说明（默认0）
- * @property {Boolean} use-easing 滚动结束时，是否缓动结尾，见官网说明（默认true）
- * @property {String} separator 千位分隔符，见官网说明
- * @property {String} color 字体颜色（默认#303133）
- * @property {String | Number} font-size 字体大小，单位px（默认50）
- * @property {Boolean} bold 字体是否加粗（默认false）
+ * @property {String | Number}	startVal	开始的数值，默认从0增长到某一个数（默认 0 ）
+ * @property {String | Number}	endVal		要滚动的目标数值，必须 （默认 0 ）
+ * @property {String | Number}	duration	滚动到目标数值的动画持续时间，单位为毫秒（ms） （默认 2000 ）
+ * @property {Boolean}			autoplay	设置数值后是否自动开始滚动 （默认 true ）
+ * @property {String | Number}	decimals	要显示的小数位数，见官网说明（默认 0 ）
+ * @property {Boolean}			useEasing	滚动结束时，是否缓动结尾，见官网说明（默认 true ）
+ * @property {String}			decimal		十进制分割 （ 默认 "." ）
+ * @property {String}			color		字体颜色（ 默认 '#606266' )
+ * @property {String | Number}	fontSize	字体大小，单位px（ 默认 22 ）
+ * @property {Boolean}			bold		字体是否加粗（默认 false ）
+ * @property {String}			separator	千位分隔符，见官网说明
  * @event {Function} end 数值滚动到目标值时触发
  * @example <u-count-to ref="uCountTo" :end-val="endVal" :autoplay="autoplay"></u-count-to>
  */

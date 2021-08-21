@@ -2,7 +2,7 @@ export default {
 	props: {
 		// z-index值
 		zIndex: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.toast.zIndex
 		},
 		// 是否加载中
@@ -12,7 +12,7 @@ export default {
 		},
 		// 显示的文字内容
 		text: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.toast.text
 		},
 		// 图标，或者绝对路径的图片

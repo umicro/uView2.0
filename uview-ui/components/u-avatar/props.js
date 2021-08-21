@@ -62,7 +62,7 @@ export  default {
 		},
 		// 如果配置了randomBgColor为true，且配置了此值，则从默认的背景色数组中取出对应索引的颜色值，取值0-19之间
 		colorIndex: {
-			type: [Number, String],
+			type: [String, Number],
 			// 校验参数规则，索引在0-19之间
 			validator(n) {
 				return uni.$u.test.range(n, [0, 19]) || n === ''

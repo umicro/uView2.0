@@ -1,25 +1,26 @@
 export default {
 	props: {
+		// 标识符
+		name: {
+			type: String,
+			default: uni.$u.props.checkboxGroup.name
+		},
 		// 绑定的值
 		value: {
 			type: Array,
 			default: uni.$u.props.checkboxGroup.value
-		},
-		//是否禁止点击文本操作
-		labelDisabled: {
-			type: Boolean,
-			default: uni.$u.props.checkboxGroup.labelDisabled
-		},
-		// 是否禁用全部checkbox
-		disabled: {
-			type: Boolean,
-			default: uni.$u.props.checkboxGroup.disabled
 		},
 		// 形状，circle-圆形，square-方形
 		shape: {
 			type: String,
 			default: uni.$u.props.checkboxGroup.shape
 		},
+		// 是否禁用全部checkbox
+		disabled: {
+			type: Boolean,
+			default: uni.$u.props.checkboxGroup.disabled
+		},
+		
 		// 选中状态下的颜色，如设置此值，将会覆盖parent的activeColor值
 		activeColor: {
 			type: String,
@@ -30,11 +31,7 @@ export default {
 			type: String,
 			default: uni.$u.props.checkboxGroup.inactiveColor
 		},
-		// 标识符
-		name: {
-			type: String,
-			default: uni.$u.props.checkboxGroup.name
-		},
+		
 		// 整个组件的尺寸，默认px
 		size: {
 			type: [String, Number],
@@ -55,6 +52,11 @@ export default {
 			type: [String],
 			default: uni.$u.props.checkboxGroup.labelColor
 		},
+		//是否禁止点击文本操作
+		labelDisabled: {
+			type: Boolean,
+			default: uni.$u.props.checkboxGroup.labelDisabled
+		},
 		// 图标颜色
 		iconColor: {
 			type: String,
@@ -65,15 +67,16 @@ export default {
 			type: [String, Number],
 			default: uni.$u.props.checkboxGroup.iconSize
 		},
+		// 勾选图标的对齐方式，left-左边，right-右边
+		iconPlacement: {
+			type: String,
+			default: uni.$u.props.checkboxGroup.iconPlacement
+		},
 		// 竖向配列时，是否显示下划线
 		borderBottom: {
 			type: Boolean,
 			default: uni.$u.props.checkboxGroup.borderBottom
 		},
-		// 勾选图标的对齐方式，left-左边，right-右边
-		iconPlacement: {
-			type: String,
-			default: uni.$u.props.checkboxGroup.iconPlacement
-		}
+		
 	},
 }

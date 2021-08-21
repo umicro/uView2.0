@@ -24,16 +24,18 @@
 	 * badge 徽标数
 	 * @description 该组件一般用于图标右上角显示未读的消息数量，提示用户点击，有圆点和圆包含文字两种形式。
 	 * @tutorial https://uviewui.com/components/badge.html
-	 * @property {Boolean} isDot 是否显示圆点 （默认false）
-	 * @property {Number | String} value 显示的内容
-	 * @property {Boolean} show 是否显示 （默认true）
-	 * @property {Number | String} max 最大值，超过最大值会显示 '{max}+'  （默认999）
-	 * @property {String} type 主题类型，error|warning|success|primary （默认error）
-	 * @property {Boolean} showZero 当数值为 0 时，是否展示 Badge （默认false）
-	 * @property {String} bgColor 背景颜色，优先级比type高，如设置，type参数会失效
-	 * @property {String} color 字体颜色 （默认#ffffff）
-	 * @property {String} shape 徽标形状，circle-四角均为圆角，horn-左下角为直角 （默认circle）
-	 * @property {String} numberType 设置数字的显示方式，overflow|ellipsis|limit  （默认overflow）
+	 * 
+	 * @property {Boolean} 			isDot 		是否显示圆点 （默认 false ）
+	 * @property {String | Number} 	value 		显示的内容
+	 * @property {Boolean} 			show 		是否显示 （默认 true ）
+	 * @property {String | Number} 	max 		最大值，超过最大值会显示 '{max}+'  （默认999）
+	 * @property {String} 			type 		主题类型，error|warning|success|primary （默认 'error' ）
+	 * @property {Boolean} 			showZero	当数值为 0 时，是否展示 Badge （默认 false ）
+	 * @property {String} 			bgColor 	背景颜色，优先级比type高，如设置，type参数会失效
+	 * @property {String} 			color 		字体颜色 （默认 '#ffffff' ）
+	 * @property {String} 			shape 		徽标形状，circle-四角均为圆角，horn-左下角为直角 （默认 'circle' ）
+	 * @property {String} 			numberType	设置数字的显示方式，overflow|ellipsis|limit  （默认 'overflow' ）
+	 * @property {Object}			customStyle	定义需要用到的外部样式
 	 * @example <u-badge :type="type" :count="count"></u-badge>
 	 */
 	export default {

@@ -2,7 +2,7 @@ export default {
 	props: {
 		// 默认的显示占位高度
 		showHeight: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.readMore.showHeight,
 		},
 		// 展开后是否显示"收起"按钮
@@ -42,7 +42,7 @@ export default {
 		},
 		// open和close事件时，将此参数返回在回调参数中
 		name: {
-			type: [Number, String],
+			type: [String, Number],
 			default:  uni.$u.props.readMore.name,
 		}
 	}

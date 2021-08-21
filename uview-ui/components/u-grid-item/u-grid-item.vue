@@ -17,8 +17,9 @@ import props from './props.js';
 	 * gridItem 提示
 	 * @description 宫格组件一般用于同时展示多个同类项目的场景，可以给宫格的项目设置徽标组件(badge)，或者图标等，也可以扩展为左右滑动的轮播形式。搭配u-grid使用
 	 * @tutorial https://www.uviewui.com/components/grid.html
-	 * @property {String} bgColor 宫格的背景颜色（默认 transparent）
-	 * @property {Object} customStyle 自定义样式，对象形式
+	 * @property {String | Number}	name		宫格的name ( 默认 null )
+	 * @property {String}			bgColor		宫格的背景颜色 （默认 'transparent' ）
+	 * @property {Object}			customStyle	自定义样式，对象形式
 	 * @event {Function} click 点击宫格触发
 	 * @example <u-grid-item></u-grid-item>
 	 */

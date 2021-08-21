@@ -42,7 +42,7 @@ export default {
 		},
 		// 唯一标识符
 		name: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.collapseItem.name
 		},
 		// 标题左侧图片，可为绝对路径的图片或内置图标

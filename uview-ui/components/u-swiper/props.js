@@ -37,7 +37,7 @@ export default {
 		},
 		// 当前所在滑块的 index
 		current: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.swiper.current
 		},
 		// 当前所在滑块的 item-id ，不能与 current 被同时指定

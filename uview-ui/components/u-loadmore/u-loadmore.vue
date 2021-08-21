@@ -53,16 +53,21 @@
 	 * loadmore 加载更多
 	 * @description 此组件一般用于标识页面底部加载数据时的状态。
 	 * @tutorial https://www.uviewui.com/components/loadMore.html
-	 * @property {String} status 组件状态（默认loadmore）
-	 * @property {String} bg-color 组件背景颜色，在页面是非白色时会用到（默认#ffffff）
-	 * @property {Boolean} icon 加载中时是否显示图标（默认true）
-	 * @property {String} icon-type 加载中时的图标类型（默认circle）
-	 * @property {String} icon-color icon-type为circle时有效，加载中的动画图标的颜色（默认#b7b7b7）
-	 * @property {Boolean} is-dot status为nomore时，内容显示为一个"●"（默认false）
-	 * @property {String} color 字体颜色（默认#606266）
-	 * @property {String Number} margin-top 到上一个相邻元素的距离
-	 * @property {String Number} margin-bottom 到下一个相邻元素的距离
-	 * @property {Object} load-text 自定义显示的文字，见上方说明示例
+	 * @property {String}			status			组件状态（默认 'loadmore' ）
+	 * @property {String}			bgColor			组件背景颜色，在页面是非白色时会用到（默认 'transparent' ）
+	 * @property {Boolean}			icon			加载中时是否显示图标（默认 true ）
+	 * @property {String | Number}	fontSize		字体大小（默认 'circle' ）
+	 * @property {String}			color			字体颜色（默认 '#606266' ）
+	 * @property {String}			loadingIcon		加载前的提示语（默认 'circle' ）
+	 * @property {String}			loadmoreText	加载前的提示语（默认 '加载更多' ）
+	 * @property {String}			loadingText		加载中提示语（默认 '正在加载...' ）
+	 * @property {String}			nomoreText		没有更多的提示语（默认 '没有更多了' ）
+	 * @property {Boolean}			isDot			到上一个相邻元素的距离 （默认 false ）
+	 * @property {String}			iconColor		加载中图标的颜色 （默认 '#b7b7b7' ）
+	 * @property {String | Number}	marginTop		上边距 （默认 10 ）
+	 * @property {String | Number}	marginBottom	下边距 （默认 10 ）
+	 * @property {String | Number}	height			高度，单位px （默认 'auto' ）
+	 * @property {Boolean}			line			是否显示左边分割线  （默认 false ）
 	 * @event {Function} loadmore status为loadmore时，点击组件会发出此事件
 	 * @example <u-loadmore :status="status" icon-type="iconType" load-text="loadText" />
 	 */

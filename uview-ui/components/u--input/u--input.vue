@@ -14,7 +14,6 @@
 		:showWordLimit="showWordLimit"
 		:confirmType="confirmType"
 		:confirmHold="confirmHold"
-		:showConfirmBar="showConfirmBar"
 		:holdKeyboard="holdKeyboard"
 		:focus="focus"
 		:autoBlur="autoBlur"

@@ -85,6 +85,31 @@
 
 <script>
 	import props from './props.js';
+	/**
+	 * Modal 模态框
+	 * @description 弹出模态框，常用于消息提示、消息确认、在当前页面内完成特定的交互操作。
+	 * @tutorial https://www.uviewui.com/components/modul.html
+	 * @property {Boolean}			show				是否显示模态框，请赋值给show （默认 false ）
+	 * @property {String}			title				标题内容
+	 * @property {String}			content				模态框内容，如传入slot内容，则此参数无效
+	 * @property {String}			confirmText			确认按钮的文字 （默认 '确认' ）
+	 * @property {String}			cancelText			取消按钮的文字 （默认 '取消' ）
+	 * @property {Boolean}			showConfirmButton	是否显示确认按钮 （默认 true ）
+	 * @property {Boolean}			showCancelButton	是否显示取消按钮 （默认 false ）
+	 * @property {String}			confirmColor		确认按钮的颜色 （默认 '#2979ff' ）
+	 * @property {String}			cancelColor			取消按钮的颜色 （默认 '#606266' ）
+	 * @property {Boolean}			buttonReverse		对调确认和取消的位置 （默认 false ）
+	 * @property {Boolean}			zoom				是否开启缩放模式 （默认 true ）
+	 * @property {Boolean}			asyncClose			是否异步关闭，只对确定按钮有效，见上方说明 （默认 false ）
+	 * @property {Boolean}			closeOnClickOverly	是否允许点击遮罩关闭Modal （默认 false ）
+	 * @property {String | Number}	negativeTop			往上偏移的值，给一个负的margin-top，往上偏移，避免和键盘重合的情况，单位任意，数值则默认为px单位 （默认 0 ）
+	 * @property {String | Number}	width				modal宽度，不支持百分比，可以数值，px，rpx单位 （默认 '650rpx' ）
+	 * @property {String}			confirmButtonShape	确认按钮的样式,如设置，将不会显示取消按钮
+	 * @event {Function} confirm	点击确认按钮时触发
+	 * @event {Function} cancel		点击取消按钮时触发
+	 * @event {Function} close		点击遮罩关闭出发，closeOnClickOverly为true有效
+	 * @example <u-loadmore :status="status" icon-type="iconType" load-text="loadText" />
+	 */
 	export default {
 		name: 'u-modal',
 		mixins: [uni.$u.mixin, props],

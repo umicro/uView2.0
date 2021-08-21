@@ -11,7 +11,7 @@ export default {
 		},
 		// 进度百分比，数值
 		percentage: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.lineProgress.inactiveColor
 		},
 		// 是否在进度条内部显示百分比的值
@@ -21,7 +21,7 @@ export default {
 		},
 		// 进度条的高度，单位px
 		height: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.lineProgress.height
 		},
 	},

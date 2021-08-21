@@ -37,22 +37,22 @@
 	 * checkbox  复选框
 	 * @description 复选框组件一般用于需要多个选择的场景，该组件功能完整，使用方便
 	 * @tutorial https://uviewui.com/components/checkbox.html
-	 * @property {String Number Boolean} name checkbox组件的标示符
-	 * @property {String} shape 形状，square为方形，circle为圆型
-	 * @property {String Boolean} disabled 是否禁用
-	 * @property {String Boolean} labelDisabled  是否禁止点击提示语选中复选框
-	 * @property {String} activeColor  选中状态下的颜色，如设置此值，将会覆盖parent的activeColor值
-	 * @property {String} inactiveColor  未选中的颜色
-	 * @property {String Number} iconSize  图标的大小，单位px
-	 * @property {String Number} labelSize  label的字体大小，px单位
-	 * @property {String Number} label  label提示文字，因为nvue下，直接slot进来的文字，由于特殊的结构，无法修改样式
-	 * @property {String Number} size  整体的大小
-	 * @property {String} iconColor 图标颜色
-	 * @property {String} labelColor  label的颜色
-	 * @property {String} iconPlacement  图标与文字的对齐方式
-	 * @property {Boolean} checked  是否默认选中
-	 * @property {Object} customStyle  定义需要用到的外部样式
-	 * @event {Function} change 任一个checkbox状态发生变化时触发，回调为一个对象
+	 * @property {String | Number | Boolean}	name			checkbox组件的标示符
+	 * @property {String}						shape			形状，square为方形，circle为圆型
+	 * @property {String | Number}				size			整体的大小
+	 * @property {Boolean}						checked			是否默认选中
+	 * @property {String | Boolean}				disabled		是否禁用
+	 * @property {String}						activeColor		选中状态下的颜色，如设置此值，将会覆盖parent的activeColor值
+	 * @property {String}						inactiveColor	未选中的颜色
+	 * @property {String | Number}				iconSize		图标的大小，单位px
+	 * @property {String}						iconColor		图标颜色
+	 * @property {String | Number}				label			label提示文字，因为nvue下，直接slot进来的文字，由于特殊的结构，无法修改样式
+	 * @property {String}						labelColor 		label的颜色
+	 * @property {String | Number}				labelSize		label的字体大小，px单位
+	 * @property {String | Boolean}				labelDisabled	是否禁止点击提示语选中复选框
+	 * @property {Object}						customStyle		定义需要用到的外部样式
+	 * 
+	 * @event {Function}	change	任一个checkbox状态发生变化时触发，回调为一个对象
 	 * @example <u-checkbox v-model="checked" :disabled="false">天涯</u-checkbox>
 	 */
 	export default {

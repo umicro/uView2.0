@@ -65,16 +65,17 @@
 	 * loading 加载动画
 	 * @description 警此组件为一个小动画，目前用在uView的loadmore加载更多和switch开关等组件的正在加载状态场景。
 	 * @tutorial https://www.uviewui.com/components/loading.html
-	 * @property {String} color 动画活动区域的颜色，只对 mode = flower 模式有效（默认color['u-tips-color']）
-	 * @property {Boolean} vertical 文字和图标是否垂直排列 (默认 false)
-	 * @property {Boolean} show 是否显示组件 (默认 true)
-	 * @property {String} mode 模式选择，见官网说明（默认circle）
-	 * @property {String Number} size 加载图标的大小，单位px（默认24）
-	 * @property {String Number} textSize 文字大小（默认15）
-	 * @property {String Number} text 文字内容 
-	 * @property {String} timingFunction 动画模式 （默认 ease-in-out）
-	 * @property {String Number} duration 动画执行周期时间（默认 1200）
-	 * @property {Object} customStyle  定义需要用到的外部样式
+	 * @property {Boolean}			show			是否显示组件  (默认 true)
+	 * @property {String}			color			动画活动区域的颜色，只对 mode = flower 模式有效（默认color['u-tips-color']）
+	 * @property {Boolean}			vertical		文字和图标是否垂直排列 (默认 false )
+	 * @property {String}			mode			模式选择，见官网说明（默认 'circle' ）
+	 * @property {String | Number}	size			加载图标的大小，单位px （默认 24 ）
+	 * @property {String | Number}	textSize		文字大小（默认 15 ）
+	 * @property {String | Number}	text			文字内容 
+	 * @property {String}			timingFunction	动画模式 （默认 'ease-in-out' ）
+	 * @property {String | Number}	duration		动画执行周期时间（默认 1200）
+	 * @property {String}			inactiveColor	mode=circle时的暗边颜色 
+	 * @property {Object}			customStyle		定义需要用到的外部样式
 	 * @example <u-loading mode="circle"></u-loading>
 	 */
 	export default {

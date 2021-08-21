@@ -16,25 +16,27 @@
  * mp-html v2.0.4
  * @description 富文本组件
  * @tutorial https://github.com/jin-yufeng/mp-html
- * @property {String} content 用于渲染的富文本字符串
- * @property {Boolean} copyLink 是否允许外部链接被点击时自动复制
- * @property {String} domain 主域名，用于拼接链接
- * @property {String} errorImg 图片出错时的占位图链接
- * @property {Boolean} lazyLoad 是否开启图片懒加载
- * @property {string} loadingImg 图片加载过程中的占位图链接
- * @property {Boolean} pauseVideo 是否在播放一个视频时自动暂停其它视频
- * @property {Boolean} previewImg 是否允许图片被点击时自动预览
- * @property {Boolean} scrollTable 是否给每个表格添加一个滚动层使其能单独横向滚动
- * @property {Boolean} selectable 是否开启长按复制
- * @property {Boolean} setTitle 是否将 title 标签的内容设置到页面标题
- * @property {Boolean} showImgMenu 是否允许图片被长按时显示菜单
- * @property {Object} tagStyle 标签的默认样式
- * @property {Boolean | Number} useAnchor 是否使用锚点链接
- * @event {Function} load dom 结构加载完毕时触发
- * @event {Function} ready 所有图片加载完毕时触发
- * @event {Function} imgTap 图片被点击时触发
- * @event {Function} linkTap 链接被点击时触发
- * @event {Function} error 媒体加载出错时触发
+ * @property {String}			bgColor		背景颜色，只适用与APP-PLUS-NVUE
+ * @property {String}			content		用于渲染的富文本字符串（默认 true ）
+ * @property {Boolean}			copyLink	是否允许外部链接被点击时自动复制
+ * @property {String}			domain		主域名，用于拼接链接
+ * @property {String}			errorImg	图片出错时的占位图链接
+ * @property {Boolean}			lazyLoad	是否开启图片懒加载（默认 true ）
+ * @property {string}			loadingImg	图片加载过程中的占位图链接
+ * @property {Boolean}			pauseVideo	是否在播放一个视频时自动暂停其它视频（默认 true ）
+ * @property {Boolean}			previewImg	是否允许图片被点击时自动预览（默认 true ）
+ * @property {Boolean}			scrollTable	是否给每个表格添加一个滚动层使其能单独横向滚动
+ * @property {Boolean}			selectable	是否开启长按复制
+ * @property {Boolean}			setTitle	是否将 title 标签的内容设置到页面标题（默认 true ）
+ * @property {Boolean}			showImgMenu	是否允许图片被长按时显示菜单（默认 true ）
+ * @property {Object}			tagStyle	标签的默认样式
+ * @property {Boolean | Number}	useAnchor	是否使用锚点链接
+ * 
+ * @event {Function}	load	dom 结构加载完毕时触发
+ * @event {Function}	ready	所有图片加载完毕时触发
+ * @event {Function}	imgTap	图片被点击时触发
+ * @event {Function}	linkTap	链接被点击时触发
+ * @event {Function}	error	媒体加载出错时触发
  */
 const plugins=[]
 const parser = require('./parser')

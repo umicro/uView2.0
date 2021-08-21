@@ -12,7 +12,7 @@ export default {
 		},
 		// 字体大小，单位px
 		size: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.icon.size
 		},
 		// 是否显示粗体
@@ -22,7 +22,7 @@ export default {
 		},
 		// 点击图标的时候传递事件出去的index（用于区分点击了哪一个）
 		index: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.icon.index
 		},
 		// 触摸图标时的类名

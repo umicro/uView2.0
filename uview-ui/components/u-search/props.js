@@ -67,7 +67,7 @@ export default {
 		},
 		// 搜索框高度，单位px
 		height: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.search.height,
 		},
 		// input输入框的样式，可以定义文字颜色，大小等，对象形式
@@ -77,7 +77,7 @@ export default {
 		},
 		// 输入框最大能输入的长度，-1为不限制长度(来自uniapp文档)
 		maxlength: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.search.maxlength,
 		},
 		// 搜索图标的颜色，默认同输入框字体颜色

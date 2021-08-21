@@ -17,32 +17,32 @@ export default {
 		},
 		// 返回顶部滚动时间
 		duration: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.backtop.duration
 		},
 		// 滚动距离
 		scrollTop: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.backtop.scrollTop
 		},
 		// 距离顶部多少距离显示，单位px
 		top: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.backtop.top
 		},
 		// 返回顶部按钮到底部的距离，单位px
 		bottom: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.backtop.bottom
 		},
 		// 返回顶部按钮到右边的距离，单位px
 		right: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.backtop.right
 		},
 		// 层级
 		zIndex: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.backtop.zIndex
 		},
 		// 图标的样式，对象形式

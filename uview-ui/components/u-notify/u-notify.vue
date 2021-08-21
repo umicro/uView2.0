@@ -38,18 +38,17 @@
 	 * notify 顶部提示
 	 * @description 该组件一般用于页面顶部向下滑出一个提示，尔后自动收起的场景
 	 * @tutorial 
-	 * @property {String Number} top 到顶部的距离
-	 * @property {Boolean} show 是否展示组件
-	 * @property {String} type主题，primary，success，warning，error
-	 * @property {String} color 字体颜色
-	 * @property {String} bgColor 背景颜色
-	 * @property {String} message 展示的文字内容
-	 * @property {String} duration 展示时长，为0时不消失，单位ms
-	 * @property {String} fontSize  字体大小
-	 * @property {Boolean} safeAreaInsetTop  是否留出顶部安全距离（状态栏高度）
-	 * @property {Object} customStyle  组件的样式，对象形式
-	 * @event {Function} open  开启组件时调用的函数
-	 * @event {Function} close 关闭组件式调用的函数
+	 * @property {String | Number}	top					到顶部的距离 ( 默认 0 )
+	 * @property {String}			type				主题，primary，success，warning，error ( 默认 'primary' )
+	 * @property {String}			color				字体颜色 ( 默认 '#ffffff' )
+	 * @property {String}			bgColor				背景颜色
+	 * @property {String}			message				展示的文字内容
+	 * @property {String | Number}	duration			展示时长，为0时不消失，单位ms ( 默认 3000 )
+	 * @property {String | Number}	fontSize			字体大小 ( 默认 15 )
+	 * @property {Boolean}			safeAreaInsetTop	是否留出顶部安全距离（状态栏高度） ( 默认 false )
+	 * @property {Object}			customStyle			组件的样式，对象形式
+	 * @event {Function}	open	开启组件时调用的函数
+	 * @event {Function}	close	关闭组件式调用的函数
 	 * @example <u-notify message="Hi uView"></u-notify>
 	 */
 	export default {
@@ -57,7 +56,7 @@
 		mixins: [uni.$u.mixin,props],
 		data() {
 			return {
-				// 是佛展示组件
+				// 是否展示组件
 				open: false,
 				timer: null,
 				config: {

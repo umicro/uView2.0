@@ -74,6 +74,20 @@
 
 <script>
 	import props from './props.js';
+	/**
+	 * Form 表单
+	 * @description 此组件一般用于表单场景，可以配置Input输入框，Select弹出框，进行表单验证等。
+	 * @tutorial https://www.uviewui.com/components/form.html
+	 * @property {String}			label			input的label提示语
+	 * @property {String}			prop			绑定的值
+	 * @property {String | Boolean}	borderBottom	是否显示表单域的下划线边框
+	 * @property {String | Number}	labelWidth		label的宽度，单位px
+	 * @property {String}			rightIcon		右侧图标
+	 * @property {String}			leftIcon		左侧图标
+	 * @property {Boolean}			required		是否显示左边的必填星号，只作显示用，具体校验必填的逻辑，请在rules中配置 (默认 false )
+	 * 
+	 * @example <u-form-item label="姓名" prop="userInfo.name" borderBottom ref="item1"></u-form-item>
+	 */
 	export default {
 		name: 'u-form-item',
 		mixins: [uni.$u.mixin, props],

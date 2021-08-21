@@ -28,18 +28,18 @@
 			</u-cell>
 		</u-cell-group>
 		<u-modal
-			content="模态框，常用于消息提示、消息确认、在当前页面内完成特定的交互操作"
+			:content="content"
 			title="标题"
 			:show="show1"
 			@confrim="() => show1 = false"
 		></u-modal>
 		<u-modal
-			content="模态框，常用于消息提示、消息确认、在当前页面内完成特定的交互操作"
+			:content="content"
 			:show="show2"
 			@confrim="() => show2 = false"
 		></u-modal>
 		<u-modal
-			content="模态框，常用于消息提示、消息确认、在当前页面内完成特定的交互操作"
+			:content="content"
 			:show="show3"
 			showCancelButton
 			closeOnClickOverly
@@ -48,7 +48,7 @@
 			@close="close"
 		></u-modal>
 		<u-modal
-			content="模态框，常用于消息提示、消息确认、在当前页面内完成特定的交互操作"
+			:content="content"
 			:show="show4"
 			showCancelButton
 			asyncClose
@@ -56,7 +56,7 @@
 			@cancel="() => show4 = false"
 		></u-modal>
 		<u-modal
-			content="模态框，常用于消息提示、消息确认、在当前页面内完成特定的交互操作"
+			:content="content"
 			:show="show5"
 			showCancelButton
 			buttonReverse
@@ -64,7 +64,7 @@
 			@cancel="() => show5 = false"
 		></u-modal>
 		<u-modal
-			content="模态框，常用于消息提示、消息确认、在当前页面内完成特定的交互操作"
+			:content="content"
 			title="标题"
 			:show="show6"
 			closeOnClickOverly
@@ -85,7 +85,7 @@
 		<u-modal
 			title="标题"
 			:show="show8"
-			content="模态框，常用于消息提示、消息确认、在当前页面内完成特定的交互操作"
+			:content="content"
 			closeOnClickOverly
 			showCancelButton
 		>
@@ -98,7 +98,7 @@
 			></u-button>
 		</u-modal>
 		<u-modal
-			content="模态框，常用于消息提示、消息确认、在当前页面内完成特定的交互操作"
+			:content="content"
 			title="标题"
 			:show="show9"
 			:zoom="false"
@@ -111,6 +111,7 @@
 	export default {
 		data() {
 			return {
+				content: '模态框，常用于消息提示、消息确认、在当前页面内完成特定的交互操作',
 				show1: false,
 				show2: false,
 				show3: false,

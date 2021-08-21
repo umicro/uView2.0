@@ -60,9 +60,14 @@
 						iconUrl: 'https://cdn.uviewui.com/uview/demo/transition/fadeUp.png'
 					},
 					{
-						mode: 'zoom-in',
+						mode: 'zoom',
 						title: '缩放',
-						iconUrl: 'https://cdn.uviewui.com/uview/demo/transition/fadeUp.png'
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/transition/zoom.png'
+					},
+					{
+						mode: 'fade-zoom',
+						title: '缩放淡入',
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/transition/fadeZoom.png'
 					},
 					{
 						mode: 'fade-down',
@@ -98,7 +103,7 @@
 						mode: 'slide-right',
 						title: '右滑进入',
 						iconUrl: 'https://cdn.uviewui.com/uview/demo/transition/slideRight.png'
-					},
+					}
 				]
 			}
 		},

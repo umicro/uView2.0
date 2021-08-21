@@ -53,16 +53,16 @@ export default {
         leave: { transform: `translateY(0)` },
         'leave-to': { transform: `translateX(100%)` }
     },
-    'zoom-in': {
-        enter: { opacity: 0, transform: `scale(0.8)` },
-        'enter-to': { opacity: 1, transform: `scale(1)` },
-        leave: { opacity: 1, transform: `scale(1)` },
-        'leave-to': { opacity: 0, transform: `scale(0.8)` }
+    'zoom': {
+        enter: { transform: `scale(0.9)` },
+        'enter-to': { transform: `scale(1)` },
+        leave: { transform: `scale(1)` },
+        'leave-to': { transform: `scale(0.9)` }
     },
-    'zoom-out': {
-        enter: { opacity: 0, transform: `scale(1.2)` },
+    'fade-zoom': {
+        enter: { opacity: 0, transform: `scale(0.9)` },
         'enter-to': { opacity: 1, transform: `scale(1)` },
         leave: { opacity: 1, transform: `scale(1)` },
-        'leave-to': { opacity: 0, transform: `scale(1.2)` }
+        'leave-to': { opacity: 0, transform: `scale(0.9)` }
     }
 }

@@ -51,25 +51,26 @@ export default {
 	        return {
 	            // #ifndef APP-NVUE
 	            transitionDuration: `${this.duration}ms`,
-	            display: `${this.display ? '' : 'none'}`,
+	            // display: `${this.display ? '' : 'none'}`,
 				transitionTimingFunction: this.timingFunction,
 	            // #endif
-	            ...uni.$u.addStyle(customStyle), // 避免自定义样式影响到动画属性
+				// 避免自定义样式影响到动画属性，所以写在viewStyle前面
+	            ...uni.$u.addStyle(customStyle), 
 	            ...viewStyle
 	        }
 	    }
 	},
 	// 将mixin挂在到组件中，uni.$u.mixin实际上为一个vue格式对象
-	mixins: [uni.$u.mixin, transition,props],
+	mixins: [uni.$u.mixin, transition, props],
 	watch: {
 		show: {
 			handler(newVal) {
 				// vue和nvue分别执行不同的方法
 				// #ifdef APP-NVUE
-				newVal ? this.nvueEnter() : this.nvueLeave();
+				newVal ? this.nvueEnter() : this.nvueLeave()
 				// #endif
 				// #ifndef APP-NVUE
-				newVal ? this.vueEnter() : this.vueLeave();
+				newVal ? this.vueEnter() : this.vueLeave()
 				// #endif
 			},
 			// 表示同时监听初始化时的props的show的意思
@@ -87,7 +88,5 @@ export default {
 @import './vue.ani-style.scss';
 /* #endif */
 
-.u-transition {
-
-}
+.u-transition {}
 </style>

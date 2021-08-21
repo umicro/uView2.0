@@ -8,6 +8,10 @@
 			    class="u-tag"
 			    :class="[`u-tag--${shape}`, !plain && `u-tag--${type}`, plain && `u-tag--${type}--plain`, `u-tag--${size}`, plain && plainFill && `u-tag--${type}--plain--fill`]"
 			    @tap.stop="clickHandler"
+				:style="{
+					marginRight: closable ? '10px' : 0,
+					marginTop: closable ? '10px' : 0,
+				}"
 			>
 				<slot name="icon">
 					<view
@@ -247,8 +251,8 @@
 		&__close {
 			position: absolute;
 			z-index: 999;
-			top: 0;
-			right: 0;
+			top: 10px;
+			right: 10px;
 			border-radius: 100px;
 			background-color: #C6C7CB;
 			@include flex(row);

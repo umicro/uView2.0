@@ -91,7 +91,7 @@ export default {
 		// 在 H5 平台能否聚焦以及软键盘是否跟随弹出，取决于当前浏览器本身的实现。nvue 页面不支持，需使用组件的 focus()、blur() 方法控制焦点
 		focus: {
 			type: Boolean,
-			default: uni.$u.props.input.placeholder
+            default: uni.$u.props.input.focus
 		},
 		// 键盘收起时，是否自动失去焦点，目前仅App3.0.0+有效
 		autoBlur: {

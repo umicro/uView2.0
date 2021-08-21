@@ -7,12 +7,16 @@
 				    ref="uCode"
 				    @change="codeChange"
 				    seconds="20"
+					change-text="XS获取"
+					@start="disabled1 = true"
+					@end="disabled1 = false"
 				></u-code>
 				<u-button
 				    @tap="getCode"
 				    :text="tips"
 				    type="success"
 					size="small"
+					:disabled="disabled1"
 				></u-button>
 			</view>
 		</view>
@@ -23,13 +27,16 @@
 				    ref="uCode1"
 				    @change="codeChange1"
 				    keep-running
-				    change-text="保持倒计时XS"
+				    change-text="倒计时XS"
+					@start="disabled2 = true"
+					@end="disabled2 = false"
 				></u-code>
 				<u-button
 					type="primary"
 				    @tap="getCode1"
 				    :text="tips1"
 					size="small"
+					:disabled="disabled2"
 				></u-button>
 			</view>
 		</view>
@@ -60,7 +67,10 @@
 				// 此为错误定义，见下方说明
 				// refCode: null,
 				tips1: '',
-				tips2: ''
+				tips2: '',
+				disabled1: false,
+				disabled2: false,
+				disabled3: false
 			}
 		},
 		onReady() {

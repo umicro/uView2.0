@@ -62,6 +62,11 @@ export default {
 		inverted: {
 			type: Boolean,
 			default: uni.$u.props.badge.inverted
+		},
+		// 是否绝对定位
+		absolute: {
+			type: Boolean,
+			default: false
 		}
 	}
 }

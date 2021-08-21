@@ -10,6 +10,10 @@
      	{
      		"launchtype" : "remote"
      	},
+     	"h5" : 
+     	{
+     		"launchtype" : "remote"
+     	},
      	"type" : "uniCloud"
      }
     ]

@@ -45,8 +45,7 @@
 			},
 			colStyle() {
 				const style = {
-					// 这里为什么需要分开写，而不是写成"padding: 0 10px"的形式呢
-					// 因为weex是阿里为了KPI而做的垃ji，这也说明阿里绝对无法和谷歌，微软相比相提并论(虽然谷歌的Android和微软的Windows也是垃圾)
+					// 这里写成"padding: 0 10px"的形式是因为nvue的需要
 					paddingLeft: uni.$u.addUnit(Number(this.parentData.gutter)/2),
 					paddingRight: uni.$u.addUnit(Number(this.parentData.gutter)/2),
 					alignItems: this.uAlignItem,

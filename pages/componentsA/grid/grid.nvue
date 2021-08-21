@@ -26,9 +26,9 @@
 			<view>
 				<u-grid :border="true">
 					<u-grid-item
-						:customStyle="{width:220+'rpx',height:220+'rpx'}"
 						v-for="(listItem,listIndex) in list"
 						:key="listIndex"
+						customStyle="padding-top: 10px; padding-bottom: 10px" 
 					>
 						<u-icon
 							:customStyle="{paddingTop:20+'rpx'}"
@@ -50,6 +50,7 @@
 					<u-grid-item
 						v-for="(listItem,listIndex) in list"
 						:key="listIndex"
+						customStyle="padding-top: 10px; padding-bottom: 10px"
 					>
 						<u-icon
 							:customStyle="{paddingTop:20+'rpx'}"
@@ -71,7 +72,6 @@
 					<swiper-item>
 						<u-grid :border="true">
 							<u-grid-item
-								:customStyle="{width:220+'rpx',height:220+'rpx'}"
 								v-for="(item, index) in swiperList"
 								:index="index"
 								:key="index"
@@ -88,7 +88,6 @@
 					<swiper-item>
 						<u-grid :border="true">
 							<u-grid-item
-								:customStyle="{width:220+'rpx',height:220+'rpx'}"
 								v-for="(item, index) in swiperList"
 								:index="index + 9"
 								:key="index"
@@ -105,7 +104,6 @@
 					<swiper-item>
 						<u-grid :border="true">
 							<u-grid-item
-								:customStyle="{width:220+'rpx',height:220+'rpx'}"
 								v-for="(item, index) in swiperList"
 								:index="index + 18"
 								:key="index"
@@ -181,7 +179,7 @@
 
 <style lang="scss">
 	.swiper {
-		height: 720rpx;
+		height: 220px;
 	}
 
 	.grid-text {

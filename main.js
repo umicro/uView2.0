@@ -12,11 +12,6 @@ Vue.use(uView)
 // 引入事列样式
 import props from 'common/props'
 
-// 路由拦截
-// uni.$u.routeIntercept = (config, next) => {
-// 	next(false)
-// }
-
 const app = new Vue({
     ...App
 })

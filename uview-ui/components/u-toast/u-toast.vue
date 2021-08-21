@@ -1,13 +1,8 @@
 <template>
 	<view class="u-toast">
 		<u-overlay
-			:show="tmpConfig.overlay && isShow"
-			:custom-style="overlayStyle"
-		></u-overlay>
-		<u-transition
-			mode="fade"
 			:show="isShow"
-			:custom-style="toastStyle"
+			:custom-style="overlayStyle"
 		>
 			<view
 				class="u-toast__content"
@@ -38,12 +33,11 @@
 					style="max-width: 400rpx;"
 				>{{ tmpConfig.message }}</text>
 			</view>
-		</u-transition>
+		</u-overlay>
 	</view>
 </template>
 
 <script>
-	import props from './props.js';
 	/**
 	 * toast 消息提示
 	 * @description 此组件表现形式类似uni的uni.showToastAPI，但也有不同的地方。
@@ -62,7 +56,7 @@
 	 */
 	export default {
 		name: 'u-toast',
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mixin],
 		data() {
 			return {
 				isShow: false,
@@ -73,7 +67,7 @@
 					duration: 2000, // 显示的时间，毫秒
 					icon: true, // 显示的图标
 					position: 'center', // toast出现的位置
-					loading: null, // 执行完后的回调函数
+					complete: null, // 执行完后的回调函数
 					overlay: false, // 是否防止触摸穿透
 					loading: false, // 是否加载中状态
 				},
@@ -89,41 +83,12 @@
 					return ''
 				}
 			},
-			// 整体样式
-			toastStyle() {
-				const style = {},
-					sys = uni.$u.sys()
-				let left = sys.windowWidth / 2,
-					top = sys.windowHeight / 2
-				// 非H5端有原生导航栏，其高度不会算到windowHeight中，toast会在视觉上偏下，这里做一个向上的偏移
-				// 原生导航栏的高度为44px
-				// 同时由于H5端在chrome上，对Y轴进行transform偏移50%会产生字体模糊，后面将其设置偏移0，同时对其上移一定距离
-				// #ifndef H5
-				top = top - 44
-				// #endif
-				// #ifdef H5
-				top = top - 20
-				// #endif
-				style.position = 'fixed'
-				style.left = left + 'px'
-				// toast的弹出位置
-				if (this.tmpConfig.position === 'center') {
-					style.top = top + 'px'
-				} else if (this.tmpConfig.position === 'top') {
-					style.top = top - sys.windowHeight / 4 + 'px'
-				} else {
-					style.top = top + sys.windowHeight / 4 + 'px'
-				}
-				style.zIndex = this.zIndex
-				// 进行位移偏转，再通过left，top修正，以达到居中的效果
-				style.transform = 'translate(-50%, -50%)'
-				// #ifdef H5
-				style.transform = 'translate(-50%, 0)'
-				// #endif
-				return uni.$u.deepMerge(style, uni.$u.addStyle(uni.customStyle))
-			},
 			overlayStyle() {
-				const style = {}
+				const style = {
+					justifyContent: 'center',
+					alignItems: 'center',
+					display: 'flex'
+				}
 				// 将遮罩设置为100%透明度，避免出现灰色背景
 				style.backgroundColor = 'rgba(0, 0, 0, 0)'
 				return style

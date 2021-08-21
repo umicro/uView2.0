@@ -4,12 +4,13 @@
 		:zoom="zoom"
 		:show="show"
 		:customStyle="{
-			borderRadius: '8px', 
+			borderRadius: '6px', 
 			overflow: 'hidden',
 			marginTop: `-${$u.addUnit(negativeTop)}`
 		}"
 		:closeOnClickOverly="closeOnClickOverly"
 		:safeAreaInsetBottom="false"
+		:duration="400"
 		@click="clickHandler"
 	>
 		<view
@@ -47,9 +48,10 @@
 					}"
 				>
 					<view
-						class="u-modal__button-group__wrapper"
+						class="u-modal__button-group__wrapper u-modal__button-group__wrapper--cancel"
 						:hover-stay-time="150"
 						hover-class="u-modal__button-group__wrapper--hover"
+						:class="[showCancelButton && !showConfirmButton && 'u-modal__button-group__wrapper--only-cancel']"
 						v-if="showCancelButton"
 						@tap="cancelHandler"
 					>
@@ -60,11 +62,15 @@
 							}"
 						>{{ cancelText }}</text>
 					</view>
-					<u-line direction="column"></u-line>
+					<u-line
+						direction="column"
+						v-if="showConfirmButton && showCancelButton"
+					></u-line>
 					<view
-						class="u-modal__button-group__wrapper"
+						class="u-modal__button-group__wrapper u-modal__button-group__wrapper--confirm"
 						:hover-stay-time="150"
 						hover-class="u-modal__button-group__wrapper--hover"
+						:class="[!showCancelButton && showConfirmButton && 'u-modal__button-group__wrapper--only-confirm']"
 						v-if="showConfirmButton"
 						@tap="confirmHandler"
 					>
@@ -129,10 +135,12 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
+	$u-modal-border-radius: 6px;
 
 	.u-modal {
 		width: 650rpx;
-		border-radius: 16px;
+		border-radius: $u-modal-border-radius;
+		overflow: hidden;
 
 		&__title {
 			font-size: 16px;
@@ -168,6 +176,16 @@
 				justify-content: center;
 				align-items: center;
 				height: 48px;
+				
+				&--confirm,
+				&--only-cancel {
+					border-bottom-right-radius: $u-modal-border-radius;
+				}
+				
+				&--cancel,
+				&--only-confirm {
+					border-bottom-left-radius: $u-modal-border-radius;
+				}
 
 				&--hover {
 					background-color: $u-bg-color;

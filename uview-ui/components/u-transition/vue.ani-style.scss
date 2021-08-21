@@ -1,6 +1,8 @@
 /**
  * vue版本动画内置的动画模式有如下：
  * fade：淡入
+ * zoom：缩放
+ * fade-zoom：缩放淡入
  * fade-up：上滑淡入
  * fade-down：下滑淡入
  * fade-left：左滑淡入
@@ -11,8 +13,7 @@
  * slide-right：右滑进入
  */
 
-$u-zoom-out-scale: scale(1.2);
-$u-zoom-in-scale: scale(0.8);
+$u-zoom-scale: scale(0.9);
 
 .u-fade-enter-active,
 .u-fade-leave-active {
@@ -22,6 +23,17 @@ $u-zoom-in-scale: scale(0.8);
 .u-fade-enter,
 .u-fade-leave-to {
 	opacity: 0
+}
+
+.u-fade-zoom-enter,
+.u-fade-zoom-leave-to {
+	transform: $u-zoom-scale;
+	opacity: 0;
+}
+
+.u-fade-zoom-enter-active,
+.u-fade-zoom-leave-active {
+	transition-property: transform, opacity;
 }
 
 .u-fade-down-enter-active,
@@ -90,19 +102,12 @@ $u-zoom-in-scale: scale(0.8);
 	transform: translate3d(100%, 0, 0)
 }
 
-.u-zoom-in-enter-active,
-.u-zoom-in-leave-active,
-.u-zoom-out-enter-active,
-.u-zoom-out-leave-active {
+.u-zoom-enter-active,
+.u-zoom-leave-active {
 	transition-property: transform
 }
 
-.u-zoom-in-enter,
-.u-zoom-in-leave-to {
-	transform: $u-zoom-in-scale
-}
-
-.u-zoom-out-enter,
-.u-zoom-out-leave-to {
-	transform: $u-zoom-out-scale
+.u-zoom-enter,
+.u-zoom-leave-to {
+	transform: $u-zoom-scale
 }

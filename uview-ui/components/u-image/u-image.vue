@@ -19,7 +19,7 @@
 				:lazy-load="lazyLoad"
 				class="u-image__image"
 				:style="{
-					borderRadius: shape == 'circle' ? '50%' : $u.addUnit(radius),
+					borderRadius: shape == 'circle' ? '10000px' : $u.addUnit(radius),
 					width: $u.addUnit(width),
 					height: $u.addUnit(height)
 				}"

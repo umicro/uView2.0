@@ -88,7 +88,7 @@
 					length: 12
 				}),
 				// 这里需要设置默认值为360，否则在安卓nvue上，会延迟一个duration周期后才执行
-				// 在iOS nvue上，则会一开始默认执行两个周期的动画，这就是阿里的weex的垃圾之处
+				// 在iOS nvue上，则会一开始默认执行两个周期的动画
 				aniAngel: 360, // 动画旋转角度
 				webviewHide: false, // 监听webview的状态，如果隐藏了页面，则停止动画，以免性能消耗
 				loading: false, // 是否运行中，针对nvue使用
@@ -174,7 +174,7 @@
 					// 每次增加360deg，为了让其重新旋转一周
 					this.aniAngel += 360
 					// 动画结束后，继续循环执行动画，需要同时判断webviewHide变量
-					// 否则垃圾weex配上垃圾安卓，页面隐藏后依然会继续执行startAnimate方法
+					// nvue安卓，页面隐藏后依然会继续执行startAnimate方法
 					this.show && !this.webviewHide ? this.startAnimate() : this.loading = false
 				})
 			}

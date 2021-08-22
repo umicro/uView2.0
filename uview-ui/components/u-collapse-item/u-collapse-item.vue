@@ -1,45 +1,44 @@
 <template>
 	<view class="u-collapse-item">
 		<u-cell
-		    :title="title"
-		    :value="value"
-		    :label="label"
-		    :icon="icon"
-		    :isLink="isLink"
-		    :clickable="clickable"
-		    :border="border && showBorder"
-		    @click="clickHandler"
-		    :arrowDirection="expanded ? 'up' : 'down'"
-		    :disabled="disabled"
+			:title="title"
+			:value="value"
+			:label="label"
+			:icon="icon"
+			:isLink="isLink"
+			:clickable="clickable"
+			:border="border && showBorder"
+			@click="clickHandler"
+			:arrowDirection="expanded ? 'up' : 'down'"
+			:disabled="disabled"
 		>
 			<slot
-			    name="title"
-			    slot="title"
+				name="title"
+				slot="title"
 			/>
 			<slot
-			    name="icon"
-			    slot="icon"
+				name="icon"
+				slot="icon"
 			/>
 			<slot
-			    name="value"
-			    slot="value"
+				name="value"
+				slot="value"
 			/>
 			<slot
-			    name="right-icon"
-			    slot="right-icon"
+				name="right-icon"
+				slot="right-icon"
 			/>
 		</u-cell>
 		<view
-		    class="u-collapse-item__content"
-		    :animation="animationData"
-		    ref="animation"
+			class="u-collapse-item__content"
+			:animation="animationData"
+			ref="animation"
 		>
-			<text
-			    class="u-collapse-item__content__text content-class"
-			    :id="elId"
-			    :ref="elId"
-			>
-				<slot /></text>
+			<view
+				class="u-collapse-item__content__text content-class"
+				:id="elId"
+				:ref="elId"
+			><slot /></view>
 		</view>
 		<u-line></u-line>
 	</view>
@@ -70,7 +69,7 @@
 	 */
 	export default {
 		name: "u-collapse-item",
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mixin, props],
 		data() {
 			return {
 				elId: uni.$u.guid(),
@@ -80,6 +79,8 @@
 				expanded: false,
 				// 根据expanded确定是否显示border，为了控制展开时，cell的下划线更好的显示效果，进行一定时间的延时
 				showBorder: false,
+				// 是否动画中，如果是则不允许继续触发点击
+				animating: false
 			};
 		},
 		watch: {
@@ -134,17 +135,19 @@
 				// 好处是，父组件从服务端获取内容后，变更折叠面板后可以获得最新的高度
 				const rect = await this.queryRect()
 				const height = this.expanded ? rect.height : 0
-
+				this.animating = true
 				// #ifdef APP-NVUE
 				const ref = this.$refs['animation'].ref
 				animation.transition(ref, {
 					styles: {
 						height: height + 'px'
 					},
-					duration: 300,
+					duration: this.duration,
 					// 必须设置为true，否则会到面板收起或展开时，页面其他元素不会随之调整它们的布局
 					needLayout: true,
 					timingFunction: 'ease-in-out',
+				}, () => {
+					this.animating = false
 				})
 				// #endif
 
@@ -155,17 +158,20 @@
 				animation
 					.height(height)
 					.step({
-						duration: 300,
+						duration: this.duration,
 					})
 					.step()
 				// 导出动画数据给面板的animationData值
 				this.animationData = animation.export()
+				// 标识动画结束
+				uni.$u.sleep(this.duration).then(() => {
+					this.animating = false
+				})
 				// #endif
 			},
 			// 点击collapsehead头部
 			clickHandler() {
-				if (this.disabled) return
-
+				if (this.disabled && this.animating) return
 				// 设置本组件为相反的状态
 				this.parent && this.parent.onChange(this)
 			},

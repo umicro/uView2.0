@@ -74,6 +74,11 @@ export default {
 		confirmText: {
 			type: String,
 			default: uni.$u.props.keyboard.confirmText
+		},
+		// 输入一个中文后，是否自动切换到英文
+		autoChange: {
+			type: Boolean,
+			default: uni.$u.props.keyboard.autoChange
 		}
 	},
 }

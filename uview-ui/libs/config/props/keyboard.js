@@ -24,6 +24,7 @@ export default {
 		overlay: true,
 		zIndex: 10075,
 		cancelText: '取消',
-		confirmText: '确定'
+		confirmText: '确定',
+		autoChange: false
 	},
 }

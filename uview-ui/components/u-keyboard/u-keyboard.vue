@@ -58,6 +58,7 @@
 			<template v-else>
 				<u-car-keyboard
 				    :random="random"
+					:autoChange="autoChange"
 				    @backspace="backspace"
 				    @change="change"
 				></u-car-keyboard>

@@ -192,6 +192,8 @@
 				// 不同模式，获取不同数组的值
 				if (this.abc) value = this.engKeyBoardList[i][j];
 				else value = this.areaList[i][j];
+				// 如果允许自动切换，则将中文状态切换为英文
+				if (!this.abc && this.autoChange) uni.$u.sleep(200).then(() => this.abc = true)
 				this.$emit('change', value);
 			},
 			// 修改汽车牌键盘的输入模式，中文|英文
@@ -282,18 +284,18 @@
 					align-items: center;
 					box-shadow: $u-car-keyboard-button-inner-box-shadow;
 				}
-				
+
 				&__left {
 					&__line {
 						font-size: $u-car-keyboard-line-font-size;
 						color: $u-car-keyboard-line-color;
 						margin: $u-car-keyboard-line-margin;
 					}
-					
+
 					&__lang {
 						font-size: $u-car-keyboard-lang-font-size;
 						color: $u-car-keyboard-lang-color;
-					
+
 						&--active {
 							color: $u-car-keyboard-active-color;
 						}

@@ -152,7 +152,6 @@
 		@include flex(column);
 		font-size: 14px;
 		color: $u-main-color;
-		background-color: red;
 
 		&__body {
 			@include flex;

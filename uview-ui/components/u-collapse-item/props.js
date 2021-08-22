@@ -50,5 +50,10 @@ export default {
 			type: String,
 			default: uni.$u.props.collapseItem.icon
 		},
+		// 面板展开收起的过渡时间，单位ms
+		duration: {
+			type: Number,
+			default: uni.$u.props.collapseItem.duration
+		}
 	},
 }

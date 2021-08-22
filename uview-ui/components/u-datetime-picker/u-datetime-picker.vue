@@ -23,7 +23,39 @@
 	    return result
 	}
 	import props from './props.js';
-	import dayjs from '../../libs/util/dayjs.js'
+	import dayjs from '../../libs/util/dayjs.js';
+	/**
+	 * DatatimePicker 时间日期选择器
+	 * @description 此选择器用于时间日期
+	 * @tutorial https://www.uviewui.com/components/datetimePicker.html
+	 * @property {Boolean}			show				用于控制选择器的弹出与收起 ( 默认 false )
+	 * @property {Boolean}			showToolbar			是否显示顶部的操作栏  ( 默认 true )
+	 * @property {String | Number}	value				绑定值
+	 * @property {String}			title				顶部标题
+	 * @property {String}			mode				展示格式 mode=date为日期选择，mode=time为时间选择，mode=year-month为年月选择，mode=datetime为日期时间选择  ( 默认 ‘datetime )
+	 * @property {Number}			maxDate				可选的最大时间  默认值为后10年
+	 * @property {Number}			minDate				可选的最小时间  默认值为前10年
+	 * @property {Number}			minHour				可选的最小小时，仅mode=time有效   ( 默认 0 )
+	 * @property {Number}			maxHour				可选的最大小时，仅mode=time有效	  ( 默认 23 )
+	 * @property {Number}			minMinute			可选的最小分钟，仅mode=time有效	  ( 默认 0 )
+	 * @property {Number}			maxMinute			可选的最大分钟，仅mode=time有效   ( 默认 59 )
+	 * @property {Function}			filter				选项过滤函数
+	 * @property {Function}			formatter			选项格式化函数
+	 * @property {Boolean}			loading				是否显示加载中状态   ( 默认 false )
+	 * @property {String | Number}	itemHeight			各列中，单个选项的高度   ( 默认 44 )
+	 * @property {String}			cancelText			取消按钮的文字  ( 默认 '取消' )
+	 * @property {String}			confirmText			确认按钮的文字  ( 默认 '确认' )
+	 * @property {String}			cancelColor			取消按钮的颜色  ( 默认 '#909193' )
+	 * @property {String}			confirmColor		确认按钮的颜色  ( 默认 '#3c9cff' )
+	 * @property {String | Number}	visibleItemCount	每列中可见选项的数量  ( 默认 5 )
+	 * @property {Boolean}			closeOnClickOverly	是否允许点击遮罩关闭选择器  ( 默认 false )
+	 * @property {Array}			defaultIndex		各列的默认索引
+	 * @event {Function} close 关闭选择器时触发
+	 * @event {Function} confirm 点击确定按钮，返回当前选择的值
+	 * @event {Function} change 当选择值变化时触发
+	 * @event {Function} cancel 点击取消按钮
+	 * @example  <u-datetime-picker :show="show" :value="value1"  mode="datetime" ></u-datetime-picker>
+	 */
 	export default {
 		name: 'datetime-picker',
 		mixins: [uni.$u.mixin, props],

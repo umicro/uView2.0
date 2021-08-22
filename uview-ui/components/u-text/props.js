@@ -12,7 +12,7 @@ export default {
 		},
 		// 显示的值
 		text: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.text.text
 		},
 		// 前置图标
@@ -68,7 +68,7 @@ export default {
 		},
 		// 文本显示的行数，如果设置，超出此行数，将会显示省略号
 		lines: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.text.lines
 		},
 		// 文本颜色
@@ -78,7 +78,7 @@ export default {
 		},
 		// 字体大小
 		size: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.text.size
 		},
 		// 图标的样式
@@ -98,12 +98,12 @@ export default {
 		},
 		// 外边距，对象、字符串，数值形式均可
 		margin: {
-			type: [Object, Number, String],
+			type: [Object, String, Number],
 			default: uni.$u.props.text.margin
 		},
 		// 文本行高
 		lineHeight: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.text.lineHeight
 		},
 		// 文本对齐方式，可选值left|center|right

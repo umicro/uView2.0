@@ -27,7 +27,7 @@ export default {
 		},
 		// 文本大小
 		textSize: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.divider.textSize
 		},
 		// 文本颜色

@@ -105,6 +105,16 @@
 	// 由于weex为阿里的KPI业绩考核的垃ji，所以不支持百分比单位，这里需要通过dom查询组件的宽度
 	const dom = uni.requireNativePlugin('dom')
 	// #endif
+	/**
+	 * IndexList 索引列表
+	 * @description  通过折叠面板收纳内容区域
+	 * @tutorial https://uviewui.com/components/indexList.html
+	 * @property {String}			inactiveColor	右边锚点非激活的颜色 ( 默认 '#606266' )
+	 * @property {String}			activeColor		右边锚点激活的颜色 ( 默认 '#5677fc' )
+	 * @property {Array}			indexList		索引字符列表，数组形式
+	 * @property {Boolean}			sticky			是否开启锚点自动吸顶 ( 默认 true )
+	 * @property {String | Number}	customNavHeight	自定义导航栏的高度 ( 默认 0 )
+	 * */ 
 	export default {
 		name: 'u-index-list',
 		mixins: [uni.$u.mixin, props],

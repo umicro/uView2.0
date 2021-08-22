@@ -10,26 +10,26 @@
 <script>
 	import props from './props.js';
 	/**
-	 * checkboxGroup 开关选择器父组件Group
+	 * checkboxGroup 复选框组
 	 * @description 复选框组件一般用于需要多个选择的场景，该组件功能完整，使用方便
 	 * @tutorial https://www.uviewui.com/components/checkbox.html
-	 * @property {Array} value 绑定的值
-	 * @property {Boolean} labelDisabled 是否禁止点击文本操作 (默认 false)
-	 * @property {Boolean} disabled 是否禁用全部checkbox （默认 false）
-	 * @property {String} shape 形状，circle-圆形，square-方形 （默认 circle）
-	 * @property {String} activeColor 选中状态下的颜色，如设置此值，将会覆盖parent的activeColor值 （默认 #2979ff）
-	 * @property {String} inactiveColor 未选中的颜色 （默认 #c8c9cc）
-	 * @property {String} name 标识符
-	 * @property {String Number} size 整个组件的尺寸 单位px （默认 20）
-	 * @property {String} placement 布局方式，row-横向，column-纵向 （默认 row）
-	 * @property {String Number} labelSize label的字体大小，px单位  （默认 15）
-	 * @property {String} labelColor label的字体颜色 （默认 #303133）
-	 * @property {String} iconColor 图标颜色 （默认 #ffffff）
-	 * @property {String Number} iconSize  图标的大小，单位px （默认 12）
-	 * @property {Object} customStyle  定义需要用到的外部样式
-	 * @property {Boolean} borderBottom  placement为row时，是否显示下边框
-	 * @event {Function} change 任一个checkbox状态发生变化时触发，回调为一个对象
-	 * @event {Function} input 修改通过v-model绑定的值时触发，回调为一个对象
+	 * @property {String}			name			标识符 
+	 * @property {Array}			value			绑定的值
+	 * @property {String}			shape			形状，circle-圆形，square-方形 （默认 'square' ）
+	 * @property {Boolean}			disabled		是否禁用全部checkbox （默认 false ）
+	 * @property {String}			activeColor		选中状态下的颜色，如设置此值，将会覆盖parent的activeColor值 （默认 '#2979ff' ）
+	 * @property {String}			inactiveColor	未选中的颜色 （默认 '#c8c9cc' ）
+	 * @property {String | Number}	size			整个组件的尺寸 单位px （默认 18 ）
+	 * @property {String}			placement		布局方式，row-横向，column-纵向 （默认 'row' ）
+	 * @property {String | Number}	labelSize		label的字体大小，px单位  （默认 14 ）
+	 * @property {String}			labelColor		label的字体颜色 （默认 '#303133' ）
+	 * @property {Boolean}			labelDisabled	是否禁止点击文本操作 (默认 false )
+	 * @property {String}			iconColor		图标颜色 （默认 '#ffffff' ）
+	 * @property {String | Number}	iconSize		图标的大小，单位px （默认 12 ）
+	 * @property {String}			iconPlacement	勾选图标的对齐方式，left-左边，right-右边  （默认 'left' ）
+	 * @property {Boolean}			borderBottom	placement为row时，是否显示下边框 （默认 false ）
+	 * @event {Function}	change	任一个checkbox状态发生变化时触发，回调为一个对象
+	 * @event {Function}	input	修改通过v-model绑定的值时触发，回调为一个对象
 	 * @example <u-checkbox-group></u-checkbox-group>
 	 */
 	export default {

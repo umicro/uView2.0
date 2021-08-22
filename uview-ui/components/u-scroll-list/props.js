@@ -2,12 +2,12 @@ export default {
 	props: {
 		// 指示器的整体宽度
 		indicatorWidth: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.scrollList.indicatorWidth,
 		},
 		// 滑块的宽度
 		indicatorBarWidth: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.scrollList.indicatorBarWidth,
 		},
 		// 是否显示面板指示器

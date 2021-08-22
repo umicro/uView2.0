@@ -7,7 +7,7 @@ export default {
 		},
 		// 当前活动的tab的index
 		current: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.subsection.current
 		},
 		// 激活的颜色
@@ -27,7 +27,7 @@ export default {
 		},
 		// 字体大小
 		fontSize: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.subsection.fontSize
 		},
 		// 激活tab的字体是否加粗

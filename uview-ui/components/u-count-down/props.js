@@ -2,7 +2,7 @@ export default {
 	props: {
 		// 倒计时时长，单位ms
 		time: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.countDown.time
 		},
 		// 时间格式，DD-日，HH-时，mm-分，ss-秒，SSS-毫秒

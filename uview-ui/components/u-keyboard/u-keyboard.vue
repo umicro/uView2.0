@@ -73,20 +73,22 @@
 	 * keyboard 键盘
 	 * @description 此为uViw自定义的键盘面板，内含了数字键盘，车牌号键，身份证号键盘3中模式，都有可以打乱按键顺序的选项。
 	 * @tutorial https://www.uviewui.com/components/keyboard.html
-	 * @property {String} mode 键盘类型，见官网基本使用的说明（默认number）
-	 * @property {Boolean} dotEnable 是否显示"."按键，只在mode=number时有效（默认true）
-	 * @property {Boolean} tooltip 是否显示键盘顶部工具条（默认true）
-	 * @property {String} tips 工具条中间的提示文字，见上方基本使用的说明，如不需要，请传""空字符
-	 * @property {Boolean} showCancel 是否显示工具条左边的"取消"按钮（默认true）
-	 * @property {Boolean} showConfirm 是否显示工具条右边的"完成"按钮（默认true）
-	 * @property {Boolean} overlay 是否显示遮罩（默认true）
-	 * @property {String} confirmText 确认按钮的文字
-	 * @property {String} cancelText 取消按钮的文字
-	 * @property {Number | String} zIndex 弹出键盘的z-index值（默认1075）
-	 * @property {Boolean} random 是否打乱键盘按键的顺序（默认false）
-	 * @property {Boolean} safeAreaInsetBottom 是否开启底部安全区适配（默认false）
-	 * @property {Boolean} closeOnClickOverly 是否允许点击遮罩收起键盘（默认true）
-	 * @property {Object} customStyle 自定义样式，对象形式
+	 * @property {String}			mode				键盘类型，见官网基本使用的说明 （默认 'number' ）
+	 * @property {Boolean}			dotEnable			是否显示"."按键，只在mode=number时有效 （默认 true ）
+	 * @property {Boolean}			tooltip				是否显示键盘顶部工具条 （默认 true ）
+	 * @property {Boolean}			showTips			是否显示工具条中间的提示 （默认 true ）
+	 * @property {String}			tips				工具条中间的提示文字，见上方基本使用的说明，如不需要，请传""空字符
+	 * @property {Boolean}			showCancel			是否显示工具条左边的"取消"按钮 （默认 true ）
+	 * @property {Boolean}			showConfirm			是否显示工具条右边的"完成"按钮（ 默认 true ）
+	 * @property {Boolean}			random				是否打乱键盘按键的顺序 （默认 false ）
+	 * @property {Boolean}			safeAreaInsetBottom	是否开启底部安全区适配 （默认 true ）
+	 * @property {Boolean}			closeOnClickOverly	是否允许点击遮罩收起键盘 （默认 true ）
+	 * @property {Boolean}			show				控制键盘的弹出与收起（默认 false ）
+	 * @property {Boolean}			overlay				是否显示遮罩 （默认 true ）
+	 * @property {String | Number}	zIndex				弹出键盘的z-index值 （默认 1075 ）
+	 * @property {String}			cancelText			取消按钮的文字 （默认 '取消' ）
+	 * @property {String}			confirmText			确认按钮的文字 （默认 '确认' ）
+	 * @property {Object}			customStyle			自定义样式，对象形式
 	 * @event {Function} change 按键被点击(不包含退格键被点击)
 	 * @event {Function} cancel 键盘顶部工具条左边的"取消"按钮被点击
 	 * @event {Function} confirm 键盘顶部工具条右边的"完成"按钮被点击

@@ -2,12 +2,12 @@ export default {
 	props: {
         // 用于v-model双向绑定选中的星星数量
         value: {
-            type: [Number, String],
+            type: [String, Number],
             default: uni.$u.props.rate.value,
         },
         // 要显示的星星数量
         count: {
-            type: [Number, String],
+            type: [String, Number],
             default: uni.$u.props.rate.count,
         },
         // 是否不可选中
@@ -17,7 +17,7 @@ export default {
         },
         // 星星的大小，单位px
         size: {
-            type: [Number, String],
+            type: [String, Number],
             default: uni.$u.props.rate.size,
         },
         // 未选中时的颜色
@@ -32,12 +32,12 @@ export default {
         },
         // 星星之间的间距，单位px
         gutter: {
-            type: [Number, String],
+            type: [String, Number],
             default: uni.$u.props.rate.gutter,
         },
         // 最少能选择的星星个数
         minCount: {
-            type: [Number, String],
+            type: [String, Number],
             default: uni.$u.props.rate.minCount,
         },
         // 是否允许半星

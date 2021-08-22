@@ -2,7 +2,7 @@ export default {
 	props: {
 		// 提示内容
 		loadingText: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.loadingPage.loadingText
 		},
 		// 文字上方用于替换loading动画的图片
@@ -25,15 +25,15 @@ export default {
 			type: String,
 			default: uni.$u.props.loadingPage.bgColor
 		},
-		// 文字大小
-		fontSize: {
-			type: [String, Number],
-			default: uni.$u.props.loadingPage.fontSize
-		},
 		// 文字颜色
 		color: {
 			type: String,
 			default: uni.$u.props.loadingPage.color
+		},
+		// 文字大小
+		fontSize: {
+			type: [String, Number],
+			default: uni.$u.props.loadingPage.fontSize
 		},
 		// 加载中图标的颜色，只能rgb或者十六进制颜色值
 		loadingColor: {

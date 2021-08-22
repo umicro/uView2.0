@@ -1,6 +1,6 @@
 export default {
 	props: {
-		// 是否展示
+		// 操作菜单是否展示 （默认false）
 		show: {
 			type: Boolean,
 			default: uni.$u.props.actionSheet.show
@@ -30,7 +30,7 @@ export default {
 			type: Boolean,
 			default: uni.$u.props.actionSheet.closeOnClickAction
 		},
-		// 处理底部安全区
+		// 处理底部安全区（默认true）
 		safeAreaInsetBottom: {
 			type: Boolean,
 			default: uni.$u.props.actionSheet.safeAreaInsetBottom
@@ -40,12 +40,12 @@ export default {
 			type: String,
 			default: uni.$u.props.actionSheet.openType
 		},
-		// 点击遮罩是否允许关闭
+		// 点击遮罩是否允许关闭 (默认true)
 		closeOnClickOverly: {
 			type: Boolean,
 			default: uni.$u.props.actionSheet.closeOnClickOverly
 		},
-		// 是否显示圆角
+		// 是否显示圆角 (默认false)
 		round: {
 			type: Boolean,
 			default: uni.$u.props.actionSheet.round

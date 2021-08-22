@@ -46,12 +46,15 @@
 	 * loadingPage 加载动画
 	 * @description 警此组件为一个小动画，目前用在uView的loadmore加载更多和switch开关等组件的正在加载状态场景。
 	 * @tutorial https://www.uviewui.com/components/loading.html
-	 * @property {Number String} loadingText 提示内容  (默认“正在加载”)
-	 * @property {String}  image  文字上方用于替换loading动画的图片
-	 * @property {String}  loadingMode  加载动画的模式，circle-圆形，spinner-花朵形，semicircle-半圆形 （默认 circle）
-	 * @property {Boolean}  loading  是否加载中 （默认 false）
-	 * @property {String}  bgColor   背景色 （默认 #fff）
-	 * @property {Object}  customStyle 自定义样式
+	 * @property {String | Number}	loadingText		提示内容  (默认 '正在加载' )
+	 * @property {String}			image			文字上方用于替换loading动画的图片
+	 * @property {String}			loadingMode		加载动画的模式，circle-圆形，spinner-花朵形，semicircle-半圆形 （默认 'circle' ）
+	 * @property {Boolean}			loading			是否加载中 （默认 false ）
+	 * @property {String}			bgColor			背景色 （默认 '#ffffff' ）
+	 * @property {String}			color			文字颜色 （默认 '#C8C8C8' ）
+	 * @property {String | Number}	fontSize		文字大小 （默认 19 ）
+	 * @property {String}			loadingColor	加载中图标的颜色，只能rgb或者十六进制颜色值 （默认 '#C8C8C8' ）
+	 * @property {Object}			customStyle		自定义样式
 	 * @example <u-loading mode="circle"></u-loading>
 	 */
 	export default {

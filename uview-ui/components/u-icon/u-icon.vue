@@ -55,24 +55,24 @@
 	 * icon 图标
 	 * @description 基于字体的图标集，包含了大多数常见场景的图标。
 	 * @tutorial https://www.uviewui.com/components/icon.html
-	 * @property {String} name 图标名称，见示例图标集
-	 * @property {String} color 图标颜色（默认 color['u-content-color']）
-	 * @property {String Number} size 图标字体大小，单位px（默认32）
-	 * @property {Boolean} bold 是否显示粗体（默认false）
-	 * @property {String} index 一个用于区分多个图标的值，点击图标时通过click事件传出
-	 * @property {String} hoverClass 图标按下去的样式类，用法同uni的view组件的hoverClass参数，详情见官网
-	 * @property {String} customPrefix 自定义扩展前缀，方便用户扩展自己的图标库 （默认 uicon）
-	 * @property {String} label 图标右侧的label文字（默认28）
-	 * @property {String} labelPos label相对于图标的位置，只能right或bottom（默认right）
-	 * @property {String Number} labelSize label字体大小，单位px（默认28）
-	 * @property {String} labelColor 图标右侧的label文字颜色（默认color['u-content-color']）
-	 * @property {String Number} space label与图标的距离，单位px（默认3px）
-	 * @property {String} imgMode 图片的mode
-	 * @property {String} width 显示图片小图标时的宽度
-	 * @property {String} height 显示图片小图标时的高度
-	 * @property {String} top 图标在垂直方向上的定位
-	 * @property {Boolean} stop 是否阻止事件传播 （默认false）
-	 * @property {Object} customStyle icon的样式，对象形式
+	 * @property {String}			name			图标名称，见示例图标集
+	 * @property {String}			color			图标颜色,可接受主题色 （默认 color['u-content-color'] ）
+	 * @property {String | Number}	size			图标字体大小，单位px （默认 '16px' ）
+	 * @property {Boolean}			bold			是否显示粗体 （默认 false ）
+	 * @property {String | Number}	index			点击图标的时候传递事件出去的index（用于区分点击了哪一个）
+	 * @property {String}			hoverClass		图标按下去的样式类，用法同uni的view组件的hoverClass参数，详情见官网
+	 * @property {String}			customPrefix	自定义扩展前缀，方便用户扩展自己的图标库 （默认 'uicon' ）
+	 * @property {String | Number}	label			图标右侧的label文字
+	 * @property {String}			labelPos		label相对于图标的位置，只能right或bottom （默认 'right' ）
+	 * @property {String | Number}	labelSize		label字体大小，单位px （默认 '15px' ）
+	 * @property {String}			labelColor		图标右侧的label文字颜色 （ 默认 color['u-content-color'] ）
+	 * @property {String | Number}	space			label与图标的距离，单位px （默认 '3px' ）
+	 * @property {String}			imgMode			图片的mode
+	 * @property {String | Number}	width			显示图片小图标时的宽度
+	 * @property {String | Number}	height			显示图片小图标时的高度
+	 * @property {String | Number}	top				图标在垂直方向上的定位 用于解决某些情况下，让图标垂直居中的用途  （默认 0 ）
+	 * @property {Boolean}			stop			是否阻止事件传播 （默认 false ）
+	 * @property {Object}			customStyle		icon的样式，对象形式
 	 * @event {Function} click 点击图标时触发
 	 * @event {Function} touchstart 事件触摸时触发
 	 * @example <u-icon name="photo" color="#2979ff" size="28"></u-icon>

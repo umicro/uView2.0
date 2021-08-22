@@ -2,7 +2,7 @@ export default {
 	props: {
 		// 最大输入长度
 		maxlength: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.codeInput.maxlength
 		},
 		// 是否用圆点填充
@@ -22,7 +22,7 @@ export default {
 		},
 		// 字符间的距离
 		space: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.codeInput.space
 		},
 		// 预置值
@@ -52,7 +52,7 @@ export default {
 		},
 		// 输入框的大小，宽等于高
 		size: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.codeInput.size
 		},
 		// 是否隐藏原生键盘，如果想用自定义键盘的话，需设置此参数为true

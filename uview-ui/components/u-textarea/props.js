@@ -7,7 +7,7 @@ export default {
 		},
 		// 输入框为空时占位符
 		placeholder: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.textarea.placeholder,
 		},
 		// 输入框高度
@@ -52,7 +52,7 @@ export default {
 		},
 		// 指定focus时的光标位置
 		cursor: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.textarea.cursor,
 		},
 		// 是否显示键盘上方带有”完成“按钮那一栏，
@@ -87,7 +87,7 @@ export default {
 		},
 		// 最大输入长度，设置为 -1 的时候不限制最大长度
 		maxlength: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.textarea.maxlength,
 		},
 		// 边框类型，surround-四周边框，bottom-底部边框

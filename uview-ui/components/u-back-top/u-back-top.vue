@@ -32,17 +32,19 @@
 	 * backTop 返回顶部
 	 * @description 本组件一个用于长页面，滑动一定距离后，出现返回顶部按钮，方便快速返回顶部的场景。
 	 * @tutorial https://uviewui.com/components/backTop.html
-	 * @property {String} mode  返回顶部的形状，circle-圆形，square-方形 （默认circle）
-	 * @property {String} icon  自定义图标 （默认 arrow-upward） 见官方文档示例
-	 * @property {String} text  提示文字 
-	 * @property {Number | String}  duration  返回顶部滚动时间 （默认 100）
-	 * @property {Number | String}  scrollTop  滚动距离 （默认 0）
-	 * @property {Number | String}  top  距离顶部多少距离显示，单位px （默认 400）
-	 * @property {Number | String}  bottom  返回顶部按钮到底部的距离，单位px （默认 100）
-	 * @property {Number | String}  right  返回顶部按钮到右边的距离，单位px （默认 20）
-	 * @property {Number | String}  zIndex 层级   （默认 9）
-	 * @property {Object<Object>}  iconStyle 图标的样式，对象形式   （默认 {color: '#909399',fontSize: '19px'}）
-	 * @property {Object} customStyle  定义需要用到的外部样式
+	 * 
+	 * @property {String}			mode  		返回顶部的形状，circle-圆形，square-方形 （默认 'circle' ）
+	 * @property {String} 			icon 		自定义图标 （默认 'arrow-upward' ） 见官方文档示例
+	 * @property {String} 			text 		提示文字 
+	 * @property {String | Number}  duration	返回顶部滚动时间 （默认 100）
+	 * @property {String | Number}  scrollTop	滚动距离 （默认 0 ）
+	 * @property {String | Number}  top  		距离顶部多少距离显示，单位px （默认 400 ）
+	 * @property {String | Number}  bottom  	返回顶部按钮到底部的距离，单位px （默认 100 ）
+	 * @property {String | Number}  right  		返回顶部按钮到右边的距离，单位px （默认 20 ）
+	 * @property {String | Number}  zIndex 		层级   （默认 9 ）
+	 * @property {Object<Object>}  	iconStyle 	图标的样式，对象形式   （默认 {color: '#909399',fontSize: '19px'}）
+	 * @property {Object}			customStyle	定义需要用到的外部样式
+	 * 
 	 * @example <u-back-top :scrollTop="scrollTop"></u-back-top>
 	 */
 	export default {

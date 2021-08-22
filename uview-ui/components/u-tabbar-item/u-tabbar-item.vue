@@ -44,6 +44,20 @@
 
 <script>
 	import props from './props.js';
+	/**
+	 * TabbarItem 底部导航栏子组件
+	 * @description 此组件提供了自定义tabbar的能力。
+	 * @tutorial https://www.uviewui.com/components/tabbar.html
+	 * @property {String | Number}	name		item标签的名称，作为与u-tabbar的value参数匹配的标识符
+	 * @property {String}			icon		uView内置图标或者绝对路径的图片
+	 * @property {String | Number}	badge		右上角的角标提示信息
+	 * @property {Boolean}			dot			是否显示圆点，将会覆盖badge参数
+	 * @property {String}			text		描述文本
+	 * @property {Object | String}	badgeStyle	控制徽标的位置，对象或者字符串形式，可以设置top和right属性
+	 * @property {Object}			customStyle			定义需要用到的外部样式
+	 * 
+	 * @example <u-tabbar :value="value2" :placeholder="false" @change="name => value2 = name" :fixed="false" :safeAreaInsetBottom="false"><u-tabbar-item text="首页" icon="home" dot ></u-tabbar-item></u-tabbar>
+	 */
 	export default {
 		name: 'u-tabbar-item',
 		mixins: [uni.$u.mixin,props],

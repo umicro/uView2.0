@@ -8,6 +8,14 @@
 
 <script>
 	import props from './props.js';
+	/**
+	 * PickerColumn 
+	 * @description 
+	 * @tutorial url
+	 * @property {String}
+	 * @event {Function}
+	 * @example
+	 */
 	export default {
 		name: 'u-picker-column',
 		mixins: [uni.$u.mixin,props],

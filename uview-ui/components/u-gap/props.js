@@ -1,10 +1,11 @@
 export default {
 	props: {
+		// 背景颜色（默认transparent）
 		bgColor: {
 			type: String,
 			default: uni.$u.props.gap.bgColor
 		},
-		// 高度
+		// 分割槽高度，单位px（默认30）
 		height: {
 			type: [String, Number],
 			default: uni.$u.props.gap.height

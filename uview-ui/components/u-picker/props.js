@@ -52,12 +52,12 @@ export default {
 		},
 		// 选择器只有一列时，默认选中项的索引，从0开始
 		singleIndex: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.picker.singleIndex
 		},
 		// 每列中可见选项的数量
 		visibleItemCount: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.picker.visibleItemCount
 		},
 		// 选项对象中，需要展示的属性键名

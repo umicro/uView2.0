@@ -46,7 +46,7 @@ export default {
 		},
 		// 点击时返回的索引值，用于区分例遍的数组哪个元素被点击了
 		name: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.tag.name
 		},
 		// // 模式选择，dark|light|plain

@@ -2,17 +2,17 @@ export default {
 	props: {
 		// 开始的数值，默认从0增长到某一个数
 		startVal: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.countTo.startVal
 		},
 		// 要滚动的目标数值，必须
 		endVal: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.countTo.endVal
 		},
 		// 滚动到目标数值的动画持续时间，单位为毫秒（ms）
 		duration: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.countTo.duration
 		},
 		// 设置数值后是否自动开始滚动
@@ -22,7 +22,7 @@ export default {
 		},
 		// 要显示的小数位数
 		decimals: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.countTo.decimals
 		},
 		// 是否在即将到达目标数值的时候，使用缓慢滚动的效果
@@ -32,7 +32,7 @@ export default {
 		},
 		// 十进制分割
 		decimal: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.countTo.decimal
 		},
 		// 字体颜色
@@ -42,7 +42,7 @@ export default {
 		},
 		// 字体大小
 		fontSize: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.countTo.fontSize
 		},
 		// 是否加粗字体

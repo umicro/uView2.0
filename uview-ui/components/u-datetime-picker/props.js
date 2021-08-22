@@ -99,7 +99,7 @@ export default {
 		},
 		// 每列中可见选项的数量
 		visibleItemCount: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.datetimePicker.visibleItemCount
 		},
 		// 是否允许点击遮罩关闭选择器

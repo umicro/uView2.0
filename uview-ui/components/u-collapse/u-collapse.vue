@@ -8,16 +8,13 @@
 <script>
 	import props from './props.js';
 	/**
-	 * collapse 折叠面板
+	 * collapse 折叠面板 
 	 * @description 通过折叠面板收纳内容区域
 	 * @tutorial https://www.uviewui.com/components/collapse.html
-	 * @property {Boolean} accordion 是否手风琴模式（默认true）
-	 * @property {Boolean} arrow 是否显示标题右侧的箭头（默认true）
-	 * @property {String} arrow-color 标题右侧箭头的颜色（默认#909399）
-	 * @property {Object} head-style 标题自定义样式，对象形式
-	 * @property {Object} body-style 主体自定义样式，对象形式
-	 * @property {String} hover-class 样式类名，按下时有效（默认u-hover-class）
-	 * @event {Function} change 当前激活面板展开时触发(如果是手风琴模式，参数activeNames类型为String，否则为Array)
+	 * @property {String | Number | Array}	value		当前展开面板的name，非手风琴模式：[<string | number>]，手风琴模式：string | number
+	 * @property {Boolean}					accordion	是否手风琴模式（ 默认 false ）
+	 * @property {Boolean}					border		是否显示外边框 ( 默认 false ）
+	 * @event {Function}	change 		当前激活面板展开时触发(如果是手风琴模式，参数activeNames类型为String，否则为Array)
 	 * @example <u-collapse></u-collapse>
 	 */
 	export default {

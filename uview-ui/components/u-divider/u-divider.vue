@@ -33,16 +33,17 @@
 	 * divider 分割线
 	 * @description 区隔内容的分割线，一般用于页面底部"没有更多"的提示。
 	 * @tutorial https://www.uviewui.com/components/divider.html
-	 * @property {Boolean} dashed 是否虚线 （默认 false）
-	 * @property {Boolean} hairline 是否细线 （默认  true）
-	 * @property {Boolean} dot 是否以点替代文字，优先于text字段起作用 （默认false）
-	 * @property {String} textPosition 内容文本的位置，left-左边，center-中间，right-右边 （默认 center）
-	 * @property {String Number} text 文本内容 
-	 * @property {Number String} textSize 文本大小 （默认 14）
-	 * @property {String} textColor 文本颜色 （默认 #909399）
-	 * @property {String} lineColor  线条颜色 （默认 #dcdfe6）
-	 * @property {Object} customStyle  定义需要用到的外部样式
-	 * @event {Function} click divider组件被点击时触发
+	 * @property {Boolean}			dashed			是否虚线 （默认 false ）
+	 * @property {Boolean}			hairline		是否细线 （默认  true ）
+	 * @property {Boolean}			dot				是否以点替代文字，优先于text字段起作用 （默认 false ）
+	 * @property {String}			textPosition	内容文本的位置，left-左边，center-中间，right-右边 （默认 'center' ）
+	 * @property {String | Number}	text			文本内容 
+	 * @property {String | Number}	textSize		文本大小 （默认 14）
+	 * @property {String}			textColor		文本颜色 （默认 '#909399' ）
+	 * @property {String}			lineColor		线条颜色 （默认 '#dcdfe6' ）
+	 * @property {Object}			customStyle		定义需要用到的外部样式
+	 * 
+	 * @event {Function}	click	divider组件被点击时触发
 	 * @example <u-divider :color="color">锦瑟无端五十弦</u-divider>
 	 */
 	export default {

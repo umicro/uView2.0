@@ -48,10 +48,10 @@
 	 * noNetwork 无网络提示
 	 * @description 该组件无需任何配置，引入即可，内部自动处理所有功能和事件。
 	 * @tutorial https://www.uviewui.com/components/noNetwork.html
-	 * @property {String} tips 没有网络时的提示语（默认：哎呀，网络信号丢失）
-	 * @property {String Number} zIndex 组件的z-index值（默认1080）
-	 * @property {String} image 无网络的图片提示，可用的src地址或base64图片
-	 * @event {Function} retry 用户点击页面的"重试"按钮时触发
+	 * @property {String}			tips 	没有网络时的提示语 （默认：'哎呀，网络信号丢失' ）
+	 * @property {String | Number}	zIndex	组件的z-index值 
+	 * @property {String}			image	无网络的图片提示，可用的src地址或base64图片 
+	 * @event {Function}			retry	用户点击页面的"重试"按钮时触发
 	 * @example <u-no-network></u-no-network>
 	 */
 	export default {

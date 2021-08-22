@@ -43,6 +43,28 @@
 	// #ifdef APP-NVUE
 	const dom = uni.requireNativePlugin('dom')
 	// #endif
+	/**
+	 * List 列表
+	 * @description 该组件为高性能列表组件
+	 * @tutorial https://www.uviewui.com/components/list.html
+	 * @property {Boolean}			showScrollbar		控制是否出现滚动条，仅nvue有效 （默认 false ）
+	 * @property {String ｜ Number}	lowerThreshold		距底部多少时触发scrolltolower事件 （默认 50 ）
+	 * @property {String ｜ Number}	upperThreshold		距顶部多少时触发scrolltoupper事件，非nvue有效 （默认 0 ）
+	 * @property {String ｜ Number}	scrollTop			设置竖向滚动条位置（默认 0 ）
+	 * @property {String ｜ Number}	offsetAccuracy		控制 onscroll 事件触发的频率，仅nvue有效（默认 10 ）
+	 * @property {Boolean}			enableFlex			启用 flexbox 布局。开启后，当前节点声明了display: flex就会成为flex container，并作用于其孩子节点，仅微信小程序有效（默认 false ）
+	 * @property {Boolean}			pagingEnabled		是否按分页模式显示List，（默认 false ）
+	 * @property {Boolean}			scrollable			是否允许List滚动（默认 true ）
+	 * @property {String}			scrollIntoView		值应为某子元素id（id不能以数字开头）
+	 * @property {Boolean}			scrollWithAnimation	在设置滚动条位置时使用动画过渡 （默认 false ）
+	 * @property {Boolean}			enableBackToTop		iOS点击顶部状态栏、安卓双击标题栏时，滚动条返回顶部，只对微信小程序有效 （默认 false ）
+	 * @property {String ｜ Number}	height				列表的高度 （默认 0 ）
+	 * @property {String ｜ Number}	width				列表宽度 （默认 0 ）
+	 * @property {String ｜ Number}	preLoadScreen		列表前后预渲染的屏数，1代表一个屏幕的高度，1.5代表1个半屏幕高度  （默认 1 ）
+	 * @property {Object}			customStyle			定义需要用到的外部样式
+	 * 
+	 * @example <u-list @scrolltolower="scrolltolower"></u-list>
+	 */
 	export default {
 		name: 'u-list',
 		mixins: [uni.$u.mixin,props],

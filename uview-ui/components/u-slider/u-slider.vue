@@ -106,21 +106,21 @@
 	 * slider 滑块选择器
 	 * @description 该组件一般用于表单中，手动选择一个区间范围的场景.
 	 * @tutorial https://uviewui.com/components/slider.html
-	 * @property {Number String} value 滑块默认值 
-	 * @property {Boolean} disabled 是否禁用滑块 
-	 * @property {Number String} blockWidth 滑块宽度，高等于宽 
-	 * @property {Number String} min 最小值 
-	 * @property {Number String} max 最大值 
-	 * @property {Number String} step 步长 
-	 * @property {Number String} height 滑块条高度，单位px
-	 * @property {String} activeColor 底部选择部分的背景颜色
-	 * @property {String} inactiveColor 底部条背景颜色 
-	 * @property {String} blockColor 滑块颜色 
-	 * @property {Object} blockStyle 给滑块自定义样式，对象形式
-	 * @property {Object} customStyle  组件的样式，对象形式
-	 * @event {Function} start 滑动触发 
-	 * @event {Function} moving 正在滑动中
-	 * @event {Function} end 滑动结束
+	 * @property {String | Number}	value			滑块默认值 
+	 * @property {Boolean}			disabled		是否禁用滑块 
+	 * @property {String | Number}	blockWidth		滑块宽度，高等于宽 
+	 * @property {String | Number}	min				最小值 
+	 * @property {String | Number}	max				最大值 
+	 * @property {String | Number}	step			步长 
+	 * @property {String | Number}	height			滑块条高度，单位px
+	 * @property {String}			activeColor		底部选择部分的背景颜色
+	 * @property {String}			inactiveColor	底部条背景颜色 
+	 * @property {String}			blockColor		滑块颜色 
+	 * @property {Object}			blockStyle		给滑块自定义样式，对象形式
+	 * @property {Object}			customStyle		组件的样式，对象形式
+	 * @event {Function} start	滑动触发 
+	 * @event {Function} moving	正在滑动中
+	 * @event {Function} end	滑动结束
 	 * @example <u-slider v-model="value" />
 	 */
 	export default {

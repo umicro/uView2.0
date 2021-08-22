@@ -42,7 +42,7 @@ export default {
 		 },
 		 // 标题
 		 title: {
-			 type: [Number, String],
+			 type: [String, Number],
 			 default: uni.$u.props.navbar.title
 		 },
 		 // 背景颜色

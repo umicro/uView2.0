@@ -14,6 +14,19 @@
 
 <script>
 	import props from './props.js';
+	/**
+	 * CodeInput 栅格系统的列 
+	 * @description 该组件一般用于Layout 布局 通过基础的 12 分栏，迅速简便地创建布局
+	 * @tutorial https://www.uviewui.com/components/Layout.html
+	 * @property {String | Number}	span		栅格占据的列数，总12等份 (默认 12 ) 
+	 * @property {String | Number}	offset		分栏左边偏移，计算方式与span相同 (默认 0 ) 
+	 * @property {String}			justify		水平排列方式，可选值为`start`(或`flex-start`)、`end`(或`flex-end`)、`center`、`around`(或`space-around`)、`between`(或`space-between`)  (默认 'start' ) 
+	 * @property {String}			align		垂直对齐方式，可选值为top、center、bottom、stretch (默认 'stretch' ) 
+	 * @property {String}			textAlign	文字水平对齐方式 (默认 'left' ) 
+	 * @property {Object}			customStyle	定义需要用到的外部样式
+	 * @event {Function}	click	col被点击，会阻止事件冒泡到row
+	 * @example	 <u-col  span="3" offset="3" > <view class="demo-layout bg-purple"></view> </u-col>
+	 */
 	export default {
 		name: 'u-col',
 		// #ifdef MP-WEIXIN

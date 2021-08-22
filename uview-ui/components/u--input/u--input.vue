@@ -14,7 +14,6 @@
 		:showWordLimit="showWordLimit"
 		:confirmType="confirmType"
 		:confirmHold="confirmHold"
-		:showConfirmBar="showConfirmBar"
 		:holdKeyboard="holdKeyboard"
 		:focus="focus"
 		:autoBlur="autoBlur"
@@ -42,6 +41,7 @@
 		@change="e => $emit('change', e)"
 		@input="e => $emit('input', e)"
 		@clear="$emit('clear')"
+		@click="$emit('click')"
 	></uvInput>
 </template>
 

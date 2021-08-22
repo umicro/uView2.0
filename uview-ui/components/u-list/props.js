@@ -7,22 +7,22 @@ export default {
 		},
 		// 距底部多少时触发scrolltolower事件
 		lowerThreshold: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.list.lowerThreshold
 		},
 		// 距顶部多少时触发scrolltoupper事件，非nvue有效
 		upperThreshold: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.list.upperThreshold
 		},
 		// 设置竖向滚动条位置
 		scrollTop: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.list.scrollTop
 		},
 		// 控制 onscroll 事件触发的频率，仅nvue有效
 		offsetAccuracy: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.list.offsetAccuracy
 		},
 		// 启用 flexbox 布局。开启后，当前节点声明了display: flex就会成为flex container，并作用于其孩子节点，仅微信小程序有效

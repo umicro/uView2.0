@@ -18,9 +18,11 @@
 	 * cellGroup  单元格
 	 * @description cell单元格一般用于一组列表的情况，比如个人中心页，设置页等。
 	 * @tutorial https://uviewui.com/components/cell.html
-	 * @property {String} title  分组标题
-	 * @property {Boolean} border  是否显示外边框
-	 * @property {Object} customStyle  定义需要用到的外部样式
+	 * 
+	 * @property {String}	title		分组标题
+	 * @property {Boolean}	border		是否显示外边框 (默认 true )
+	 * @property {Object}	customStyle	定义需要用到的外部样式
+	 * 
 	 * @event {Function} click 	点击cell列表时触发
 	 * @example <u-cell-group title="设置喜好">
 	 */

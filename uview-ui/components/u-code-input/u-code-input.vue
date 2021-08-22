@@ -41,6 +41,28 @@
 
 <script>
 	import props from './props.js';
+	/**
+	 * CodeInput 验证码输入
+	 * @description 该组件一般用于验证用户短信验证码的场景，也可以结合uView的键盘组件使用
+	 * @tutorial https://www.uviewui.com/components/codeInput.html
+	 * @property {String | Number}	maxlength			最大输入长度 （默认 6 ）
+	 * @property {Boolean}			dot					是否用圆点填充 （默认 false ）
+	 * @property {String}			mode				显示模式，box-盒子模式，line-底部横线模式 （默认 'box' ）
+	 * @property {Boolean}			hairline			是否细边框 （默认 false ）
+	 * @property {String | Number}	space				字符间的距离 （默认 10 ）
+	 * @property {String | Number}	value				预置值
+	 * @property {Boolean}			focus				是否自动获取焦点 （默认 false ）
+	 * @property {Boolean}			bold				字体和输入横线是否加粗 （默认 false ）
+	 * @property {String}			color				字体颜色 （默认 '#606266' ）
+	 * @property {String | Number}	fontSize			字体大小，单位px （默认 18 ）
+	 * @property {String | Number}	size				输入框的大小，宽等于高 （默认 35 ）
+	 * @property {Boolean}			disabledKeyboard	是否隐藏原生键盘，如果想用自定义键盘的话，需设置此参数为true （默认 false ）
+	 * @property {String}			borderColor			边框和线条颜色 （默认 '#c9cacc' ）
+	 * 
+	 * @event {Function}	change	输入内容发生改变时触发，具体见上方说明			value：当前输入的值
+	 * @event {Function}	finish	输入字符个数达maxlength值时触发，见上方说明	value：当前输入的值
+	 * @example	<u-code-input v-model="value4" :focus="true"></u-code-input>
+	 */
 	export default {
 		name: 'u-code-input',
 		mixins: [uni.$u.mixin, props],

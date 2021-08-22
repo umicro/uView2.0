@@ -57,11 +57,21 @@ export default {
 		offset: {
 			type: Array,
 			default: uni.$u.props.badge.offset
+        },
+		// 显示的内容
+		value: {
+			type: [String, Number],
+			default: uni.$u.props.badge.value
 		},
 		// 是否反转背景和字体颜色
 		inverted: {
 			type: Boolean,
 			default: uni.$u.props.badge.inverted
+		},
+		// 最大值，超过最大值会显示 '{max}+'
+		max: {
+			type: [String, Number],
+			default: uni.$u.props.badge.max
 		},
 		// 是否绝对定位
 		absolute: {

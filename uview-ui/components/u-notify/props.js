@@ -2,7 +2,7 @@ export default {
 	props: {
 		// 到顶部的距离
 		top: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.notify.top
 		},
 		// 是否展示组件

@@ -27,6 +27,22 @@
 	// #ifdef APP-NVUE
 	const dom = uni.requireNativePlugin('dom')
 	// #endif
+	/**
+	 * Tabbar 底部导航栏
+	 * @description 此组件提供了自定义tabbar的能力。
+	 * @tutorial https://www.uviewui.com/components/tabbar.html
+	 * @property {String | Number}	value				当前匹配项的name
+	 * @property {Boolean}			safeAreaInsetBottom	是否为iPhoneX留出底部安全距离
+	 * @property {Boolean}			border				是否显示上方边框
+	 * @property {String | Number}	zIndex				元素层级z-index
+	 * @property {String}			activeColor			选中标签的颜色
+	 * @property {String}			inactiveColor		未选中标签的颜色
+	 * @property {Boolean}			fixed				是否固定在底部
+	 * @property {Boolean}			placeholder			fixed定位固定在底部时，是否生成一个等高元素防止塌陷
+	 * @property {Object}			customStyle			定义需要用到的外部样式
+	 * 
+	 * @example <u-tabbar :value="value2" :placeholder="false" @change="name => value2 = name" :fixed="false" :safeAreaInsetBottom="false"><u-tabbar-item text="首页" icon="home" dot ></u-tabbar-item></u-tabbar>
+	 */
 	export default {
 		name: 'u-tabbar',
 		mixins: [uni.$u.mixin,props],

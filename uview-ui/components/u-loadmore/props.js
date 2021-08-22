@@ -1,5 +1,10 @@
 export default {
 	props: {
+		// 组件状态，loadmore-加载前的状态，loading-加载中的状态，nomore-没有更多的状态
+		status: {
+			type: String,
+			default: uni.$u.props.loadmore.status
+		},
 		// 组件背景色
 		bgColor: {
 			type: String,
@@ -20,11 +25,7 @@ export default {
 			type: String,
 			default: uni.$u.props.loadmore.color
 		},
-		// 组件状态，loadmore-加载前的状态，loading-加载中的状态，nomore-没有更多的状态
-		status: {
-			type: String,
-			default: uni.$u.props.loadmore.status
-		},
+		
 		// 加载中状态的图标，spinner-花朵状图标，circle-圆圈状，semicircle-半圆
 		loadingIcon: {
 			type: String,

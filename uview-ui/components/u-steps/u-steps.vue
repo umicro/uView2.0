@@ -9,6 +9,19 @@
 
 <script>
 	import props from './props.js';
+	/**
+	 * Steps 步骤条
+	 * @description 该组件一般用于完成一个任务要分几个步骤，标识目前处于第几步的场景。
+	 * @tutorial https://uviewui.com/components/steps.html
+	 * @property {String}			direction		row-横向，column-竖向 
+	 * @property {String | Number}	current			设置当前处于第几步 
+	 * @property {String}			activeColor		激活状态颜色 
+	 * @property {String}			inactiveColor	未激活状态颜色 
+	 * @property {String}			activeIcon		激活状态的图标 
+	 * @property {String}			inactiveIcon	未激活状态图标 
+	 * @property {Boolean}			dot				是否显示点类型	
+	 * @example <u-steps current="0"><u-steps-item title="已出库" desc="10:35" ></u-steps-item></u-steps>
+	 */
 	export default {
 		name: 'u-steps',
 		mixins: [uni.$u.mixin, props],

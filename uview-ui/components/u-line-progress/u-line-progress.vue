@@ -32,15 +32,12 @@
 	 * lineProgress 线型进度条
 	 * @description 展示操作或任务的当前进度，比如上传文件，是一个线形的进度条。
 	 * @tutorial https://www.uviewui.com/components/lineProgress.html
-	 * @property {String Number} percent 进度条百分比值，为数值类型，0-100
-	 * @property {Boolean} round 进度条两端是否为半圆（默认true）
-	 * @property {String} type 如设置，active-color值将会失效
-	 * @property {String} active-color 进度条激活部分的颜色（默认#19be6b）
-	 * @property {String} inactive-color 进度条的底色（默认#ececec）
-	 * @property {Boolean} show-percent 是否在进度条内部显示当前的百分比值数值（默认true）
-	 * @property {String Number} height 进度条的高度，单位px（默认28）
-	 * @property {Boolean} striped 是否显示进度条激活部分的条纹（默认false）
-	 * @property {Boolean} striped-active 条纹是否具有动态效果（默认false）
+	 * @property {String}			activeColor		激活部分的颜色 ( 默认 '#19be6b' )
+	 * @property {String}			inactiveColor	背景色 ( 默认 '#ececec' )
+	 * @property {String | Number}	percentage		进度百分比，数值 ( 默认 0 )
+	 * @property {Boolean}			showText		是否在进度条内部显示百分比的值 ( 默认 true )
+	 * @property {String | Number}	height			进度条的高度，单位px ( 默认 12 )
+	 * 
 	 * @example <u-line-progress :percent="70" :show-percent="true"></u-line-progress>
 	 */
 	export default {

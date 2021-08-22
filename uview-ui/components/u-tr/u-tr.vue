@@ -6,6 +6,14 @@
 
 <script>
 	import props from './props.js';
+	/**
+	 * Tr  
+	 * @description 
+	 * @tutorial url
+	 * @property {String}
+	 * @event {Function}
+	 * @example
+	 */
 	export default {
 		name: 'u-tr',
 		mixins: [uni.$u.mixin,props],

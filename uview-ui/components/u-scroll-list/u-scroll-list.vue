@@ -83,16 +83,16 @@
 <script>
 /**
  * scrollList 横向滚动列表
- * @description
- * @tutorial
- * @property {String | Number} indicatorWidth 指示器的整体宽度
- * @property {String | Number} indicatorBarWidth 滑块的宽度
- * @property {Boolean} indicator 是否显示面板指示器
- * @property {String} indicatorColor 指示器非激活颜色
- * @property {String} indicatorActiveColor 指示器的激活颜色
- * @property {String | Object} indicatorStyle 指示器样式，可通过bottom，left，right进行定位
- * @event {Function} left 滑动到左边时触发
- * @event {Function} right 滑动到右边时触发
+ * @description 该组件一般用于同时展示多个商品、分类的场景，也可以完成左右滑动的列表。
+ * @tutorial https://www.uviewui.com/components/scrollList.html
+ * @property {String | Number}	indicatorWidth			指示器的整体宽度
+ * @property {String | Number}	indicatorBarWidth		滑块的宽度
+ * @property {Boolean}			indicator				是否显示面板指示器
+ * @property {String}			indicatorColor			指示器非激活颜色
+ * @property {String}			indicatorActiveColor	指示器的激活颜色
+ * @property {String | Object}	indicatorStyle			指示器样式，可通过bottom，left，right进行定位
+ * @event {Function} left	滑动到左边时触发
+ * @event {Function} right	滑动到右边时触发
  * @example
  */
 // #ifdef APP-NVUE

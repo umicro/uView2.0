@@ -7,7 +7,7 @@ export default {
 		},
 		// 最多展示的头像数量
 		maxCount: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.avatarGroup.maxCount
 		},
 		// 头像形状
@@ -27,7 +27,7 @@ export default {
 		},
 		// 头像大小
 		size: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.avatarGroup.size
 		},
 		// 指定从数组的对象元素中读取哪个属性作为图片地址

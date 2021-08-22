@@ -2,27 +2,27 @@ export default {
 	props: {
 		// 步进器标识符，在change回调返回
 		name: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.numberBox.name
 		},
 		// 用于双向绑定的值，初始化时设置设为默认min值(最小值)
 		value: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.numberBox.value
 		},
 		// 最小值
 		min: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.numberBox.min
 		},
 		// 最大值
 		max: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.numberBox.max
 		},
 		// 加减的步长，可为小数
 		step: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.numberBox.step
 		},
 		// 是否只允许输入整数
@@ -47,7 +47,7 @@ export default {
 		},
 		// 输入框宽度，单位为px
 		inputWidth: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.numberBox.inputWidth
 		},
 		// 是否显示减少按钮
@@ -62,7 +62,7 @@ export default {
 		},
 		// 显示的小数位数
 		decimalLength: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.numberBox.decimalLength
 		},
 		// 是否开启长按加减手势

@@ -53,25 +53,25 @@
 /**
  * u-picker
  * @description 选择器
- * @property {Boolean} show 是否显示picker弹窗
- * @property {Boolean} showToolbar 是否显示顶部的操作栏
- * @property {String} title 顶部标题
- * @property {Array} columns 对象数组，设置每一列的数据
- * @property {Boolean} loading 是否显示加载中状态
- * @property {String | Number} itemHeight 各列中，单个选项的高度
- * @property {String} cancelText 取消按钮的文字
- * @property {String} confirmText 确认按钮的文字
- * @property {String} cancelColor 取消按钮的颜色
- * @property {String} confirmColor 确认按钮的颜色
- * @property {Number | String} singleIndex 选择器只有一列时，默认选中项的索引，从0开始
- * @property {Number | String} visibleItemCount 每列中可见选项的数量
- * @property {String} keyName 选项对象中，需要展示的属性键名
- * @property {Boolean} closeOnClickOverly 是否允许点击遮罩关闭选择器
- * @property {Array} defaultIndex 各列的默认索引
- * @event {Function} close 关闭选择器时触发
- * @event {Function} cancel 点击取消按钮触发
- * @event {Function} change 当选择值变化时触发
- * @event {Function} confirm 点击确定按钮，返回当前选择的值
+ * @property {Boolean}			show				是否显示picker弹窗（默认 false ）
+ * @property {Boolean}			showToolbar			是否显示顶部的操作栏（默认 true ）
+ * @property {String}			title				顶部标题
+ * @property {Array}			columns				对象数组，设置每一列的数据
+ * @property {Boolean}			loading				是否显示加载中状态（默认 false ）
+ * @property {String | Number}	itemHeight			各列中，单个选项的高度（默认 44 ）
+ * @property {String}			cancelText			取消按钮的文字（默认 '取消' ）
+ * @property {String}			confirmText			确认按钮的文字（默认 '确定' ）
+ * @property {String}			cancelColor			取消按钮的颜色（默认 '#909193' ）
+ * @property {String}			confirmColor		确认按钮的颜色（默认 '#3c9cff' ）
+ * @property {String | Number}	singleIndex			选择器只有一列时，默认选中项的索引，从0开始（默认 0 ）
+ * @property {String | Number}	visibleItemCount	每列中可见选项的数量（默认 5 ）
+ * @property {String}			keyName				选项对象中，需要展示的属性键名（默认 'text' ）
+ * @property {Boolean}			closeOnClickOverly	是否允许点击遮罩关闭选择器（默认 false ）
+ * @property {Array}			defaultIndex		各列的默认索引
+ * @event {Function} close		关闭选择器时触发
+ * @event {Function} cancel		点击取消按钮触发
+ * @event {Function} change		当选择值变化时触发
+ * @event {Function} confirm	点击确定按钮，返回当前选择的值
  */
 import props from './props.js';
 export default {

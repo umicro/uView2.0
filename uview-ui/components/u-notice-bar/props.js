@@ -37,17 +37,17 @@ export default {
 		},
 		// 水平滚动时的滚动速度，即每秒滚动多少px(px)，这有利于控制文字无论多少时，都能有一个恒定的速度
 		speed: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.noticeBar.speed
 		},
 		// 字体大小
 		fontSize: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.noticeBar.fontSize
 		},
 		// 滚动一个周期的时间长，单位ms
 		duration: {
-			type: [Number, String],
+			type: [String, Number],
 			default: uni.$u.props.noticeBar.duration
 		},
 		// 是否禁止用手滑动切换

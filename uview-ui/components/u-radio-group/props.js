@@ -5,10 +5,7 @@ export default {
 			type: [String, Number, Boolean],
 			default: uni.$u.props.radioGroup.value
 		},
-		labelDisabled: {
-			type: Boolean,
-			default: uni.$u.props.radioGroup.labelDisabled
-		},
+		
 		// 是否禁用全部radio
 		disabled: {
 			type: Boolean,
@@ -44,10 +41,25 @@ export default {
 			type: String,
 			default: uni.$u.props.radioGroup.placement
 		},
+		// label的文本
+		label: {
+			type: [String],
+			default: uni.$u.props.radioGroup.label
+		},
+		// label的颜色 （默认 '#303133' ）
+		labelColor: {
+			type: [String],
+			default: uni.$u.props.radioGroup.labelColor
+		},
 		// label的字体大小，px单位
 		labelSize: {
 			type: [String, Number],
 			default: uni.$u.props.radioGroup.labelSize
+		},
+		// 是否禁止点击文本操作checkbox(默认 false )
+		labelDisabled: {
+			type: Boolean,
+			default: uni.$u.props.radioGroup.labelDisabled
 		},
 		// 图标颜色
 		iconColor: {

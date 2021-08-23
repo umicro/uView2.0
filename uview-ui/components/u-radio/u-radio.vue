@@ -39,18 +39,17 @@
 	 * @description 单选框用于有一个选择，用户只能选择其中一个的场景。搭配u-radio-group使用
 	 * @tutorial https://www.uviewui.com/components/radio.html
 	 * @property {String | Number}	name			radio的名称
-	 * @property {String}			shape			形状，见上方说明（默认circle）
-	 * @property {Boolean}			disabled		是否禁用（默认false）
-	 * @property {Boolean}			labelDisabled	点击文本是否可以操作radio（
+	 * @property {String}			shape			形状，square为方形，circle为圆型
+	 * @property {Boolean}			disabled		是否禁用
+	 * @property {String, Boolean}	labelDisabled	是否禁止点击提示语选中单选框
 	 * @property {String}			activeColor		选中时的颜色，如设置parent的active-color将失效
 	 * @property {String}			inactiveColor	未选中的颜色
-	 * @property {String | Number}	iconSize		图标大小，单位px（默认24）
-	 * @property {String | Number}	labelSize		label字体大小，单位px（默认28）
+	 * @property {String | Number}	iconSize		图标大小，单位px
+	 * @property {String | Number}	labelSize		label字体大小，单位px
 	 * @property {String | Number}	label			label提示文字，因为nvue下，直接slot进来的文字，由于特殊的结构，无法修改样式
 	 * @property {String | Number}	size			整体的大小
 	 * @property {String}			iconColor		图标颜色
 	 * @property {String}			labelColor		label的颜色
-	 * @property {String}			iconPlacement	图标与文字的对齐方式
 	 * @property {Object}			customStyle		组件的样式，对象形式
 	 * 
 	 * @event {Function} change 某个radio状态发生变化时触发(选中状态)

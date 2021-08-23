@@ -10,20 +10,20 @@
 export default {
 	// radio-group组件
 	radioGroup: {
-		name: '',
 		value: '',
-		shape: 'circle',
 		disabled: false,
-		labelDisabled: false,
+		shape: 'circle',
 		activeColor: '#2979ff',
 		inactiveColor: '#c8c9cc',
-		iconSize: 12,
-		placement: 'row',
-		labelSize: 14,
-		labelColor: '#303133',
-		label: '',
+		name: '',
 		size: 18,
+		placement: 'row',
+		label: '',
+		labelColor: '#303133',
+		labelSize: 14,
+		labelDisabled: false,
 		iconColor: '#ffffff',
+		iconSize: 12,
 		borderBottom: false,
 		iconPlacement: 'left'
 	},

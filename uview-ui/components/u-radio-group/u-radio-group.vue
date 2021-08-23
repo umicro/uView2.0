@@ -14,19 +14,22 @@
 	 * radioRroup 单选框父组件
 	 * @description 单选框用于有一个选择，用户只能选择其中一个的场景。搭配u-radio使用
 	 * @tutorial https://www.uviewui.com/components/radio.html
-	 * @property {String | Number | Boolean}	value 绑定的值
-	 * @property {Boolean}						labelDisabled	是否禁止点击文本操作checkbox(默认false)
-	 * @property {Boolean}						disabled		是否禁用所有radio（默认false）
-	 * @property {String}						shape			外观形状，shape-方形，circle-圆形(默认circle)
-     * @property {String}						activeColor		选中时的颜色，应用到所有子Radio组件（默认#2979ff）
-     * @property {String}						inactiveColor	未选中的颜色 (默认#c8c9cc)
-     * @property {String}						name			标识符
-     * @property {String | Number}				size			组件整体的大小，单位px（默认40）
-	 * @property {String}						placement		布局方式，row-横向，column-纵向 （默认 row）
-	 * @property {String | Number}				labelSize		label的字体大小，px单位 （默认 15）
-	 * @property {String}						iconColor		图标颜色 （默认 #ffffff）
-	 * @property {String | Number}				iconSize		图标的大小，单位px （默认 12）
-	 * @property {Boolean}						borderBottom	placement为row时，是否显示下边框
+	 * @property {String | Number | Boolean}	value 			绑定的值
+	 * @property {Boolean}						disabled		是否禁用所有radio（默认 false ）
+	 * @property {String}						shape			外观形状，shape-方形，circle-圆形(默认 circle )
+	 * @property {String}						activeColor		选中时的颜色，应用到所有子Radio组件（默认 '#2979ff' ）
+	 * @property {String}						inactiveColor	未选中的颜色 (默认 '#c8c9cc' )
+	 * @property {String}						name			标识符
+	 * @property {String | Number}				size			组件整体的大小，单位px（默认 18 ）
+	 * @property {String}						placement		布局方式，row-横向，column-纵向 （默认 'row' ）
+	 * @property {String}						label			文本
+	 * @property {String}						labelColor		label的颜色 （默认 '#303133' ）
+	 * @property {String | Number}				labelSize		label的字体大小，px单位 （默认 14 ）
+	 * @property {Boolean}						labelDisabled	是否禁止点击文本操作checkbox(默认 false )
+	 * @property {String}						iconColor		图标颜色 （默认 '#ffffff' ）
+	 * @property {String | Number}				iconSize		图标的大小，单位px （默认 12 ）
+	 * @property {Boolean}						borderBottom	placement为row时，是否显示下边框 （默认 false ）
+	 * @property {String}						iconPlacement	图标与文字的对齐方式 （默认 'left' ）
      * @property {Object}						customStyle		组件的样式，对象形式
 	 * @event {Function} change 任一个radio状态发生变化时触发
 	 * @example <u-radio-group v-model="value"></u-radio-group>

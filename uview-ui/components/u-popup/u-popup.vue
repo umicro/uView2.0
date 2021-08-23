@@ -63,7 +63,7 @@
  * @property {Boolean}			safeAreaInsetTop	是否留出顶部安全距离（状态栏高度） （默认 false ）
  * @property {String}			closeIconPos		自定义关闭图标位置（默认 'top-right' ）
  * @property {Boolean}			round				是否显示圆角（默认 false ）
- * @property {Boolean}			zoom				当mode=center时 是否开启缩放（默认 false ）
+ * @property {Boolean}			zoom				当mode=center时 是否开启缩放（默认 true ）
  * @property {Object}			customStyle			组件的样式，对象形式
  * @event {Function} open 弹出层打开
  * @event {Function} close 弹出层收起

@@ -86,17 +86,17 @@
 	 * rate 评分
 	 * @description 该组件一般用于满意度调查，星型评分的场景
 	 * @tutorial https://www.uviewui.com/components/rate.html
-	 * @property {String | Number}	value			用于v-model双向绑定选中的星星数量 (默认 1)
-	 * @property {String | Number}	count			最多可选的星星数量（默认5）
-	 * @property {Boolean}			disabled		是否禁止用户操作（默认false）
-	 * @property {String | Number}	size			星星的大小，单位px（默认18）
-	 * @property {String}			inactiveColor	未选中星星的颜色（默认#b2b2b2）
-	 * @property {String}			activeColor		选中的星星颜色（默认#FA3534）
-	 * @property {String | Number}	gutter			星星之间的距离（默认10）
-	 * @property {String | Number}	minCount		最少选中星星的个数（默认0）
-	 * @property {Boolean}			allowHalf		是否允许半星选择（默认false）
-	 * @property {String}			activeIcon		选中时的图标名，只能为uView的内置图标（默认star-fill）
-	 * @property {String}			inactiveIcon	未选中时的图标名，只能为uView的内置图标（默认star）
+	 * @property {String | Number}	value			用于v-model双向绑定选中的星星数量 (默认 1 )
+	 * @property {String | Number}	count			最多可选的星星数量 （默认 5 ）
+	 * @property {Boolean}			disabled		是否禁止用户操作 （默认 false ）
+	 * @property {String | Number}	size			星星的大小，单位px （默认18）
+	 * @property {String}			inactiveColor	未选中星星的颜色 （默认 #b2b2b2 ）
+	 * @property {String}			activeColor		选中的星星颜色 （默认 #FA3534 ）
+	 * @property {String | Number}	gutter			星星之间的距离 （默认 10 ）
+	 * @property {String | Number}	minCount		最少选中星星的个数 （默认 0 ）
+	 * @property {Boolean}			allowHalf		是否允许半星选择 （默认 false ）
+	 * @property {String}			activeIcon		选中时的图标名，只能为uView的内置图标 （默认 star-fill ）
+	 * @property {String}			inactiveIcon	未选中时的图标名，只能为uView的内置图标 （默认 star ）
 	 * @property {Object}			customStyle		组件的样式，对象形式
 	 * @property {Boolean}			touchable		是否可以通过滑动手势选择评分
 	 * @event {Function} change 选中的星星发生变化时触发

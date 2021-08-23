@@ -63,7 +63,7 @@ export default {
 		// 日期行高
 		rowHeight: {
 			type: [String, Number],
-			default: uni.$u.props.calendar.hairline
+			default: uni.$u.props.calendar.rowHeight
 		},
 		// 日期格式化函数
 		formatter: {
@@ -73,7 +73,7 @@ export default {
 		// 是否显示农历
 		showLunar: {
 			type: Boolean,
-			default: uni.$u.props.calendar.formatter
+			default: uni.$u.props.calendar.showLunar
 		},
 		// 是否显示月份背景色
 		showMark: {

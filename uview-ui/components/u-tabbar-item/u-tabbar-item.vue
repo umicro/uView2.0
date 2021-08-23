@@ -4,31 +4,33 @@
 	    :style="[$u.addStyle(customStyle)]"
 	    @tap="clickHandler"
 	>
-		<u-badge
-		    :customStyle="badgeStyle"
-		    :isDot="dot"
-		    :value="badge || (dot ? 1 : null)"
-		    :show="dot || badge > 0"
-		>
-			<view class="u-tabbar-item__icon">
-				<u-icon
-				    v-if="icon"
-				    :name="icon"
-				    :color="isActive? parentData.activeColor : parentData.inactiveColor"
-				    :size="20"
-				></u-icon>
-				<template v-else>
-					<slot
-					    v-if="isActive"
-					    name="active-icon"
-					/>
-					<slot
-					    v-else
-					    name="inactive-icon"
-					/>
-				</template>
-			</view>
-		</u-badge>
+		<view class="u-tabbar-item__icon">
+			<u-icon
+			    v-if="icon"
+			    :name="icon"
+			    :color="isActive? parentData.activeColor : parentData.inactiveColor"
+			    :size="20"
+			></u-icon>
+			<template v-else>
+				<slot
+				    v-if="isActive"
+				    name="active-icon"
+				/>
+				<slot
+				    v-else
+				    name="inactive-icon"
+				/>
+			</template>
+			<u-badge
+				absolute
+				:offset="[0, dot ? '34rpx' : badge > 9 ? '14rpx' : '20rpx']"
+			    :customStyle="badgeStyle"
+			    :isDot="dot"
+			    :value="badge || (dot ? 1 : null)"
+			    :show="dot || badge > 0"
+			></u-badge>
+		</view>
+		
 		<slot name="text">
 			<text
 			    class="u-tabbar-item__text"
@@ -117,6 +119,13 @@
 		align-items: center;
 		justify-content: center;
 		flex: 1;
+		
+		&__icon {
+			@include flex;
+			position: relative;
+			width: 150rpx;
+			justify-content: center;
+		}
 
 		&__text {
 			margin-top: 2px;

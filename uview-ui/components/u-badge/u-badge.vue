@@ -1,21 +1,10 @@
 <template>
-	<view class="u-badge">
-		<slot />
-		<template v-if="show && (Number(value) === 0 ? showZero : true)">
-			<view
-			    class="u-badge__dot"
-			    :class="[type && `u-badge--${type}`]"
-			    v-if="isDot"
-			    :style="[$u.addStyle(customStyle)]"
-			></view>
-			<text
-			    v-else
-			    :style="[$u.addStyle(customStyle)]"
-			    :class="[type && `u-badge--${type}`, shape === 'horn' && 'u-badge--horn']"
-			    class="u-badge__text"
-			>{{ showValue }}</text>
-		</template>
-	</view>
+	<text
+		v-if="show && (Number(value) === 0 ? showZero : true)"
+		:class="[isDot ? 'u-badge--dot' : 'u-badge--not-dot', inverted && 'u-badge--inverted', shape === 'horn' && 'u-badge--horn', `u-badge--${type}${inverted ? '--inverted' : ''}`]"
+		:style="[$u.addStyle(customStyle), badgeStyle]"
+		class="u-badge"
+	>{{ isDot ? '' :showValue }}</text>
 </template>
 
 <script>
@@ -46,6 +35,28 @@
 			boxStyle() {
 				let style = {};
 				return style;
+			},
+			// 整个组件的样式
+			badgeStyle() {
+				const style = {}
+				if(this.color) {
+					this.color = color
+				}
+				if (this.bgColor && !this.inverted) {
+					style.backgroundColor = this.bgColor
+				}
+				if (this.absolute) {
+					style.position = 'absolute'
+					// 如果有设置offset参数
+					if(this.offset.length) {
+						// top和right分为为offset的第一个和第二个值，如果没有第二个值，则right等于top
+						const top = this.offset[0]
+						const right = this.offset[1] || top
+						style.top = uni.$u.addUnit(top)
+						style.right = uni.$u.addUnit(right)
+					}
+				}
+				return style
 			},
 			showValue() {
 				switch (this.numberType) {
@@ -87,34 +98,27 @@
 	$u-badge-text-color: #FFFFFF !default;
 
 	.u-badge {
-		position: relative;
+		border-top-right-radius: $u-badge-dot-radius;
+		border-top-left-radius: $u-badge-dot-radius;
+		border-bottom-left-radius: $u-badge-dot-radius;
+		border-bottom-right-radius: $u-badge-dot-radius;
+		@include flex;
+		line-height: $u-badge-text-font-size;
+		text-align: $u-badge-text-align;
+		font-size: $u-badge-text-font-size;
+		color: $u-badge-text-color;
 
-		&__text,
-		&__dot {
-			z-index: 9;
-			position: absolute;
-			top: $u-badge-dot-top;
-			transform: translate(100%, -50%);
-			background-color: $u-error;
-			border-top-right-radius: $u-badge-dot-radius;
-			border-top-left-radius: $u-badge-dot-radius;
-			border-bottom-left-radius: $u-badge-dot-radius;
-			border-bottom-right-radius: $u-badge-dot-radius;
-		}
-
-		&__text {
-			right: $u-badge-text-right;
-			line-height: $u-badge-text-font-size;
-			text-align: $u-badge-text-align;
-			font-size: $u-badge-text-font-size;
-			padding: $u-badge-text-padding;
-			color: $u-badge-text-color;
-		}
-
-		&__dot {
+		&--dot {
 			height: $u-badge-dot-size;
 			width: $u-badge-dot-size;
-			right: $u-badge-dot-right;
+		}
+		
+		&--inverted {
+			font-size: 13px;
+		}
+		
+		&--not-dot {
+			padding: $u-badge-text-padding;
 		}
 
 		&--horn {
@@ -124,21 +128,41 @@
 		&--primary {
 			background-color: $u-badge-primary;
 		}
+		
+		&--primary--inverted {
+			color: $u-badge-primary;
+		}
 
 		&--error {
 			background-color: $u-badge-error;
+		}
+		
+		&--error--inverted {
+			color: $u-badge-error;
 		}
 
 		&--success {
 			background-color: $u-badge-success;
 		}
+		
+		&--success--inverted {
+			color: $u-badge-success;
+		}
 
 		&--info {
 			background-color: $u-badge-info;
 		}
+		
+		&--info--inverted {
+			color: $u-badge-info;
+		}
 
 		&--warning {
 			background-color: $u-badge-warning;
+		}
+		
+		&--warning--inverted {
+			color: $u-badge-warning;
 		}
 	}
 </style>

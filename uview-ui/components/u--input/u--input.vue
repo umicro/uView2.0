@@ -41,6 +41,7 @@
 		@change="e => $emit('change', e)"
 		@input="e => $emit('input', e)"
 		@clear="$emit('clear')"
+		@click="$emit('click')"
 	></uvInput>
 </template>
 

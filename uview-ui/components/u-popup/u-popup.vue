@@ -148,7 +148,7 @@ export default {
 		},
 		position() {
 			if (this.mode === 'center') {
-				return this.zoom ? 'zoom-in' : 'fade'
+				return this.zoom ? 'fade-zoom' : 'fade'
 			}
 			if (this.mode === 'left') {
 				return 'slide-left'

@@ -19,6 +19,7 @@ export default {
 		border:true,
 		align:'left',
 		name:'',
-		icon:''
+		icon:'',
+		duration: 300
 	},
 }

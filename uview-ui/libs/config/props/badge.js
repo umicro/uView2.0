@@ -19,6 +19,8 @@ export default {
 		bgColor: '',
 		color: '#ffffff',
 		shape: 'circle',
-		numberType: 'overflow'
+		numberType: 'overflow',
+        inverted: false,
+        offset: () => []
 	},
 }

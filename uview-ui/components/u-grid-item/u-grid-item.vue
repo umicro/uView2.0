@@ -5,14 +5,14 @@
 	    :hover-stay-time="200"
 	    @tap="clickHandler"
 	    :class="classes"
-	    :style="itemStyle"
+	    :style="[itemStyle]"
 	>
 		<slot />
 	</view>
 </template>
 
 <script>
-import props from './props.js';
+	import props from './props.js';
 	/**
 	 * gridItem 提示
 	 * @description 宫格组件一般用于同时展示多个同类项目的场景，可以给宫格的项目设置徽标组件(badge)，或者图标等，也可以扩展为左右滑动的轮播形式。搭配u-grid使用
@@ -172,7 +172,6 @@ import props from './props.js';
 		/* #endif */
 		
 		/* #ifdef MP-WEIXIN */
-		// 由于这个世上最大的垃圾互联网公司的无能，所以需要写这一句
 		margin-top:$u-grid-item-margin-top;
 		/* #endif */
 		

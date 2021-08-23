@@ -135,7 +135,7 @@
 		border-style: solid;
 		justify-content: flex-end;
 		align-items: center;
-		// 由于weex为阿里逗着玩的垃圾KPI项目，导致bug奇多，这必须要写这一行，
+		// 由于weex为阿里逗着玩的KPI项目，导致bug奇多，这必须要写这一行，
 		// 否则在iOS上，点击页面任意地方，都会触发switch的点击事件
 		overflow: hidden;
 

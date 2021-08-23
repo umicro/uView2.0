@@ -133,6 +133,7 @@
 							:text="tips"
 							type="success"
 							size="mini"
+							:disabled="disabled1"
 						></u-button>
 					</u-form-item>
 					<u-form-item
@@ -184,6 +185,8 @@
 					ref="uCode"
 					@change="codeChange"
 					seconds="20"
+					@start="disabled1 = true"
+					@end="disabled1 = false"
 				></u-code>
 				<u-datetime-picker
 					:show="showBirthday"
@@ -203,6 +206,7 @@
 	export default {
 		data() {
 			return {
+				disabled1: false,
 				tips: '',
 				value: '',
 				showCalendar: false,

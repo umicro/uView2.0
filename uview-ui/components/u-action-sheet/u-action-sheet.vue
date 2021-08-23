@@ -219,6 +219,7 @@
 				font-size: $u-action-sheet-title-font-size;
 				color: $u-action-sheet-title-color;
 				font-weight: bold;
+				text-align: center;
 			}
 
 			&__icon-wrap {

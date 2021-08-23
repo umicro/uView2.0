@@ -7,7 +7,7 @@ export default {
 		},
 		// 显示的内容
 		value: {
-			type: [String, Number],
+			type: [Number, String],
 			default: uni.$u.props.badge.value
 		},
 		// 是否显示
@@ -17,7 +17,7 @@ export default {
 		},
 		// 最大值，超过最大值会显示 '{max}+'
 		max: {
-			type: [String, Number],
+			type: [Number, String],
 			default: uni.$u.props.badge.max
 		},
 		// 主题类型，error|warning|success|primary
@@ -52,6 +52,31 @@ export default {
 		numberType: {
 			type: String,
 			default: uni.$u.props.badge.numberType
+		},
+		// 设置badge的位置偏移，格式为 [x, y]，也即设置的为top和right的值，absolute为true时有效
+		offset: {
+			type: Array,
+			default: uni.$u.props.badge.offset
+        },
+		// 显示的内容
+		value: {
+			type: [String, Number],
+			default: uni.$u.props.badge.value
+		},
+		// 是否反转背景和字体颜色
+		inverted: {
+			type: Boolean,
+			default: uni.$u.props.badge.inverted
+		},
+		// 最大值，超过最大值会显示 '{max}+'
+		max: {
+			type: [String, Number],
+			default: uni.$u.props.badge.max
+		},
+		// 是否绝对定位
+		absolute: {
+			type: Boolean,
+			default: false
 		}
 	}
 }

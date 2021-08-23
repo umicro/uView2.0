@@ -42,6 +42,7 @@
 			    @focus="onFocus"
 			    @confirm="onConfirm"
 			    @keyboardheightchange="onKeyboardHeightChange"
+				@tap="clickHandler"
 			/>
 			<view
 			    class="u-input__content__clear"
@@ -221,6 +222,21 @@
 					this.valueChange()
 					this.$emit('clear')
 				})
+			},
+			/**
+			 * 在安卓nvue上，事件无法冒泡
+			 * 在某些时间，我们希望监听u-from-item的点击事件，此时会导致点击u-form-item内的u-input后
+			 * 无法触发u-form-item的点击事件，这里通过手动调用u-form-item的方法进行触发
+			 */
+			clickHandler() {
+				// #ifdef APP-NVUE
+				if(uni.$u.os() === 'android') {
+					const formItem = uni.$u.$parent.call(this, 'u-form-item')
+					if(formItem) {
+						formItem.clickHandler()
+					}
+				}
+				// #endif
 			}
 		}
 	}

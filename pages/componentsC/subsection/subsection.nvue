@@ -5,7 +5,7 @@
 			<view class="u-demo-block__content">
 				<u-subsection
 					:list="list"
-					mode="section"
+					mode="subsection"
 					:current="current1"
 					@change="change1"
 				></u-subsection>
@@ -27,7 +27,7 @@
 			<view class="u-demo-block__content">
 				<u-subsection
 					:list="list"
-					mode="section"
+					mode="subsection"
 					:current="current3"
 					activeColor="#f56c6c"
 					@change="change3"
@@ -61,14 +61,13 @@
 			}
 		},
 		onLoad() {
-			setTimeout(() => {
-				this.current1 = 2
-			}, 3000);
+			// setTimeout(() => {
+			// 	this.current1 = 2
+			// }, 3000); 
 		},
 		methods: {
 			change1(index) {
 				this.current1 = index
-				console.log('change1', index);
 			},
 			change2(index) {
 				this.current2 = index

@@ -2,7 +2,7 @@
 	<view class="u-form-item">
 		<view
 			class="u-form-item__body"
-			@tap.stop="clickHandler"
+			@tap="clickHandler"
 			:style="[$u.addStyle(customStyle), {
 				flexDirection: parentData.labelPosition === 'left' ? 'row' : 'column'
 			}]"

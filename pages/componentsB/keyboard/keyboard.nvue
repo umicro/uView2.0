@@ -73,11 +73,6 @@
 				show: false
 			}
 		},
-		watch: {
-			input(newValue, oldValue) {
-				console.log('input', newValue);
-			}
-		},
 		methods: {
 			navigateBack() {
 				uni.navigateBack();
@@ -106,19 +101,19 @@
 				this.show = true
 			},
 			change(e) {
-				console.log('change');
+				// console.log('change');
 				this.input += e
 			},
 			close() {
-				console.log('close');
+				// console.log('close');
 				this.show = false
 			},
 			cancel() {
-				console.log('cancel');
+				// console.log('cancel');
 				this.show = false
 			},
 			confirm() {
-				console.log('confirm');
+				// console.log('confirm');
 				this.show = false
 			},
 			backspace() {

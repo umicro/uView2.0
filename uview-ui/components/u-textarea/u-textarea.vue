@@ -2,6 +2,7 @@
 	<view
 		class="u-textarea"
 		:class="textareaClass"
+		:style="[textareaStyle]"
 	>
 		<textarea
 			class="u-textarea__field"
@@ -90,6 +91,20 @@
 				border === 'bottom' && (classes = classes.concat(['u-border-bottom', 'u-textarea--no-radius']))
 				disabled && classes.push('u-textarea--disabled')
 				return classes.join(' ')
+			},
+			// 组件的样式
+			textareaStyle() {
+				const style = {}
+				// #ifdef APP-NVUE
+				// 由于textarea在安卓nvue上的差异性，需要额外再调整其内边距
+				if(uni.$u.os() === 'android') {
+					style.paddingTop = '6px'
+					style.paddingLeft = '9px'
+					style.paddingBottom = '3px'
+					style.paddingRight = '6px'
+				}
+				// #endif
+				return style
 			}
 		},
 		methods: {
@@ -126,9 +141,15 @@
 		border-radius: 4px;
 		background-color: #fff;
 		position: relative;
-		// padding: 5px;
 		@include flex;
 		flex: 1;
+		/* #ifdef APP-NVUE */
+		padding: 0px 6px;
+		/* #endif */
+		/* #ifndef APP-NVUE */
+		width: auto;
+		padding: 6px 9px;
+		/* #endif */
 
 		&--radius {
 			border-radius: 4px;
@@ -146,14 +167,6 @@
 			flex: 1;
 			font-size: 15px;
 			color: $u-content-color;
-			margin: 0;
-			/* #ifdef APP-NVUE */
-			padding: 6px 6px;
-			/* #endif */
-			/* #ifndef APP-NVUE */
-			width: auto;
-			padding: 6px 9px;
-			/* #endif */
 		}
 
 		&__count {

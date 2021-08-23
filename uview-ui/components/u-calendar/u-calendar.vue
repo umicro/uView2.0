@@ -107,7 +107,7 @@
 				// 在月份滚动区域中，当前视图中月份的index索引
 				monthIndex: 0,
 				// 月份滚动区域的高度
-				listHeight: 320,
+				listHeight: 0,
 				// month组件中选择的日期数组
 				selected: [],
 				// 如果没有设置最大可选日期，默认为往后推3个月

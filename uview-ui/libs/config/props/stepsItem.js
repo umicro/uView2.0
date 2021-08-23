@@ -12,8 +12,6 @@ export default {
 	stepsItem: {
 		title: '',
 		desc: '',
-		icon: '',
-		iconColor: '',
 		iconSize: 17,
 		error: false
 	},

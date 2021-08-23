@@ -42,14 +42,20 @@
 	 * toast 消息提示
 	 * @description 此组件表现形式类似uni的uni.showToastAPI，但也有不同的地方。
 	 * @tutorial https://www.uviewui.com/components/toast.html
-	 * @property {String | Number}	zIndex		toast展示时的zIndex值 (默认 10075)
-	 * @property {Boolean}			loading		是否加载中 （默认 false）
+	 * @property {String | Number}	zIndex		toast展示时的zIndex值 (默认 10090 )
+	 * @property {Boolean}			loading		是否加载中 （默认 false ）
 	 * @property {String | Number}	text		显示的文字内容
 	 * @property {String}			icon		图标，或者绝对路径的图片
 	 * @property {String}			type		主题类型 （默认 default）
 	 * @property {Boolean}			show		是否显示该组件 （默认 false）
-	 * @property {Boolean}			overlay		是否显示透明遮罩，防止点击穿透 （默认 false）
-	 * @property {String}			position	位置 （默认 center）
+	 * @property {Boolean}			overlay		是否显示透明遮罩，防止点击穿透 （默认 false ）
+	 * @property {String}			position	位置 （默认 'center' ）
+	 * @property {Object}			params		跳转的参数 
+	 * @property {String | Number}  duration	展示时间，单位ms （默认 2000 ）
+	 * @property {Boolean}			isTab		是否返回的为tab页面 （默认 false ）
+	 * @property {String}			url			toast消失后是否跳转页面，有则跳转，优先级高于back参数 
+	 * @property {Function}			callback	执行完后的回调函数 
+	 * @property {Boolean}			back		结束toast是否自动返回上一页 （默认 false ）
 	 * @property {Object}			customStyle	组件的样式，对象形式
 	 * @event {Function} show 显示toast，如需一进入页面就显示toast，请在onReady生命周期调用
 	 * @example <u-toast ref="uToast" />

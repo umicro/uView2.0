@@ -21,20 +21,20 @@ export default {
 			},
 		actionText: '搜索',
 		inputAlign:  'left',
-		disabled:  false,
-		animation:  false,
-		borderColor:  'transparent',
-		value:  '',
-		height:  64,
 		inputStyle:  ()=> {
 				return {}
 			},
-		maxlength:  '-1',
+		disabled:  false,
+		borderColor:  'transparent',
 		searchIconColor:  '#909399',
 		color:  '#606266',
 		placeholderColor:  '#909399',
-		margin:  '0',
 		searchIcon:  'search',
+		margin:  '0',
+		animation:  false,
+		value:  '',
+		maxlength:  '-1',
+		height:  64,
 		label: null
 	},
 }

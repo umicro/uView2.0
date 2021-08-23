@@ -11,7 +11,6 @@ export default {
 	// cell组件的props
 	cell: {
 		customClass: '',
-		customStyle: {},
 		title: '',
 		label: '',
 		value: '',

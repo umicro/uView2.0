@@ -45,11 +45,11 @@
 	 * keyboard 键盘组件
 	 * @description  
 	 * @tutorial  
-	 * @property {String} mode 键盘的类型，number-数字键盘，card-身份证键盘
-	 * @property {Boolean} dotEnable 是否显示键盘的"."符号
-	 * @property {Boolean} random 是否打乱键盘按键的顺序
-	 * @event {Function} change 点击键盘触发
-	 * @event {Function} backspace 点击退格键触发
+	 * @property {String}	mode		键盘的类型，number-数字键盘，card-身份证键盘
+	 * @property {Boolean}	dotEnable	是否显示键盘的"."符号
+	 * @property {Boolean}	random		是否打乱键盘按键的顺序
+	 * @event {Function} change		点击键盘触发
+	 * @event {Function} backspace	点击退格键触发
 	 * @example 
 	 */
 	export default {

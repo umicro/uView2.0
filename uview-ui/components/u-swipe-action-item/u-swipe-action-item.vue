@@ -85,16 +85,16 @@
 	 * SwipeActionItem 滑动单元格子组件
 	 * @description 该组件一般用于左滑唤出操作菜单的场景，用的最多的是左滑删除操作
 	 * @tutorial https://www.uviewui.com/components/swipeAction.html
-	 * @property {Boolean}			show			控制打开或者关闭
+	 * @property {Boolean}			show			控制打开或者关闭（默认 false ）
 	 * @property {String | Number}	index			标识符，如果是v-for，可用index索引
-	 * @property {Boolean}			disabled		是否禁用
-	 * @property {Boolean}			autoClose		是否自动关闭其他swipe按钮组
-	 * @property {Number}			threshold		滑动距离阈值，只有大于此值，才被认为是要打开菜单
-	 * @property {Array}			rightOptions	右侧按钮内容
-	 * @property {String | Number}	duration		动画过渡时间，单位ms
+	 * @property {Boolean}			disabled		是否禁用（默认 false ）
+	 * @property {Boolean}			autoClose		是否自动关闭其他swipe按钮组（默认 30 ）
+	 * @property {Number}			threshold		滑动距离阈值，只有大于此值，才被认为是要打开菜单（默认 true ）
+	 * @property {Array}			options			右侧按钮内容
+	 * @property {String | Number}	duration		动画过渡时间，单位ms（默认 350 ）
 	 * @event {Function(index)}	open	组件打开时触发
 	 * @event {Function(index)}	close	组件关闭时触发
-	 * @example	<u-swipe-action><u-swipe-action-item :rightOptions="options1" ></u-swipe-action-item></u-swipe-action>
+	 * @example	<u-swipe-action><u-swipe-action-item :options="options1" ></u-swipe-action-item></u-swipe-action>
 	 */
 	export default {
 		name: 'u-swipe-action-item',

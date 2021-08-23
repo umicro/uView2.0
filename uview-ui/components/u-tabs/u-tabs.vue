@@ -86,26 +86,8 @@
 	 * Tabs 标签
 	 * @description tabs标签组件，在标签多的时候，可以配置为左右滑动，标签少的时候，可以禁止滑动。 该组件的一个特点是配置为滚动模式时，激活的tab会自动移动到组件的中间位置。
 	 * @tutorial https://www.uviewui.com/components/tabs.html
-	 * @property {Boolean}			is-scroll			tabs是否可以左右拖动
-	 * @property {Array}			list				标签数组，元素为对象，如[{name: '推荐'}]
-	 * @property {String | Number}	current				指定哪个tab为激活状态
-	 * @property {String | Number}	height				导航栏的高度，单位px
-	 * @property {String | Number}	font-size			tab文字大小，单位px
-	 * @property {String | Number}	duration			滑块移动一次所需的时间，单位秒
-	 * @property {String}			active-color		滑块和激活tab文字的颜色
-	 * @property {String}			inactive-color		tabs文字颜色
-	 * @property {String | Number}	bar-width			滑块宽度，单位px
-	 * @property {String | Number}	bar-height			滑块高度，单位px
-	 * @property {String | Number}	gutter				单个tab标签的左右内边距之和，单位px
-	 * @property {String}			bg-color			tabs导航栏的背景颜色
-	 * @property {String}			name				组件内部读取的list参数中的属性名（tab名称），见上方说明
-	 * @property {Boolean}			bold				激活选项的字体是否加粗
-	 * @property {Boolean}			show-bar			是否显示底部的滑块
-	 * @property {Object}			bar-style			底部滑块的样式，对象形式
-	 * @property {Object}			active-item-style	当前活动Item的样式，对象形式
-	 * @property {String | Number}	item-width			标签的宽度，单位px
-	 * @property {String}			count				组件内部读取的list参数中的属性名（badge徽标数），用法与name一致，见上方说明
-	 * @property {Array}			offset				设置badge的位置偏移，格式为 [x, y]，也即设置的为top和right的值，单位px。
+	 * @property {String | Number}	duration			滑块移动一次所需的时间，单位秒（默认 200 ）
+	 * @property {String | Number}	swierWidth			swiper的宽度（默认 '750rpx' ）
 	 * @event {Function(index)} change 点击标签时触发 index: 点击了第几个tab，索引从0开始
 	 * @example <u-tabs :list="list" :is-scroll="false" :current="current" @change="change"></u-tabs>
 	 */

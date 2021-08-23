@@ -27,7 +27,6 @@ export default {
 		labelColor: color['u-content-color'],
 		space: '3px',
 		imgMode: '',
-		customStyle: {},
 		width: '',
 		height: '',
 		top: 0,

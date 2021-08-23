@@ -57,17 +57,17 @@
 	 * Skeleton 骨架屏
 	 * @description 骨架屏一般用于页面在请求远程数据尚未完成时，页面用灰色块预显示本来的页面结构，给用户更好的体验。
 	 * @tutorial https://www.uviewui.com/components/skeleton.html
-	 * @property {Boolean}					loading		是否显示骨架占位图，设置为false将会展示子组件内容
-	 * @property {Boolean}					avatar		是否展示头像占位图
-	 * @property {String}					avatarShape	头像占位图的形状，circle-圆形，square-方形
-	 * @property {String | Number}			avatarSize	头像占位图大小
-	 * @property {Boolean}					title		是否展示标题占位图
-	 * @property {String | Number}			titleHeight	标题的高度
-	 * @property {String | Number}			rows		段落占位图行数
-	 * @property {String | Number}			titleWidth	标题的宽度
-	 * @property {String | Number}			rowsHeight	段落的高度
-	 * @property {String | Array | Number}	rowsWidth	段落占位图的宽度，可以为百分比，数值，带单位字符串等，可通过数组传入指定每个段落行的宽度
-	 * @property {Boolean}					animate		是否开启动画效果
+	 * @property {Boolean}					loading		是否显示骨架占位图，设置为false将会展示子组件内容 (默认 true )
+	 * @property {Boolean}					animate		是否开启动画效果 (默认 true )
+	 * @property {String | Number}			rows		段落占位图行数 (默认 0 )
+	 * @property {String | Number | Array}	rowsWidth	段落占位图的宽度，可以为百分比，数值，带单位字符串等，可通过数组传入指定每个段落行的宽度 (默认 '100%' )
+	 * @property {String | Number | Array}	rowsHeight	段落的高度 (默认 18 )
+	 * @property {Boolean}					title		是否展示标题占位图 (默认 true )
+	 * @property {String | Number}			titleWidth	标题的宽度 (默认 '50%' )
+	 * @property {String | Number}			titleHeight	标题的高度 (默认 18 )
+	 * @property {Boolean}					avatar		是否展示头像占位图 (默认 false )
+	 * @property {String | Number}			avatarSize	头像占位图大小 (默认 32 )
+	 * @property {String}					avatarShape	头像占位图的形状，circle-圆形，square-方形 (默认 'circle' )
 	 * @example <u-search placeholder="日照香炉生紫烟" v-model="keyword"></u-search>
 	 */
 	export default {

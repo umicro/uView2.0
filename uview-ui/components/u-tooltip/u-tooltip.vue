@@ -101,15 +101,15 @@
 	 * @tutorial https://www.uviewui.com/components/tooltip.html
 	 * @property {String | Number}	text		需要显示的提示文字
 	 * @property {String | Number}	copyText	点击复制按钮时，复制的文本，为空则使用text值
-	 * @property {String | Number}	size		文本大小
-	 * @property {String}			color		字体颜色
-	 * @property {String}			bgColor		弹出提示框时，文本的背景色
-	 * @property {String}			direction	弹出提示的方向，top-上方，bottom-下方
-	 * @property {String | Number}	zIndex		弹出提示的z-index，nvue无效
-	 * @property {Boolean}			showCopy	是否显示复制按钮
+	 * @property {String | Number}	size		文本大小（默认 14 ）
+	 * @property {String}			color		字体颜色（默认 '#606266' ）
+	 * @property {String}			bgColor		弹出提示框时，文本的背景色（默认 'transparent' ）
+	 * @property {String}			direction	弹出提示的方向，top-上方，bottom-下方（默认 'top' ）
+	 * @property {String | Number}	zIndex		弹出提示的z-index，nvue无效（默认 10071 ）
+	 * @property {Boolean}			showCopy	是否显示复制按钮（默认 true ）
 	 * @property {Array}			buttons		扩展的按钮组
-	 * @property {Boolean}			overlay		是否显示透明遮罩以防止触摸穿透
-	 * @property {Object}			customStyle			定义需要用到的外部样式
+	 * @property {Boolean}			overlay		是否显示透明遮罩以防止触摸穿透（默认 true ）
+	 * @property {Object}			customStyle	定义需要用到的外部样式
 	 * 
 	 * @event {Function} 
 	 * @example 

@@ -21,6 +21,7 @@ export default {
 		shape: 'circle',
 		numberType: 'overflow',
         inverted: false,
-        offset: () => []
+        offset: () => [],
+		absolute:false,
 	},
 }

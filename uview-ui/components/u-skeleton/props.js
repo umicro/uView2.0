@@ -20,16 +20,6 @@ export default {
 			type: [String, Number, Array],
 			default: uni.$u.props.skeleton.rowsWidth,
 		},
-		// 段落标题的宽度
-		titleWidth: {
-			type: [String, Number],
-			default: uni.$u.props.skeleton.titleWidth,
-		},
-		// 段落标题的高度
-		titleHeight: {
-			type: [String, Number],
-			default: uni.$u.props.skeleton.titleHeight,
-		},
 		// 段落占位图的高度
 		rowsHeight: {
 			type: [String, Number, Array],
@@ -39,6 +29,16 @@ export default {
 		title: {
 			type: Boolean,
 			default: uni.$u.props.skeleton.title,
+		},
+		// 段落标题的宽度
+		titleWidth: {
+			type: [String, Number],
+			default: uni.$u.props.skeleton.titleWidth,
+		},
+		// 段落标题的高度
+		titleHeight: {
+			type: [String, Number],
+			default: uni.$u.props.skeleton.titleHeight,
 		},
 		// 是否展示头像占位图
 		avatar: {

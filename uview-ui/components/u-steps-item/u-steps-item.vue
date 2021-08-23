@@ -95,10 +95,10 @@
 	 * StepsItem 步骤条的子组件
 	 * @description 本组件需要和u-steps配合使用
 	 * @tutorial https://uviewui.com/components/steps.html
-	 * @property {String}			title			标题文字 
-	 * @property {String}			current			描述文本 
-	 * @property {String | Number}	iconSize		图标大小 
-	 * @property {Boolean}			error			当前步骤是否处于失败状态 
+	 * @property {String}			title			标题文字
+	 * @property {String}			current			描述文本
+	 * @property {String | Number}	iconSize		图标大小  (默认 17 )
+	 * @property {Boolean}			error			当前步骤是否处于失败状态  (默认 false )
 	 * @example <u-steps current="0"><u-steps-item title="已出库" desc="10:35" ></u-steps-item></u-steps>
 	 */
 	export default {

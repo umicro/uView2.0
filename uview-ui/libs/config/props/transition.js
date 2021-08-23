@@ -13,7 +13,6 @@ export default {
 		show: true,
 		mode: 'fade',
 		duration: '300',
-		customStyle: {},
-		timingFunction: 'ease-out'
+		timingFunction: 'ease-out',
 	},
 }

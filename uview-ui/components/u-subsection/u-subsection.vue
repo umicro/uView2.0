@@ -39,18 +39,15 @@
 	 * Subsection 分段器 
 	 * @description 该分段器一般用于用户从几个选项中选择某一个的场景
 	 * @tutorial https://www.uviewui.com/components/subsection.html
-	 * @property {Array}			list			选项的数组，形式见上方"基本使用"
-	 * @property {String ｜ Number}	current			初始化时默认选中的选项索引值
-	 * @property {String}			active-color	激活时的颜色
-	 * @property {String}			active-color	未激活时的颜色
-	 * @property {String}			mode			模式选择，见上方"模式选择"说明
-	 * @property {String ｜ Number}	font-size		字体大小，单位px
-	 * @property {String | Number}	height			组件高度，单位px
-	 * @property {Boolean}			animation		是否开启动画效果，见上方说明
-	 * @property {Boolean}			bold			激活选项的字体是否加粗
-	 * @property {String}			bg-color		组件背景颜色，mode为button时有效
-	 * @property {String}			button-color	按钮背景颜色，mode为button时有效
-	 * @property {Object}			customStyle			定义需要用到的外部样式
+	 * @property {Array}			list			tab的数据
+	 * @property {String ｜ Number}	current			 当前活动的tab的index（默认 0 ）
+	 * @property {String}			activeColor		激活时的颜色（默认 '#3c9cff' ）
+	 * @property {String}			inactiveColor	未激活时的颜色（默认 '#303133' ）
+	 * @property {String}			mode			模式选择，mode=button为按钮形式，mode=subsection时为分段模式（默认 'button' ）
+	 * @property {String ｜ Number}	fontSize		字体大小，单位px（默认 12 ）
+	 * @property {Boolean}			bold			激活选项的字体是否加粗（默认 true ）
+	 * @property {String}			bgColor			组件背景颜色，mode为button时有效（默认 '#eeeeef' ）
+	 * @property {Object}			customStyle		定义需要用到的外部样式
 	 * 
 	 * @event {Function} change		分段器选项发生改变时触发  回调 index：选项的index索引值，从0开始
 	 * @example <u-subsection :list="list" :current="curNow" @change="sectionChange"></u-subsection>

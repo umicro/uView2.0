@@ -126,26 +126,26 @@
 	 * upload 上传
 	 * @description 该组件用于上传图片场景
 	 * @tutorial https://uviewui.com/components/upload.html
-	 * @property {String}			accept				接受的文件类型, 可选值为all media image file video
-	 * @property {String | Array}	capture				图片或视频拾取模式，当accept为image类型时设置capture可选额外camera可以直接调起摄像头
-	 * @property {Boolean}			compressed			当accept为video时生效，是否压缩视频，默认为true
-	 * @property {String}			camera				当accept为video时生效，可选值为back或front
-	 * @property {Number}			maxDuration			当accept为video时生效，拍摄视频最长拍摄时间，单位秒
-	 * @property {String}			uploadIcon			上传区域的图标，只能内置图标
-	 * @property {Boolean}			useBeforeRead		是否开启文件读取前事件
-	 * @property {Boolean}			previewFullImage	是否显示组件自带的图片预览功能
-	 * @property {String | Number}	maxCount			最大上传数量
-	 * @property {Boolean}			disabled			是否启用
-	 * @property {String}			imageMode			预览上传的图片时的裁剪模式，和image组件mode属性一致
+	 * @property {String}			accept				接受的文件类型, 可选值为all media image file video （默认 'image' ）
+	 * @property {String | Array}	capture				图片或视频拾取模式，当accept为image类型时设置capture可选额外camera可以直接调起摄像头（默认 ['album', 'camera'] ）
+	 * @property {Boolean}			compressed			当accept为video时生效，是否压缩视频，默认为true（默认 true ）
+	 * @property {String}			camera				当accept为video时生效，可选值为back或front（默认 'back' ）
+	 * @property {Number}			maxDuration			当accept为video时生效，拍摄视频最长拍摄时间，单位秒（默认 60 ）
+	 * @property {String}			uploadIcon			上传区域的图标，只能内置图标（默认 'camera-fill' ）
+	 * @property {Boolean}			useBeforeRead		是否开启文件读取前事件（默认 false ）
+	 * @property {Boolean}			previewFullImage	是否显示组件自带的图片预览功能（默认 true ）
+	 * @property {String | Number}	maxCount			最大上传数量（默认 52 ）
+	 * @property {Boolean}			disabled			是否启用（默认 false ）
+	 * @property {String}			imageMode			预览上传的图片时的裁剪模式，和image组件mode属性一致（默认 'aspectFill' ）
 	 * @property {String}			name				标识符，可以在回调函数的第二项参数中获取
-	 * @property {Array}			sizeType			所选的图片的尺寸, 可选值为original compressed
-	 * @property {Boolean}			multiple			是否开启图片多选，部分安卓机型不支持
-	 * @property {Boolean}			deletable			是否展示删除按钮
-	 * @property {String | Number}	maxSize				文件大小限制，单位为byte
+	 * @property {Array}			sizeType			所选的图片的尺寸, 可选值为original compressed（默认 ['original', 'compressed'] ）
+	 * @property {Boolean}			multiple			是否开启图片多选，部分安卓机型不支持 （默认 false ）
+	 * @property {Boolean}			deletable			是否展示删除按钮（默认 true ）
+	 * @property {String | Number}	maxSize				文件大小限制，单位为byte （默认 Number.MAX_VALUE ）
 	 * @property {Array}			fileList			显示已上传的文件列表
 	 * @property {String}			uploadText			上传区域的提示文字
-	 * @property {String | Number}	width				内部预览图片区域和选择图片按钮的区域宽度
-	 * @property {String | Number}	height				内部预览图片区域和选择图片按钮的区域高度
+	 * @property {String | Number}	width				内部预览图片区域和选择图片按钮的区域宽度（默认 80 ）
+	 * @property {String | Number}	height				内部预览图片区域和选择图片按钮的区域高度（默认 80 ）
 	 * @property {Object}			customStyle			组件的样式，对象形式
 	 * @event {Function} afterRead		读取后的处理函数
 	 * @event {Function} beforeRead		读取前的处理函数

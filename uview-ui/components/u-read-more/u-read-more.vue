@@ -54,15 +54,15 @@
 	 * readMore 阅读更多
 	 * @description 该组件一般用于内容较长，预先收起一部分，点击展开全部内容的场景。
 	 * @tutorial https://www.uviewui.com/components/readMore.html
-	 * @property {String | Number}	showHeight	内容超出此高度才会显示展开全文按钮，单位px（默认400）
-	 * @property {Boolean}			toggle		展开后是否显示收起按钮（默认false）
-	 * @property {String}			closeText	关闭时的提示文字（默认“展开阅读全文”）
-	 * @property {String}			openText	展开时的提示文字（默认“收起”）
-	 * @property {String | Number}	fontSize	提示文字的大小，单位px（默认14）
+	 * @property {String | Number}	showHeight	内容超出此高度才会显示展开全文按钮，单位px（默认 400 ）
+	 * @property {Boolean}			toggle		展开后是否显示收起按钮（默认 false ）
+	 * @property {String}			closeText	关闭时的提示文字（默认 '展开阅读全文' ）
+	 * @property {String}			openText	展开时的提示文字（默认 '收起' ）
+	 * @property {String}			color		提示文字的颜色（默认 '#2979ff' ）
+	 * @property {String | Number}	fontSize	提示文字的大小，单位px （默认 14 ）
 	 * @property {Object}			shadowStyle	显示阴影的样式
+	 * @property {String}			textIndent	段落首行缩进的字符个数 （默认 '2em' ）
 	 * @property {String | Number}	name		用于在 open 和 close 事件中当作回调参数返回
-	 * @property {String}			color		提示文字的颜色（默认#2979ff）
-	 * @property {String}			textIndent	段落首行缩进的字符个数
 	 * @event {Function} open 内容被展开时触发
 	 * @event {Function} close 内容被收起时触发
 	 * @example <u-read-more><rich-text :nodes="content"></rich-text></u-read-more>

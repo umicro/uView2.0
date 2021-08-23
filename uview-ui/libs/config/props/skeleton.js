@@ -14,10 +14,10 @@ export default {
 		animate:  true,
 		rows:  0,
 		rowsWidth:  '100%',
-		titleWidth:  '50%',
-		titleHeight: 18,
 		rowsHeight:  18,
 		title:  true,
+		titleWidth:  '50%',
+		titleHeight: 18,
 		avatar:  false,
 		avatarSize:  32,
 		avatarShape: 'circle'

@@ -5,6 +5,7 @@ export default {
 			type: String,
 			default: uni.$u.props.tag.type
 		},
+		// 不可用
 		disabled: {
 			type: [Boolean, String],
 			default: uni.$u.props.tag.disabled

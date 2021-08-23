@@ -93,30 +93,30 @@
 	 * Swiper 轮播图
 	 * @description 该组件一般用于导航轮播，广告展示等场景,可开箱即用，
 	 * @tutorial https://www.uviewui.com/components/swiper.html
-	 * @property {Array}			list					轮播图数据，见上方"基本使用"说明
-	 * @property {Boolean}			indicator				是否显示面板指示器
-	 * @property {String}			indicatorActiveColor	指示器非激活颜色
-	 * @property {String}			indicatorInactiveColor	指示器的激活颜色
+	 * @property {Array}			list					轮播图数据
+	 * @property {Boolean}			indicator				是否显示面板指示器（默认 false ）
+	 * @property {String}			indicatorActiveColor	指示器非激活颜色（默认 '#FFFFFF' ）
+	 * @property {String}			indicatorInactiveColor	指示器的激活颜色（默认 'rgba(255, 255, 255, 0.35)' ）
 	 * @property {String | Object}	indicatorStyle			指示器样式，可通过bottom，left，right进行定位
-	 * @property {String}			indicatorMode			指示器模式
-	 * @property {Boolean}			autoplay				是否自动切换
-	 * @property {String | Number}	current					当前所在滑块的 index
+	 * @property {String}			indicatorMode			指示器模式（默认 'line' ）
+	 * @property {Boolean}			autoplay				是否自动切换（默认 true ）
+	 * @property {String | Number}	current					当前所在滑块的 index（默认 0 ）
 	 * @property {String}			currentItemId			当前所在滑块的 item-id ，不能与 current 被同时指定
-	 * @property {String | Number}	interval				滑块自动切换时间间隔（ms）
-	 * @property {String | Number}	duration				滑块切换过程所需时间（ms）
-	 * @property {Boolean}			circular				播放到末尾后是否重新回到开头
-	 * @property {String | Number}	previousMargin			前边距，可用于露出前一项的一小部分，nvue和支付宝不支持
-	 * @property {String | Number}	nextMargin				后边距，可用于露出后一项的一小部分，nvue和支付宝不支持
-	 * @property {Boolean}			acceleration			当开启时，会根据滑动速度，连续滑动多屏，支付宝不支持
-	 * @property {Number}			displayMultipleItems	同时显示的滑块数量，nvue、支付宝小程序不支持
-	 * @property {String}			easingFunction			指定swiper切换缓动动画类型， 只对微信小程序有效
-	 * @property {String}			keyName					list数组中指定对象的目标属性名
-	 * @property {String}			imgMode					图片的裁剪模式
-	 * @property {String | Number}	height					组件高度
-	 * @property {String}			bgColor					背景颜色
-	 * @property {String | Number}	radius					组件圆角，数值或带单位的字符串
-	 * @property {Boolean}			loading					是否加载中
-	 * @property {Boolean}			showTitle				是否显示标题，要求数组对象中有title属性
+	 * @property {String | Number}	interval				滑块自动切换时间间隔（ms）（默认 3000 ）
+	 * @property {String | Number}	duration				滑块切换过程所需时间（ms）（默认 300 ）
+	 * @property {Boolean}			circular				播放到末尾后是否重新回到开头（默认 false ）
+	 * @property {String | Number}	previousMargin			前边距，可用于露出前一项的一小部分，nvue和支付宝不支持（默认 0 ）
+	 * @property {String | Number}	nextMargin				后边距，可用于露出后一项的一小部分，nvue和支付宝不支持（默认 0 ）
+	 * @property {Boolean}			acceleration			当开启时，会根据滑动速度，连续滑动多屏，支付宝不支持（默认 false ）
+	 * @property {Number}			displayMultipleItems	同时显示的滑块数量，nvue、支付宝小程序不支持（默认 1 ）
+	 * @property {String}			easingFunction			指定swiper切换缓动动画类型， 只对微信小程序有效（默认 'default' ）
+	 * @property {String}			keyName					list数组中指定对象的目标属性名（默认 'url' ）
+	 * @property {String}			imgMode					图片的裁剪模式（默认 'aspectFill' ）
+	 * @property {String | Number}	height					组件高度（默认 130 ）
+	 * @property {String}			bgColor					背景颜色（默认 	'#f3f4f6' ）
+	 * @property {String | Number}	radius					组件圆角，数值或带单位的字符串（默认 4 ）
+	 * @property {Boolean}			loading					是否加载中（默认 false ）
+	 * @property {Boolean}			showTitle				是否显示标题，要求数组对象中有title属性（默认 false ）
 	 * @event {Function(index)}	click	点击轮播图时触发	index：点击了第几张图片，从0开始
 	 * @event {Function(index)}	change	轮播图切换时触发(自动或者手动切换)	index：切换到了第几张图片，从0开始
 	 * @example	<u-swiper :list="list4" keyName="url" :autoplay="false"></u-swiper>

@@ -15,7 +15,5 @@ export default {
 		disabled: false,
 		bgColor: 'transparent',
 		zIndex: '',
-		index: '',
-		mode: 'auto'
-	},
+		index: ''	},
 }

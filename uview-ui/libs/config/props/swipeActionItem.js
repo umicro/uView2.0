@@ -15,8 +15,7 @@ export default {
 		disabled: false,
 		threshold: 30,
 		autoClose: true,
-		leftOptions: [],
-		rightOptions: [],
+		options: [],
 		duration: 350
 	},
 }

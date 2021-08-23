@@ -76,7 +76,7 @@ export default {
 		// 是否绝对定位
 		absolute: {
 			type: Boolean,
-			default: false
+			default: uni.$u.props.badge.absolute
 		}
 	}
 }

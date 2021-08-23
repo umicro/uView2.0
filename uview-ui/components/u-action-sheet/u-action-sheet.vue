@@ -133,6 +133,7 @@
 	 * @property {String}			sendMessageImg		会话内消息卡片图片，openType="contact"时有效
 	 * @property {Boolean}			showMessageCard		是否显示会话内消息卡片，设置此参数为 true，用户进入客服会话会在右下角显示"可能要发送的小程序"提示，用户点击后可以快速发送小程序消息，openType="contact"时有效 （默认 false ）
 	 * @property {String}			appParameter		打开 APP 时，向 APP 传递的参数，openType=launchApp 时有效
+	 * 
 	 * @event {Function} select			点击ActionSheet列表项时触发 
 	 * @event {Function} close			点击取消按钮时触发
 	 * @event {Function} getuserinfo	用户点击该按钮时，会返回获取到的用户信息，回调的 detail 数据与 wx.getUserInfo 返回的一致，openType="getUserInfo"时有效
@@ -141,7 +142,7 @@
 	 * @event {Function} error			当使用开放能力时，发生错误的回调，openType="error"时有效
 	 * @event {Function} launchapp		打开 APP 成功的回调，openType="launchApp"时有效
 	 * @event {Function} opensetting	在打开授权设置页后回调，openType="openSetting"时有效
-	 * @example <u-action-sheet :actions="actions" @click="click" v-model="show"></u-action-sheet>
+	 * @example <u-action-sheet :actions="list" :title="title" :show="show"></u-action-sheet>
 	 */
 	export default {
 		name: "u-action-sheet",

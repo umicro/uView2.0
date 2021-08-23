@@ -24,6 +24,9 @@
 	 * @property {String} 			color 		字体颜色 （默认 '#ffffff' ）
 	 * @property {String} 			shape 		徽标形状，circle-四角均为圆角，horn-左下角为直角 （默认 'circle' ）
 	 * @property {String} 			numberType	设置数字的显示方式，overflow|ellipsis|limit  （默认 'overflow' ）
+	 * @property {Array}} 			offset		设置badge的位置偏移，格式为 [x, y]，也即设置的为top和right的值，absolute为true时有效
+	 * @property {Boolean} 			inverted	是否反转背景和字体颜色（默认 false ）
+	 * @property {Boolean} 			absolute	是否绝对定位（默认 false ）
 	 * @property {Object}			customStyle	定义需要用到的外部样式
 	 * @example <u-badge :type="type" :count="count"></u-badge>
 	 */

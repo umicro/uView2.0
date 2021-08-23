@@ -66,14 +66,14 @@
 	 * @description 警告提示，展现需要关注的信息。
 	 * @tutorial https://www.uviewui.com/components/alertTips.html
 	 * 
-	 * @property {Array}			title       显示的文字 
+	 * @property {String}			title       显示的文字 
 	 * @property {String}			type        使用预设的颜色  （默认 'warning' ）
-	 * @property {String | Number}	description 辅助性文字，颜色比title浅一点，字号也小一点，可选  
-	 * @property {String | Number}	closable    关闭按钮(默认为叉号icon图标)  （默认 false ）
-	 * @property {String | Number}	showIcon    是否显示左边的辅助图标   （ 默认 false ）
+	 * @property {String}			description 辅助性文字，颜色比title浅一点，字号也小一点，可选  
+	 * @property {Boolean}			closable    关闭按钮(默认为叉号icon图标)  （默认 false ）
+	 * @property {Boolean}			showIcon    是否显示左边的辅助图标   （ 默认 false ）
 	 * @property {String}			effect      多图时，图片缩放裁剪的模式  （默认 'light' ）
-	 * @property {String | Number}	center      取消按钮的提示文字  （默认 false ）
-	 * @property {Boolean}			fontSize    是否可以预览图片  （默认 14 ）
+	 * @property {Boolean}			center		文字是否居中  （默认 false ）
+	 * @property {String | Number}	fontSize    字体大小  （默认 14 ）
 	 * @property {Object}			customStyle	定义需要用到的外部样式
 	 * @event    {Function}        click       点击组件时触发
 	 * @example  <u-alert :title="title"  type = "warning" :closable="closable" :description = "description"></u-alert>

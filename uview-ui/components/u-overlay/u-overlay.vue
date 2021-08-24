@@ -20,7 +20,7 @@
 	 * @property {Boolean}			show		是否显示遮罩（默认 false ）
 	 * @property {String | Number}	zIndex		zIndex 层级（默认 10070 ）
 	 * @property {String | Number}	duration	动画时长，单位毫秒（默认 300 ）
-	 * @property {String | Number}	opacity		不透明度值，当做rgba的第四个参数 （默认 0.7 ）
+	 * @property {String | Number}	opacity		不透明度值，当做rgba的第四个参数 （默认 0.3 ）
 	 * @property {Object}			customStyle	定义需要用到的外部样式
 	 * @event {Function} click 点击遮罩发送事件
 	 * @example <u-overlay :show="show" @click="show = false"></u-overlay>

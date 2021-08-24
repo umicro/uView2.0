@@ -37,7 +37,7 @@
 	 * @property {Boolean}						disabled		是否禁用（默认 false ）
 	 * @property {String | Number}				size			开关尺寸，单位px （默认 25 ）
 	 * @property {String}						activeColor		打开时的背景色 （默认 '#2979ff' ）
-	 * @property {Boolean} 						inactiveColor	关闭时的背景色 （默认 '#ffffff' ）
+	 * @property {String} 						inactiveColor	关闭时的背景色 （默认 '#ffffff' ）
 	 * @property {Boolean | String | Number}	value			通过v-model双向绑定的值 （默认 false ）
 	 * @property {Boolean | String | Number}	activeValue		打开选择器时通过change事件发出的值 （默认 true ）
 	 * @property {Boolean | String | Number}	inactiveValue	关闭选择器时通过change事件发出的值 （默认 false ）

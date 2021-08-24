@@ -75,7 +75,7 @@
 	 * @description 此为uViw自定义的键盘面板，内含了数字键盘，车牌号键，身份证号键盘3中模式，都有可以打乱按键顺序的选项。
 	 * @tutorial https://www.uviewui.com/components/keyboard.html
 	 * @property {String}			mode				键盘类型，见官网基本使用的说明 （默认 'number' ）
-	 * @property {Boolean}			dotEnable			是否显示"."按键，只在mode=number时有效 （默认 true ）
+	 * @property {Boolean}			dotDisabled			是否显示"."按键，只在mode=number时有效 （默认 true ）
 	 * @property {Boolean}			tooltip				是否显示键盘顶部工具条 （默认 true ）
 	 * @property {Boolean}			showTips			是否显示工具条中间的提示 （默认 true ）
 	 * @property {String}			tips				工具条中间的提示文字，见上方基本使用的说明，如不需要，请传""空字符

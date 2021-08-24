@@ -41,7 +41,7 @@
 	 * @property {String | Number}	name			radio的名称
 	 * @property {String}			shape			形状，square为方形，circle为圆型
 	 * @property {Boolean}			disabled		是否禁用
-	 * @property {String, Boolean}	labelDisabled	是否禁止点击提示语选中单选框
+	 * @property {String | Boolean}	labelDisabled	是否禁止点击提示语选中单选框
 	 * @property {String}			activeColor		选中时的颜色，如设置parent的active-color将失效
 	 * @property {String}			inactiveColor	未选中的颜色
 	 * @property {String | Number}	iconSize		图标大小，单位px

@@ -108,7 +108,7 @@
 	 * @tutorial https://uviewui.com/components/slider.html
 	 * @property {String | Number}	value			滑块默认值 (默认 0 )
 	 * @property {Boolean}			disabled		是否禁用滑块 (默认 true )
-	 * @property {String | Number}	blockWidth		滑块宽度，高等于宽 (默认 15 )
+	 * @property {String | Number}	blockHeight		滑块宽度，高等于宽 (默认 15 )
 	 * @property {String | Number}	min				最小值 (默认 1 )
 	 * @property {String | Number}	max				最大值 (默认 100 )
 	 * @property {String | Number}	step			步长 (默认 1 )

@@ -1,0 +1,68 @@
+<template>
+	<view class="u-page">
+		<u-no-network
+			@disconnected="disconnected"
+			@connected="connected"
+			@retry="retry"
+		></u-no-network>
+		<view class="u-content">
+			<view class="u-content__circle">
+				<u-icon
+					name="checkbox-mark"
+					color="#fff"
+					size="30"
+				></u-icon>
+			</view>
+			<text class="u-content__normal">网络正常</text>
+			<text class="u-content__tips">请您断开设备的WiFi和数据连接(或开启飞行模式)，即可看到效果</text>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		methods: {
+			disconnected() {
+				console.log('disconnected');
+			},
+			connected() {
+				console.log('connected');
+			},
+			retry() {
+				console.log('retry');
+			}
+		},
+	}
+</script>
+
+<style lang="scss">
+	.u-content {
+		padding: 150px 60px 0;
+		@include flex(column);
+		align-items: center;
+		justify-content: center;
+
+		&__circle {
+			background-color: $u-success;
+			@include flex;
+			border-radius: 100px;
+			width: 60px;
+			height: 60px;
+			align-items: center;
+			justify-content: center;
+		}
+
+		&__normal {
+			font-size: 15px;
+			color: $u-success;
+			margin-top: 15px;
+		}
+
+		&__tips {
+			color: $u-tips-color;
+			font-size: 13px;
+			margin-top: 15px;
+			text-align: center;
+		}
+	}
+</style>

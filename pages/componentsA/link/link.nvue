@@ -1,0 +1,75 @@
+<template>
+	<view class="u-page">
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">基本案例</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__link-item">
+					<u-link
+					    href="https://uviewui.com/"
+					    text="打开uView UI文档"
+						@click="click"
+					></u-link>
+				</view>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">显示下划线</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__link-item">
+					<u-link
+					    href="https://uviewui.com/"
+					    :underLine="true"
+					    text="Go to uView doc"
+					></u-link>
+				</view>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义颜色</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__link-item">
+					<u-link
+					    href="https://uviewui.com/"
+					    lineColor="#19be6b"
+					    color="#19be6b"
+					    text="打开uView UI文档"
+					></u-link>
+				</view>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义链接内容</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__link-item">
+					<u-link
+					    href="https://uniapp.dcloud.io/"
+					    text="打开uni-app文档"
+					></u-link>
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+
+			}
+		},
+		methods: {
+			click() {
+				console.log('click');
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+	.u-page {
+		&__link-item {
+			margin-top: 5px;
+		}
+	}
+</style>

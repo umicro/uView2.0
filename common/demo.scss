@@ -1,0 +1,58 @@
+.u-view {
+	padding: 40px 20px 0px 20px;
+	&__title {
+		font-size: 14px;
+		color: rgb(143, 156, 162);
+		margin-bottom: 10px;
+	}
+}
+
+.u-block{
+	padding: 14px;
+	&__section{
+		margin-bottom:10px;
+	}
+	&__title {
+		margin-top:10px;
+		font-size: 15px;
+		color: $u-content-color;
+		margin-bottom:10px;
+	}
+	&__flex{
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+	}
+}
+
+// 使用了cell组件的icon图片样式
+.u-cell-icon {
+	width: 36rpx;
+	height: 36rpx;
+	margin-right: 8rpx;
+}
+
+.u-page {
+	padding: 15px 15px 40px 15px;
+}
+
+.u-demo-block {
+	flex: 1;
+	margin-bottom: 23px;
+	
+	&__content {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		// flex-direction: row!important;
+		// align-items: center;
+		// flex-wrap: wrap;
+	}
+	
+	&__title {
+		font-size: 14px;
+		color: rgb(143, 156, 162);
+		margin-bottom: 8px;
+	}
+}
+

@@ -1,0 +1,82 @@
+<template>
+	<view class="u-page">
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">基本案例</text>
+			<view>
+				<u-divider text="分割线"></u-divider>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">是否虚线</text>
+			<view>
+			<u-divider
+			    text="分割线"
+			    :dashed="true"
+			></u-divider>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">是否细线</text>
+			<view>
+			<u-divider
+			    text="分割线"
+			    :hairline="true"
+			></u-divider>
+			</view>
+		</view>
+ <view class="u-demo-block">
+			<text class="u-demo-block__title">是否以点代替文字</text>
+			<view>
+			<u-divider
+			    text="分割线"
+			    :dot="true"
+			></u-divider>
+			</view>
+		</view>
+ <view class="u-demo-block">
+			<text class="u-demo-block__title">文本内容靠左</text>
+			<view>
+		<u-divider
+		    text="分割线"
+		    textPosition="left"
+		></u-divider>
+			</view>
+		</view>
+ <view class="u-demo-block">
+			<text class="u-demo-block__title">文本内容靠右</text>
+			<view>
+		<u-divider
+		    text="分割线"
+		    textPosition="right"
+		></u-divider>
+			</view>
+		</view>
+ <view class="u-demo-block">
+			<text class="u-demo-block__title">自定义文本颜色</text>
+			<view>
+		<u-divider
+		    text="分割线"
+		    textColor="#2979ff"
+			lineColor="#2979ff"
+		></u-divider>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+
+			}
+		},
+		methods: {
+
+		}
+	}
+</script>
+
+<style lang="scss">
+	.u-divider {}
+</style>

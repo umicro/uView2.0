@@ -1,0 +1,76 @@
+<template>
+	<view class="u-page">
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">基本案例</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__image-item">
+					 <u--image
+					     :showLoading="true"
+					     :src="src"
+					     width="80px"
+					     height="80px"
+						 @click="click"
+					 ></u--image>
+				</view>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义形状</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__image-item">
+					<u--image
+					    shape="circle"
+					    :src="src"
+					    width="80px"
+					    height="80px"
+					></u--image>
+				</view>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义圆角</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__image-item">
+					<u--image
+					    radius="4"
+					    :src="src"
+					    width="80px"
+					    height="80px"
+					></u--image>
+				</view>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">图片模式(widthFit)</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__image-item">
+					<u--image
+					    :src="src"
+					    width="80px"
+					    height="80px"
+						mode="widthFit"
+					></u--image>
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				src: 'https://cdn.uviewui.com/uview/album/1.jpg'
+			}
+		},
+		methods: {
+			click() {
+				console.log('click');
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+	 
+</style>

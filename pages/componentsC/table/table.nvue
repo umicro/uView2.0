@@ -1,0 +1,26 @@
+<template>
+	<view class="u-page">
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">基础使用</text>
+			<view class="u-demo-block__content">
+				<u--form>
+					<u-form-item lable="电话"></u-form-item>
+				</u--form>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+
+</style>

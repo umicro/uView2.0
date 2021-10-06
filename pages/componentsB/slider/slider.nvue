@@ -1,0 +1,81 @@
+<template>
+	<view class="u-page">
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">基本案例</text>
+			<view class="u-page__slide-item">
+				<u-slider
+					v-model="value1"
+				></u-slider>
+			</view>
+		</view>
+			<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义范围(0—50)</text>
+			<view class="u-page__slide-item">
+				<u-slider
+				    v-model="value2"
+					showValue
+				    min="0"
+				    max="50"
+				></u-slider>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">指定步长(每次步进5)</text>
+			<view class="u-page__slide-item">
+				<u-slider
+				    v-model="value4"
+				    :step="5"
+				></u-slider>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义样式</text>
+			<view class="u-page__slide-item">
+				<u-slider
+				    v-model="value5"
+				    activeColor="#deab8a"
+				    blockColor="#f47920"
+				></u-slider>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				value1: 30,
+				value2: 30,
+				value3: 30,
+				value4: 30,
+				value5: 30
+			}
+		},
+		watch: {
+			value1(n) {
+				// console.log(n);
+			}
+		},
+		methods: {
+			moving(value) {
+				// console.log('moving', value)
+			},
+			click(value) {
+				// console.log('click', value)
+			},
+			end(value) {
+				// console.log('end', value)
+			},
+			start(value) {
+				// console.log('start', value)
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+	.u-page {
+		
+	}
+</style>

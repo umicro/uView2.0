@@ -1,9 +1,9 @@
 {
-    "name" : "uView",
+    "name" : "uView 2",
     "appid" : "__UNI__60F4B81",
     "description" : "多平台快速开发的UI框架",
-    "versionName" : "1.7.3",
-    "versionCode" : "100",
+    "versionName" : "1.0.0",
+    "versionCode" : 1,
     "transformPx" : false,
     "app-plus" : {
         // APP-VUE分包，可提升APP启动速度，2.7.12开始支持，兼容微信小程序分包方案，默认关闭

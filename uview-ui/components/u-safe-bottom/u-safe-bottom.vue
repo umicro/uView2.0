@@ -2,7 +2,7 @@
 	<view
 	    class="u-safe-bottom"
 	    :style="[style]"
-	    :class="[!isNvue && 'safe-area-inset-bottom']"
+	    :class="[!isNvue && 'u-safe-area-inset-bottom']"
 	>
 
 	</view>

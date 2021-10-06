@@ -1,4 +1,3 @@
-
 export default [{
 		groupName: '基础组件',
 		groupName_en: 'Basic components',
@@ -12,7 +11,7 @@ export default [{
 			icon: 'icon',
 			title: 'Icon 图标',
 			title_en: 'Icon',
-		},{
+		}, {
 			path: '/pages/componentsA/image/image',
 			icon: 'image',
 			title: 'Image 图片',
@@ -156,7 +155,7 @@ export default [{
 			icon: 'list',
 			title: 'List 列表',
 			title_en: 'List',
-		},{
+		}, {
 			path: '/pages/componentsB/progress/progress',
 			icon: 'progress',
 			title: 'Progress 进度条',
@@ -185,7 +184,7 @@ export default [{
 			icon: 'tooltip',
 			title: 'Tooltip 长按提示',
 			title_en: 'ActionSheet',
-		},{
+		}, {
 			path: '/pages/componentsB/actionSheet/actionSheet',
 			icon: 'actionSheet',
 			title: 'ActionSheet 上拉菜单',
@@ -230,124 +229,131 @@ export default [{
 			icon: 'modal',
 			title: 'Modal 模态框',
 			title_en: 'Modal',
-		}, {
-			path: '/pages/componentsA/fullScreen/fullScreen',
-			icon: 'pressingScreen',
-			title: 'fullScreen 压窗屏（暂无）',
-			title_en: 'fullScreen',
-		}]
+		}, 
+		// {
+		// 	path: '/pages/componentsA/fullScreen/fullScreen',
+		// 	icon: 'pressingScreen',
+		// 	title: 'fullScreen 压窗屏（暂无）',
+		// 	title_en: 'fullScreen',
+		// },
+		]
 	}, {
 		groupName: '布局组件',
 		groupName_en: 'Layout components',
 		list: [{
-			path: '/pages/componentsC/scrollList/scrollList',
-			icon: 'scrollList',
-			title: 'ScrollList 横向滚动列表',
-			title_en: 'ScrollList',
-		},{
-			path: '/pages/componentsA/line/line',
-			icon: 'line',
-			title: 'Line 线条',
-			title_en: 'Line',
-		}, {
-			path: '/pages/componentsA/overlay/overlay',
-			icon: 'mask',
-			title: 'Overlay 遮罩层',
-			title_en: 'Overlay',
-		}, 
-		// #ifndef MP-TOUTIAO
-		{
-			path: '/pages/componentsC/noNetwork/noNetwork',
-			icon: 'noNetwork',
-			title: 'NoNetwork 无网络提示',
-			title_en: 'NoNetwork',
-		}, 
-		// #endif
-		{
-			path: '/pages/componentsA/grid/grid',
-			icon: 'grid',
-			title: 'Grid 宫格布局',
-			title_en: 'Grid',
-		}, {
-			path: '/pages/componentsC/swiper/swiper',
-			icon: 'swiper',
-			title: 'Swiper 轮播图',
-			title_en: 'Swiper',
-		}, {
-			path: '/pages/componentsC/skeleton/skeleton',
-			icon: 'skeleton',
-			title: 'Skeleton 骨架屏',
-			title_en: 'Skeleton',
-		}, {
-			path: '/pages/componentsA/sticky/sticky',
-			icon: 'sticky',
-			title: 'Sticky 吸顶',
-			title_en: 'Sticky',
-		}, 
-		{
-			path: '/pages/componentsA/divider/divider',
-			icon: 'divider',
-			title: 'Divider 分割线',
-			title_en: 'Divider',
-		}]
-	}, {
+				path: '/pages/componentsC/scrollList/scrollList',
+				icon: 'scrollList',
+				title: 'ScrollList 横向滚动列表',
+				title_en: 'ScrollList',
+			}, {
+				path: '/pages/componentsA/line/line',
+				icon: 'line',
+				title: 'Line 线条',
+				title_en: 'Line',
+			}, {
+				path: '/pages/componentsA/overlay/overlay',
+				icon: 'mask',
+				title: 'Overlay 遮罩层',
+				title_en: 'Overlay',
+			},
+			// #ifndef MP-TOUTIAO
+			{
+				path: '/pages/componentsC/noNetwork/noNetwork',
+				icon: 'noNetwork',
+				title: 'NoNetwork 无网络提示',
+				title_en: 'NoNetwork',
+			},
+			// #endif
+			{
+				path: '/pages/componentsA/grid/grid',
+				icon: 'grid',
+				title: 'Grid 宫格布局',
+				title_en: 'Grid',
+			}, {
+				path: '/pages/componentsC/swiper/swiper',
+				icon: 'swiper',
+				title: 'Swiper 轮播图',
+				title_en: 'Swiper',
+			}, {
+				path: '/pages/componentsC/skeleton/skeleton',
+				icon: 'skeleton',
+				title: 'Skeleton 骨架屏',
+				title_en: 'Skeleton',
+			}, {
+				path: '/pages/componentsA/sticky/sticky',
+				icon: 'sticky',
+				title: 'Sticky 吸顶',
+				title_en: 'Sticky',
+			},
+			{
+				path: '/pages/componentsA/divider/divider',
+				icon: 'divider',
+				title: 'Divider 分割线',
+				title_en: 'Divider',
+			}
+		]
+	},
+	{
 		groupName: '导航组件',
 		groupName_en: 'Navigation components',
-		list: [{
-			path: '/pages/componentsB/dropdown/dropdown',
-			icon: 'dropdown',
-			title: 'Dropdown 下拉菜单',
-			title_en: 'Dropdown',
-		},{
-			path: '/pages/componentsB/tabbar/tabbar',
-			icon: 'tabbar',
-			title: 'Tabbar 底部导航栏',
-			title_en: 'Tabbar',
-		},{
-			path: '/pages/componentsA/backtop/backtop',
-			icon: 'backTop',
-			title: 'BackTop 返回顶部',
-			title_en: 'BackTop',
-		},{
-			path: '/pages/componentsC/navbar/navbar',
-			icon: 'navbar',
-			title: 'Navbar 导航栏',
-			title_en: 'Navbar',
-		}, {
-			path: '/pages/componentsC/tabs/tabs',
-			icon: 'tabs',
-			title: 'Tabs 标签',
-			title_en: 'Tabs',
-		}, 
-		// #ifndef MP-ALIPAY
-		{
-			path: '/pages/template/order/order',
-			icon: 'tabsSwiper',
-			title: 'TabsSwiper 全屏选项卡（暂无）',
-			title_en: 'TabsSwiper',
-		},
-		// #endif
-		{
-			path: '/pages/componentsC/subsection/subsection',
-			icon: 'subsection',
-			title: 'Subsection 分段器',
-			title_en: 'Subsection',
-		}, {
-			path: '/pages/componentsC/indexList/indexList',
-			icon: 'indexList',
-			title: 'IndexList 索引列表',
-			title_en: 'IndexList',
-		}, {
-			path: '/pages/componentsC/steps/steps',
-			icon: 'steps',
-			title: 'Steps 步骤条',
-			title_en: 'Steps',
-		}, {
-			path: '/pages/componentsA/empty/empty',
-			icon: 'empty',
-			title: 'Empty 内容为空',
-			title_en: 'Empty',
-		}]
+		list: [
+			// {
+			// 	path: '/pages/componentsB/dropdown/dropdown',
+			// 	icon: 'dropdown',
+			// 	title: 'Dropdown 下拉菜单',
+			// 	title_en: 'Dropdown',
+			// },
+			{
+				path: '/pages/componentsB/tabbar/tabbar',
+				icon: 'tabbar',
+				title: 'Tabbar 底部导航栏',
+				title_en: 'Tabbar',
+			}, {
+				path: '/pages/componentsA/backtop/backtop',
+				icon: 'backTop',
+				title: 'BackTop 返回顶部',
+				title_en: 'BackTop',
+			}, {
+				path: '/pages/componentsC/navbar/navbar',
+				icon: 'navbar',
+				title: 'Navbar 导航栏',
+				title_en: 'Navbar',
+			}, {
+				path: '/pages/componentsC/tabs/tabs',
+				icon: 'tabs',
+				title: 'Tabs 标签',
+				title_en: 'Tabs',
+			},
+			// // #ifndef MP-ALIPAY
+			// {
+			// 	path: '/pages/template/order/order',
+			// 	icon: 'tabsSwiper',
+			// 	title: 'TabsSwiper 全屏选项卡（暂无）',
+			// 	title_en: 'TabsSwiper',
+			// },
+			// // #endif
+			{
+				path: '/pages/componentsC/subsection/subsection',
+				icon: 'subsection',
+				title: 'Subsection 分段器',
+				title_en: 'Subsection',
+			}, {
+				path: '/pages/componentsC/indexList/indexList',
+				icon: 'indexList',
+				title: 'IndexList 索引列表',
+				title_en: 'IndexList',
+			}, {
+				path: '/pages/componentsC/steps/steps',
+				icon: 'steps',
+				title: 'Steps 步骤条',
+				title_en: 'Steps',
+			}, {
+				path: '/pages/componentsA/empty/empty',
+				icon: 'empty',
+				title: 'Empty 内容为空',
+				title_en: 'Empty',
+			}
+		]
 	}, {
 		groupName: '其他组件',
 		groupName_en: 'Other components',
@@ -356,19 +362,21 @@ export default [{
 			icon: 'parse',
 			title: 'Parse 富文本解析器',
 			title_en: 'Parse',
-		},{
+		}, {
 			path: '/pages/componentsC/codeInput/codeInput',
 			icon: 'messageInput',
 			title: 'CodeInput 验证码输入',
 			title_en: 'CodeInput',
-		}, {
-			path: '/pages/componentsC/avatarCropper/avatarCropper',
-			icon: 'avatarCropper',
-			title: 'AvatarCropper 头像裁剪（暂无）',
-			title_en: 'AvatarCropper',
-		}, {
+		}, 
+		// {
+		// 	path: '/pages/componentsC/avatarCropper/avatarCropper',
+		// 	icon: 'avatarCropper',
+		// 	title: 'AvatarCropper 头像裁剪（暂无）',
+		// 	title_en: 'AvatarCropper',
+		// },
+		{
 			path: '/pages/componentsC/loadmore/loadmore',
-			icon: 'loadmore', 
+			icon: 'loadmore',
 			title: 'Loadmore 加载更多',
 			title_en: 'Loadmore',
 		}, {
@@ -376,12 +384,14 @@ export default [{
 			icon: 'readMore',
 			title: 'ReadMore 展开阅读更多',
 			title_en: 'ReadMore',
-		}, {
-			path: '/pages/componentsA/lazyLoad/lazyLoad',
-			icon: 'lazyLoad',
-			title: 'LazyLoad 懒加载（暂无）',
-			title_en: 'LazyLoad',
-		}, {
+		}, 
+		// {
+		// 	path: '/pages/componentsA/lazyLoad/lazyLoad',
+		// 	icon: 'lazyLoad',
+		// 	title: 'LazyLoad 懒加载（暂无）',
+		// 	title_en: 'LazyLoad',
+		// }, 
+		{
 			path: '/pages/componentsA/gap/gap',
 			icon: 'gap',
 			title: 'Gap 间隔槽',

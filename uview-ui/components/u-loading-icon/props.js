@@ -10,6 +10,11 @@ export default {
 			type: String,
 			default: uni.$u.props.loadingIcon.color
 		},
+		// 提示文字颜色
+		textColor: {
+			type: String,
+			default: uni.$u.props.loadingIcon.textColor
+		},
 		// 文字和图标是否垂直排列
 		vertical: {
 			type: Boolean,

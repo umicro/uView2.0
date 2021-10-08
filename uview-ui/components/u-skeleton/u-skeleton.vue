@@ -4,6 +4,7 @@
 		    class="u-skeleton__wrapper"
 		    ref="u-skeleton__wrapper"
 		    v-if="loading"
+			style="display: flex; flex-direction: row;"
 		>
 			<view
 			    class="u-skeleton__wrapper__avatar"
@@ -17,6 +18,7 @@
 			<view
 			    class="u-skeleton__wrapper__content"
 			    ref="u-skeleton__wrapper__content"
+				style="flex: 1;"
 			>
 				<view
 				    class="u-skeleton__wrapper__content__title"
@@ -49,7 +51,7 @@
 <script>
 	import props from './props.js';
 	// #ifdef APP-NVUE
-	// 由于weex为阿里的KPI业绩考核的垃ji，所以不支持百分比单位，这里需要通过dom查询组件的宽度
+	// 由于weex为阿里的KPI业绩考核的产物，所以不支持百分比单位，这里需要通过dom查询组件的宽度
 	const dom = uni.requireNativePlugin('dom')
 	const animation = uni.requireNativePlugin('animation')
 	// #endif

@@ -119,12 +119,7 @@
 					</view>
 				</u-skeleton>
 			</view>
-			<view
-				class=""
-				style="height: 50px;"
-			>
-
-			</view>
+			<u-gap height="50" bgColor="transparent"></u-gap>
 		</view>
 	</view>
 </template>

@@ -1,16 +1,16 @@
 <template>
 	<view
-	    class="u-loading-icon"
+		class="u-loading-icon"
 		:style="[$u.addStyle(customStyle)]"
-	    :class="[vertical && 'u-loading-icon--vertical']"
+		:class="[vertical && 'u-loading-icon--vertical']"
 		v-if="show"
 	>
 		<view
-		    v-if="!webviewHide"
-		    class="u-loading-icon__spinner"
-		    :class="[`u-loading-icon__spinner--${mode}`]"
-		    ref="ani"
-		    :style="{
+			v-if="!webviewHide"
+			class="u-loading-icon__spinner"
+			:class="[`u-loading-icon__spinner--${mode}`]"
+			ref="ani"
+			:style="{
 				color: color,
 				width: $u.addUnit(size),
 				height: $u.addUnit(size),
@@ -25,19 +25,19 @@
 			<block v-if="mode === 'spinner'">
 				<!-- #ifndef APP-NVUE -->
 				<view
-				    v-for="(item, index) in array12"
-				    :key="index"
-				    class="u-loading-icon__dot"
+					v-for="(item, index) in array12"
+					:key="index"
+					class="u-loading-icon__dot"
 				>
 				</view>
 				<!-- #endif -->
 				<!-- #ifdef APP-NVUE -->
 				<!-- 此组件内部图标部分无法设置宽高，即使通过width和height配置了也无效 -->
 				<loading-indicator
-				    v-if="!webviewHide"
-				    class="u-loading-indicator"
-				    :animating="true"
-				    :style="{
+					v-if="!webviewHide"
+					class="u-loading-indicator"
+					:animating="true"
+					:style="{
 						color: color,
 						width: $u.addUnit(size),
 						height: $u.addUnit(size)
@@ -47,10 +47,11 @@
 			</block>
 		</view>
 		<text
-		    v-if="text"
-		    class="u-loading-icon__text"
-		    :style="{
+			v-if="text"
+			class="u-loading-icon__text"
+			:style="{
 				fontSize: $u.addUnit(textSize),
+				color: textColor,
 			}"
 		>{{text}}</text>
 	</view>
@@ -67,6 +68,7 @@
 	 * @tutorial https://www.uviewui.com/components/loading.html
 	 * @property {Boolean}			show			是否显示组件  (默认 true)
 	 * @property {String}			color			动画活动区域的颜色，只对 mode = flower 模式有效（默认color['u-tips-color']）
+	 * @property {String}			textColor		提示文本的颜色（默认color['u-tips-color']）
 	 * @property {Boolean}			vertical		文字和图标是否垂直排列 (默认 false )
 	 * @property {String}			mode			模式选择，见官网说明（默认 'circle' ）
 	 * @property {String | Number}	size			加载图标的大小，单位px （默认 24 ）
@@ -79,8 +81,8 @@
 	 * @example <u-loading mode="circle"></u-loading>
 	 */
 	export default {
-		name:'u-loading-icon',
-		mixins: [uni.$u.mixin,props],
+		name: 'u-loading-icon',
+		mixins: [uni.$u.mixin, props],
 		data() {
 			return {
 				// Array.form可以通过一个伪数组对象创建指定长度的数组
@@ -101,7 +103,7 @@
 			// 而不能是固定的某一个其他颜色(因为这个固定的颜色可能浅蓝，导致效果没有那么细腻良好)
 			otherBorderColor() {
 				const lightColor = uni.$u.colorGradient(this.color, '#ffffff', 100)[80]
-				if(this.mode === 'circle') {
+				if (this.mode === 'circle') {
 					return this.inactiveColor ? this.inactiveColor : lightColor
 				} else {
 					return 'transparent'
@@ -113,7 +115,7 @@
 			show(n) {
 				// nvue中，show为true，且为非loading状态，就重新执行动画模块
 				// #ifdef APP-NVUE
-				if(n && !this.loading) {
+				if (n && !this.loading) {
 					setTimeout(() => {
 						this.startAnimate()
 					}, 30)
@@ -161,14 +163,14 @@
 			startAnimate() {
 				this.loading = true
 				const ani = this.$refs.ani
-				if(!ani) return 
+				if (!ani) return
 				animation.transition(ani, {
 					// 进行角度旋转
 					styles: {
 						transform: `rotate(${this.aniAngel}deg)`,
 						transformOrigin: 'center center'
 					},
-					duration: this.duration, 
+					duration: this.duration,
 					timingFunction: this.timingFunction,
 					// delay: 10
 				}, () => {
@@ -195,39 +197,39 @@
 	$u-loading-height:30px !default;
 	$u-loading-max-width:100% !default;
 	$u-loading-max-height:100% !default;
-	$u-loading-semicircle-border-width: 2px!default;
-	$u-loading-semicircle-border-color:transparent!default;
-	$u-loading-semicircle-border-top-right-radius: 100px!default;
-	$u-loading-semicircle-border-top-left-radius: 100px!default;
-	$u-loading-semicircle-border-bottom-left-radius: 100px!default;
-	$u-loading-semicircle-border-bottom-right-radiu: 100px!default;
+	$u-loading-semicircle-border-width: 2px !default;
+	$u-loading-semicircle-border-color:transparent !default;
+	$u-loading-semicircle-border-top-right-radius: 100px !default;
+	$u-loading-semicircle-border-top-left-radius: 100px !default;
+	$u-loading-semicircle-border-bottom-left-radius: 100px !default;
+	$u-loading-semicircle-border-bottom-right-radiu: 100px !default;
 	$u-loading-semicircle-border-style: solid !default;
-	$u-loading-circle-border-top-right-radius: 100px!default;
-	$u-loading-circle-border-top-left-radius: 100px!default;
-	$u-loading-circle-border-bottom-left-radius: 100px!default;
-	$u-loading-circle-border-bottom-right-radiu: 100px!default;
-	$u-loading-circle-border-width:2px!default;
-	$u-loading-circle-border-top-color:#e5e5e5!default;
-	$u-loading-circle-border-right-color:$u-loading-circle-border-top-color!default;
-	$u-loading-circle-border-bottom-color:$u-loading-circle-border-top-color!default;
-	$u-loading-circle-border-left-color:$u-loading-circle-border-top-color!default;
-    $u-loading-circle-border-style:solid !default;
-	$u-loading-icon-host-font-size:0px!default;
-	$u-loading-icon-host-line-height:1!default;
-	$u-loading-icon-vertical-margin:4px 0 0!default;
-	$u-loading-icon-dot-top:0!default;
-	$u-loading-icon-dot-left:0!default;
-	$u-loading-icon-dot-width:100%!default;
-	$u-loading-icon-dot-height:100%!default;
-	$u-loading-icon-dot-before-width:2px!default;
-	$u-loading-icon-dot-before-height:25%!default;
-	$u-loading-icon-dot-before-margin:0 auto!default;
-	$u-loading-icon-dot-before-background-color:currentColor!default;
-	$u-loading-icon-dot-before-border-radius:40%!default;
-	
+	$u-loading-circle-border-top-right-radius: 100px !default;
+	$u-loading-circle-border-top-left-radius: 100px !default;
+	$u-loading-circle-border-bottom-left-radius: 100px !default;
+	$u-loading-circle-border-bottom-right-radiu: 100px !default;
+	$u-loading-circle-border-width:2px !default;
+	$u-loading-circle-border-top-color:#e5e5e5 !default;
+	$u-loading-circle-border-right-color:$u-loading-circle-border-top-color !default;
+	$u-loading-circle-border-bottom-color:$u-loading-circle-border-top-color !default;
+	$u-loading-circle-border-left-color:$u-loading-circle-border-top-color !default;
+	$u-loading-circle-border-style:solid !default;
+	$u-loading-icon-host-font-size:0px !default;
+	$u-loading-icon-host-line-height:1 !default;
+	$u-loading-icon-vertical-margin:6px 0 0 !default;
+	$u-loading-icon-dot-top:0 !default;
+	$u-loading-icon-dot-left:0 !default;
+	$u-loading-icon-dot-width:100% !default;
+	$u-loading-icon-dot-height:100% !default;
+	$u-loading-icon-dot-before-width:2px !default;
+	$u-loading-icon-dot-before-height:25% !default;
+	$u-loading-icon-dot-before-margin:0 auto !default;
+	$u-loading-icon-dot-before-background-color:currentColor !default;
+	$u-loading-icon-dot-before-border-radius:40% !default;
+
 	.u-loading-icon {
 		/* #ifndef APP-NVUE */
-		display: inline-flex;
+		// display: inline-flex;
 		/* #endif */
 		flex-direction: row;
 		align-items: center;
@@ -248,31 +250,31 @@
 			/* #ifndef APP-NVUE */
 			box-sizing: border-box;
 			max-width: $u-loading-max-width;
-			max-height:$u-loading-max-height;
+			max-height: $u-loading-max-height;
 			animation: u-rotate 1s linear infinite;
 			/* #endif */
 		}
 
 		&__spinner--semicircle {
-			border-width:$u-loading-semicircle-border-width;
-			border-color:$u-loading-semicircle-border-color;
-			border-top-right-radius:$u-loading-semicircle-border-top-right-radius;
-			border-top-left-radius:$u-loading-semicircle-border-top-left-radius;
-			border-bottom-left-radius:$u-loading-semicircle-border-bottom-left-radius;
-			border-bottom-right-radius:$u-loading-semicircle-border-bottom-right-radiu;
-			border-style:$u-loading-semicircle-border-style;
+			border-width: $u-loading-semicircle-border-width;
+			border-color: $u-loading-semicircle-border-color;
+			border-top-right-radius: $u-loading-semicircle-border-top-right-radius;
+			border-top-left-radius: $u-loading-semicircle-border-top-left-radius;
+			border-bottom-left-radius: $u-loading-semicircle-border-bottom-left-radius;
+			border-bottom-right-radius: $u-loading-semicircle-border-bottom-right-radiu;
+			border-style: $u-loading-semicircle-border-style;
 		}
 
 		&__spinner--circle {
-			border-top-right-radius:$u-loading-circle-border-top-right-radius;
-			border-top-left-radius:$u-loading-circle-border-top-left-radius;
-			border-bottom-left-radius:$u-loading-circle-border-bottom-left-radius;
-			border-bottom-right-radius:$u-loading-circle-border-bottom-right-radiu;
-			border-width:$u-loading-circle-border-width;
-			border-top-color:$u-loading-circle-border-top-color;
-			border-right-color:$u-loading-circle-border-right-color;
-			border-bottom-color:$u-loading-circle-border-bottom-color;
-			border-left-color:$u-loading-circle-border-left-color;
+			border-top-right-radius: $u-loading-circle-border-top-right-radius;
+			border-top-left-radius: $u-loading-circle-border-top-left-radius;
+			border-bottom-left-radius: $u-loading-circle-border-bottom-left-radius;
+			border-bottom-right-radius: $u-loading-circle-border-bottom-right-radiu;
+			border-width: $u-loading-circle-border-width;
+			border-top-color: $u-loading-circle-border-top-color;
+			border-right-color: $u-loading-circle-border-right-color;
+			border-bottom-color: $u-loading-circle-border-bottom-color;
+			border-left-color: $u-loading-circle-border-left-color;
 			border-style: $u-loading-circle-border-style;
 		}
 
@@ -283,8 +285,8 @@
 
 	/* #ifndef APP-NVUE */
 	:host {
-		font-size:$u-loading-icon-host-font-size;
-		line-height:$u-loading-icon-host-line-height;
+		font-size: $u-loading-icon-host-font-size;
+		line-height: $u-loading-icon-host-line-height;
 	}
 
 	.u-loading-icon {
@@ -297,23 +299,24 @@
 		}
 
 		&--vertical &__text {
-			margin:$u-loading-icon-vertical-margin;
+			margin: $u-loading-icon-vertical-margin;
+			color: $u-content-color;
 		}
 
 		&__dot {
 			position: absolute;
-			top:$u-loading-icon-dot-top;
-			left:$u-loading-icon-dot-left;
-			width:$u-loading-icon-dot-width;
-			height:$u-loading-icon-dot-height;
+			top: $u-loading-icon-dot-top;
+			left: $u-loading-icon-dot-left;
+			width: $u-loading-icon-dot-width;
+			height: $u-loading-icon-dot-height;
 
 			&:before {
 				display: block;
-				width:$u-loading-icon-dot-before-width;
-				height:$u-loading-icon-dot-before-height;
-				margin:	$u-loading-icon-dot-before-margin;
-				background-color:$u-loading-icon-dot-before-background-color;
-				border-radius:$u-loading-icon-dot-before-border-radius;
+				width: $u-loading-icon-dot-before-width;
+				height: $u-loading-icon-dot-before-height;
+				margin: $u-loading-icon-dot-before-margin;
+				background-color: $u-loading-icon-dot-before-background-color;
+				border-radius: $u-loading-icon-dot-before-border-radius;
 				content: " "
 			}
 		}

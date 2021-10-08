@@ -3,7 +3,7 @@ function scroll(event, ownerInstance) {
 	var detail = event.detail
 	var scrollWidth = detail.scrollWidth
 	var scrollLeft = detail.scrollLeft
-	// 获取当前组件的dataset，说白了就是祸国殃民的腾xun搞出来的垃ji
+	// 获取当前组件的dataset，说白了就是祸国殃民的腾xun搞出来的产物
 	var dataset = event.currentTarget.dataset
 	// 此为scroll-view外部包裹元素的宽度
 	// 某些HX版本(3.1.18)，发现view元素中大写的data-scrollWidth，在wxs中，变成了全部小写，所以这里需要特别处理

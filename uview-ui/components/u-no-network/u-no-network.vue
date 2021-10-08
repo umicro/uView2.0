@@ -63,11 +63,6 @@
 				networkType: "none", // 网络类型
 			}
 		},
-		computed: {
-			uZIndex() {
-				return this.zIndex ? this.zIndex : this.$u.zIndex.noNetwork
-			}
-		},
 		mounted() {
 			this.isIOS = (uni.getSystemInfoSync().platform === 'ios')
 			uni.onNetworkStatusChange((res) => {

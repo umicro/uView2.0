@@ -130,7 +130,7 @@
     "h5" : {
         "template" : "template.h5.html",
         "router" : {
-            "mode" : "hash",
+            "mode" : "history",
             "base" : ""
         },
         "optimization" : {
@@ -146,6 +146,6 @@
                 }
             }
         },
-        "domain" : "https://www.uviewui.com"
+        "domain" : ""
     }
 }

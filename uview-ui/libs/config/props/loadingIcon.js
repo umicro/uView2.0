@@ -16,6 +16,7 @@ export default {
 	loadingIcon: {
 		show: true,
 		color: color['u-tips-color'],
+		textColor: color['u-tips-color'],
 		vertical: false,
 		mode: 'spinner',
 		size: 24,

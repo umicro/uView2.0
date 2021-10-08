@@ -15,6 +15,7 @@
 
 <script>
 	import list from "./components.config.js";
+	import {fetchMenu} from '@/common/api'
 	export default {
 		data() {
 			return {
@@ -30,18 +31,16 @@
 			},
 		},
 		onReady() {
-			console.log(33, this.name1);
-			uni.$u.http.post('/ebapi/public_api/index', {
-				id: 1
-			}).then(res =>{
-				console.log(res);
-			}).catch(res => {
-				console.log(445);
-			})
+			// fetchMenu({id: 1}).then(res =>{
+			// 	console.log(res);
+			// })
+			// uni.$u.http.post('/ebapi/public_api/index', {id: 1}).then(res =>{
+			// 	console.log(res);
+			// })
 		},
 		methods: {
 			openPage(path) {
-				this.$u.route({ 
+				this.$u.route({
 					url: path
 				})
 			},

@@ -32,7 +32,7 @@
 		methods: {
 			openPage(path) {
 				this.$u.route({
-					url: '/pages/library/' + path + '/index'
+					url: `/pages/library/${path}/index`
 				})
 			}
 		}

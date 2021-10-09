@@ -78,13 +78,13 @@
 		align-items: center;
 		height: 80rpx;
 		border-radius: 6rpx;
-		border: 1px solid $u-type-primary;
-		color: $u-type-primary;
+		border: 1px solid $u-primary;
+		color: $u-primary;
 	}
 	
 	.u-button--hover {
 		color: #fff;
-		background-color: $u-type-primary;
+		background-color: $u-primary;
 	}
 	
 	.u-demo-result-line {

@@ -394,7 +394,7 @@ page {
 			}
 		}
 		.right {
-			color: $u-type-warning-dark;
+			color: $u-warning-dark;
 		}
 	}
 	.item {
@@ -458,11 +458,11 @@ page {
 			border: 2rpx solid $u-border-color;
 			font-size: 26rpx;
 			text-align: center;
-			color: $u-type-info-dark;
+			color: $u-info-dark;
 		}
 		.evaluate {
-			color: $u-type-warning-dark;
-			border-color: $u-type-warning-dark;
+			color: $u-warning-dark;
+			border-color: $u-warning-dark;
 		}
 	}
 }

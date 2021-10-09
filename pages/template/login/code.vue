@@ -99,7 +99,7 @@ export default {
 	margin-bottom: 60rpx;
 }
 .captcha {
-	color: $u-type-warning;
+	color: $u-warning;
 	font-size: 30rpx;
 	margin-top: 40rpx;
 	.noCaptcha {

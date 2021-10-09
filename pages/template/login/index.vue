@@ -79,7 +79,7 @@ export default {
 			padding-bottom: 6rpx;
 		}
 		.tips {
-			color: $u-type-info;
+			color: $u-info;
 			margin-bottom: 60rpx;
 			margin-top: 8rpx;
 		}
@@ -122,7 +122,7 @@ export default {
 			color: $u-tips-color;
 			
 			.link {
-				color: $u-type-warning;
+				color: $u-warning;
 			}
 		}
 	}

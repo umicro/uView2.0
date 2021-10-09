@@ -36,7 +36,7 @@
 		</swiper>
 		<view
 			class="u-notice__right-icon"
-			v-if="mode"
+			v-if="['link', 'closable'].includes(mode)"
 		>
 			<u-icon
 				v-if="mode === 'link'"

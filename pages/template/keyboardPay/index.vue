@@ -96,7 +96,7 @@
 <style lang="scss">
 	.money{
 		font-size: 80rpx;
-		color: $u-type-warning;
+		color: $u-warning;
 		position: relative;
 		
 		.close{

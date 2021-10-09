@@ -108,7 +108,7 @@ page {
 	background-color: #ffffff;
 	width: 700rpx;
 	// border: 10rpx;
-	color: $u-type-warning;
+	color: $u-warning;
 	font-size: 28rpx;
 	.content {
 		display: flex;
@@ -141,7 +141,7 @@ page {
 				height: 50rpx;
 				border-radius: 25rpx;
 				line-height: 50rpx;
-				background-color: $u-type-warning!important;
+				background-color: $u-warning!important;
 				color: #ffffff!important;
 				font-size: 24rpx;
 				border: none;
@@ -152,7 +152,7 @@ page {
 	.tips {
 		padding: 0 20rpx;
 		border: 10rpx;
-		background-color: $u-type-info-light;
+		background-color: $u-info-light;
 		position: relative;
 		color: $u-tips-color;
 		display: flex;
@@ -274,7 +274,7 @@ page {
 				box-sizing: border-box;
 				padding-top: 8rpx;
 				border-radius: 50%;
-				background-color: $u-type-info-disabled;
+				background-color: $u-info-disabled;
 				text-align: center;
 			}
 		}
@@ -307,8 +307,8 @@ page {
 			margin-right: 10rpx;
 		}
 		.entrance {
-			color: $u-type-info;
-			border: solid 2rpx $u-type-info;
+			color: $u-info;
+			border: solid 2rpx $u-info;
 			line-height: 48rpx;
 			padding: 0 30rpx;
 			background: none;
@@ -331,7 +331,7 @@ page {
 			.introduce {
 				margin-left: 10rpx;
 				.top{
-					color:$u-type-warning;
+					color:$u-warning;
 					font-size: 28rpx;
 					.big{
 						font-size: 60rpx;
@@ -341,12 +341,12 @@ page {
 				}
 				.type{
 					font-size: 28rpx;
-					color: $u-type-info-dark;
+					color: $u-info-dark;
 				}
 				.date{
 					margin-top: 10rpx;
 					font-size: 20rpx;
-					color: $u-type-info-dark;
+					color: $u-info-dark;
 				}
 			}
 		}
@@ -363,7 +363,7 @@ page {
 				font-size: 24rpx;
 				border-radius: 40rpx;
 				color: #ffffff!important;
-				background-color: $u-type-warning!important;
+				background-color: $u-warning!important;
 				line-height: 40rpx;
 				color: rgb(117, 142, 165);
 				margin-left: 20rpx;

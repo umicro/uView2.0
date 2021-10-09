@@ -60,10 +60,8 @@
 	 * @property {String}			linkType		页面跳转的类型 ( 默认 navigateTo )
 	 * @property {Object}			customStyle		定义需要用到的外部样式
 	 * 
-	 * @event {Function}			click			点击通告文字触发，只有mode = vertical，或者mode = horizontal且is-circular = false时有效
+	 * @event {Function}			click			点击通告文字触发
 	 * @event {Function}			close			点击右侧关闭图标触发
-	 * @event {Function}			getMore			点击右侧向右图标触发
-	 * @event {Function}			end				列表的消息每次被播放一个周期时触发，只有mode = vertical，或者mode = horizontal且is-circular = false时有效
 	 * @example <u-notice-bar :more-icon="true" :list="list"></u-notice-bar>
 	 */
 	export default {

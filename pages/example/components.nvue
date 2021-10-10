@@ -34,9 +34,9 @@
 			// fetchMenu({id: 1}).then(res =>{
 			// 	console.log(res);
 			// })
-			// uni.$u.http.post('/ebapi/public_api/index', {id: 1}).then(res =>{
-			// 	console.log(res);
-			// })
+			uni.$u.http.post('/ebapi/public_api/index', {id: 1}).then(res =>{
+				console.log(res);
+			})
 		},
 		methods: {
 			openPage(path) {

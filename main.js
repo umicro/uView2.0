@@ -16,12 +16,9 @@ Vue.use(uView)
 import mixin from './common/mixin'
 Vue.mixin(mixin)
 
-// 引入事列样式
-import props from 'common/props'
-
 const app = new Vue({
 	store,
-    ...App
+	...App
 })
 
 // 引入请求封装

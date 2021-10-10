@@ -14,23 +14,24 @@
 		{
 			"path": "pages/example/components",
 			"style": {
-				"navigationBarTitleText": "组件"
-			}
-		},
-		// 演示-工具
-		{
-			"path": "pages/example/js",
-			"style": {
-				"navigationBarTitleText": "工具"
-			}
-		},
-		// 演示-模板
-		{
-			"path": "pages/example/template",
-			"style": {
-				"navigationBarTitleText": "模板"
+				"navigationBarTitleText": "组件",
+				"navigationStyle": "custom"
 			}
 		}
+		// // 演示-工具
+		// {
+		// 	"path": "pages/example/js",
+		// 	"style": {
+		// 		"navigationBarTitleText": "工具"
+		// 	}
+		// },
+		// // 演示-模板
+		// {
+		// 	"path": "pages/example/template",
+		// 	"style": {
+		// 		"navigationBarTitleText": "模板"
+		// 	}
+		// }
 	],
 	"subPackages": [{
 		"root": "pages/library",
@@ -612,25 +613,25 @@
 		"color": "#909399",
 		"selectedColor": "#303133",
 		"backgroundColor": "#FFFFFF",
-		"borderStyle": "black",
-		"list": [{
-				"pagePath": "pages/example/components",
-				"iconPath": "static/uview/example/component.png",
-				"selectedIconPath": "static/uview/example/component_select.png",
-				"text": "组件"
-			},
-			{
-				"pagePath": "pages/example/js",
-				"iconPath": "static/uview/example/js.png",
-				"selectedIconPath": "static/uview/example/js_select.png",
-				"text": "工具"
-			},
-			{
-				"pagePath": "pages/example/template",
-				"iconPath": "static/uview/example/template.png",
-				"selectedIconPath": "static/uview/example/template_select.png",
-				"text": "模板"
-			}
-		]
+		"borderStyle": "black"
+		// "list": [{
+		// 		"pagePath": "pages/example/components",
+		// 		"iconPath": "static/uview/example/component.png",
+		// 		"selectedIconPath": "static/uview/example/component_select.png",
+		// 		"text": "组件"
+		// 	},
+		// 	{
+		// 		"pagePath": "pages/example/js",
+		// 		"iconPath": "static/uview/example/js.png",
+		// 		"selectedIconPath": "static/uview/example/js_select.png",
+		// 		"text": "工具"
+		// 	},
+		// 	{
+		// 		"pagePath": "pages/example/template",
+		// 		"iconPath": "static/uview/example/template.png",
+		// 		"selectedIconPath": "static/uview/example/template_select.png",
+		// 		"text": "模板"
+		// 	}
+		// ]
 	}
 }

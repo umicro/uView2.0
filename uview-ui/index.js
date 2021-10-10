@@ -1,7 +1,7 @@
 // 引入全局mixin
 import mixin from './libs/mixin/mixin.js'
 // 全局挂载引入http相关请求拦截插件
-import http from './libs/request'
+import Request from './libs/luch-request'
 
 // 路由封装
 import route from './libs/util/route.js'
@@ -31,16 +31,12 @@ const $u = {
     route: route,
     date: index.timeFormat, // 另名date
     colorGradient: colorGradient.colorGradient,
-    get: http.get,
-    post: http.post,
-    put: http.put,
-    'delete': http.delete,
     hexToRgb: colorGradient.hexToRgb,
     rgbToHex: colorGradient.rgbToHex,
     colorToRgba: colorGradient.colorToRgba,
     test,
     type: ['primary', 'success', 'error', 'warning', 'info'],
-    http,
+    http: new Request(),
     config, // uView配置信息相关，比如版本号
     zIndex,
     debounce,

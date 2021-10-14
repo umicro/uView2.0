@@ -16,7 +16,7 @@ function getPx(value, unit = false) {
         return unit ? `${value}px` : value;
     }
     // 如果带有rpx，先取出其数值部分，再转为px值
-    if (/rpx$/.test(value)) {
+    if (/(rpx|upx)$/.test(value)) {
         return unit ? `${uni.upx2px(parseInt(value))}px` : uni.upx2px(parseInt(value));
     } else {
         return unit ? `${parseInt(value)}px` : parseInt(value);
@@ -390,7 +390,7 @@ function queryParams(data = {}, isPrefix = true, arrayFormat = 'brackets') {
 	return _result.length ? prefix + _result.join('&') : '';
 }
 
-function toast(title, duration = 1500) {
+function toast(title, duration = 2000) {
 	uni.showToast({
 		title: title,
 		icon: 'none',
@@ -436,23 +436,23 @@ function type2icon(type = 'success', fill = false) {
  * 参数说明：
  * number：要格式化的数字
  * decimals：保留几位小数
- * dec_point：小数点符号
- * thousands_sep：千分位符号
+ * decimalPoint：小数点符号
+ * thousandsSeparator：千分位符号
  * */
-function priceFormat(number, decimals, dec_point, thousands_sep) {
+function priceFormat(number, decimals = 0, decimalPoint = '.', thousandsSeparator = ',') {
 	number = (number + '').replace(/[^0-9+-Ee.]/g, '');
-	var n = !isFinite(+number) ? 0 : +number,
+	let n = !isFinite(+number) ? 0 : +number,
 		prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-		sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-		dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+		sep = (typeof thousandsSeparator === 'undefined') ? ',' : thousandsSeparator,
+		dec = (typeof decimalPoint === 'undefined') ? '.' : decimalPoint,
 		s = '',
 		toFixedFix = function(n, prec) {
-			var k = Math.pow(10, prec);
+			let k = Math.pow(10, prec);
 			return '' + Math.ceil(n * k) / k;
 		};
 
 	s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-	var re = /(-?\d+)(\d{3})/;
+	let re = /(-?\d+)(\d{3})/;
 	while (re.test(s[0])) {
 		s[0] = s[0].replace(re, '$1' + sep + '$2');
 	}

@@ -285,6 +285,7 @@
 			font-size: $u-radio-wrap-font-size;
 			border-width: $u-radio-wrap-border-width;
 			border-color: $u-radio-wrap-border-color;
+			border-style: solid;
 
 			/* #ifdef MP-TOUTIAO */
 			// 头条小程序兼容性问题，需要设置行高为0，否则图标偏下

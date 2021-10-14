@@ -287,6 +287,7 @@
 			font-size: $u-checkbox-icon-wrap-font-size;
 			border-width: $u-checkbox-icon-wrap-border-width;
 			border-color: $u-checkbox-icon-wrap-border-color;
+			border-style: solid;
 
 			/* #ifdef MP-TOUTIAO */
 			// 头条小程序兼容性问题，需要设置行高为0，否则图标偏下

@@ -35,18 +35,12 @@
 		},
 		methods: {
 			getGet() {
-				this.$u.get('/ebapi/store_api/hot_search', {
-					id: 2
-				}).then(res => {
-					this.result = res;
+				fetchMenu({id: 1}).then(res =>{
+					console.log(res);
 				})
 			},
 			getPost() {
-				this.$u.post('/ebapi/public_api/index', {
-					id: 1
-				}).then(res => {
-					this.result = res.banner;
-				})
+				
 			},
 			getResult(index) {
 				index == 0 ? this.getGet() : this.getPost();

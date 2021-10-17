@@ -1,6 +1,6 @@
 {
 	"easycom": {
-		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+		"^u-(.*)": "@/uni_modules/uview-v2/components/u-$1/u-$1.vue"
 	},
 	// "condition": { //模式配置，仅开发期间生效
 	// 	"current": 0, //当前激活的模式(list 的索引项)
@@ -14,8 +14,7 @@
 		{
 			"path": "pages/example/components",
 			"style": {
-				"navigationBarTitleText": "组件",
-				"navigationStyle": "custom"
+				"navigationBarTitleText": "uView UI"
 			}
 		}
 		// // 演示-工具

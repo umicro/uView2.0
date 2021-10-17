@@ -313,7 +313,7 @@
 		},
 		watch: {
 			checkboxValue1(newValue, oldValue) {
-				console.log('v-model', newValue);
+				// console.log('v-model', newValue);
 			}
 		},
 		onLoad() {
@@ -321,7 +321,7 @@
 		},
 		methods: {
 			checkboxChange(n) {
-				console.log('change', n);
+				// console.log('change', n);
 			}
 		}
 	}

@@ -90,11 +90,6 @@ export default [
 				title: 'Test 规则校验',
 				title_en: 'Test',
 			},{
-				path: 'md5',
-				icon: 'md5',
-				title: 'Md5 md5加密',
-				title_en: 'Md5',
-			},{
 				path: 'random',
 				icon: 'random',
 				title: 'Random 随机数值',

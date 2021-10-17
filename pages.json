@@ -140,13 +140,6 @@
 					"navigationBarTitleText": "random-随机数生成"
 				}
 			},
-			// md5加密
-			{
-				"path": "md5/index",
-				"style": {
-					"navigationBarTitleText": "md5-加密"
-				}
-			},
 			// colorSwitch颜色转换
 			{
 				"path": "colorSwitch/index",

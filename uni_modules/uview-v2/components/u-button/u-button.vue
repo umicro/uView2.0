@@ -33,7 +33,7 @@
             ></u-loading-icon>
             <text
                 class="u-button__loading-text"
-                :style="{ fontSize: textSize + 'px' }"
+                :style="[{ fontSize: textSize + 'px' }]"
                 >{{ loadingText || text }}</text
             >
         </template>
@@ -48,7 +48,7 @@
             <slot>
                 <text
                     class="u-button__text"
-                    :style="{ fontSize: textSize + 'px' }"
+                    :style="[{ fontSize: textSize + 'px' }]"
                     >{{ text }}</text
                 >
             </slot>

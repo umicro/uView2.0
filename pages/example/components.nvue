@@ -15,7 +15,6 @@
 
 <script>
 	import list from "./components.config.js";
-	import {fetchMenu} from '@/common/api'
 	export default {
 		data() {
 			return {

@@ -13,10 +13,10 @@
 			<open-data
 				v-if="mpAvatar && allowMp"
 				type="userAvatarUrl"
-				:style="{
+				:style="[{
 					width: $u.addUnit(size),
 					height: $u.addUnit(size)
-				}"
+				}]"
 			/>
 			<u-icon
 				v-else-if="icon"
@@ -39,10 +39,10 @@
 				:src="avatarUrl"
 				:mode="mode"
 				@error="errorHandler"
-				:style="{
+				:style="[{
 					width: $u.addUnit(size),
 					height: $u.addUnit(size)
-				}"
+				}]"
 			></image>
 		</slot>
 	</view>

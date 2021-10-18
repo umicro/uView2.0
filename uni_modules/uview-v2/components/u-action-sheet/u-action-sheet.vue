@@ -28,9 +28,9 @@
 			</view>
 			<text
 			    class="u-action-sheet__description"
-				:style="{
+				:style="[{
 					marginTop: `${title && description ? 0 : '18px'}`
-				}"
+				}]"
 			    v-if="description"
 			>{{description}}</text>
 			<slot>

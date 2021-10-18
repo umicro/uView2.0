@@ -21,26 +21,26 @@
 			</view>
 			<view
 			    class="u-alert__content"
-			    :style="{
-				paddingRight: closable ? '20px' : 0
-			}"
+			    :style="[{
+					paddingRight: closable ? '20px' : 0
+				}]"
 			>
 				<text
 				    class="u-alert__content__title"
 				    v-if="title"
-					:style="{
+					:style="[{
 						fontSize: $u.addUnit(fontSize),
 						textAlign: center ? 'center' : 'left'
-					}"
+					}]"
 				    :class="[effect === 'dark' ? 'u-alert__text--dark' : `u-alert__text--${type}--light`]"
 				>{{ title }}</text>
 				<text
 				    class="u-alert__content__desc"
 					v-if="description"
-					:style="{
+					:style="[{
 						fontSize: $u.addUnit(fontSize),
 						textAlign: center ? 'center' : 'left'
-					}"
+					}]"
 				    :class="[effect === 'dark' ? 'u-alert__text--dark' : `u-alert__text--${type}--light`]"
 				>{{ description }}</text>
 			</view>

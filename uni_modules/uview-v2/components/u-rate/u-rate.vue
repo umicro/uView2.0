@@ -43,13 +43,10 @@
                 <view
                     v-if="allowHalf"
                     @tap.stop="clickHandler($event, index + 1)"
-                    class="
-                        u-rate__content__item__icon-wrap
-                        u-rate__content__item__icon-wrap--half
-                    "
-                    :style="{
+                    class="u-rate__content__item__icon-wrap u-rate__content__item__icon-wrap--half"
+                    :style="[{
                         width: $u.addUnit(rateWidth / 2),
-                    }"
+                    }]"
                     ref="u-rate__content__item__icon-wrap"
                 >
                     <u-icon

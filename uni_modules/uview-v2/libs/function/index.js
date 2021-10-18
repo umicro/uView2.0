@@ -12,15 +12,15 @@ function range(min = 0, max = 0, value = 0) {
  * 如果用户传递了"xxpx"或者"xxrpx"，取出其数值部分，如果是"xxxrpx"还需要用过uni.upx2px进行转换
  */
 function getPx(value, unit = false) {
-    if (test.number(value)) {
-        return unit ? `${value}px` : value;
-    }
-    // 如果带有rpx，先取出其数值部分，再转为px值
-    if (/(rpx|upx)$/.test(value)) {
-        return unit ? `${uni.upx2px(parseInt(value))}px` : uni.upx2px(parseInt(value));
-    } else {
-        return unit ? `${parseInt(value)}px` : parseInt(value);
-    }
+	if (test.number(value)) {
+		return unit ? `${value}px` : value;
+	}
+	// 如果带有rpx，先取出其数值部分，再转为px值
+	if (/(rpx|upx)$/.test(value)) {
+		return unit ? `${uni.upx2px(parseInt(value))}px` : uni.upx2px(parseInt(value));
+	} else {
+		return unit ? `${parseInt(value)}px` : parseInt(value);
+	}
 }
 
 /**
@@ -173,7 +173,7 @@ function deepClone(obj) {
 		//原始类型直接返回
 		return obj;
 	}
-	var o = test.array(obj) ? [] : {};
+	let o = test.array(obj) ? [] : {};
 	for (let i in obj) {
 		if (obj.hasOwnProperty(i)) {
 			o[i] = typeof obj[i] === 'object' ? deepClone(obj[i]) : obj[i];
@@ -186,7 +186,7 @@ function deepClone(obj) {
 function deepMerge(target = {}, source = {}) {
 	target = deepClone(target);
 	if (typeof target !== 'object' || typeof source !== 'object') return false;
-	for (var prop in source) {
+	for (let prop in source) {
 		if (!source.hasOwnProperty(prop)) continue;
 		if (prop in target) {
 			if (typeof target[prop] !== 'object') {
@@ -283,7 +283,7 @@ function timeFrom(timestamp = null, format = 'yyyy-mm-dd') {
 	timestamp = parseInt(timestamp);
 	// 判断用户输入的时间戳是秒还是毫秒,一般前端js获取的时间戳是毫秒(13位),后端传过来的为秒(10位)
 	if (timestamp.toString().length == 10) timestamp *= 1000;
-	var timer = (new Date()).getTime() - timestamp;
+	let timer = (new Date()).getTime() - timestamp;
 	timer = parseInt(timer / 1000);
 	// 如果小于5分钟,则返回"刚刚",其他以此类推
 	let tips = '';
@@ -468,12 +468,12 @@ function priceFormat(number, decimals = 0, decimalPoint = '.', thousandsSeparato
 // 比如以30位阈值，那么300大于30，可以理解为用户想要的是300ms，而不是想花300s去执行一个动画
 function getDuration(value, unit = true) {
 	const valueNum = parseInt(value)
-	if(unit) {
+	if (unit) {
 		if (/s$/.test(value)) return value
-		return value > 30 ? `${value}ms` :  `${value}s`
+		return value > 30 ? `${value}ms` : `${value}s`
 	} else {
-		if(/ms$/.test(value)) return valueNum
-		else if(/s$/.test(value)) return valueNum > 30 ? valueNum : valueNum * 1000
+		if (/ms$/.test(value)) return valueNum
+		else if (/s$/.test(value)) return valueNum > 30 ? valueNum : valueNum * 1000
 		else return valueNum
 	}
 }
@@ -502,10 +502,10 @@ function getProperty(obj, key) {
 	if (typeof key !== 'string' || key === '') {
 		return "";
 	} else if (key.indexOf(".") !== -1) {
-		var keys = key.split('.');
-		var firstObj = obj[keys[0]] || {};
+		let keys = key.split('.');
+		let firstObj = obj[keys[0]] || {};
 
-		for (var i = 1; i < keys.length; i++) {
+		for (let i = 1; i < keys.length; i++) {
 			if (firstObj) {
 				firstObj = firstObj[keys[i]];
 			}
@@ -522,7 +522,7 @@ function setProperty(obj, key, value) {
 		return;
 	}
 	// 递归赋值
-	var inFn = function(_obj, keys, v) {
+	let inFn = function(_obj, keys, v) {
 		// 最后一个属性key
 		if (keys.length === 1) {
 			_obj[keys[0]] = v;
@@ -530,11 +530,11 @@ function setProperty(obj, key, value) {
 		}
 		// 0~length-1个key
 		while (keys.length > 1) {
-			var k = keys[0];
+			let k = keys[0];
 			if (!_obj[k] || (typeof _obj[k] !== 'object')) {
 				_obj[k] = {};
 			}
-			var key = keys.shift();
+			let key = keys.shift();
 			// 自调用判断是否存在属性，不存在则自动创建对象
 			inFn(_obj[k], keys, v);
 		}
@@ -544,13 +544,19 @@ function setProperty(obj, key, value) {
 	if (typeof key !== 'string' || key === '') {
 		return;
 	} else if (key.indexOf(".") !== -1) { // 支持多层级赋值操作
-		var keys = key.split('.');
+		let keys = key.split('.');
 		inFn(obj, keys, value);
 		return;
 	} else {
 		obj[key] = value;
 		return;
 	}
+}
+
+// 获取当前页面路径
+function page() {
+	let pages = getCurrentPages()
+	return `/${getCurrentPages()[pages.length - 1].route}`
 }
 
 export default {
@@ -579,5 +585,6 @@ export default {
 	padZero,
 	formValidate,
 	getProperty,
-	setProperty
+	setProperty,
+	page
 };

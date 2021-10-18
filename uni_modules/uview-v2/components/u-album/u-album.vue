@@ -17,10 +17,10 @@
 				<image
 				    :src="getSrc(item)"
 				    :mode="urls.length === 1 ? singleMode : multipleMode"
-				    :style="{
+				    :style="[{
 						width: $u.addUnit(imageWidth),
 						height: $u.addUnit(imageHeight)
-					}"
+					}]"
 				></image>
 				<view
 				    v-if="showMore && urls.length > rowCount * showUrls.length && index === showUrls.length - 1 && index1 === showUrls[showUrls.length - 1].length - 1"

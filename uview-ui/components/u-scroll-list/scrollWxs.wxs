@@ -10,7 +10,7 @@ function scroll(event, ownerInstance) {
 	var scrollComponentWidth = dataset.scrollWidth || dataset.scrollwidth || 0
 	// 指示器和滑块的宽度
 	var indicatorWidth = dataset.indicatorWidth || dataset.indicatorwidth || 0
-	var barWidth = dataset.barWidth || dataset.barwidth
+	var barWidth = dataset.barWidth || dataset.barwidth || 0
 	// 此处的计算理由为：scroll-view的滚动距离与目标滚动距离(scroll-view的实际宽度减去包裹元素的宽度)之比，等于滑块当前移动距离与总需
 	// 滑动距离(指示器的总宽度减去滑块宽度)的比值
 	var x = scrollLeft / (scrollWidth - scrollComponentWidth) * (indicatorWidth - barWidth)
@@ -25,8 +25,8 @@ function scrolltolower(event, ownerInstance) {
 	// 获取当前组件的dataset
 	var dataset = event.currentTarget.dataset
 	// 指示器和滑块的宽度
-	var indicatorWidth = dataset.indicatorWidth
-	var barWidth = dataset.barWidth
+	var indicatorWidth = dataset.indicatorWidth || dataset.indicatorwidth || 0
+	var barWidth = dataset.barWidth || dataset.barwidth || 0
 	// scroll-view滚动到右边终点时，将滑块也设置为到右边的终点，它所需移动的距离为：指示器宽度 - 滑块宽度
 	setBarStyle(ownerInstance, indicatorWidth - barWidth)
 }

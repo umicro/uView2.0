@@ -121,13 +121,13 @@
 			async validateField(value, callback, event = null) {
 				// $nextTick是必须的，否则model的变更，可能会延后于此方法的执行
 				this.$nextTick(() => {
-					// 校验错误信息，返回给回调方法
-					const errorsRes = [];
 					// 如果为字符串，转为数组
 					value = [].concat(value);
 
 					// 历遍children所有子form-item
 					this.children.map((child) => {
+						// 校验错误信息，返回给回调方法
+						const errorsRes = [];
 						if (value.includes(child.prop)) {
 							// 获取对应的属性，通过类似'a.b.c'的形式
 							const propertyVal = uni.$u.getProperty(

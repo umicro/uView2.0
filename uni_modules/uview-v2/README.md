@@ -23,7 +23,7 @@ uView UI，是[uni-app](https://uniapp.dcloud.io/)生态优秀的UI框架，全�
 
 ```bash
 # npm方式安装
-npm i uview-ui
+npm i uview-v2
 ```
 
 ## 快速上手
@@ -31,7 +31,7 @@ npm i uview-ui
 1. `main.js`引入uView库
 ```js
 // main.js
-import uView from 'uview-ui';
+import uView from 'uview-v2';
 Vue.use(uView);
 ```
 
@@ -39,14 +39,14 @@ Vue.use(uView);
 ```css
 /* App.vue */
 <style lang="scss">
-@import "uview-ui/index.scss";
+@import "uview-v2/index.scss";
 </style>
 ```
 
 3. `uni.scss`引入全局scss变量文件
 ```css
 /* uni.scss */
-@import "uview-ui/theme.scss";
+@import "uview-v2/theme.scss";
 ```
 
 4. `pages.json`配置easycom规则(按需引入)
@@ -57,9 +57,9 @@ Vue.use(uView);
 	"easycom": {
 		// npm安装的方式不需要前面的"@/"，下载安装的方式需要"@/"
 		// npm安装方式
-		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+		"^u-(.*)": "uview-v2/components/u-$1/u-$1.vue"
 		// 下载安装方式
-		// "^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+		// "^u-(.*)": "@/uview-v2/components/u-$1/u-$1.vue"
 	},
 	// 此为本身已有的内容
 	"pages": [
@@ -68,7 +68,7 @@ Vue.use(uView);
 }
 ```
 
-请通过[快速上手](https://uviewui.com/components/quickstart.html)了解更详细的内容 
+请通过[快速上手](https://v2.uviewui.com/components/quickstart.html)了解更详细的内容 
 
 ## 使用方法
 配置easycom规则后，自动按需引入，无需`import`组件，直接引用即可。
@@ -79,14 +79,14 @@ Vue.use(uView);
 </template>
 ```
 
-请通过[快速上手](https://uviewui.com/components/quickstart.html)了解更详细的内容 
+请通过[快速上手](https://v2.uviewui.com/components/quickstart.html)了解更详细的内容 
 
 ## 链接
 
-- [官方文档](https://uviewui.com/)
-- [更新日志](https://uviewui.com/components/changelog.html)
-- [升级指南](https://uviewui.com/components/changelog.html)
-- [关于我们](https://uviewui.com/cooperation/about.html)
+- [官方文档](https://v2.uviewui.com/)
+- [更新日志](https://v2.v2.uviewui.com/components/changelog.html)
+- [升级指南](https://v2.uviewui.com/components/changelog.html)
+- [关于我们](https://v2.uviewui.com/cooperation/about.html)
 
 ## 预览
 

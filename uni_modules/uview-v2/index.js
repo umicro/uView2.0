@@ -26,6 +26,8 @@ import props from './libs/config/props.js'
 import zIndex from './libs/config/zIndex.js'
 // 关于颜色的配置，特殊场景使用
 import color from './libs/config/color.js'
+// 平台
+import platform from './libs/function/platform'
 
 const $u = {
     route: route,
@@ -45,6 +47,7 @@ const $u = {
     props,
     ...index,
     color,
+	platform
 }
 
 // $u挂载到uni对象上

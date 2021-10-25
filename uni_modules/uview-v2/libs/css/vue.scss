@@ -6,3 +6,13 @@
 		padding-#{$d}: env(safe-area-inset-#{$d});  
 	}
 }
+
+//提升H5端uni.toast()的层级，避免被uView的modal等遮盖
+/* #ifdef H5 */
+uni-toast {
+    z-index: 10090;
+}
+uni-toast .uni-toast {
+   z-index: 10090;
+}
+/* #endif */

@@ -626,7 +626,7 @@
 
 <style lang="scss">
 	.u-page {
-		padding: 15rpx;
+		padding: 14rpx;
 
 		&__grid {
 			@include flex(row);

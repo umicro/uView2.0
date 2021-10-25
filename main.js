@@ -10,7 +10,7 @@ Vue.config.productionTip = false
 App.mpType = 'app'
 
 // 引入全局uView
-import uView from 'uview-ui'
+import uView from '@/uni_modules/uview-v2'
 Vue.use(uView)
 
 import mixin from './common/mixin'

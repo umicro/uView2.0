@@ -15,12 +15,11 @@
 
 <script>
 	import list from "./components.config.js";
-	import {fetchMenu} from '@/common/api'
 	export default {
 		data() {
 			return {
 				list: list,
-				desc: '众多组件覆盖开发过程的各个需求，组件功能丰富，多端兼容。让你快速集成，开箱即用。',
+				desc: 'uView UI，是全面兼容nvue的uni-app生态框架，全面的组件和便捷的工具会让您信手拈来，如鱼得水。',
 			}
 		},
 		computed: {
@@ -29,14 +28,6 @@
 					return 'https://cdn.uviewui.com/uview/example/' + path + '.png';
 				}
 			},
-		},
-		onReady() {
-			// fetchMenu({id: 1}).then(res =>{
-			// 	console.log(res);
-			// })
-			uni.$u.http.post('/ebapi/public_api/index', {id: 1}).then(res =>{
-				console.log(res);
-			})
 		},
 		methods: {
 			openPage(path) {

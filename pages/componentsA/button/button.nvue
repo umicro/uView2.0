@@ -310,8 +310,6 @@
 </script>
 
 <style lang="scss">
-	@import "@/uview-ui/libs/css/components.scss";
-
 	.u-page {
 		&__button-item {
 			margin: 0 15px 15px 0;

@@ -160,12 +160,14 @@ export default [{
 			icon: 'progress',
 			title: 'Progress 进度条',
 			title_en: 'Progress',
-		}, {
-			path: '/pages/componentsC/table/table',
-			icon: 'table',
-			title: 'Table 表格（暂无）',
-			title_en: 'Table',
-		}, {
+		}, 
+		// {
+		// 	path: '/pages/componentsC/table/table',
+		// 	icon: 'table',
+		// 	title: 'Table 表格（暂无）',
+		// 	title_en: 'Table',
+		// }, 
+		{
 			path: '/pages/componentsB/countDown/countDown',
 			icon: 'countDown',
 			title: 'CountDown 倒计时',

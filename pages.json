@@ -17,179 +17,8 @@
 				"navigationBarTitleText": "uView UI"
 			}
 		}
-		// // 演示-工具
-		// {
-		// 	"path": "pages/example/js",
-		// 	"style": {
-		// 		"navigationBarTitleText": "工具"
-		// 	}
-		// },
-		// // 演示-模板
-		// {
-		// 	"path": "pages/example/template",
-		// 	"style": {
-		// 		"navigationBarTitleText": "模板"
-		// 	}
-		// }
 	],
 	"subPackages": [{
-		"root": "pages/library",
-		"pages": [
-			// debounce-节流防抖
-			{
-				"path": "debounce/index",
-				"style": {
-					"navigationBarTitleText": "throttle | debounce-节流防抖"
-				}
-			},
-			// deepClone-对象深度克隆
-			{
-				"path": "deepClone/index",
-				"style": {
-					"navigationBarTitleText": "deepClone-对象深度克隆"
-				}
-			},
-			// deepMerge-对象深度合并
-			{
-				"path": "deepMerge/index",
-				"style": {
-					"navigationBarTitleText": "deepMerge-对象深度合并"
-				}
-			},
-			// getRect-元素节点
-			{
-				"path": "getRect/index",
-				"style": {
-					"navigationBarTitleText": "getRect-元素节点"
-				}
-			},
-			// timeFrom-多久之前
-			{
-				"path": "timeFrom/index",
-				"style": {
-					"navigationBarTitleText": "timeFrom-多久之前"
-				}
-			},
-			// globalData-全局变量
-			{
-				"path": "globalVariable/globalData",
-				"style": {
-					"navigationBarTitleText": "globalData-全局变量"
-				}
-			},
-			// prototype-全局变量
-			{
-				"path": "globalVariable/prototype",
-				"style": {
-					"navigationBarTitleText": "prototype-全局变量"
-				}
-			},
-			// vuex-全局变量
-			{
-				"path": "globalVariable/vuex",
-				"style": {
-					"navigationBarTitleText": "vuex-全局变量"
-				}
-			},
-			// globalVariable-全局变量
-			{
-				"path": "globalVariable/index",
-				"style": {
-					"navigationBarTitleText": "globalVariable-全局变量"
-				}
-			},
-			// http-请求
-			{
-				"path": "http/index",
-				"style": {
-					"navigationBarTitleText": "http-请求"
-				}
-			},
-			// test-规则验证
-			{
-				"path": "test/index",
-				"style": {
-					"navigationBarTitleText": "test-规则验证"
-				}
-			},
-			// mpShare-小程序分享
-			{
-				"path": "mpShare/index",
-				"style": {
-					"navigationBarTitleText": "mpShare-小程序分享"
-				}
-			},
-			// color-JS调用颜色
-			{
-				"path": "color/index",
-				"style": {
-					"navigationBarTitleText": "color-JS调用颜色"
-				}
-			},
-			// trim-去除空格
-			{
-				"path": "trim/index",
-				"style": {
-					"navigationBarTitleText": "trim-去除空格"
-				}
-			},
-			// random-随机数生成
-			{
-				"path": "random/index",
-				"style": {
-					"navigationBarTitleText": "random-随机数生成"
-				}
-			},
-			// colorSwitch颜色转换
-			{
-				"path": "colorSwitch/index",
-				"style": {
-					"navigationBarTitleText": "colorSwitch-颜色转换"
-				}
-			},
-			// randomArray数组乱序
-			{
-				"path": "randomArray/index",
-				"style": {
-					"navigationBarTitleText": "randomArray-数组乱序"
-				}
-			},
-			// guid全局唯一标识符
-			{
-				"path": "guid/index",
-				"style": {
-					"navigationBarTitleText": "guid-全局唯一标识符"
-				}
-			},
-			// timeFormat时间格式化
-			{
-				"path": "timeFormat/index",
-				"style": {
-					"navigationBarTitleText": "timeFormat-时间格式化"
-				}
-			}, // route-路由
-			{
-				"path": "route/index",
-				"style": {
-					"navigationBarTitleText": "route-路由"
-				}
-			},
-			// route-路由跳转
-			{
-				"path": "route/routeTo",
-				"style": {
-					"navigationBarTitleText": "route-路由跳转"
-				}
-			},
-			// queryParams-对象转URL参数
-			{
-				"path": "queryParams/index",
-				"style": {
-					"navigationBarTitleText": "queryParams-对象转URL参数"
-				}
-			}
-		]
-	}, {
 		"root": "pages/componentsA",
 		"pages": [
 			// 过渡动画
@@ -589,41 +418,16 @@
 			}
 		}]
 	}],
-	// "preloadRule": {
-	// 	"pages/example/components": {
-	// 		"network": "all",
-	// 		"packages": ["pages/componentsA", "pages/componentsB"]
-	// 	}
-	// },
+	"preloadRule": {
+		"pages/example/components": {
+			"network": "all",
+			"packages": ["pages/componentsA", "pages/componentsB"]
+		}
+	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uView",
 		"navigationBarBackgroundColor": "#FFFFFF",
 		"backgroundColor": "#FFFFFF"
 	}
-	// "tabBar": {
-	// 	"color": "#909399",
-	// 	"selectedColor": "#303133",
-	// 	"backgroundColor": "#FFFFFF",
-	// 	"borderStyle": "black"
-	// 	// "list": [{
-	// 	// 		"pagePath": "pages/example/components",
-	// 	// 		"iconPath": "static/uview/example/component.png",
-	// 	// 		"selectedIconPath": "static/uview/example/component_select.png",
-	// 	// 		"text": "组件"
-	// 	// 	},
-	// 	// 	{
-	// 	// 		"pagePath": "pages/example/js",
-	// 	// 		"iconPath": "static/uview/example/js.png",
-	// 	// 		"selectedIconPath": "static/uview/example/js_select.png",
-	// 	// 		"text": "工具"
-	// 	// 	},
-	// 	// 	{
-	// 	// 		"pagePath": "pages/example/template",
-	// 	// 		"iconPath": "static/uview/example/template.png",
-	// 	// 		"selectedIconPath": "static/uview/example/template_select.png",
-	// 	// 		"text": "模板"
-	// 	// 	}
-	// 	// ]
-	// }
 }

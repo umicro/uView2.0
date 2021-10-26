@@ -116,6 +116,7 @@
 		methods: {
 			// 点击cell
 			clickHandler(e) {
+				if(this.disabled) return
 				this.$emit('click')
 				// 如果配置了url(此props参数通过mixin引入)参数，跳转页面
 				this.openPage()

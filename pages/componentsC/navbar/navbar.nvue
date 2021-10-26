@@ -1,7 +1,7 @@
 <template>
 	<view class="u-page">
 		<u-navbar
-			title="步骤条"
+			title="导航栏"
 			safeAreaInsetTop
 			fixed
 			placeholder

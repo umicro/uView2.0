@@ -32,7 +32,7 @@ export default {
 		},
 		// 自定义遮罩的样式
 		overlayStyle: {
-			type: Object,
+			type: [Object, String],
 			default: uni.$u.props.popup.overlayStyle
 		},
 		// 点击遮罩是否关闭弹窗
@@ -74,6 +74,11 @@ export default {
 		bgColor: {
 			type: String,
 			default: uni.$u.props.popup.bgColor
+		},
+		// 遮罩的透明度，0-1之间
+		overlayOpacity: {
+			type: [Number, String],
+			default: uni.$u.props.popup.overlayOpacity
 		}
 	},
 }

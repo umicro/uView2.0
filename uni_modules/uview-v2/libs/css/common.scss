@@ -1,5 +1,5 @@
-// 超出行数，自动显示行尾省略号，最多12行
-@for $i from 1 through 12 {
+// 超出行数，自动显示行尾省略号，最多5行
+@for $i from 1 through 5 {
 	.u-line-#{$i} {
 		/* #ifdef APP-NVUE */
 		// nvue下，可以直接使用lines属性，这是weex特有样式

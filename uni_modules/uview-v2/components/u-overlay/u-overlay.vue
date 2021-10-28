@@ -3,7 +3,7 @@
 	    :show="show"
 	    custom-class="u-overlay"
 	    :duration="duration"
-	    :custom-style="overlyStyle"
+	    :custom-style="overlayStyle"
 	    @click="clickHandler"
 	>
 		<slot />
@@ -29,7 +29,7 @@
 		name: "u-overlay",
 		mixins: [uni.$u.mixin,props],
 		computed: {
-			overlyStyle() {
+			overlayStyle() {
 				const style = {
 					position: 'fixed',
 					top: 0,

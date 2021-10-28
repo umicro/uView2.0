@@ -5,6 +5,8 @@
 			@click="overlayClick"
 			v-if="overlay"
 			:duration="duration"
+			:customStyle="overlayStyle"
+			:opacity="overlayOpacity"
 		></u-overlay>
 		<u-transition
 			:show="show"
@@ -56,7 +58,8 @@
  * @property {String | Number}	duration			动画时长，单位ms （默认 300 ）
  * @property {String | Number}	borderRadius		弹窗圆角值（默认 0 ）
  * @property {Boolean}			closeable			是否显示关闭图标（默认 false ）
- * @property {Object}			overlayStyle		自定义遮罩的样式
+ * @property {Object | String}	overlayStyle		自定义遮罩的样式
+ * @property {String | Number}	overlayOpacity		遮罩透明度，0-1之间（默认 0.5）
  * @property {Boolean}			closeOnClickOverly	点击遮罩是否关闭弹窗 （默认  true ）
  * @property {String | Number}	zIndex				层级 （默认 10075 ）
  * @property {Boolean}			safeAreaInsetBottom	是否为iPhoneX留出底部安全距离 （默认 true ）

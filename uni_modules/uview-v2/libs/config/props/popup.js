@@ -24,6 +24,7 @@ export default {
 		closeIconPos: 'top-right',
 		round: false,
 		zoom: true,
-        bgColor: ''
+        bgColor: '',
+		overlayOpacity: 0.5
 	},
 }

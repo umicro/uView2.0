@@ -2,7 +2,7 @@ export default {
     props: {
         // 输入框的内容
         value: {
-            type: String,
+            type: [String, Number],
             default: uni.$u.props.textarea.value,
         },
         // 输入框为空时占位符

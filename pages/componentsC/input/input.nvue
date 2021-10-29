@@ -118,7 +118,7 @@
 		},
 		watch: {
 			value(newValue, oldValue) {
-				console.log('v-model', newValue);
+				// console.log('v-model', newValue);
 			}
 		},
 		methods: {

@@ -46,7 +46,7 @@ import props from "./props.js";
  * @description 文本域此组件满足了可能出现的表单信息补充，编辑等实际逻辑的功能，内置了字数校验等
  * @tutorial https://www.uviewui.com/components/textarea.html
  *
- * @property {String} 				value					输入框的内容
+ * @property {String | Number} 		value					输入框的内容
  * @property {String | Number}		placeholder				输入框为空时占位符
  * @property {String}			    placeholderClass		指定placeholder的样式类，注意页面或组件的style中写了scoped时，需要在类名前写/deep/ （ 默认 'input-placeholder' ）
  * @property {String | Object}	    placeholderStyle		指定placeholder的样式，字符串/对象形式，如"color: red;"

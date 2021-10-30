@@ -3,8 +3,14 @@
 		<view class="nav-title">
 			<u--image :showLoading="true" src="https://cdn.uviewui.com/uview/common/logo.png" width="70px" height="70px"/>
 			<view class="nav-info">
-				<text class="nav-title__text">uView 2.0</text>
-				<text class="nav-slogan">多平台开发的UI框架</text>
+				<text class="nav-title__text" @tap="jumpToWx">
+					uView 2.0
+					<!-- #ifdef MP-WEIXIN -->
+					<!-- uni-app不支持text内部的text组件的tap事件，所以放到外部响应tap -->
+					<text class="nav-jump">查看1.x演示</text>
+					<!-- #endif -->
+				</text>
+				<text class="nav-slogan">多平台快速开发的UI框架</text>
 			</view>
 		</view>
 		<text class="nav-desc">{{desc}}</text>
@@ -16,6 +22,15 @@
 		props: {
 			desc: String,
 			title: String,
+		},
+		methods: {
+			jumpToWx() {
+				// #ifdef MP-WEIXIN
+				uni.navigateToMiniProgram({
+					appId: 'wx3be833c4a263e0c2'
+				})
+				// #endif
+			}
 		},
 	}
 </script>
@@ -52,6 +67,14 @@
 		color: $u-main-color;
 		font-size: 25px;
 		font-weight: bold;
+		align-items: flex-end;
+	}
+	
+	.nav-jump {
+		font-size: 12px;
+		color: $u-primary;
+		font-weight: normal;
+		margin-left: 20px;
 	}
 
 	.logo {

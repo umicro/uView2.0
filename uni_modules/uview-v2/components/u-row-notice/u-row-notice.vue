@@ -68,6 +68,7 @@
 	 * @example 
 	 */
 	export default {
+		name: 'u-row-notice',
 		mixins: [uni.$u.mixin,props],
 		data() {
 			return {

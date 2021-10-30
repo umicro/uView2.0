@@ -157,7 +157,7 @@ import props from "./props.js";
 export default {
     name: "u-button",
     // #ifdef MP
-    mixins: [uni.$u.mixin, button, openType],
+    mixins: [uni.$u.mixin, button, openType, props],
     // #endif
     // #ifndef MP
     mixins: [uni.$u.mixin, props],
@@ -258,7 +258,6 @@ export default {
             return fontSize;
         },
     },
-    created() {},
     methods: {
         clickHandler() {
             // 非禁止并且非加载中，才能点击

@@ -12,6 +12,8 @@
 			:arrowDirection="expanded ? 'up' : 'down'"
 			:disabled="disabled"
 		>
+			<!-- #ifndef MP-WEIXIN -->
+			<!-- 微信小程序不支持，因为微信中不支持 <slot name="title" slot="title" />的写法 -->
 			<slot
 				name="title"
 				slot="title"
@@ -28,6 +30,21 @@
 				name="right-icon"
 				slot="right-icon"
 			/>
+			<!-- #endif -->
+			<!-- #ifdef MP-WEIXIN -->
+			<slot
+				name="title"
+			/>
+			<slot
+				name="icon"
+			/>
+			<slot
+				name="value"
+			/>
+			<slot
+				name="right-icon"
+			/>
+			<!-- #endif -->
 		</u-cell>
 		<view
 			class="u-collapse-item__content"

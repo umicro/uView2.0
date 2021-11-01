@@ -73,6 +73,8 @@
 				</u-collapse-item>
 			</u-collapse>
 		</view>
+		<!-- 微信小程序不支持，因为微信中不支持 <slot name="title" slot="title" />的写法 -->
+		<!-- #ifndef MP-WEIXIN -->
 		<view class="u-page__item">
 			<text class="u-page__item__title">自定义标题和内容</text>
 			<u-collapse
@@ -103,6 +105,7 @@
 				</u-collapse-item>
 			</u-collapse>
 		</view>
+		<!-- #endif -->
 		<u-gap height="50"></u-gap>
 	</view>
 </template>
@@ -115,13 +118,13 @@
 		},
 		methods: {
 			open(e) {
-				console.log('open', e)
+				// console.log('open', e)
 			},
 			close(e) {
-				console.log('close', e)
+				// console.log('close', e)
 			},
 			change(e) {
-				console.log('change', e)
+				// console.log('change', e)
 			}
 		}
 	}

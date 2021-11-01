@@ -4,7 +4,9 @@ module.exports = {
 		// 每个组件都有的父组件传递的样式，可以为字符串或者对象形式
 		customStyle: {
 			type: [Object, String],
-			default: () => {}
+			default: () => {
+				return {}
+			}
 		},
 		customClass: {
 			type: String,

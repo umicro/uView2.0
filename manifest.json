@@ -99,10 +99,10 @@
     "mp-weixin" : {
         "appid" : "wxc256e348c4032ebd",
         "setting" : {
-            "urlCheck" : true,
+            "urlCheck" : false,
             "es6" : false,
             "minified" : false,
-            "postcss" : true
+            "postcss" : false
         },
         "optimization" : {
             "subPackages" : true

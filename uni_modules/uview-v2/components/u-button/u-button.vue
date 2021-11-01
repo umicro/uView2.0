@@ -162,6 +162,12 @@ export default {
     // #ifndef MP
     mixins: [uni.$u.mixin, props],
     // #endif
+	// #ifdef MP-WEIXIN
+	// 将自定义节点设置成虚拟的，更加接近Vue组件的表现，能更好的使用flex属性
+	// options: {
+	// 	virtualHost: true
+	// },
+	// #endif
     data() {
         return {};
     },
@@ -362,6 +368,7 @@ $u-button-hairline-border-width: 0.5px !default;
     box-sizing: border-box;
     /* #endif */
     flex-direction: row;
+	flex: 1;
 
     &__text {
         font-size: $u-button-text-font-size;

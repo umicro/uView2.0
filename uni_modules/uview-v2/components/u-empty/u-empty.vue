@@ -6,7 +6,7 @@
 	>
 		<u-icon
 		    v-if="!isSrc"
-		    :name="'empty-' + mode"
+		    :name="mode === 'message' ? 'chat' : `empty-${mode}`"
 		    :size="iconSize"
 		    :color="iconColor"
 		    margin-top="14"
@@ -56,7 +56,7 @@
 	 */
 	export default {
 		name: "u-empty",
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mixin, props],
 		data() {
 			return {
 				icons: {

@@ -1,80 +1,40 @@
 <template>
-	<view
-		class="u-steps-item"
-		ref="u-steps-item"
-		:class="[`u-steps-item--${parentData.direction}`]"
-	>
-		<view
-			class="u-steps-item__line"
-			v-if="index + 1 < childLength"
-			:class="[`u-steps-item__line--${parentData.direction}`]"
-			:style="[lineStyle]"
-		></view>
-		<view
-			class="u-steps-item__wrapper"
-			:class="[`u-steps-item__wrapper--${parentData.direction}`, parentData.dot && `u-steps-item__wrapper--${parentData.direction}--dot`]"
-		>
+	<view class="u-steps-item" ref="u-steps-item" :class="[`u-steps-item--${parentData.direction}`]">
+		<view class="u-steps-item__line" v-if="index + 1 < childLength"
+			:class="[`u-steps-item__line--${parentData.direction}`]" :style="[lineStyle]"></view>
+		<view class="u-steps-item__wrapper"
+			:class="[`u-steps-item__wrapper--${parentData.direction}`, parentData.dot && `u-steps-item__wrapper--${parentData.direction}--dot`]">
 			<slot name="icon">
-				<view
-					class="u-steps-item__wrapper__dot"
-					v-if="parentData.dot"
-					:style="{
+				<view class="u-steps-item__wrapper__dot" v-if="parentData.dot" :style="{
 						backgroundColor: statusColor
-					}"
-				>
+					}">
 
 				</view>
-				<view
-					class="u-steps-item__wrapper__icon"
-					v-else-if="parentData.activeIcon || parentData.inactiveIcon"
-				>
-					<u-icon
-						:name="index <= parentData.current ? parentData.activeIcon : parentData.inactiveIcon"
+				<view class="u-steps-item__wrapper__icon" v-else-if="parentData.activeIcon || parentData.inactiveIcon">
+					<u-icon :name="index <= parentData.current ? parentData.activeIcon : parentData.inactiveIcon"
 						:size="iconSize"
-						:color="index <= parentData.current ? parentData.activeColor : parentData.inactiveColor"
-					></u-icon>
+						:color="index <= parentData.current ? parentData.activeColor : parentData.inactiveColor">
+					</u-icon>
 				</view>
-				<view
-					v-else
-					:style="{
+				<view v-else :style="{
 						backgroundColor: statusClass === 'process' ? parentData.activeColor : 'transparent',
 						borderColor: statusColor
-					}"
-					class="u-steps-item__wrapper__circle"
-				>
-					<text
-						v-if="statusClass === 'process' || statusClass === 'wait'"
-						class="u-steps-item__wrapper__circle__text"
-						:style="{
+					}" class="u-steps-item__wrapper__circle">
+					<text v-if="statusClass === 'process' || statusClass === 'wait'"
+						class="u-steps-item__wrapper__circle__text" :style="{
 							color: index == parentData.current ? '#ffffff' : parentData.inactiveColor
-						}"
-					>{{ index + 1}}</text>
-					<u-icon
-						v-else
-						:color="statusClass === 'error' ? 'error' : parentData.activeColor"
-						size="12"
-						:name="statusClass === 'error' ? 'close' : 'checkmark'"
-					></u-icon>
+						}">{{ index + 1}}</text>
+					<u-icon v-else :color="statusClass === 'error' ? 'error' : parentData.activeColor" size="12"
+						:name="statusClass === 'error' ? 'close' : 'checkmark'"></u-icon>
 				</view>
 			</slot>
 		</view>
-		<view
-			class="u-steps-item__content"
-			:class="[`u-steps-item__content--${parentData.direction}`]"
-			:style="[contentStyle]"
-		>
-			<u--text
-				:text="title"
-				:type="parentData.current == index ? 'main' : 'content'"
-				lineHeight="20px"
-				:size="parentData.current == index ? 14 : 13"
-			></u--text>
+		<view class="u-steps-item__content" :class="[`u-steps-item__content--${parentData.direction}`]"
+			:style="[contentStyle]">
+			<u--text :text="title" :type="parentData.current == index ? 'main' : 'content'" lineHeight="20px"
+				:size="parentData.current == index ? 14 : 13"></u--text>
 			<slot name="desc">
-				<u--text
-					:text="desc"
-					type="tips"
-					size="12"
-				></u--text>
+				<u--text :text="desc" type="tips" size="12"></u--text>
 			</slot>
 		</view>
 		<!-- <view
@@ -104,6 +64,12 @@
 	export default {
 		name: 'u-steps-item',
 		mixins: [uni.$u.mixin, props],
+		// #ifdef MP-WEIXIN
+		// 将自定义节点设置成虚拟的，更加接近Vue组件的表现，能更好的使用flex属性
+		options: {
+			virtualHost: true
+		},
+		// #endif
 		data() {
 			return {
 				index: 0,
@@ -142,7 +108,8 @@
 					style.height = this.size.height + 'px'
 					// style.top = this.size.height / 2 + 'px'
 				}
-				style.backgroundColor = this.parent.children[this.index + 1].error ? uni.$u.color.error : this.index < this
+				style.backgroundColor = this.parent.children?.[this.index + 1]?.error ? uni.$u.color.error : this.index <
+					this
 					.parentData
 					.current ? this.parentData.activeColor : this.parentData.inactiveColor
 				return style
@@ -185,14 +152,14 @@
 			},
 			contentStyle() {
 				const style = {}
-				if(this.parentData.direction === 'column') {
+				if (this.parentData.direction === 'column') {
 					style.marginLeft = this.parentData.dot ? '2px' : '6px'
 					style.marginTop = this.parentData.dot ? '0px' : '6px'
 				} else {
 					style.marginTop = this.parentData.dot ? '2px' : '6px'
 					style.marginLeft = this.parentData.dot ? '2px' : '6px'
 				}
-				
+
 				return style
 			}
 		},
@@ -269,7 +236,7 @@
 			&--column {
 				width: 20px;
 				height: 32px;
-				
+
 				&--dot {
 					height: 20px;
 					width: 20px;
@@ -279,7 +246,7 @@
 			&--row {
 				width: 32px;
 				height: 20px;
-				
+
 				&--dot {
 					width: 20px;
 					height: 20px;

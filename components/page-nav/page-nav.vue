@@ -1,15 +1,16 @@
 <template>
 	<view class="nav-wrap">
 		<view class="nav-title">
-			<u--image :showLoading="true" src="https://cdn.uviewui.com/uview/common/logo.png" width="70px" height="70px"/>
+			<u--image :showLoading="true" src="https://cdn.uviewui.com/uview/common/logo.png" width="70px"
+				height="70px" />
 			<view class="nav-info">
-				<text class="nav-title__text" @tap="jumpToWx">
-					uView 2.0
+				<view class="nav-info__title">
+					<text class="nav-info__title__text" @tap="jumpToWx">uView 2.0</text>
 					<!-- #ifdef MP-WEIXIN -->
 					<!-- uni-app不支持text内部的text组件的tap事件，所以放到外部响应tap -->
-					<text class="nav-jump">查看1.x演示</text>
+					<text class="nav-info__title__jump">查看1.x演示</text>
 					<!-- #endif -->
-				</text>
+				</view>
 				<text class="nav-slogan">多平台快速开发的UI框架</text>
 			</view>
 		</view>
@@ -58,23 +59,31 @@
 
 	.nav-info {
 		margin-left: 15px;
-	}
-
-	.nav-title__text {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		color: $u-main-color;
-		font-size: 25px;
-		font-weight: bold;
-		align-items: flex-end;
-	}
-	
-	.nav-jump {
-		font-size: 12px;
-		color: $u-primary;
-		font-weight: normal;
-		margin-left: 20px;
+		
+		&__title {
+			/* #ifndef APP-NVUE */
+			display: flex;
+			/* #endif */
+			flex-direction: row;
+			align-items: center;
+			
+			&__text {
+				/* #ifndef APP-NVUE */
+				display: flex;
+				/* #endif */
+				color: $u-main-color;
+				font-size: 25px;
+				font-weight: bold;
+				text-align: left;
+			}
+			
+			&__jump {
+				font-size: 12px;
+				color: $u-primary;
+				font-weight: normal;
+				margin-left: 20px;
+			}
+		}
 	}
 
 	.logo {

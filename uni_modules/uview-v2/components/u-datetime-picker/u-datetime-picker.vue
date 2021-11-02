@@ -25,7 +25,7 @@
 	import props from './props.js';
 	import dayjs from '../../libs/util/dayjs.js';
 	/**
-	 * DatatimePicker 时间日期选择器
+	 * DatetimePicker 时间日期选择器
 	 * @description 此选择器用于时间日期
 	 * @tutorial https://www.uviewui.com/components/datetimePicker.html
 	 * @property {Boolean}			show				用于控制选择器的弹出与收起 ( 默认 false )
@@ -62,7 +62,10 @@
 		data() {
 			return {
 				columns: [],
-				innerDefaultIndex: []
+				innerDefaultIndex: [],
+				innerFormatter: (type, value) => {
+					return value
+				}
 			}
 		},
 		watch: {
@@ -88,6 +91,10 @@
 			init() {
 				this.innerValue = this.correctValue(this.value)
 				this.updateColumnValue(this.innerValue)
+			},
+			// 在微信小程序中，不支持将函数当做props参数，故只能通过ref形式调用
+			setFormatter(e) {
+				this.innerFormatter = e
 			},
 			// 关闭选择器
 			close() {
@@ -141,7 +148,10 @@
 				// 发出change时间，value为当前选中的时间戳
 				this.$emit('change', {
 					value: selectValue,
+					// #ifndef MP-WEIXIN
+					// 微信小程序不能传递this实例，会因为循环引用而报错
 					picker: this.$refs.picker,
+					// #endif
 					mode: this.mode
 				})
 			},
@@ -154,7 +164,7 @@
 			// 更新索引
 			updateIndexs(value) {
 				let values = []
-				const formatter = this.formatter
+				const formatter = this.formatter || this.innerFormatter
 				const padZero = uni.$u.padZero
 				if (this.mode === 'time') {
 					// 将time模式的时间用:分隔成数组
@@ -187,8 +197,7 @@
 			},
 			// 更新各列的值
 			updateColumns() {
-				// 解构默认使用defaultFormatter(内部不做处理原样返回)
-			    const { formatter = defaultFormatter } = this
+			    const formatter = this.formatter || this.innerFormatter
 				// 获取各列的值，并且map后，对各列的具体值进行补0操作
 			    const results = this.getOriginColumns().map((column) => column.values.map((value) => formatter(column.type, value)))
 				this.columns = results

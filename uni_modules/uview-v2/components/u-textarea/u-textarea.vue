@@ -145,13 +145,7 @@ export default {
     position: relative;
     @include flex;
     flex: 1;
-    /* #ifdef APP-NVUE */
-    padding: 0px 6px;
-    /* #endif */
-    /* #ifndef APP-NVUE */
-    width: auto;
-    padding: 6px 9px;
-    /* #endif */
+	padding: 9px;
 
     &--radius {
         border-radius: 4px;

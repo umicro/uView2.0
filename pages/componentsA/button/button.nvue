@@ -257,7 +257,7 @@
 
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">自定义大小</text>
-			<view class="u-demo-block__content" style="padding-bottom: 15px; flex-direction: row;align-items: stretch;">
+			<view class="u-demo-block__content" style="padding-bottom: 15px; flex-direction: column;align-items: stretch;flex-wrap: nowrap;">
 				<u-button
 				    text="超大尺寸"
 				    size="large"

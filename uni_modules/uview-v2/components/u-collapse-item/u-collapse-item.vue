@@ -21,7 +21,7 @@
 			<slot
 				name="icon"
 				slot="icon"
-			/>
+			
 			<slot
 				name="value"
 				slot="value"

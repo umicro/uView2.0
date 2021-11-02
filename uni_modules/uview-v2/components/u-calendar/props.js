@@ -99,6 +99,36 @@ export default {
 		closeOnClickOverly: {
 			type: Boolean,
 			default: uni.$u.props.calendar.closeOnClickOverly
+		},
+		// 是否为只读状态，只读状态下禁止选择日期
+		readonly: {
+			type: Boolean,
+			default: uni.$u.props.calendar.readonly
+		},
+		// 	是否展示确认按钮
+		showConfirm: {
+			type: Boolean,
+			default: uni.$u.props.calendar.showConfirm
+		},
+		// 日期区间最多可选天数，默认无限制，mode = range时有效
+		maxRange: {
+			type: [Number, String],
+			default: uni.$u.props.calendar.maxRange
+		},
+		// 范围选择超过最多可选天数时的提示文案，mode = range时有效
+		rangePrompt: {
+			type: String,
+			default: uni.$u.props.calendar.rangePrompt
+		},
+		// 范围选择超过最多可选天数时，是否展示提示文案，mode = range时有效
+		showRangePrompt: {
+			type: Boolean,
+			default: uni.$u.props.calendar.showRangePrompt
+		},
+		// 是否允许日期范围的起止时间为同一天，mode = range时有效
+		allowSameDay: {
+			type: Boolean,
+			default: uni.$u.props.calendar.allowSameDay
 		}
 	}
 }

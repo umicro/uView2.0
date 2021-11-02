@@ -1,56 +1,24 @@
 <template>
-	<view
-		class="u-calendar-month-wrapper"
-		ref="u-calendar-month-wrapper"
-	>
-		<view
-			v-for="(item, index) in months"
-			:key="index"
-			:class="[`u-calendar-month-${index}`]"
-			:ref="`u-calendar-month-${index}`"
-			:id="`month-${item.month}`"
-		>
-			<text
-				v-if="index !== 0"
-				class="u-calendar-month__title"
-			>{{ item.year }}年{{ item.month }}月</text>
-			<!-- 设定一个minHeight，避免在安卓上造成闪动，因为安卓渲染慢，导致先渲染mark字符，后需要一定时间才渲染具体的日期 -->
-			<view class="u-calendar-month__days" :style="{
-				minHeight: index === 0 ? $u.addUnit(rowHeight * 7) : 'auto'
-			}">
-				<view
-					v-if="showMark"
-					class="u-calendar-month__days__month-mark-wrapper"
-				>
+	<view class="u-calendar-month-wrapper" ref="u-calendar-month-wrapper">
+		<view v-for="(item, index) in months" :key="index" :class="[`u-calendar-month-${index}`]"
+			:ref="`u-calendar-month-${index}`" :id="`month-${item.month}`">
+			<text v-if="index !== 0" class="u-calendar-month__title">{{ item.year }}年{{ item.month }}月</text>
+			<view class="u-calendar-month__days">
+				<view v-if="showMark" class="u-calendar-month__days__month-mark-wrapper">
 					<text class="u-calendar-month__days__month-mark-wrapper__text">{{ item.month }}</text>
 				</view>
-				<view
-					class="u-calendar-month__days__day"
-					v-for="(item1, index1) in item.date"
-					:key="index1"
-					:style="[dayStyle(index, index1, item1)]"
-					@tap="clickHandler(index, index1, item1)"
-					:class="[item1.selected && 'u-calendar-month__days__day__select--selected']"
-				>
-					<view
-						class="u-calendar-month__days__day__select"
-						:style="[daySelectStyle(index, index1, item1)]"
-					>
-						<text
-							class="u-calendar-month__days__day__select__info"
+				<view class="u-calendar-month__days__day" v-for="(item1, index1) in item.date" :key="index1"
+					:style="[dayStyle(index, index1, item1)]" @tap="clickHandler(index, index1, item1)"
+					:class="[item1.selected && 'u-calendar-month__days__day__select--selected']">
+					<view class="u-calendar-month__days__day__select" :style="[daySelectStyle(index, index1, item1)]">
+						<text class="u-calendar-month__days__day__select__info"
 							:class="[item1.disabled && 'u-calendar-month__days__day__select__info--disabled']"
-							:style="[textStyle(item1)]"
-						>{{ item1.day }}</text>
-						<text
-							v-if="getBottomInfo(index, index1, item1)"
+							:style="[textStyle(item1)]">{{ item1.day }}</text>
+						<text v-if="getBottomInfo(index, index1, item1)"
 							class="u-calendar-month__days__day__select__buttom-info"
 							:class="[item1.disabled && 'u-calendar-month__days__day__select__buttom-info--disabled']"
-							:style="[textStyle(item1)]"
-						>{{ getBottomInfo(index, index1, item1) }}</text>
-						<text
-							v-if="item1.dot"
-							class="u-calendar-month__days__day__select__dot"
-						></text>
+							:style="[textStyle(item1)]">{{ getBottomInfo(index, index1, item1) }}</text>
+						<text v-if="item1.dot" class="u-calendar-month__days__day__select__dot"></text>
 					</view>
 				</view>
 			</view>
@@ -128,6 +96,31 @@
 				type: [String, Number],
 				default: 2
 			},
+			// 是否为只读状态，只读状态下禁止选择日期
+			readonly: {
+				type: Boolean,
+				default: uni.$u.props.calendar.readonly
+			},
+			// 日期区间最多可选天数，默认无限制，mode = range时有效
+			maxRange: {
+				type: [Number, String],
+				default: Infinity
+			},
+			// 范围选择超过最多可选天数时的提示文案，mode = range时有效
+			rangePrompt: {
+				type: String,
+				default: ''
+			},
+			// 范围选择超过最多可选天数时，是否展示提示文案，mode = range时有效
+			showRangePrompt: {
+				type: Boolean,
+				default: true
+			},
+			// 是否允许日期范围的起止时间为同一天，mode = range时有效
+			allowSameDay: {
+				type: Boolean,
+				default: false
+			}
 		},
 		data() {
 			return {
@@ -165,7 +158,7 @@
 						week = (week === 0 ? 7 : week) - 1
 						style.marginLeft = uni.$u.addUnit(week * dayWidth)
 					}
-					if(this.mode === 'range') {
+					if (this.mode === 'range') {
 						// 之所以需要这么写，是因为DCloud公司的iOS客户端的开发者能力有限导致的bug
 						style.paddingLeft = 0
 						style.paddingRight = 0
@@ -261,9 +254,17 @@
 						} else {
 							const len = this.selected.length - 1
 							// 如果数组中的日期大于2个时，第一个和最后一个显示为开始和结束日期
-							if (this.dateSame(date, this.selected[0])) return this.startText
-							else if (this.dateSame(date, this.selected[len])) return this.endText
-							else return bottomInfo
+							if (this.dateSame(date, this.selected[0]) && this.dateSame(date, this.selected[1]) &&
+								len === 1) {
+								// 如果长度为2，且第一个等于第二个日期，则提示语放在同一个item中
+								return `${this.startText}/${this.endText}`
+							} else if (this.dateSame(date, this.selected[0])) {
+								return this.startText
+							} else if (this.dateSame(date, this.selected[len])) {
+								return this.endText
+							} else {
+								return bottomInfo
+							}
 						}
 					} else {
 						return bottomInfo
@@ -340,6 +341,9 @@
 			},
 			// 点击某一个日期
 			clickHandler(index1, index2, item) {
+				if (this.readonly) {
+					return;
+				}
 				this.item = item
 				const date = dayjs(item.date).format("YYYY-MM-DD")
 				if (item.disabled) return
@@ -359,17 +363,25 @@
 					}
 				} else {
 					// 选择区间形式
-					if (selected.length === 0 ||selected.length >= 2) {
+					if (selected.length === 0 || selected.length >= 2) {
 						// 如果原来就为0或者大于2的长度，则当前点击的日期，就是开始日期
 						selected = [date]
 					} else if (selected.length === 1) {
-						// 选择区间时，只有一个日期的情况下，不允许选择自己
-						if(selected[0] === date) return
 						// 如果已经选择了开始日期
 						const existsDate = selected[0]
 						// 如果当前选择的日期小于上一次选择的日期，则当前的日期定为开始日期
-						if (dayjs(date).isBefore(existsDate)) selected = [date]
-						else if (dayjs(date).isAfter(existsDate)) {
+						if (dayjs(date).isBefore(existsDate)) {
+							selected = [date]
+						} else if (dayjs(date).isAfter(existsDate)) {
+							// 当前日期减去最大可选的日期天数，如果大于起始时间，则进行提示
+							if(dayjs(dayjs(date).subtract(this.maxRange, 'day')).isAfter(dayjs(selected[0])) && this.showRangePrompt) {
+								if(this.rangePrompt) {
+									uni.$u.toast(this.rangePrompt)
+								} else {
+									uni.$u.toast(`选择天数不能超过 ${this.maxRange} 天`)
+								}
+								return 
+							}
 							// 如果当前日期大于已有日期，将当前的添加到数组尾部
 							selected.push(date)
 							const startDate = selected[0]
@@ -385,6 +397,10 @@
 							// 为了一次性修改数组，避免computed中多次触发，这里才用arr变量一次性赋值的方式，同时将最后一个日期添加近来
 							arr.push(endDate)
 							selected = arr
+						} else {
+							// 选择区间时，只有一个日期的情况下，且不允许选择起止为同一天的话，不允许选择自己
+							if (selected[0] === date && !this.allowSameDay) return
+							selected.push(date)
 						}
 					}
 				}
@@ -392,35 +408,36 @@
 			},
 			// 设置默认日期
 			setDefaultDate() {
-				if(!this.defaultDate) {
+				if (!this.defaultDate) {
 					// 如果没有设置默认日期，则将当天日期设置为默认选中的日期
 					const selected = [dayjs().format("YYYY-MM-DD")]
-					return this.setSelected(selected)
+					return this.setSelected(selected, false)
 				}
 				let defaultDate = []
 				const minDate = this.minDate || dayjs().format("YYYY-MM-DD")
 				const maxDate = this.maxDate || dayjs(minDate).add(this.maxMonth - 1, 'month').format("YYYY-MM-DD")
-				if(this.mode === 'single') {
+				if (this.mode === 'single') {
 					// 单选模式，可以是字符串或数组，Date对象等
-					if(!uni.$u.test.array(this.defaultDate)) {
+					if (!uni.$u.test.array(this.defaultDate)) {
 						defaultDate = [dayjs(this.defaultDate).format("YYYY-MM-DD")]
 					} else {
 						defaultDate = [this.defaultDate[0]]
 					}
 				} else {
 					// 如果为非数组，则不执行
-					if(!uni.$u.test.array(this.defaultDate)) return
+					if (!uni.$u.test.array(this.defaultDate)) return
 					defaultDate = this.defaultDate
 				}
 				// 过滤用户传递的默认数组，取出只在可允许最大值与最小值之间的元素
 				defaultDate = defaultDate.filter(item => {
-					return dayjs(item).isAfter(dayjs(minDate).subtract(1, 'day')) && dayjs(item).isBefore(dayjs(maxDate).add(1, 'day'))
+					return dayjs(item).isAfter(dayjs(minDate).subtract(1, 'day')) && dayjs(item).isBefore(dayjs(
+						maxDate).add(1, 'day'))
 				})
-				this.setSelected(defaultDate)
+				this.setSelected(defaultDate, false)
 			},
-			setSelected(selected) {
+			setSelected(selected, event = true) {
 				this.selected = selected
-				this.$emit('monthSelected', this.selected)
+				event && this.$emit('monthSelected', this.selected)
 			}
 		}
 	}
@@ -428,6 +445,10 @@
 
 <style lang="scss">
 	@import "../../libs/css/components.scss";
+
+	.u-calendar-month-wrapper {
+		margin-top: 4px;
+	}
 
 	.u-calendar-month {
 

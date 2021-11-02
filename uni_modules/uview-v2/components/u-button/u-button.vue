@@ -368,7 +368,6 @@ $u-button-hairline-border-width: 0.5px !default;
     box-sizing: border-box;
     /* #endif */
     flex-direction: row;
-	flex: 1;
 
     &__text {
         font-size: $u-button-text-font-size;

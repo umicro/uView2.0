@@ -36,10 +36,15 @@
 					:minDate="minDate"
 					:maxDate="maxDate"
 					:maxMonth="maxMonth"
+					:readonly="readonly"
+					:maxRange="maxRange"
+					:rangePrompt="rangePrompt"
+					:showRangePrompt="showRangePrompt"
+					:allowSameDay="allowSameDay"
 					ref="month"
 				></uMonth>
 			</scroll-view>
-			<slot name="footer">
+			<slot name="footer" v-if="showConfirm">
 				<view class="u-calendar__confirm">
 					<u-button
 						shape="circle"
@@ -61,7 +66,6 @@
 	import util from './util.js';
 	import dayjs from '../../libs/util/dayjs.js';
 	import Calendar from '../../libs/util/calendar.js';
-	uni.dayjs = dayjs;
 	/**
 	 * Calendar 日历
 	 * @description  此组件用于单个选择日期，范围选择日期等，日历被包裹在底部弹起的容器中.
@@ -87,6 +91,11 @@
 	 * @property {String}				confirmDisabledText	确认按钮处于禁用状态时的文字 (默认 '确定' )
 	 * @property {Boolean}				show				是否显示日历弹窗 (默认 false )
 	 * @property {Boolean}				closeOnClickOverly	是否允许点击遮罩关闭日历 (默认 false )
+	 * @property {Boolean}				readonly	        是否为只读状态，只读状态下禁止选择日期 (默认 false )
+	 * @property {String | Number}		maxRange	        日期区间最多可选天数，默认无限制，mode = range时有效
+	 * @property {String}				rangePrompt	        范围选择超过最多可选天数时的提示文案，mode = range时有效
+	 * @property {Boolean}				showRangePrompt	    范围选择超过最多可选天数时，是否展示提示文案，mode = range时有效 (默认 true )
+	 * @property {Boolean}				allowSameDay	    是否允许日期范围的起止时间为同一天，mode = range时有效 (默认 false )
 	 * 
 	 * @event {Function()} confirm 		点击确定按钮时触发		选择日期相关的返回参数
 	 * @event {Function()} close 		日历关闭时触发			可定义页面关闭时的回调事件
@@ -164,6 +173,12 @@
 			// month组件内部选择日期后，通过事件通知给父组件
 			monthSelected(e) {
 				this.selected = e
+				if(!this.showConfirm) {
+					// 在不需要确认按钮的情况下，如果为单选，或者范围多选且已选长度大于2，则直接进行返还
+					if (this.mode === 'multiple' || this.mode === 'single' || this.mode === 'range' && this.selected.length >= 2) {
+						this.$emit('confirm', this.selected)
+					}
+				}
 			},
 			init() {
 				// 滚动区域的高度

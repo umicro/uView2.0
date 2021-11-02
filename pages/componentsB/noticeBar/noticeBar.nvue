@@ -97,6 +97,6 @@
 
 <style lang="scss">
 	.u-demo-block__content {
-		@include flex;
+		@include flex(column);
 	}
 </style>

@@ -16,7 +16,7 @@
 			>
 				<image
 				    :src="getSrc(item)"
-				    :mode="urls.length === 1 ? singleMode : multipleMode"
+				    :mode="urls.length === 1 ? (imageHeight > 0 ? singleMode : 'widthFix') : multipleMode"
 				    :style="[{
 						width: $u.addUnit(imageWidth),
 						height: $u.addUnit(imageHeight)
@@ -76,7 +76,7 @@
 				// 单图的高度
 				singleHeight: 0,
 				// 单图时，如果无法获取图片的尺寸信息，让图片宽度默认为容器的一定百分比
-				singlePercent: 0.45,
+				singlePercent: 0.6,
 			}
 		},
 		watch: {

@@ -149,11 +149,6 @@
 				&__text {
 					font-size: 14px;
 					color: $u-warning;
-					/* #ifndef APP-NVUE */
-					word-break: keep-all;
-					white-space: nowrap;
-					animation: u-loop-animation 10s linear infinite both;
-					/* #endif */
 				}
 			}
 		}

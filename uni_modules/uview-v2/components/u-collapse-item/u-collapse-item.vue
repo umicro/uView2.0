@@ -7,7 +7,7 @@
 			:icon="icon"
 			:isLink="isLink"
 			:clickable="clickable"
-			:border="border && showBorder"
+			:border="parentData.border && showBorder"
 			@click="clickHandler"
 			:arrowDirection="expanded ? 'up' : 'down'"
 			:disabled="disabled"
@@ -21,7 +21,7 @@
 			<slot
 				name="icon"
 				slot="icon"
-			
+			/>
 			<slot
 				name="value"
 				slot="value"
@@ -29,20 +29,6 @@
 			<slot
 				name="right-icon"
 				slot="right-icon"
-			/>
-			<!-- #endif -->
-			<!-- #ifdef MP-WEIXIN -->
-			<slot
-				name="title"
-			/>
-			<slot
-				name="icon"
-			/>
-			<slot
-				name="value"
-			/>
-			<slot
-				name="right-icon"
 			/>
 			<!-- #endif -->
 		</u-cell>
@@ -57,7 +43,7 @@
 				:ref="elId"
 			><slot /></view>
 		</view>
-		<u-line></u-line>
+		<u-line v-if="parentData.border"></u-line>
 	</view>
 </template>
 

@@ -13,7 +13,7 @@
 	 * @tutorial https://www.uviewui.com/components/collapse.html
 	 * @property {String | Number | Array}	value		当前展开面板的name，非手风琴模式：[<string | number>]，手风琴模式：string | number
 	 * @property {Boolean}					accordion	是否手风琴模式（ 默认 false ）
-	 * @property {Boolean}					border		是否显示外边框 ( 默认 false ）
+	 * @property {Boolean}					border		是否显示外边框 ( 默认 true ）
 	 * @event {Function}	change 		当前激活面板展开时触发(如果是手风琴模式，参数activeNames类型为String，否则为Array)
 	 * @example <u-collapse></u-collapse>
 	 */

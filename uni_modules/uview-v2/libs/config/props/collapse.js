@@ -12,6 +12,6 @@ export default {
 	collapse:{
 		value:null,
 		accordion:false,
-		border:false
+		border:true
 	},
 }

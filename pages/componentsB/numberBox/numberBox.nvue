@@ -200,11 +200,13 @@
 		},
 		methods: {
 			change(e) {
-				// console.log('change', e);
+				console.log('change', e);
 			},
 			myAsyncChange(e) {
 				this.asyncChange = false
-				uni.showLoading()
+				uni.showLoading({
+					title: '正在加载'
+				})
 				setTimeout(() => {
 					uni.hideLoading()
 					this.value9 = e

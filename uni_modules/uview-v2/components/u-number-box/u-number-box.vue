@@ -3,7 +3,7 @@
 		<view
 		    class="u-number-box__slot"
 		    @tap.stop="clickHandler('minus')"
-		    @touchstart.stop="onTouchStart('minus')"
+		    @touchstart="onTouchStart('minus')"
 		    @touchend.stop="clearTimeout"
 		    v-if="showMinus && $slots.minus"
 		>
@@ -13,7 +13,7 @@
 		    v-else-if="showMinus"
 		    class="u-number-box__minus"
 		    @tap.stop="clickHandler('minus')"
-		    @touchstart.stop="onTouchStart('minus')"
+		    @touchstart="onTouchStart('minus')"
 		    @touchend.stop="clearTimeout"
 		    hover-class="u-number-box__minus--hover"
 		    hover-stay-time="150"
@@ -46,7 +46,7 @@
 		<view
 		    class="u-number-box__slot"
 		    @tap.stop="clickHandler('plus')"
-		    @touchstart.stop="onTouchStart('plus')"
+		    @touchstart="onTouchStart('plus')"
 		    @touchend.stop="clearTimeout"
 		    v-if="showPlus && $slots.plus"
 		>
@@ -56,7 +56,7 @@
 		    v-else-if="showPlus"
 		    class="u-number-box__plus"
 		    @tap.stop="clickHandler('plus')"
-		    @touchstart.stop="onTouchStart('plus')"
+		    @touchstart="onTouchStart('plus')"
 		    @touchend.stop="clearTimeout"
 		    hover-class="u-number-box__plus--hover"
 		    hover-stay-time="150"

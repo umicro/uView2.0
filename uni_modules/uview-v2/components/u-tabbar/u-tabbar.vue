@@ -118,6 +118,7 @@
 	.u-tabbar {
 		@include flex(column);
 		flex: 1;
+		justify-content: center;
 		
 		&__content {
 			@include flex(column);

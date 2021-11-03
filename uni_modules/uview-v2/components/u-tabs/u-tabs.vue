@@ -33,7 +33,7 @@
 								:style="[textStyle(index)]"
 							>{{ item.name }}</text>
 							<u-badge
-								:show="item.badge && (item.badge.show || item.badge.isDot || item.value)"
+								:show="item.badge && (item.badge.show || item.badge.isDot || item.badge.value)"
 								:isDot="item.badge && item.badge.isDot || $u.props.badge.isDot"
 								:value="item.badge && item.badge.value || $u.props.badge.value"
 								:max="item.badge && item.badge.max || $u.props.badge.max"

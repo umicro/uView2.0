@@ -61,7 +61,12 @@
 	export default {
 		name: 'u-tabbar-item',
 		mixins: [uni.$u.mixin,props],
-		
+		// #ifdef MP-WEIXIN
+		// 将自定义节点设置成虚拟的，更加接近Vue组件的表现，能更好的使用flex属性
+		options: {
+			virtualHost: true
+		},
+		// #endif
 		data() {
 			return {
 				isActive: false, // 是否处于激活状态

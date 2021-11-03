@@ -1,10 +1,4 @@
 <template>
-	<page-meta
-		background-color="#0000ff"
-		background-color-top="#000000"
-		background-color-bottom="#000000"
-		page-style="color: green, background-color: #000000"
-	></page-meta>
 	<view class="u-page">
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">基础演示</text>

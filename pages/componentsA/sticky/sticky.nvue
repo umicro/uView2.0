@@ -11,8 +11,14 @@
 			<text class="u-demo-block__title">基础使用</text>
 			<u--text
 				type="content"
-				text="滚动页面,即可看到下方的按钮会吸顶,目前由于nvue的bug,设置sticky的top值无效"
+				text="滚动页面,即可看到下方的按钮会吸顶。"
 			></u--text>
+			<!-- #ifdef APP-NVUE -->
+			<u--text
+				type="warning"
+				text="目前由于nvue的bug,设置sticky的top值无效。"
+			></u--text>
+			<!-- #endif -->
 		</view>
 		<u-sticky>
 			<u-button
@@ -24,7 +30,7 @@
 			bgColor="#fff"
 			height="1500px"
 		></u-gap>
-		<u-divider textColor="#2979ff" lineColor="#2979ff" text="已到底部"></u-divider>
+		<u-divider text="已到底部"></u-divider>
 	</view>
 </template>
 

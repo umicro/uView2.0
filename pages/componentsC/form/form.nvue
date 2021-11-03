@@ -259,7 +259,7 @@
 						type: 'string',
 						min: 1,
 						max: 2,
-						message: '生命是美好的，请不要放弃治疗',
+						message: '橙子有毒',
 						trigger: ['change']
 					},
 					checkboxValue1: {

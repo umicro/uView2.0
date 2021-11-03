@@ -125,7 +125,6 @@
 					const errorsRes = [];
 					// 如果为字符串，转为数组
 					value = [].concat(value);
-
 					// 历遍children所有子form-item
 					this.children.map((child) => {
 						// 用于存放form-item的错误信息

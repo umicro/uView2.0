@@ -5,7 +5,6 @@ export default {
 			type: [String, Number, Boolean],
 			default: uni.$u.props.radio.name
 		},
-		
 		// 形状，square为方形，circle为圆型
 		shape: {
 			type: String,
@@ -52,9 +51,9 @@ export default {
 			default: uni.$u.props.radio.size
 		},
 		// 图标颜色
-		iconColor: {
+		color: {
 			type: String,
-			default: uni.$u.props.radio.iconColor
+			default: uni.$u.props.radio.color
 		},
 		// label的颜色
 		labelColor: {

@@ -216,8 +216,10 @@
 			},
 			emitEvent() {
 				this.$emit('change', this.isChecked)
-				// 尝试调用u-form的验证方法
-				uni.$u.formValidate(this, 'change')
+				// 尝试调用u-form的验证方法，进行一定延迟，否则微信小程序更新可能会不及时
+				this.$nextTick(() => {
+					uni.$u.formValidate(this, 'change')
+				})
 			},
 			// 改变组件选中状态
 			// 这里的改变的依据是，更改本组件的checked值为true，同时通过父组件遍历所有u-checkbox实例

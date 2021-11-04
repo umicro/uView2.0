@@ -61,7 +61,7 @@ import props from "./props.js";
  */
 export default {
     name: "u-loading-page",
-    mixins: [uni.$u.mixin, props],
+    mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
     data() {
         return {};
     },

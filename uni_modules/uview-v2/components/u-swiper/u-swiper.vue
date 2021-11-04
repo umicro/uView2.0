@@ -123,7 +123,7 @@
 	 */
 	export default {
 		name: 'u-swiper',
-		mixins: [uni.$u.mixin, props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		data() {
 			return {
 				currentIndex: 0

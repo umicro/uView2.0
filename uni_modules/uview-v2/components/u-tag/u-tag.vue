@@ -79,7 +79,7 @@
 	 */
 	export default {
 		name: 'u-tag',
-		mixins: [uni.$u.mixin, props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		data() {
 			return {
 

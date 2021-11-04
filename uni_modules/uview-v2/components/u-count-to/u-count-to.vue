@@ -45,7 +45,7 @@ export default {
 			lastTime: 0 // 上一次的时间
 		};
 	},
-	mixins: [uni.$u.mixin,props],
+	mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 	computed: {
 		countDown() {
 			return this.startVal > this.endVal;

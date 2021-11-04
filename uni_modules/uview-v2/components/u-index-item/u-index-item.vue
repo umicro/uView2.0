@@ -30,7 +30,7 @@
 	 */
 	export default {
 		name: 'u-index-item',
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		data() {
 			return {
 				// 本组件到滚动条顶部的距离

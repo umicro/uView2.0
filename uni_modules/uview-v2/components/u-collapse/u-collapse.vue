@@ -19,7 +19,7 @@
 	 */
 	export default {
 		name: "u-collapse",
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		watch: {
 			needInit() {
 				this.init()

@@ -52,7 +52,7 @@
 	 */
 	export default {
 		name: 'u-toolbar',
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		methods: {
 			// 点击取消按钮
 			cancel() {

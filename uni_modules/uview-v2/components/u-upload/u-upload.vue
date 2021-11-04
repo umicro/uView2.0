@@ -156,7 +156,7 @@
 	 */
 	export default {
 		name: "u-upload",
-		mixins: [uni.$u.mixin, mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, mixin,props],
 		data() {
 			return {
 				// #ifdef APP-NVUE

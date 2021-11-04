@@ -42,7 +42,7 @@
 	 */
 	export default {
 		name: "u-line-progress",
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		data() {
 			return {
 				lineWidth: 0,

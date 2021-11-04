@@ -110,7 +110,7 @@
 	 */
 	export default {
 		name: 'u-number-box',
-		mixins: [uni.$u.mixin, props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		data() {
 			return {
 				// 输入框实际操作的值

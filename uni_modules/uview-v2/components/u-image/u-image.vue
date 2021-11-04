@@ -89,7 +89,7 @@
 	 */
 	export default {
 		name: 'u-image',
-		mixins: [uni.$u.mixin, props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		data() {
 			return {
 				// 图片是否加载错误，如果是，则显示错误占位图

@@ -25,7 +25,7 @@
 	 */
 	export default {
 		name: "u-grid-item",
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		data() {
 			return {
 				parentData: {

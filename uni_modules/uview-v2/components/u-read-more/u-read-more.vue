@@ -69,7 +69,7 @@
 	 */
 	export default {
 		name: 'u-read-more',
-		mixins: [uni.$u.mixin, props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		data() {
 			return {
 				isLongContent: false, // 是否需要隐藏一部分内容

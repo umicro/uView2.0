@@ -84,7 +84,7 @@
 
 			}
 		},
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		computed: {
 			uClasses() {
 				let classes = []

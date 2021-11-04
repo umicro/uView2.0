@@ -157,10 +157,10 @@ import props from "./props.js";
 export default {
     name: "u-button",
     // #ifdef MP
-    mixins: [uni.$u.mixin, button, openType, props],
+    mixins: [uni.$u.mpMixin, uni.$u.mixin, button, openType, props],
     // #endif
     // #ifndef MP
-    mixins: [uni.$u.mixin, props],
+    mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
     // #endif
     data() {
         return {};

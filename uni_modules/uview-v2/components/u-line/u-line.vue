@@ -24,7 +24,7 @@
 	 */
 	export default {
 		name: 'u-line',
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		computed: {
 			lineStyle() {
 				const style = {}

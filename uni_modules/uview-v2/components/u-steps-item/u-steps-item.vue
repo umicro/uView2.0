@@ -63,7 +63,7 @@
 	 */
 	export default {
 		name: 'u-steps-item',
-		mixins: [uni.$u.mixin, props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		data() {
 			return {
 				index: 0,

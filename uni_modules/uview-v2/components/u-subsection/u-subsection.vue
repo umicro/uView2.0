@@ -54,7 +54,7 @@
 	 */
 	export default {
 		name: 'u-subsection',
-		mixins: [uni.$u.mixin, props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		data() {
 			return {
 				// 组件尺寸

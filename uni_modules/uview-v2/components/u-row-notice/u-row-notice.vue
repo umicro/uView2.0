@@ -69,7 +69,7 @@
 	 */
 	export default {
 		name: 'u-row-notice',
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		data() {
 			return {
 				animationDuration: '0', // 动画执行时间

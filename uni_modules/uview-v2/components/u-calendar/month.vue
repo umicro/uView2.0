@@ -34,7 +34,7 @@
 	import dayjs from '../../libs/util/dayjs.js';
 	export default {
 		name: 'u-calendar-month',
-		mixins: [uni.$u.mixin],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin],
 		props: {
 			// 是否显示月份背景色
 			showMark: {

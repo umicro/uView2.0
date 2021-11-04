@@ -66,7 +66,7 @@
 	 */
 	export default {
 		name: "u-notice-bar",
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		data() {
 			return {
 				show: true

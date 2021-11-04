@@ -20,7 +20,7 @@
 	 */
 	export default {
 		name: 'u-status-bar',
-		mixins: [uni.$u.mixin, props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		data() {
 			return {
 				isNvue: false

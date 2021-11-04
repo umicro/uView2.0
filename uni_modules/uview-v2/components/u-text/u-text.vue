@@ -105,10 +105,10 @@
 	export default {
 		name: 'u--text',
 		// #ifdef MP
-		mixins: [uni.$u.mixin, value, button, openType, props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, value, button, openType, props],
 		// #endif
 		// #ifndef MP
-		mixins: [uni.$u.mixin, value, props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, value, props],
 		// #endif
 		computed: {
 			valueStyle() {

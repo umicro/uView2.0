@@ -32,7 +32,7 @@
 	 */
 	export default {
 		name: 'u-sticky',
-		mixins: [uni.$u.mixin, props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		data() {
 			return {
 				cssSticky: false, // 是否使用css的sticky实现

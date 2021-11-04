@@ -41,7 +41,7 @@
 	 */
 	export default {
 		name: 'u-index-anchor',
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		data() {
 			return {
 			}

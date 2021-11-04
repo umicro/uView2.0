@@ -76,7 +76,7 @@
 import props from './props.js';
 export default {
 	name: 'u-picker',
-	mixins: [uni.$u.mixin, props],
+	mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 	data() {
 		return {
 			// 上一次选择的列索引

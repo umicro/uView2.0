@@ -74,7 +74,7 @@
 	 * @example 
 	 */
 	export default {
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		watch: {
 			text: {
 				immediate: true,

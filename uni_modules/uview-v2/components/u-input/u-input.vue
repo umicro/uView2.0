@@ -115,7 +115,7 @@ import props from "./props.js";
  */
 export default {
     name: "u-input",
-    mixins: [uni.$u.mixin, props],
+    mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
     data() {
         return {
             // 输入框的值

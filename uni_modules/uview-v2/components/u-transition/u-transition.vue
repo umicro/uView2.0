@@ -61,7 +61,7 @@ export default {
 	    }
 	},
 	// 将mixin挂在到组件中，uni.$u.mixin实际上为一个vue格式对象
-	mixins: [uni.$u.mixin, transition, props],
+	mixins: [uni.$u.mpMixin, uni.$u.mixin, transition, props],
 	watch: {
 		show: {
 			handler(newVal) {

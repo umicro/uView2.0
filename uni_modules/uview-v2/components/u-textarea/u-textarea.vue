@@ -78,7 +78,7 @@ import props from "./props.js";
  */
 export default {
     name: "u-textarea",
-    mixins: [uni.$u.mixin, props],
+    mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
     computed: {
         // 组件的类名
         textareaClass() {

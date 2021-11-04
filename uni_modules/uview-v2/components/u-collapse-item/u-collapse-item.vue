@@ -72,7 +72,7 @@
 	 */
 	export default {
 		name: "u-collapse-item",
-		mixins: [uni.$u.mixin, props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		data() {
 			return {
 				elId: uni.$u.guid(),

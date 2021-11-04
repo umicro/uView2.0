@@ -18,7 +18,7 @@
 	 */
 	export default {
 		name: "u-gap",
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		computed: {
 			gapStyle() {
 				const style = {

@@ -118,7 +118,7 @@
 	 */
 	export default {
 		name: 'u-modal',
-		mixins: [uni.$u.mixin, props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		data() {
 			return {
 				loading: false

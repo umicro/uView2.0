@@ -40,7 +40,7 @@
 	 */
 	export default {
 		name: 'u-circle-progress',
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		data() {
 			return {
 				leftBorderColor: 'rgb(200, 200, 200)',

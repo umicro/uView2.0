@@ -1,5 +1,7 @@
 // 引入全局mixin
 import mixin from './libs/mixin/mixin.js'
+// 小程序特有的mixin
+import mpMixin from './libs/mixin/mpMixin.js'
 // 全局挂载引入http相关请求拦截插件
 import Request from './libs/luch-request'
 
@@ -44,6 +46,7 @@ const $u = {
     debounce,
     throttle,
     mixin,
+	mpMixin,
     props,
     ...index,
     color,

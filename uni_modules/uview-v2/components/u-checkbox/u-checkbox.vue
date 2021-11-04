@@ -57,7 +57,7 @@
 	 */
 	export default {
 		name: "u-checkbox",
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		data() {
 			return {
 				isChecked: false,

@@ -48,7 +48,7 @@
 	 */
 	export default {
 		name:'u-divider',
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		computed: {
 			textStyle() {
 				const style = {}

@@ -67,7 +67,7 @@
 	 */
 	export default {
 		name: 'u-list',
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		watch: {
 			scrollIntoView(n) {
 				this.scrollIntoViewById(n)

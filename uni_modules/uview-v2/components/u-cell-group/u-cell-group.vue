@@ -28,7 +28,7 @@
 	 */
 	export default {
 		name: 'u-cell-group',
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 	}
 </script>
 

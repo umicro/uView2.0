@@ -60,7 +60,7 @@
 	 */
 	export default {
 		name: 'u-tabbar-item',
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		data() {
 			return {
 				isActive: false, // 是否处于激活状态

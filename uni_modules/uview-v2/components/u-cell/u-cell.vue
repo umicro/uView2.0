@@ -112,7 +112,7 @@
 
 			}
 		},
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		methods: {
 			// 点击cell
 			clickHandler(e) {

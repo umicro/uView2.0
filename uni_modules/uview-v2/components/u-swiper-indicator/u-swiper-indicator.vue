@@ -46,7 +46,7 @@
 	 */
 	export default {
 		name: 'u-swiper-indicator',
-		mixins: [uni.$u.mixin, props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		data() {
 			return {
 				lineWidth: 22

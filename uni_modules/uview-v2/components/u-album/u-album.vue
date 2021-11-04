@@ -68,7 +68,7 @@
 	 */
 	export default {
 		name: 'u-album',
-		mixins: [uni.$u.mixin, props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		data() {
 			return {
 				// 单图的宽度

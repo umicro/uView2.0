@@ -53,7 +53,7 @@
 	 */
 	export default {
 		name: 'u-notify',
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		data() {
 			return {
 				// 是否展示组件

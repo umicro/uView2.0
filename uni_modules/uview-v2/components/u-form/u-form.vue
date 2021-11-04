@@ -25,7 +25,7 @@
 	 */
 	export default {
 		name: "u-form",
-		mixins: [uni.$u.mixin, props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		provide() {
 			return {
 				uForm: this,

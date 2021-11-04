@@ -56,7 +56,7 @@
 	 */
 	export default {
 		name: "u-no-network",
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		data() {
 			return {
 				isConnected: true, // 是否有网络连接

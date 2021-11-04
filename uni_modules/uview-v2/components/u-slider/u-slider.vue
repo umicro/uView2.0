@@ -23,7 +23,7 @@
 	import props from './props.js'
 	export default {
 		name: 'u--slider',
-		mixins: [uni.$u.mixin, props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		methods: {
 			// 拖动过程中触发
 			changingHandler(e) {

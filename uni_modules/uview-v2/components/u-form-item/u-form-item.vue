@@ -90,7 +90,7 @@
 	 */
 	export default {
 		name: 'u-form-item',
-		mixins: [uni.$u.mixin, props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		data() {
 			return {
 				// 错误提示语

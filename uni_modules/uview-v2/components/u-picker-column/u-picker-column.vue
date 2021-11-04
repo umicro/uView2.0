@@ -18,7 +18,7 @@
 	 */
 	export default {
 		name: 'u-picker-column',
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 	}
 </script>
 

@@ -62,7 +62,7 @@
 	 */
 	export default {
 		name: 'u-toast',
-		mixins: [uni.$u.mixin],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin],
 		data() {
 			return {
 				isShow: false,

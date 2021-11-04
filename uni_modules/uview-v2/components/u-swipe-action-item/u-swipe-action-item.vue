@@ -102,12 +102,12 @@
 	 */
 	export default {
 		name: 'u-swipe-action-item',
-		mixins: [uni.$u.mixin, props, touch],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, props, touch],
 		// #ifdef APP-NVUE
-		mixins: [uni.$u.mixin, props, nvue, touch],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, props, nvue, touch],
 		// #endif
 		// #ifdef APP-VUE || MP-WEIXIN || H5 || MP-QQ
-		mixins: [uni.$u.mixin, props, touch, wxs],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, props, touch, wxs],
 		// #endif
 		data() {
 			return {

@@ -103,7 +103,7 @@
 
 			}
 		},
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		methods: {
 			change(e) {
 				this.$emit('change', e);

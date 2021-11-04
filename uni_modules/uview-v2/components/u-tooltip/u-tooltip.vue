@@ -116,7 +116,7 @@
 	 */
 	export default {
 		name: 'u-tooltip',
-		mixins: [uni.$u.mixin, props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		data() {
 			return {
 				// 是否展示气泡

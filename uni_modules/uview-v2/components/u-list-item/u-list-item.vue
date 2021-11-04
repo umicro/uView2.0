@@ -29,7 +29,7 @@
 	 */
 	export default {
 		name: 'u-list-item',
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		data() {
 			return {
 				// 节点信息

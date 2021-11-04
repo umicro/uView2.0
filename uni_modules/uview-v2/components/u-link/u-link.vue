@@ -26,7 +26,7 @@
 	 */
 	export default {
 		name: "u-link",
-		mixins: [uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		computed: {
 			linkStyle() {
 				const style = {

@@ -48,7 +48,7 @@
 			class="u-index-list__letter"
 			ref="u-index-list__letter"
 			:style="{ top: $u.addUnit(letterInfo.top || 100) }"
-			@touchstart.stop.prevent="touchStart"
+			@touchstart="touchStart"
 			@touchmove.stop.prevent="touchMove"
 			@touchend.stop.prevent="touchEnd"
 			@touchcancel.stop.prevent="touchEnd"
@@ -118,6 +118,12 @@
 	export default {
 		name: 'u-index-list',
 		mixins: [uni.$u.mixin, props],
+		// #ifdef MP-WEIXIN
+		// 将自定义节点设置成虚拟的，更加接近Vue组件的表现，能更好的使用flex属性
+		options: {
+			virtualHost: true
+		},
+		// #endif
 		data() {
 			return {
 				// 当前正在被选中的字母索引
@@ -274,7 +280,9 @@
 					itemHeight
 				} = this.letterInfo
 				// 对H5的pageY进行修正，这是由于uni-app自作多情在H5中将触摸点的坐标跟H5的导航栏结合导致的问题
+				// #ifdef H5
 				pageY += uni.$u.sys().windowTop
+				// #endif
 				// 对第一和最后一个字母做边界处理，因为用户可能在字母列表上触摸到两端的尽头后依然继续滑动
 				if (pageY < top) {
 					return 0

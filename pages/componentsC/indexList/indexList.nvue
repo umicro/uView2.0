@@ -1,57 +1,28 @@
 <template>
 	<u-index-list>
-		<u-cell-group slot="header">
-			<u-cell title="新的朋友">
-				<u-avatar
-					slot="icon"
-					shape="square"
-					size="35"
-					icon="man-add-fill"
-					fontSize="26"
-					randomBgColor
-					customStyle="margin: -3px 5px -3px 0"
-				></u-avatar>
-			</u-cell>
-			<u-cell title="标签">
-				<u-avatar
-					slot="icon"
-					shape="square"
-					size="35"
-					icon="tags-fill"
-					fontSize="26"
-					randomBgColor
-					customStyle="margin: -3px 5px -3px 0"
-				></u-avatar>
-			</u-cell>
-			<u-cell title="朋友圈">
-				<u-avatar
-					slot="icon"
-					shape="square"
-					size="35"
-					icon="chrome-circle-fill"
-					fontSize="26"
-					randomBgColor
-					customStyle="margin: -3px 5px -3px 0"
-				></u-avatar>
-			</u-cell>
-			<u-cell
-				title="QQ"
-				:border="false"
-			>
-				<u-avatar
-					slot="icon"
-					shape="square"
-					size="35"
-					icon="qq-fill"
-					fontSize="26"
-					randomBgColor
-					customStyle="margin: -3px 5px -3px 0"
-				></u-avatar>
-			</u-cell>
-		</u-cell-group>
-		<template
-			v-for="(item, index) in itemArr"
-		>
+		<view slot="header" class="list">
+			<view class="list__item">
+				<u-avatar shape="square" size="35" icon="man-add-fill" fontSize="26" randomBgColor></u-avatar>
+				<text class="list__item__user-name">新的朋友{{$u.addUnit(3)}}</text>
+			</view>
+			<u-line></u-line>
+			<view class="list__item">
+				<u-avatar shape="square" size="35" icon="tags-fill" fontSize="26" randomBgColor></u-avatar>
+				<text class="list__item__user-name">标签</text>
+			</view>
+			<u-line></u-line>
+			<view class="list__item">
+				<u-avatar shape="square" size="35" icon="chrome-circle-fill" fontSize="26" randomBgColor></u-avatar>
+				<text class="list__item__user-name">朋友圈</text>
+			</view>
+			<u-line></u-line>
+			<view class="list__item">
+				<u-avatar shape="square" size="35" icon="qq-fill" fontSize="26" randomBgColor></u-avatar>
+				<text class="list__item__user-name">QQ</text>
+			</view>
+			<u-line></u-line>
+		</view>
+		<template v-for="(item, index) in itemArr">
 			<!-- #ifdef APP-NVUE -->
 			<u-index-anchor :text="indexList[index]" :key="index"></u-index-anchor>
 			<!-- #endif -->
@@ -59,20 +30,13 @@
 				<!-- #ifndef APP-NVUE -->
 				<u-index-anchor :text="indexList[index]"></u-index-anchor>
 				<!-- #endif -->
-				<u-cell
-					v-for="(item1, index1) in item"
-					:key="index1"
-					:title="item1.name"
-					:border="index1 !== item.length - 1"
-				>
-					<u-avatar
-						slot="icon"
-						shape="square"
-						size="35"
-						:src="item1.url"
-						customStyle="margin: -3px 5px -3px 0"
-					></u-avatar>
-				</u-cell>
+				<view class="list" v-for="(item1, index1) in item" :key="index1">
+					<view class="list__item">
+						<image class="list__item__avatar" :src="item1.url"></image>
+						<text class="list__item__user-name">{{item1.name}}</text>
+					</view>
+					<u-line></u-line>
+				</view>
 			</u-index-item>
 		</template>
 	</u-index-list>
@@ -129,9 +93,23 @@
 </script>
 
 <style lang="scss">
-	.icon {
-		width: 36px;
-		height: 36px;
-		margin: -3px 5px -3px 0;
+	.list {
+		
+		&__item {
+			@include flex;
+			padding: 6px 12px;
+			align-items: center;
+			
+			&__avatar {
+				height: 35px;
+				width: 35px;
+			}
+			
+			&__user-name {
+				font-size: 16px;
+				margin-left: 10px;
+				color: $u-main-color;
+			}
+		}
 	}
 </style>

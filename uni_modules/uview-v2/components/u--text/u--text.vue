@@ -38,7 +38,7 @@
 	import props from '../u-text/props.js'
 	export default {
 		name: 'u--text',
-		mixins: [props, uni.$u.mixin],
+		mixins: [uni.$u.mpMixin, props, uni.$u.mixin],
 		components: {
 			uvText
 		},

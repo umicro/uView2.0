@@ -38,8 +38,8 @@ function touchmove(event, ownerInstance) {
 
 	// 移动的X轴距离大于Y轴距离，也即终点与起点位置连线，与X轴夹角小于45度时，禁止页面滚动
 	if (Math.abs(moveX) > Math.abs(moveY) || Math.abs(moveX) > state.threshold) {
-		event.preventDefault()
-		event.stopPropagation()
+		event.preventDefault && event.preventDefault()
+		event.stopPropagation && event.stopPropagation()
 	}
 	// 如果移动的X轴距离小于Y轴距离，也即终点位置与起点位置连线，与Y轴夹角小于45度时，认为是页面上下滑动，而不是左右滑动单元格
 	if (Math.abs(moveX) < Math.abs(moveY)) return
@@ -135,7 +135,7 @@ function openSwipeAction(instance, ownerInstance) {
 	// 获取所有按钮的实例，需要通过它去设置按钮的位移
 	var buttons = ownerInstance.selectAllComponents('.u-swipe-action-item__right__button')
 	// 处理duration单位问题
-	const duration = getDuration(state.duration)
+	var duration = getDuration(state.duration)
 	// 展开过程中，是向左移动，所以X的偏移应该为负值
 	var buttonsWidth = -state.buttonsWidth
 	instance.requestAnimationFrame(function() {
@@ -163,7 +163,7 @@ function closeSwipeAction(instance, ownerInstance) {
 	var buttons = ownerInstance.selectAllComponents('.u-swipe-action-item__right__button')
 	var len = buttons.length
 	// 处理duration单位问题
-	const duration = getDuration(state.duration)
+	var duration = getDuration(state.duration)
 	instance.requestAnimationFrame(function() {
 		// 设置菜单主体内容
 		instance.setStyle({
@@ -205,8 +205,8 @@ function sizeChange(newValue, oldValue, ownerInstance, instance) {
 	state.threshold = newValue.threshold
 	state.buttons = newValue.buttons
 
-	var len = state.buttons.length
-	if (len) {
+	if (state.buttons) {
+		var len = state.buttons.length
 		var buttonsWidth = 0
 		var buttons = newValue.buttons
 		for (var i = 0; i < len; i++) {

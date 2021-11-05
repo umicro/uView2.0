@@ -3,7 +3,7 @@
 		<view slot="header" class="list">
 			<view class="list__item">
 				<u-avatar shape="square" size="35" icon="man-add-fill" fontSize="26" randomBgColor></u-avatar>
-				<text class="list__item__user-name">新的朋友{{$u.addUnit(3)}}</text>
+				<text class="list__item__user-name">新的朋友</text>
 			</view>
 			<u-line></u-line>
 			<view class="list__item">
@@ -39,6 +39,9 @@
 				</view>
 			</u-index-item>
 		</template>
+		<view slot="footer" class="u-safe-area-inset--bottom">
+			<text class="list__footer">共305位好友</text>
+		</view>
 	</u-index-list>
 </template>
 
@@ -51,9 +54,6 @@
 		}
 		return indexList
 	}
-	// #ifdef APP-NVUE
-	const dom = uni.requireNativePlugin('dom')
-	// #endif
 	export default {
 		data() {
 			return {
@@ -103,6 +103,7 @@
 			&__avatar {
 				height: 35px;
 				width: 35px;
+				border-radius: 3px;
 			}
 			
 			&__user-name {
@@ -110,6 +111,13 @@
 				margin-left: 10px;
 				color: $u-main-color;
 			}
+		}
+		
+		&__footer {
+			color: $u-tips-color;
+			font-size: 14px;
+			text-align: center;
+			margin: 15px 0;
 		}
 	}
 </style>

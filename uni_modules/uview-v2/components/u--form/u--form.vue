@@ -29,7 +29,7 @@
 		// #ifndef MP-WEIXIN
 		name: 'u--form',
 		// #endif
-		mixins: [props, uni.$u.mixin],
+		mixins: [uni.$u.mpMixin, props, uni.$u.mixin],
 		components: {
 			uvForm
 		},

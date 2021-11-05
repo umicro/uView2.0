@@ -32,7 +32,7 @@
 	 */
 	export default {
 		name: 'u-badge',
-		mixins: [props, uni.$u.mixin],
+		mixins: [uni.$u.mpMixin, props, uni.$u.mixin],
 		computed: {
 			// 是否将badge中心与父组件右上角重合
 			boxStyle() {

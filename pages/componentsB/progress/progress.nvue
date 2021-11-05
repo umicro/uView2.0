@@ -69,26 +69,14 @@
 				    inactiveColor="#f3f4f6"
 				>
 				</u-line-progress>
-				<u-grid
-				    border
-				    align="center"
-					customStyle="margin-top: 30px"
-				>
-					<u-grid-item @click="computedWidth('minus')">
-						<view class="u-grid-slot">
-							<view class="u-grid-slot__circle">
-								<text class="u-grid-slot__circle__text">减少</text>
-							</view>
-						</view>
-					</u-grid-item>
-					<u-grid-item @click="computedWidth('plus')">
-						<view class="u-grid-slot">
-							<view class="u-grid-slot__circle">
-								<text class="u-grid-slot__circle__text">增加</text>
-							</view>
-						</view>
-					</u-grid-item>
-				</u-grid>
+				<view class="button-group">
+					<view class="button-group__circle" hover-class="u-hover-class" @click="computedWidth('minus')">
+						<text class="button-group__circle__text">减少</text>
+					</view>
+					<view class="button-group__circle" hover-class="u-hover-class" @click="computedWidth('plus')">
+						<text class="button-group__circle__text">增加</text>
+					</view>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -144,13 +132,11 @@
 		flex-wrap: nowrap;
 		align-items: stretch;
 	}
-
-	.u-grid-slot {
-		border-radius: 100px;
-		border-color: #dbfbdb;
-		border-width: 2px;
+	
+	.button-group {
 		@include flex;
-
+		justify-content: center;
+		
 		&__circle {
 			width: 50px;
 			height: 50px;
@@ -158,8 +144,8 @@
 			border-radius: 100px;
 			justify-content: center;
 			align-items: center;
-			margin: 2px;
-
+			margin: 30px 30px;
+		
 			&__text {
 				color: rgb(25, 190, 107);
 				font-size: 13px;

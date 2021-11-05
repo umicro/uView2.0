@@ -112,7 +112,7 @@
 		data() {
 			return {
 				// 按钮的尺寸信息
-				size: null,
+				size: {},
 				// 父组件u-swipe-action的参数
 				parentData: {
 					autoClose: true,

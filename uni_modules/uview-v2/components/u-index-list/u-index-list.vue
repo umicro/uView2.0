@@ -299,9 +299,13 @@
 				// 如果偏移量太小，前后得出的会是同一个索引字母，为了防抖，进行返回
 				if (currentIndex === this.activeIndex) return
 				this.activeIndex = currentIndex
-				// #ifndef APP-NVUE
+				// #ifndef APP-NVUE || MP-WEIXIN
 				// 在非nvue中，由于anchor和item都在u-index-item中，所以需要对index-item进行偏移
 				this.scrollIntoView = `u-index-item-${this.uIndexList[currentIndex]}`
+				// #endif
+				// #ifdef MP-WEIXIN
+				// 微信小程序下，scroll-view的scroll-into-view属性无法对slot中的内容的id生效，只能通过设置scrollTop的形式去移动滚动条
+				this.scrollTop = this.children[currentIndex].top
 				// #endif
 				// #ifdef APP-NVUE
 				// 在nvue中，由于cell和header为同级元素，所以实际是需要对header(anchor)进行偏移

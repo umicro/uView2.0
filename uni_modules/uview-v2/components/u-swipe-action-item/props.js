@@ -5,10 +5,10 @@ export default {
 			type: Boolean,
 			default: uni.$u.props.swipeActionItem.show
 		},
-		// 标识符，如果是v-for，可用index索引
-		index: {
+		// 标识符，如果是v-for，可用index索引值
+		name: {
 			type: [String, Number],
-			default: uni.$u.props.swipeActionItem.index
+			default: uni.$u.props.swipeActionItem.name
 		},
 		// 是否禁用
 		disabled: {

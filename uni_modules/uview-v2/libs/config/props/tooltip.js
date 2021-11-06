@@ -19,6 +19,7 @@ export default {
 		zIndex: 10071,
 		showCopy: true,
 		buttons: () => [],
-		overlay: true
+		overlay: true,
+		showToast: true
 	},
 }

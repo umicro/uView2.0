@@ -2,7 +2,6 @@
 	<view
 	    :style="[style]"
 	    class="u-status-bar"
-		:class="[!isNvue && 'u-status-bar']"
 	>
 		<slot />
 	</view>
@@ -29,30 +28,17 @@
 		computed: {
 			style() {
 				const style = {}
-				// #ifdef APP-NVUE
-				// nvue下，高度使用js计算填充
-				style.height = uni.$u.sys().statusBarHeight + 'px'
-				// #endif
+				// 状态栏高度，由于某些安卓和微信开发工具无法识别css的顶部状态栏变量，所以使用js获取的方式
+				style.height = uni.$u.addUnit(uni.$u.sys().statusBarHeight)
 				style.backgroundColor = this.bgColor
 				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			}
 		},
-		created() {
-			// #ifdef APP-NVUE
-			// 标识为是否nvue
-			this.isNvue = true
-			// #endif
-		}
 	}
 </script>
 
 <style lang="scss">
-	/* #ifndef APP-NVUE */
 	.u-status-bar {
-		padding-top: 0;
-		padding-top: constant(safe-area-inset-top);
-		padding-top: env(safe-area-inset-top);
 		width: 100%;
 	}
-	/* #endif */
 </style>

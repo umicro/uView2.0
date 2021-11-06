@@ -6,7 +6,7 @@
 		<u-overlay
 			:show="showTooltip && tooltipTop !== -10000 && overlay"
 			customStyle="backgroundColor: rgba(0, 0, 0, 0)"
-			@click="btnClickHandler"
+			@click="overlayClickHandler"
 		></u-overlay>
 		<view class="u-tooltip__wrapper">
 			<text
@@ -70,7 +70,7 @@
 							>
 								<text
 									class="u-tooltip__wrapper__popup__list__btn__text"
-									@tap="btnClickHandler"
+									@tap="btnClickHandler(index)"
 								>{{ item }}</text>
 							</view>
 							<u-line
@@ -201,9 +201,15 @@
 				this.tooltipTop = 0
 				this.showTooltip = true
 			},
-			// 点击弹出按钮
-			btnClickHandler() {
+			// 点击透明遮罩
+			overlayClickHandler() {
 				this.showTooltip = false
+			},
+			// 点击弹出按钮
+			btnClickHandler(index) {
+				this.showTooltip = false
+				// 如果需要展示复制按钮，此处index需要加1，因为复制按钮在第一个位置
+				this.$emit('click', this.showCopy ? index + 1 : index)
 			},
 			// 查询内容高度
 			queryRect(ref) {
@@ -246,16 +252,17 @@
 			// 复制文本到粘贴板
 			setClipboardData() {
 				// 关闭组件
-				this.btnClickHandler()
+				this.showTooltip = false
+				this.$emit('click', 0)
 				// #ifndef H5
 				uni.setClipboardData({
 					// 优先使用copyText字段，如果没有，则默认使用text字段当做复制的内容
 					data: this.copyText || this.text,
-					success() {
-						uni.$u.toast('复制成功')
+					success: () => {
+						this.showToast && uni.$u.toast('复制成功')
 					},
-					fail() {
-						uni.$u.toast('复制失败')
+					fail: () => {
+						this.showToast && uni.$u.toast('复制失败')
 					},
 					complete() {
 						this.showTooltip = false
@@ -269,14 +276,14 @@
 					text: () => this.copyText || this.text
 				})
 				clipboard.on('success', (e) => {
-					uni.$u.toast('复制成功')
+					this.showToast && uni.$u.toast('复制成功')
 					clipboard.off('success')
 					clipboard.off('error')
 					// 在单页应用中，需要销毁DOM的监听
 					clipboard.destroy()
 				})
 				clipboard.on('error', (e) => {
-					uni.$u.toast('复制失败')
+					this.showToast && uni.$u.toast('复制失败')
 					clipboard.off('success')
 					clipboard.off('error')
 					// 在单页应用中，需要销毁DOM的监听
@@ -285,7 +292,7 @@
 				clipboard.onClick(event)
 				// #endif
 			}
-		},
+		}
 	}
 </script>
 

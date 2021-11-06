@@ -190,7 +190,7 @@
 		},
 		methods: {
 			click(index) {
-				// console.log(index);
+				console.log('click', index);
 				uni.showModal({
 					title: '温馨提示',
 					content: '确定要删除吗？',

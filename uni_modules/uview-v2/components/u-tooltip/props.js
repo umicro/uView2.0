@@ -49,6 +49,11 @@ export default {
 		overlay: {
 			type: Boolean,
 			default: uni.$u.props.tooltip.overlay
+		},
+		// 是否显示复制成功或者失败的toast
+		showToast: {
+			type: Boolean,
+			default: uni.$u.props.tooltip.showToast
 		}
 	}
 }

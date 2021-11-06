@@ -24,6 +24,7 @@
 				<u-tooltip
 				    :text="text3"
 					:buttons="buttons1"
+					@click="click"
 				></u-tooltip>
 			</view>
 		</view>
@@ -64,9 +65,12 @@
 			}
 		},
 		onLoad() {
-			uni.$u.sleep(3000).then(() => {
-				this.buttons3 = ['扩展']
-			})
+			
+		},
+		methods: {
+			click(index) {
+				console.log('index', index);
+			}
 		}
 	}
 </script>

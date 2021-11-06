@@ -3,7 +3,7 @@
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">基础演示</text>
 			<view class="u-demo-block__content">
-				<u-tabs :list="list1">
+				<u-tabs :list="list1" @click="click">
 				</u-tabs>
 			</view>
 		</view>
@@ -193,6 +193,11 @@
 		},
 		onLoad() {
 
+		},
+		methods: {
+			click(item) {
+				console.log('item', item);
+			}
 		}
 	}
 </script>

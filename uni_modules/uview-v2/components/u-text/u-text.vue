@@ -13,7 +13,7 @@
 		    v-if="mode === 'price'"
 		    :style="[valueStyle]"
 		>￥</text>
-		<text
+		<view
 		    class="u-text__prefix-icon"
 		    v-if="prefixIcon"
 		>
@@ -21,7 +21,7 @@
 			    :name="prefixIcon"
 			    :customStyle="$u.addStyle(iconStyle)"
 			></u-icon>
-		</text>
+		</view>
 		<u-link
 		    v-if="mode === 'link'"
 		    :text="value"
@@ -55,7 +55,7 @@
 		    :style="[valueStyle]"
 		    :class="[type && `u-text__value--${type}`, lines && `u-line-${lines}`]"
 		>{{ value }}</text>
-		<text
+		<view
 		    class="u-text__suffix-icon"
 		    v-if="suffixIcon"
 		>
@@ -63,7 +63,7 @@
 			    :name="suffixIcon"
 			    :customStyle="$u.addStyle(iconStyle)"
 			></u-icon>
-		</text>
+		</view>
 	</view>
 </template>
 

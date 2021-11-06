@@ -1,5 +1,5 @@
 <template>
-	<view class="u-page">
+	<view class="u-page" ref="page">
 		<u-navbar
 			title="选择器"
 			@leftClick="navigateBack"
@@ -41,6 +41,7 @@
 		<u-picker
 			:show="show3"
 			:columns="columns3"
+			ref="uPicker3"
 			@cancel="cancel"
 			@confirm="confirm"
 			@change="changeHandler1"
@@ -52,6 +53,7 @@
 			@confirm="confirm"
 			:loading="loading"
 			@change="changeHandler2"
+			ref="uPicker4"
 		></u-picker>
 		<u-picker
 			:show="show5"
@@ -143,7 +145,8 @@
 					value,
 					values,
 					index,
-					picker
+					// 微信小程序无法将picker实例传出来，只能通过ref操作
+					picker = this.$refs.uPicker3
 				} = e
 				if (columnIndex === 0) {
 					picker.setColumnValues(1, this.columnData[index])
@@ -156,7 +159,8 @@
 					value,
 					values,
 					index,
-					picker
+					// 微信小程序无法将picker实例传出来，只能通过ref操作
+					picker = this.$refs.uPicker4
 				} = e
 				if (columnIndex === 0) {
 					this.loading = true

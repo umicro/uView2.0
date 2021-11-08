@@ -31,9 +31,23 @@ export default {
 			default: uni.$u.props.readMore.fontSize,
 		},
 		// 是否显示阴影
+		// 此参数不能写在props/readMore.js中进行默认配置，因为使用了条件编译，在外部js中
+		// uni无法准确识别当前是否处于nvue还是非nvue下
 		shadowStyle: {
 			type: Object,
-			default : uni.$u.props.readMore.shadowStyle,
+			default : ()=> {
+				return {
+					// #ifndef APP-NVUE
+					backgroundImage: "linear-gradient(-180deg, rgba(255, 255, 255, 0) 0%, #fff 80%)",
+					// #endif
+					// #ifdef APP-NVUE
+					// nvue上不支持设置复杂的backgroundImage属性
+					backgroundImage: "linear-gradient(to top, #fff, rgba(255, 255, 255, 0.5))",
+					// #endif
+					paddingTop: "100px",
+					marginTop: "-100px",
+				}
+			}
 		},
 		// 段落首行缩进的字符个数
 		textIndent: {

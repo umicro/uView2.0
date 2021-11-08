@@ -16,19 +16,6 @@ export default {
 		openText:  '收起',
 		color:  '#2979ff',
 		fontSize:  14,
-		shadowStyle: ()=> {
-				return {
-					// #ifndef APP-NVUE
-					backgroundImage: "linear-gradient(-180deg, rgba(255, 255, 255, 0) 0%, #fff 80%)",
-					// #endif
-					// #ifdef APP-NVUE
-					// nvue上不支持设置复杂的backgroundImage属性
-					backgroundImage: "linear-gradient(to top, #fff, rgba(255, 255, 255, 0.5))",
-					// #endif
-					paddingTop: "100px",
-					marginTop: "-100px",
-				}
-			},
 		textIndent:  '2em',
 		name:  ''
 	},

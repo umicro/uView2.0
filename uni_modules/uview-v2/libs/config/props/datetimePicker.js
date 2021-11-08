@@ -22,7 +22,7 @@ export default {
 		minMinute:0,
 		maxMinute:59,
 		filter:null,
-		formatter:(type, value) => null,
+		formatter: null,
 		loading:false,
 		itemHeight:44,
 		cancelText:'取消',

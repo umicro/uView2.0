@@ -1,7 +1,7 @@
 <template>
 	<view class="u-page">
 		<u-navbar
-			title="选择器"
+			title="上拉菜单"
 			@leftClick="navigateBack"
 			safeAreaInsetTop
 			fixed

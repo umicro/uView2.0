@@ -20,7 +20,7 @@ import transition from "./transition.js";
  * transition  动画组件
  * @description
  * @tutorial
- * @property {String}			show			是否展示组件 （默认 true ）
+ * @property {String}			show			是否展示组件 （默认 false ）
  * @property {String}			mode			使用的动画模式 （默认 'fade' ）
  * @property {String | Number}	duration		动画的执行时间，单位ms （默认 '300' ）
  * @property {String}			timingFunction	使用的动画过渡函数 （默认 'ease-out' ）

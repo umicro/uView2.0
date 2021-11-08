@@ -3,7 +3,7 @@
 	    class="u-checkbox"
 	    :style="[checkboxStyle]"
 	    @tap.stop="wrapperClickHandler"
-	    :class="[`u-checkbox-label--${parentData.iconPlacement}`, this.parentData.borderBottom && this.parentData.placement === 'column' && 'u-border-bottom']"
+	    :class="[`u-checkbox-label--${parentData.iconPlacement}`, parentData.borderBottom && parentData.placement === 'column' && 'u-border-bottom']"
 	>
 		<view
 		    class="u-checkbox__icon-wrap"

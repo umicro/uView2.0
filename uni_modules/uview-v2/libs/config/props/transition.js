@@ -10,7 +10,7 @@
 export default {
 	// transition动画组件的props
 	transition: {
-		show: true,
+		show: false,
 		mode: 'fade',
 		duration: '300',
 		timingFunction: 'ease-out',

@@ -3,7 +3,7 @@
 	    class="u-radio"
 		@tap.stop="wrapperClickHandler"
 	    :style="[radioStyle]"
-	    :class="[`u-radio-label--${parentData.iconPlacement}`, this.parentData.borderBottom && this.parentData.placement === 'column' && 'u-border-bottom']"
+	    :class="[`u-radio-label--${parentData.iconPlacement}`, parentData.borderBottom && parentData.placement === 'column' && 'u-border-bottom']"
 	>
 		<view
 		    class="u-radio__icon-wrap"
@@ -189,6 +189,8 @@
 			},
 			updateParentData() {
 				this.getParentData('u-radio-group')
+				console.log('paernt', this.parent);
+				console.log('parentData', this.parentData);
 			},
 			// 点击图标
 			iconClickHandler(e) {

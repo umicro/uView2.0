@@ -24,11 +24,12 @@
 				mode="fade"
 				:show="showTooltip"
 				duration="300"
-				:style="[{
+				:customStyle="{
 					position: 'absolute', 
 					top: $u.addUnit(tooltipTop),
 					zIndex: zIndex,
-				}, tooltipStyle]"
+					...tooltipStyle
+				}"
 			>
 				<view
 					class="u-tooltip__wrapper__popup"
@@ -67,6 +68,7 @@
 							<view
 								class="u-tooltip__wrapper__popup__list__btn"
 								hover-class="u-tooltip__wrapper__popup__list__btn--hover"
+								:key="index"
 							>
 								<text
 									class="u-tooltip__wrapper__popup__list__btn__text"
@@ -78,6 +80,7 @@
 								color="#8d8e90"
 								v-if="index < buttons.length - 1"
 								length="18"
+								:key="index"
 							></u-line>
 						</template>
 					</view>
@@ -264,7 +267,7 @@
 					fail: () => {
 						this.showToast && uni.$u.toast('复制失败')
 					},
-					complete() {
+					complete: () => {
 						this.showTooltip = false
 					}
 				})

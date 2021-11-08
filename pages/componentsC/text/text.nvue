@@ -116,7 +116,7 @@
 				</view>
 				<view class="u-page__text-item">
 					<u--text
-					    suffixIcon="arrow-leftward"
+					    suffixIcon="arrow-rightward"
 					    iconStyle="font-size: 18px"
 					    text="查看更多"
 					></u--text>

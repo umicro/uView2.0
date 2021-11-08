@@ -107,7 +107,7 @@ export default {
 		},
 		// 搜索框左侧文本
 		label: {
-			type: [String, Number],
+			type: [String, Number, null],
 			default: uni.$u.props.search.label,
 		}
 	},

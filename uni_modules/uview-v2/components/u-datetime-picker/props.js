@@ -59,12 +59,12 @@ export default {
 		},
 		// 选项过滤函数
 		filter: {
-			type: Function,
+			type: [Function, null],
 			default: uni.$u.props.datetimePicker.filter
 		},
 		// 选项格式化函数
 		formatter: {
-			type: Function,
+			type: [Function, null],
 			default: uni.$u.props.datetimePicker.formatter
 		},
 		// 是否显示加载中状态

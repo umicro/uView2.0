@@ -2,7 +2,7 @@ export default {
 	props: {
 		// 当前展开面板的name，非手风琴模式：[<string | number>]，手风琴模式：string | number
 		value: {
-			type: [String, Number, Array],
+			type: [String, Number, Array, null],
 			default: uni.$u.props.collapse.value
 		},
 		// 是否手风琴模式

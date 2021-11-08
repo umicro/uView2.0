@@ -62,7 +62,7 @@ export default {
 		},
 		// 显示的小数位数
 		decimalLength: {
-			type: [String, Number],
+			type: [String, Number, null],
 			default: uni.$u.props.numberBox.decimalLength
 		},
 		// 是否开启长按加减手势

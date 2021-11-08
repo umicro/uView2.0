@@ -32,12 +32,12 @@ export default {
 		},
 		// 背景颜色，优先级比type高，如设置，type参数会失效
 		bgColor: {
-			type: String,
+			type: [String, null],
 			default: uni.$u.props.badge.bgColor
 		},
 		// 字体颜色
 		color: {
-			type: String,
+			type: [String, null],
 			default: uni.$u.props.badge.color
 		},
 		// 徽标形状，circle-四角均为圆角，horn-左下角为直角

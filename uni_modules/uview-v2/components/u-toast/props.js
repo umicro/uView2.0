@@ -25,11 +25,6 @@ export default {
 			type: String,
 			default: uni.$u.props.toast.type
 		},
-		// show
-		// show: {
-		// 	type: Boolean,
-		// 	default: uni.$u.props.toast.show
-		// },
 		// 是否显示透明遮罩，防止点击穿透
 		overlay: {
 			type: Boolean,
@@ -62,7 +57,7 @@ export default {
 		},
 		// 执行完后的回调函数
 		callback: {
-			type: Function,
+			type: [Function, null],
 			default: uni.$u.props.toast.callback
 		},
 		// 结束toast是否自动返回上一页

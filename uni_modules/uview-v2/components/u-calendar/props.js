@@ -52,7 +52,7 @@ export default {
 		},
 		// 默认选中的日期，mode为multiple或range是必须为数组格式
 		defaultDate: {
-			type: [Array, String, Date],
+			type: [Array, String, Date, null],
 			default: uni.$u.props.calendar.defaultDate
 		},
 		// mode=multiple时，最多可选多少个日期
@@ -67,7 +67,7 @@ export default {
 		},
 		// 日期格式化函数
 		formatter: {
-			type: Function,
+			type: [Function, null],
 			default: uni.$u.props.calendar.formatter
 		},
 		// 是否显示农历

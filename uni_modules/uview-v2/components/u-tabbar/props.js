@@ -2,7 +2,7 @@ export default {
 	props: {
 		// 当前匹配项的name
 		value: {
-			type: [String, Number],
+			type: [String, Number, null],
 			default: uni.$u.props.tabbar.value
 		},
 		// 是否为iPhoneX留出底部安全距离

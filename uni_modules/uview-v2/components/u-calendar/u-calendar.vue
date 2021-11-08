@@ -31,7 +31,6 @@
 					:maxCount="maxCount"
 					:startText="startText"
 					:endText="endText"
-					@monthSelected="monthSelected"
 					:defaultDate="defaultDate"
 					:minDate="minDate"
 					:maxDate="maxDate"
@@ -42,6 +41,8 @@
 					:showRangePrompt="showRangePrompt"
 					:allowSameDay="allowSameDay"
 					ref="month"
+					@monthSelected="monthSelected"
+					@updateMonthTop="updateMonthTop"
 				></uMonth>
 			</scroll-view>
 			<slot name="footer" v-if="showConfirm">
@@ -260,6 +261,13 @@
 					}
 				}
 			},
+			// 更新月份的top值
+			updateMonthTop(topArr = []) {
+				// 设置对应月份的top值，用于onScroll方法更新月份
+				topArr.map((item, index) => {
+					this.months[index].top = item
+				}) 
+			}
 		},
 	}
 </script>

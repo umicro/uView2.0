@@ -178,6 +178,7 @@
 					}
 					if (this.mode === 'single') {
 						if (date === this.selected[0]) {
+							// 因为需要对nvue的兼容，只能这么写，无法缩写，也无法通过类名控制等等
 							style.borderTopLeftRadius = '3px'
 							style.borderBottomLeftRadius = '3px'
 							style.borderTopRightRadius = '3px'
@@ -310,11 +311,14 @@
 				Promise.all(promiseAllArr).then(
 					sizes => {
 						let height = 1
+						const topArr = []
 						for (let i = 0; i < this.months.length; i++) {
 							// 添加到months数组中，供scroll-view滚动事件中，判断当前滚动到哪个月份
-							this.months[i].top = height
+							topArr[i] = height
 							height += sizes[i].height
 						}
+						// 由于微信下，无法通过this.months[i].top的形式(引用类型)去修改父组件的month的top值，所以使用事件形式对外发出
+						this.$emit('updateMonthTop', topArr)
 					})
 			},
 			// 获取每个月份区域的尺寸

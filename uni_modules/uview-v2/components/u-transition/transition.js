@@ -1,5 +1,5 @@
 // 定义一个一定时间后自动成功的promise，让调用nextTick方法处，进入下一个then方法
-const nextTick = () => new Promise(resolve => setTimeout(resolve, 1000 / 30))
+const nextTick = () => new Promise(resolve => resolve())
 
 // #ifndef APP-NVUE
 // 定义类名，通过给元素动态切换类名，赋予元素一定的css动画样式
@@ -34,21 +34,17 @@ export default {
 			// 定义状态和发出动画进入前事件
 			this.status = 'enter'
 			this.$emit('beforeEnter')
-			// 此处nextTick等待了几十ms，是为了等待元素创建完成
-			Promise.resolve().then(nextTick).then(() => {
-				// 组件正在进入中的事件
-				this.$emit('enter')
-				this.inited = true
-				this.display = true
-				this.classes = classNames.enter
-			}).then(nextTick).then(() => {
+			this.inited = true
+			this.display = true
+			this.classes = classNames.enter
+			this.$nextTick(() => {
 				// 组件动画进入后触发的事件
 				this.$emit('afterEnter')
 				// 标识动画尚未结束
 				this.transitionEnded = false
 				// 赋予组件enter-to类名
 				this.classes = classNames['enter-to']
-			}).catch(() => {})
+			})
 		},
 		// 动画离场处理
 		vueLeave() {
@@ -58,23 +54,16 @@ export default {
 			// 标记离开状态和发出事件
 			this.status = 'leave'
 			this.$emit('beforeLeave')
-			Promise.resolve()
-				.then(nextTick)
-				.then(() => {
-					// 正在离开的事件
-					this.$emit('leave')
-					// 获得类名
-					this.classes = classNames.leave
-				})
-				.then(nextTick)
-				.then(() => {
-					// 标记动画已经结束了
-					this.transitionEnded = false
-					// 组件执行动画，到了执行的执行时间后，执行一些额外处理
-					setTimeout(this.onTransitionEnd, this.duration)
-					this.classes = classNames['leave-to']
-				})
-				.catch(() => {})
+			// 获得类名
+			this.classes = classNames.leave
+			
+			this.$nextTick(() => {
+				// 标记动画已经结束了
+				this.transitionEnded = false
+				// 组件执行动画，到了执行的执行时间后，执行一些额外处理
+				setTimeout(this.onTransitionEnd, this.duration)
+				this.classes = classNames['leave-to']
+			})
 		},
 		// #endif
 		// #ifdef APP-NVUE

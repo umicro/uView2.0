@@ -2,7 +2,7 @@
 	<view class="u-page">
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">基本案例</text>
-			<text class="u-block__title">苹果、香蕉和橙子那个最甜？</text>
+			<text class="u-block__title">苹果、香蕉和橙子哪个最甜？</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__radio-item">
 					<u-radio-group
@@ -47,7 +47,7 @@
 		</view>
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">是否禁用</text>
-			<text class="u-block__title">苹果、香蕉和菠萝那个最甜？</text>
+			<text class="u-block__title">苹果、香蕉和菠萝哪个最甜？</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__radio-item">
 					<u-radio-group

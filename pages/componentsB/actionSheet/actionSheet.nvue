@@ -161,7 +161,7 @@
 
 		},
 		methods: {
-			// 点击cell，判断显示那个功能
+			// 点击cell，判断显示哪个功能
 			openSheet(index) {
 				// #ifndef MP
 				if(index === 5) return uni.$u.toast('请在微信内预览')

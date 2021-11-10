@@ -142,7 +142,6 @@
 				uni.navigateBack();
 			},
 			confirm(e) {
-				console.log(e);
 				this[`show${this.index}`] = false
 			},
 			close() {

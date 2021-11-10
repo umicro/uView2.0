@@ -2,7 +2,7 @@
 	<view class="u-page">
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">基本案例</text>
-			<text class="u-block__title">苹果、香蕉和橙子那个最甜？</text>
+			<text class="u-block__title">苹果、香蕉和橙子哪个最甜？</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__checkbox-item">
 					<u-checkbox-group
@@ -93,7 +93,7 @@
 		</view>
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">自定义颜色</text>
-			<text class="u-block__title">那个颜色最好看？</text>
+			<text class="u-block__title">哪个颜色最好看？</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__checkbox-item">
 					<u-checkbox-group

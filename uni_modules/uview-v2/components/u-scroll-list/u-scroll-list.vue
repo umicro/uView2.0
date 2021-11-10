@@ -201,9 +201,6 @@ export default {
 
 		&__content {
 			@include flex;
-			// // position: relative;
-			// justify-content: center;
-
 		}
 	}
 

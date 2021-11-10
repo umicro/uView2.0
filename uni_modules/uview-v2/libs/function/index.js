@@ -392,7 +392,7 @@ function queryParams(data = {}, isPrefix = true, arrayFormat = 'brackets') {
 
 function toast(title, duration = 2000) {
 	uni.showToast({
-		title: title,
+		title: String(title),
 		icon: 'none',
 		duration: duration
 	});

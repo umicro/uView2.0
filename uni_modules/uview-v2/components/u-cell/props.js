@@ -99,6 +99,11 @@ export default {
 		stop: {
 			type: Boolean,
 			default: uni.$u.props.cell.stop
+		},
+		// 标识符，cell被点击时返回
+		name: {
+			type: [Number, String],
+			default: uni.$u.props.cell.name
 		}
 	},
 }

@@ -4,7 +4,7 @@
 		<view class="list-wrap">
 			<u-cell-group title-bg-color="rgb(243, 244, 246)" :title="item.groupName" v-for="(item, index) in list" :key="index">
 				<u-cell :titleStyle="{fontWeight: 500}" :title="item1.title"
-				 v-for="(item1, index1) in item.list" :key="index1" isLink :url="item1.path">
+				 v-for="(item1, index1) in item.list" :key="index1" isLink @click="openPage" :name="item1.path">
 					<image slot="icon" class="u-cell-icon" :src="getIcon(item1.icon)" mode="widthFix"></image>
 				</u-cell>
 			</u-cell-group>
@@ -30,8 +30,20 @@
 			},
 		},
 		methods: {
-			openPage(path) {
-				this.$u.route({
+			openPage(detail) {
+				const path = detail.name
+				// #ifdef APP-NVUE
+				// 目前安卓nvue下，由于overflow只能为hidden，所以布局上的原因，暂不支持steps和tooltip等组件
+				if(uni.$u.os() === 'android') {
+					const noSupportForAndroid = ['steps', 'tooltip']
+					for(let i = 0; i < noSupportForAndroid.length; i ++) {
+						if(path.indexOf(noSupportForAndroid[i]) > -1) {
+							return uni.$u.toast('安卓nvue下暂不支持此组件')
+						}
+					}
+				}
+				// #endif
+				uni.$u.route({
 					url: path
 				})
 			},

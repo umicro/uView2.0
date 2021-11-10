@@ -29,6 +29,7 @@ export default {
 		rightIcon: 'arrow-right',
 		titleStyle: {},
 		size: '',
-		stop: true
+		stop: true,
+		name: ''
 	},
 }

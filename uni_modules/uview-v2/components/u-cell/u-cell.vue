@@ -1,74 +1,36 @@
 <template>
-	<view
-	    class="u-cell"
-	    :class="[customClass]"
-	    :style="[$u.addStyle(customStyle)]"
-	    :hover-class="(!disabled && (clickable || isLink)) ? 'u-cell--clickable' : ''"
-	    :hover-stay-time="250"
-	    @tap="clickHandler"
-	>
-		<view
-		    class="u-cell__body"
-		    :class="[ center && 'u-cell--center', size === 'large' && 'u-cell__body--large']"
-		>
+	<view class="u-cell" :class="[customClass]" :style="[$u.addStyle(customStyle)]"
+		:hover-class="(!disabled && (clickable || isLink)) ? 'u-cell--clickable' : ''" :hover-stay-time="250"
+		@tap="clickHandler">
+		<view class="u-cell__body" :class="[ center && 'u-cell--center', size === 'large' && 'u-cell__body--large']">
 			<view class="u-cell__body__content">
-				<view
-				    class="u-cell__left-icon-wrap"
-				    v-if="$slots.icon || icon"
-				>
-					<slot
-					    name="icon"
-					    v-if="$slots.icon"
-					>
+				<view class="u-cell__left-icon-wrap" v-if="$slots.icon || icon">
+					<slot name="icon" v-if="$slots.icon">
 					</slot>
-					<u-icon
-					    v-else
-					    :name="icon"
-					    :custom-style="iconStyle"
-						:size="size === 'large' ? 22 : 18"
-					></u-icon>
+					<u-icon v-else :name="icon" :custom-style="iconStyle" :size="size === 'large' ? 22 : 18"></u-icon>
 				</view>
 				<view class="u-cell__title">
 					<slot name="title">
-						<text
-						    v-if="title"
-						    class="u-cell__title-text"
-						    :class="[disabled && 'u-cell--disabled', size === 'large' && 'u-cell__title-text--large']"
-						>{{ title }}</text>
+						<text v-if="title" class="u-cell__title-text"
+							:class="[disabled && 'u-cell--disabled', size === 'large' && 'u-cell__title-text--large']">{{ title }}</text>
 					</slot>
 					<slot name="label">
-						<text
-						    class="u-cell__label"
-						    v-if="label"
-						    :class="[disabled && 'u-cell--disabled', size === 'large' && 'u-cell__label--large']"
-						>{{ label }}</text>
+						<text class="u-cell__label" v-if="label"
+							:class="[disabled && 'u-cell--disabled', size === 'large' && 'u-cell__label--large']">{{ label }}</text>
 					</slot>
 				</view>
 			</view>
 			<slot name="value">
-				<text
-				    class="u-cell__value"
-				    :class="[disabled && 'u-cell--disabled', size === 'large' && 'u-cell__value--large']"
-					v-if="!$u.test.empty(value)"
-				>{{ value }}</text>
+				<text class="u-cell__value"
+					:class="[disabled && 'u-cell--disabled', size === 'large' && 'u-cell__value--large']"
+					v-if="!$u.test.empty(value)">{{ value }}</text>
 			</slot>
-			<view
-			    class="u-cell__right-icon-wrap"
-			    v-if="$slots['right-icon'] || isLink"
-			    :class="[`u-cell__right-icon-wrap--${arrowDirection}`]"
-			>
-				<slot
-				    name="right-icon"
-				    v-if="$slots['right-icon']"
-				>
+			<view class="u-cell__right-icon-wrap" v-if="$slots['right-icon'] || isLink"
+				:class="[`u-cell__right-icon-wrap--${arrowDirection}`]">
+				<slot name="right-icon" v-if="$slots['right-icon']">
 				</slot>
-				<u-icon
-				    v-else
-				    :name="rightIcon"
-				    :custom-style="rightIconStyle"
-				    :color="disabled ? '#c8c9cc' : 'info'"
-					:size="size === 'large' ? 18 : 16"
-				></u-icon>
+				<u-icon v-else :name="rightIcon" :custom-style="rightIconStyle" :color="disabled ? '#c8c9cc' : 'info'"
+					:size="size === 'large' ? 18 : 16"></u-icon>
 			</view>
 		</view>
 		<u-line v-if="border"></u-line>
@@ -112,12 +74,14 @@
 
 			}
 		},
-		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
+		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		methods: {
 			// 点击cell
 			clickHandler(e) {
-				if(this.disabled) return
-				this.$emit('click')
+				if (this.disabled) return
+				this.$emit('click', {
+					name: this.name
+				})
 				// 如果配置了url(此props参数通过mixin引入)参数，跳转页面
 				this.openPage()
 				// 是否阻止事件传播
@@ -167,19 +131,19 @@
 			color: $u-cell-color;
 			// line-height: $u-cell-line-height;
 			align-items: center;
-			
+
 			&__content {
 				@include flex(row);
 				align-items: center;
 				flex: 1;
 			}
-			
+
 			&--large {
 				padding-top: $u-cell-padding-top-large;
 				padding-bottom: $u-cell-padding-bottom-large;
 			}
 		}
-		
+
 		&__left-icon-wrap,
 		&__right-icon-wrap {
 			@include flex();

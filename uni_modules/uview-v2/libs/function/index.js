@@ -36,7 +36,7 @@ function sleep(value = 30) {
 }
 
 function os() {
-	return uni.getSystemInfoSync().platform.toLowerCase;
+	return uni.getSystemInfoSync().platform.toLowerCase();
 }
 
 function sys() {

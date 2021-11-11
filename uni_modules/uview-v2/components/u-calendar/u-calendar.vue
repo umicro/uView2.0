@@ -5,7 +5,7 @@
 		closeable
 		@close="close"
 		round
-		:closeOnClickOverly="closeOnClickOverly"
+		:closeOnClickOverlay="closeOnClickOverlay"
 	>
 		<view class="u-calendar">
 			<uHeader
@@ -91,7 +91,7 @@
 	 * @property {String}				confirmText			确定按钮的文字 (默认 '确定' )
 	 * @property {String}				confirmDisabledText	确认按钮处于禁用状态时的文字 (默认 '确定' )
 	 * @property {Boolean}				show				是否显示日历弹窗 (默认 false )
-	 * @property {Boolean}				closeOnClickOverly	是否允许点击遮罩关闭日历 (默认 false )
+	 * @property {Boolean}				closeOnClickOverlay	是否允许点击遮罩关闭日历 (默认 false )
 	 * @property {Boolean}				readonly	        是否为只读状态，只读状态下禁止选择日期 (默认 false )
 	 * @property {String | Number}		maxRange	        日期区间最多可选天数，默认无限制，mode = range时有效
 	 * @property {String}				rangePrompt	        范围选择超过最多可选天数时的提示文案，mode = range时有效
@@ -122,7 +122,9 @@
 				selected: [],
 				// 如果没有设置最大可选日期，默认为往后推3个月
 				maxMonth: 3,
-				scrollIntoView: ''
+				scrollIntoView: '',
+				// 过滤处理方法
+				innerFormatter: value => value
 			}
 		},
 		watch: {
@@ -171,6 +173,10 @@
 			this.init()
 		},
 		methods: {
+			// 在微信小程序中，不支持将函数当做props参数，故只能通过ref形式调用
+			setFormatter(e) {
+				this.innerFormatter = e
+			},
 			// month组件内部选择日期后，通过事件通知给父组件
 			monthSelected(e) {
 				this.selected = e
@@ -238,10 +244,8 @@
 								dot: false,
 								month: dayjs(minDate).add(i, "month").month() + 1
 							}
-							if (this.formatter) {
-								config = this.formatter(config)
-							}
-							return config
+							const formatter = this.formatter || this.innerFormatter
+							return formatter(config)
 						}),
 						// 当前所属的月份
 						month: dayjs(minDate).add(i, "month").month() + 1,

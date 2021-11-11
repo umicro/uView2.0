@@ -64,6 +64,11 @@
 				value5: ''
 			}
 		},
+		methods: {
+			formatter(value) {
+				return value.replace(/[^0-9]/ig,"")
+			}
+		}
 	}
 </script>
 

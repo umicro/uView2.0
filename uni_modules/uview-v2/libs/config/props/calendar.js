@@ -31,7 +31,7 @@ export default {
 		confirmText: '确定',
 		confirmDisabledText: '确定',
 		show: false,
-		closeOnClickOverly: false,
+		closeOnClickOverlay: false,
 		readonly: false,
 		showConfirm: true,
 		maxRange: Number.MAX_SAFE_INTEGER, // Infinity

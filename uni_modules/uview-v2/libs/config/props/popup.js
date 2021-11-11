@@ -17,7 +17,7 @@ export default {
 		borderRadius: 0,
 		closeable: false,
 		overlayStyle: () => {},
-		closeOnClickOverly: true,
+		closeOnClickOverlay: true,
 		zIndex: 10075,
 		safeAreaInsetBottom: true,
 		safeAreaInsetTop: false,

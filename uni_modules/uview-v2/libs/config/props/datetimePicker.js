@@ -30,7 +30,7 @@ export default {
 		cancelColor:'#909193',
 		confirmColor:'#3c9cff',
 		visibleItemCount:5,
-		closeOnClickOverly:false,
+		closeOnClickOverlay:false,
 		defaultIndex:() => {
 			return [];
 		}

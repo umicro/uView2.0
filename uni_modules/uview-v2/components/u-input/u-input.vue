@@ -102,6 +102,7 @@ import props from "./props.js";
  * @property {Boolean}			autosize				是否自适应内容高度，只对type=textarea有效，可传入对象,如{ maxHeight: 100, minHeight: 50 } （ 默认 false ）
  * @property {String | Number}	fontSize				输入框字体的大小 （ 默认 '15px' ）
  * @property {String}			color					输入框字体颜色	（ 默认 '#303133' ）
+ * @property {Function}			formatter			    内容式化函数
  * @property {String}			prefixIcon				输入框前置图标
  * @property {String | Object}	prefixIconStyle			前置图标样式，对象或字符串
  * @property {String}			suffixIcon				输入框后置图标
@@ -126,6 +127,8 @@ export default {
             firstChange: true,
             // value绑定值的变化是由内部还是外部引起的
             changeFromInner: false,
+			// 过滤处理方法
+			innerFormatter: value => value
         };
     },
     watch: {
@@ -197,11 +200,22 @@ export default {
         },
     },
     methods: {
+		// 在微信小程序中，不支持将函数当做props参数，故只能通过ref形式调用
+		setFormatter(e) {
+			this.innerFormatter = e
+		},
         // 当键盘输入时，触发input事件
         onInput(event) {
-            const { value = "" } = event.detail || {};
-            this.innerValue = value;
-            this.valueChange();
+            let { value = "" } = e.detail || {};
+            // 格式化过滤方法
+            const formatter = this.formatter || this.innerFormatter
+            const formatValue = formatter(value)
+            // 为了避免props的单向数据流特性，需要先将innerValue值设置为当前值，再在$nextTick中重新赋予设置后的值才有效
+            this.innerValue = value
+            this.$nextTick(() => {
+            	this.innerValue = formatValue;
+            	this.valueChange();
+            })
         },
         // 输入框失去焦点时触发
         onBlur(event) {

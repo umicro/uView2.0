@@ -46,9 +46,9 @@ export default {
 			default: uni.$u.props.keyboard.safeAreaInsetBottom
 		},
 		// 是否允许通过点击遮罩关闭键盘
-		closeOnClickOverly: {
+		closeOnClickOverlay: {
 			type: Boolean,
-			default: uni.$u.props.keyboard.closeOnClickOverly
+			default: uni.$u.props.keyboard.closeOnClickOverlay
 		},
 		// 控制键盘的弹出与收起
 		show: {

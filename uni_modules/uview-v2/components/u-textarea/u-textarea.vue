@@ -2,7 +2,7 @@
     <view class="u-textarea" :class="textareaClass" :style="[textareaStyle]">
         <textarea
             class="u-textarea__field"
-            :value="value"
+            :value="innerValue"
             :style="{ height: $u.addUnit(height) }"
             :placeholder="placeholder"
             :placeholder-style="$u.addStyle(placeholderStyle, 'string')"
@@ -59,6 +59,7 @@ import props from "./props.js";
  * @property {Boolean}				fixed					如果textarea是在一个position:fixed的区域，需要显示指定属性fixed为true（默认 false ）
  * @property {Number}				cursorSpacing			指定光标与键盘的距离（默认 0 ）
  * @property {String | Number}		cursor					指定focus时的光标位置
+ * @property {Function}			    formatter			    内容式化函数
  * @property {Boolean}				showConfirmBar			是否显示键盘上方带有”完成“按钮那一栏，（默认 true ）
  * @property {Number}				selectionStart			光标起始位置，自动聚焦时有效，需与selection-end搭配使用，（默认 -1 ）
  * @property {Number | Number}		selectionEnd			光标结束位置，自动聚焦时有效，需与selection-start搭配使用（默认 -1 ）
@@ -79,6 +80,40 @@ import props from "./props.js";
 export default {
     name: "u-textarea",
     mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
+	data() {
+		return {
+			// 输入框的值
+			innerValue: "",
+			// 是否处于获得焦点状态
+			focused: false,
+			// value是否第一次变化，在watch中，由于加入immediate属性，会在第一次触发，此时不应该认为value发生了变化
+			firstChange: true,
+			// value绑定值的变化是由内部还是外部引起的
+			changeFromInner: false,
+			// 过滤处理方法
+			innerFormatter: value => value
+		}
+	},
+	watch: {
+	    value: {
+	        immediate: true,
+	        handler(newVal, oldVal) {
+	            this.innerValue = newVal;
+	            /* #ifdef H5 */
+	            // 在H5中，外部value变化后，修改input中的值，不会触发@input事件，此时手动调用值变化方法
+	            if (
+	                this.firstChange === false &&
+	                this.changeFromInner === false
+	            ) {
+	                this.valueChange();
+	            }
+	            /* #endif */
+	            this.firstChange = false;
+	            // 重置changeFromInner的值为false，标识下一次引起默认为外部引起的
+	            this.changeFromInner = false;
+	        },
+	    },
+	},
     computed: {
         // 组件的类名
         textareaClass() {
@@ -110,6 +145,10 @@ export default {
         },
     },
     methods: {
+		// 在微信小程序中，不支持将函数当做props参数，故只能通过ref形式调用
+		setFormatter(e) {
+			this.innerFormatter = e
+		},
         onFocus(e) {
             this.$emit("focus", e);
         },
@@ -122,10 +161,29 @@ export default {
             this.$emit("linechange", e);
         },
         onInput(e) {
-            this.$emit("input", e.detail.value);
-            // 尝试调用u-form的验证方法
-            uni.$u.formValidate(this, "change");
+			let { value = "" } = e.detail || {};
+			// 格式化过滤方法
+			const formatter = this.formatter || this.innerFormatter
+			const formatValue = formatter(value)
+			// 为了避免props的单向数据流特性，需要先将innerValue值设置为当前值，再在$nextTick中重新赋予设置后的值才有效
+			this.innerValue = value
+			this.$nextTick(() => {
+				this.innerValue = formatValue;
+				this.valueChange();
+			})
         },
+		// 内容发生变化，进行处理
+		valueChange() {
+		    const value = this.innerValue;
+		    this.$nextTick(() => {
+		        this.$emit("input", value);
+		        // 标识value值的变化是由内部引起的
+		        this.changeFromInner = true;
+		        this.$emit("change", value);
+		        // 尝试调用u-form的验证方法
+		        uni.$u.formValidate(this, "change");
+		    });
+		},
         onConfirm(e) {
             this.$emit("confirm", e);
         },

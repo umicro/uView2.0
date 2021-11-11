@@ -104,6 +104,11 @@ export default {
         border: {
             type: String,
             default: uni.$u.props.textarea.border,
-        }
+        },
+		// 用于处理或者过滤输入框内容的方法
+		formatter: {
+			type: [Function, null],
+			default: null
+		}
     }
 }

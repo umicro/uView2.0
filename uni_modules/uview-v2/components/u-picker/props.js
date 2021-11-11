@@ -66,9 +66,9 @@ export default {
 			default: uni.$u.props.picker.keyName
 		},
 		// 是否允许点击遮罩关闭选择器
-		closeOnClickOverly: {
+		closeOnClickOverlay: {
 			type: Boolean,
-			default: uni.$u.props.picker.closeOnClickOverly
+			default: uni.$u.props.picker.closeOnClickOverlay
 		},
 		// 各列的默认索引
 		defaultIndex: {

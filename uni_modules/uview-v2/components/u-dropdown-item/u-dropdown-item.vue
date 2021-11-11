@@ -3,7 +3,7 @@
 		<u-overlay
 			customStyle="top: 126px"
 			:show="show"
-			:closeOnClickOverly="closeOnClickOverly"
+			:closeOnClickOverlay="closeOnClickOverlay"
 			@click="overlayClick"
 		></u-overlay>
 		<view

@@ -60,7 +60,7 @@
 	 * @property {Boolean}			closeable			是否显示关闭图标（默认 false ）
 	 * @property {Object | String}	overlayStyle		自定义遮罩的样式
 	 * @property {String | Number}	overlayOpacity		遮罩透明度，0-1之间（默认 0.5）
-	 * @property {Boolean}			closeOnClickOverly	点击遮罩是否关闭弹窗 （默认  true ）
+	 * @property {Boolean}			closeOnClickOverlay	点击遮罩是否关闭弹窗 （默认  true ）
 	 * @property {String | Number}	zIndex				层级 （默认 10075 ）
 	 * @property {Boolean}			safeAreaInsetBottom	是否为iPhoneX留出底部安全距离 （默认 true ）
 	 * @property {Boolean}			safeAreaInsetTop	是否留出顶部安全距离（状态栏高度） （默认 false ）
@@ -184,7 +184,7 @@
 		methods: {
 			// 点击遮罩
 			overlayClick() {
-				if (this.closeOnClickOverly) {
+				if (this.closeOnClickOverlay) {
 					this.$emit('close')
 				}
 			},

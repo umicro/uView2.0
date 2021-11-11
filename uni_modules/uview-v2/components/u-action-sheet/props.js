@@ -41,9 +41,9 @@ export default {
 			default: uni.$u.props.actionSheet.openType
 		},
 		// 点击遮罩是否允许关闭 (默认true)
-		closeOnClickOverly: {
+		closeOnClickOverlay: {
 			type: Boolean,
-			default: uni.$u.props.actionSheet.closeOnClickOverly
+			default: uni.$u.props.actionSheet.closeOnClickOverlay
 		},
 		// 是否显示圆角 (默认false)
 		round: {

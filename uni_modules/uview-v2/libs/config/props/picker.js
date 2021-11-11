@@ -23,7 +23,7 @@ export default {
 		singleIndex:  0,
 		visibleItemCount:  5,
 		keyName:  'text',
-		closeOnClickOverly:  false,
+		closeOnClickOverlay:  false,
 		defaultIndex: () => []
 	},
 }

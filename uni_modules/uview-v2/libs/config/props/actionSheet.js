@@ -19,7 +19,7 @@ export default {
 		closeOnClickAction: true,
 		safeAreaInsetBottom: true,
 		openType: '',
-		closeOnClickOverly: true,
+		closeOnClickOverlay: true,
 		round: false
 	},
 }

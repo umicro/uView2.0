@@ -61,9 +61,9 @@ export default {
 			default: uni.$u.props.modal.asyncClose
 		},
 		// 是否允许点击遮罩关闭modal
-		closeOnClickOverly: {
+		closeOnClickOverlay: {
 			type: Boolean,
-			default: uni.$u.props.modal.closeOnClickOverly
+			default: uni.$u.props.modal.closeOnClickOverlay
 		},
 		// 给一个负的margin-top，往上偏移，避免和键盘重合的情况
 		negativeTop: {

@@ -1,7 +1,7 @@
 <template>
 	<u-popup
 	    :overlay="overlay"
-	    :closeOnClickOverly="closeOnClickOverly"
+	    :closeOnClickOverlay="closeOnClickOverlay"
 	    mode="bottom"
 	    :popup="false"
 	    :show="show"
@@ -83,7 +83,7 @@
 	 * @property {Boolean}			showConfirm			是否显示工具条右边的"完成"按钮（ 默认 true ）
 	 * @property {Boolean}			random				是否打乱键盘按键的顺序 （默认 false ）
 	 * @property {Boolean}			safeAreaInsetBottom	是否开启底部安全区适配 （默认 true ）
-	 * @property {Boolean}			closeOnClickOverly	是否允许点击遮罩收起键盘 （默认 true ）
+	 * @property {Boolean}			closeOnClickOverlay	是否允许点击遮罩收起键盘 （默认 true ）
 	 * @property {Boolean}			show				控制键盘的弹出与收起（默认 false ）
 	 * @property {Boolean}			overlay				是否显示遮罩 （默认 true ）
 	 * @property {String | Number}	zIndex				弹出键盘的z-index值 （默认 1075 ）

@@ -22,7 +22,7 @@ export default {
 		buttonReverse:  false,
 		zoom:  true,
 		asyncClose:  false,
-		closeOnClickOverly:  false,
+		closeOnClickOverlay:  false,
 		negativeTop:  0,
 		width:  '650rpx',
 		confirmButtonShape:  ''

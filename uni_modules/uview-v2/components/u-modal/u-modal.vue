@@ -8,7 +8,7 @@
 			overflow: 'hidden',
 			marginTop: `-${$u.addUnit(negativeTop)}`
 		}"
-		:closeOnClickOverly="closeOnClickOverly"
+		:closeOnClickOverlay="closeOnClickOverlay"
 		:safeAreaInsetBottom="false"
 		:duration="400"
 		@click="clickHandler"
@@ -107,13 +107,13 @@
 	 * @property {Boolean}			buttonReverse		对调确认和取消的位置 （默认 false ）
 	 * @property {Boolean}			zoom				是否开启缩放模式 （默认 true ）
 	 * @property {Boolean}			asyncClose			是否异步关闭，只对确定按钮有效，见上方说明 （默认 false ）
-	 * @property {Boolean}			closeOnClickOverly	是否允许点击遮罩关闭Modal （默认 false ）
+	 * @property {Boolean}			closeOnClickOverlay	是否允许点击遮罩关闭Modal （默认 false ）
 	 * @property {String | Number}	negativeTop			往上偏移的值，给一个负的margin-top，往上偏移，避免和键盘重合的情况，单位任意，数值则默认为px单位 （默认 0 ）
 	 * @property {String | Number}	width				modal宽度，不支持百分比，可以数值，px，rpx单位 （默认 '650rpx' ）
 	 * @property {String}			confirmButtonShape	确认按钮的样式,如设置，将不会显示取消按钮
 	 * @event {Function} confirm	点击确认按钮时触发
 	 * @event {Function} cancel		点击取消按钮时触发
-	 * @event {Function} close		点击遮罩关闭出发，closeOnClickOverly为true有效
+	 * @event {Function} close		点击遮罩关闭出发，closeOnClickOverlay为true有效
 	 * @example <u-loadmore :status="status" icon-type="iconType" load-text="loadText" />
 	 */
 	export default {
@@ -150,7 +150,7 @@
 			// 多了一个透明的遮罩，此透明的遮罩会覆盖在灰色的遮罩上，所以实际上是点击不到灰色遮罩的，popup内部在
 			// 透明遮罩的子元素做了.stop处理，所以点击内容区，也不会导致误触发
 			clickHandler() {
-				if (this.closeOnClickOverly) {
+				if (this.closeOnClickOverlay) {
 					this.$emit('close')
 				}
 			}

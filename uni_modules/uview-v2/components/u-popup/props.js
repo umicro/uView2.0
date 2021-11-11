@@ -36,9 +36,9 @@ export default {
 			default: uni.$u.props.popup.overlayStyle
 		},
 		// 点击遮罩是否关闭弹窗
-		closeOnClickOverly: {
+		closeOnClickOverlay: {
 			type: Boolean,
-			default: uni.$u.props.popup.closeOnClickOverly
+			default: uni.$u.props.popup.closeOnClickOverlay
 		},
 		// 层级
 		zIndex: {

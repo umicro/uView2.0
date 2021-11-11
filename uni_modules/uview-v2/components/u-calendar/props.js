@@ -96,9 +96,9 @@ export default {
 			default: uni.$u.props.calendar.show
 		},
 		// 是否允许点击遮罩关闭日历
-		closeOnClickOverly: {
+		closeOnClickOverlay: {
 			type: Boolean,
-			default: uni.$u.props.calendar.closeOnClickOverly
+			default: uni.$u.props.calendar.closeOnClickOverlay
 		},
 		// 是否为只读状态，只读状态下禁止选择日期
 		readonly: {

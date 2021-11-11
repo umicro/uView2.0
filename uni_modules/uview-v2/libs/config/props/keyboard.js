@@ -19,7 +19,7 @@ export default {
 		showConfirm: true,
 		random: false,
 		safeAreaInsetBottom: true,
-		closeOnClickOverly: true,
+		closeOnClickOverlay: true,
 		show: false,
 		overlay: true,
 		zIndex: 10075,

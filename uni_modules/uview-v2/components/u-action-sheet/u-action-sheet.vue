@@ -4,7 +4,7 @@
 	    :show="show"
 	    mode="bottom"
 	    @close="close"
-	    :closeOnClickOverly="closeOnClickOverly"
+	    :closeOnClickOverlay="closeOnClickOverlay"
 	    :safeAreaInsetBottom="safeAreaInsetBottom"
 	    :round="round"
 	>
@@ -124,7 +124,7 @@
 	 * @property {Boolean}			closeOnClickAction	点击某个菜单项时是否关闭弹窗 （默认 true ）
 	 * @property {Boolean}			safeAreaInsetBottom	处理底部安全区 （默认 true ）
 	 * @property {String}			openType			小程序的打开方式 (contact | launchApp | getUserInfo | openSetting ｜getPhoneNumber ｜error )
-	 * @property {Boolean}			closeOnClickOverly	点击遮罩是否允许关闭  (默认 true )
+	 * @property {Boolean}			closeOnClickOverlay	点击遮罩是否允许关闭  (默认 true )
 	 * @property {Boolean}			round				是否显示圆角  (默认 false )
 	 * @property {String}			lang				指定返回用户信息的语言，zh_CN 简体中文，zh_TW 繁体中文，en 英文
 	 * @property {String}			sessionFrom			会话来源，openType="contact"时有效
@@ -169,7 +169,7 @@
 		methods: {
 			close() {
 				// 允许点击遮罩关闭时，才发出close事件
-				if(this.closeOnClickOverly) {
+				if(this.closeOnClickOverlay) {
 					this.$emit('close')
 				}
 			},

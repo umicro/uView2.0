@@ -20,6 +20,7 @@
 		:maxlength="maxlength"
 		:border="border"
 		:customStyle="customStyle"
+		:formatter="formatter"
 		@focus="$emit('focus')"
 		@blur="$emit('blur')"
 		@linechange="$emit('linechange')"

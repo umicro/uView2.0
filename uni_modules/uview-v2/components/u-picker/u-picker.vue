@@ -66,7 +66,7 @@
  * @property {String | Number}	singleIndex			选择器只有一列时，默认选中项的索引，从0开始（默认 0 ）
  * @property {String | Number}	visibleItemCount	每列中可见选项的数量（默认 5 ）
  * @property {String}			keyName				选项对象中，需要展示的属性键名（默认 'text' ）
- * @property {Boolean}			closeOnClickOverly	是否允许点击遮罩关闭选择器（默认 false ）
+ * @property {Boolean}			closeOnClickOverlay	是否允许点击遮罩关闭选择器（默认 false ）
  * @property {Array}			defaultIndex		各列的默认索引
  * @event {Function} close		关闭选择器时触发
  * @event {Function} cancel		点击取消按钮触发
@@ -116,7 +116,7 @@ export default {
 		},
 		// 关闭选择器
 		closeHandler() {
-			if (this.closeOnClickOverly) {
+			if (this.closeOnClickOverlay) {
 				this.$emit('close')
 			}
 		},

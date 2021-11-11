@@ -28,7 +28,7 @@ export default {
 			default: 'auto'
 		},
 		// 点击遮罩是否可以收起弹窗
-		closeOnClickOverly: {
+		closeOnClickOverlay: {
 			type: Boolean,
 			default: true
 		}

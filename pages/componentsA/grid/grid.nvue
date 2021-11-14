@@ -162,7 +162,7 @@
 						title: '首页'
 					},
 					{
-						name: 'star',
+						name: 'volume',
 						title: '音量'
 					},
 				],

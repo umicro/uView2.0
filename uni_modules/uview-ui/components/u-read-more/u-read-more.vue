@@ -81,7 +81,6 @@
 		computed: {
 			// 展开后无需阴影，收起时才需要阴影样式
 			innerShadowStyle() {
-				console.log(this.shadowStyle);
 				if (this.status === 'open') return {}
 				else return this.shadowStyle
 			}

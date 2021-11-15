@@ -60,7 +60,7 @@ uView UI，是[uni-app](https://uniapp.dcloud.io/)全面兼容nvue的uni-app生�
 
 ## 安装
 
-#### **下载地址** —— [尚未开放]()
+#### **下载地址** —— [https://ext.dcloud.net.cn/plugin?id=1593](https://ext.dcloud.net.cn/plugin?id=1593)
 
 ## 快速上手
 

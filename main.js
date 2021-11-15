@@ -5,8 +5,7 @@ import App from './App'
 import store from './store'
 
 // 引入全局uView
-import uView from '@/uni_modules/uview-v2'
-// #endif
+import uView from '@/uni_modules/uview-ui'
 
 import mixin from './common/mixin'
 
@@ -19,9 +18,10 @@ Vue.use(uView)
 
 // #ifdef MP
 // 引入uView对小程序分享的mixin封装
-const mpShare = require('@/uni_modules/uview-v2/libs/mixin/mpShare.js')
-
+const mpShare = require('@/uni_modules/uview-ui/libs/mixin/mpShare.js')
 Vue.mixin(mpShare)
+// #endif
+
 Vue.mixin(mixin)
 
 const app = new Vue({

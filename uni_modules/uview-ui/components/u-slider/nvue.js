@@ -117,7 +117,6 @@ export default {
             const {
                 x
             } = this.getTouchPoint(e)
-            console.log(x)
             this.buttonWrapperStyle = {
                 transform: `translateX(${x}px)`
             }

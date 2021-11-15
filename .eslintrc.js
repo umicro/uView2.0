@@ -1,5 +1,5 @@
 module.exports = {
-    extends: ['eslint-config-egg', 'airbnb'],
+    extends: ['airbnb'],
     rules: {
         // 关闭严格模式的提示
         strict: 0,
@@ -21,6 +21,7 @@ module.exports = {
         'no-undef': 'off',
         // 允许lf和crlf文件行尾
         'linebreak-style': 'off',
+        // 关闭function的jsdoc校验
         'jsdoc/check-tag-names': 'off'
     }
 }

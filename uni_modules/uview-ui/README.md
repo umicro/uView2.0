@@ -23,7 +23,7 @@ uView UI，是[uni-app](https://uniapp.dcloud.io/)生态优秀的UI框架，全�
 
 ```bash
 # npm方式安装
-npm i uview-v2
+npm i uview-ui
 ```
 
 ## 快速上手
@@ -31,7 +31,7 @@ npm i uview-v2
 1. `main.js`引入uView库
 ```js
 // main.js
-import uView from 'uview-v2';
+import uView from 'uview-ui';
 Vue.use(uView);
 ```
 
@@ -95,12 +95,11 @@ Vue.use(uView);
 <br>
 <img src="https://uviewui.com/common/weixin_mini_qrcode.png" width="220" height="220" >
 
-<!-- ## 捐赠uView的研发
+## 捐赠uView的研发
 
 uView文档和源码全部开源免费，如果您认为uView帮到了您的开发工作，您可以捐赠uView的研发工作，捐赠无门槛，哪怕是一杯可乐也好(相信这比打赏主播更有意义)。
 
-<img src="https://uviewui.com/common/wechat.png" width="220" >
-<img style="margin-left: 100px;" src="https://uviewui.com/common/alipay.png" width="220" >
- -->
+<img src="https://uviewui.com/common/wechat.png" width="220" ><img style="margin-left: 100px;" src="https://uviewui.com/common/alipay.png" width="220" >
+
 ## 版权信息
 uView遵循[MIT](https://en.wikipedia.org/wiki/MIT_License)开源协议，意味着您无需支付任何费用，也无需授权，即可将uView应用到您的产品中。

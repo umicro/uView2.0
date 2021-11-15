@@ -44,6 +44,6 @@ export default {
         border: 'surround',
         readonly: false,
         shape: 'square'
-
+		formatter: null
     }
 }

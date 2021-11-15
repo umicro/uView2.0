@@ -108,7 +108,7 @@ export default {
         // 用于处理或者过滤输入框内容的方法
         formatter: {
             type: [Function, null],
-            default: null
+            default: uni.$u.props.textarea.formatter
         }
     }
 }

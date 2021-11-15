@@ -177,6 +177,11 @@ export default {
         shape: {
             type: String,
             default: uni.$u.props.input.shape
-        }
+        },
+		// 用于处理或者过滤输入框内容的方法
+		formatter: {
+		    type: [Function, null],
+		    default: uni.$u.props.input.formatter
+		}
     }
 }

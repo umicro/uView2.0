@@ -30,6 +30,7 @@ export default {
         disableDefaultPadding: false,
         holdKeyboard: false,
         maxlength: 140,
-        border: 'surround'
+        border: 'surround',
+		formatter: null
     }
 }

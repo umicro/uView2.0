@@ -39,14 +39,14 @@ Vue.use(uView);
 ```css
 /* App.vue */
 <style lang="scss">
-@import "uview-v2/index.scss";
+@import "uview-ui/index.scss";
 </style>
 ```
 
 3. `uni.scss`引入全局scss变量文件
 ```css
 /* uni.scss */
-@import "uview-v2/theme.scss";
+@import "uview-ui/theme.scss";
 ```
 
 4. `pages.json`配置easycom规则(按需引入)
@@ -57,9 +57,9 @@ Vue.use(uView);
 	"easycom": {
 		// npm安装的方式不需要前面的"@/"，下载安装的方式需要"@/"
 		// npm安装方式
-		"^u-(.*)": "uview-v2/components/u-$1/u-$1.vue"
+		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
 		// 下载安装方式
-		// "^u-(.*)": "@/uview-v2/components/u-$1/u-$1.vue"
+		// "^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
 	},
 	// 此为本身已有的内容
 	"pages": [

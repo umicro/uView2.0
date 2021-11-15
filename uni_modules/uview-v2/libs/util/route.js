@@ -13,7 +13,7 @@ class Router {
             params: {}, // 传递的参数
             animationType: 'pop-in', // 窗口动画,只在APP有效
             animationDuration: 300, // 窗口动画持续时间,单位毫秒,只在APP有效
-            intercept: false, // 是否需要拦截
+            intercept: false // 是否需要拦截
         }
         // 因为route方法是需要对外赋值给另外的对象使用，同时route内部有使用this，会导致route失去上下文
         // 这里在构造函数中进行this绑定
@@ -34,14 +34,13 @@ class Router {
         let query = ''
         if (/.*\/.*\?.*=.*/.test(url)) {
             // object对象转为get类型的参数
-            query = uni.$u.queryParams(params, false);
+            query = uni.$u.queryParams(params, false)
             // 因为已有get参数,所以后面拼接的参数需要带上"&"隔开
-            return url += "&" + query
-        } else {
-            // 直接拼接参数，因为此处url中没有后面的query参数，也就没有"?/&"之类的符号
-            query = uni.$u.queryParams(params);
-            return url += query
+            return url += `&${query}`
         }
+        // 直接拼接参数，因为此处url中没有后面的query参数，也就没有"?/&"之类的符号
+        query = uni.$u.queryParams(params)
+        return url += query
     }
 
     // 对外的方法名称
@@ -97,27 +96,27 @@ class Router {
                 url,
                 animationType,
                 animationDuration
-            });
+            })
         }
         if (config.type == 'redirectTo' || config.type == 'redirect') {
             uni.redirectTo({
                 url
-            });
+            })
         }
         if (config.type == 'switchTab' || config.type == 'tab') {
             uni.switchTab({
                 url
-            });
+            })
         }
         if (config.type == 'reLaunch' || config.type == 'launch') {
             uni.reLaunch({
                 url
-            });
+            })
         }
         if (config.type == 'navigateBack' || config.type == 'back') {
             uni.navigateBack({
                 delta
-            });
+            })
         }
     }
 }

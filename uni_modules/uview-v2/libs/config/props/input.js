@@ -1,6 +1,6 @@
 /*
  * @Author       : LQ
- * @Description  : 
+ * @Description  :
  * @version      : 1.0
  * @Date         : 2021-08-20 16:44:21
  * @LastAuthor   : LQ
@@ -45,5 +45,5 @@ export default {
         readonly: false,
         shape: 'square'
 
-    },
+    }
 }

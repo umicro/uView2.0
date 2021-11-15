@@ -1,6 +1,6 @@
 /*
  * @Author       : LQ
- * @Description  : 
+ * @Description  :
  * @version      : 1.0
  * @Date         : 2021-08-20 16:44:21
  * @LastAuthor   : LQ
@@ -9,13 +9,13 @@
  */
 
 export default {
-	// code 组件
-	code:{
-		seconds:60,
-		startText:'获取验证码',
-		changeText:'X秒重新获取',
-		endText:'重新获取',
-		keepRunning:false,
-		uniqueKey:''
-	},
+    // code 组件
+    code: {
+        seconds: 60,
+        startText: '获取验证码',
+        changeText: 'X秒重新获取',
+        endText: '重新获取',
+        keepRunning: false,
+        uniqueKey: ''
+    }
 }

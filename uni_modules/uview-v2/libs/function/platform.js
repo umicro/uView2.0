@@ -41,7 +41,7 @@ platform = 'baidu'
 // #endif
 
 // #ifdef MP-TOUTIAO
-platform  = 'toutiao'
+platform = 'toutiao'
 // #endif
 
 // #ifdef MP-QQ
@@ -71,6 +71,5 @@ platform = 'quickapp-webview-huawei'
 // #ifdef QUICKAPP-WEBVIEW-UNION
 platform = 'quckapp-webview-union'
 // #endif
-
 
 export default platform

@@ -1,6 +1,6 @@
 /*
  * @Author       : LQ
- * @Description  : 
+ * @Description  :
  * @version      : 1.0
  * @Date         : 2021-08-20 16:44:21
  * @LastAuthor   : LQ
@@ -8,14 +8,14 @@
  * @FilePath     : /u-view2.0/uview-ui/libs/config/props/steps.js
  */
 export default {
-	// steps组件
-	steps: {
-		direction: 'row',
-		current: 0,
-		activeColor: '#3c9cff',
-		inactiveColor: '#969799',
-		activeIcon: '',
-		inactiveIcon: '',
-		dot: false
-	},
+    // steps组件
+    steps: {
+        direction: 'row',
+        current: 0,
+        activeColor: '#3c9cff',
+        inactiveColor: '#969799',
+        activeIcon: '',
+        inactiveIcon: '',
+        dot: false
+    }
 }

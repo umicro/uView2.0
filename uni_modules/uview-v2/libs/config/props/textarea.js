@@ -1,6 +1,6 @@
 /*
  * @Author       : LQ
- * @Description  : 
+ * @Description  :
  * @version      : 1.0
  * @Date         : 2021-08-20 16:44:21
  * @LastAuthor   : LQ
@@ -10,7 +10,7 @@
 export default {
     // textarea 组件
     textarea: {
-        value: "",
+        value: '',
         placeholder: '',
         placeholderClass: 'textarea-placeholder',
         placeholderStyle: 'color: #c0c4cc',
@@ -31,5 +31,5 @@ export default {
         holdKeyboard: false,
         maxlength: 140,
         border: 'surround'
-    },
+    }
 }

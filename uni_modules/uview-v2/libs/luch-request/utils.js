@@ -2,7 +2,7 @@
 
 // utils is a library of generic helper functions non-specific to axios
 
-var toString = Object.prototype.toString
+const { toString } = Object.prototype
 
 /**
  * Determine if a value is an Array
@@ -10,10 +10,9 @@ var toString = Object.prototype.toString
  * @param {Object} val The value to test
  * @returns {boolean} True if value is an Array, otherwise false
  */
-export function isArray (val) {
-  return toString.call(val) === '[object Array]'
+export function isArray(val) {
+    return toString.call(val) === '[object Array]'
 }
-
 
 /**
  * Determine if a value is an Object
@@ -21,8 +20,8 @@ export function isArray (val) {
  * @param {Object} val The value to test
  * @returns {boolean} True if value is an Object, otherwise false
  */
-export function isObject (val) {
-  return val !== null && typeof val === 'object'
+export function isObject(val) {
+    return val !== null && typeof val === 'object'
 }
 
 /**
@@ -31,8 +30,8 @@ export function isObject (val) {
  * @param {Object} val The value to test
  * @returns {boolean} True if value is a Date, otherwise false
  */
-export function isDate (val) {
-  return toString.call(val) === '[object Date]'
+export function isDate(val) {
+    return toString.call(val) === '[object Date]'
 }
 
 /**
@@ -41,10 +40,9 @@ export function isDate (val) {
  * @param {Object} val The value to test
  * @returns {boolean} True if value is a URLSearchParams object, otherwise false
  */
-export function isURLSearchParams (val) {
-  return typeof URLSearchParams !== 'undefined' && val instanceof URLSearchParams
+export function isURLSearchParams(val) {
+    return typeof URLSearchParams !== 'undefined' && val instanceof URLSearchParams
 }
-
 
 /**
  * Iterate over an Array or an Object invoking a function for each item.
@@ -58,31 +56,31 @@ export function isURLSearchParams (val) {
  * @param {Object|Array} obj The object to iterate
  * @param {Function} fn The callback to invoke for each item
  */
-export function forEach (obj, fn) {
-  // Don't bother if no value provided
-  if (obj === null || typeof obj === 'undefined') {
-    return
-  }
+export function forEach(obj, fn) {
+    // Don't bother if no value provided
+    if (obj === null || typeof obj === 'undefined') {
+        return
+    }
 
-  // Force an array if not already something iterable
-  if (typeof obj !== 'object') {
-    /*eslint no-param-reassign:0*/
-    obj = [obj]
-  }
+    // Force an array if not already something iterable
+    if (typeof obj !== 'object') {
+    /* eslint no-param-reassign:0 */
+        obj = [obj]
+    }
 
-  if (isArray(obj)) {
+    if (isArray(obj)) {
     // Iterate over array values
-    for (var i = 0, l = obj.length; i < l; i++) {
-      fn.call(null, obj[i], i, obj)
-    }
-  } else {
+        for (let i = 0, l = obj.length; i < l; i++) {
+            fn.call(null, obj[i], i, obj)
+        }
+    } else {
     // Iterate over object keys
-    for (var key in obj) {
-      if (Object.prototype.hasOwnProperty.call(obj, key)) {
-        fn.call(null, obj[key], key, obj)
-      }
+        for (const key in obj) {
+            if (Object.prototype.hasOwnProperty.call(obj, key)) {
+                fn.call(null, obj[key], key, obj)
+            }
+        }
     }
-  }
 }
 
 /**
@@ -91,7 +89,7 @@ export function forEach (obj, fn) {
  * @returns {boolean}
  */
 export function isBoolean(val) {
-  return typeof val === 'boolean'
+    return typeof val === 'boolean'
 }
 
 /**
@@ -100,10 +98,8 @@ export function isBoolean(val) {
  * @returns {boolean}
  */
 export function isPlainObject(obj) {
-  return Object.prototype.toString.call(obj) === '[object Object]'
+    return Object.prototype.toString.call(obj) === '[object Object]'
 }
-
-
 
 /**
  * Function equal to merge with the difference being that no reference
@@ -114,22 +110,22 @@ export function isPlainObject(obj) {
  * @returns {Object} Result of all merge properties
  */
 export function deepMerge(/* obj1, obj2, obj3, ... */) {
-  let result = {}
-  function assignValue(val, key) {
-    if (typeof result[key] === 'object' && typeof val === 'object') {
-      result[key] = deepMerge(result[key], val)
-    } else if (typeof val === 'object') {
-      result[key] = deepMerge({}, val)
-    } else {
-      result[key] = val
+    const result = {}
+    function assignValue(val, key) {
+        if (typeof result[key] === 'object' && typeof val === 'object') {
+            result[key] = deepMerge(result[key], val)
+        } else if (typeof val === 'object') {
+            result[key] = deepMerge({}, val)
+        } else {
+            result[key] = val
+        }
     }
-  }
-  for (let i = 0, l = arguments.length; i < l; i++) {
-    forEach(arguments[i], assignValue)
-  }
-  return result
+    for (let i = 0, l = arguments.length; i < l; i++) {
+        forEach(arguments[i], assignValue)
+    }
+    return result
 }
 
-export function isUndefined (val) {
-  return typeof val === 'undefined'
+export function isUndefined(val) {
+    return typeof val === 'undefined'
 }

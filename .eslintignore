@@ -1,3 +1,4 @@
 unpackage
 node_modules
-uview-ui
+coverage
+static/common/*

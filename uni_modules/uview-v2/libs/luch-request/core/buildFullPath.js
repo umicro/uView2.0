@@ -13,8 +13,8 @@ import combineURLs from '../helpers/combineURLs'
  * @returns {string} The combined full path
  */
 export default function buildFullPath(baseURL, requestedURL) {
-  if (baseURL && !isAbsoluteURL(requestedURL)) {
-    return combineURLs(baseURL, requestedURL)
-  }
-  return requestedURL
+    if (baseURL && !isAbsoluteURL(requestedURL)) {
+        return combineURLs(baseURL, requestedURL)
+    }
+    return requestedURL
 }

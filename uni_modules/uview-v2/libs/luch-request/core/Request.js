@@ -11,7 +11,6 @@
  * HBuilderX: beat-3.0.4 alpha-3.0.4
  */
 
-
 import dispatchRequest from './dispatchRequest'
 import InterceptorManager from './InterceptorManager'
 import mergeConfig from './mergeConfig'
@@ -20,7 +19,7 @@ import { isPlainObject } from '../utils'
 import clone from '../utils/clone'
 
 export default class Request {
-  /**
+    /**
    * @param {Object} arg - 全局配置
    * @param {String} arg.baseURL - 全局根路径
    * @param {Object} arg.header - 全局header
@@ -34,47 +33,47 @@ export default class Request {
    * @param {Boolean} arg.firstIpv4 - 全DNS解析时优先使用ipv4。默认false。仅 App-Android 支持 (HBuilderX 2.8.0+)
    * @param {Function(statusCode):Boolean} arg.validateStatus - 全局默认的自定义验证器。默认statusCode >= 200 && statusCode < 300
    */
-  constructor(arg = {}) {
-    if (!isPlainObject(arg)) {
-      arg = {}
-      console.warn('设置全局参数必须接收一个Object')
+    constructor(arg = {}) {
+        if (!isPlainObject(arg)) {
+            arg = {}
+            console.warn('设置全局参数必须接收一个Object')
+        }
+        this.config = clone({ ...defaults, ...arg })
+        this.interceptors = {
+            request: new InterceptorManager(),
+            response: new InterceptorManager()
+        }
     }
-    this.config = clone({...defaults, ...arg})
-    this.interceptors = {
-      request: new InterceptorManager(),
-      response: new InterceptorManager()
-    }
-  }
 
-  /**
+    /**
    * @Function
    * @param {Request~setConfigCallback} f - 设置全局默认配置
    */
-  setConfig(f) {
-    this.config = f(this.config)
-  }
-
-  middleware(config) {
-    config = mergeConfig(this.config, config)
-    let chain = [dispatchRequest, undefined]
-    let promise = Promise.resolve(config)
-
-    this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
-      chain.unshift(interceptor.fulfilled, interceptor.rejected)
-    })
-
-    this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
-      chain.push(interceptor.fulfilled, interceptor.rejected)
-    })
-
-    while (chain.length) {
-      promise = promise.then(chain.shift(), chain.shift())
+    setConfig(f) {
+        this.config = f(this.config)
     }
 
-    return promise
-  }
+    middleware(config) {
+        config = mergeConfig(this.config, config)
+        const chain = [dispatchRequest, undefined]
+        let promise = Promise.resolve(config)
 
-  /**
+        this.interceptors.request.forEach((interceptor) => {
+            chain.unshift(interceptor.fulfilled, interceptor.rejected)
+        })
+
+        this.interceptors.response.forEach((interceptor) => {
+            chain.push(interceptor.fulfilled, interceptor.rejected)
+        })
+
+        while (chain.length) {
+            promise = promise.then(chain.shift(), chain.shift())
+        }
+
+        return promise
+    }
+
+    /**
    * @Function
    * @param {Object} config - 请求配置项
    * @prop {String} options.url - 请求路径
@@ -85,112 +84,111 @@ export default class Request {
    * @prop {Object} [options.method = config.method] - 请求方法
    * @returns {Promise<unknown>}
    */
-  request(config = {}) {
-    return this.middleware(config)
-  }
+    request(config = {}) {
+        return this.middleware(config)
+    }
 
-  get(url, options = {}) {
-    return this.middleware({
-      url,
-      method: 'GET',
-      ...options
-    })
-  }
+    get(url, options = {}) {
+        return this.middleware({
+            url,
+            method: 'GET',
+            ...options
+        })
+    }
 
-  post(url, data, options = {}) {
-    return this.middleware({
-      url,
-      data,
-      method: 'POST',
-      ...options
-    })
-  }
+    post(url, data, options = {}) {
+        return this.middleware({
+            url,
+            data,
+            method: 'POST',
+            ...options
+        })
+    }
 
-  // #ifndef MP-ALIPAY
-  put(url, data, options = {}) {
-    return this.middleware({
-      url,
-      data,
-      method: 'PUT',
-      ...options
-    })
-  }
+    // #ifndef MP-ALIPAY
+    put(url, data, options = {}) {
+        return this.middleware({
+            url,
+            data,
+            method: 'PUT',
+            ...options
+        })
+    }
 
-  // #endif
+    // #endif
 
-  // #ifdef APP-PLUS || H5 || MP-WEIXIN || MP-BAIDU
-  delete(url, data, options = {}) {
-    return this.middleware({
-      url,
-      data,
-      method: 'DELETE',
-      ...options
-    })
-  }
+    // #ifdef APP-PLUS || H5 || MP-WEIXIN || MP-BAIDU
+    delete(url, data, options = {}) {
+        return this.middleware({
+            url,
+            data,
+            method: 'DELETE',
+            ...options
+        })
+    }
 
-  // #endif
+    // #endif
 
-  // #ifdef H5 || MP-WEIXIN
-  connect(url, data, options = {}) {
-    return this.middleware({
-      url,
-      data,
-      method: 'CONNECT',
-      ...options
-    })
-  }
+    // #ifdef H5 || MP-WEIXIN
+    connect(url, data, options = {}) {
+        return this.middleware({
+            url,
+            data,
+            method: 'CONNECT',
+            ...options
+        })
+    }
 
-  // #endif
+    // #endif
 
-  // #ifdef  H5 || MP-WEIXIN || MP-BAIDU
-  head(url, data, options = {}) {
-    return this.middleware({
-      url,
-      data,
-      method: 'HEAD',
-      ...options
-    })
-  }
+    // #ifdef  H5 || MP-WEIXIN || MP-BAIDU
+    head(url, data, options = {}) {
+        return this.middleware({
+            url,
+            data,
+            method: 'HEAD',
+            ...options
+        })
+    }
 
-  // #endif
+    // #endif
 
-  // #ifdef APP-PLUS || H5 || MP-WEIXIN || MP-BAIDU
-  options(url, data, options = {}) {
-    return this.middleware({
-      url,
-      data,
-      method: 'OPTIONS',
-      ...options
-    })
-  }
+    // #ifdef APP-PLUS || H5 || MP-WEIXIN || MP-BAIDU
+    options(url, data, options = {}) {
+        return this.middleware({
+            url,
+            data,
+            method: 'OPTIONS',
+            ...options
+        })
+    }
 
-  // #endif
+    // #endif
 
-  // #ifdef H5 || MP-WEIXIN
-  trace(url, data, options = {}) {
-    return this.middleware({
-      url,
-      data,
-      method: 'TRACE',
-      ...options
-    })
-  }
+    // #ifdef H5 || MP-WEIXIN
+    trace(url, data, options = {}) {
+        return this.middleware({
+            url,
+            data,
+            method: 'TRACE',
+            ...options
+        })
+    }
 
-  // #endif
+    // #endif
 
-  upload(url, config = {}) {
-    config.url = url
-    config.method = 'UPLOAD'
-    return this.middleware(config)
-  }
+    upload(url, config = {}) {
+        config.url = url
+        config.method = 'UPLOAD'
+        return this.middleware(config)
+    }
 
-  download(url, config = {}) {
-    config.url = url
-    config.method = 'DOWNLOAD'
-    return this.middleware(config)
-  }
+    download(url, config = {}) {
+        config.url = url
+        config.method = 'DOWNLOAD'
+        return this.middleware(config)
+    }
 }
-
 
 /**
  * setConfig回调

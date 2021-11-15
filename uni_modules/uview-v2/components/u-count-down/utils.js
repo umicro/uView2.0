@@ -1,8 +1,8 @@
 // 补0，如1 -> 01
 function padZero(num, targetLength = 2) {
-    let str = num + ''
+    let str = `${num}`
     while (str.length < targetLength) {
-        str = '0' + str
+        str = `0${str}`
     }
     return str
 }
@@ -26,20 +26,20 @@ export function parseTimeData(time) {
 }
 export function parseFormat(format, timeData) {
     let {
-		days,
+        days,
         hours,
         minutes,
         seconds,
         milliseconds
     } = timeData
-	// 如果格式化字符串中不存在DD(天)，则将天的时间转为小时中去
+    // 如果格式化字符串中不存在DD(天)，则将天的时间转为小时中去
     if (format.indexOf('DD') === -1) {
         hours += days * 24
     } else {
-		// 对天补0
+        // 对天补0
         format = format.replace('DD', padZero(days))
     }
-	// 其他同理于DD的格式化处理方式
+    // 其他同理于DD的格式化处理方式
     if (format.indexOf('HH') === -1) {
         minutes += hours * 60
     } else {

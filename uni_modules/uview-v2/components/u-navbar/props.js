@@ -1,5 +1,5 @@
 export default {
-	props: {
+    props: {
 		 // 是否开启顶部安全区适配
 		 safeAreaInsetTop: {
 			 type: Boolean,
@@ -60,5 +60,5 @@ export default {
 			 type: [String, Number],
 			 default: uni.$u.props.navbar.height
 		 }
-	}
+    }
 }

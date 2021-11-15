@@ -1,45 +1,45 @@
 export default {
-	props: {
-		// #ifdef APP-PLUS-NVUE
-		bgColor: String,
-		// #endif
-		content: String,
-		copyLink: {
+    props: {
+        // #ifdef APP-PLUS-NVUE
+        bgColor: String,
+        // #endif
+        content: String,
+        copyLink: {
 		  type: Boolean,
 		  default: uni.$u.props.parse.copyLink
-		},
-		domain: String,
-		errorImg: {
+        },
+        domain: String,
+        errorImg: {
 		  type: String,
 		  default: uni.$u.props.parse.errorImg
-		},
-		lazyLoad: {
+        },
+        lazyLoad: {
 		  type: Boolean,
 		  default: uni.$u.props.parse.lazyLoad
-		},
-		loadingImg: {
+        },
+        loadingImg: {
 		  type: String,
 		  default: uni.$u.props.parse.loadingImg
-		},
-		pauseVideo: {
+        },
+        pauseVideo: {
 		  type: Boolean,
 		  default: uni.$u.props.parse.pauseVideo
-		},
-		previewImg: {
+        },
+        previewImg: {
 		  type: Boolean,
 		  default: uni.$u.props.parse.previewImg
-		},
-		scrollTable: Boolean,
-		selectable: Boolean,
-		setTitle: {
+        },
+        scrollTable: Boolean,
+        selectable: Boolean,
+        setTitle: {
 		  type: Boolean,
 		  default: uni.$u.props.parse.setTitle
-		},
-		showImgMenu: {
+        },
+        showImgMenu: {
 		  type: Boolean,
 		  default: uni.$u.props.parse.showImgMenu
-		},
-		tagStyle: Object,
-		useAnchor: null
-	  },
+        },
+        tagStyle: Object,
+        useAnchor: null
+	  }
 }

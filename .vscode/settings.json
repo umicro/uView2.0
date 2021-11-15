@@ -1,0 +1,10 @@
+{
+	// 是否在保存文件时自动修复，与运行命令行的--fix意思相同
+	"eslint.codeActionsOnSave.mode": "all",
+	// 是否对本项目启用eslint
+	"eslint.enable": false,
+	// 统一所有文件均为lf
+	// "files.eol": "\n",
+	// 展示总的todo数量
+	"todo-tree.tree.showCountsInTree": true
+}

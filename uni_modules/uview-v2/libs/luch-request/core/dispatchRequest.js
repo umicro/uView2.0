@@ -1,6 +1,3 @@
 import adapter from '../adapters/index'
 
-
-export default (config) => {
-  return adapter(config)
-}
+export default (config) => adapter(config)

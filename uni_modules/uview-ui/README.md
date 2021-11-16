@@ -68,7 +68,7 @@ Vue.use(uView);
 }
 ```
 
-请通过[快速上手](https://v2.uviewui.com/components/quickstart.html)了解更详细的内容 
+请通过[快速上手](https://www.uviewui.com/components/quickstart.html)了解更详细的内容 
 
 ## 使用方法
 配置easycom规则后，自动按需引入，无需`import`组件，直接引用即可。
@@ -79,14 +79,14 @@ Vue.use(uView);
 </template>
 ```
 
-请通过[快速上手](https://v2.uviewui.com/components/quickstart.html)了解更详细的内容 
+请通过[快速上手](https://www.uviewui.com/components/quickstart.html)了解更详细的内容 
 
 ## 链接
 
-- [官方文档](https://v2.uviewui.com/)
-- [更新日志](https://v2.v2.uviewui.com/components/changelog.html)
-- [升级指南](https://v2.uviewui.com/components/changelog.html)
-- [关于我们](https://v2.uviewui.com/cooperation/about.html)
+- [官方文档](https://www.uviewui.com/)
+- [更新日志](https://www.www.uviewui.com/components/changelog.html)
+- [升级指南](https://www.uviewui.com/components/changelog.html)
+- [关于我们](https://www.uviewui.com/cooperation/about.html)
 
 ## 预览
 
@@ -99,7 +99,7 @@ Vue.use(uView);
 
 uView文档和源码全部开源免费，如果您认为uView帮到了您的开发工作，您可以捐赠uView的研发工作，捐赠无门槛，哪怕是一杯可乐也好(相信这比打赏主播更有意义)。
 
-<img src="https://uviewui.com/common/wechat.png" width="220" ><img style="margin-left: 100px;" src="https://uviewui.com/common/alipay.png" width="220" >
+<img src="https://uviewui.com/common/alipay.png" width="220" ><img style="margin-left: 100px;" src="https://uviewui.com/common/wechat.png" width="220" >
 
 ## 版权信息
 uView遵循[MIT](https://en.wikipedia.org/wiki/MIT_License)开源协议，意味着您无需支付任何费用，也无需授权，即可将uView应用到您的产品中。

@@ -138,7 +138,7 @@
 				if (this.asyncClose) {
 					this.loading = true;
 				}
-				this.$emit('confrim')
+				this.$emit('confirm')
 			},
 			// 点击取消按钮
 			cancelHandler() {

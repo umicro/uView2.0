@@ -1,12 +1,11 @@
 {
+	"id": "uview-ui",
 	"scripts": {
 		"test": "eslint . --fix"
 	},
-	"dependencies": {
-		"eslint-config-airbnb": "^19.0.0"
-	},
+	"dependencies": {},
 	"devDependencies": {
 		"eslint": "^8.2.0",
-		"eslint-config-egg": "^9.0.0"
+		"eslint-config-airbnb": "^19.0.0"
 	}
 }

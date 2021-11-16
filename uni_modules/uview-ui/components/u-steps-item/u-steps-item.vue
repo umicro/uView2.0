@@ -86,7 +86,6 @@
 		},
 		watch: {
 			'parentData'(newValue, oldValue) {
-				console.log(newValue, 33);
 			}
 		},
 		created() {

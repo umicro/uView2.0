@@ -189,8 +189,6 @@
 			},
 			updateParentData() {
 				this.getParentData('u-radio-group')
-				console.log('paernt', this.parent);
-				console.log('parentData', this.parentData);
 			},
 			// 点击图标
 			iconClickHandler(e) {

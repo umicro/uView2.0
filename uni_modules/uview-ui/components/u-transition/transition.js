@@ -1,8 +1,7 @@
 // 定义一个一定时间后自动成功的promise，让调用nextTick方法处，进入下一个then方法
+const nextTick = () => new Promise(resolve => setTimeout(resolve, 1000 / 50))
 // nvue动画模块实现细节抽离在外部文件
 import animationMap from './nvue.ani-map.js'
-
-const nextTick = () => new Promise((resolve) => resolve())
 
 // #ifndef APP-NVUE
 // 定义类名，通过给元素动态切换类名，赋予元素一定的css动画样式

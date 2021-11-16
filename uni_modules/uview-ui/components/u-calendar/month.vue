@@ -279,9 +279,10 @@
 		methods: {
 			init() {
 				this.$nextTick(() => {
-					this.getWrapperWidth()
 					// 这里需要另一个延时，因为获取宽度后，会进行月份数据渲染，只有渲染完成之后，才有真正的高度
-					uni.$u.sleep().then(() => {
+					// 因为nvue下，$nextTick并不是100%可靠的
+					uni.$u.sleep(10).then(() => {
+						this.getWrapperWidth()
 						this.getMonthRect()
 					})
 				})

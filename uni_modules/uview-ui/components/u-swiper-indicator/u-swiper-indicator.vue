@@ -2,8 +2,8 @@
 	<view class="u-swiper-indicator">
 		<view
 			class="u-swiper-indicator__wrapper"
-			v-if="indicatorStyle === 'line'"
-			:class="[`u-swiper-indicator__wrapper--${indicatorStyle}`]"
+			v-if="indicatorMode === 'line'"
+			:class="[`u-swiper-indicator__wrapper--${indicatorMode}`]"
 			:style="{
 				width: $u.addUnit(lineWidth * length),
 				backgroundColor: indicatorInactiveColor
@@ -16,7 +16,7 @@
 		</view>
 		<view
 			class="u-swiper-indicator__wrapper"
-			v-if="indicatorStyle === 'dot'"
+			v-if="indicatorMode === 'dot'"
 		>
 			<view
 				class="u-swiper-indicator__wrapper__dot"
@@ -41,7 +41,7 @@
 	 * @property {String | Number}	current					当前处于活动状态的轮播的索引（默认 0 ）
 	 * @property {String}			indicatorActiveColor	指示器非激活颜色
 	 * @property {String}			indicatorInactiveColor	指示器的激活颜色
-	 * @property {String}			indicatorStyle			指示器样式，可通过bottom，left，right进行定位（默认 'line ）
+	 * @property {String}			indicatorMode			指示器模式（默认 'line' ）
 	 * @example	<u-swiper :list="list4" indicator keyName="url" :autoplay="false"></u-swiper>
 	 */
 	export default {

@@ -205,7 +205,7 @@ export default {
 			this.innerFormatter = e
 		},
         // 当键盘输入时，触发input事件
-        onInput(event) {
+        onInput(e) {
             let { value = "" } = e.detail || {};
             // 格式化过滤方法
             const formatter = this.formatter || this.innerFormatter

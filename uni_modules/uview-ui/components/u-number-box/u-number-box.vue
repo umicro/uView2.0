@@ -101,11 +101,11 @@
 	 * @property {Boolean}			disablePlus		是否禁用增加按钮 （默认 false ）
 	 * @property {Boolean}			disableMinus	是否禁用减少按钮 （默认 false ）
 	 * @property {Object ｜ String}	iconStyle		加减按钮图标的样式
-	 * 
+	 *
 	 * @event {Function}	onFocus	输入框活动焦点
 	 * @event {Function}	onBlur	输入框失去焦点
 	 * @event {Function}	onInput	输入框值发生变化
-	 * @event {Function}	onChange 
+	 * @event {Function}	onChange
 	 * @example <u-number-box v-model="value" @change="valChange"></u-number-box>
 	 */
 	export default {
@@ -257,10 +257,10 @@
 				)
 			},
 			// 输入框值发生变化
-			onInput(event) {
+			onInput(e) {
 				const {
 					value = ''
-				} = event.detail || {}
+				} = e.detail || {}
 				// 为空返回
 				if (value === '') return
 				let formatted = this.filter(value)

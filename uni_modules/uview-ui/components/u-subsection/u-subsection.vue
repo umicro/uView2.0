@@ -3,7 +3,7 @@
 		class="u-subsection"
 		ref="u-subsection"
 		:class="[`u-subsection--${mode}`]"
-		:style="[$u.addStyle(customStyle), warpperStyle]"
+		:style="[$u.addStyle(customStyle), wrapperStyle]"
 	>
 		<view
 			class="u-subsection__bar"
@@ -36,7 +36,7 @@
 	// #endif
 	import props from './props.js';
 	/**
-	 * Subsection 分段器 
+	 * Subsection 分段器
 	 * @description 该分段器一般用于用户从几个选项中选择某一个的场景
 	 * @tutorial https://www.uviewui.com/components/subsection.html
 	 * @property {Array}			list			tab的数据
@@ -48,7 +48,7 @@
 	 * @property {Boolean}			bold			激活选项的字体是否加粗（默认 true ）
 	 * @property {String}			bgColor			组件背景颜色，mode为button时有效（默认 '#eeeeef' ）
 	 * @property {Object}			customStyle		定义需要用到的外部样式
-	 * 
+	 *
 	 * @event {Function} change		分段器选项发生改变时触发  回调 index：选项的index索引值，从0开始
 	 * @example <u-subsection :list="list" :current="curNow" @change="sectionChange"></u-subsection>
 	 */
@@ -90,11 +90,11 @@
 			}
 		},
 		computed: {
-			warpperStyle() {
+			wrapperStyle() {
 				const style = {}
 				// button模式时，设置背景色
 				if(this.mode === 'button') {
-					this.backgroundColor = this.bgColor
+					style.backgroundColor = style.bgColor
 				}
 				return style
 			},
@@ -105,7 +105,7 @@
 				style.height = `${this.itemRect.height}px`
 				// 通过translateX移动滑块，其移动的距离为索引*item的宽度
 				// #ifndef APP-NVUE
-				style.transform = `translateX(${this.current * this.itemRect.width}px)` 
+				style.transform = `translateX(${this.current * this.itemRect.width}px)`
 				// #endif
 				if (this.mode === 'subsection') {
 					// 在subsection模式下，需要动态设置滑块的圆角，因为移动滑块使用的是translateX，无法通过父元素设置overflow: hidden隐藏滑块的直角
@@ -204,21 +204,21 @@
 			transition-duration: 0.3s;
 			transition-timing-function: ease-in-out;
 			/* #endif */
-			
+
 			&--first {
 				border-top-left-radius: 3px;
 				border-bottom-left-radius: 3px;
 				border-top-right-radius: 0px;
 				border-bottom-right-radius: 0px;
 			}
-			
+
 			&--center {
 				border-top-left-radius: 0px;
 				border-bottom-left-radius: 0px;
 				border-top-right-radius: 0px;
 				border-bottom-right-radius: 0px;
 			}
-			
+
 			&--last {
 				border-top-left-radius: 0px;
 				border-bottom-left-radius: 0px;
@@ -236,12 +236,12 @@
 			&--no-border-right {
 				border-right-width: 0!important;
 			}
-			
+
 			&--first {
 				border-top-left-radius: 3px;
 				border-bottom-left-radius: 3px;
 			}
-			
+
 			&--last {
 				border-top-right-radius: 3px;
 				border-bottom-right-radius: 3px;

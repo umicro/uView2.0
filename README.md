@@ -71,7 +71,7 @@ uView UI，是[uni-app](https://uniapp.dcloud.io/)全面兼容nvue的uni-app生�
 
 ```html
 <template>
-	<u-button>按钮</u-button>
+	<u-button text="按钮"></u-button>
 </template>
 ```
 

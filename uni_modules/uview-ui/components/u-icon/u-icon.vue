@@ -95,6 +95,10 @@
 				// } else {
 				// 	classes.push(this.customPrefix)
 				// }
+				// 自定义icon 加上 iconClass
+				if(this.customPrefix !== 'uicon'){
+					classes.push(this.customPrefix)
+				}
 				// 主题色，通过类配置
 				if (this.color && this.$u.config.type.includes(this.color)) classes.push('u-icon__icon--' + this.color)
 				// 阿里，头条，百度小程序通过数组绑定类名时，无法直接使用[a, b, c]的形式，否则无法识别
@@ -132,7 +136,8 @@
 			// 通过图标名，查找对应的图标
 			icon() {
 				// 如果内置的图标中找不到对应的图标，就直接返回name值，因为用户可能传入的是unicode代码
-				return icons['uicon-' + this.name] || this.name
+				// 如果是自定义图标，则返回空
+				return this.customPrefix === "uicon"?( icons['uicon-' + this.name] || this.name):""
 			}
 		},
 		methods: {

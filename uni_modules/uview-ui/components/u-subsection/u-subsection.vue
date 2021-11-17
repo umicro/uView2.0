@@ -23,7 +23,7 @@
 			<text
 				class="u-subsection__item__text"
 				:style="[textStyle(index)]"
-			>{{ item }}</text>
+			>{{ item.name }}</text>
 		</view>
 
 	</view>

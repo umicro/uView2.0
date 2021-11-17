@@ -4,7 +4,7 @@
 		:zoom="zoom"
 		:show="show"
 		:customStyle="{
-			borderRadius: '6px',
+			borderRadius: '6px', 
 			overflow: 'hidden',
 			marginTop: `-${$u.addUnit(negativeTop)}`
 		}"
@@ -201,12 +201,12 @@
 				justify-content: center;
 				align-items: center;
 				height: 48px;
-
+				
 				&--confirm,
 				&--only-cancel {
 					border-bottom-right-radius: $u-modal-border-radius;
 				}
-
+				
 				&--cancel,
 				&--only-confirm {
 					border-bottom-left-radius: $u-modal-border-radius;

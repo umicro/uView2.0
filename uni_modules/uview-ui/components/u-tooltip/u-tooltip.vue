@@ -64,7 +64,7 @@
 							v-if="showCopy && buttons.length > 0"
 							length="18"
 						></u-line>
-						<template v-for="(item , index) in buttons" >
+						<template v-for="(item , index) in buttons">
 							<view
 								class="u-tooltip__wrapper__popup__list__btn"
 								hover-class="u-tooltip__wrapper__popup__list__btn--hover"

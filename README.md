@@ -49,10 +49,10 @@ uView UI，是[uni-app](https://uniapp.dcloud.io/)全面兼容nvue的uni-app生�
 
 ## 链接
 
-- [官方文档](https://v2.uviewui.com/)
-- [更新日志](https://v2.uviewui.com/components/changelog.html)
-- [升级指南](https://v2.uviewui.com/components/changeGuide.html)
-- [关于我们](https://v2.uviewui.com/cooperation/about.html)
+- [官方文档](https://www.uviewui.com/)
+- [更新日志](https://www.uviewui.com/components/changelog.html)
+- [升级指南](https://www.uviewui.com/components/changeGuide.html)
+- [关于我们](https://www.uviewui.com/cooperation/about.html)
 
 ## 交流反馈
 

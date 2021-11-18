@@ -1,5 +1,9 @@
 export default {
     props: {
+        keyName:{
+            type: String,
+            default: uni.$u.props.subsection.keyName
+        },
         // tab的数据
         list: {
             type: Array,

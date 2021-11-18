@@ -10,6 +10,7 @@
 export default {
     // subsection组件
     subsection: {
+        keyName:'name',
         list: [],
         current: 0,
         activeColor: '#3c9cff',

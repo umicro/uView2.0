@@ -19,6 +19,11 @@ export default {
         timingFunction: {
             type: String,
             default: uni.$u.props.transition.timingFunction
+        },
+        // 自定义样式
+        customStyle: {
+            type: String,
+            default: uni.$u.props.transition.customStyle
         }
     }
 }

@@ -15,7 +15,7 @@
 
 uView UI，是[uni-app](https://uniapp.dcloud.io/)全面兼容nvue的uni-app生态框架，全面的组件和便捷的工具会让您信手拈来，如鱼得水
 
-## [官方文档：https://v2.uviewui.com](https://v2.uviewui.com)
+## [官方文档：https://uviewui.com](https://uviewui.com)
 
 ### 官方1群：1042987248（已满）
 ### 官方2群：249718512（已满）

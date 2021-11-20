@@ -6,7 +6,6 @@
 		@tap.stop.prevent="clickHandler"
 		:class="classes"
 		:style="[mergeStyle]"
-		@touchmove.stop.prevent="noop"
 	>
 		<slot />
 	</view>
@@ -55,7 +54,7 @@ export default {
 				transitionTimingFunction: this.timingFunction,
 	            // #endif
 				// 避免自定义样式影响到动画属性，所以写在viewStyle前面
-	            ...uni.$u.addStyle(customStyle), 
+	            ...uni.$u.addStyle(customStyle),
 	            ...viewStyle
 	        }
 	    }

@@ -8,6 +8,8 @@
 				v-if="showToolbar"
 				:cancelColor="cancelColor"
 				:confirmColor="confirmColor"
+				:cancelText="cancelText"
+				:confirmText="confirmText"
 				:title="title"
 				@cancel="cancel"
 				@confirm="confirm"

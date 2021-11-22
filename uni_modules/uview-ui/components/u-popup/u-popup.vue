@@ -195,6 +195,10 @@
 				this.$emit('open')
 			},
 			clickHandler() {
+				// 由于中部弹出时，其u-transition占据了整个页面相当于遮罩，此时需要发出遮罩点击事件，是否无法通过点击遮罩关闭弹窗
+				if(this.mode === 'center') {
+					this.overlayClick()
+				}
 				this.$emit('click')
 			},
 			// #ifdef MP-WEIXIN
@@ -228,7 +232,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	@import "../../libs/css/components.scss";
 	$u-popup-flex:1 !default;
 	$u-popup-content-background-color: #fff !default;

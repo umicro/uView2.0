@@ -3,9 +3,10 @@
 		v-if="inited"
 		class="u-transition"
 		ref="u-transition"
-		@tap.stop.prevent="clickHandler"
+		@tap="clickHandler"
 		:class="classes"
 		:style="[mergeStyle]"
+		@touchmove="noop"
 	>
 		<slot />
 	</view>
@@ -79,7 +80,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../../libs/css/components.scss';
 
 /* #ifndef APP-NVUE */

@@ -112,7 +112,7 @@
 				</view>
 			</template>
 		</view>
-		
+
 	</view>
 </template>
 
@@ -399,9 +399,9 @@
 
 		&__wrap {
 			@include flex;
-			width: 670rpx;
 			flex-wrap: wrap;
-			
+			flex: 1;
+
 			&__preview {
 				border-radius: $u-upload-preview-border-radius;
 				margin: $u-upload-preview-margin;

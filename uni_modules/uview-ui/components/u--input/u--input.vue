@@ -41,6 +41,7 @@
 		@keyboardheightchange="$emit('keyboardheightchange')"
 		@change="e => $emit('change', e)"
 		@input="e => $emit('input', e)"
+		@confirm="e => $emit('confirm', e)"
 		@clear="$emit('clear')"
 		@click="$emit('click')"
 	></uvInput>

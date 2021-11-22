@@ -415,6 +415,8 @@
 				}
 
 				&__other {
+					width: $u-upload-image-width;
+					height: $u-upload-image-height;
 					background-color: $u-upload-other-bgColor;
 					flex: $u-upload-other-flex;
 					@include flex(column);

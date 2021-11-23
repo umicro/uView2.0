@@ -1,3 +1,14 @@
+## 2.0.4（2021-11-23）
+## [点击加群交流反馈：232041042](https://jq.qq.com/?_wv=1027&k=KnbeceDU)
+
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+0. input组件缺失@confirm事件，以及subfix和prefix无效问题
+1. component.scss文件样式在vue下干扰全局布局问题
+2. 修复subsection在vue环境下表现异常的问题
+3. tag组件的bgColor等参数无效的问题
+4. upload组件不换行的问题
+5. 其他的一些修复处理
 ## 2.0.3（2021-11-16）
 ## [点击加群交流反馈：1129077272](https://jq.qq.com/?_wv=1027&k=KnbeceDU)
 

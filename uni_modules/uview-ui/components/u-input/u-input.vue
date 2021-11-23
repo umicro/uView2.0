@@ -235,7 +235,7 @@ export default {
         },
         // 点击完成按钮时触发
         onConfirm(event) {
-            this.$emit("confirm");
+            this.$emit("confirm", this.innerValue);
         },
         // 键盘高度发生变化的时候触发此事件
         // 兼容性：微信小程序2.7.0+、App 3.1.0+

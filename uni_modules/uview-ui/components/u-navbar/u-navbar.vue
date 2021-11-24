@@ -38,12 +38,12 @@
 						>{{ leftText }}</text>
 					</slot>
 				</view>
-				<text
+				<view
 					class="u-line-1 u-navbar__content__title"
 					:style="{
 					width: $u.addUnit(titleWidth)
 				}"
-				>{{ title }}</text>
+				><slot name="title">{{ title }}</slot></view>
 				<view
 					class="u-navbar__content__right"
 					v-if="$slots.right || rightIcon || rightText"

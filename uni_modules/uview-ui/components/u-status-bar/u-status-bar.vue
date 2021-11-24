@@ -28,6 +28,7 @@
 			style() {
 				const style = {}
 				// 状态栏高度，由于某些安卓和微信开发工具无法识别css的顶部状态栏变量，所以使用js获取的方式
+				style.width = '100%'
 				style.height = uni.$u.addUnit(uni.$u.sys().statusBarHeight)
 				style.backgroundColor = this.bgColor
 				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))

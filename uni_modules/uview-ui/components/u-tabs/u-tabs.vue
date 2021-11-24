@@ -113,6 +113,8 @@
 		},
 		watch: {
 			current(newValue, oldValue) {
+				if(newValue===oldValue)return
+				this.$emit("change", newValue)
 				// this.setLineLeft(newValue)
 			}
 		},

@@ -15,7 +15,7 @@
 	 * @tutorial https://www.uviewui.com/components/form.html
 	 * @property {Object}						model			当前form的需要验证字段的集合
 	 * @property {Object | Function | Array}	rules			验证规则
-	 * @property {Array}						errorType		错误的提示方式，数组形式，见上方说明 ( 默认 ['message', 'toast'] )
+	 * @property {String}						errorType		错误的提示方式，见上方说明 ( 默认 message )
 	 * @property {Boolean}						borderBottom	是否显示表单域的下划线边框   ( 默认 true ）
 	 * @property {String}						labelPosition	表单域提示文字的位置，left-左侧，top-上方 ( 默认 'left' ）
 	 * @property {String | Number}				labelWidth		提示文字的宽度，单位px  ( 默认 45 ）
@@ -186,7 +186,13 @@
 							(item) => item.prop
 						);
 						this.validateField(formItemProps, (errors) => {
-							errors.length ? reject(errors) : resolve(true);
+							if(errors.length) {
+								// 如果错误提示方式为toast，则进行提示
+								this.errorType === 'toast' && uni.$u.toast(errors[0].message)
+								reject(errors)
+							} else {
+								resolve(true)
+							}
 						});
 					});
 				});

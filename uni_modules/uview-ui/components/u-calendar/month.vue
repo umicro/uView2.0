@@ -151,7 +151,9 @@
 					// 不进行四舍五入的形式保留2位小数
 					const dayWidth = Number(parseFloat(this.width / 7).toFixed(3).slice(0, -1))
 					// 得出每个日期的宽度
+					// #ifdef APP-NVUE
 					style.width = uni.$u.addUnit(dayWidth)
+					// #endif
 					style.height = uni.$u.addUnit(this.rowHeight)
 					if (index2 === 0) {
 						// 获取当前为星期几，如果为0，则为星期天，减一为每月第一天时，需要向左偏移的item个数
@@ -490,6 +492,11 @@
 			&__day {
 				@include flex;
 				padding: 2px;
+				/* #ifndef APP-NVUE */
+				// vue下使用css进行宽度计算，因为某些安卓机会无法进行js获取父元素宽度进行计算得出，会有偏移
+				width: calc(100% / 7);
+				box-sizing: border-box;
+				/* #endif */
 
 				&__select {
 					flex: 1;

@@ -195,6 +195,7 @@ export default {
             const style = {
                 color: this.color,
                 fontSize: uni.$u.addUnit(this.fontSize),
+				textAlign: this.inputAlign
             };
             return style;
         },

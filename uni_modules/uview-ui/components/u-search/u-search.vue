@@ -235,6 +235,7 @@ $u-search-action-margin-left: 5px !default;
 		justify-content: space-between;
 		border-width: 1px;
 		border-color: transparent;
+		border-style: solid;
 
 		&__icon {
 			@include flex;

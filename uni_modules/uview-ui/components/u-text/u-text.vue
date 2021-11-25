@@ -9,7 +9,7 @@
 	    @tap="clickHandler"
 	>
 		<text
-		    class="u-text__price"
+		    :class="['u-text__price', type && `u-text__value--${type}`]"
 		    v-if="mode === 'price'"
 		    :style="[valueStyle]"
 		>￥</text>

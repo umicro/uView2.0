@@ -45,6 +45,11 @@ export default {
 			 type: [String, Number],
 			 default: uni.$u.props.navbar.title
 		 },
+		 // 标题颜色
+		 color: {
+			 type: String,
+			 default: uni.$u.props.navbar.color
+		 },
 		 // 背景颜色
 		 bgColor: {
 			 type: String,

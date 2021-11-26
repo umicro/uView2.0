@@ -41,7 +41,8 @@
 				<text
 					class="u-line-1 u-navbar__content__title"
 					:style="{
-					width: $u.addUnit(titleWidth)
+					width: $u.addUnit(titleWidth),
+					color
 				}"
 				>{{ title }}</text>
 				<view

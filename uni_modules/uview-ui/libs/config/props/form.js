@@ -12,7 +12,7 @@ export default {
     form: {
         model: () => ({}),
         rules: () => ({}),
-        errorType: () => ['message', 'toast'],
+        errorType: 'message',
         borderBottom: true,
         labelPosition: 'left',
         labelWidth: 45,

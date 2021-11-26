@@ -18,8 +18,8 @@
 				    :src="getSrc(item)"
 				    :mode="urls.length === 1 ? (imageHeight > 0 ? singleMode : 'widthFix') : multipleMode"
 				    :style="[{
-						width: $u.addUnit(imageWidth),
-						height: $u.addUnit(imageHeight)
+						width: imageWidth,
+						height: imageHeight
 					}]"
 				></image>
 				<view
@@ -133,10 +133,10 @@
 				return arr
 			},
 			imageWidth() {
-				return this.urls.length === 1 ? this.singleWidth : this.multipleSize
+				return this.$u.addUnit(this.urls.length === 1 ? this.singleWidth : this.multipleSize)
 			},
 			imageHeight() {
-				return this.urls.length === 1 ? this.singleHeight : this.multipleSize
+				return this.$u.addUnit(this.urls.length === 1 ? this.singleHeight : this.multipleSize)
 			},
 			// 此变量无实际用途，仅仅是为了利用computed特性，让其在urls长度等变化时，重新计算图片的宽度
 			// 因为用户在某些特殊的情况下，需要让文字与相册的宽度相等，所以这里事件的形式对外发送
@@ -206,7 +206,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	@import "../../libs/css/components.scss";
 
 	.u-album {

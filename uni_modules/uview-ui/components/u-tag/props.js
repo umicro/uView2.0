@@ -35,7 +35,7 @@ export default {
             type: String,
             default: uni.$u.props.tag.color
         },
-        // 镂空形式标签的边框颜色
+        // 标签的边框颜色
         borderColor: {
             type: String,
             default: uni.$u.props.tag.borderColor

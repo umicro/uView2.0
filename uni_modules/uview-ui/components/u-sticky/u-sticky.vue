@@ -208,7 +208,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.u-sticky {
 		/* #ifdef APP-VUE || MP-WEIXIN */
 		// 此处默认写sticky属性，是为了给微信和APP通过uni.createSelectorQuery查询是否支持css sticky使用

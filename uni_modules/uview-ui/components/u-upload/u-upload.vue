@@ -85,33 +85,34 @@
 					<!-- #endif -->
 				</view>
 			</view>
+			<template v-if="isInCount">
+				<view
+				    v-if="$slots.default || $slots.$default"
+				    @tap="chooseFile"
+				>
+					<slot />
+				</view>
+				<view
+				    v-else
+				    class="u-upload__button"
+				    :hover-class="!disabled && 'u-upload__button--hover'"
+				    hover-stay-time="150"
+				    @tap="chooseFile"
+				    :class="[disabled && 'u-upload__button--disabled']"
+				>
+					<u-icon
+					    :name="uploadIcon"
+					    size="26"
+					    :color="uploadIconColor"
+					></u-icon>
+					<text
+					    v-if="uploadText"
+					    class="u-upload__button__text"
+					>{{ uploadText }}</text>
+				</view>
+			</template>
 		</view>
-		<template v-if="isInCount">
-			<view
-			    v-if="$slots.default || $slots.$default"
-			    @tap="chooseFile"
-			>
-				<slot />
-			</view>
-			<view
-			    v-else
-			    class="u-upload__button"
-			    :hover-class="!disabled && 'u-upload__button--hover'"
-			    hover-stay-time="150"
-			    @tap="chooseFile"
-			    :class="[disabled && 'u-upload__button--disabled']"
-			>
-				<u-icon
-				    :name="uploadIcon"
-				    size="26"
-				    color="#D3D4D6"
-				></u-icon>
-				<text
-				    v-if="uploadText"
-				    class="u-upload__button__text"
-				>{{ uploadText }}</text>
-			</view>
-		</template>
+
 	</view>
 </template>
 
@@ -132,6 +133,7 @@
 	 * @property {String}			camera				当accept为video时生效，可选值为back或front（默认 'back' ）
 	 * @property {Number}			maxDuration			当accept为video时生效，拍摄视频最长拍摄时间，单位秒（默认 60 ）
 	 * @property {String}			uploadIcon			上传区域的图标，只能内置图标（默认 'camera-fill' ）
+	 * @property {String}			uploadIconColor		上传区域的图标的字体颜色，只能内置图标（默认 #D3D4D6 ）
 	 * @property {Boolean}			useBeforeRead		是否开启文件读取前事件（默认 false ）
 	 * @property {Boolean}			previewFullImage	是否显示组件自带的图片预览功能（默认 true ）
 	 * @property {String | Number}	maxCount			最大上传数量（默认 52 ）
@@ -339,7 +341,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	@import '../../libs/css/components.scss';
 	$u-upload-preview-border-radius: 2px !default;
 	$u-upload-preview-margin: 0 8px 8px 0 !default;
@@ -397,6 +399,8 @@
 
 		&__wrap {
 			@include flex;
+			flex-wrap: wrap;
+			flex: 1;
 
 			&__preview {
 				border-radius: $u-upload-preview-border-radius;
@@ -411,6 +415,8 @@
 				}
 
 				&__other {
+					width: $u-upload-image-width;
+					height: $u-upload-image-height;
 					background-color: $u-upload-other-bgColor;
 					flex: $u-upload-other-flex;
 					@include flex(column);

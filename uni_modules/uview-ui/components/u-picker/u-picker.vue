@@ -8,6 +8,8 @@
 				v-if="showToolbar"
 				:cancelColor="cancelColor"
 				:confirmColor="confirmColor"
+				:cancelText="cancelText"
+				:confirmText="confirmText"
 				:title="title"
 				@cancel="cancel"
 				@confirm="confirm"
@@ -230,7 +232,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	@import "../../libs/css/components.scss";
 
 	.u-picker {

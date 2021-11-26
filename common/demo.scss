@@ -53,6 +53,7 @@
 		font-size: 14px;
 		color: rgb(143, 156, 162);
 		margin-bottom: 8px;
+		@include flex;
 	}
 }
 

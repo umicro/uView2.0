@@ -74,20 +74,35 @@
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">前后插槽</text>
 			<view class="u-demo-block__content">
+				<!-- #ifdef MP-WEIXIN -->
+				<u-input placeholder="前置插槽">
+				<!-- #endif -->
+				<!-- #ifndef MP-WEIXIN -->
 				<u--input placeholder="前置插槽">
+				<!-- #endif -->
 					<u--text
 					    text="http://"
 					    slot="prefix"
 					    margin="0 3px 0 0"
 					    type="tips"
 					></u--text>
+				<!-- #ifdef MP -->
+				</u-input>
+				<!-- #endif -->
+				<!-- #ifndef MP-WEIXIN -->
 				</u--input>
+				<!-- #endif -->
 			</view>
 			<view
 			    class="u-demo-block__content"
 			    style="margin-top: 15px;"
 			>
+				<!-- #ifdef MP-WEIXIN -->
+				<u-input placeholder="后置插槽">
+				<!-- #endif -->
+				<!-- #ifndef MP-WEIXIN -->
 				<u--input placeholder="后置插槽">
+				<!-- #endif -->
 					<template slot="suffix">
 						<u-code
 						    ref="uCode"
@@ -101,7 +116,12 @@
 							size="mini"
 						></u-button>
 					</template>
+				<!-- #ifdef MP -->
+				</u-input>
+				<!-- #endif -->
+				<!-- #ifndef MP-WEIXIN -->
 				</u--input>
+				<!-- #endif -->
 			</view>
 		</view>
 		<u-gap bgColor="#fff" height="50"></u-gap>

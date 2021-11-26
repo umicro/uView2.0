@@ -91,7 +91,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	@import "../../libs/css/components.scss";
 
 	$u-cell-padding: 10px 15px !default;

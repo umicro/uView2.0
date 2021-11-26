@@ -22,7 +22,6 @@
 		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		data() {
 			return {
-				isNvue: false
 			}
 		},
 		computed: {
@@ -37,7 +36,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.u-status-bar {
 		width: 100%;
 	}

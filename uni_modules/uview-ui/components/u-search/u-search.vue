@@ -195,7 +195,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../../libs/css/components.scss";
 $u-search-content-padding: 0 10px !default;
 $u-search-label-color: $u-main-color !default;
@@ -235,6 +235,7 @@ $u-search-action-margin-left: 5px !default;
 		justify-content: space-between;
 		border-width: 1px;
 		border-color: transparent;
+		border-style: solid;
 
 		&__icon {
 			@include flex;

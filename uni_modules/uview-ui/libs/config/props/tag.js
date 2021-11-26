@@ -18,7 +18,7 @@ export default {
         bgColor: '',
         color: '',
         borderColor: '',
-        closeColor: '',
+        closeColor: '#C6C7CB',
         name: '',
         plainFill: false,
         plain: false,

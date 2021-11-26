@@ -3,10 +3,10 @@
 		v-if="inited"
 		class="u-transition"
 		ref="u-transition"
-		@tap.stop.prevent="clickHandler"
+		@tap="clickHandler"
 		:class="classes"
 		:style="[mergeStyle]"
-		@touchmove.stop.prevent="noop"
+		@touchmove="noop"
 	>
 		<slot />
 	</view>
@@ -55,7 +55,7 @@ export default {
 				transitionTimingFunction: this.timingFunction,
 	            // #endif
 				// 避免自定义样式影响到动画属性，所以写在viewStyle前面
-	            ...uni.$u.addStyle(customStyle), 
+	            ...uni.$u.addStyle(customStyle),
 	            ...viewStyle
 	        }
 	    }
@@ -80,7 +80,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../../libs/css/components.scss';
 
 /* #ifndef APP-NVUE */

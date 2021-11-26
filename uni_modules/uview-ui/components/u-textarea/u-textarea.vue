@@ -20,7 +20,7 @@
             :disableDefaultPadding="disableDefaultPadding"
             :holdKeyboard="holdKeyboard"
             :maxlength="maxlength"
-            confirmType="confirmType"
+            :confirmType="confirmType"
             @focus="onFocus"
             @blur="onBlur"
             @linechange="onLinechange"

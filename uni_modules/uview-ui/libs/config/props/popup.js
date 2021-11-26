@@ -14,7 +14,6 @@ export default {
         overlay: true,
         mode: 'bottom',
         duration: 300,
-        borderRadius: 0,
         closeable: false,
         overlayStyle: () => {},
         closeOnClickOverlay: true,

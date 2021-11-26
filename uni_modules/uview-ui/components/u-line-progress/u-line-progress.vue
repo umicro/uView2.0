@@ -110,6 +110,8 @@
 		position: relative;
 		@include flex(row);
 		flex: 1;
+		overflow: hidden;
+		border-radius: 100px;
 
 		&__background {
 			background-color: #ececec;

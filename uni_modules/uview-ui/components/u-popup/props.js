@@ -20,11 +20,6 @@ export default {
             type: [String, Number],
             default: uni.$u.props.popup.duration
         },
-        // 圆角值
-        borderRadius: {
-            type: [String, Number],
-            default: uni.$u.props.popup.borderRadius
-        },
         // 是否显示关闭图标
         closeable: {
             type: Boolean,

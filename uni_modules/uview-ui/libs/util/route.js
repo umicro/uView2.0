@@ -118,6 +118,33 @@ class Router {
                 delta
             })
         }
+		//增加nvue預加載跳轉，解決nvue直接跳轉時若背景主題不一致時產生閃爍問題，先預加載，再跳轉，再取消預加載。
+        if (config.type == 'toNvue') {
+			let preloadPageLoading = setTimeout(() => {
+				uni.showLoading({
+				  mask: true
+				})
+			}, 350)
+			uni.preloadPage({
+				url:url,
+				complete:()=>{
+					setTimeout(() => {
+						clearTimeout(preloadPageLoading)
+						uni.hideLoading()
+						uni.navigateTo({
+							url,
+							animationType,
+							animationDuration,
+						    complete:()=>{
+								uni.unPreloadPage({
+								  url
+								})
+							}
+						})
+					}, 350)
+				}
+			});
+        }
     }
 }
 

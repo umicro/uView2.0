@@ -9,8 +9,8 @@
 				:class="[`u-tag--${shape}`, !plain && `u-tag--${type}`, plain && `u-tag--${type}--plain`, `u-tag--${size}`, plain && plainFill && `u-tag--${type}--plain--fill`]"
 				@tap.stop="clickHandler"
 				:style="[{
-					marginRight: closable ? '10px' : 0,
-					marginTop: closable ? '10px' : 0,
+					marginRight: closable ? '10px' : '',
+					marginTop: closable ? '10px' : '',
 				}, style]"
 			>
 				<slot name="icon">

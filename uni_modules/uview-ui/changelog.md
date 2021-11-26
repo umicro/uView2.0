@@ -1,3 +1,12 @@
+## 2.0.5（2021-11-25）
+## [点击加群交流反馈：232041042](https://jq.qq.com/?_wv=1027&k=KnbeceDU)
+
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. calendar在vue下显示异常问题。 
+2. form组件labelPosition和errorType参数无效的问题
+3. input组件inputAlign无效的问题
+4. 其他一些修复
 ## 2.0.4（2021-11-23）
 ## [点击加群交流反馈：232041042](https://jq.qq.com/?_wv=1027&k=KnbeceDU)
 

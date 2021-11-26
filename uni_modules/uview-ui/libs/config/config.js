@@ -1,5 +1,5 @@
-// 此版本发布于2020-11-23
-const version = '2.0.4'
+// 此版本发布于2020-11-25
+const version = '2.0.5'
 
 export default {
     v: version,

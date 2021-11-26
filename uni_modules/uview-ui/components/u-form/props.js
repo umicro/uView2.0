@@ -10,10 +10,10 @@ export default {
             type: [Object, Function, Array],
             default: uni.$u.props.form.rules
         },
-        // 有错误时的提示方式，message-提示信息，border-如果input设置了边框，变成呈红色，
+        // 有错误时的提示方式，message-提示信息，toast-进行toast提示
         // border-bottom-下边框呈现红色，none-无提示
         errorType: {
-            type: Array,
+            type: String,
             default: uni.$u.props.form.errorType
         },
         // 是否显示表单域的下划线边框

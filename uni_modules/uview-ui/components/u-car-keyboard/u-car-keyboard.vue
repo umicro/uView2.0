@@ -254,7 +254,9 @@
 			/* #endif */
 
 			&__inner-wrapper {
+				/* #ifndef APP-NVUE */
 				box-shadow: $u-car-keyboard-button-inner-box-shadow;
+				/* #endif */
 				margin: $u-car-keyboard-button-inner-margin;
 				border-radius: $u-car-keyboard-button-border-radius;
 
@@ -282,7 +284,10 @@
 					@include flex;
 					justify-content: center;
 					align-items: center;
+					
+					/* #ifndef APP-NVUE */
 					box-shadow: $u-car-keyboard-button-inner-box-shadow;
+					/* #endif */
 				}
 
 				&__left {

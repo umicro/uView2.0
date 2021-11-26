@@ -270,6 +270,7 @@
 			&__scroll-view-wrapper {
 				flex: 1;
 				/* #ifndef APP-NVUE */
+				width: 100%;
 				overflow: auto hidden;
 				/* #endif */
 			}

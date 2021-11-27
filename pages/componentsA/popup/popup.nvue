@@ -51,6 +51,7 @@
 				<u-button
 					type="success"
 					text="点我关闭"
+					customStyle="width: 200rpx"
 					@click="show = !show"
 				></u-button>
 			</view>
@@ -74,7 +75,6 @@
 						popupData: {
 							overlay: true,
 							mode: 'top',
-							round: false,
 							closeOnClickOverly: true
 						},
 						title: '顶部弹出',
@@ -84,7 +84,6 @@
 						popupData: {
 							overlay: true,
 							mode: 'right',
-							round: false,
 							closeOnClickOverly: true
 						},
 						title: '右侧弹出',
@@ -94,7 +93,6 @@
 						popupData: {
 							overlay: true,
 							mode: 'bottom',
-							round: false,
 							closeOnClickOverly: true
 						},
 						title: '底部弹出',
@@ -104,7 +102,6 @@
 						popupData: {
 							overlay: true,
 							mode: 'left',
-							round: false,
 							closeOnClickOverly: true
 						},
 						title: '左侧弹出',
@@ -114,7 +111,7 @@
 						popupData: {
 							overlay: true,
 							mode: 'center',
-							round: true,
+							round: 10,
 							closeOnClickOverly: true
 						},
 						title: '居中弹出',
@@ -124,7 +121,7 @@
 						popupData: {
 							overlay: true,
 							mode: 'bottom',
-							round: true,
+							round: 10,
 							closeOnClickOverly: true
 						},
 						title: '显示圆角',
@@ -135,7 +132,6 @@
 							overlay: true,
 							mode: 'bottom',
 							closeable: false,
-							round: false,
 							closeOnClickOverly: false
 						},
 						title: '禁止点击遮罩关闭',

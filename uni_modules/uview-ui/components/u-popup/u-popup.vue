@@ -20,7 +20,6 @@
 				class="u-popup__content"
 				:style="[contentStyle]"
 				@tap.stop="noop"
-				:class="[round && `u-popup__content--round-${mode}`]"
 			>
 				<u-status-bar v-if="safeAreaInsetTop"></u-status-bar>
 				<slot></slot>
@@ -64,7 +63,7 @@
 	 * @property {Boolean}			safeAreaInsetBottom	是否为iPhoneX留出底部安全距离 （默认 true ）
 	 * @property {Boolean}			safeAreaInsetTop	是否留出顶部安全距离（状态栏高度） （默认 false ）
 	 * @property {String}			closeIconPos		自定义关闭图标位置（默认 'top-right' ）
-	 * @property {Boolean}			round				是否显示圆角（默认 false ）
+	 * @property {String | Number}	round				圆角值（默认 0）
 	 * @property {Boolean}			zoom				当mode=center时 是否开启缩放（默认 true ）
 	 * @property {Object}			customStyle			组件的样式，对象形式
 	 * @event {Function} open 弹出层打开
@@ -139,6 +138,18 @@
 				// 背景色，一般用于设置为transparent，去除默认的白色背景
 				if (this.bgColor) {
 					style.backgroundColor = this.bgColor
+				}
+				if(this.round) {
+					const value = uni.$u.addUnit(this.round)
+					if(this.mode === 'top') {
+						style.borderBottomLeftRadius = value
+						style.borderBottomRightRadius = value
+					} else if(this.mode === 'bottom') {
+						style.borderTopLeftRadius = value
+						style.borderTopRightRadius = value
+					} else if(this.mode === 'center') {
+						style.borderRadius = value
+					} 
 				}
 				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			},

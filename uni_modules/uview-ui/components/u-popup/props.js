@@ -57,7 +57,7 @@ export default {
         },
         // 是否显示圆角
         round: {
-            type: Boolean,
+            type: [Boolean, String, Number],
             default: uni.$u.props.popup.round
         },
         // mode=center，也即中部弹出时，是否使用缩放模式

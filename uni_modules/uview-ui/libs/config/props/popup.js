@@ -21,7 +21,7 @@ export default {
         safeAreaInsetBottom: true,
         safeAreaInsetTop: false,
         closeIconPos: 'top-right',
-        round: false,
+        round: 0,
         zoom: true,
         bgColor: '',
         overlayOpacity: 0.5

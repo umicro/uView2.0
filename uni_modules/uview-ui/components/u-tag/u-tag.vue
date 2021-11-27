@@ -72,11 +72,11 @@
 	 * @property {String | Number}	name		点击时返回的索引值，用于区分例遍的数组哪个元素被点击了
 	 * @property {Boolean}			plainFill	镂空时是否填充背景色（默认 false ）
 	 * @property {Boolean}			plain		是否镂空（默认 false ）
-	 * @property {Boolean}			closeable	是否可关闭，设置为true，文字右边会出现一个关闭图标（默认 false ）
+	 * @property {Boolean}			closable	是否可关闭，设置为true，文字右边会出现一个关闭图标（默认 false ）
 	 * @property {Boolean}			show		标签显示与否（默认 true ）
 	 * @property {String}			icon		内置图标，或绝对路径的图片
 	 * @event {Function(index)} click 点击标签时触发 index: 传递的index参数值
-	 * @event {Function(index)} close closeable为true时，点击标签关闭按钮触发 index: 传递的index参数值	
+	 * @event {Function(index)} close closable为true时，点击标签关闭按钮触发 index: 传递的index参数值	
 	 * @example <u-tag text="标签" type="error" plain plainFill></u-tag>
 	 */
 	export default {

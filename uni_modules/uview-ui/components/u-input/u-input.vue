@@ -99,7 +99,6 @@ import props from "./props.js";
  * @property {String ｜ Number}	selectionEnd			光标结束位置，自动聚集时有效，需与selection-start搭配使用 （ 默认 -1 ）
  * @property {Boolean}			adjustPosition			键盘弹起时，是否自动上推页面 （ 默认 true ）
  * @property {String}			inputAlign				输入框内容对齐方式（ 默认 'left' ）
- * @property {Boolean}			autosize				是否自适应内容高度，只对type=textarea有效，可传入对象,如{ maxHeight: 100, minHeight: 50 } （ 默认 false ）
  * @property {String | Number}	fontSize				输入框字体的大小 （ 默认 '15px' ）
  * @property {String}			color					输入框字体颜色	（ 默认 '#303133' ）
  * @property {Function}			formatter			    内容式化函数

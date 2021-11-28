@@ -128,11 +128,6 @@ export default {
 			type: String,
 			default: uni.$u.props.input.inputAlign
 		},
-		// 是否自适应内容高度，只对type=textarea有效，可传入对象,如{ maxHeight: 100, minHeight: 50 }
-		autosize: {
-			type: Boolean,
-			default: uni.$u.props.input.autosize
-		},
 		// 输入框字体的大小
 		fontSize: {
 			type: [String, Number],

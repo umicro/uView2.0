@@ -117,7 +117,7 @@
 				let selectValue = ''
 				if(this.mode === 'time') {
 					// 根据value各列索引，从各列数组中，取出当前时间的选中值
-					selectValue = `${values[0][value[0]]}:${values[1][indexs[1]]}`
+					selectValue = `${values[0][indexs[0]]}:${values[1][indexs[1]]}`
 				} else {
 					// 将选择的值转为数值，比如'03'转为数值的3，'2019'转为数值的2019
 					const year = parseInt(values[0][indexs[0]])

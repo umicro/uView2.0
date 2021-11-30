@@ -51,8 +51,7 @@ export default {
                     return format(text)
                 } if (format === 'encrypt') {
                     // 如果format为encrypt，则将姓名进行星号加密处理
-                    // return text.replace(/(?<=.)./g, '*').substring(0, 3)
-                    return text
+                    return text.replace(/(?<=.)./g, '*').substring(0, 3)
                 }
                 return text
             } if (mode === 'link') {

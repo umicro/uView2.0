@@ -1,3 +1,13 @@
+## 2.0.7（2021-11-30）
+## [点击加群交流反馈：232041042](https://jq.qq.com/?_wv=1027&k=KnbeceDU)
+
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. 修复radio和checkbox动态改变v-model无效的问题。
+2. 优化form规则validator在微信小程序用法
+3. 修复backtop组件mode参数在微信小程序无效的问题
+4. 处理Album的previewFullImage属性无效的问题
+5. 处理u-datetime-picker组件mode='time'在选择改变时间时，控制台报错的问题
 ## 2.0.6（2021-11-27）
 ## [点击加群交流反馈：232041042](https://jq.qq.com/?_wv=1027&k=KnbeceDU)
 

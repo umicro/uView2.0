@@ -12,7 +12,7 @@
 			    v-for="(item, index1) in arr"
 			    :key="index1"
 			    :style="[imageStyle(index + 1, index1 + 1)]"
-				@tap="onPreviewTap(getSrc(item))"
+				@tap="previewFullImage?onPreviewTap(getSrc(item)):''"
 			>
 				<image
 				    :src="getSrc(item)"

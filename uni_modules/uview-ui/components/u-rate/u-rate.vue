@@ -118,6 +118,7 @@
 			value(val) {
 				this.activeIndex = val;
 			},
+			activeIndex: 'emitEvent'
 		},
 		methods: {
 			init() {
@@ -245,7 +246,6 @@
 				setTimeout(() => {
 					this.moving = false;
 				}, 10);
-				this.emitEvent();
 			},
 		},
 		mounted() {

@@ -17,7 +17,7 @@ export default {
 		// 如果 textarea 是在一个 position:fixed 的区域，需要显示指定属性 fixed 为 true，
 		// 兼容性：微信小程序、百度小程序、字节跳动小程序、QQ小程序
 		fixed: {
-			default: Boolean,
+			type: Boolean,
 			default: uni.$u.props.input.fixed
 		},
 		// 是否禁用输入框
@@ -127,11 +127,6 @@ export default {
 		inputAlign: {
 			type: String,
 			default: uni.$u.props.input.inputAlign
-		},
-		// 是否自适应内容高度，只对type=textarea有效，可传入对象,如{ maxHeight: 100, minHeight: 50 }
-		autosize: {
-			type: Boolean,
-			default: uni.$u.props.input.autosize
 		},
 		// 输入框字体的大小
 		fontSize: {

@@ -27,7 +27,7 @@
 			:show="show1"
 			:value="value1"
 			mode="datetime"
-			closeOnClickOverly
+			closeOnClickOverlay
 			@confirm="confirm"
 			@cancel="cancel"
 			@change="change"
@@ -37,7 +37,7 @@
 			:show="show2"
 			:value="value2"
 			mode="date"
-			closeOnClickOverly
+			closeOnClickOverlay
 			@confirm="confirm"
 			@cancel="cancel"
 			@change="change"
@@ -47,7 +47,7 @@
 			:show="show3"
 			:value="value3"
 			mode="year-month"
-			closeOnClickOverly
+			closeOnClickOverlay
 			@confirm="confirm"
 			@cancel="cancel"
 			@change="change"
@@ -57,7 +57,7 @@
 			:show="show4"
 			:value="value4"
 			mode="time"
-			closeOnClickOverly
+			closeOnClickOverlay
 			@confirm="confirm"
 			@cancel="cancel"
 			@change="change"
@@ -68,7 +68,7 @@
 			:value="value5"
 			:filter="filter"
 			mode="date"
-			closeOnClickOverly
+			closeOnClickOverlay
 			@confirm="confirm"
 			@cancel="cancel"
 			@change="change"
@@ -79,7 +79,7 @@
 			:value="value6"
 			mode="date"
 			:formatter="formatter"
-			closeOnClickOverly
+			closeOnClickOverlay
 			@confirm="confirm"
 			@cancel="cancel"
 			@change="change"
@@ -91,7 +91,7 @@
 			mode="datetime"
 			:minDate="1587524800000"
 			:maxDate="1786778555000"
-			closeOnClickOverly
+			closeOnClickOverlay
 			@confirm="confirm"
 			@cancel="cancel"
 			@change="change"

@@ -30,7 +30,7 @@
 				>
 					<text
 						v-if="$u.test.array(item)"
-						class="u-picker__view__column__item"
+						class="u-picker__view__column__item u-line-1"
 						v-for="(item1, index1) in item"
 						:key="index1"
 						:style="{
@@ -241,9 +241,9 @@ export default {
 		&__view {
 
 			&__column {
+				@include flex;
 				flex: 1;
 				justify-content: center;
-				@include flex;
 
 				&__item {
 					@include flex;
@@ -251,6 +251,9 @@ export default {
 					align-items: center;
 					font-size: 16px;
 					text-align: center;
+					/* #ifndef APP-NVUE */
+					display: block;
+					/* #endif */
 
 					&--disabled {
 						/* #ifndef APP-NVUE */

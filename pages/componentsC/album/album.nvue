@@ -24,7 +24,7 @@
 						></u--text>
 						<u-album
 						    :urls="urls1"
-						    keys="src"
+						    keyName="src2"
 						></u-album>
 					</view>
 				</view>
@@ -168,7 +168,7 @@
 			return {
 				albumWidth: 0,
 				urls1: [{
-					src: 'https://cdn.uviewui.com/uview/album/1.jpg',
+					src2: 'https://cdn.uviewui.com/uview/album/1.jpg',
 				}],
 				urls2: [
 					'https://cdn.uviewui.com/uview/album/1.jpg',

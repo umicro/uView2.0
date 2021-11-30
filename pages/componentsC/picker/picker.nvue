@@ -66,7 +66,7 @@
 		<u-picker
 			:show="show6"
 			:columns="columns6"
-			closeOnClickOverly
+			closeOnClickOverlay
 			@cancel="cancel"
 			@confirm="confirm"
 			@close="close"

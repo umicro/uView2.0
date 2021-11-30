@@ -37,6 +37,10 @@
 			this.children = []
 		},
 		methods: {
+			// 手动设置校验的规则，如果规则中有函数的话，微信小程序中会过滤掉，所以只能手动调用设置规则
+			setRules(rules) {
+				this.$refs.uForm.setRules(rules)
+			},
 			validate() {
 				/**
 				 * 在微信小程序中，通过this.$parent拿到的父组件是u--form，而不是其内嵌的u-form

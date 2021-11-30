@@ -11,7 +11,7 @@
 				    placement="column"
 					shape="square"
 				    @change="checkboxChange"
-					:value="['自定义图标']"
+					v-model="value"
 				>
 					<u-checkbox
 					    :customStyle="{marginBottom: '8px'}"
@@ -40,10 +40,10 @@
 </template>
 
 <script>
-	// const dom = weex.requireModule('dom')
 	export default {
 		data() {
 			return {
+				value: ['自定义图标'],
 				backTopData: {
 					mode: 'circle',
 					icon: 'arrow-upward',

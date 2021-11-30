@@ -6,7 +6,7 @@
 	>
 		<view
 		    class="u-back-top"
-			:style="contentStyle"
+			:style="[contentStyle]"
 		    v-if="!$slots.default && !$slots.$default"
 			@click="backToTop"
 		>

@@ -316,9 +316,6 @@
 				// console.log('v-model', newValue);
 			}
 		},
-		onLoad() {
-
-		},
 		methods: {
 			checkboxChange(n) {
 				// console.log('change', n);

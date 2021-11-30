@@ -10,10 +10,10 @@
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">基础使用</text>
 			<view class="u-demo-block__content">
+				<!-- 注意，如果需要兼容微信小程序，最好通过setRules方法设置rules规则 -->
 				<u--form
 					labelPosition="left"
 					:model="model1"
-					:rules="rules"
 					ref="form1"
 				>
 					<u-form-item
@@ -25,6 +25,7 @@
 						<u--input
 							v-model="model1.userInfo.name"
 							border="none"
+							placeholder="姓名,只能为中文"
 						></u--input>
 					</u-form-item>
 					<u-form-item
@@ -213,7 +214,7 @@
 				showBirthday: false,
 				model1: {
 					userInfo: {
-						name: 'uView UI',
+						name: '楼兰',
 						sex: '',
 						birthday: ''
 					},
@@ -235,12 +236,21 @@
 					},
 				],
 				rules: {
-					'userInfo.name': {
+					'userInfo.name': [{
 						type: 'string',
 						required: true,
 						message: '请填写姓名',
 						trigger: ['blur', 'change']
-					},
+					}, {
+						// 此为同步验证，可以直接返回true或者false，如果是异步验证，稍微不同，见下方说明
+						validator: (rule, value, callback) => {
+							// 调用uView自带的js验证规则，详见：https://www.uviewui.com/js/test.html
+							return uni.$u.test.chinese(value);
+						},
+						message: "姓名必须为中文",
+						// 触发器可以同时用blur和change，二者之间用英文逗号隔开
+						trigger: ["change", "blur"],
+					}],
 					code: {
 						type: 'string',
 						required: true,
@@ -318,8 +328,9 @@
 				]
 			}
 		},
-		onLoad() {
-
+		onReady() {
+			// 如果需要兼容微信小程序，并且校验规则中含有方法等，只能通过setRules方法设置规则
+			this.$refs.form1.setRules(this.rules)
 		},
 		methods: {
 			groupChange(n) {

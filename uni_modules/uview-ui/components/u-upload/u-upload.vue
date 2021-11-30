@@ -12,10 +12,10 @@
 				    :mode="imageMode"
 				    class="u-upload__wrap__preview__image"
 				    @tap="onPreviewImage(item)"
-					:style="{
+					:style="[{
 						width: $u.addUnit(width),
 						height: $u.addUnit(height)
-					}"
+					}]"
 				/>
 				<view
 				    v-else
@@ -99,6 +99,10 @@
 				    hover-stay-time="150"
 				    @tap="chooseFile"
 				    :class="[disabled && 'u-upload__button--disabled']"
+					:style="[{
+						width: $u.addUnit(width),
+						height: $u.addUnit(height)
+					}]"
 				>
 					<u-icon
 					    :name="uploadIcon"

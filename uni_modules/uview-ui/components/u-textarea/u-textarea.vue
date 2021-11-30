@@ -221,6 +221,7 @@ export default {
         flex: 1;
         font-size: 15px;
         color: $u-content-color;
+		width: 100%;
     }
 
     &__count {

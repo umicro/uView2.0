@@ -301,9 +301,6 @@
 				console.log('v-model', newValue);
 			}
 		},
-		onLoad() {
-
-		},
 		methods: {
 			groupChange(n) {
 				console.log('groupChange', n);

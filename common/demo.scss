@@ -1,12 +1,3 @@
-.u-view {
-	padding: 40px 20px 0px 20px;
-	&__title {
-		font-size: 14px;
-		color: rgb(143, 156, 162);
-		margin-bottom: 10px;
-	}
-}
-
 .u-block{
 	padding: 14px;
 	&__section{
@@ -41,12 +32,7 @@
 	margin-bottom: 23px;
 	
 	&__content {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		// flex-direction: row!important;
-		// align-items: center;
-		// flex-wrap: wrap;
+		@include flex(column);
 	}
 	
 	&__title {

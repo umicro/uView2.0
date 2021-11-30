@@ -85,7 +85,6 @@
 	 * @property {String} 					href		mode=link下，配置的链接
 	 * @property {String | Function} 		format		格式化规则
 	 * @property {Boolean} 					call		mode=phone时，点击文本是否拨打电话（默认 false ）
-	 * @property {Boolean} 					encrypt		是否对mode=phone|name类型文本进行脱敏，用*号替换部分文本（默认 false ）
 	 * @property {String} 					openType	小程序的打开方式
 	 * @property {Boolean} 					bold		是否粗体，默认normal（默认 false ）
 	 * @property {Boolean} 					block		是否块状（默认 false ）

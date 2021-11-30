@@ -50,7 +50,6 @@
 					<u--text
 					    mode="phone"
 					    text="15019479320"
-					    encrypt
 					></u--text>
 				</view>
 			</view>
@@ -72,8 +71,8 @@
 				<view class="u-page__text-item">
 					<u--text
 					    mode="name"
-					    text="张**"
-					    encrypt
+					    text="张三三"
+						format="encrypt"
 					></u--text>
 				</view>
 			</view>

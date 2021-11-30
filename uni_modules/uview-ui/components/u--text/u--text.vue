@@ -9,7 +9,6 @@
 		:href="href"
 		:format="format"
 		:call="call"
-		:encrypt="encrypt"
 		:openType="openType"
 		:bold="bold"
 		:block="block"

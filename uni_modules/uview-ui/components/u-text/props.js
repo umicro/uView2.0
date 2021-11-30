@@ -46,11 +46,6 @@ export default {
             type: Boolean,
             default: uni.$u.props.text.call
         },
-        // 是否对mode=phone|name类型文本进行脱敏，用*号替换部分文本
-        encrypt: {
-            type: Boolean,
-            default: uni.$u.props.text.encrypt
-        },
         // 小程序的打开方式
         openType: {
             type: String,

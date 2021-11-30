@@ -5,7 +5,7 @@
 				height="70px" />
 			<view class="nav-info">
 				<view class="nav-info__title" @tap="jumpToWx">
-					<text class="nav-info__title__text">uView 2.0</text>
+					<text class="nav-info__title__text">uView {{this.$u.config.v}}</text>
 					<!-- #ifdef MP-WEIXIN -->
 					<!-- uni-app不支持text内部的text组件的tap事件，所以放到外部响应tap -->
 					<text class="nav-info__title__jump">查看1.x演示</text>

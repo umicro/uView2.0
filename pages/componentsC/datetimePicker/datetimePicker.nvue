@@ -25,7 +25,7 @@
 		</u-cell-group>
 		<u-datetime-picker
 			:show="show1"
-			:value="value1"
+			v-model="value1"
 			mode="datetime"
 			closeOnClickOverlay
 			@confirm="confirm"
@@ -35,7 +35,7 @@
 		></u-datetime-picker>
 		<u-datetime-picker
 			:show="show2"
-			:value="value2"
+			v-model="value2"
 			mode="date"
 			closeOnClickOverlay
 			@confirm="confirm"
@@ -45,7 +45,7 @@
 		></u-datetime-picker>
 		<u-datetime-picker
 			:show="show3"
-			:value="value3"
+			v-model="value3"
 			mode="year-month"
 			closeOnClickOverlay
 			@confirm="confirm"
@@ -55,7 +55,7 @@
 		></u-datetime-picker>
 		<u-datetime-picker
 			:show="show4"
-			:value="value4"
+			v-model="value4"
 			mode="time"
 			closeOnClickOverlay
 			@confirm="confirm"
@@ -65,7 +65,7 @@
 		></u-datetime-picker>
 		<u-datetime-picker
 			:show="show5"
-			:value="value5"
+			v-model="value5"
 			:filter="filter"
 			mode="date"
 			closeOnClickOverlay
@@ -76,7 +76,7 @@
 		></u-datetime-picker>
 		<u-datetime-picker
 			:show="show6"
-			:value="value6"
+			v-model="value6"
 			mode="date"
 			:formatter="formatter"
 			closeOnClickOverlay
@@ -87,7 +87,7 @@
 		></u-datetime-picker>
 		<u-datetime-picker
 			:show="show7"
-			:value="value7"
+			v-model="value7"
 			mode="datetime"
 			:minDate="1587524800000"
 			:maxDate="1786778555000"

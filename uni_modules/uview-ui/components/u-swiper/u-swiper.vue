@@ -64,6 +64,7 @@
 							height: $u.addUnit(height)
 						}"
 						controls
+						@tap="clickHandler(index)"
 					></video>
 					<text
 						v-if="showTitle && $u.test.object(item) && item.title && $u.test.image(getSource(item))"
@@ -198,12 +199,14 @@
 			flex: 1;
 
 			&__item {
+				flex: 1;
 
 				&__wrapper {
 					@include flex;
 					position: relative;
 					overflow: hidden;
 					transition: transform 0.3s;
+					flex: 1;
 
 					&__image {
 						flex: 1;

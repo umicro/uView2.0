@@ -399,7 +399,8 @@
 	$u-upload-disabled-opacity:.5 !default;
 
 	.u-upload {
-		@include flex;
+		@include flex(column);
+		flex: 1;
 
 		&__wrap {
 			@include flex;

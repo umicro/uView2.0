@@ -124,6 +124,12 @@
 						})
 					}
 				}
+			},
+			// list变化时，重新渲染list各项信息
+			list() {
+				this.$nextTick(() => {
+					this.resize()
+				})
 			}
 		},
 		computed: {
@@ -222,6 +228,10 @@
 			},
 			// 获取所有标签的尺寸
 			resize() {
+				// 如果不存在list，则不处理
+				if(this.list.length === 0) {
+					return 
+				}
 				Promise.all([this.getTabsRect(), this.getAllItemRect()]).then(([tabsRect, itemRect = []]) => {
 					this.tabsRect = tabsRect
 					this.scrollViewWidth = 0

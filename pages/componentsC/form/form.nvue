@@ -22,11 +22,12 @@
 						borderBottom
 						ref="item1"
 					>
-						<u--input
+						<!-- <u--input
 							v-model="model1.userInfo.name"
 							border="none"
 							placeholder="姓名,只能为中文"
-						></u--input>
+						></u--input> -->
+						<u-upload :fileList="fileList1" @afterRead="afterRead"></u-upload>
 					</u-form-item>
 					<u-form-item
 						label="性别"
@@ -207,6 +208,7 @@
 	export default {
 		data() {
 			return {
+				fileList1: [],
 				disabled1: false,
 				tips: '',
 				value: '',
@@ -333,6 +335,13 @@
 			this.$refs.form1.setRules(this.rules)
 		},
 		methods: {
+			afterRead(event) {
+				this.fileList1.push({
+					url: event.file,
+					status: 'uploading',
+					message: '上传中'
+				})
+			},
 			groupChange(n) {
 				// console.log('groupChange', n);
 			},

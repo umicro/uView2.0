@@ -103,9 +103,7 @@
 	export default {
 		data() {
 			return {
-				fileList1: [
-
-				],
+				fileList1: [],
 				fileList2: [],
 				fileList3: [{
 					url: 'https://cdn.uviewui.com/uview/swiper/1.jpg',
@@ -155,7 +153,7 @@
 			uploadFilePromise(url) {
 				return new Promise((resolve, reject) => {
 					let a = uni.uploadFile({
-						url: 'http://rshan-api.aeshanvip.com/upload', // 仅为示例，非真实的接口地址
+						url: '', // 仅为示例，非真实的接口地址
 						filePath: url,
 						name: 'file',
 						formData: {

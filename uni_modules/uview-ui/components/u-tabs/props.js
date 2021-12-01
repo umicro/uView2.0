@@ -49,6 +49,11 @@ export default {
 		current: {
 			type: [Number, String],
 			default: uni.$u.props.tabs.current
+		},
+		// 默认读取的键名
+		keyName: {
+			type: String,
+			default: uni.$u.props.tabs.keyName
 		}
     }
 }

@@ -24,7 +24,6 @@
 		:selectionEnd="selectionEnd"
 		:adjustPosition="adjustPosition"
 		:inputAlign="inputAlign"
-		:autosize="autosize"
 		:fontSize="fontSize"
 		:color="color"
 		:prefixIcon="prefixIcon"

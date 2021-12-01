@@ -13,34 +13,35 @@
                     ></u-icon>
                 </slot>
             </view>
-            <input
-                class="u-input__content__field"
-                :style="[inputStyle]"
-                :type="type"
-                :focus="focus"
-                :cursor="cursor"
-                :value="innerValue"
-                :auto-blur="autoBlur"
-                :disabled="disabled"
-                :maxlength="maxlength"
-                :placeholder="placeholder"
-                :placeholder-style="placeholderStyle"
-                :placeholder-class="placeholderClass"
-                :confirm-type="confirmType"
-                :confirm-hold="confirmHold"
-                :hold-keyboard="holdKeyboard"
-                :cursor-spacing="cursorSpacing"
-                :adjust-position="adjustPosition"
-                :selection-end="selectionEnd"
-                :selection-start="selectionStart"
-                :password="password || type === 'password'"
-                @input="onInput"
-                @blur="onBlur"
-                @focus="onFocus"
-                @confirm="onConfirm"
-                @keyboardheightchange="onkeyboardheightchange"
-                @tap="clickHandler"
-            />
+            <view class="u-input__content__field-wrapper" @tap="clickHandler">
+            	<input
+            	    class="u-input__content__field-wrapper__field"
+            	    :style="[inputStyle]"
+            	    :type="type"
+            	    :focus="focus"
+            	    :cursor="cursor"
+            	    :value="innerValue"
+            	    :auto-blur="autoBlur"
+            	    :disabled="disabled"
+            	    :maxlength="maxlength"
+            	    :placeholder="placeholder"
+            	    :placeholder-style="placeholderStyle"
+            	    :placeholder-class="placeholderClass"
+            	    :confirm-type="confirmType"
+            	    :confirm-hold="confirmHold"
+            	    :hold-keyboard="holdKeyboard"
+            	    :cursor-spacing="cursorSpacing"
+            	    :adjust-position="adjustPosition"
+            	    :selection-end="selectionEnd"
+            	    :selection-start="selectionStart"
+            	    :password="password || type === 'password'"
+            	    @input="onInput"
+            	    @blur="onBlur"
+            	    @focus="onFocus"
+            	    @confirm="onConfirm"
+            	    @keyboardheightchange="onkeyboardheightchange"
+            	/>
+            </view>
             <view
                 class="u-input__content__clear"
                 v-if="isShowClear"
@@ -309,16 +310,20 @@ export default {
         align-items: center;
         justify-content: space-between;
 
-        &__field {
+        &__field-wrapper {
             position: relative;
-            @include flex;
+            @include flex(row);
             margin: 0;
-            line-height: 26px;
-            text-align: left;
-            color: $u-main-color;
-            height: 24px;
-            font-size: 15px;
             flex: 1;
+			
+			&__field {
+				line-height: 26px;
+				text-align: left;
+				color: $u-main-color;
+				height: 24px;
+				font-size: 15px;
+				flex: 1;
+			}
         }
 
         &__clear {

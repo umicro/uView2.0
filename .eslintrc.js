@@ -6,7 +6,7 @@ module.exports = {
         // 强制4个空格缩进
         indent: ['error', 4],
         // 不允许出现分号
-        semi: ['error', 'never'],
+        semi: ['error', 'always'],
         // 是否检查连续等号赋值
         'no-multi-assign': 0,
         // 要求 require() 出现在顶层模块作用域中，禁止它

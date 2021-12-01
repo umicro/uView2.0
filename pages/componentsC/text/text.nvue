@@ -1,7 +1,7 @@
 <template>
 	<view class="u-page">
 		<view class="u-demo-block">
-			<text class="u-demo-block__title">基础功能</text>
+			<text class="u-demo-block__title" style="text-align: right;">基础功能</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__text-item">
 					<u--text text="我用十年青春,赴你最后之约"></u--text>

@@ -35,12 +35,18 @@ export default {
             type: String,
             default: uni.$u.props.avatarGroup.keyName
         },
+		// 头像之间的遮挡比例
         gap: {
             type: [String, Number],
             validator(value) {
                 return value >= 0 && value <= 1
             },
             default: uni.$u.props.avatarGroup.gap
-        }
+        },
+		// 需额外显示的值
+		extraValue: {
+			type: [Number, String],
+			default: uni.$u.props.avatarGroup.extraValue
+		}
     }
 }

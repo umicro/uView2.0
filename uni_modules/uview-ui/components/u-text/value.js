@@ -51,7 +51,7 @@ export default {
                     return format(text)
                 } if (format === 'encrypt') {
                     // 如果format为encrypt，则将姓名进行星号加密处理
-					return text.replace(/(?<=.)./g, '*').substring(0, 3)
+                    return this.formatName(text)
                 }
                 return text
             } if (mode === 'link') {
@@ -60,6 +60,24 @@ export default {
                 return text
             }
             return text
+        }
+    },
+    methods: {
+        // 默认的姓名脱敏规则
+        formatName(name) {
+            let value = ''
+            if (name.length === 2) {
+                value = name.substr(0, 1) + '*'
+            } else if (name.length > 2) {
+                let char = ''
+                for (let i = 0, len = name.length - 2; i < len; i++) {
+                    char += '*'
+                }
+                value = name.substr(0, 1) + char + name.substr(-1, 1)
+            } else {
+                value = name
+            }
+            return value
         }
     }
 }

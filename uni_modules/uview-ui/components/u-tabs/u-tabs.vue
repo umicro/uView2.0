@@ -31,7 +31,7 @@
 								:class="['ellipsis' && 'u-line-1', item.disabled && 'u-tabs__wrapper__nav__item__text--disabled']"
 								class="u-tabs__wrapper__nav__item__text"
 								:style="[textStyle(index)]"
-							>{{ item.name }}</text>
+							>{{ item[keyName] }}</text>
 							<u-badge
 								:show="!!(item.badge && (item.badge.show || item.badge.isDot || item.badge.value))"
 								:isDot="item.badge && item.badge.isDot || $u.props.badge.isDot"

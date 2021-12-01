@@ -86,7 +86,7 @@
 					    margin="0 3px 0 0"
 					    type="tips"
 					></u--text>
-				<!-- #ifdef MP -->
+				<!-- #ifdef MP-WEIXIN -->
 				</u-input>
 				<!-- #endif -->
 				<!-- #ifndef MP-WEIXIN -->
@@ -116,7 +116,7 @@
 							size="mini"
 						></u-button>
 					</template>
-				<!-- #ifdef MP -->
+				<!-- #ifdef MP-WEIXIN -->
 				</u-input>
 				<!-- #endif -->
 				<!-- #ifndef MP-WEIXIN -->

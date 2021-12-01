@@ -16,13 +16,13 @@
 			></u-avatar>
 			<view
 			    class="u-avatar-group__item__show-more"
-			    v-if="showMore && index === showUrl.length - 1 && urls.length > maxCount"
+			    v-if="showMore && index === showUrl.length - 1 && (urls.length > maxCount || extraValue > 0)"
 				@tap="clickHandler"
 			>
 				<u--text
 				    color="#ffffff"
 				    :size="size * 0.4"
-				    :text="`+${urls.length - showUrl.length}`"
+				    :text="`+${extraValue || urls.length - showUrl.length}`"
 					align="center"
 					customStyle="justify-content: center"
 				></u--text>
@@ -46,7 +46,7 @@
 	 * @property {String | Number} size      头像大小 （默认 40 ）
 	 * @property {String}          keyName  指定从数组的对象元素中读取哪个属性作为图片地址 
 	 * @property {String | Number} gap      头像之间的遮挡比例（0.4代表遮挡40%）  （默认 0.5 ）
-	 * 
+	 * @property {String | Number} extraValue  需额外显示的值
 	 * @event    {Function}        showMore 头像组更多点击
 	 * @example  <u-avatar-group:urls="urls" size="35" gap="0.4" ></u-avatar-group:urls=>
 	 */

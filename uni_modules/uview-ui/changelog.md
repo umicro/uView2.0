@@ -1,3 +1,14 @@
+## 2.0.8（2021-12-01）
+## [点击加群交流反馈：232041042](https://jq.qq.com/?_wv=1027&k=KnbeceDU)
+
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. 修复toast的position参数无效问题
+2. 处理input在ios nvue上无法获得焦点的问题
+3. avatar-group组件添加extraValue参数，让剩余展示数量可手动控制
+4. tabs组件添加keyName参数用于配置从对象中读取的键名
+5. 处理text组件名字脱敏默认配置无效的问题
+6. 处理picker组件item文本太长换行问题
 ## 2.0.7（2021-11-30）
 ## [点击加群交流反馈：232041042](https://jq.qq.com/?_wv=1027&k=KnbeceDU)
 

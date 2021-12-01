@@ -144,7 +144,7 @@ export default {
 			// 通过对比前后两次的列索引，得出当前变化的是哪一列
 			for (let i = 0; i < value.length; i++) {
 				let item = value[i]
-				if (item !== (this.lastIndex[i] || 0)) { // 把undefined转为合法假值0
+				if (item !== this.lastIndex[i]) {
 					// 设置columnIndex为当前变化列的索引
 					columnIndex = i
 					// index则为变化列中的变化项的索引

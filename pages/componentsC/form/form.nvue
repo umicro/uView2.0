@@ -22,12 +22,11 @@
 						borderBottom
 						ref="item1"
 					>
-						<!-- <u--input
+						<u--input
 							v-model="model1.userInfo.name"
 							border="none"
 							placeholder="姓名,只能为中文"
-						></u--input> -->
-						<u-upload :fileList="fileList1" @afterRead="afterRead"></u-upload>
+						></u--input>
 					</u-form-item>
 					<u-form-item
 						label="性别"

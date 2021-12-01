@@ -19,7 +19,6 @@ export default {
         href: '',
         format: '',
         call: false,
-        encrypt: false,
         openType: '',
         bold: false,
         block: false,

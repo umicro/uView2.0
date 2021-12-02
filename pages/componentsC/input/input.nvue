@@ -110,7 +110,7 @@
 						    ref="uCode"
 						    @change="codeChange"
 						    seconds="20"
-							changeText="X秒重新获取哈哈哈"
+							changeText="X秒重新获取"
 						></u-code>
 						<u-button
 						    @tap="getCode"

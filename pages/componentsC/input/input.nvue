@@ -74,10 +74,11 @@
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">前后插槽</text>
 			<view class="u-demo-block__content">
-				<!-- #ifdef MP-WEIXIN -->
+				<!-- 注意：由于兼容性差异，如果需要使用前后插槽，nvue下需使用u--input，非nvue下需使用u-inpu -->
+				<!-- #ifndef APP-NVUE -->
 				<u-input placeholder="前置插槽">
 				<!-- #endif -->
-				<!-- #ifndef MP-WEIXIN -->
+				<!-- #ifdef APP-NVUE -->
 				<u--input placeholder="前置插槽">
 				<!-- #endif -->
 					<u--text
@@ -86,10 +87,10 @@
 					    margin="0 3px 0 0"
 					    type="tips"
 					></u--text>
-				<!-- #ifdef MP-WEIXIN -->
+				<!-- #ifndef APP-NVUE -->
 				</u-input>
 				<!-- #endif -->
-				<!-- #ifndef MP-WEIXIN -->
+				<!-- #ifdef APP-NVUE -->
 				</u--input>
 				<!-- #endif -->
 			</view>
@@ -97,10 +98,11 @@
 			    class="u-demo-block__content"
 			    style="margin-top: 15px;"
 			>
-				<!-- #ifdef MP-WEIXIN -->
+				<!-- 注意：由于兼容性差异，如果需要使用前后插槽，nvue下需使用u--input，非nvue下需使用u-inpu -->
+				<!-- #ifndef APP-NVUE -->
 				<u-input placeholder="后置插槽">
 				<!-- #endif -->
-				<!-- #ifndef MP-WEIXIN -->
+				<!-- #ifdef APP-NVUE -->
 				<u--input placeholder="后置插槽">
 				<!-- #endif -->
 					<template slot="suffix">
@@ -108,6 +110,7 @@
 						    ref="uCode"
 						    @change="codeChange"
 						    seconds="20"
+							changeText="X秒重新获取哈哈哈"
 						></u-code>
 						<u-button
 						    @tap="getCode"
@@ -116,10 +119,10 @@
 							size="mini"
 						></u-button>
 					</template>
-				<!-- #ifdef MP-WEIXIN -->
+				<!-- #ifndef APP-NVUE -->
 				</u-input>
 				<!-- #endif -->
-				<!-- #ifndef MP-WEIXIN -->
+				<!-- #ifdef APP-NVUE -->
 				</u--input>
 				<!-- #endif -->
 			</view>

@@ -28,7 +28,7 @@
 			</slot>
 		</view>
 		<!-- #ifdef APP-VUE || MP-WEIXIN || H5 || MP-QQ -->
-		<view class="u-swipe-action-item__content" @touchstart="wxs.touchstart" @touchmove="wxs.touchmove"
+		<view ref="uSwiperActionItemContent" class="u-swipe-action-item__content" @touchstart="wxs.touchstart" @touchmove="wxs.touchmove"
 			@touchend="wxs.touchend" :status="status" :change:status="wxs.statusChange" :size="size"
 			:change:size="wxs.sizeChange">
 			<!-- #endif -->
@@ -101,6 +101,11 @@
 		},
 		mounted() {
 			this.init()
+			if(!this.show) {
+				  // 用户不想默认显示
+				  let $el = this.$refs.uSwiperActionItemContent.$el; // 获取真实DOM节点
+				  $el.style="transition: none 0s ease 0s; transform: translateX(0px);" // 添加样式
+			}
 		},
 		methods: {
 			init() {

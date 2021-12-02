@@ -72,7 +72,9 @@
 		},
 		watch: {
 			show(newValue, oldValue) {
-				if (newValue) {
+				if (newValue && this.mode === 'datetime') {
+					this.updateColumnValue(+this.value)
+				} else if (newValue) {
 					this.updateColumnValue(this.value)
 				}
 			},

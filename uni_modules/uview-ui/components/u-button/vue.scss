@@ -17,6 +17,11 @@ $u-button-plain-u-button-warning-color:$u-error;
 .u-button {
 	width: 100%;
 	
+	&__text {
+		white-space: nowrap;
+		line-height: 1;
+	}
+	
 	&:before {
 		position: absolute;
 		top:$u-button-before-top;

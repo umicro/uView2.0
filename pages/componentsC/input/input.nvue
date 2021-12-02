@@ -4,8 +4,8 @@
 			<text class="u-demo-block__title">基础使用</text>
 			<view class="u-demo-block__content">
 				<u--input
-				    placeholder="请输入内容"
-				    border="surround"
+					placeholder="请输入内容"
+					border="surround"
 					v-model="value"
 					@change="change"
 				></u--input>
@@ -15,9 +15,9 @@
 			<text class="u-demo-block__title">可清空内容</text>
 			<view class="u-demo-block__content">
 				<u--input
-				    placeholder="请输入内容"
-				    border="surround"
-				    clearable
+					placeholder="请输入内容"
+					border="surround"
+					clearable
 				></u--input>
 			</view>
 		</view>
@@ -25,9 +25,9 @@
 			<text class="u-demo-block__title">显示下划线</text>
 			<view class="u-demo-block__content">
 				<u--input
-				    placeholder="请输入内容"
-				    border="bottom"
-				    clearable
+					placeholder="请输入内容"
+					border="bottom"
+					clearable
 				></u--input>
 			</view>
 		</view>
@@ -35,9 +35,9 @@
 			<text class="u-demo-block__title">禁用状态</text>
 			<view class="u-demo-block__content">
 				<u--input
-				    placeholder="禁用状态"
-				    border="surround"
-				    disabled
+					placeholder="禁用状态"
+					border="surround"
+					disabled
 				></u--input>
 			</view>
 		</view>
@@ -45,9 +45,9 @@
 			<text class="u-demo-block__title">圆形</text>
 			<view class="u-demo-block__content">
 				<u--input
-				    placeholder="请输入内容"
-				    border="surround"
-				    shape="circle"
+					placeholder="请输入内容"
+					border="surround"
+					shape="circle"
 				></u--input>
 			</view>
 		</view>
@@ -55,76 +55,82 @@
 			<text class="u-demo-block__title">前后图标</text>
 			<view class="u-demo-block__content">
 				<u--input
-				    placeholder="前置图标"
-				    prefixIcon="search"
-				    prefixIconStyle="font-size: 22px;color: #909399"
+					placeholder="前置图标"
+					prefixIcon="search"
+					prefixIconStyle="font-size: 22px;color: #909399"
 				></u--input>
 			</view>
 			<view
-			    class="u-demo-block__content"
-			    style="margin-top: 15px;"
+				class="u-demo-block__content"
+				style="margin-top: 15px;"
 			>
 				<u--input
-				    placeholder="后置图标"
-				    suffixIcon="map-fill"
-				    suffixIconStyle="color: #909399"
+					placeholder="后置图标"
+					suffixIcon="map-fill"
+					suffixIconStyle="color: #909399"
 				></u--input>
 			</view>
 		</view>
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">前后插槽</text>
 			<view class="u-demo-block__content">
-				<!-- #ifdef MP-WEIXIN -->
+				<!-- 注意：由于兼容性差异，如果需要使用前后插槽，nvue下需使用u--input，非nvue下需使用u-input -->
+				<!-- #ifndef APP-NVUE -->
 				<u-input placeholder="前置插槽">
-				<!-- #endif -->
-				<!-- #ifndef MP-WEIXIN -->
-				<u--input placeholder="前置插槽">
-				<!-- #endif -->
-					<u--text
-					    text="http://"
-					    slot="prefix"
-					    margin="0 3px 0 0"
-					    type="tips"
-					></u--text>
-				<!-- #ifdef MP-WEIXIN -->
+					<!-- #endif -->
+					<!-- #ifdef APP-NVUE -->
+					<u--input placeholder="前置插槽">
+						<!-- #endif -->
+						<u--text
+							text="http://"
+							slot="prefix"
+							margin="0 3px 0 0"
+							type="tips"
+						></u--text>
+						<!-- #ifndef APP-NVUE -->
 				</u-input>
 				<!-- #endif -->
-				<!-- #ifndef MP-WEIXIN -->
+				<!-- #ifdef APP-NVUE -->
 				</u--input>
 				<!-- #endif -->
 			</view>
 			<view
-			    class="u-demo-block__content"
-			    style="margin-top: 15px;"
+				class="u-demo-block__content"
+				style="margin-top: 15px;"
 			>
-				<!-- #ifdef MP-WEIXIN -->
+				<!-- 注意：由于兼容性差异，如果需要使用前后插槽，nvue下需使用u--input，非nvue下需使用u-input -->
+				<!-- #ifndef APP-NVUE -->
 				<u-input placeholder="后置插槽">
-				<!-- #endif -->
-				<!-- #ifndef MP-WEIXIN -->
-				<u--input placeholder="后置插槽">
-				<!-- #endif -->
-					<template slot="suffix">
-						<u-code
-						    ref="uCode"
-						    @change="codeChange"
-						    seconds="20"
-						></u-code>
-						<u-button
-						    @tap="getCode"
-						    :text="tips"
-						    type="success"
-							size="mini"
-						></u-button>
-					</template>
-				<!-- #ifdef MP-WEIXIN -->
+					<!-- #endif -->
+					<!-- #ifdef APP-NVUE -->
+					<u--input placeholder="后置插槽">
+						<!-- #endif -->
+						<template slot="suffix">
+							<u-code
+								ref="uCode"
+								@change="codeChange"
+								seconds="20"
+								changeText="X秒重新获取哈哈哈"
+							></u-code>
+							<u-button
+								@tap="getCode"
+								:text="tips"
+								type="success"
+								size="mini"
+							></u-button>
+						</template>
+						<!-- #ifndef APP-NVUE -->
 				</u-input>
 				<!-- #endif -->
-				<!-- #ifndef MP-WEIXIN -->
+				<!-- #ifdef APP-NVUE -->
 				</u--input>
 				<!-- #endif -->
 			</view>
 		</view>
-		<u-gap bgColor="#fff" height="50"></u-gap>
+		<u-gap
+			bgColor="#fff"
+			height="50"
+		></u-gap>
 	</view>
 </template>
 
@@ -170,5 +176,5 @@
 </script>
 
 <style lang="scss">
-	
+
 </style>

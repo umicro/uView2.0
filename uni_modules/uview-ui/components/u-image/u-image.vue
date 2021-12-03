@@ -44,7 +44,7 @@
 				v-if="showError && isError && !loading"
 				class="u-image__error"
 				:style="{
-					borderRadius: shape == 'circle' ? '50%' : $u.addUnit(borderRadius)
+					borderRadius: shape == 'circle' ? '50%' : $u.addUnit(radius)
 				}"
 			>
 				<slot name="error">

@@ -71,6 +71,7 @@
 	 * @property {String | Number}	width			显示图片小图标时的宽度
 	 * @property {String | Number}	height			显示图片小图标时的高度
 	 * @property {String | Number}	top				图标在垂直方向上的定位 用于解决某些情况下，让图标垂直居中的用途  （默认 0 ）
+	 * @property {Strinf | Number} 	left			图标在水平方向上的定位 用于解决某些情况下，让图标垂直居中的用途  （默认 0 ）
 	 * @property {Boolean}			stop			是否阻止事件传播 （默认 false ）
 	 * @property {Object}			customStyle		icon的样式，对象形式
 	 * @event {Function} click 点击图标时触发
@@ -110,8 +111,9 @@
 					fontSize: this.$u.addUnit(this.size),
 					lineHeight: this.$u.addUnit(this.size),
 					fontWeight: this.bold ? 'bold' : 'normal',
-					// 某些特殊情况需要设置一个到顶部的距离，才能更好的垂直居中
-					top: this.$u.addUnit(this.top)
+					// 某些特殊情况需要设置一个到顶部/左侧的距离，才能更好的居中
+					top: this.$u.addUnit(this.top),
+					left: this.$u.addUnit(this.left),
 				}
 				// 非主题色值时，才当作颜色值
 				if (this.color && !this.$u.config.type.includes(this.color)) style.color = this.color

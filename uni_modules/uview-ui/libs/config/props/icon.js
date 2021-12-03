@@ -31,6 +31,7 @@ export default {
         width: '',
         height: '',
         top: 0,
+		left: 0,
         stop: false
     }
 }

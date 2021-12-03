@@ -84,7 +84,10 @@
 		computed: {
 			iconName() {
 				// 只有不为none，并且type为error|warning|succes|info时候，才显示图标
-				if (['error', 'warning', 'success', 'primary'].includes(this.tmpConfig.type) && this.icon) {
+				if(!this.icon || this.icon == 'none') {
+					return '';
+				}
+				if (['error', 'warning', 'success', 'primary'].includes(this.tmpConfig.type)) {
 					return this.$u.type2icon(this.tmpConfig.type)
 				} else {
 					return ''

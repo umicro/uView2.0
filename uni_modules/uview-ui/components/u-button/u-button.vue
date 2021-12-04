@@ -204,7 +204,7 @@ export default {
 			if (this.plain) {
                 return this.color ? this.color : this.type;
             } else {
-                return this.type === "info" ? "#00000" : "#ffffff";
+                return this.type === "info" ? "#000000" : "#ffffff";
             }
         },
         baseColor() {

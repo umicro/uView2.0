@@ -9,6 +9,11 @@ export default {
         autoChange: {
             type: Boolean,
             default: false
+        },
+        // 指定使用中文输入法或英文输入法
+        abc: {
+            type: Boolean,
+            default: false
         }
     }
 }

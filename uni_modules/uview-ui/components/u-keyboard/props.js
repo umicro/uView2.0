@@ -79,6 +79,11 @@ export default {
         autoChange: {
             type: Boolean,
             default: uni.$u.props.keyboard.autoChange
+        },
+        // 指定使用中文输入法还是英文输入法
+        abc: {
+            type: Boolean,
+            default: uni.$u.props.keyboard.abc
         }
     }
 }

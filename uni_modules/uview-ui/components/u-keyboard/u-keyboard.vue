@@ -59,6 +59,7 @@
 				<u-car-keyboard
 				    :random="random"
 					:autoChange="autoChange"
+                    :abc="abc"
 				    @backspace="backspace"
 				    @change="change"
 				></u-car-keyboard>
@@ -82,6 +83,8 @@
 	 * @property {Boolean}			showCancel			是否显示工具条左边的"取消"按钮 （默认 true ）
 	 * @property {Boolean}			showConfirm			是否显示工具条右边的"完成"按钮（ 默认 true ）
 	 * @property {Boolean}			random				是否打乱键盘按键的顺序 （默认 false ）
+	 * @property {Boolean}			autoChange			输入一个中文后，是否自动切换到英文 （默认 false ）
+	 * @property {Boolean}			abc 				指定使用中文输入法还是英文输入法 （默认 false ）
 	 * @property {Boolean}			safeAreaInsetBottom	是否开启底部安全区适配 （默认 true ）
 	 * @property {Boolean}			closeOnClickOverlay	是否允许点击遮罩收起键盘 （默认 true ）
 	 * @property {Boolean}			show				控制键盘的弹出与收起（默认 false ）

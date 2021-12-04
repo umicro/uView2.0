@@ -83,8 +83,6 @@
 		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		data() {
 			return {
-				// 车牌输入时，abc=true为输入车牌号码，bac=false为输入省份中文简称
-				abc: false
 			};
 		},
 		computed: {

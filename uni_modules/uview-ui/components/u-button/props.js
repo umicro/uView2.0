@@ -147,6 +147,11 @@ export default {
             type: String,
             default: uni.$u.props.button.icon
         },
+        // 按钮图标
+        iconColor: {
+            type: String,
+            default: uni.$u.props.button.icon
+        },
         // 按钮颜色，支持传入linear-gradient渐变色
         color: {
             type: String,

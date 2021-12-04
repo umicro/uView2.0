@@ -8,7 +8,7 @@
         :app-parameter="appParameter"
         :hover-stop-propagation="hoverStopPropagation"
         :send-message-title="sendMessageTitle"
-        send-message-path="sendMessagePath"
+        :send-message-path="sendMessagePath"
         :lang="lang"
         :data-name="dataName"
         :session-from="sessionFrom"
@@ -41,7 +41,7 @@
             <u-icon
                 v-if="icon"
                 :name="icon"
-                :color="iconColor"
+                :color="iconColorCom"
                 :size="textSize * 1.35"
                 :customStyle="{ marginRight: '2px' }"
             ></u-icon>
@@ -89,7 +89,7 @@
             <u-icon
                 v-if="icon"
                 :name="icon"
-                :color="iconColor"
+                :color="iconColorCom"
                 :size="textSize * 1.35"
             ></u-icon>
             <text
@@ -143,6 +143,7 @@ import props from "./props.js";
  * @property {String | Number}	hoverStayTime			手指松开后点击态保留时间，单位毫秒 （默认 200 )
  * @property {String | Number}	text					按钮文字，之所以通过props传入，是因为slot传入的话（注：nvue中无法控制文字的样式）
  * @property {String}			icon					按钮图标
+ * @property {String}			iconColor				按钮图标颜色
  * @property {String}			color					按钮颜色，支持传入linear-gradient渐变色
  * @property {Object}			customStyle				定义需要用到的外部样式
  *
@@ -196,13 +197,14 @@ export default {
             }
             return "rgb(200, 200, 200)";
         },
-        iconColor() {
+        iconColorCom() {
             // 如果是镂空状态，设置了color就用color值，否则使用主题颜色，
             // u-icon的color能接受一个主题颜色的值
-            if (this.plain) {
+			if (this.iconColor) return this.iconColor;
+			if (this.plain) {
                 return this.color ? this.color : this.type;
             } else {
-                return "#ffffff";
+                return this.type === "info" ? "#00000" : "#ffffff";
             }
         },
         baseColor() {

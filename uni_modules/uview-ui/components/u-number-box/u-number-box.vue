@@ -241,7 +241,10 @@
 			// },
 			// 输入框活动焦点
 			onFocus(event) {
-				this.$emit('focus', event.detail)
+				this.$emit('focus', {
+					...event.detail,
+					name: this.name,
+				})
 			},
 			// 输入框失去焦点
 			onBlur(event) {
@@ -282,7 +285,10 @@
 						this.$forceUpdate()
 					})
 				}
-				this.$emit('change', value);
+				this.$emit('change', {
+					value,
+					name: this.name,  
+				});
 			},
 			onChange() {
 				const {

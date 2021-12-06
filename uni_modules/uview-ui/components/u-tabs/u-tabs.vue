@@ -312,7 +312,7 @@
 
 			&__nav {
 				@include flex;
-
+				position: relative;
 				&__item {
 					padding: 0 11px;
 					@include flex;

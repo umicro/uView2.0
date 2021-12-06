@@ -250,13 +250,12 @@
 			onBlur(event) {
 				// 对输入值进行格式化
 				const value = this.format(event.detail.value)
-				this.emitChange(value)
 				// 发出blur事件
 				this.$emit(
-					'blur',
-					Object.assign(Object.assign({}, event.detail), {
-						value
-					})
+					'blur',{
+						...event.detail,
+						name: this.name,
+					}
 				)
 			},
 			// 输入框值发生变化
@@ -287,7 +286,7 @@
 				}
 				this.$emit('change', {
 					value,
-					name: this.name,  
+					name: this.name,
 				});
 			},
 			onChange() {

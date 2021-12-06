@@ -24,7 +24,7 @@
 							:key="index"
 							@tap="clickHandler(item, index)"
 							:ref="`u-tabs__wrapper__nav__item-${index}`"
-							:style="[$u.addStyle(itemStyle)]"
+							:style="[$u.addStyle(itemStyle), flexStyle()]"
 							:class="[`u-tabs__wrapper__nav__item-${index}`, item.disabled && 'u-tabs__wrapper__nav__item--disabled']"
 						>
 							<text
@@ -52,7 +52,7 @@
 							class="u-tabs__wrapper__nav__line"
 							ref="u-tabs__wrapper__nav__line"
 							:style="[{
-									width: $u.addUnit(lineWidth),
+									width: $u.addUnit(copeLineWidth),
 									height: $u.addUnit(lineHeight),
 									backgroundColor: lineColor
 								}]"
@@ -63,7 +63,7 @@
 								class="u-tabs__wrapper__nav__line"
 								ref="u-tabs__wrapper__nav__line"
 								:style="[{
-										width: $u.addUnit(lineWidth),
+										width: $u.addUnit(copeLineWidth),
 										transform: `translate(${lineOffsetLeft}px)`,
 										transitionDuration: `${firstTime ? 0 : duration}ms`,
 										height: $u.addUnit(lineHeight),
@@ -110,6 +110,8 @@
 				},
 				innerCurrent: 0,
 				moving: false,
+
+				copeLineWidth: 0
 			}
 		},
 		watch: {
@@ -130,6 +132,14 @@
 				this.$nextTick(() => {
 					this.resize()
 				})
+			},
+			lineWidth: {
+				immediate: true,
+				handler (newValue, oldValue) {
+					if (newValue !== "auto") {
+						this.copeLineWidth = newValue
+					}
+				}
 			}
 		},
 		computed: {
@@ -146,6 +156,17 @@
 					}
 					return uni.$u.deepMerge(customeStyle, style)
 				}
+			},
+
+			// lineWidth不为auto时需要添加flex = 1
+			flexStyle() {
+				return () => {
+					const style = {}
+					if (this.lineWidth !== "auto") {
+						style.flex = 1
+					}
+					return style
+				}
 			}
 		},
 		async mounted() {
@@ -161,7 +182,7 @@
 				let lineOffsetLeft = this.list
 					.slice(0, this.innerCurrent)
 					.reduce((total, curr) => total + curr.rect.width, 0);
-				this.lineOffsetLeft = lineOffsetLeft + (tabItem.rect.width - this.lineWidth) / 2
+				this.lineOffsetLeft = lineOffsetLeft + (tabItem.rect.width - this.copeLineWidth) / 2
 				// #ifdef APP-NVUE
 				// 第一次移动滑块，无需过渡时间
 				this.animation(this.lineOffsetLeft, this.firstTime ? 0 : parseInt(this.duration))
@@ -241,6 +262,9 @@
 						// 另外计算每一个item的中心点X轴坐标
 						this.list[index].rect = item
 					})
+					if (this.lineWidth === "auto") {
+						this.copeLineWidth = itemRect[this.innerCurrent].width - 22;
+					}
 					// 获取了tabs的尺寸之后，设置滑块的位置
 					this.setLineLeft()
 					this.setScrollLeft()
@@ -318,7 +342,7 @@
 					@include flex;
 					align-items: center;
 					justify-content: center;
-					flex: 1;
+					/* flex: 1; */
 
 					&--disabled {
 						/* #ifndef APP-NVUE */

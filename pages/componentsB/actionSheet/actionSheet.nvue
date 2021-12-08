@@ -28,7 +28,7 @@
 		    @close="close"
 			@select="select"
 		    :actions="actions0"
-			:closeOnClickOverly="false"
+			:closeOnClickOverlay="false"
 		>
 		</u-action-sheet>
 		<u-action-sheet

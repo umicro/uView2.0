@@ -37,7 +37,7 @@
 			:overlay="popupData.overlay"
 			:borderRadius="popupData.borderRadius"
 			:closeable="popupData.closeable"
-			:closeOnClickOverly="popupData.closeOnClickOverly"
+			:closeOnClickOverlay="popupData.closeOnClickOverlay"
 			@close="close"
 			@open="open"
 		>
@@ -69,13 +69,13 @@
 					mode: 'bottom',
 					borderRadius: '',
 					closeable: true,
-					closeOnClickOverly: true
+					closeOnClickOverlay: true
 				},
 				list: [{
 						popupData: {
 							overlay: true,
 							mode: 'top',
-							closeOnClickOverly: true
+							closeOnClickOverlay: true
 						},
 						title: '顶部弹出',
 						iconUrl: 'https://cdn.uviewui.com/uview/demo/popup/modeTop.png'
@@ -84,7 +84,7 @@
 						popupData: {
 							overlay: true,
 							mode: 'right',
-							closeOnClickOverly: true
+							closeOnClickOverlay: true
 						},
 						title: '右侧弹出',
 						iconUrl: 'https://cdn.uviewui.com/uview/demo/popup/modeRight.png'
@@ -93,7 +93,7 @@
 						popupData: {
 							overlay: true,
 							mode: 'bottom',
-							closeOnClickOverly: true
+							closeOnClickOverlay: true
 						},
 						title: '底部弹出',
 						iconUrl: 'https://cdn.uviewui.com/uview/demo/popup/modeBottom.png'
@@ -102,7 +102,7 @@
 						popupData: {
 							overlay: true,
 							mode: 'left',
-							closeOnClickOverly: true
+							closeOnClickOverlay: true
 						},
 						title: '左侧弹出',
 						iconUrl: 'https://cdn.uviewui.com/uview/demo/popup/modeLeft.png'
@@ -112,7 +112,7 @@
 							overlay: true,
 							mode: 'center',
 							round: 10,
-							closeOnClickOverly: true
+							closeOnClickOverlay: true
 						},
 						title: '居中弹出',
 						iconUrl: 'https://cdn.uviewui.com/uview/demo/popup/modeCenter.png'
@@ -122,7 +122,7 @@
 							overlay: true,
 							mode: 'bottom',
 							round: 10,
-							closeOnClickOverly: true
+							closeOnClickOverlay: true
 						},
 						title: '显示圆角',
 						iconUrl: 'https://cdn.uviewui.com/uview/demo/popup/showRadis.png'
@@ -132,7 +132,7 @@
 							overlay: true,
 							mode: 'bottom',
 							closeable: false,
-							closeOnClickOverly: false
+							closeOnClickOverlay: false
 						},
 						title: '禁止点击遮罩关闭',
 						iconUrl: 'https://cdn.uviewui.com/uview/demo/popup/noClose.png'
@@ -142,7 +142,7 @@
 							overlay: true,
 							mode: 'bottom',
 							closeable: true,
-							closeOnClickOverly: true
+							closeOnClickOverlay: true
 						},
 						title: '显示关闭按钮',
 						iconUrl: 'https://cdn.uviewui.com/uview/demo/popup/showCloseBtn.png'

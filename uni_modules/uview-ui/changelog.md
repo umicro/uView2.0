@@ -1,3 +1,15 @@
+## 2.0.10（2021-12-08）
+## [点击加群交流反馈：364463526](https://jq.qq.com/?_chanwv=1027&k=mCxS3TGY)
+
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. 修复button sendMessagePath属性不生效
+2. 修复DatetimePicker选择器title无效
+3. 修复u-toast设置loading=true不生效
+4. 修复u-text金额模式传0报错
+5. 修复u-toast组件的icon属性配置不生效
+6. button的icon在特殊场景下的颜色优化
+7. IndexList优化，增加#
 ## 2.0.9（2021-12-01）
 ## [点击加群交流反馈：232041042](https://jq.qq.com/?_wv=1027&k=KnbeceDU)
 

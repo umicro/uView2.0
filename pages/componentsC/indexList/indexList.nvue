@@ -52,6 +52,7 @@
 		for (let i = 0; i < 26; i++) {
 			indexList.push(String.fromCharCode(charCodeOfA + i))
 		}
+		indexList.push('_')
 		return indexList
 	}
 	export default {

@@ -16,7 +16,7 @@
 				fontSize: $u.addUnit(size),
 				color: color
 			}"
-		>{{ text }}</text>
+		>{{ text == '_' ? '#' : text}}</text>
 	</view>
 	<!-- #ifdef APP-NVUE -->
 	</header>
@@ -65,7 +65,7 @@
 					return uni.$u.error('u-index-anchor必须要搭配u-index-item组件使用')
 				}
 				// 设置u-index-item的id为anchor的text标识符，因为非nvue下滚动列表需要依赖scroll-view滚动到元素的特性
-				indexListItem.id = this.text
+				indexListItem.id = this.text == '#' ? '_' : this.text
 				// #endif
 			}
 		},

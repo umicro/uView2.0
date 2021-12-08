@@ -7,7 +7,7 @@
 			<view
 				class="u-toast__content"
 				:style="[contentStyle]"
-				:class="['u-type-' + tmpConfig.type, tmpConfig.type === 'loading' && 'u-toast__content--loading']"
+				:class="['u-type-' + tmpConfig.type, (tmpConfig.type === 'loading' || tmpConfig.loading) ?  'u-toast__content--loading' : '']"
 			>
 				<u-loading-icon
 					v-if="tmpConfig.type === 'loading'"
@@ -24,7 +24,7 @@
 					:customStyle="iconStyle"
 				></u-icon>
 				<u-gap
-					v-if="tmpConfig.type === 'loading'"
+					v-if="tmpConfig.type === 'loading' || tmpConfig.loading"
 					height="12"
 					bgColor="transparent"
 				></u-gap>

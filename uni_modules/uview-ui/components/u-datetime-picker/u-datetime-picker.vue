@@ -4,6 +4,7 @@
 		:show="show"
 		:closeOnClickOverlay="closeOnClickOverlay"
 		:columns="columns"
+		:title="title"
 		:defaultIndex="innerDefaultIndex"
 		:cancelText="cancelText"
 		:confirmText="confirmText"
@@ -190,7 +191,7 @@
 				        values.push(formatter('day', padZero(dayjs(value).date())), formatter('hour', padZero(dayjs(value).hour())), formatter('minute', padZero(dayjs(value).minute())))
 				    }
 				}
-				
+
 				// 根据当前各列的所有值，从各列默认值中找到默认值在各列中的索引
 				const indexs = this.columns.map((column, index) => {
 					// 通过取大值，可以保证不会出现找不到索引的-1情况

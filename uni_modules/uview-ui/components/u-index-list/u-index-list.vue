@@ -64,7 +64,7 @@
 				<text
 					class="u-index-list__letter__item__index"
 					:style="{color: activeIndex === index ? '#fff' : inactiveColor}"
-				>{{ item }}</text>
+				>{{ item == '_' ? '#' : item }}</text>
 			</view>
 		</view>
 		<u-transition
@@ -85,7 +85,7 @@
 					width: $u.addUnit(indicatorHeight)
 				}"
 			>
-				<text class="u-index-list__indicator__text">{{ uIndexList[activeIndex] }}</text>
+				<text class="u-index-list__indicator__text">{{ uIndexList[activeIndex] == '_' ? '#' : uIndexList[activeIndex] }}</text>
 			</view>
 		</u-transition>
 	</view>
@@ -98,6 +98,7 @@
 		for (let i = 0; i < 26; i++) {
 			indexList.push(String.fromCharCode(charCodeOfA + i));
 		}
+		indexList.push('_')
 		return indexList;
 	}
 	import props from './props.js';

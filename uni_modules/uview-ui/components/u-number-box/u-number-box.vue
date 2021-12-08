@@ -241,19 +241,21 @@
 			// },
 			// 输入框活动焦点
 			onFocus(event) {
-				this.$emit('focus', event.detail)
+				this.$emit('focus', {
+					...event.detail,
+					name: this.name,
+				})
 			},
 			// 输入框失去焦点
 			onBlur(event) {
 				// 对输入值进行格式化
 				const value = this.format(event.detail.value)
-				this.emitChange(value)
 				// 发出blur事件
 				this.$emit(
-					'blur',
-					Object.assign(Object.assign({}, event.detail), {
-						value
-					})
+					'blur',{
+						...event.detail,
+						name: this.name,
+					}
 				)
 			},
 			// 输入框值发生变化
@@ -282,7 +284,10 @@
 						this.$forceUpdate()
 					})
 				}
-				this.$emit('change', value);
+				this.$emit('change', {
+					value,
+					name: this.name,
+				});
 			},
 			onChange() {
 				const {

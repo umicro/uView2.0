@@ -298,6 +298,29 @@
 			color: $u-success;
 		}
 
+		&--info {
+			background-color: $u-info;
+			border-width: 1px;
+			border-color: $u-info;
+		}
+
+		&--info--plain {
+			border-width: 1px;
+			border-color: $u-info;
+		}
+
+		&--info--plain--fill {
+			background-color: #f4f4f5;
+		}
+
+		&__text--info {
+			color: #FFFFFF;
+		}
+
+		&__text--info--plain {
+			color: $u-info;
+		}
+
 		&__close {
 			position: absolute;
 			z-index: 999;

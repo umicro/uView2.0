@@ -19,9 +19,7 @@
 				:lazy-load="lazyLoad"
 				class="u-image__image"
 				:style="{
-					borderRadius: shape == 'circle' ? '10000px' : $u.addUnit(radius),
-					width: $u.addUnit(width),
-					height: $u.addUnit(height)
+					borderRadius: shape == 'circle' ? '10000px' : $u.addUnit(radius)
 				}"
 			></image>
 			<view
@@ -123,6 +121,9 @@
 		computed: {
 			wrapStyle() {
 				let style = {};
+				// 通过调用addUnit()方法，如果有单位，如百分比，px单位等，直接返回，如果是纯粹的数值，则加上rpx单位
+				style.width = this.$u.addUnit(this.width);
+				style.height = this.$u.addUnit(this.height);
 				// 如果是显示圆形，设置一个很多的半径值即可
 				style.borderRadius = this.shape == 'circle' ? '10000px' : this.$u.addUnit(this.radius)
 				// 如果设置圆角，必须要有hidden，否则可能圆角无效
@@ -200,6 +201,11 @@
 	.u-image {
 		position: relative;
 		transition: opacity 0.5s ease-in-out;
+
+		&__image {
+			width: 100%;
+			height: 100%;
+		}
 
 		&__loading,
 		&__error {

@@ -24,7 +24,7 @@
 					class="u-notify__warpper__text"
 					:style="{
 						fontSize: $u.addUnit(tmpConfig.fontSize),
-						color: tmpConfig.color 
+						color: tmpConfig.color
 					}"
 				>{{ tmpConfig.message }}</text>
 			</view>
@@ -37,7 +37,7 @@
 	/**
 	 * notify 顶部提示
 	 * @description 该组件一般用于页面顶部向下滑出一个提示，尔后自动收起的场景
-	 * @tutorial 
+	 * @tutorial
 	 * @property {String | Number}	top					到顶部的距离 ( 默认 0 )
 	 * @property {String}			type				主题，primary，success，warning，error ( 默认 'primary' )
 	 * @property {String}			color				字体颜色 ( 默认 '#ffffff' )
@@ -153,7 +153,7 @@
 				this.clearTimer()
 			},
 			clearTimer() {
-				this.isShow = false
+				this.open = false
 				// 清除定时器
 				clearTimeout(this.timer)
 				this.timer = null

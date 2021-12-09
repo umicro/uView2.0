@@ -337,7 +337,7 @@
 				} = event.currentTarget.dataset;
 				const item = this.data.lists[index];
 				this.$emit(
-					'click-preview',
+					'clickPreview',
 					Object.assign(Object.assign({}, item), this.getDetail(index))
 				);
 			}

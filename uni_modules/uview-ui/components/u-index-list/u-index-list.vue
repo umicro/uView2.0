@@ -64,7 +64,7 @@
 				<text
 					class="u-index-list__letter__item__index"
 					:style="{color: activeIndex === index ? '#fff' : inactiveColor}"
-				>{{ item == '_' ? '#' : item }}</text>
+				>{{ item }}</text>
 			</view>
 		</view>
 		<u-transition
@@ -85,7 +85,7 @@
 					width: $u.addUnit(indicatorHeight)
 				}"
 			>
-				<text class="u-index-list__indicator__text">{{ uIndexList[activeIndex] == '_' ? '#' : uIndexList[activeIndex] }}</text>
+				<text class="u-index-list__indicator__text">{{ uIndexList[activeIndex] }}</text>
 			</view>
 		</u-transition>
 	</view>
@@ -98,7 +98,6 @@
 		for (let i = 0; i < 26; i++) {
 			indexList.push(String.fromCharCode(charCodeOfA + i));
 		}
-		indexList.push('_')
 		return indexList;
 	}
 	import props from './props.js';
@@ -302,7 +301,7 @@
 				this.activeIndex = currentIndex
 				// #ifndef APP-NVUE || MP-WEIXIN
 				// 在非nvue中，由于anchor和item都在u-index-item中，所以需要对index-item进行偏移
-				this.scrollIntoView = `u-index-item-${this.uIndexList[currentIndex]}`
+				this.scrollIntoView = `u-index-item-${this.uIndexList[currentIndex].charCodeAt(0)}`
 				// #endif
 				// #ifdef MP-WEIXIN
 				// 微信小程序下，scroll-view的scroll-into-view属性无法对slot中的内容的id生效，只能通过设置scrollTop的形式去移动滚动条

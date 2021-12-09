@@ -49,7 +49,8 @@
 						:mode="imgMode"
 						@tap="clickHandler(index)"
 						:style="{
-							height: $u.addUnit(height)
+							height: $u.addUnit(height),
+							borderRadius: $u.addUnit(radius)
 						}"
 					></image>
 					<video

@@ -47,7 +47,7 @@ export default {
         },
         // 是否显示圆角 (默认false)
         round: {
-            type: Boolean,
+            type:  [String, Number],
             default: uni.$u.props.actionSheet.round
         }
     }

@@ -44,8 +44,8 @@
 		@clear="$emit('clear')"
 		@click="$emit('click')"
 	>
-		<slot name="prefix" slot="prefix"></slot>
-		<slot name="suffix" slot="suffix"></slot>
+		<slot name="prefix"></slot>
+		<slot name="suffix"></slot>
 	</uvInput>
 </template>
 

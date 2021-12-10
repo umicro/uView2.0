@@ -23,6 +23,7 @@
             	    :value="innerValue"
             	    :auto-blur="autoBlur"
             	    :disabled="disabled"
+                    :readonly="readonly"
             	    :maxlength="maxlength"
             	    :placeholder="placeholder"
             	    :placeholder-style="placeholderStyle"

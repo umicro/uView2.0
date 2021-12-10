@@ -55,7 +55,7 @@
 		    :show="show4"
 		    @close="show4 = false"
 			title="标题位置"
-			round
+			:round="round"
 		>
 			<u--text
 			    type="content"
@@ -82,6 +82,7 @@
 				show3: false,
 				show4: false,
 				show5: false,
+				round: 10,
 				actions0: [{
 						name: '选项1',
 					},

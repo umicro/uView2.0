@@ -158,7 +158,9 @@
 		padding: $u-number-keyboard-padding;
 
 		&__button-wrapper {
+			/* #ifndef APP-NVUE */
 			box-shadow: $u-number-keyboard-button-box-shadow;
+			/* #endif */
 			margin: $u-number-keyboard-button-margin;
 			border-top-left-radius: $u-number-keyboard-button-border-top-left-radius;
 			border-top-right-radius: $u-number-keyboard-button-border-top-right-radius;

@@ -149,7 +149,9 @@
 			border-radius: 100px;
 			background-color: #fff;
 			border-radius: 100px;
+			/* #ifndef APP-NVUE */
 			box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.25);
+			/* #endif */
 			transition-property: transform;
 			transition-duration: 0.4s;
 			transition-timing-function: cubic-bezier(0.3, 1.05, 0.4, 1.05);

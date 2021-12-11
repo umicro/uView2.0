@@ -11,7 +11,7 @@
 				</view>
 				<view class="u-cell__title">
 					<slot name="title">
-						<text v-if="title" class="u-cell__title-text"
+						<text v-if="title" class="u-cell__title-text" :style="titleStyle"
 							:class="[disabled && 'u-cell--disabled', size === 'large' && 'u-cell__title-text--large']">{{ title }}</text>
 					</slot>
 					<slot name="label">

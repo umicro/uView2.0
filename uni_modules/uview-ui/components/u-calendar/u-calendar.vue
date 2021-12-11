@@ -183,7 +183,8 @@
 				if(!this.showConfirm) {
 					// 在不需要确认按钮的情况下，如果为单选，或者范围多选且已选长度大于2，则直接进行返还
 					if (this.mode === 'multiple' || this.mode === 'single' || this.mode === 'range' && this.selected.length >= 2) {
-						this.$emit('confirm', this.selected)
+						//range下返回數組為 第一天，最後一天，其餘模式按選擇的天數返回數組
+						this.$emit('confirm', this.mode == 'range' ? [this.selected[0],this.selected[this.selected.length-1]] : this.selected)
 					}
 				}
 			},
@@ -197,8 +198,9 @@
 			},
 			// 点击确定按钮
 			confirm() {
+				//range下返回數組為 第一天，最後一天，其餘模式按選擇的天數返回數組
 				if (!this.buttonDisabled) {
-					this.$emit('confirm', this.selected)
+					this.$emit('confirm', this.mode == 'range' ? [this.selected[0],this.selected[this.selected.length-1]] : this.selected)
 				}
 			},
 			// 设置月份数据

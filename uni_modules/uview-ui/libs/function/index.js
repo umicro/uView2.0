@@ -1,15 +1,20 @@
 import test from './test.js'
 
 /**
- * 如果value小于min，取min；如果value大于max，取max
+ * @description 如果value小于min，取min；如果value大于max，取max
+ * @param {number} min 
+ * @param {number} max 
+ * @param {number} value
  */
 function range(min = 0, max = 0, value = 0) {
     return Math.max(min, Math.min(max, Number(value)))
 }
 
 /**
- * 用于获取用户传递值的px值
- * 如果用户传递了"xxpx"或者"xxrpx"，取出其数值部分，如果是"xxxrpx"还需要用过uni.upx2px进行转换
+ * @description 用于获取用户传递值的px值  如果用户传递了"xxpx"或者"xxrpx"，取出其数值部分，如果是"xxxrpx"还需要用过uni.upx2px进行转换
+ * @param {number|string} value 用户传递值的px值
+ * @param {boolean} unit 
+ * @returns {number|string}
  */
 function getPx(value, unit = false) {
     if (test.number(value)) {
@@ -22,9 +27,10 @@ function getPx(value, unit = false) {
     return unit ? `${parseInt(value)}px` : parseInt(value)
 }
 
-/**
- * 进行延时，以达到可以简写代码的目的，比如
- * await uni.$u.sleep(20)将会阻塞20ms
+ /**
+ * @description 进行延时，以达到可以简写代码的目的 比如: await uni.$u.sleep(20)将会阻塞20ms
+ * @param {number} value 堵塞时间 单位ms 毫秒
+ * @returns {Promise} 返回promise
  */
 function sleep(value = 30) {
     return new Promise((resolve) => {
@@ -33,17 +39,24 @@ function sleep(value = 30) {
         }, value)
     })
 }
-
+ /**
+ * @description 运行期判断平台
+ * @returns {string} 返回所在平台(小写) 
+ * @link 运行期判断平台 https://uniapp.dcloud.io/frame?id=判断平台
+ */
 function os() {
     return uni.getSystemInfoSync().platform.toLowerCase()
 }
-
+ /**
+ * @description 获取系统信息同步接口
+ * @link 获取系统信息同步接口 https://uniapp.dcloud.io/api/system/info?id=getsysteminfosync 
+ */
 function sys() {
     return uni.getSystemInfoSync()
 }
 
 /**
- * 取一个区间数
+ * @description 取一个区间数
  * @param {Number} min 最小值
  * @param {Number} max 最大值
  */
@@ -94,10 +107,13 @@ function guid(len = 32, firstU = true, radix = null) {
     return uuid.join('')
 }
 
-// 获取父组件的参数，因为支付宝小程序不支持provide/inject的写法
-// this.$parent在非H5中，可以准确获取到父组件，但是在H5中，需要多次this.$parent.$parent.xxx
-// 这里默认值等于undefined有它的含义，因为最顶层元素(组件)的$parent就是undefined，意味着不传name
-// 值(默认为undefined)，就是查找最顶层的$parent
+ /**
+ * @description 获取父组件的参数，因为支付宝小程序不支持provide/inject的写法
+    this.$parent在非H5中，可以准确获取到父组件，但是在H5中，需要多次this.$parent.$parent.xxx
+    这里默认值等于undefined有它的含义，因为最顶层元素(组件)的$parent就是undefined，意味着不传name
+    值(默认为undefined)，就是查找最顶层的$parent
+ *  @param {string|undefined} name 父组件的参数名
+ */
 function $parent(name = undefined) {
     let parent = this.$parent
     // 通过while历遍，这里主要是为了H5需要多层解析的问题
@@ -114,10 +130,11 @@ function $parent(name = undefined) {
 }
 
 /**
- * 样式转换
+ * @description 样式转换
  * 对象转字符串，或者字符串转对象
- * @param {Object | String} 需要转换的目标
- * @param {String} 转换的目的，object-转为对象，string-转为字符串
+ * @param {object | string} customStyle 需要转换的目标
+ * @param {String} target 转换的目的，object-转为对象，string-转为字符串
+ * @returns {object|string}
  */
 function addStyle(customStyle, target = 'object') {
     // 字符串转字符串，对象转对象情形，直接返回
@@ -153,14 +170,22 @@ function addStyle(customStyle, target = 'object') {
     return trim(string)
 }
 
-// 添加单位，如果有rpx，upx，%，px等单位结尾或者值为auto，直接返回，否则加上px单位结尾
+/**
+ * @description 添加单位，如果有rpx，upx，%，px等单位结尾或者值为auto，直接返回，否则加上px单位结尾
+ * @param {string|number} value 需要添加单位的值
+ * @param {string} unit 添加的单位名 比如px
+ */
 function addUnit(value = 'auto', unit = 'px') {
     value = String(value)
     // 用uView内置验证规则中的number判断是否为数值
     return test.number(value) ? `${value}${unit}` : value
 }
 
-// 深度克隆
+/**
+ * @description 深度克隆
+ * @param {object} obj 需要深度克隆的对象
+ * @returns {*} 克隆后的对象或者原值（不是对象）
+ */
 function deepClone(obj) {
     // 对常见的“非”值，直接返回原来值
     if ([null, undefined, NaN, false].includes(obj)) return obj
@@ -177,7 +202,12 @@ function deepClone(obj) {
     return o
 }
 
-// JS对象深度合并
+/**
+ * @description JS对象深度合并
+ * @param {object} target 需要拷贝的对象
+ * @param {object} source 拷贝的来源对象
+ * @returns {object|boolean} 深度合并后的对象或者false（入参有不是对象）
+ */
 function deepMerge(target = {}, source = {}) {
     target = deepClone(target)
     if (typeof target !== 'object' || typeof source !== 'object') return false
@@ -200,6 +230,10 @@ function deepMerge(target = {}, source = {}) {
     return target
 }
 
+/**
+ * @description error提示
+ * @param {*} err 错误内容
+ */
 function error(err) {
     // 开发环境才提示，生产环境不会提示
     if (process.env.NODE_ENV === 'development') {
@@ -207,7 +241,11 @@ function error(err) {
     }
 }
 
-// 打乱数组
+/**
+ * @description 打乱数组
+ * @param {array} array 需要格式化的时间戳
+ * @returns {array} 打乱后的数组
+ */
 function randomArray(array = []) {
     // 原理是sort排序,Math.random()产生0<= x < 1之间的数,会导致x-0.05大于或者小于0
     return array.sort(() => Math.random() - 0.5)
@@ -239,8 +277,12 @@ if (!String.prototype.padStart) {
     }
 }
 
-// 其他更多是格式化有如下:
-// yyyy:mm:dd|yyyy:mm|yyyy年mm月dd日|yyyy年mm月dd日 hh时MM分等,可自定义组合
+/**
+ * @description 格式化时间
+ * @param {String|Number} dateTime 需要格式化的时间戳
+ * @param {String} fmt 格式化规则 yyyy:mm:dd|yyyy:mm|yyyy年mm月dd日|yyyy年mm月dd日 hh时MM分等,可自定义组合 默认yyyy-mm-dd
+ * @returns {string} 返回格式化后的字符串
+ */
 function timeFormat(dateTime = null, fmt = 'yyyy-mm-dd') {
     // 如果为null,则格式化当前时间
     if (!dateTime) dateTime = Number(new Date())
@@ -267,10 +309,12 @@ function timeFormat(dateTime = null, fmt = 'yyyy-mm-dd') {
 }
 
 /**
- * 时间戳转为多久之前
- * @param String timestamp 时间戳
- * @param String | Boolean format 如果为时间格式字符串，超出一定时间范围，返回固定的时间格式；
+ * @description 时间戳转为多久之前
+ * @param {String|Number} timestamp 时间戳
+ * @param {String|Boolean} format 
+ * 格式化规则如果为时间格式字符串，超出一定时间范围，返回固定的时间格式；
  * 如果为布尔值false，无论什么时间，都返回多久以前的格式
+ * @returns {string} 转化后的内容
  */
 function timeFrom(timestamp = null, format = 'yyyy-mm-dd') {
     if (timestamp == null) timestamp = Number(new Date())
@@ -310,7 +354,9 @@ function timeFrom(timestamp = null, format = 'yyyy-mm-dd') {
 }
 
 /**
- * 去除空格
+ * @description 去除空格
+ * @param String str 需要去除空格的字符串
+ * @param String pos both(左右)|left|right|all 默认both
  */
 function trim(str, pos = 'both') {
     str = String(str)
@@ -327,9 +373,10 @@ function trim(str, pos = 'both') {
 }
 
 /**
- * 对象转url参数
- * @param {*} data,对象
- * @param {*} isPrefix,是否自动加上"?"
+ * @description 对象转url参数
+ * @param {object} data,对象
+ * @param {Boolean} isPrefix,是否自动加上"?"
+ * @param {string} arrayFormat 规则 indices|brackets|repeat|comma
  */
 function queryParams(data = {}, isPrefix = true, arrayFormat = 'brackets') {
     const prefix = isPrefix ? '?' : ''
@@ -383,6 +430,11 @@ function queryParams(data = {}, isPrefix = true, arrayFormat = 'brackets') {
     return _result.length ? prefix + _result.join('&') : ''
 }
 
+/**
+ * 显示消息提示框
+ * @param {String} title 提示的内容，长度与 icon 取值有关。
+ * @param {Number} duration 提示的延迟时间，单位毫秒，默认：2000
+ */
 function toast(title, duration = 2000) {
     uni.showToast({
         title: String(title),
@@ -392,9 +444,9 @@ function toast(title, duration = 2000) {
 }
 
 /**
- * 根据主题type值,获取对应的图标
- * @param String type 主题名称,primary|info|error|warning|success
- * @param String fill 是否使用fill填充实体的图标
+ * @description 根据主题type值,获取对应的图标
+ * @param {String} type 主题名称,primary|info|error|warning|success
+ * @param {boolean} fill 是否使用fill填充实体的图标
  */
 function type2icon(type = 'success', fill = false) {
     // 如果非预置值,默认为success
@@ -425,13 +477,14 @@ function type2icon(type = 'success', fill = false) {
     return iconName
 }
 
-/*
- * 参数说明：
- * number：要格式化的数字
- * decimals：保留几位小数
- * decimalPoint：小数点符号
- * thousandsSeparator：千分位符号
- * */
+ /**
+ * @description 数字格式化
+ * @param {number|string} number 要格式化的数字
+ * @param {number} decimals 保留几位小数
+ * @param {string} decimalPoint 小数点符号
+ * @param {string} thousandsSeparator 千分位符号
+ * @returns {string} 格式化后的数字
+ */
 function priceFormat(number, decimals = 0, decimalPoint = '.', thousandsSeparator = ',') {
     number = (`${number}`).replace(/[^0-9+-Ee.]/g, '')
     const n = !isFinite(+number) ? 0 : +number
@@ -457,8 +510,14 @@ function priceFormat(number, decimals = 0, decimalPoint = '.', thousandsSeparato
     return s.join(dec)
 }
 
-// 获取duration值，如果带有ms或者s直接返回，如果大于一定值，认为是ms单位，小于一定值，认为是s单位
-// 比如以30位阈值，那么300大于30，可以理解为用户想要的是300ms，而不是想花300s去执行一个动画
+/**
+ * @description 获取duration值
+ * 如果带有ms或者s直接返回，如果大于一定值，认为是ms单位，小于一定值，认为是s单位
+ * 比如以30位阈值，那么300大于30，可以理解为用户想要的是300ms，而不是想花300s去执行一个动画
+ * @param {String|number} value 比如: "1s"|"100ms"|1|100
+ * @param {boolean} unit  提示: 如果是false 默认返回number
+ * @return {string|number} 
+ */
 function getDuration(value, unit = true) {
     const valueNum = parseInt(value)
     if (unit) {
@@ -470,12 +529,19 @@ function getDuration(value, unit = true) {
     return valueNum
 }
 
-// 日期的月或日补零操作
+/**
+ * @description 日期的月或日补零操作
+ * @param {String} value 需要补零的值
+ */
 function padZero(value) {
     return `00${value}`.slice(-2)
 }
 
-// 在u-form的子组件内容发生变化，或者失去焦点时，尝试通知u-form执行校验方法
+/**
+ * @description 在u-form的子组件内容发生变化，或者失去焦点时，尝试通知u-form执行校验方法
+ * @param {*} instance
+ * @param {*} event
+ */
 function formValidate(instance, event) {
     const formItem = uni.$u.$parent.call(instance, 'u-form-item')
     const form = uni.$u.$parent.call(instance, 'u-form')
@@ -486,7 +552,12 @@ function formValidate(instance, event) {
     }
 }
 
-// 获取某个对象下的属性，用于通过类似'a.b.c'的形式去获取一个对象的的属性的形式
+/**
+ * @description 获取某个对象下的属性，用于通过类似'a.b.c'的形式去获取一个对象的的属性的形式
+ * @param {object} obj 对象
+ * @param {string} key 需要获取的属性字段
+ * @returns {*}
+ */
 function getProperty(obj, key) {
     if (!obj) {
         return
@@ -507,7 +578,12 @@ function getProperty(obj, key) {
     return obj[key]
 }
 
-// 设置对象的属性值，如果'a.b.c'的形式进行设置
+/**
+ * @description 设置对象的属性值，如果'a.b.c'的形式进行设置
+ * @param {object} obj 对象
+ * @param {string} key 需要设置的属性
+ * @param {string} value 设置的值
+ */
 function setProperty(obj, key, value) {
     if (!obj) {
         return
@@ -541,7 +617,9 @@ function setProperty(obj, key, value) {
     }
 }
 
-// 获取当前页面路径
+/**
+ * @description 获取当前页面路径
+ */
 function page() {
     const pages = getCurrentPages()
     return `/${getCurrentPages()[pages.length - 1].route}`

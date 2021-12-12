@@ -4,7 +4,7 @@
 		mode="bottom"
 		closeable
 		@close="close"
-		round
+		:round="round"
 		:closeOnClickOverlay="closeOnClickOverlay"
 	>
 		<view class="u-calendar">
@@ -97,6 +97,7 @@
 	 * @property {String}				rangePrompt	        范围选择超过最多可选天数时的提示文案，mode = range时有效
 	 * @property {Boolean}				showRangePrompt	    范围选择超过最多可选天数时，是否展示提示文案，mode = range时有效 (默认 true )
 	 * @property {Boolean}				allowSameDay	    是否允许日期范围的起止时间为同一天，mode = range时有效 (默认 false )
+	 * @property {Number|String}	    round				圆角值，默认无圆角  (默认 0 )
 	 * 
 	 * @event {Function()} confirm 		点击确定按钮时触发		选择日期相关的返回参数
 	 * @event {Function()} close 		日历关闭时触发			可定义页面关闭时的回调事件

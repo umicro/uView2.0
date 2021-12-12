@@ -80,7 +80,7 @@
 				immediate: true,
 				handler(newValue, oldValue) {
 					if(!uni.$u.test.array(newValue)) {
-						uni.$u.error('column模式要求text参数为数组')
+						uni.$u.error('noticebar组件direction为column时，要求text参数为数组形式')
 					}
 				}
 			}

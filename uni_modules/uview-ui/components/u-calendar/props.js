@@ -129,6 +129,11 @@ export default {
         allowSameDay: {
             type: Boolean,
             default: uni.$u.props.calendar.allowSameDay
-        }
+        },
+		// 圆角值
+		round: {
+		    type: [Boolean, String, Number],
+		    default: uni.$u.props.calendar.round
+		}
     }
 }

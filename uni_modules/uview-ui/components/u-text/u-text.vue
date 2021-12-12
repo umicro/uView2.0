@@ -4,7 +4,8 @@
         :class="[]"
         v-if="show"
         :style="{
-            margin: margin
+            margin: margin,
+			justifyContent: align === 'left' ? 'flex-start' : align === 'center' ? 'center' : 'flex-end'
         }"
         @tap="clickHandler"
     >
@@ -115,7 +116,6 @@ export default {
             const style = {
                 textDecoration: this.decoration,
                 fontWeight: this.bold ? 'bold' : 'normal',
-                textAlign: this.align,
                 wordWrap: this.wordWrap,
                 fontSize: uni.$u.addUnit(this.size)
             }
@@ -164,7 +164,7 @@ export default {
 .u-text {
     @include flex(row);
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     flex: 1;
 
     &__price {

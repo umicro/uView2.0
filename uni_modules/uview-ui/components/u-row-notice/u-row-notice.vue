@@ -81,13 +81,20 @@
 			};
 		},
 		watch: {
-			text() {
-				// #ifdef APP-NVUE
-				this.nvueInit = true
-				// #endif
-				// #ifndef APP-NVUE
-				this.vue()
-				// #endif
+			text: {
+				immediate: true,
+				handler(newValue, oldValue) {
+					// #ifdef APP-NVUE
+					this.nvueInit = true
+					// #endif
+					// #ifndef APP-NVUE
+					this.vue()
+					// #endif
+					
+					if(!uni.$u.test.string(newValue)) {
+						uni.$u.error('noticebar组件direction为row时，要求text参数为字符串形式')
+					}
+				}
 			},
 			fontSize() {
 				t // #ifdef APP-NVUE
@@ -143,6 +150,10 @@
 				// #ifndef APP-NVUE
 				this.vue()
 				// #endif
+				
+				if(!uni.$u.test.string(this.text)) {
+					uni.$u.error('noticebar组件direction为row时，要求text参数为字符串形式')
+				}
 			},
 			// vue版处理
 			async vue() {

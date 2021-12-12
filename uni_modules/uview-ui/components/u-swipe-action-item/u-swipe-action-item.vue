@@ -153,6 +153,7 @@
 
 		&__content {
 			background-color: #FFFFFF;
+			z-index: 10;
 		}
 
 		&__right {

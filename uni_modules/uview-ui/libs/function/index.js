@@ -243,7 +243,7 @@ function error(err) {
 
 /**
  * @description 打乱数组
- * @param {array} array 需要格式化的时间戳
+ * @param {array} array 需要打乱的数组
  * @returns {array} 打乱后的数组
  */
 function randomArray(array = []) {
@@ -355,8 +355,8 @@ function timeFrom(timestamp = null, format = 'yyyy-mm-dd') {
 
 /**
  * @description 去除空格
- * @param String str 需要去除空格的字符串
- * @param String pos both(左右)|left|right|all 默认both
+ * @param {String} str 需要去除空格的字符串
+ * @param {String} pos both(左右)|left|right|all 默认both
  */
 function trim(str, pos = 'both') {
     str = String(str)

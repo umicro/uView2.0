@@ -41,7 +41,7 @@
             <text
                 class="u-subsection__item__text"
                 :style="[textStyle(index)]"
-                >{{ item }}</text
+                >{{ getText(item) }}</text
             >
         </view>
     </view>
@@ -58,7 +58,7 @@ import props from "./props.js";
  * @description 该分段器一般用于用户从几个选项中选择某一个的场景
  * @tutorial https://www.uviewui.com/components/subsection.html
  * @property {Array}			list			tab的数据
- * @property {String ｜ Number}	current			 当前活动的tab的index（默认 0 ）
+ * @property {String ｜ Number}	current			当前活动的tab的index（默认 0 ）
  * @property {String}			activeColor		激活时的颜色（默认 '#3c9cff' ）
  * @property {String}			inactiveColor	未激活时的颜色（默认 '#303133' ）
  * @property {String}			mode			模式选择，mode=button为按钮形式，mode=subsection时为分段模式（默认 'button' ）
@@ -66,6 +66,7 @@ import props from "./props.js";
  * @property {Boolean}			bold			激活选项的字体是否加粗（默认 true ）
  * @property {String}			bgColor			组件背景颜色，mode为button时有效（默认 '#eeeeef' ）
  * @property {Object}			customStyle		定义需要用到的外部样式
+ * @property {String}	        keyName	        从`list`元素对象中读取的键名（默认 'name' ）
  *
  * @event {Function} change		分段器选项发生改变时触发  回调 index：选项的index索引值，从0开始
  * @example <u-subsection :list="list" :current="curNow" @change="sectionChange"></u-subsection>
@@ -177,6 +178,10 @@ export default {
         init() {
             uni.$u.sleep().then(() => this.getRect());
         },
+		// 判断展示文本
+		getText(item) {
+			return typeof item === 'object' ? item[this.keyName] : item
+		},
         // 获取组件的尺寸
         getRect() {
             // #ifndef APP-NVUE

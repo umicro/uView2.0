@@ -58,6 +58,7 @@
 	 * @property {String | Number}	size				输入框的大小，宽等于高 （默认 35 ）
 	 * @property {Boolean}			disabledKeyboard	是否隐藏原生键盘，如果想用自定义键盘的话，需设置此参数为true （默认 false ）
 	 * @property {String}			borderColor			边框和线条颜色 （默认 '#c9cacc' ）
+	 * @property {Boolean}			disabledDot			是否禁止输入"."符号 （默认 true ）
 	 * 
 	 * @event {Function}	change	输入内容发生改变时触发，具体见上方说明			value：当前输入的值
 	 * @event {Function}	finish	输入字符个数达maxlength值时触发，见上方说明	value：当前输入的值
@@ -144,6 +145,12 @@
 			inputHandler(e) {
 				const value = e.detail.value
 				this.inputValue = value
+				// 是否允许输入“.”符号
+				if(this.disabledDot) {
+					this.$nextTick(() => {
+						this.inputValue = value.replace('.', '')
+					})
+				}
 				// 未达到maxlength之前，发送change事件，达到后发送finish事件
 				this.$emit('change', value)
 				// 修改通过v-model双向绑定的值

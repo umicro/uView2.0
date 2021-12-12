@@ -39,6 +39,11 @@ export default {
         bgColor: {
             type: String,
             default: uni.$u.props.subsection.bgColor
-        }
+        },
+		// 从list元素对象中读取的键名
+		keyName: {
+			type: String,
+			default: uni.$u.props.subsection.keyName
+		}
     }
 }

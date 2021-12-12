@@ -97,7 +97,8 @@
 					// 让其出现在导航栏底部
 					position: 'fixed',
 					left: 0,
-					right: 0
+					right: 0,
+					zIndex: 10076
 				}
 				return style
 			},

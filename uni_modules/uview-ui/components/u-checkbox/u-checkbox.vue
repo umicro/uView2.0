@@ -230,6 +230,11 @@
 				this.emitEvent()
 				typeof this.parent.unCheckedOther === 'function' && this.parent.unCheckedOther(this)
 			}
+		},
+		watch:{
+			checked(){
+				this.isChecked = this.checked
+			}
 		}
 	}
 </script>

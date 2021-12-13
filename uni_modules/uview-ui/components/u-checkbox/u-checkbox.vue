@@ -233,7 +233,7 @@
 		},
 		watch:{
 			checked(){
-				this.isChecked = !!this.checked
+				this.isChecked = this.checked
 			}
 		}
 	}

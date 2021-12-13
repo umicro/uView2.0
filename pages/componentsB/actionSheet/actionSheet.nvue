@@ -9,64 +9,60 @@
 		></u-navbar>
 		<u-cell-group>
 			<u-cell
-			    @click="openSheet(index)"
-			    :title="item.title"
-			    v-for="(item, index) in list"
-			    :key="index"
-			    isLink
+				@click="openSheet(index)"
+				:title="item.title"
+				v-for="(item, index) in list"
+				:key="index"
+				isLink
 			>
 				<image
-				    slot="icon"
-				    class="u-cell-icon"
-				    :src="item.iconUrl"
-				    mode="widthFix"
+					slot="icon"
+					class="u-cell-icon"
+					:src="item.iconUrl"
+					mode="widthFix"
 				></image>
 			</u-cell>
 		</u-cell-group>
 		<u-action-sheet
-		    :show="show0"
-		    @close="close"
+			:show="show0"
+			@close="close"
 			@select="select"
-		    :actions="actions0"
+			:actions="actions0"
 			:closeOnClickOverlay="false"
 		>
 		</u-action-sheet>
 		<u-action-sheet
-		    :show="show1"
-		    @close="show1 = false"
-		    :actions="actions1"
+			:show="show1"
+			@close="show1 = false"
+			:actions="actions1"
 		>
 		</u-action-sheet>
 		<u-action-sheet
-		    :show="show2"
-		    @close="show2 = false"
-		    :actions="actions2"
-		    cancelText="取消"
+			:show="show2"
+			@close="show2 = false"
+			:actions="actions2"
+			cancelText="取消"
 		>
 		</u-action-sheet>
 		<u-action-sheet
-		    :show="show3"
-		    @close="show3 = false"
-		    :actions="actions3"
-		    description="这是一段描述文本,字号偏小,颜色偏淡"
+			:show="show3"
+			@close="show3 = false"
+			:actions="actions3"
+			description="这是一段描述文本,字号偏小,颜色偏淡"
 		>
 		</u-action-sheet>
 		<u-action-sheet
-		    :show="show4"
-		    @close="show4 = false"
+			:show="show4"
+			@close="show4 = false"
 			title="标题位置"
-			round
+			:round="10"
 		>
-			<u--text
-			    type="content"
-			    text="这是一段通过slot传入的内容,您可以在此自定义操作面板"
-			    margin="10px 20px 30px 20px"
-			></u--text>
+			<text style="margin: 10px 20px 30px 20px; color: #303133; font-size: 15px;">这是一段通过slot传入的内容,您可以在此自定义操作面板</text>
 		</u-action-sheet>
 		<u-action-sheet
-		    :show="show5"
-		    @close="show5 = false"
-		    title="微信开放能力"
+			:show="show5"
+			@close="show5 = false"
+			title="微信开放能力"
 			:actions="actions5"
 			@getuserinfo="getuserinfo"
 		></u-action-sheet>
@@ -164,7 +160,7 @@
 			// 点击cell，判断显示哪个功能
 			openSheet(index) {
 				// #ifndef MP
-				if(index === 5) return uni.$u.toast('请在微信内预览')
+				if (index === 5) return uni.$u.toast('请在微信内预览')
 				// #endif
 				this[`show${index}`] = true
 			},

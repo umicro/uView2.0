@@ -29,7 +29,7 @@
 			@close="close"
 			:maxDate="1636725054000"
 		></u-calendar>
-		<!-- <u-calendar
+		<u-calendar
 			:show="show2"
 			mode="multiple"
 			@confirm="confirm"
@@ -78,7 +78,7 @@
 			@close="close"
 			mode="multiple"
 			:defaultDate="defaultDateMultiple"
-		></u-calendar> -->
+		></u-calendar>
 	</view>
 </template>
 <script>

@@ -169,11 +169,12 @@
 											childErrors[0]?.message ?? null;
 									}
 								);
+								typeof callback === "function" && callback(errorsRes);
 							}
 						}
 					});
 					// 执行回调函数
-					typeof callback === "function" && callback(errorsRes);
+					// typeof callback === "function" && callback(errorsRes);
 				});
 			},
 			// 校验全部数据
@@ -195,8 +196,8 @@
 						formRules = formRules.flat(); // 待验证兼容性问题
 						this.validateField(formItemProps, (errors) => {
 							if(errors.length) {
-								// 如果错误提示方式为toast，则进行提示
 								validatedFieldCount--; // 不合法，-1
+								// 如果错误提示方式为toast，则进行提示
 								this.errorType === 'toast' && uni.$u.toast(errors[0].message)
 								reject(errors)
 							} else {

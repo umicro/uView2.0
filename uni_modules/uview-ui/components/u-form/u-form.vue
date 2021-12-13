@@ -180,19 +180,38 @@
 			validate(callback) {
 				return new Promise((resolve, reject) => {
 					// $nextTick是必须的，否则model的变更，可能会延后于validate方法
+					let validatedFieldCount = 0; // 已经校验合法的字段的数量
 					this.$nextTick(() => {
 						// 获取所有form-item的prop，交给validateField方法进行校验
 						const formItemProps = this.children.map(
 							(item) => item.prop
 						);
+						// 获取所有formRules
+						let formRules = [];
+						for (const key in this.formRules) {
+							formRules.push({
+								[key]: this.formRules[key],
+							});
+						}
+						// 降低formRules的一个维度
+						formRules = formRules.flat(); // 待校验兼容性问题
 						this.validateField(formItemProps, (errors) => {
 							if(errors.length) {
 								// 如果错误提示方式为toast，则进行提示
+								validatedFieldCount--; // 不合法，-1
 								this.errorType === 'toast' && uni.$u.toast(errors[0].message)
 								reject(errors)
 							} else {
-								resolve(true)
+								validatedFieldCount++; // 合法，+1
+								if(validatedFieldCount === formRules.length) {
+									// 如果全部校验通过，则执行回调函数
+									typeof callback === "function" && callback()
+									resolve(true)
+								}
 							}
+						}).catch(e => {
+							validatedFieldCount--; // 不合法，-1
+							reject(e);
 						});
 					});
 				});

@@ -310,10 +310,10 @@ const pattern = {
 }
 var types = {
     integer: function integer(value) {
-        return types.number(value) && parseInt(value, 10) === value
+        return /^(-)?\d+$/.test(value);
     },
     float: function float(value) {
-        return types.number(value) && !types.integer(value)
+        return /^(-)?\d+(\.\d+)?$/.test(value);
     },
     array: function array(value) {
         return Array.isArray(value)

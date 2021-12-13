@@ -154,7 +154,7 @@ function addStyle(customStyle, target = 'object') {
 }
 
 // 添加单位，如果有rpx，upx，%，px等单位结尾或者值为auto，直接返回，否则加上px单位结尾
-function addUnit(value = 'auto', unit = 'px') {
+function addUnit(value = 'auto', unit = uni?.$u?.config?.unit ?? 'px') {
     value = String(value)
     // 用uView内置验证规则中的number判断是否为数值
     return test.number(value) ? `${value}${unit}` : value

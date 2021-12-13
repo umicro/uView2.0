@@ -1,3 +1,20 @@
+## 2.0.11（2021-12-13）
+## [点击加群交流反馈：364463526](https://jq.qq.com/?_chanwv=1027&k=mCxS3TGY)
+
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. text组件align参数无效的问题
+2. subsection组件添加keyName参数
+3. upload组件无法判断[Object file]类型的问题
+4. 处理notify层级过低问题
+5. codeInput组件添加disabledDot参数
+6. 处理actionSheet组件round参数无效的问题
+7. calendar组件添加round参数用于控制圆角值
+8. 处理swipeAction组件在vue环境下默认被打开的问题
+9. button组件的throttleTime节流参数无效的问题
+10. 解决u-notify手动关闭方法close()无效的问题
+11. input组件readonly不生效问题
+12. tag组件type参数为info不生效问题
 ## 2.0.10（2021-12-08）
 ## [点击加群交流反馈：364463526](https://jq.qq.com/?_chanwv=1027&k=mCxS3TGY)
 

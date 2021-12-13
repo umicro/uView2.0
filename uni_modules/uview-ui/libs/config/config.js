@@ -1,5 +1,5 @@
-// 此版本发布于2020-12-08
-const version = '2.0.10'
+// 此版本发布于2020-12-13
+const version = '2.0.11'
 
 export default {
     v: version,
@@ -23,5 +23,7 @@ export default {
         'u-content-color': '#606266',
         'u-tips-color': '#909399',
         'u-light-color': '#c0c4cc'
-    }
+    },
+	// 默认单位，可以通过配置为rpx，那么在用于传入组件大小参数为数值时，就默认为rpx
+	unit: 'px'
 }

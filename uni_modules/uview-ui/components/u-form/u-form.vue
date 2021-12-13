@@ -207,6 +207,8 @@
 									// 如果全部校验通过，则执行回调函数
 									typeof callback === "function" && callback()
 									resolve(true)
+								} else {
+									reject(errors)
 								}
 							}
 						}).catch(e => {

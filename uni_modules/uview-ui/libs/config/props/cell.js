@@ -18,6 +18,7 @@ export default {
         titleWidth: '',
         disabled: false,
         border: true,
+		borderColor: '#d6d7d9',
         center: false,
         url: '',
         linkType: 'navigateTo',

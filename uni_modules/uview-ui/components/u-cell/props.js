@@ -34,6 +34,11 @@ export default {
         border: {
             type: Boolean,
             default: uni.$u.props.cell.border
+        }, 
+		// 边框颜色
+        borderColor: {
+            type: String,
+            default: uni.$u.props.cell.borderColor
         },
         // 内容是否垂直居中(主要是针对右侧的value部分)
         center: {

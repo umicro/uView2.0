@@ -12,6 +12,7 @@ export default {
     cellGroup: {
         title: '',
         border: true,
+		borderColor: '#d6d7d9',
         customStyle: {}
     }
 }

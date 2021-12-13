@@ -6,7 +6,7 @@
 			</slot>
         </view>
         <view class="u-cell-group__wrapper">
-			<u-line v-if="border"></u-line>
+			<u-line v-if="border" :color="borderColor"></u-line>
             <slot />
         </view>
     </view>
@@ -21,6 +21,7 @@
 	 * 
 	 * @property {String}	title		分组标题
 	 * @property {Boolean}	border		是否显示外边框 (默认 true )
+	 * @property {Stirng}	borderColor	边框颜色 (默认 #d6d7d9)
 	 * @property {Object}	customStyle	定义需要用到的外部样式
 	 * 
 	 * @event {Function} click 	点击cell列表时触发

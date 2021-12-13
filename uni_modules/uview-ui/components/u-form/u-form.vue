@@ -126,7 +126,7 @@
 					// 如果为字符串，转为数组
 					value = [].concat(value);
 					// 历遍children所有子form-item
-					this.children.map((child) => {
+					this.children.map(async (child) => {
 						// 用于存放form-item的错误信息
 						const childErrors = [];
 						if (value.includes(child.prop)) {
@@ -157,7 +157,7 @@
 								const validator = new Schema({
 									[propertyName]: ruleItem,
 								});
-								validator.validate({
+								await validator.validate({
 										[propertyName]: propertyVal,
 									},
 									(errors, fields) => {
@@ -189,12 +189,10 @@
 						// 获取所有formRules
 						let formRules = [];
 						for (const key in this.formRules) {
-							formRules.push({
-								[key]: this.formRules[key],
-							});
+							formRules.push(this.formRules[key]);
 						}
 						// 降低formRules的一个维度
-						formRules = formRules.flat(); // 待校验兼容性问题
+						formRules = formRules.flat(); // 待验证兼容性问题
 						this.validateField(formItemProps, (errors) => {
 							if(errors.length) {
 								// 如果错误提示方式为toast，则进行提示
@@ -207,8 +205,6 @@
 									// 如果全部校验通过，则执行回调函数
 									typeof callback === "function" && callback()
 									resolve(true)
-								} else {
-									reject(errors)
 								}
 							}
 						}).catch(e => {

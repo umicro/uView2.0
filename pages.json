@@ -13,6 +13,12 @@
 			"style": {
 				"navigationBarTitleText": "uView UI"
 			}
+		},
+		{
+			"path": "pages/test/FormTest",
+			"style": {
+				"navigationBarTitleText": "异步校验测试"
+			}
 		}
 	],
 	"subPackages": [{

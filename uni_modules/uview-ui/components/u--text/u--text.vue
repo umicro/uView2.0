@@ -16,8 +16,6 @@
         :color="color"
         :size="size"
         :iconStyle="iconStyle"
-        :precision="precision"
-        :decoration="decoration"
         :margin="margin"
         :lineHeight="lineHeight"
         :align="align"

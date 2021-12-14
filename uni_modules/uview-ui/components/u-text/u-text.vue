@@ -94,8 +94,7 @@ import props from './props.js'
  * @property {String} 					color		文本颜色（默认 '#303133' ）
  * @property {String | Number} 			size		字体大小（默认 15 ）
  * @property {Object | String} 			iconStyle	图标的样式 （默认 {fontSize: '15px'} ）
- * @property {Boolean} 					precision	是否显示金额的千分位，mode=price时有效（默认 true ）
- * @property {String} 					decoration	是否显示金额的千分位，mode=price时有效（默认 'none' ）
+ * @property {String} 					decoration	文字装饰，下划线，中划线等，可选值 none|underline|line-through（默认 'none' ）
  * @property {Object | String | Number}	margin		外边距，对象、字符串，数值形式均可（默认 0 ）
  * @property {String | Number} 			lineHeight	文本行高
  * @property {String} 					align		文本对齐方式，可选值left|center|right（默认 'left' ）

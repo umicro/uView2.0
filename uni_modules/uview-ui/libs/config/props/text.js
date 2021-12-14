@@ -28,7 +28,6 @@ export default {
         iconStyle: () => ({
             fontSize: '15px'
         }),
-        precision: true,
         decoration: 'none',
         margin: 0,
         lineHeight: '',

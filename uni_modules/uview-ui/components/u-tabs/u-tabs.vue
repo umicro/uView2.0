@@ -287,10 +287,7 @@
 	}
 </script>
 
-<style
-	lang="scss"
-	scoped
->
+<style lang="scss" scoped>
 	@import "../../libs/css/components.scss";
 
 	.u-tabs {
@@ -313,6 +310,7 @@
 
 			&__nav {
 				@include flex;
+				position: relative;
 
 				&__item {
 					padding: 0 11px;

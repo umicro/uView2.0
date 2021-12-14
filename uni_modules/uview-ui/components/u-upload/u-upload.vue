@@ -395,7 +395,7 @@
 	$u-upload-text-font-size:11px !default;
 	$u-upload-text-color:$u-tips-color !default;
 	$u-upload-text-margin-top: 2px !default;
-	$u-upload-hover-bgColor:rgb(240, 241, 243) !default;
+	$u-upload-hover-bgColor:rgb(230, 231, 233) !default;
 	$u-upload-disabled-opacity:.5 !default;
 
 	.u-upload {

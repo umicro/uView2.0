@@ -33,7 +33,7 @@
 				const style = {};
 				// #ifdef APP-NVUE
 				// nvue下，高度使用js计算填充
-				style.height = uni.$u.sys().safeAreaInsets.bottom + "px";
+				style.height = uni.$u.addUnit(uni.$u.sys().safeAreaInsets.bottom, 'px');
 				// #endif
 				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle));
 			},

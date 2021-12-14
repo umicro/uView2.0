@@ -1,3 +1,13 @@
+## 2.0.12（2021-12-14）
+## [点击加群交流反馈：364463526](https://jq.qq.com/?_chanwv=1027&k=mCxS3TGY)
+
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. 修复tabs组件在vue环境下划线消失的问题
+2. 修复upload组件在安卓小程序无法选择视频的问题
+3. 添加uni.$u.config.unit配置，用于配置参数默认单位，详见：[默认单位配置](https://www.uviewui.com/components/setting.html#%E9%BB%98%E8%AE%A4%E5%8D%95%E4%BD%8D%E9%85%8D%E7%BD%AE)
+4. 修复textarea组件在没绑定v-model时，字符统计不生效问题
+5. 修复nvue下控制是否出现滚动条失效问题
 ## 2.0.11（2021-12-13）
 ## [点击加群交流反馈：364463526](https://jq.qq.com/?_chanwv=1027&k=mCxS3TGY)
 

@@ -10,7 +10,7 @@
 export default {
     // navbar 组件
     navbar: {
-        safeAreaInsetTop: false,
+        safeAreaInsetTop: true,
         placeholder: false,
         fixed: false,
         border: false,
@@ -21,7 +21,8 @@ export default {
         title: '',
         bgColor: '#ffffff',
         titleWidth: '400rpx',
-        height: '44px'
+        height: '44px',
+		leftIconSize: 20
     }
 
 }

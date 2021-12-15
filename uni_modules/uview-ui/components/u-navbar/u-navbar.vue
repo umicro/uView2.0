@@ -30,7 +30,7 @@
 						<u-icon
 							v-if="leftIcon"
 							:name="leftIcon"
-							size="20"
+							:size="leftIconSize"
 						></u-icon>
 						<text
 							v-if="leftText"
@@ -82,8 +82,9 @@
 	 * @property {String}			rightIcon			右边返回图标的名称，只能为uView自带的图标
 	 * @property {String}			title				导航栏标题，如设置为空字符，将会隐藏标题占位区域
 	 * @property {String}			bgColor				导航栏背景设置 （默认 '#ffffff' ）
-	 * @property {String | Number}	titleWidth			导航栏标题的最大宽度，内容超出会以省略号隐藏，单位px （默认 '400rpx' ）
-	 * @property {String | Number}	height				导航栏高度(不包括状态栏高度在内，内部自动加上)，单位px （默认 '44px' ）
+	 * @property {String | Number}	titleWidth			导航栏标题的最大宽度，内容超出会以省略号隐藏 （默认 '400rpx' ）
+	 * @property {String | Number}	height				导航栏高度(不包括状态栏高度在内，内部自动加上)（默认 '44px' ）
+	 * @property {String | Number}	leftIconSize		左侧返回图标的大小（默认 20px ）
 	 * @event {Function} leftClick		点击左侧区域
 	 * @event {Function} rightClick		点击右侧区域
 	 * @example <u-navbar title="剑未配妥，出门已是江湖" left-text="返回" right-text="帮助" @click-left="onClickBack" @click-right="onClickRight"></u-navbar>

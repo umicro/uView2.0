@@ -1,3 +1,8 @@
+// 看到此报错，是因为没有配置vue.config.js的【transpileDependencies】，详见：https://www.uviewui.com/components/npmSetting.html#_5-cli模式额外配置
+const pleaseSetTranspileDependencies = {}, babelTest = pleaseSetTranspileDependencies?.test
+
+
+
 // 引入全局mixin
 import mixin from './libs/mixin/mixin.js'
 // 小程序特有的mixin

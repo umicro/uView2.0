@@ -10,6 +10,7 @@
 		@tap.stop="clickHandler"
 	>
 		<slot>
+			<!-- #ifdef MP-WEIXIN || MP-QQ || MP-BAIDU  -->
 			<open-data
 				v-if="mpAvatar && allowMp"
 				type="userAvatarUrl"
@@ -18,6 +19,12 @@
 					height: $u.addUnit(size)
 				}]"
 			/>
+			<!-- #endif -->
+			<!-- #ifndef MP-WEIXIN && MP-QQ && MP-BAIDU  -->
+			<template v-if="mpAvatar && allowMp">
+				
+			</template>
+			<!-- #endif -->
 			<u-icon
 				v-else-if="icon"
 				:name="icon"

@@ -20,6 +20,9 @@
 				}]"
 			/>
 			<!-- #endif -->
+			<!-- #ifndef MP-WEIXIN && MP-QQ && MP-BAIDU  -->
+			<template v-if="mpAvatar && allowMp"></template>
+			<!-- #endif -->
 			<u-icon
 				v-else-if="icon"
 				:name="icon"

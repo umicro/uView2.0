@@ -16,7 +16,8 @@ function formatImage(res) {
         ...pickExclude(item, ['path']),
         type: 'image',
         url: item.path,
-        thumb: item.path
+        thumb: item.path,
+		size: item.size
     }))
 }
 
@@ -26,7 +27,8 @@ function formatVideo(res) {
             ...pickExclude(res, ['tempFilePath', 'thumbTempFilePath', 'errMsg']),
             type: 'video',
             url: res.tempFilePath,
-            thumb: res.thumbTempFilePath
+            thumb: res.thumbTempFilePath,
+			size: res.size
         }
     ]
 }
@@ -36,12 +38,13 @@ function formatMedia(res) {
         ...pickExclude(item, ['fileType', 'thumbTempFilePath', 'tempFilePath']),
         type: res.type,
         url: item.tempFilePath,
-        thumb: res.type === 'video' ? item.thumbTempFilePath : item.tempFilePath
+        thumb: res.type === 'video' ? item.thumbTempFilePath : item.tempFilePath,
+		size: item.size
     }))
 }
 
 function formatFile(res) {
-    return res.tempFiles.map((item) => ({ ...pickExclude(item, ['path']), url: item.path }))
+    return res.tempFiles.map((item) => ({ ...pickExclude(item, ['path']), url: item.path, size:item.size }))
 }
 export function chooseFile({
     accept,

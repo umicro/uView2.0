@@ -190,7 +190,7 @@
 					Object.assign(Object.assign({}, item), {
 						isImage: uni.$u.test.image(item.url),
 						isVideo: uni.$u.test.video(item.url),
-						deletable: typeof(item.deletable) === 'boolean' ? item.deletable : true,
+						deletable: typeof(item.deletable) === 'boolean' ? item.deletable : this.deletable,
 					})
 				);
 				this.lists = lists

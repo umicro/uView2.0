@@ -11,6 +11,11 @@
 [![release](https://img.shields.io/github/v/release/umicro/uView2.0?style=flat-square)](https://gitee.com/umicro/uView2.0/releases)
 [![license](https://img.shields.io/github/license/umicro/uView2.0?style=flat-square)](https://en.wikipedia.org/wiki/MIT_License)
 
+## 一起推动uView发展
+
+uView正在参与开源中国的“年度最佳项目”评选，目前投票进入了最后一个阶段（之前投过票的现在也可以投票），
+我们不分昼夜的努力，恳请同学们能为我们投一票，uView来源于社区，也希望社区能一起推动它的发展，[点此帮助uView](https://www.oschina.net/project/top_cn_2021/?id=583)
+
 ## 说明
 
 uView UI，是[uni-app](https://uniapp.dcloud.io/)全面兼容nvue的uni-app生态框架，全面的组件和便捷的工具会让您信手拈来，如鱼得水

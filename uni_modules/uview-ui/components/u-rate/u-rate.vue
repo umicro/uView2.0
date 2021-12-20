@@ -206,7 +206,6 @@
 			},
 			// 获取当前激活的评分图标
 			getActiveIndex(x,isClick = false) {
-				console.log(isClick);
 				if (this.disabled) {
 					return;
 				}

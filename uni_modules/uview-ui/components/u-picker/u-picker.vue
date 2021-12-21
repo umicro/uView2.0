@@ -16,10 +16,10 @@
 			></u-toolbar>
 			<picker-view
 				class="u-picker__view"
-				:indicatorStyle="`height: ${itemHeight}px`"
+				:indicatorStyle="`height: ${$u.addUnit(itemHeight)}`"
 				:value="innerIndex"
 				:style="{
-					height: `${visibleItemCount * itemHeight}px`
+					height: `${$u.addUnit(visibleItemCount * itemHeight)}`
 				}"
 				@change="changeHandler"
 			>

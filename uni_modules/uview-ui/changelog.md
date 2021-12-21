@@ -1,9 +1,18 @@
-## 2.0.14（2021-12-20）
+## 2.0.15（2021-12-21）
 ## uView正在参与开源中国的“年度最佳项目”评选，之前投过票的现在也可以投票，恳请同学们投一票，[点此帮助uView](https://www.oschina.net/project/top_cn_2021/?id=583)
 
 # uView2.0重磅发布，利剑出鞘，一统江湖
 
-1. 修复配置默认单位为rpx可能会导致自定义导航栏高度异常的问题
+1. 修复Cell单元格titleWidth无效
+2. 修复cheakbox组件ischecked不更新
+3. 修复keyboard是否显示"."按键默认值问题
+4. 修复number-keyboard是否显示键盘的"."符号问题
+5. 修复Input输入框 readonly无效
+6. 修复u-avatar 导致打包app、H5时候报错问题
+7. 修复Upload上传deletable无效
+8. 修复upload当设置maxSize时无效的问题
+9. 修复tabs lineWidth传入带单位的字符串的时候偏移量计算错误问题
+10. 修复rate组件在有padding的view内，显示的星星位置和可触摸区域不匹配，无法正常选中星星
 ## 2.0.13（2021-12-14）
 ## [点击加群交流反馈：364463526](https://jq.qq.com/?_chanwv=1027&k=mCxS3TGY)
 

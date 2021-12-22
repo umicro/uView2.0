@@ -20,7 +20,14 @@
 		@click="$emit('click')"
 		@error="$emit('error')"
 		@load="$emit('load')"
-	></uvImage>
+	>
+		<template v-slot:loading>
+			<slot name="loading"></slot>
+		</template>
+		<template v-slot:error>
+			<slot name="error"></slot>
+		</template>
+	</uvImage>
 </template>
 
 <script>

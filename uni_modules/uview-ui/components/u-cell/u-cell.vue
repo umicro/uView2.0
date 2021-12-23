@@ -121,6 +121,7 @@
 
 
 	.u-cell {
+		background-color: #FFFFFF;
 		&__body {
 			@include flex();
 			/* #ifndef APP-NVUE */

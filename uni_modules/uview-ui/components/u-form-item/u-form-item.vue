@@ -9,6 +9,7 @@
 		>
 			<!-- 微信小程序中，将一个参数设置空字符串，结果会变成字符串"true" -->
 			<slot name="label">
+				<!-- {{required}} -->
 				<view
 					class="u-form-item__body__left"
 					v-if="required || leftIcon || label"

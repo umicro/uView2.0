@@ -1,3 +1,10 @@
+## 2.0.16（2021-12-25）
+## uView正在参与开源中国的“年度最佳项目”评选，之前投过票的现在也可以投票，恳请同学们投一票，[点此帮助uView](https://www.oschina.net/project/top_cn_2021/?id=583)
+
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. 解决微信小程序setData性能问题
+2. 修复count-down组件change事件不触发问题
 ## 2.0.15（2021-12-21）
 ## uView正在参与开源中国的“年度最佳项目”评选，之前投过票的现在也可以投票，恳请同学们投一票，[点此帮助uView](https://www.oschina.net/project/top_cn_2021/?id=583)
 

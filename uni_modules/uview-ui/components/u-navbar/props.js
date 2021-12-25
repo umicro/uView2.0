@@ -64,6 +64,11 @@ export default {
 		leftIconSize: {
 			type: [String, Number],
 			default: uni.$u.props.navbar.leftIconSize
+		},
+		// 左侧返回图标的颜色
+		leftIconColor: {
+			type: String,
+			default: uni.$u.props.navbar.leftIconColor
 		}
 	}
 }

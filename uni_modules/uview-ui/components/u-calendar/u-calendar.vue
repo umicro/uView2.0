@@ -202,19 +202,22 @@
 					this.$emit('confirm', this.selected)
 				}
 			},
+			// 获得两个日期之间的月份数
+			getMonths(minDate,maxDate) {
+				const minYear = dayjs(minDate).year()
+				const minMonth = dayjs(minDate).month() + 1
+				const maxYear = dayjs(maxDate).year()
+				const maxMonth = dayjs(maxDate).month() + 1
+				return (maxYear - minYear) * 12 + (maxMonth - minMonth)
+			},
 			// 设置月份数据
 			setMonth() {
 				// 最小日期的毫秒数
 				const minDate = this.minDate || dayjs().valueOf()
 				// 如果没有指定最大日期，则往后推3个月
 				const maxDate = this.maxDate || dayjs(minDate).add(this.maxMonth - 1, 'month').valueOf()
-				// 最小与最大月份
-				let minMonth = dayjs(minDate).month() + 1
-				let maxMonth = dayjs(maxDate).month() + 1
-				// 如果maxMonth小于minMonth，则意味着maxMonth为下一年的月份，需要加上12，为的是计算出两个月份之间间隔着多少月份
-				maxMonth = minMonth > maxMonth ? maxMonth + 12 : maxMonth
 				// 最大最小月份之间的共有多少个月份
-				const months = Math.abs(minMonth - maxMonth)
+				const months = this.getMonths(minDate, maxDate)
 				// 先清空数组
 				this.months = []
 				for (let i = 0; i <= months; i++) {

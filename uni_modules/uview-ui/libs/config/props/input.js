@@ -18,7 +18,7 @@ export default {
 		clearable: false,
 		password: false,
 		maxlength: -1,
-		placeholder: '',
+		placeholder: null,
 		placeholderClass: 'input-placeholder',
 		placeholderStyle: 'color: #c0c4cc',
 		showWordLimit: false,

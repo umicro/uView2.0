@@ -80,6 +80,11 @@ export default {
             type: [String, Number],
             default: uni.$u.props.icon.top
         },
+		// 用于解决某些情况下，让图标水平居中的用途
+		left: {
+			type: [String, Number],
+			default: uni.$u.props.icon.left
+		},
         // 是否阻止事件传播
         stop: {
             type: Boolean,

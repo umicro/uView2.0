@@ -97,7 +97,7 @@
 					if (this.remainTime !== 0) {
 						this.microTick()
 					}
-				}, 30)
+				}, 50)
 			},
 			// 获取剩余的时间
 			getRemainTime() {
@@ -109,10 +109,7 @@
 				this.remainTime = remain
 				// 根据剩余的毫秒时间，得出该有天，小时，分钟等的值，返回一个对象
 				const timeData = parseTimeData(remain)
-				// 如果有传入slot内容，则发出change事件
-				if(this.$slots.default || this.$slots.$default) {
-					this.$emit('change', timeData)
-				}
+				this.$emit('change', timeData)
 				// 得出格式化后的时间
 				this.formattedTime = parseFormat(this.format, timeData)
 				// 如果时间已到，停止倒计时
@@ -123,17 +120,17 @@
 			},
 			// 重置倒计时
 			reset() {
-			    this.pause()
-			    this.remainTime = this.time
-			    this.setRemainTime(this.remainTime)
-			    if (this.autoStart) {
-			        this.start()
-			    }
+				this.pause()
+				this.remainTime = this.time
+				this.setRemainTime(this.remainTime)
+				if (this.autoStart) {
+					this.start()
+				}
 			},
 			// 暂停倒计时
 			pause() {
-			    this.runing = false;
-			    this.clearTimeout()
+				this.runing = false;
+				this.clearTimeout()
 			},
 			// 清空定时器
 			clearTimeout() {
@@ -147,16 +144,20 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style
+	lang="scss"
+	scoped
+>
 	@import "../../libs/css/components.scss";
 	$u-count-down-text-color:$u-content-color !default;
 	$u-count-down-text-font-size:15px !default;
 	$u-count-down-text-line-height:22px !default;
+
 	.u-count-down {
 		&__text {
-			color:$u-count-down-text-color;
-			font-size:$u-count-down-text-font-size;
-			line-height:$u-count-down-text-line-height;
+			color: $u-count-down-text-color;
+			font-size: $u-count-down-text-font-size;
+			line-height: $u-count-down-text-line-height;
 		}
 	}
 </style>

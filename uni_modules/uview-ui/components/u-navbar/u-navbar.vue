@@ -31,19 +31,25 @@
 							v-if="leftIcon"
 							:name="leftIcon"
 							:size="leftIconSize"
+							:color="leftIconColor"
 						></u-icon>
 						<text
 							v-if="leftText"
+							:style="{
+								color: leftIconColor
+							}"
 							class="u-navbar__content__left__text"
 						>{{ leftText }}</text>
 					</slot>
 				</view>
-				<text
-					class="u-line-1 u-navbar__content__title"
-					:style="{
-						width: $u.addUnit(titleWidth)
-					}"
-				>{{ title }}</text>
+				<slot>
+					<text
+						class="u-line-1 u-navbar__content__title"
+						:style="{
+							width: $u.addUnit(titleWidth)
+						}"
+					>{{ title }}</text>
+				</slot>
 				<view
 					class="u-navbar__content__right"
 					v-if="$slots.right || rightIcon || rightText"
@@ -85,6 +91,7 @@
 	 * @property {String | Number}	titleWidth			导航栏标题的最大宽度，内容超出会以省略号隐藏 （默认 '400rpx' ）
 	 * @property {String | Number}	height				导航栏高度(不包括状态栏高度在内，内部自动加上)（默认 '44px' ）
 	 * @property {String | Number}	leftIconSize		左侧返回图标的大小（默认 20px ）
+	 * @property {String | Number}	leftIconColor		左侧返回图标的颜色（默认 #303133 ）
 	 * @event {Function} leftClick		点击左侧区域
 	 * @event {Function} rightClick		点击右侧区域
 	 * @example <u-navbar title="剑未配妥，出门已是江湖" left-text="返回" right-text="帮助" @click-left="onClickBack" @click-right="onClickRight"></u-navbar>
@@ -148,7 +155,7 @@
 					opacity: 0.7;
 				}
 
-				&__txet {
+				&__text {
 					font-size: 15px;
 					margin-left: 3px;
 				}

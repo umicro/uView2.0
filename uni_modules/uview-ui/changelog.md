@@ -1,3 +1,11 @@
+## 2.0.17（2021-12-26）
+## uView正在参与开源中国的“年度最佳项目”评选，之前投过票的现在也可以投票，恳请同学们投一票，[点此帮助uView](https://www.oschina.net/project/top_cn_2021/?id=583)
+
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. 解决HBuilderX3.3.3.20211225版本导致的样式问题
+2. calendar日历添加monthNum参数
+3. navbar添加center slot
 ## 2.0.16（2021-12-25）
 ## uView正在参与开源中国的“年度最佳项目”评选，之前投过票的现在也可以投票，恳请同学们投一票，[点此帮助uView](https://www.oschina.net/project/top_cn_2021/?id=583)
 

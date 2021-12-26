@@ -2,7 +2,7 @@
 	<view
 	    class="u-divider"
 	    :style="[$u.addStyle(customStyle)]"
-			@tap="clickHandler"
+		@tap="clickHandler"
 	>
 		<u-line
 		    :color="lineColor"

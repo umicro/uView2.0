@@ -42,7 +42,7 @@
 						>{{ leftText }}</text>
 					</slot>
 				</view>
-				<slot>
+				<slot name="center">
 					<text
 						class="u-line-1 u-navbar__content__title"
 						:style="{

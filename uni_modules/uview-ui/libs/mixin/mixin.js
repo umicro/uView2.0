@@ -36,7 +36,7 @@ module.exports = {
         // 在2.x版本中，将会把$u挂载到uni对象下，导致在模板中无法使用uni.$u.xxx形式
         // 所以这里通过computed计算属性将其附加到this.$u上，就可以在模板或者js中使用this.$u.xxx
 		// 只在nvue环境通过此方式引入mixin，否则在微信小程序会出现性能问题，非nvue则使用全局mixin形式引入
-		// #ifdef APP-NVUE
+		// #ifndef MP-WEIXIN
 		$u() {
 		    return uni.$u
 		},

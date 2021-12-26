@@ -32,8 +32,8 @@
 					:startText="startText"
 					:endText="endText"
 					:defaultDate="defaultDate"
-					:minDate="minDate"
-					:maxDate="maxDate"
+					:minDate="innerMinDate"
+					:maxDate="innerMaxDate"
 					:maxMonth="maxMonth"
 					:readonly="readonly"
 					:maxRange="maxRange"
@@ -98,6 +98,7 @@
 	 * @property {Boolean}				showRangePrompt	    范围选择超过最多可选天数时，是否展示提示文案，mode = range时有效 (默认 true )
 	 * @property {Boolean}				allowSameDay	    是否允许日期范围的起止时间为同一天，mode = range时有效 (默认 false )
 	 * @property {Number|String}	    round				圆角值，默认无圆角  (默认 0 )
+	 * @property {Number|String}	    monthNum			最多展示的月份数量  (默认 3 )
 	 * 
 	 * @event {Function()} confirm 		点击确定按钮时触发		选择日期相关的返回参数
 	 * @event {Function()} close 		日历关闭时触发			可定义页面关闭时的回调事件
@@ -125,7 +126,7 @@
 				maxMonth: 3,
 				scrollIntoView: '',
 				// 过滤处理方法
-				innerFormatter: value => value
+				innerFormatter: value => value,
 			}
 		},
 		watch: {
@@ -144,9 +145,16 @@
 			},
 		},
 		computed: {
+			// 由于maxDate和minDate可以为字符串(2021-10-10)，或者数值(时间戳)，但是dayjs如果接受字符串形式的时间戳会有问题，这里进行处理
+			innerMaxDate() {
+				return uni.$u.test.number(this.maxDate) ? Number(this.maxDate) : this.maxDate
+			},
+			innerMinDate() {
+				return uni.$u.test.number(this.minDate) ? Number(this.minDate) : this.minDate
+			},
 			// 多个条件的变化，会引起选中日期的变化，这里统一管理监听
 			selectedChange() {
-				return [this.minDate, this.maxDate, this.defaultDate]
+				return [this.innerMinDate, this.innerMaxDate, this.defaultDate]
 			},
 			subtitle() {
 				// 初始化时，this.months为空数组，所以需要特别判断处理
@@ -189,6 +197,10 @@
 				}
 			},
 			init() {
+				// 校验maxDate，不能小于当前时间
+				if(this.innerMaxDate && new Date(this.innerMaxDate).getTime() <= Date.now()) {
+					return uni.$u.error('maxDate不能小于当前时间')
+				}
 				// 滚动区域的高度
 				this.listHeight = this.rowHeight * 5 + 30
 				this.setMonth()
@@ -203,7 +215,7 @@
 				}
 			},
 			// 获得两个日期之间的月份数
-			getMonths(minDate,maxDate) {
+			getMonths(minDate, maxDate) {
 				const minYear = dayjs(minDate).year()
 				const minMonth = dayjs(minDate).month() + 1
 				const maxYear = dayjs(maxDate).year()
@@ -213,14 +225,14 @@
 			// 设置月份数据
 			setMonth() {
 				// 最小日期的毫秒数
-				const minDate = this.minDate || dayjs().valueOf()
+				const minDate = this.innerMinDate || dayjs().valueOf()
 				// 如果没有指定最大日期，则往后推3个月
-				const maxDate = this.maxDate || dayjs(minDate).add(this.maxMonth - 1, 'month').valueOf()
-				// 最大最小月份之间的共有多少个月份
-				const months = this.getMonths(minDate, maxDate)
+				const maxDate = this.innerMaxDate || dayjs(minDate).add(this.maxMonth - 1, 'month').valueOf()
+				// 最大最小月份之间的共有多少个月份，
+				const months = uni.$u.range(0, this.monthNum, this.getMonths(minDate, maxDate))
 				// 先清空数组
 				this.months = []
-				for (let i = 0; i <= months; i++) {
+				for (let i = 0; i < months; i++) {
 					this.months.push({
 						date: new Array(dayjs(minDate).add(i, 'month').daysInMonth()).fill(1).map((item,
 							index) => {

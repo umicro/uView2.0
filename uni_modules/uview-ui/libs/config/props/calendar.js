@@ -36,6 +36,7 @@ export default {
         rangePrompt: '',
         showRangePrompt: true,
         allowSameDay: false,
-		round: 0
+		round: 0,
+		monthNum: 3
     }
 }

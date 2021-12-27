@@ -229,7 +229,7 @@
 				// 如果没有指定最大日期，则往后推3个月
 				const maxDate = this.innerMaxDate || dayjs(minDate).add(this.maxMonth - 1, 'month').valueOf()
 				// 最大最小月份之间的共有多少个月份，
-				const months = uni.$u.range(0, this.monthNum, this.getMonths(minDate, maxDate))
+				const months = uni.$u.range(0, this.monthNum, this.getMonths(minDate, maxDate)) + 1
 				// 先清空数组
 				this.months = []
 				for (let i = 0; i < months; i++) {

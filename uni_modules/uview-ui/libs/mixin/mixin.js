@@ -31,16 +31,20 @@ module.exports = {
     created() {
         // 组件当中，只有created声明周期，为了能在组件使用，故也在created中将方法挂载到$u
         this.$u.getRect = this.$uGetRect
-    },
+	},
     computed: {
         // 在2.x版本中，将会把$u挂载到uni对象下，导致在模板中无法使用uni.$u.xxx形式
         // 所以这里通过computed计算属性将其附加到this.$u上，就可以在模板或者js中使用uni.$u.xxx
-		// 只在nvue环境通过此方式引入mixin，否则在微信小程序会出现性能问题，非nvue则使用全局mixin形式引入
-		// #ifndef MP-WEIXIN
+		// 只在nvue环境通过此方式引入完整的$u，其他平台会出现性能问题，非nvue则按需引入（主要原因是props过大）
 		$u() {
-		    return uni.$u
+			// #ifndef APP-NVUE
+			const { addStyle, addUnit, getPx, test, color } = uni.$u
+			return { addStyle, addUnit, getPx, test, color }
+			// #endif
+			// #ifdef APP-NVUE
+			return uni.$u
+			// #endif
 		},
-		// #endif
         /**
 		 * 生成bem规则类名
 		 * 由于微信小程序，H5，nvue之间绑定class的差异，无法通过:class="[bem()]"的形式进行同用

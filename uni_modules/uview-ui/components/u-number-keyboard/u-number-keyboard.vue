@@ -70,19 +70,19 @@
 					if (!this.random) {
 						return [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 					} else {
-						return this.$u.randomArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
+						return uni.$u.randomArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
 					}
 				} else if (!this.dotDisabled && this.mode == 'number') {
 					if (!this.random) {
 						return [1, 2, 3, 4, 5, 6, 7, 8, 9, this.dot, 0];
 					} else {
-						return this.$u.randomArray([1, 2, 3, 4, 5, 6, 7, 8, 9, this.dot, 0]);
+						return uni.$u.randomArray([1, 2, 3, 4, 5, 6, 7, 8, 9, this.dot, 0]);
 					}
 				} else if (this.mode == 'card') {
 					if (!this.random) {
 						return [1, 2, 3, 4, 5, 6, 7, 8, 9, this.cardX, 0];
 					} else {
-						return this.$u.randomArray([1, 2, 3, 4, 5, 6, 7, 8, 9, this.cardX, 0]);
+						return uni.$u.randomArray([1, 2, 3, 4, 5, 6, 7, 8, 9, this.cardX, 0]);
 					}
 				}
 			},

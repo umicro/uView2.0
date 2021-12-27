@@ -143,12 +143,12 @@ export default {
             return arr
         },
         imageWidth() {
-            return this.$u.addUnit(
+            return uni.$u.addUnit(
                 this.urls.length === 1 ? this.singleWidth : this.multipleSize
             )
         },
         imageHeight() {
-            return this.$u.addUnit(
+            return uni.$u.addUnit(
                 this.urls.length === 1 ? this.singleHeight : this.multipleSize
             )
         },

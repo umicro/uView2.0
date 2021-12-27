@@ -135,7 +135,7 @@
 		methods: {
 			show(options) {
 				// 不将结果合并到this.config变量，避免多次调用u-toast，前后的配置造成混乱
-				this.tmpConfig = this.$u.deepMerge(this.config, options)
+				this.tmpConfig = uni.$u.deepMerge(this.config, options)
 				// 任何定时器初始化之前，都要执行清除操作，否则可能会造成混乱
 				this.clearTimer()
 				this.open = true

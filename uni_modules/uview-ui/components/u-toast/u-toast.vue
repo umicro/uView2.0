@@ -88,7 +88,7 @@
 					return '';
 				}
 				if (['error', 'warning', 'success', 'primary'].includes(this.tmpConfig.type)) {
-					return this.$u.type2icon(this.tmpConfig.type)
+					return uni.$u.type2icon(this.tmpConfig.type)
 				} else {
 					return ''
 				}
@@ -151,7 +151,7 @@
 			// 显示toast组件，由父组件通过this.$refs.xxx.show(options)形式调用
 			show(options) {
 				// 不将结果合并到this.config变量，避免多次调用u-toast，前后的配置造成混乱
-				this.tmpConfig = this.$u.deepMerge(this.config, options)
+				this.tmpConfig = uni.$u.deepMerge(this.config, options)
 				// 清除定时器
 				this.clearTimer()
 				this.isShow = true

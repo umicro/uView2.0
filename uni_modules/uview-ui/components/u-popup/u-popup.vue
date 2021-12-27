@@ -95,27 +95,27 @@
 				}
 				style[this.mode] = 0
 				if (this.mode === 'left') {
-					return this.$u.deepMerge(style, {
+					return uni.$u.deepMerge(style, {
 						bottom: 0,
 						top: 0,
 					})
 				} else if (this.mode === 'right') {
-					return this.$u.deepMerge(style, {
+					return uni.$u.deepMerge(style, {
 						bottom: 0,
 						top: 0,
 					})
 				} else if (this.mode === 'top') {
-					return this.$u.deepMerge(style, {
+					return uni.$u.deepMerge(style, {
 						left: 0,
 						right: 0
 					})
 				} else if (this.mode === 'bottom') {
-					return this.$u.deepMerge(style, {
+					return uni.$u.deepMerge(style, {
 						left: 0,
 						right: 0,
 					})
 				} else if (this.mode === 'center') {
-					return this.$u.deepMerge(style, {
+					return uni.$u.deepMerge(style, {
 						alignItems: 'center',
 						'justify-content': 'center',
 						top: 0,

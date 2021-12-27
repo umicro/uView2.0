@@ -142,7 +142,7 @@
 				return (type) => {
 					const style = {
 						backgroundColor: this.bgColor,
-						height: this.$u.addUnit(this.buttonSize),
+						height: uni.$u.addUnit(this.buttonSize),
 						color: this.color
 					}
 					if (this.isDisabled(type)) {
@@ -157,8 +157,8 @@
 				const style = {
 					color: this.color,
 					backgroundColor: this.bgColor,
-					height: this.$u.addUnit(this.buttonSize),
-					width: this.$u.addUnit(this.inputWidth)
+					height: uni.$u.addUnit(this.buttonSize),
+					width: uni.$u.addUnit(this.inputWidth)
 				}
 				return style
 			},

@@ -11,7 +11,7 @@
 				</view>
 				<view class="u-cell__title">
 					<slot name="title">
-						<text v-if="title" class="u-cell__title-text"
+						<text v-if="title" class="u-cell__title-text" :style="[titleTextStyle]"
 							:class="[disabled && 'u-cell--disabled', size === 'large' && 'u-cell__title-text--large']">{{ title }}</text>
 					</slot>
 					<slot name="label">
@@ -58,8 +58,9 @@
 	 * @property {Boolean}			required		是否显示表单状态下的必填星号(此组件可能会内嵌入input组件) （默认 false ）
 	 * @property {String}			rightIcon		右侧的图标箭头 （默认 'arrow-right'）
 	 * @property {String}			arrowDirection	右侧箭头的方向，可选值为：left，up，down
-	 * @property {Object}			rightIconStyle	右侧箭头图标的样式
-	 * @property {Object}			titleStyle		标题的样式
+	 * @property {Object | String}			rightIconStyle	右侧箭头图标的样式
+	 * @property {Object | String}			titleStyle		标题的样式
+	 * @property {Object | String}			iconStyle		左侧图标样式
 	 * @property {String}			size			单位元的大小，可选值为 large，normal，mini 
 	 * @property {Boolean}			stop			点击cell是否阻止事件传播 (默认 true )
 	 * @property {Object}			customStyle		定义需要用到的外部样式
@@ -74,7 +75,16 @@
 
 			}
 		},
+		mounted() {
+			console.log('this.titleStyle', this.titleStyle);
+		},
 		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
+		computed: {
+			titleTextStyle() {
+				console.log(this.titleStyle, uni.$u.addStyle(this.titleStyle));
+				return uni.$u.addStyle(this.titleStyle)
+			}
+		},
 		methods: {
 			// 点击cell
 			clickHandler(e) {

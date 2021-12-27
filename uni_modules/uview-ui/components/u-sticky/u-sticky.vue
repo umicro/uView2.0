@@ -51,7 +51,7 @@
 					if (this.cssSticky) {
 						style.position = 'sticky'
 						style.zIndex = this.uZindex
-						style.top = this.$u.addUnit(this.stickyTop)
+						style.top = uni.$u.addUnit(this.stickyTop)
 					} else {
 						style.height = this.fixed ? this.height + 'px' : 'auto'
 					}
@@ -65,7 +65,7 @@
 					// #endif
 				}
 				style.backgroundColor = this.bgColor
-				return this.$u.deepMerge(uni.$u.addStyle(this.customStyle), style)
+				return uni.$u.deepMerge(uni.$u.addStyle(this.customStyle), style)
 			},
 			// 吸顶内容的样式
 			stickyContent() {
@@ -152,7 +152,7 @@
 				// #endif
 
 				// 如果安卓版本高于8.0，依然认为是支持css sticky的(因为安卓7在某些机型，可能不支持sticky)
-				if (this.$u.os() === 'android' && Number(this.$u.sys().system) > 8) {
+				if (uni.$u.os() === 'android' && Number(uni.$u.sys().system) > 8) {
 					this.cssSticky = true
 				}
 
@@ -162,7 +162,7 @@
 				// #endif
 
 				// ios上，从ios6开始，都是支持css sticky的
-				if (this.$u.os() === 'ios') {
+				if (uni.$u.os() === 'ios') {
 					this.cssSticky = true
 				}
 

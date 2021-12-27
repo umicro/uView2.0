@@ -147,7 +147,7 @@
 	.u-swipe-action-item {
 		position: relative;
 		overflow: hidden;
-		/* #ifndef APP-NVUE */
+		/* #ifndef APP-NVUE || MP-WEIXIN */
 		touch-action: none;
 		/* #endif */
 

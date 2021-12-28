@@ -38,8 +38,8 @@ module.exports = {
 		// 只在nvue环境通过此方式引入完整的$u，其他平台会出现性能问题，非nvue则按需引入（主要原因是props过大）
 		$u() {
 			// #ifndef APP-NVUE
-			const { addStyle, addUnit, getPx, test, color } = uni.$u
-			return { addStyle, addUnit, getPx, test, color }
+			const { addStyle, addUnit, getPx, sys, test, color } = uni.$u
+			return { addStyle, addUnit, getPx, sys, test, color }
 			// #endif
 			// #ifdef APP-NVUE
 			return uni.$u

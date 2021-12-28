@@ -6,6 +6,7 @@
 				<u-grid
 					:border="false"
 					@click="click"
+					align="center"
 				>
 					<u-grid-item
 						v-for="(baseListItem,baseListIndex) in baseList"
@@ -136,10 +137,10 @@
 						name: 'lock',
 						title: '锁头'
 					},
-					{
-						name: 'star',
-						title: '星星'
-					},
+					// {
+					// 	name: 'star',
+					// 	title: '星星'
+					// },
 				],
 				list: [{
 						name: 'photo',

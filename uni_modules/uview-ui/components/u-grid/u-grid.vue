@@ -90,10 +90,8 @@
 		display: block;
 		/* #endif */
 		justify-content: center;
-		/* #ifndef MP */
 		@include flex;
 		flex-wrap: wrap;
 		align-items: center;
-		/* #endif */
 	}
 </style>

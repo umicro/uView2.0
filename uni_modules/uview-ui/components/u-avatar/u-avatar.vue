@@ -7,7 +7,7 @@
 			width: $u.addUnit(size),
 			height: $u.addUnit(size),
 		}, $u.addStyle(customStyle)]"
-		@tap.stop="clickHandler"
+		@tap="clickHandler"
 	>
 		<slot>
 			<!-- #ifdef MP-WEIXIN || MP-QQ || MP-BAIDU  -->

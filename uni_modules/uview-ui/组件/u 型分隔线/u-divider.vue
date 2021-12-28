@@ -2,6 +2,7 @@
 	<view
 	    class="u-divider"
 	    :style="[$u.addStyle(customStyle)]"
+		@tap="clickHandler"
 	>
 		<u-line
 		    :color="lineColor"
@@ -81,7 +82,7 @@
 		},
 		methods: {
 			// divider组件被点击时触发
-			click() {
+			clickHandler() {
 				this.$emit('click');
 			}
 		}

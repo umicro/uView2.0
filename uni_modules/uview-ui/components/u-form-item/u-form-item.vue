@@ -62,7 +62,7 @@
 				v-if="!!message && parentData.errorType === 'message'"
 				class="u-form-item__body__right__message"
 				:style="{
-					marginLeft: $u.addUnit(labelWidth || parentData.labelWidth)
+					marginLeft:  $u.addUnit(parentData.labelPosition === 'top' ? 0 : (labelWidth || parentData.labelWidth))
 				}"
 			>{{ message }}</text>
 		</slot>

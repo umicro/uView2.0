@@ -75,8 +75,6 @@
 
 			}
 		},
-		mounted() {
-		},
 		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		computed: {
 			titleTextStyle() {

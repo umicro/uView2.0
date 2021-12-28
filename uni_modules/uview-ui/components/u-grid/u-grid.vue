@@ -82,11 +82,14 @@
 	@import "../../libs/css/components.scss";
      $u-grid-width:100% !default;
 	.u-grid {
+		/* #ifdef MP */
 		width: $u-grid-width;
 		position: relative;
 		box-sizing: border-box;
 		overflow: hidden;
 		display: block;
+		/* #endif */
+		justify-content: center;
 		@include flex;
 		flex-wrap: wrap;
 		align-items: center;

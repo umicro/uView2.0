@@ -33,7 +33,7 @@
 					:size="size === 'large' ? 18 : 16"></u-icon>
 			</view>
 		</view>
-		<u-line v-if="border"></u-line>
+		<u-line v-if="border" :color="borderColor"></u-line>
 	</view>
 </template>
 
@@ -50,6 +50,7 @@
 	 * @property {String | Number}	titleWidth		标题的宽度，单位任意，数值默认为px单位
 	 * @property {Boolean}			disabled		是否禁用cell	
 	 * @property {Boolean}			border			是否显示下边框 (默认 true )
+	 * @property {Stirng}			borderColor	    边框颜色 (默认 #d6d7d9)
 	 * @property {Boolean}			center			内容是否垂直居中(主要是针对右侧的value部分) (默认 false )
 	 * @property {String}			url				点击后跳转的URL地址
 	 * @property {String}			linkType		链接跳转的方式，内部使用的是uView封装的route方法，可能会进行拦截操作 (默认 'navigateTo' )

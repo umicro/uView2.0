@@ -8,28 +8,29 @@
  * @FilePath     : /u-view2.0/uview-ui/libs/config/props/cell.js
  */
 export default {
-    // cell组件的props
-    cell: {
-        customClass: '',
-        title: '',
-        label: '',
-        value: '',
-        icon: '',
-        titleWidth: '',
-        disabled: false,
-        border: true,
-        center: false,
-        url: '',
-        linkType: 'navigateTo',
-        clickable: false,
-        isLink: false,
-        required: false,
-        arrowDirection: '',
-        rightIconStyle: {},
-        rightIcon: 'arrow-right',
-        titleStyle: {},
-        size: '',
-        stop: true,
-        name: ''
-    }
+	// cell组件的props
+	cell: {
+		customClass: '',
+		title: '',
+		label: '',
+		value: '',
+		icon: '',
+		titleWidth: '',
+		disabled: false,
+		border: true,
+		center: false,
+		url: '',
+		linkType: 'navigateTo',
+		clickable: false,
+		isLink: false,
+		required: false,
+		arrowDirection: '',
+		iconStyle: {},
+		rightIconStyle: {},
+		rightIcon: 'arrow-right',
+		titleStyle: {},
+		size: '',
+		stop: true,
+		name: ''
+	}
 }

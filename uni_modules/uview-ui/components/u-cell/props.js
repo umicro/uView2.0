@@ -78,17 +78,23 @@ export default {
         // 左侧图标样式
         iconStyle: {
             type: [Object, String],
-            default: () => {}
+            default: () => {
+				return uni.$u.props.cell.iconStyle
+			}
         },
         // 右侧箭头图标的样式
         rightIconStyle: {
             type: [Object, String],
-            default: uni.$u.props.cell.rightIconStyle
+            default: () => {
+				return uni.$u.props.cell.rightIconStyle
+			}
         },
         // 标题的样式
         titleStyle: {
             type: [Object, String],
-            default: uni.$u.props.cell.titleStyle
+			default: () => {
+				return uni.$u.props.cell.titleStyle
+			}
         },
         // 单位元的大小，可选值为large
         size: {

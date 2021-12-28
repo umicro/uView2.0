@@ -73,18 +73,18 @@ import Calendar from '../../libs/util/calendar.js'
 	 * Calendar 日历
 	 * @description  此组件用于单个选择日期，范围选择日期等，日历被包裹在底部弹起的容器中.
 	 * @tutorial https://www.uviewui.com/components/calendar.html
-	 * 
+	 *
 	 * @property {String}				title				标题内容 (默认 日期选择 )
 	 * @property {Boolean}				showTitle			是否显示标题  (默认 true )
 	 * @property {Boolean}				showSubtitle		是否显示副标题	(默认 true )
 	 * @property {String}				mode				日期类型选择  single-选择单个日期，multiple-可以选择多个日期，range-选择日期范围 （ 默认 'single' )
 	 * @property {String}				startText			mode=range时，第一个日期底部的提示文字  (默认 '开始' )
 	 * @property {String}				endText				mode=range时，最后一个日期底部的提示文字 (默认 '结束' )
-	 * @property {Array}				customList			自定义列表 
+	 * @property {Array}				customList			自定义列表
 	 * @property {String}				color				主题色，对底部按钮和选中日期有效  (默认 ‘#3c9cff' )
 	 * @property {String | Number}		minDate				最小的可选日期	 (默认 0 )
 	 * @property {String | Number}		maxDate				最大可选日期  (默认 0 )
-	 * @property {Array | String| Date}	defaultDate			默认选中的日期，mode为multiple或range是必须为数组格式 
+	 * @property {Array | String| Date}	defaultDate			默认选中的日期，mode为multiple或range是必须为数组格式
 	 * @property {String | Number}		maxCount			mode=multiple时，最多可选多少个日期  (默认 	Number.MAX_SAFE_INTEGER  )
 	 * @property {String | Number}		rowHeight			日期行高 (默认 56 )
 	 * @property {Function}				formatter			日期格式化函数
@@ -101,7 +101,7 @@ import Calendar from '../../libs/util/calendar.js'
 	 * @property {Boolean}				allowSameDay	    是否允许日期范围的起止时间为同一天，mode = range时有效 (默认 false )
 	 * @property {Number|String}	    round				圆角值，默认无圆角  (默认 0 )
 	 * @property {Number|String}	    monthNum			最多展示的月份数量  (默认 3 )
-	 * 
+	 *
 	 * @event {Function()} confirm 		点击确定按钮时触发		选择日期相关的返回参数
 	 * @event {Function()} close 		日历关闭时触发			可定义页面关闭时的回调事件
 	 * @example <u-calendar  :defaultDate="defaultDateMultiple" :show="show" mode="multiple" @confirm="confirm">
@@ -247,7 +247,7 @@ export default {
                     .valueOf()
             // 最大最小月份之间的共有多少个月份，
             const months = uni.$u.range(
-                0,
+                1,
                 this.monthNum,
                 this.getMonths(minDate, maxDate)
             )

@@ -69,6 +69,11 @@ export default {
 		leftIconColor: {
 			type: String,
 			default: uni.$u.props.navbar.leftIconColor
+		},
+		// 点击左侧区域(返回图标)，是否自动返回上一页
+		autoBack: {
+			type: Boolean,
+			default: uni.$u.props.navbar.autoBack
 		}
 	}
 }

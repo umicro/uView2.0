@@ -58,9 +58,7 @@ const $u = {
 }
 
 // $u挂载到uni对象上
-// #ifndef APP-NVUE
 uni.$u = $u
-// #endif
 
 const install = (Vue) => {
     // 时间格式化，同时两个名称，date和timeFormat

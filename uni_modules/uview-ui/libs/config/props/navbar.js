@@ -24,7 +24,8 @@ export default {
         titleWidth: '400rpx',
         height: '44px',
 		leftIconSize: 20,
-		leftIconColor: color.mainColor
+		leftIconColor: color.mainColor,
+		autoBack: false
     }
 
 }

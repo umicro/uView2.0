@@ -38,6 +38,9 @@
 
 <style lang="scss" scoped>
 	.u-status-bar {
+		// nvue会默认100%，如果nvue下，显式写100%的话，会导致宽度不为100%而异常
+		/* #ifndef APP-NVUE */
 		width: 100%;
+		/* #endif */
 	}
 </style>

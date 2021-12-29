@@ -38,8 +38,12 @@ module.exports = {
 		// 只在nvue环境通过此方式引入完整的$u，其他平台会出现性能问题，非nvue则按需引入（主要原因是props过大）
 		$u() {
 			// #ifndef APP-NVUE
-			const { addStyle, addUnit, getPx, sys, test, color } = uni.$u
-			return { addStyle, addUnit, getPx, sys, test, color }
+			// 在非nvue端，移除props，http，mixin等对象，避免在小程序setData时数据过大影响性能
+			return uni.$u.deepMerge(uni.$u, {
+				props: undefined,
+				http: undefined,
+				mixin: undefined
+			})
 			// #endif
 			// #ifdef APP-NVUE
 			return uni.$u

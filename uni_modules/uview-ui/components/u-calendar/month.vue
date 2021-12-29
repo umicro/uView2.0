@@ -280,6 +280,8 @@
 		},
 		methods: {
 			init() {
+				// 初始化默认选中
+				this.$emit('monthSelected', this.selected)
 				this.$nextTick(() => {
 					// 这里需要另一个延时，因为获取宽度后，会进行月份数据渲染，只有渲染完成之后，才有真正的高度
 					// 因为nvue下，$nextTick并不是100%可靠的
@@ -336,7 +338,7 @@
 				})
 				// #endif
 
-				// #ifdef APP-NVUE 
+				// #ifdef APP-NVUE
 				// nvue下，使用dom模块查询元素高度
 				// 返回一个promise，让调用此方法的主体能使用then回调
 				return new Promise(resolve => {
@@ -387,7 +389,7 @@
 								} else {
 									uni.$u.toast(`选择天数不能超过 ${this.maxRange} 天`)
 								}
-								return 
+								return
 							}
 							// 如果当前日期大于已有日期，将当前的添加到数组尾部
 							selected.push(date)

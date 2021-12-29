@@ -248,7 +248,7 @@ export default {
             // 最大最小月份之间的共有多少个月份，
             const months = uni.$u.range(
                 1,
-                this.monthNum,
+                Math.max(this.monthNum,this.getMonths(minDate, maxDate)),
                 this.getMonths(minDate, maxDate)
             )
             // 先清空数组

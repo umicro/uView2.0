@@ -146,10 +146,6 @@
 			confirm(e) {
 				this[`show${this.index}`] = false
 				console.log(e);
-				// this.values[this.index - 1] = e[0]
-				// e.forEach((value, index) => {
-				// 	index === 0 ? this.values[this.index - 1] = value : this.values[this.index - 1] += '/' + value
-				// })
 				switch(this.index - 1) {
 					case 0:
 						this.values[this.index - 1] = e[0];

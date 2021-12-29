@@ -4,12 +4,6 @@
 <h3 align="center" style="margin: 30px 0 30px;font-weight: bold;font-size:40px;">uView</h3>
 <h3 align="center">多平台快速开发的UI框架</h3>
 
-## 一起推动uView发展
-
-uView正在参与开源中国的“年度最佳项目”评选，目前投票进入了最后一个阶段（之前投过票的现在也可以投票），
-我们不分昼夜的努力，恳请同学们能为我们投一票，uView来源于社区，也希望社区能一起推动它的发展，[点此帮助uView](https://www.oschina.net/project/top_cn_2021/?id=583)
-
-
 ## 说明
 
 uView UI，是[uni-app](https://uniapp.dcloud.io/)生态优秀的UI框架，全面的组件和便捷的工具会让您信手拈来，如鱼得水

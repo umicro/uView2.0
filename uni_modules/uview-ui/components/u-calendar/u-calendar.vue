@@ -233,7 +233,7 @@ export default {
             const minMonth = dayjs(minDate).month() + 1
             const maxYear = dayjs(maxDate).year()
             const maxMonth = dayjs(maxDate).month() + 1
-            return (maxYear - minYear) * 12 + (maxMonth - minMonth)
+            return (maxYear - minYear) * 12 + (maxMonth - minMonth) + 1
         },
         // 设置月份数据
         setMonth() {

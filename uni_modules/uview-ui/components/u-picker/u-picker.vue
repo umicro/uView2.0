@@ -254,6 +254,7 @@ export default {
 					/* #ifndef APP-NVUE */
 					display: block;
 					/* #endif */
+					color: $u-main-color;
 
 					&--disabled {
 						/* #ifndef APP-NVUE */

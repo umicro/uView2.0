@@ -43,6 +43,7 @@
 				<u-notice-bar
 				    :text="text4"
 					:step="true"
+					@click="click"
 				></u-notice-bar>
 			</view>
 		</view>
@@ -52,6 +53,7 @@
 				<u-notice-bar
 				    :text="text4"
 					direction="column"
+					@click="click"
 				></u-notice-bar>
 			</view>
 		</view>
@@ -88,8 +90,8 @@
 			
 		},
 		methods: {
-			click() {
-				
+			click(e) {
+				console.log(e)
 			}
 		},
 	}

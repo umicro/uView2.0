@@ -22,6 +22,7 @@
 			:interval="duration"
 			:autoplay="true"
 			class="u-notice__swiper"
+			@change="noticeChange"
 		>
 			<swiper-item
 				v-for="(item, index) in text"
@@ -101,13 +102,16 @@
 		},
 		data() {
 			return {
-
+				index:0
 			}
 		},
 		methods: {
+			noticeChange(e){
+				this.index = e.detail.current
+			},
 			// 点击通告栏
-			clickHandler(index) {
-				this.$emit('click', index)
+			clickHandler() {
+				this.$emit('click', this.index)
 			},
 			// 点击关闭按钮
 			close() {

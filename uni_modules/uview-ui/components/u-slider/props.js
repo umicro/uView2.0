@@ -40,6 +40,11 @@ export default {
             type: String,
             default: uni.$u.props.slider.blockColor
         },
+		// 禁用状态
+		disabled: {
+			type: Boolean,
+			default: uni.$u.props.slider.disabled
+		},
         // 是否显示当前的选择值
         showValue: {
             type: Boolean,

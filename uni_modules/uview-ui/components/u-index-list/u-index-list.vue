@@ -6,7 +6,7 @@
 			enable-back-to-top
 			:offset-accuracy="1"
 			:style="{
-				height: $u.addUnit(scrollViewHeight)
+				maxHeight: $u.addUnit(scrollViewHeight)
 			}"
 			@scroll="scrollHandler"
 			ref="uList"
@@ -29,7 +29,7 @@
 			:scrollIntoView="scrollIntoView"
 			:offset-accuracy="1"
 			:style="{
-				height: $u.addUnit(scrollViewHeight)
+				maxHeight: $u.addUnit(scrollViewHeight)
 			}"
 			scroll-y
 			@scroll="scrollHandler"
@@ -187,7 +187,9 @@
 		methods: {
 			init() {
 				// 设置列表的高度为整个屏幕的高度
-				this.scrollViewHeight = this.sys.windowHeight
+				//减去this.customNavHeight，并将this.scrollViewHeight设置为maxHeight
+				//解决当u-index-list组件放在tabbar页面时,scroll-view内容较少时，还能滚动
+				this.scrollViewHeight = this.sys.windowHeight - this.customNavHeight
 			},
 			// 索引列表被触摸
 			touchStart(e) {

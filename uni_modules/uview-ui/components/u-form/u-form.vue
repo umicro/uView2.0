@@ -126,7 +126,7 @@
 					// 如果为字符串，转为数组
 					value = [].concat(value);
 					// 历遍children所有子form-item
-					this.children.map((child) => {
+					this.children.map(async (child) => {
 						// 用于存放form-item的错误信息
 						const childErrors = [];
 						if (value.includes(child.prop)) {
@@ -157,7 +157,7 @@
 								const validator = new Schema({
 									[propertyName]: ruleItem,
 								});
-								validator.validate({
+								await validator.validate({
 										[propertyName]: propertyVal,
 									},
 									(errors, fields) => {
@@ -169,30 +169,48 @@
 											childErrors[0]?.message ?? null;
 									}
 								);
+								typeof callback === "function" && callback(errorsRes);
 							}
 						}
 					});
 					// 执行回调函数
-					typeof callback === "function" && callback(errorsRes);
+					// typeof callback === "function" && callback(errorsRes);
 				});
 			},
 			// 校验全部数据
 			validate(callback) {
 				return new Promise((resolve, reject) => {
 					// $nextTick是必须的，否则model的变更，可能会延后于validate方法
+					let validatedFieldCount = 0; // 已经校验合法的字段的数量
 					this.$nextTick(() => {
 						// 获取所有form-item的prop，交给validateField方法进行校验
 						const formItemProps = this.children.map(
 							(item) => item.prop
 						);
+						// 获取所有formRules
+						let formRules = [];
+						for (const key in this.formRules) {
+							formRules.push(this.formRules[key]);
+						}
+						// 降低formRules的一个维度
+						formRules = formRules.flat(); // 待验证兼容性问题
 						this.validateField(formItemProps, (errors) => {
 							if(errors.length) {
+								validatedFieldCount--; // 不合法，-1
 								// 如果错误提示方式为toast，则进行提示
 								this.errorType === 'toast' && uni.$u.toast(errors[0].message)
 								reject(errors)
 							} else {
-								resolve(true)
+								validatedFieldCount++; // 合法，+1
+								if(validatedFieldCount === formRules.length) {
+									// 如果全部校验通过，则执行回调函数
+									typeof callback === "function" && callback()
+									resolve(true)
+								}
 							}
+						}).catch(e => {
+							validatedFieldCount--; // 不合法，-1
+							reject(e);
 						});
 					});
 				});

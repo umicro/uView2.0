@@ -1,7 +1,7 @@
 <template>
 	<view class="u-calendar-month-wrapper" ref="u-calendar-month-wrapper">
 		<view v-for="(item, index) in months" :key="index" :class="[`u-calendar-month-${index}`]"
-			:ref="`u-calendar-month-${index}`" :id="`month-${item.month}`">
+			:ref="`u-calendar-month-${index}`" :id="`month-${index}`">
 			<text v-if="index !== 0" class="u-calendar-month__title">{{ item.year }}年{{ item.month }}月</text>
 			<view class="u-calendar-month__days">
 				<view v-if="showMark" class="u-calendar-month__days__month-mark-wrapper">

@@ -13,7 +13,7 @@ export default {
     navbar: {
         safeAreaInsetTop: true,
         placeholder: false,
-        fixed: false,
+        fixed: true,
         border: false,
         leftIcon: 'arrow-left',
         leftText: '',

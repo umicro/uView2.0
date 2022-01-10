@@ -271,6 +271,7 @@ $u-search-action-margin-left: 5px !default;
 
 			&--placeholder {
 				color: $u-search-input-placeholder-color;
+				line-height: 1.2;
 			}
 		}
 	}

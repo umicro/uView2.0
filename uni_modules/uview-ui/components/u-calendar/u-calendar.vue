@@ -309,7 +309,38 @@ export default {
                     year: dayjs(minDate).add(i, 'month').year()
                 })
             }
-        },
+			// 获取默认日期的下标
+			if (!this.defaultDate) {
+			    // 如果没有设置默认日期，则将当天日期设置为默认选中的日期
+			    const selected = dayjs().format("YYYY-MM")
+			    this.scrollIntoDefaultMonth(selected)
+			    return
+			}
+			let selected = dayjs().format("YYYY-MM");
+			// 单选模式，可以是字符串或数组，Date对象等
+			if (!uni.$u.test.array(this.defaultDate)) {
+			    selected = dayjs(this.defaultDate).format("YYYY-MM")
+			} else {
+			    selected = dayjs(this.defaultDate[0]).format("YYYY-MM");
+			}
+			this.scrollIntoDefaultMonth(selected)
+		},
+		// 滚动到默认设置的月份
+		scrollIntoDefaultMonth(selected) {
+		    // 查询默认日期在可选列表的下标
+		    const _index = this.months.findIndex(({
+		        year,
+		        month
+		    }) => {
+		        month = uni.$u.padZero(month)
+		        return `${year}-${month}` === selected
+		    })
+		    if (_index !== -1) {
+		        this.$nextTick(() => {
+		            this.scrollIntoView = `month-${_index}`
+		        })
+		    }
+		},
         // scroll-view滚动监听
         onScroll(event) {
             // 不允许小于0的滚动值，如果scroll-view到顶了，继续下拉，会出现负数值

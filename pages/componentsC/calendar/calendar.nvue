@@ -26,12 +26,14 @@
 		</u-cell-group>
 		<u-calendar
 			:show="show1"
+			defaultDate="2022-02-15"
 			@confirm="confirm"
 			@close="close"
 		></u-calendar>
 		<u-calendar
 			:show="show2"
 			mode="multiple"
+			:defaultDate="['2022-03-01']"
 			@confirm="confirm"
 			@close="close"
 		></u-calendar>

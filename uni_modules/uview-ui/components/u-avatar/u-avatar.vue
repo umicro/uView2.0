@@ -41,7 +41,7 @@
 				class="u-avatar__image"
 				v-else
 				:class="[`u-avatar__image--${shape}`]"
-				:src="avatarUrl"
+				:src="avatarUrl || defaultUrl"
 				:mode="mode"
 				@error="errorHandler"
 				:style="[{

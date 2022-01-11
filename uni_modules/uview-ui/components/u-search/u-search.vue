@@ -22,6 +22,7 @@
 			</template>
 			<view class="u-search__content__icon">
 				<u-icon
+					@tap="clickIcon"
 				    :size="22"
 				    :name="searchIcon"
 				    :color="searchIconColor ? searchIconColor : color"
@@ -190,6 +191,10 @@
 			// 点击搜索框，只有disabled=true时才发出事件，因为禁止了输入，意味着是想跳转真正的搜索页
 			clickHandler() {
 				if (this.disabled) this.$emit('click');
+			},
+			// 点击左边图标
+			clickIcon() {
+				this.$emit('click-icon');
 			}
 		}
 	}

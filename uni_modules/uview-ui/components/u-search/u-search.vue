@@ -101,7 +101,7 @@
 	 * @property {String | Number}	height				输入框高度，单位px（默认 64 ）
 	 * @property {String | Number}	label				搜索框左边显示内容
 	 * @property {Object}			customStyle			定义需要用到的外部样式
-	 * 
+	 *
 	 * @event {Function} change 输入框内容发生变化时触发
 	 * @event {Function} search 用户确定搜索时触发，用户按回车键，或者手机键盘右下角的"搜索"键时触发
 	 * @event {Function} custom 用户点击右侧控件时触发
@@ -194,7 +194,7 @@
 			},
 			// 点击左边图标
 			clickIcon() {
-				this.$emit('click-icon');
+				this.$emit('clickIcon');
 			}
 		}
 	}
@@ -222,8 +222,8 @@ $u-search-action-margin-left: 5px !default;
 
 /* #ifdef H5 */
 // iOS15在H5下，hx的某些版本，input type=search时，会多了一个搜索图标，进行移除
-[type="search"]::-webkit-search-decoration {  
-    display: none;  
+[type="search"]::-webkit-search-decoration {
+    display: none;
 }
 /* #endif */
 

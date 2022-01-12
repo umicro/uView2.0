@@ -324,6 +324,8 @@
 						}
 						// 由于微信下，无法通过this.months[i].top的形式(引用类型)去修改父组件的month的top值，所以使用事件形式对外发出
 						this.$emit('updateMonthTop', topArr)
+						// 新增：设置默认值偏移量的事件
+						this.$emit('setDefaultScrollOffset', this.defaultDate)
 					})
 			},
 			// 获取每个月份区域的尺寸

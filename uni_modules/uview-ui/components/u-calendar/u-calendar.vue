@@ -43,6 +43,7 @@
                     ref="month"
                     @monthSelected="monthSelected"
                     @updateMonthTop="updateMonthTop"
+					@setDefaultScrollOffset="setDefaultScrollOffset"
                 ></uMonth>
             </scroll-view>
             <slot name="footer" v-if="showConfirm">
@@ -188,6 +189,20 @@ export default {
         this.init()
     },
     methods: {
+		// 此函数的目的是在range模式下自动让日历滚动到默认值选中的位置
+		// 原本担心用户在选值的时候也会触发此方法但实际并无此问题
+		setDefaultScrollOffset(e) {
+			try {
+				if (this.mode != 'range') return; // 目前已知只有range模式需要改，所以把影响范围压到最小
+				let defaultValue = uni.$u.test.array(e) ? e[0] : e; // 分类讨论，如果是range模式的话一定是数组，前表达式恒真
+				const month = dayjs(defaultValue).month(); // 根据dayjs的API设计，一月份的索引是0，依次类推
+				let offsetTop = this.months[month].top ? this.months[month].top : 0; // 这里之所以不用?.操作符是担心有兼容性问题
+				this.calendarOffsetTop = offsetTop + 150; // 这是手动校准，默认滚动位置要比预期低一点，可能是header占位的关系。
+			} catch(e) {
+				// 此方法无需报出任何信息，在此静默异常
+			}
+			
+		},
         // 在微信小程序中，不支持将函数当做props参数，故只能通过ref形式调用
         setFormatter(e) {
             this.innerFormatter = e

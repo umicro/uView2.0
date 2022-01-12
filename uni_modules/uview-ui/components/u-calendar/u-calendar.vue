@@ -21,6 +21,7 @@
                 scroll-y
                 @scroll="onScroll"
                 :scrollIntoView="scrollIntoView"
+				:scroll-top="calendarOffsetTop"
             >
                 <uMonth
                     :color="color"
@@ -127,7 +128,9 @@ export default {
             selected: [],
             scrollIntoView: '',
             // 过滤处理方法
-            innerFormatter: (value) => value
+            innerFormatter: (value) => value,
+			// 用来让日历滚动到默认月的偏移量
+			calendarOffsetTop: 0,
         }
     },
     watch: {

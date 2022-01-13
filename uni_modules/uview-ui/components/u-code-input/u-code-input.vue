@@ -203,7 +203,7 @@
 			// 之所以需要input输入框，是因为有它才能唤起键盘
 			// 这里将它设置为两倍的屏幕宽度，再将左边的一半移出屏幕，为了不让用户看到输入的内容
 			position: absolute;
-			left: -150rpx;
+			left: -750rpx;
 			width: 1500rpx;
 			top: 0;
 			background-color: transparent;

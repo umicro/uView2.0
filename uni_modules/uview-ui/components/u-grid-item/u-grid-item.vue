@@ -1,4 +1,17 @@
 <template>
+	<!-- #ifndef APP-NVUE -->
+	<view
+	    class="u-grid-item"
+	    hover-class="u-grid-item--hover-class"
+	    :hover-stay-time="200"
+	    @tap="clickHandler"
+	    :class="classes"
+	    :style="[itemStyle]"
+	>
+		<slot />
+	</view>
+	<!-- #endif -->
+	<!-- #ifdef APP-NVUE -->
 	<view
 	    class="u-grid-item"
 	    :hover-stay-time="200"
@@ -8,6 +21,7 @@
 	>
 		<slot />
 	</view>
+	<!-- #endif -->
 </template>
 
 <script>

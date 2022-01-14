@@ -95,7 +95,7 @@
 				<view
 				    v-else
 				    class="u-upload__button"
-				    :hover-class="!disabled && 'u-upload__button--hover'"
+				    :hover-class="!disabled ? 'u-upload__button--hover' : ''"
 				    hover-stay-time="150"
 				    @tap="chooseFile"
 				    :class="[disabled && 'u-upload__button--disabled']"

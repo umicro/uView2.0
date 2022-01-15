@@ -1,3 +1,21 @@
+## 2.0.20（2022-01-14）
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. 修复calendar默认会选择一个日期，如果直接点确定的话，无法取到值的问题
+2. 修复Slider缺少disabled props 还有注释
+3. 修复u-notice-bar点击事件无法拿到index索引值的问题
+4. 修复u-collapse-item在vue文件下，app端自定义插槽不生效的问题
+5. 优化头像为空时显示默认头像 
+6. 修复图片地址赋值后判断加载状态为完成问题
+7. 修复日历滚动到默认日期月份区域
+8. search组件暴露点击左边icon事件
+9. 修复u-form clearValidate方法不生效
+10. upload h5端增加返回文件参数（文件的name参数）
+11. 处理upload选择文件后url为blob类型无法预览的问题
+12. u-code-input 修复输入框没有往左移出一半屏幕
+13. 修复Upload上传 disabled为true时，控制台报hoverClass类型错误
+14. 临时处理ios app下grid点击坍塌问题
+15. 其他修复
 ## 2.0.19（2021-12-29）
 # uView2.0重磅发布，利剑出鞘，一统江湖
 

@@ -17,7 +17,10 @@ function formatImage(res) {
         type: 'image',
         url: item.path,
         thumb: item.path,
-		size: item.size
+		size: item.size,
+		// #ifdef H5
+		name: item.name
+		// #endif
     }))
 }
 
@@ -28,7 +31,10 @@ function formatVideo(res) {
             type: 'video',
             url: res.tempFilePath,
             thumb: res.thumbTempFilePath,
-			size: res.size
+			size: res.size,
+			// #ifdef H5
+			name: res.name
+			// #endif
         }
     ]
 }
@@ -44,7 +50,15 @@ function formatMedia(res) {
 }
 
 function formatFile(res) {
-    return res.tempFiles.map((item) => ({ ...pickExclude(item, ['path']), url: item.path, size:item.size }))
+    return res.tempFiles.map((item) => ({ 
+		...pickExclude(item, ['path']), 
+		url: item.path, 
+		size:item.size,
+		// #ifdef H5
+		name: item.name,
+		type: item.type
+		// #endif 
+	}))
 }
 export function chooseFile({
     accept,

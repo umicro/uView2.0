@@ -65,11 +65,23 @@
 			</view>
 		</view>
 		<view class="u-demo-block">
-			<text class="u-demo-block__title">搜索框内容水平对齐</text>
+			<text class="u-demo-block__title">点击左侧图标</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
 					<u-search
 						v-model="value6"
+						:show-action="false"
+						@click-icon="clickIcon"
+					></u-search>
+				</view>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">搜索框内容水平对齐</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__tag-item">
+					<u-search
+						v-model="value7"
 						:show-action="false"
 						input-align="left"
 					></u-search>
@@ -78,7 +90,7 @@
 			<view class="u-demo-block__content m-t-10">
 				<view class="u-page__tag-item">
 					<u-search
-						v-model="value7"
+						v-model="value8"
 						:show-action="false"
 						input-align="center"
 					></u-search>
@@ -87,7 +99,7 @@
 			<view class="u-demo-block__content m-t-10">
 				<view class="u-page__tag-item">
 					<u-search
-						v-model="value8"
+						v-model="value9"
 						:show-action="false"
 						input-align="right"
 					></u-search>
@@ -99,7 +111,7 @@
 			<view class="u-demo-block__content">
 				<view class="u-page__tag-item">
 					<u-search
-						v-model="value9"
+						v-model="value10"
 						:show-action="false"
 						borderColor="rgb(230, 230, 230)"
 						bgColor="#fff"
@@ -109,7 +121,7 @@
 			<view class="u-demo-block__content m-t-10">
 				<view class="u-page__tag-item">
 					<u-search
-						v-model="value10"
+						v-model="value11"
 						:show-action="false"
 						search-icon-color="#FF0000"
 					></u-search>
@@ -118,7 +130,7 @@
 			<view class="u-demo-block__content m-t-10">
 				<view class="u-page__tag-item">
 					<u-search
-						v-model="value11"
+						v-model="value12"
 						:show-action="false"
 						placeholder-color="#FF0000"
 					></u-search>
@@ -127,7 +139,7 @@
 			<view class="u-demo-block__content m-t-10">
 				<view class="u-page__tag-item">
 					<u-search
-						v-model="value12"
+						v-model="value13"
 						:show-action="false"
 						color="#FF0000"
 					></u-search>
@@ -136,7 +148,7 @@
 			<view class="u-demo-block__content m-t-10">
 				<view class="u-page__tag-item">
 					<u-search
-						v-model="value13"
+						v-model="value14"
 						label="手机"
 						:show-action="false"
 					>
@@ -146,7 +158,7 @@
 			<view class="u-demo-block__content m-t-10">
 				<view class="u-page__tag-item">
 					<u-search
-						v-model="value14"
+						v-model="value15"
 						search-icon="scan"
 						:show-action="false"
 					>
@@ -174,7 +186,8 @@
 				value11: '',
 				value12: '',
 				value13: '',
-				value14: ''
+				value14: '',
+				value15: ''
 			}
 		},
 		watch: {
@@ -185,6 +198,9 @@
 		methods: {
 			change(e) {
 				console.log(e);
+			},
+			clickIcon() {
+				uni.$u.toast('点击了左侧图标')
 			}
 		}
 	}

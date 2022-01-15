@@ -16,7 +16,6 @@
 		<u-sticky bgColor="#fff">
 			<u-tabs
 				:list="list1"
-				sticky
 			>
 			</u-tabs>
 		</u-sticky>

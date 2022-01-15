@@ -95,7 +95,7 @@
 				<view
 				    v-else
 				    class="u-upload__button"
-				    :hover-class="!disabled && 'u-upload__button--hover'"
+				    :hover-class="!disabled ? 'u-upload__button--hover' : ''"
 				    hover-stay-time="150"
 				    @tap="chooseFile"
 				    :class="[disabled && 'u-upload__button--disabled']"
@@ -188,8 +188,9 @@
 				} = this;
 				const lists = fileList.map((item) =>
 					Object.assign(Object.assign({}, item), {
-						isImage: uni.$u.test.image(item.url),
-						isVideo: uni.$u.test.video(item.url),
+						// 如果item.url为本地选择的blob文件的话，无法判断其为video还是image，此处优先通过accept做判断处理
+						isImage: this.accept === 'image' || uni.$u.test.image(item.url || item.thumb),
+						isVideo: this.accept === 'video' || uni.$u.test.video(item.url || item.thumb),
 						deletable: typeof(item.deletable) === 'boolean' ? item.deletable : this.deletable,
 					})
 				);
@@ -299,8 +300,8 @@
 				if (!item.isImage || !this.previewFullImage) return
 				uni.previewImage({
 					// 先filter找出为图片的item，再返回filter结果中的图片url
-					urls: this.lists.filter((item) => uni.$u.test.image(item.url)).map((item) => item.url),
-					current: item.url,
+					urls: this.lists.filter((item) => this.accept === 'image' || uni.$u.test.image(item.url || item.thumb)).map((item) => item.url || item.thumb),
+					current: item.url || item.thumb,
 					fail() {
 						uni.$u.toast('预览图片失败')
 					},
@@ -324,10 +325,7 @@
 						),
 					current: index,
 					fail() {
-						wx.showToast({
-							title: '预览视频失败',
-							icon: 'none'
-						});
+						uni.$u.toast('预览视频失败')
 					},
 				});
 			},

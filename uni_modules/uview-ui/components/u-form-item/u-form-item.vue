@@ -87,7 +87,7 @@
 	 * @property {String}			rightIcon		右侧图标
 	 * @property {String}			leftIcon		左侧图标
 	 * @property {Boolean}			required		是否显示左边的必填星号，只作显示用，具体校验必填的逻辑，请在rules中配置 (默认 false )
-	 * 
+	 *
 	 * @example <u-form-item label="姓名" prop="userInfo.name" borderBottom ref="item1"></u-form-item>
 	 */
 	export default {

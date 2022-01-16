@@ -112,7 +112,7 @@
 				props = [].concat(props);
 				this.children.map((child) => {
 					// 如果u-form-item的prop在props数组中，则清除对应的校验结果信息
-					if (props.includes(child.prop)) {
+					if (props.includes(child.props)) {
 						child.message = null;
 					}
 				});

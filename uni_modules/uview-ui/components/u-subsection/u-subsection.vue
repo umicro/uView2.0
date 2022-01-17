@@ -159,7 +159,7 @@ export default {
                 // subsection模式下，激活时默认为白色的文字
                 if (this.mode === "subsection") {
                     style.color =
-                        this.current === index ? "#fff" : this.activeColor;
+                        this.current === index ? "#fff" : this.inactiveColor;
                 } else {
                     // button模式下，激活时文字颜色默认为activeColor
                     style.color =

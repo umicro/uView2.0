@@ -1,4 +1,5 @@
 <template>
+	<!-- #ifndef APP-NVUE -->
 	<view
 	    class="u-grid-item"
 	    hover-class="u-grid-item--hover-class"
@@ -9,6 +10,18 @@
 	>
 		<slot />
 	</view>
+	<!-- #endif -->
+	<!-- #ifdef APP-NVUE -->
+	<view
+	    class="u-grid-item"
+	    :hover-stay-time="200"
+	    @tap="clickHandler"
+	    :class="classes"
+	    :style="[itemStyle]"
+	>
+		<slot />
+	</view>
+	<!-- #endif -->
 </template>
 
 <script>
@@ -123,7 +136,7 @@
 							// 贴近右边屏幕边沿的child，并且最后一个（比如只有横向2个的时候），无需右边框
 							if((index + 1) % this.parentData.col !== 0 && index + 1 !== len) {
 								classes.push('u-border-right')
-							} 
+							}
 							// 总的宫格数量对列数取余的值
 							// 如果取余后，值为0，则意味着要将最后一排的宫格，都不需要下边框
 							const lessNum = len % this.parentData.col === 0 ? this.parentData.col : len % this.parentData.col
@@ -150,12 +163,12 @@
 
 <style lang="scss" scoped>
 	@import "../../libs/css/components.scss";
-      $u-grid-item-hover-class-opcatiy:.5 !default; 
-      $u-grid-item-margin-top:1rpx !default; 
-      $u-grid-item-border-right-width:0.5px !default; 
-      $u-grid-item-border-bottom-width:0.5px !default; 
-      $u-grid-item-border-right-color:$u-border-color !default; 
-      $u-grid-item-border-bottom-color:$u-border-color !default; 
+      $u-grid-item-hover-class-opcatiy:.5 !default;
+      $u-grid-item-margin-top:1rpx !default;
+      $u-grid-item-border-right-width:0.5px !default;
+      $u-grid-item-border-bottom-width:0.5px !default;
+      $u-grid-item-border-right-color:$u-border-color !default;
+      $u-grid-item-border-bottom-color:$u-border-color !default;
 	.u-grid-item {
 		align-items: center;
 		justify-content: center;
@@ -170,11 +183,11 @@
 		position: relative;
 		float: left;
 		/* #endif */
-		
+
 		/* #ifdef MP-WEIXIN */
 		margin-top:$u-grid-item-margin-top;
 		/* #endif */
-		
+
 		&--hover-class {
 			opacity:$u-grid-item-hover-class-opcatiy;
 		}

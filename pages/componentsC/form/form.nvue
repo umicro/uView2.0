@@ -163,6 +163,12 @@
 					customStyle="margin-top: 50px"
 					@click="submit"
 				></u-button>
+				<u-button
+					type="error"
+					text="重置"
+					customStyle="margin-top: 10px"
+					@click="reset"
+				></u-button>
 				<u-action-sheet
 					:show="showSex"
 					:actions="actions"
@@ -412,6 +418,10 @@
 				}).catch(errors => {
 					uni.$u.toast('校验失败')
 				})
+			},
+			reset() {
+				this.$refs.form1.clearValidate()
+				this.$refs.form1.resetFields()
 			},
 			hideKeyboard() {
 				uni.hideKeyboard()

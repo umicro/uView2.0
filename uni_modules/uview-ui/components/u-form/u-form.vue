@@ -90,6 +90,10 @@
 			setRules(rules) {
 				// 判断是否有规则
 				if (Object.keys(rules).length === 0) return;
+				if (Object.keys(this.model).length === 0) {
+					uni.$u.error('设置rules，model必须设置！');
+					return;
+				};
 				this.formRules = rules;
 				// 重新将规则赋予Validator
 				this.validator = new Schema(rules);
@@ -119,6 +123,10 @@
 			},
 			// 对部分表单字段进行校验
 			async validateField(value, callback, event = null) {
+				if (Object.keys(this.formRules).length === 0) {
+					uni.$u.error('未设置rules，请看文档说明！');
+					return;
+				}
 				// $nextTick是必须的，否则model的变更，可能会延后于此方法的执行
 				this.$nextTick(() => {
 					// 校验错误信息，返回给回调方法，用于存放所有form-item的错误信息

@@ -127,6 +127,14 @@ export function chooseFile({
             // #endif
             break
 				// #endif
+		default: 
+			// 此为保底选项，在accept不为上面任意一项的时候选取全部文件
+			uni.chooseFile({
+				count: multiple ? maxCount : 1,
+				type: 'all',
+				success: (res) => resolve(formatFile(res)),
+				fail: reject
+			})
         }
     })
 }

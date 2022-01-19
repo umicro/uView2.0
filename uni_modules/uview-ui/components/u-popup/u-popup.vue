@@ -4,7 +4,7 @@
 			:show="show"
 			@click="overlayClick"
 			v-if="overlay"
-			:duration="duration"
+			:duration="overlayDuration"
 			:customStyle="overlayStyle"
 			:opacity="overlayOpacity"
 		></u-overlay>
@@ -55,7 +55,7 @@
 	 * @property {Boolean}			overlay				是否显示遮罩 （默认 true ）
 	 * @property {String}			mode				弹出方向（默认 'bottom' ）
 	 * @property {String | Number}	duration			动画时长，单位ms （默认 300 ）
-	 * @property {String | Number}	duration1			遮罩层动画时长，单位ms （默认 350 ）
+	 * @property {String | Number}	overlayDuration			遮罩层动画时长，单位ms （默认 350 ）
 	 * @property {Boolean}			closeable			是否显示关闭图标（默认 false ）
 	 * @property {Object | String}	overlayStyle		自定义遮罩的样式
 	 * @property {String | Number}	overlayOpacity		遮罩透明度，0-1之间（默认 0.5）
@@ -76,7 +76,7 @@
 		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		data() {
 			return {
-				duration1: this.duration + 50
+				overlayDuration: this.duration + 50
 			}
 		},
 		watch: {

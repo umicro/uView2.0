@@ -214,7 +214,7 @@
 				// 如果小于第一个图标的左边界，设置为最小值，如果大于所有图标的宽度，则设置为最大值
 				x = uni.$u.range(this.rateBoxLeft, allRateWidth, x) - this.rateBoxLeft
 				// 滑动点相对于评分盒子左边的距离
-				const distance = x;
+				const distance = x - this.rateBoxLeft;
 				// 滑动的距离，相当于多少颗星星
 				let index;
 				// 判断是否允许半星

@@ -164,6 +164,8 @@ export default {
     @include flex(row);
     align-items: center;
     flex-wrap: nowrap;
+	word-break: break-all;
+	white-space: pre-wrap;
     flex: 1;
 
     &__price {
@@ -176,7 +178,7 @@ export default {
         @include flex;
         color: $u-content-color;
         flex-wrap: wrap;
-        // flex: 1;
+        flex: 1;
         text-overflow: ellipsis;
         align-items: center;
 

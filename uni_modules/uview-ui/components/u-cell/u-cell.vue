@@ -47,7 +47,6 @@
 	 * @property {String | Number}	label			标题下方的描述信息
 	 * @property {String | Number}	value			右侧的内容
 	 * @property {String}			icon			左侧图标名称，或者图片链接(本地文件建议使用绝对地址)
-	 * @property {String | Number}	titleWidth		标题的宽度，单位任意，数值默认为px单位
 	 * @property {Boolean}			disabled		是否禁用cell	
 	 * @property {Boolean}			border			是否显示下边框 (默认 true )
 	 * @property {Boolean}			center			内容是否垂直居中(主要是针对右侧的value部分) (默认 false )

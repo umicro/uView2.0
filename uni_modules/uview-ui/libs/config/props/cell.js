@@ -15,7 +15,6 @@ export default {
 		label: '',
 		value: '',
 		icon: '',
-		titleWidth: '',
 		disabled: false,
 		border: true,
 		center: false,

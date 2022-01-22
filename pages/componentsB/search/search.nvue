@@ -71,7 +71,7 @@
 					<u-search
 						v-model="value6"
 						:show-action="false"
-						@click-icon="clickIcon"
+						@clickIcon="clickIcon"
 					></u-search>
 				</view>
 			</view>

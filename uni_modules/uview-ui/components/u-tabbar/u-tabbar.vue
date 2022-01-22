@@ -94,8 +94,9 @@
 				// 延时一定时间
 				await uni.$u.sleep(20)
 				// #ifndef APP-NVUE
-				this.$uGetRect('.u-tabbar__content').then(size => {
-					this.placeholderHeight = 50
+				this.$uGetRect('.u-tabbar__content').then(({height = 50}) => {
+					// 修复IOS safearea bottom 未填充高度
+					this.placeholderHeight = height
 				})
 				// #endif
 

@@ -69,11 +69,6 @@ function random(min, max) {
 }
 
 /**
- * 本算法来源于简书开源代码，详见：https://www.jianshu.com/p/fdbf293d0a85
- * 全局唯一标识符（uuid，Globally Unique Identifier）,也称作 uuid(Universally Unique IDentifier)
- * 一般用于多个组件之间,给它一个唯一的标识符,或者v-for循环的时候,如果使用数组的index可能会导致更新列表出现问题
- * 最可能的情况是左滑删除item或者对某条信息流"不喜欢"并去掉它的时候,会导致组件内的数据可能出现错乱
- * v-for的时候,推荐使用后端返回的id而不是循环的index
  * @param {Number} len uuid的长度
  * @param {Boolean} firstU 将返回的首字母置为"u"
  * @param {Nubmer} radix 生成uuid的基数(意味着返回的字符串都是这个基数),2-二进制,8-八进制,10-十进制,16-十六进制
@@ -622,7 +617,16 @@ function setProperty(obj, key, value) {
  */
 function page() {
     const pages = getCurrentPages()
-    return `/${getCurrentPages()[pages.length - 1].route}`
+	// 某些特殊情况下(比如页面进行redirectTo时的一些时机)，pages可能为空数组
+    return `/${pages[pages.length - 1]?.route ?? ''}`
+}
+
+/**
+ * @description 获取当前路由栈实例数组
+ */
+function pages() {
+    const pages = getCurrentPages()
+	return pages
 }
 
 export default {
@@ -652,5 +656,6 @@ export default {
     formValidate,
     getProperty,
     setProperty,
-    page
+    page,
+	pages
 }

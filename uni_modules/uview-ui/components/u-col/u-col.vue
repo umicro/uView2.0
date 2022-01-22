@@ -96,6 +96,7 @@
 
 	.u-col {
 		padding: 0;
+		box-sizing:border-box;
 		/* #ifdef MP */
 		display: block;
 		/* #endif */

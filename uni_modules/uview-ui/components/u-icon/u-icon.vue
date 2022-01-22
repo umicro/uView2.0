@@ -139,7 +139,7 @@
 			clickHandler(e) {
 				this.$emit('click', this.index)
 				// 是否阻止事件冒泡
-				this.stop && uni.$u.preventEvent(e)
+				this.stop && this.preventEvent(e)
 			}
 		}
 	}

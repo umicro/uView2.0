@@ -127,6 +127,25 @@ export function chooseFile({
             // #endif
             break
 				// #endif
+		default: 
+			// 此为保底选项，在accept不为上面任意一项的时候选取全部文件
+			// #ifdef MP-WEIXIN
+			wx.chooseMessageFile({
+			    count: multiple ? maxCount : 1,
+			    type: 'all',
+			    success: (res) => resolve(formatFile(res)),
+			    fail: reject
+			})
+			// #endif
+			// #ifdef H5
+			// 需要hx2.9.9以上才支持uni.chooseFile
+			uni.chooseFile({
+				count: multiple ? maxCount : 1,
+				type: 'all',
+				success: (res) => resolve(formatFile(res)),
+				fail: reject
+			})
+			// #endif
         }
     })
 }

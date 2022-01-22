@@ -20,11 +20,6 @@ export default {
             type: String,
             default: uni.$u.props.cell.icon
         },
-        // 标题的宽度，单位任意，数值默认为px单位
-        titleWidth: {
-            type: [String, Number],
-            default: uni.$u.props.cell.titleWidth
-        },
         // 是否禁用cell
         disabled: {
             type: Boolean,

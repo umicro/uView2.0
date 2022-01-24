@@ -64,11 +64,10 @@
 							v-if="showCopy && buttons.length > 0"
 							length="18"
 						></u-line>
-						<template v-for="(item , index) in buttons">
+						<block v-for="(item , index) in buttons" :key="index">
 							<view
 								class="u-tooltip__wrapper__popup__list__btn"
 								hover-class="u-tooltip__wrapper__popup__list__btn--hover"
-								:key="index"
 							>
 								<text
 									class="u-tooltip__wrapper__popup__list__btn__text"
@@ -80,9 +79,8 @@
 								color="#8d8e90"
 								v-if="index < buttons.length - 1"
 								length="18"
-								:key="index"
 							></u-line>
-						</template>
+						</block>
 					</view>
 				</view>
 			</u-transition>

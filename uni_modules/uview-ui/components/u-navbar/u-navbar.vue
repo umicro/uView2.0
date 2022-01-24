@@ -45,10 +45,9 @@
 				<slot name="center">
 					<text
 						class="u-line-1 u-navbar__content__title"
-						:style="{
-							width: $u.addUnit(titleWidth),
-							...$u.addStyle(titleStyle)
-						}"
+						:style="[{
+							width: $u.addUnit(titleWidth),	
+						}, $u.addStyle(titleStyle)]"
 					>{{ title }}</text>
 				</slot>
 				<view

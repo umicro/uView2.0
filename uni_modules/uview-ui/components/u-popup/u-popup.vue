@@ -12,7 +12,7 @@
 			:show="show"
 			:customStyle="transitionStyle"
 			:mode="position"
-			:duration="duration1"
+			:duration="duration"
 			@after-enter="afterEnter"
 			@click="clickHandler"
 		>

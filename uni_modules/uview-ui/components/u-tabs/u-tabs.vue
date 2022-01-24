@@ -165,16 +165,8 @@
 				let lineOffsetLeft = this.list
 					.slice(0, this.innerCurrent)
 					.reduce((total, curr) => total + curr.rect.width, 0);
-				let lineWidth = this.lineWidth; // 拷贝副本，防止间接修改props中的值
-				// 如果lineWidth不是数字类型的话
-				if (typeof lineWidth !== 'number') {
-					// 判断后缀是否为rpx
-					if (lineWidth.indexOf('rpx') > -1) {
-						lineWidth = uni.upx2px(parseFloat(lineWidth)); // rpx -> px
-					} else {
-						lineWidth = parseFloat(lineWidth);
-					}
-				}
+                // 获取下划线的数值px表示法
+				const lineWidth = uni.$u.getPx(this.lineWidth);
 				this.lineOffsetLeft = lineOffsetLeft + (tabItem.rect.width - lineWidth) / 2
 				// #ifdef APP-NVUE
 				// 第一次移动滑块，无需过渡时间

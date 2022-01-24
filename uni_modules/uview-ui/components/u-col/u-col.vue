@@ -96,7 +96,9 @@
 
 	.u-col {
 		padding: 0;
+		/* #ifndef APP-NVUE */
 		box-sizing:border-box;
+		/* #endif */
 		/* #ifdef MP */
 		display: block;
 		/* #endif */

@@ -12,7 +12,6 @@
 				backgroundColor: bgColor,
 				borderRadius: shape == 'round' ? '100px' : '4px',
 				borderColor: borderColor,
-				height: $u.addUnit(height)
 			}"
 		>
 			<template v-if="$slots.label || label !== null">
@@ -242,6 +241,7 @@ $u-search-action-margin-left: 5px !default;
 		border-width: 1px;
 		border-color: transparent;
 		border-style: solid;
+		overflow: hidden;
 
 		&__icon {
 			@include flex;

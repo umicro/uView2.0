@@ -1,3 +1,46 @@
+## 2.0.24（2022-01-25）
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. 修复swiper在current指定非0时缩放有误
+2. 修复u-icon添加stop属性的时候报错
+3. 优化遗留的通过正则判断rpx单位的问题
+4. 优化Layout布局 vue使用gutter时，会超出固定区域
+5. 优化search组件高度单位问题（rpx -> px）
+6. 修复u-image slot 加载和错误的图片失去了高度
+7. 修复u-index-list中footer插槽与header插槽存在性判断错误
+8. 修复部分机型下u-popup关闭时会闪烁
+9. 修复u-image在nvue-app下失去宽高
+10. 修复u-popup运行报错
+11. 修复u-tooltip报错
+12. 修复box-sizing在app下的警告
+13. 修复u-navbar在小程序中报运行时错误
+14. 其他修复
+## 2.0.23（2022-01-24）
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. 修复image组件在hx3.3.9的nvue下可能会显示异常的问题
+2. 修复col组件gutter参数带rpx单位处理不正确的问题
+3. 修复text组件单行时无法显示省略号的问题
+4. navbar添加titleStyle参数
+5. 升级到hx3.3.9可消除nvue下控制台样式警告的问题
+## 2.0.22（2022-01-19）
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. $u.page()方法优化，避免在特殊场景可能报错的问题
+2. picker组件添加immediateChange参数
+3. 新增$u.pages()方法
+## 2.0.21（2022-01-19）
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. 优化：form组件在用户设置rules的时候提示用户model必传
+2. 优化遗留的通过正则判断rpx单位的问题
+3. 修复微信小程序环境中tabbar组件开启safeAreaInsetBottom属性后，placeholder高度填充不正确
+4. 修复swiper在current指定非0时缩放有误
+5. 修复u-icon添加stop属性的时候报错
+6. 修复upload组件在accept=all的时候没有作用
+7. 修复在text组件mode为phone时call属性无效的问题
+8. 处理u-form clearValidate方法
+9. 其他修复
 ## 2.0.20（2022-01-14）
 # uView2.0重磅发布，利剑出鞘，一统江湖
 

@@ -13,7 +13,7 @@ export default {
     navbar: {
         safeAreaInsetTop: true,
         placeholder: false,
-        fixed: false,
+        fixed: true,
         border: false,
         leftIcon: 'arrow-left',
         leftText: '',
@@ -25,7 +25,8 @@ export default {
         height: '44px',
 		leftIconSize: 20,
 		leftIconColor: color.mainColor,
-		autoBack: false
+		autoBack: false,
+		titleStyle: ''
     }
 
 }

@@ -18,7 +18,7 @@
 				<slot name="header" />
 			</cell>
 			<slot />
-			<cell v-if="$slots.header">
+			<cell v-if="$slots.footer">
 				<slot name="footer" />
 			</cell>
 		</list>
@@ -39,7 +39,7 @@
 				<slot name="header" />
 			</view>
 			<slot />
-			<view v-if="$slots.header">
+			<view v-if="$slots.footer">
 				<slot name="footer" />
 			</view>
 		</scroll-view>

@@ -45,9 +45,9 @@
 				<slot name="center">
 					<text
 						class="u-line-1 u-navbar__content__title"
-						:style="{
-							width: $u.addUnit(titleWidth)
-						}"
+						:style="[{
+							width: $u.addUnit(titleWidth),
+						}, $u.addStyle(titleStyle)]"
 					>{{ title }}</text>
 				</slot>
 				<view
@@ -93,6 +93,7 @@
 	 * @property {String | Number}	leftIconSize		左侧返回图标的大小（默认 20px ）
 	 * @property {String | Number}	leftIconColor		左侧返回图标的颜色（默认 #303133 ）
 	 * @property {Boolean}	        autoBack			点击左侧区域(返回图标)，是否自动返回上一页（默认 false ）
+	 * @property {Object | String}	titleStyle			标题的样式，对象或字符串
 	 * @event {Function} leftClick		点击左侧区域
 	 * @event {Function} rightClick		点击右侧区域
 	 * @example <u-navbar title="剑未配妥，出门已是江湖" left-text="返回" right-text="帮助" @click-left="onClickBack" @click-right="onClickRight"></u-navbar>
@@ -175,7 +176,7 @@
 			&__right {
 				right: 0;
 
-				&__txet {
+				&__text {
 					font-size: 15px;
 					margin-left: 3px;
 				}

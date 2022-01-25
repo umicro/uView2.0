@@ -74,6 +74,11 @@ export default {
 		autoBack: {
 			type: Boolean,
 			default: uni.$u.props.navbar.autoBack
+		},
+		// 标题的样式，对象或字符串
+		titleStyle: {
+			type: [String, Object],
+			default: uni.$u.props.navbar.titleStyle
 		}
 	}
 }

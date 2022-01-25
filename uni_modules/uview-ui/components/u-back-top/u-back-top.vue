@@ -64,15 +64,7 @@
 				return style
 			},
 			show() {
-				let top
-				// 如果是rpx，转为px
-				if (/rpx$/.test(this.top)) {
-					top = uni.rpx2px(parseInt(this.top))
-				} else {
-					// 如果px，通过parseInt获取其数值部分
-					top = parseInt(this.top)
-				}
-				return this.scrollTop > top
+				return uni.$u.getPx(this.scrollTop) > uni.$u.getPx(this.top)
 			},
 			contentStyle() {
 				const style = {}

@@ -135,13 +135,7 @@
 				observer && observer.disconnect()
 			},
 			getStickyTop() {
-				if (/rpx$/.test(this.customNavHeight)) {
-					// rpx单位需要转为px单位，才能直接相加
-					this.stickyTop = parseInt(this.offsetTop) + parseInt(uni.rpx2px(this.customNavHeight))
-				} else {
-					// 无论customNavHeight为数值(默认px单位)，还是12px(parseInt后为12)之类转换后都为数值，可以直接相加
-					this.stickyTop = parseInt(this.offsetTop) + parseInt(this.customNavHeight)
-				}
+				this.stickyTop = uni.$u.getPx(this.offsetTop) + uni.$u.getPx(this.customNavHeight)
 			},
 			async checkSupportCssSticky() {
 				// #ifdef H5

@@ -131,6 +131,12 @@
 				currentIndex: 0
 			}
 		},
+		watch: {
+			current(val, preVal) {
+				if(val === preVal) return;
+				this.currentIndex = val; // 和上游数据关联上
+			}
+		},
 		computed: {
 			itemStyle() {
 				return index => {

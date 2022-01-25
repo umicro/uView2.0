@@ -12,7 +12,7 @@
 				backgroundColor: bgColor,
 				borderRadius: shape == 'round' ? '100px' : '4px',
 				borderColor: borderColor,
-				height: height + 'rpx'
+				height: $u.addUnit(height)
 			}"
 		>
 			<template v-if="$slots.label || label !== null">
@@ -47,6 +47,7 @@
 					textAlign: inputAlign,
 					color: color,
 					backgroundColor: bgColor,
+					height: $u.addUnit(height)
 				}, inputStyle]"
 			/>
 			<view

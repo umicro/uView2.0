@@ -90,8 +90,8 @@
 			setRules(rules) {
 				// 判断是否有规则
 				if (Object.keys(rules).length === 0) return;
-				if (Object.keys(this.model).length === 0) {
-					uni.$u.error('设置rules，model必须设置！');
+				if (process.env.NODE_ENV === 'development' && Object.keys(this.model).length === 0) {
+					uni.$u.error('设置rules，model必须设置！如果已经设置，请刷新页面。');
 					return;
 				};
 				this.formRules = rules;
@@ -116,15 +116,16 @@
 				props = [].concat(props);
 				this.children.map((child) => {
 					// 如果u-form-item的prop在props数组中，则清除对应的校验结果信息
-					if (props.includes(child.props)) {
+					if (props[0] === undefined || props.includes(child.prop)) {
 						child.message = null;
 					}
 				});
 			},
 			// 对部分表单字段进行校验
 			async validateField(value, callback, event = null) {
-				if (Object.keys(this.formRules).length === 0) {
-					uni.$u.error('未设置rules，请看文档说明！');
+				// 开发环境才提示，生产环境不会提示
+				if (process.env.NODE_ENV === 'development' && Object.keys(this.formRules).length === 0) {
+					uni.$u.error('未设置rules，请看文档说明！如果已经设置，请刷新页面。');
 					return;
 				}
 				// $nextTick是必须的，否则model的变更，可能会延后于此方法的执行

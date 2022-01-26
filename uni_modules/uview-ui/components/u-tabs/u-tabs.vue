@@ -302,6 +302,7 @@
 			align-items: center;
 
 			&__scroll-view-wrapper {
+				width: 0;
 				flex: 1;
 				/* #ifndef APP-NVUE */
 				overflow: auto hidden;

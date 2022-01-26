@@ -12,7 +12,12 @@
 		
 		/* #ifndef APP-NVUE */
 		// vue下，单行和多行显示省略号需要单独处理
-		@if $i == 1 {			display: inline-block !important;			overflow: hidden;			white-space: nowrap;			text-overflow: ellipsis;		} @else {
+		@if $i == 1 {
+			display: inline-block !important;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		} @else {
 			display: -webkit-box !important;
 			overflow: hidden;
 			text-overflow: ellipsis;

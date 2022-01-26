@@ -12,17 +12,13 @@
 		
 		/* #ifndef APP-NVUE */
 		// vue下，单行和多行显示省略号需要单独处理
-		@if $i == '1' {
-			overflow: hidden;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-		} @else {
-			display: -webkit-box!important;
+		@if $i == 1 {			display: inline-block !important;			overflow: hidden;			white-space: nowrap;			text-overflow: ellipsis;		} @else {
+			display: -webkit-box !important;
 			overflow: hidden;
 			text-overflow: ellipsis;
 			word-break: break-all;
 			-webkit-line-clamp: $i;
-			-webkit-box-orient: vertical!important;
+			-webkit-box-orient: vertical !important;
 		}
 		/* #endif */
 	}

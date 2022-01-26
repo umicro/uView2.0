@@ -165,6 +165,9 @@ export default {
     align-items: center;
     flex-wrap: nowrap;
     flex: 1;
+	/* #ifndef APP-NVUE */
+	width: 100%;
+	/* #endif */
 
     &__price {
         font-size: 14px;

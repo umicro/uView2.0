@@ -182,8 +182,10 @@
 					}
 
 					&__required {
+						// #ifndef APP-NVUE
 						position: absolute;
 						left: -9px;
+						// #endif
 						color: $u-error;
 						line-height: 20px;
 						font-size: 20px;

@@ -18,11 +18,11 @@ function range(min = 0, max = 0, value = 0) {
  */
 function getPx(value, unit = false) {
     if (test.number(value)) {
-        return unit ? `${value}px` : value
+        return unit ? `${value}px` : Number(value)
     }
     // 如果带有rpx，先取出其数值部分，再转为px值
     if (/(rpx|upx)$/.test(value)) {
-        return unit ? `${uni.upx2px(parseInt(value))}px` : uni.upx2px(parseInt(value))
+        return unit ? `${uni.upx2px(parseInt(value))}px` : Number(uni.upx2px(parseInt(value)))
     }
     return unit ? `${parseInt(value)}px` : parseInt(value)
 }

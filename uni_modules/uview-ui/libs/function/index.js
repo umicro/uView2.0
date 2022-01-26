@@ -27,11 +27,11 @@ function getPx(value, unit = false) {
     return unit ? `${parseInt(value)}px` : parseInt(value)
 }
 
- /**
- * @description 进行延时，以达到可以简写代码的目的 比如: await uni.$u.sleep(20)将会阻塞20ms
- * @param {number} value 堵塞时间 单位ms 毫秒
- * @returns {Promise} 返回promise
- */
+/**
+* @description 进行延时，以达到可以简写代码的目的 比如: await uni.$u.sleep(20)将会阻塞20ms
+* @param {number} value 堵塞时间 单位ms 毫秒
+* @returns {Promise} 返回promise
+*/
 function sleep(value = 30) {
     return new Promise((resolve) => {
         setTimeout(() => {
@@ -39,18 +39,18 @@ function sleep(value = 30) {
         }, value)
     })
 }
- /**
- * @description 运行期判断平台
- * @returns {string} 返回所在平台(小写) 
- * @link 运行期判断平台 https://uniapp.dcloud.io/frame?id=判断平台
- */
+/**
+* @description 运行期判断平台
+* @returns {string} 返回所在平台(小写) 
+* @link 运行期判断平台 https://uniapp.dcloud.io/frame?id=判断平台
+*/
 function os() {
     return uni.getSystemInfoSync().platform.toLowerCase()
 }
- /**
- * @description 获取系统信息同步接口
- * @link 获取系统信息同步接口 https://uniapp.dcloud.io/api/system/info?id=getsysteminfosync 
- */
+/**
+* @description 获取系统信息同步接口
+* @link 获取系统信息同步接口 https://uniapp.dcloud.io/api/system/info?id=getsysteminfosync 
+*/
 function sys() {
     return uni.getSystemInfoSync()
 }
@@ -102,13 +102,13 @@ function guid(len = 32, firstU = true, radix = null) {
     return uuid.join('')
 }
 
- /**
- * @description 获取父组件的参数，因为支付宝小程序不支持provide/inject的写法
-    this.$parent在非H5中，可以准确获取到父组件，但是在H5中，需要多次this.$parent.$parent.xxx
-    这里默认值等于undefined有它的含义，因为最顶层元素(组件)的$parent就是undefined，意味着不传name
-    值(默认为undefined)，就是查找最顶层的$parent
- *  @param {string|undefined} name 父组件的参数名
- */
+/**
+* @description 获取父组件的参数，因为支付宝小程序不支持provide/inject的写法
+   this.$parent在非H5中，可以准确获取到父组件，但是在H5中，需要多次this.$parent.$parent.xxx
+   这里默认值等于undefined有它的含义，因为最顶层元素(组件)的$parent就是undefined，意味着不传name
+   值(默认为undefined)，就是查找最顶层的$parent
+*  @param {string|undefined} name 父组件的参数名
+*/
 function $parent(name = undefined) {
     let parent = this.$parent
     // 通过while历遍，这里主要是为了H5需要多层解析的问题
@@ -170,7 +170,7 @@ function addStyle(customStyle, target = 'object') {
  * @param {string|number} value 需要添加单位的值
  * @param {string} unit 添加的单位名 比如px
  */
-function addUnit(value = 'auto', unit = 'px') {
+function addUnit(value = 'auto', unit = uni?.$u?.config?.unit ?? 'px') {
     value = String(value)
     // 用uView内置验证规则中的number判断是否为数值
     return test.number(value) ? `${value}${unit}` : value
@@ -321,29 +321,29 @@ function timeFrom(timestamp = null, format = 'yyyy-mm-dd') {
     // 如果小于5分钟,则返回"刚刚",其他以此类推
     let tips = ''
     switch (true) {
-    case timer < 300:
-        tips = '刚刚'
-        break
-    case timer >= 300 && timer < 3600:
-        tips = `${parseInt(timer / 60)}分钟前`
-        break
-    case timer >= 3600 && timer < 86400:
-        tips = `${parseInt(timer / 3600)}小时前`
-        break
-    case timer >= 86400 && timer < 2592000:
-        tips = `${parseInt(timer / 86400)}天前`
-        break
-    default:
-        // 如果format为false，则无论什么时间戳，都显示xx之前
-        if (format === false) {
-            if (timer >= 2592000 && timer < 365 * 86400) {
-                tips = `${parseInt(timer / (86400 * 30))}个月前`
+        case timer < 300:
+            tips = '刚刚'
+            break
+        case timer >= 300 && timer < 3600:
+            tips = `${parseInt(timer / 60)}分钟前`
+            break
+        case timer >= 3600 && timer < 86400:
+            tips = `${parseInt(timer / 3600)}小时前`
+            break
+        case timer >= 86400 && timer < 2592000:
+            tips = `${parseInt(timer / 86400)}天前`
+            break
+        default:
+            // 如果format为false，则无论什么时间戳，都显示xx之前
+            if (format === false) {
+                if (timer >= 2592000 && timer < 365 * 86400) {
+                    tips = `${parseInt(timer / (86400 * 30))}个月前`
+                } else {
+                    tips = `${parseInt(timer / (86400 * 365))}年前`
+                }
             } else {
-                tips = `${parseInt(timer / (86400 * 365))}年前`
+                tips = timeFormat(timestamp, format)
             }
-        } else {
-            tips = timeFormat(timestamp, format)
-        }
     }
     return tips
 }
@@ -387,36 +387,36 @@ function queryParams(data = {}, isPrefix = true, arrayFormat = 'brackets') {
         if (value.constructor === Array) {
             // e.g. {ids: [1, 2, 3]}
             switch (arrayFormat) {
-            case 'indices':
-                // 结果: ids[0]=1&ids[1]=2&ids[2]=3
-                for (let i = 0; i < value.length; i++) {
-                    _result.push(`${key}[${i}]=${value[i]}`)
-                }
-                break
-            case 'brackets':
-                // 结果: ids[]=1&ids[]=2&ids[]=3
-                value.forEach((_value) => {
-                    _result.push(`${key}[]=${_value}`)
-                })
-                break
-            case 'repeat':
-                // 结果: ids=1&ids=2&ids=3
-                value.forEach((_value) => {
-                    _result.push(`${key}=${_value}`)
-                })
-                break
-            case 'comma':
-                // 结果: ids=1,2,3
-                let commaStr = ''
-                value.forEach((_value) => {
-                    commaStr += (commaStr ? ',' : '') + _value
-                })
-                _result.push(`${key}=${commaStr}`)
-                break
-            default:
-                value.forEach((_value) => {
-                    _result.push(`${key}[]=${_value}`)
-                })
+                case 'indices':
+                    // 结果: ids[0]=1&ids[1]=2&ids[2]=3
+                    for (let i = 0; i < value.length; i++) {
+                        _result.push(`${key}[${i}]=${value[i]}`)
+                    }
+                    break
+                case 'brackets':
+                    // 结果: ids[]=1&ids[]=2&ids[]=3
+                    value.forEach((_value) => {
+                        _result.push(`${key}[]=${_value}`)
+                    })
+                    break
+                case 'repeat':
+                    // 结果: ids=1&ids=2&ids=3
+                    value.forEach((_value) => {
+                        _result.push(`${key}=${_value}`)
+                    })
+                    break
+                case 'comma':
+                    // 结果: ids=1,2,3
+                    let commaStr = ''
+                    value.forEach((_value) => {
+                        commaStr += (commaStr ? ',' : '') + _value
+                    })
+                    _result.push(`${key}=${commaStr}`)
+                    break
+                default:
+                    value.forEach((_value) => {
+                        _result.push(`${key}[]=${_value}`)
+                    })
             }
         } else {
             _result.push(`${key}=${value}`)
@@ -449,37 +449,37 @@ function type2icon(type = 'success', fill = false) {
     let iconName = ''
     // 目前(2019-12-12),info和primary使用同一个图标
     switch (type) {
-    case 'primary':
-        iconName = 'info-circle'
-        break
-    case 'info':
-        iconName = 'info-circle'
-        break
-    case 'error':
-        iconName = 'close-circle'
-        break
-    case 'warning':
-        iconName = 'error-circle'
-        break
-    case 'success':
-        iconName = 'checkmark-circle'
-        break
-    default:
-        iconName = 'checkmark-circle'
+        case 'primary':
+            iconName = 'info-circle'
+            break
+        case 'info':
+            iconName = 'info-circle'
+            break
+        case 'error':
+            iconName = 'close-circle'
+            break
+        case 'warning':
+            iconName = 'error-circle'
+            break
+        case 'success':
+            iconName = 'checkmark-circle'
+            break
+        default:
+            iconName = 'checkmark-circle'
     }
     // 是否是实体类型,加上-fill,在icon组件库中,实体的类名是后面加-fill的
     if (fill) iconName += '-fill'
     return iconName
 }
 
- /**
- * @description 数字格式化
- * @param {number|string} number 要格式化的数字
- * @param {number} decimals 保留几位小数
- * @param {string} decimalPoint 小数点符号
- * @param {string} thousandsSeparator 千分位符号
- * @returns {string} 格式化后的数字
- */
+/**
+* @description 数字格式化
+* @param {number|string} number 要格式化的数字
+* @param {number} decimals 保留几位小数
+* @param {string} decimalPoint 小数点符号
+* @param {string} thousandsSeparator 千分位符号
+* @returns {string} 格式化后的数字
+*/
 function priceFormat(number, decimals = 0, decimalPoint = '.', thousandsSeparator = ',') {
     number = (`${number}`).replace(/[^0-9+-Ee.]/g, '')
     const n = !isFinite(+number) ? 0 : +number
@@ -617,7 +617,7 @@ function setProperty(obj, key, value) {
  */
 function page() {
     const pages = getCurrentPages()
-	// 某些特殊情况下(比如页面进行redirectTo时的一些时机)，pages可能为空数组
+    // 某些特殊情况下(比如页面进行redirectTo时的一些时机)，pages可能为空数组
     return `/${pages[pages.length - 1]?.route ?? ''}`
 }
 
@@ -626,7 +626,7 @@ function page() {
  */
 function pages() {
     const pages = getCurrentPages()
-	return pages
+    return pages
 }
 
 export default {
@@ -657,5 +657,5 @@ export default {
     getProperty,
     setProperty,
     page,
-	pages
+    pages
 }

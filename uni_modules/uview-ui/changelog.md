@@ -1,3 +1,10 @@
+## 2.0.25（2022-01-27）
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. 修复text组件mode=price时，可能会导致精度错误的问题
+2. 添加$u.setConfig()方法，可设置uView内置的config, props, zIndex, color属性，详见：[修改uView内置配置方案](https://uviewui.com/components/setting.html#%E9%BB%98%E8%AE%A4%E5%8D%95%E4%BD%8D%E9%85%8D%E7%BD%AE)
+3. 优化form组件在errorType=toast时，如果输入错误页面会有抖动的问题
+4. 修复$u.addUnit()对配置默认单位可能无效的问题
 ## 2.0.24（2022-01-25）
 # uView2.0重磅发布，利剑出鞘，一统江湖
 

@@ -69,7 +69,7 @@
 		<u-line
 			v-if="borderBottom"
 			:color="message && parentData.errorType === 'border-bottom' ? $u.color.error : propsLine.color"
-			:customStyle="`margin-top: ${message ? '5px' : 0}`"
+			:customStyle="`margin-top: ${message && parentData.errorType === 'message' ? '5px' : 0}`"
 		></u-line>
 	</view>
 </template>

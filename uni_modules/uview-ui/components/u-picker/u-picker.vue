@@ -254,7 +254,7 @@ export default {
 					font-size: 16px;
 					text-align: center;
 					/* #ifndef APP-NVUE */
-					display: block;
+					display: block !important;
 					/* #endif */
 					color: $u-main-color;
 

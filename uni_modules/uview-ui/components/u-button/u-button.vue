@@ -164,7 +164,9 @@ export default {
     mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
     // #endif
     data() {
-        return {};
+        return {
+            inThrottle: false,
+        };
     },
     computed: {
         // 生成bem风格的类名
@@ -264,10 +266,14 @@ export default {
         clickHandler() {
             // 非禁止并且非加载中，才能点击
             if (!this.disabled && !this.loading) {
-				// 进行节流控制，每this.throttle毫秒内，只在开始处执行
-				uni.$u.throttle(() => {
-					this.$emit("click");
-				}, this.throttleTime);
+				// 进行节流控制，每this.throttleTime毫秒内，只在开始处执行
+                if (!this.inThrottle) {
+                    this.inThrottle = true;
+                    this.$emit("click");
+                    setTimeout(() => {
+                        this.inThrottle = false;
+                    }, this.throttleTime);
+                }
             }
         },
         // 下面为对接uniapp官方按钮开放能力事件回调的对接

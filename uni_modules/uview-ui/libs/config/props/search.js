@@ -26,11 +26,12 @@ export default {
         color: '#606266',
         placeholderColor: '#909399',
         searchIcon: 'search',
+		searchIconSize: '22px',
         margin: '0',
         animation: false,
         value: '',
         maxlength: '-1',
         height: 32,
-        label: null
+        label: null,
     }
 }

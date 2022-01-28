@@ -165,7 +165,22 @@
 					</u-search>
 				</view>
 			</view>
+			
 		</view>
+		<view class="u-demo-block">
+				<text class="u-demo-block__title">自定义搜索图标的大小</text>
+				<view class="u-demo-block__content">
+					<view class="u-page__tag-item">
+						<u-search
+							v-model="value10"
+							searchIconSize="40px"
+							:show-action="false"
+							borderColor="rgb(230, 230, 230)"
+							bgColor="#fff"
+						></u-search>
+					</view>
+				</view>
+			</view>
 	</view>
 </template>
 

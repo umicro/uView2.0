@@ -28,6 +28,10 @@
 	}
 }
 
+.u-inline-block {
+	display: inline-block;
+	white-space: nowrap;
+}
 
 // 此处加上!important并非随意乱用，而是因为目前*.nvue页面编译到H5时，
 // App.vue的样式会被uni-app的view元素的自带border属性覆盖，导致无效

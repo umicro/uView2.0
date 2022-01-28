@@ -28,7 +28,7 @@
 							:class="[`u-tabs__wrapper__nav__item-${index}`, item.disabled && 'u-tabs__wrapper__nav__item--disabled']"
 						>
 							<text
-								:class="['ellipsis' && 'u-line-1', item.disabled && 'u-tabs__wrapper__nav__item__text--disabled']"
+								:class="['ellipsis' && 'u-line-1', 'u-inline-block', item.disabled && 'u-tabs__wrapper__nav__item__text--disabled']"
 								class="u-tabs__wrapper__nav__item__text"
 								:style="[textStyle(index)]"
 							>{{ item[keyName] }}</text>

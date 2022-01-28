@@ -12,8 +12,7 @@
 		
 		/* #ifndef APP-NVUE */
 		// vue下，单行和多行显示省略号需要单独处理
-		@if $i == 1 {
-			display: inline-block !important;
+		@if $i == '1' {
 			overflow: hidden;
 			white-space: nowrap;
 			text-overflow: ellipsis;

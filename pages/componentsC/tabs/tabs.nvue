@@ -72,7 +72,7 @@
 					:list="list4"
 					lineWidth="20"
 					lineHeight="7"
-					:lineColor="`url(${lineBg} 100% 100%)`"
+					:lineColor="`url(${lineBg}) 100% 100%`"
 					:activeStyle="{
 						color: '#303133',
 						fontWeight: 'bold',

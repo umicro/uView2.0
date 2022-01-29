@@ -54,7 +54,8 @@
 							:style="[{
 									width: $u.addUnit(lineWidth),
 									height: $u.addUnit(lineHeight),
-									backgroundColor: lineColor
+									background: lineColor,
+									backgroundSize: lineBgSize,
 								}]"
 						>
 							<!-- #endif -->
@@ -67,7 +68,8 @@
 										transform: `translate(${lineOffsetLeft}px)`,
 										transitionDuration: `${firstTime ? 0 : duration}ms`,
 										height: $u.addUnit(lineHeight),
-										backgroundColor: lineColor
+										background: lineColor,
+										backgroundSize: lineBgSize,
 									}]"
 							>
 								<!-- #endif -->
@@ -341,7 +343,7 @@
 
 				&__line {
 					height: 3px;
-					background-color: $u-primary;
+					background: $u-primary;
 					width: 30px;
 					position: absolute;
 					bottom: 2px;

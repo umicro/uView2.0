@@ -282,15 +282,15 @@ if (!String.prototype.padStart) {
   let date
 	// 若传入时间为假值，则取当前时间
   if (!dateTime) {
-    date = new Date
+    date = new Date()
   }
   // 若为unix秒时间戳，则转为毫秒时间戳（逻辑有点奇怪，但不敢改，以保证历史兼容）
   else if (/^\d{10}$/.test(dateTime?.toString().trim())) {
-    date = new Date(dateTime * 1e3)
+    date = new Date(dateTime * 1000)
   }
   // 若用户传入字符串格式时间戳，new Date无法解析，需做兼容
   else if (typeof dateTime === 'string' && /^\d+$/.test(dateTime.trim())) {
-    date = new Date(+dateTime)
+    date = new Date(Number(dateTime))
   }
   // 其他都认为符合 RFC 2822 规范
   else {

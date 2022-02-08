@@ -23,6 +23,7 @@
 				v-if="mode === 'line'"
 				:style="[lineStyle]"
 			></view>
+			<view v-if="codeArray.length === index" :style="{backgroundColor: color}" class="u-code-input__item__cursor"></view>
 		</view>
 		<input
 			:disabled="disabledKeyboard"
@@ -166,6 +167,10 @@
 
 <style lang="scss" scoped>
 	@import "../../libs/css/components.scss";
+	$u-code-input-cursor-width: 1px;
+	$u-code-input-cursor-height: 40%;
+	$u-code-input-cursor-animation-duration: 1s;
+	$u-code-input-cursor-animation-name: u-cursor-flicker;
 
 	.u-code-input {
 		@include flex;
@@ -176,6 +181,7 @@
 			@include flex;
 			justify-content: center;
 			align-items: center;
+			position: relative;
 
 			&__text {
 				font-size: 15px;
@@ -197,6 +203,15 @@
 				width: 40px;
 				background-color: $u-content-color;
 			}
+			&__cursor {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				width: $u-code-input-cursor-width;
+				height: $u-code-input-cursor-height;
+				animation: $u-code-input-cursor-animation-duration u-cursor-flicker infinite;
+			}
 		}
 
 		&__input {
@@ -208,6 +223,18 @@
 			top: 0;
 			background-color: transparent;
 			text-align: left;
+		}
+	}
+	
+	@keyframes u-cursor-flicker {
+		0% {
+		    opacity: 0;
+		}
+		50% {
+		    opacity: 1;
+		}
+		100% {
+		    opacity: 0;
 		}
 	}
 </style>

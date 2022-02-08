@@ -27,7 +27,8 @@ uView UI，是[uni-app](https://uniapp.dcloud.io/)全面兼容nvue的uni-app生�
 ### 官方8群：496409492（已满）
 ### 官方9群：828504448（已满）
 ### 官方10群：232041042（已满）
-### [点击加11群交流反馈：364463526](https://jq.qq.com/?_wv=1027&k=mCxS3TGY)
+### 官方11群：364463526（已满）
+### [点击加12群交流反馈：229707069](https://jq.qq.com/?_wv=1027&k=k7L9eaoi)
 
 ## 特性
 
@@ -70,7 +71,7 @@ uView UI，是[uni-app](https://uniapp.dcloud.io/)全面兼容nvue的uni-app生�
 
 ## 快速上手
 
-请通过[官网安装文档](https://v2.uviewui.com/components/install.html)了解更详细的内容
+请通过[官网安装文档](https://www.uviewui.com/components/install.html)了解更详细的内容
 
 ## 使用方法
 配置easycom规则后，自动按需引入，无需`import`组件，直接引用即可。

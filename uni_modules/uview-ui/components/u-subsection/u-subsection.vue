@@ -15,10 +15,10 @@
                     mode === 'subsection' &&
                     'u-subsection__bar--first',
                 current > 0 &&
-                    current < this.list.length - 1 &&
+                    current < list.length - 1 &&
                     mode === 'subsection' &&
                     'u-subsection__bar--center',
-                current === this.list.length - 1 &&
+                current === list.length - 1 &&
                     mode === 'subsection' &&
                     'u-subsection__bar--last',
             ]"

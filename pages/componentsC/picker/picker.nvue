@@ -174,7 +174,7 @@
 				uni.navigateBack()
 			},
 			change(e) {
-				// console.log('change', e);
+				// console.log(e);
 			},
 			showPicker(index) {
 				this.index = index + 1
@@ -185,7 +185,7 @@
 				this[`show${this.index}`] = false
 			},
 			confirm(e) {
-				// console.log('confirm', e);
+				console.log('confirm', e)
 				this[`show${this.index}`] = false
 			},
 			cancel() {

@@ -29,6 +29,7 @@
 			@change="change"
 			@cancel="cancel"
 			@confirm="confirm"
+			:immediateChange="true"
 		></u-picker>
 		<u-picker
 			:show="show2"
@@ -45,6 +46,7 @@
 			@cancel="cancel"
 			@confirm="confirm"
 			@change="changeHandler1"
+			:immediateChange="true"
 		></u-picker>
 		<u-picker
 			:show="show4"

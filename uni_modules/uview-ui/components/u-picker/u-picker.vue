@@ -148,7 +148,6 @@ export default {
 		// 选择器某一列的数据发生变化时触发
 		changeHandler(e) {
 			// 关闭遮罩
-			console.timeEnd('overlay');
 			this.overlay = false;
 			clearTimeout(this.offOverlayTime);
 			this.isConfirm = false;
@@ -250,7 +249,6 @@ export default {
 		},
 		// 列项目触摸开始
 		columnTouchStart(e){
-			console.time('overlay');
 			// 这是为了抹平ios的平台差异，screenY为clientY的回退方案
 			this.columnTouchStartY = e.changedTouches[0].clientY || e.changedTouches[0].screenY || 0; 
 		},

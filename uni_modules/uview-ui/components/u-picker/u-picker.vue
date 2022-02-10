@@ -322,7 +322,7 @@ export default {
 		
 		&-overlay{
 			position: absolute;
-			background-color: rgba(255,0,0,0.25);
+			background: transparent; // 遮罩层的颜色为透明
 			top: 0;
 			left: 0;
 			width: 100%;

@@ -123,11 +123,6 @@
 			},
 			// 对部分表单字段进行校验
 			async validateField(value, callback, event = null) {
-				// 开发环境才提示，生产环境不会提示
-				if (process.env.NODE_ENV === 'development' && Object.keys(this.formRules).length === 0) {
-					uni.$u.error('未设置rules，请看文档说明！如果已经设置，请刷新页面。');
-					return;
-				}
 				// $nextTick是必须的，否则model的变更，可能会延后于此方法的执行
 				this.$nextTick(() => {
 					// 校验错误信息，返回给回调方法，用于存放所有form-item的错误信息
@@ -187,6 +182,11 @@
 			},
 			// 校验全部数据
 			validate(callback) {
+				// 开发环境才提示，生产环境不会提示
+				if (process.env.NODE_ENV === 'development' && Object.keys(this.formRules).length === 0) {
+					uni.$u.error('未设置rules，请看文档说明！如果已经设置，请刷新页面。');
+					return;
+				}
 				return new Promise((resolve, reject) => {
 					// $nextTick是必须的，否则model的变更，可能会延后于validate方法
 					this.$nextTick(() => {

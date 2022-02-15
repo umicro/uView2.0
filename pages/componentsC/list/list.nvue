@@ -2,6 +2,7 @@
 	<view class="u-page">
 		<u-list
 			@scrolltolower="scrolltolower"
+			@scrolltoupper="scrolltoupper"
 		>
 			<u-list-item
 				v-for="(item, index) in indexList"
@@ -46,8 +47,12 @@
 			this.loadmore()
 		},
 		methods: {
+			scrolltoupper(){
+				console.log('触顶了~')
+			},
 			scrolltolower() {
 				this.loadmore()
+				console.log('触底了')
 			},
 			loadmore() {
 				for (let i = 0; i < 30; i++) {

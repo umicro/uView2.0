@@ -6,3 +6,5 @@
 deploy.sh
 /.hbuilderx/
 /.vscode/
+/pages/
+/.history

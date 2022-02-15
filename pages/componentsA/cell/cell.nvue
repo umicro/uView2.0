@@ -6,7 +6,7 @@
 				<u-cell
 				    title="uView UI"
 				    value="内容"
-				    :isLink="true"
+				    isLink=""
 				></u-cell>
 				<u-cell
 				    title="利剑出鞘,一统江湖"

@@ -147,13 +147,12 @@
 	.u-swipe-action-item {
 		position: relative;
 		overflow: hidden;
-		/* #ifndef APP-NVUE || MP-WEIXIN */
+		/* #ifndef APP-NVUE */
 		touch-action: none;
 		/* #endif */
 
 		&__content {
 			background-color: #FFFFFF;
-			z-index: 10;
 		}
 
 		&__right {

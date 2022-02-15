@@ -163,12 +163,6 @@
 					customStyle="margin-top: 50px"
 					@click="submit"
 				></u-button>
-				<u-button
-					type="error"
-					text="重置"
-					customStyle="margin-top: 10px"
-					@click="reset"
-				></u-button>
 				<u-action-sheet
 					:show="showSex"
 					:actions="actions"
@@ -199,7 +193,7 @@
 					:show="showBirthday"
 					:value="birthday"
 					mode="date"
-					closeOnClickOverlay
+					closeOnClickOverly
 					@confirm="birthdayConfirm"
 					@cancel="birthdayClose"
 					@close="birthdayClose"
@@ -418,16 +412,6 @@
 				}).catch(errors => {
 					uni.$u.toast('校验失败')
 				})
-			},
-			reset() {
-				const validateList = ['userInfo.name', 'userInfo.sex', 'radiovalue1', 'checkboxValue1', 'intro',
-				'hotel', 'code', 'userInfo.birthday']
-				this.$refs.form1.resetFields()
-				this.$refs.form1.clearValidate()
-				setTimeout(()=>{
-					this.$refs.form1.clearValidate(validateList)
-					// 或者使用 this.$refs.form1.clearValidate()
-				},10)
 			},
 			hideKeyboard() {
 				uni.hideKeyboard()

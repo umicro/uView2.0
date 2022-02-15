@@ -96,7 +96,7 @@
 				// 	classes.push(this.customPrefix)
 				// }
 				// 主题色，通过类配置
-				if (this.color && uni.$u.config.type.includes(this.color)) classes.push('u-icon__icon--' + this.color)
+				if (this.color && this.$u.config.type.includes(this.color)) classes.push('u-icon__icon--' + this.color)
 				// 阿里，头条，百度小程序通过数组绑定类名时，无法直接使用[a, b, c]的形式，否则无法识别
 				// 故需将其拆成一个字符串的形式，通过空格隔开各个类名
 				//#ifdef MP-ALIPAY || MP-TOUTIAO || MP-BAIDU
@@ -107,14 +107,14 @@
 			iconStyle() {
 				let style = {}
 				style = {
-					fontSize: uni.$u.addUnit(this.size),
-					lineHeight: uni.$u.addUnit(this.size),
+					fontSize: this.$u.addUnit(this.size),
+					lineHeight: this.$u.addUnit(this.size),
 					fontWeight: this.bold ? 'bold' : 'normal',
 					// 某些特殊情况需要设置一个到顶部的距离，才能更好的垂直居中
-					top: uni.$u.addUnit(this.top)
+					top: this.$u.addUnit(this.top)
 				}
 				// 非主题色值时，才当作颜色值
-				if (this.color && !uni.$u.config.type.includes(this.color)) style.color = this.color
+				if (this.color && !this.$u.config.type.includes(this.color)) style.color = this.color
 
 				return style
 			},
@@ -125,8 +125,8 @@
 			imgStyle() {
 				let style = {}
 				// 如果设置width和height属性，则优先使用，否则使用size属性
-				style.width = this.width ? uni.$u.addUnit(this.width) : uni.$u.addUnit(this.size)
-				style.height = this.height ? uni.$u.addUnit(this.height) : uni.$u.addUnit(this.size)
+				style.width = this.width ? this.$u.addUnit(this.width) : this.$u.addUnit(this.size)
+				style.height = this.height ? this.$u.addUnit(this.height) : this.$u.addUnit(this.size)
 				return style
 			},
 			// 通过图标名，查找对应的图标
@@ -139,7 +139,7 @@
 			clickHandler(e) {
 				this.$emit('click', this.index)
 				// 是否阻止事件冒泡
-				this.stop && this.preventEvent(e)
+				this.stop && this.$u.preventEvent(e)
 			}
 		}
 	}

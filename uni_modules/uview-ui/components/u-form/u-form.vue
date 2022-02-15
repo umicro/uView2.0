@@ -90,10 +90,6 @@
 			setRules(rules) {
 				// 判断是否有规则
 				if (Object.keys(rules).length === 0) return;
-				if (process.env.NODE_ENV === 'development' && Object.keys(this.model).length === 0) {
-					uni.$u.error('设置rules，model必须设置！如果已经设置，请刷新页面。');
-					return;
-				};
 				this.formRules = rules;
 				// 重新将规则赋予Validator
 				this.validator = new Schema(rules);
@@ -116,7 +112,7 @@
 				props = [].concat(props);
 				this.children.map((child) => {
 					// 如果u-form-item的prop在props数组中，则清除对应的校验结果信息
-					if (props[0] === undefined || props.includes(child.prop)) {
+					if (props.includes(child.props)) {
 						child.message = null;
 					}
 				});
@@ -182,11 +178,6 @@
 			},
 			// 校验全部数据
 			validate(callback) {
-				// 开发环境才提示，生产环境不会提示
-				if (process.env.NODE_ENV === 'development' && Object.keys(this.formRules).length === 0) {
-					uni.$u.error('未设置rules，请看文档说明！如果已经设置，请刷新页面。');
-					return;
-				}
 				return new Promise((resolve, reject) => {
 					// $nextTick是必须的，否则model的变更，可能会延后于validate方法
 					this.$nextTick(() => {

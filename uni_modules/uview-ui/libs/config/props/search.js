@@ -30,7 +30,7 @@ export default {
         animation: false,
         value: '',
         maxlength: '-1',
-        height: 32,
+        height: 64,
         label: null
     }
 }

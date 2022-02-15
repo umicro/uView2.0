@@ -195,7 +195,7 @@
 				// nvue下，无法通过点击获得坐标信息，这里通过元素的位置尺寸值模拟坐标
 				x = index * this.rateWidth + this.rateBoxLeft;
 				// #endif
-				this.getActiveIndex(x,true);
+				this.getActiveIndex(x);
 			},
 			// 发出事件
 			emitEvent() {
@@ -205,14 +205,14 @@
 				this.$emit("input", this.activeIndex);
 			},
 			// 获取当前激活的评分图标
-			getActiveIndex(x,isClick = false) {
+			getActiveIndex(x) {
 				if (this.disabled) {
 					return;
 				}
 				// 判断当前操作的点的x坐标值，是否在允许的边界范围内
 				const allRateWidth = this.rateWidth * this.count + this.rateBoxLeft;
 				// 如果小于第一个图标的左边界，设置为最小值，如果大于所有图标的宽度，则设置为最大值
-				x = uni.$u.range(this.rateBoxLeft, allRateWidth, x) - this.rateBoxLeft
+				x = uni.$u.range(this.rateBoxLeft, allRateWidth, x);
 				// 滑动点相对于评分盒子左边的距离
 				const distance = x;
 				// 滑动的距离，相当于多少颗星星
@@ -232,23 +232,16 @@
 					// 取余，判断小数的区间范围
 					const decimal = distance % this.rateWidth;
 					// 非半星时，只有超过了图标的一半距离，才认为是选择了这颗星
-					if (isClick){
-						if (decimal > 0) index++;
-					} else {
-						if (decimal > this.rateWidth / 2) index++;
+					if (decimal > this.rateWidth / 2) {
+						index++;
 					}
-
 				}
 				this.activeIndex = Math.min(index, this.count);
 				// 对最少颗星星的限制
 				if (this.activeIndex < this.minCount) {
 					this.activeIndex = this.minCount;
 				}
-
-				// 设置延时为了让click事件在touchmove之前触发
-				setTimeout(() => {
-					this.moving = true;
-				}, 10);
+				this.moving = true;
 				// 一定时间后，取消标识为移动中状态，是为了让click事件无效
 				setTimeout(() => {
 					this.moving = false;
@@ -279,10 +272,10 @@ $u-rate-item-icon-wrap-half-left: 0 !default;
 
     &__content {
         @include flex;
-
+		
 		&__item {
 		    position: relative;
-
+		
 		    &__icon-wrap {
 		        &--half {
 		            position: absolute;

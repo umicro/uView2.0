@@ -1,5 +1,5 @@
 <template>
-	<u-index-list :indexList="indexList">
+	<u-index-list>
 		<view slot="header" class="list">
 			<view class="list__item">
 				<u-avatar shape="square" size="35" icon="man-add-fill" fontSize="26" randomBgColor></u-avatar>
@@ -49,12 +49,9 @@
 	const indexList = () => {
 		const indexList = []
 		const charCodeOfA = 'A'.charCodeAt(0)
-		indexList.push("↑")
-		indexList.push("☆")
 		for (let i = 0; i < 26; i++) {
 			indexList.push(String.fromCharCode(charCodeOfA + i))
 		}
-		indexList.push('#')
 		return indexList
 	}
 	export default {

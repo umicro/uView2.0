@@ -4,8 +4,7 @@
         :class="[]"
         v-if="show"
         :style="{
-            margin: margin,
-			justifyContent: align === 'left' ? 'flex-start' : align === 'center' ? 'center' : 'flex-end'
+            margin: margin
         }"
         @tap="clickHandler"
     >
@@ -94,7 +93,8 @@ import props from './props.js'
  * @property {String} 					color		文本颜色（默认 '#303133' ）
  * @property {String | Number} 			size		字体大小（默认 15 ）
  * @property {Object | String} 			iconStyle	图标的样式 （默认 {fontSize: '15px'} ）
- * @property {String} 					decoration	文字装饰，下划线，中划线等，可选值 none|underline|line-through（默认 'none' ）
+ * @property {Boolean} 					precision	是否显示金额的千分位，mode=price时有效（默认 true ）
+ * @property {String} 					decoration	是否显示金额的千分位，mode=price时有效（默认 'none' ）
  * @property {Object | String | Number}	margin		外边距，对象、字符串，数值形式均可（默认 0 ）
  * @property {String | Number} 			lineHeight	文本行高
  * @property {String} 					align		文本对齐方式，可选值left|center|right（默认 'left' ）
@@ -115,6 +115,7 @@ export default {
             const style = {
                 textDecoration: this.decoration,
                 fontWeight: this.bold ? 'bold' : 'normal',
+                textAlign: this.align,
                 wordWrap: this.wordWrap,
                 fontSize: uni.$u.addUnit(this.size)
             }
@@ -146,7 +147,7 @@ export default {
     methods: {
         clickHandler() {
             // 如果为手机号模式，拨打电话
-            if (this.call && this.mode === 'phone' && uni.$u.test.mobile(this.text)) {
+            if (this.mode === 'phone' && uni.$u.test.mobile(this.text)) {
                 uni.makePhoneCall({
                     phoneNumber: this.text
                 })
@@ -163,11 +164,8 @@ export default {
 .u-text {
     @include flex(row);
     align-items: center;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     flex: 1;
-	/* #ifndef APP-NVUE */
-	width: 100%;
-	/* #endif */
 
     &__price {
         font-size: 14px;

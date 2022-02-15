@@ -1,10 +1,5 @@
-// 此版本发布于2022-01-28
-const version = '2.0.27'
-
-// 开发环境才提示，生产环境不会提示
-if (process.env.NODE_ENV === 'development') {
-	console.log(`\n %c uView V${version} %c https://www.uviewui.com/ \n\n`, 'color: #ffffff; background: #3c9cff; padding:5px 0;', 'color: #3c9cff;background: #ffffff; padding:5px 0;');
-}
+// 此版本发布于2020-12-01
+const version = '2.0.9'
 
 export default {
     v: version,
@@ -28,7 +23,5 @@ export default {
         'u-content-color': '#606266',
         'u-tips-color': '#909399',
         'u-light-color': '#c0c4cc'
-    },
-	// 默认单位，可以通过配置为rpx，那么在用于传入组件大小参数为数值时，就默认为rpx
-	unit: 'px'
+    }
 }

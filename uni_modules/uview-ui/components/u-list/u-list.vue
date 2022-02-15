@@ -22,7 +22,7 @@
 		:scroll-top="Number(scrollTop)"
 		:lower-threshold="Number(lowerThreshold)"
 		:upper-threshold="Number(upperThreshold)"
-		:show-scrollbar="showScrollbar"
+		:show-scrollbar="Number(showScrollbar)"
 		:enable-back-to-top="enableBackToTop"
 		:scroll-with-animation="scrollWithAnimation"
 		@scroll="onScroll"
@@ -62,7 +62,7 @@
 	 * @property {String ｜ Number}	width				列表宽度 （默认 0 ）
 	 * @property {String ｜ Number}	preLoadScreen		列表前后预渲染的屏数，1代表一个屏幕的高度，1.5代表1个半屏幕高度  （默认 1 ）
 	 * @property {Object}			customStyle			定义需要用到的外部样式
-	 *
+	 * 
 	 * @example <u-list @scrolltolower="scrolltolower"></u-list>
 	 */
 	export default {
@@ -89,7 +89,7 @@
 				if (this.width != 0) style.width = addUnit(this.width)
 				if (this.height != 0) style.height = addUnit(this.height)
 				// 如果没有定义列表高度，则默认使用屏幕高度
-				if (!style.height) style.height = addUnit(this.sys.windowHeight, 'px')
+				if (!style.height) style.height = addUnit(this.sys.windowHeight)
 				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			}
 		},

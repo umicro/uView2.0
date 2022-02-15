@@ -190,7 +190,7 @@ export default {
                 // 如果有设置color值，则用color值，否则使用type主题颜色
                 return this.color
                     ? this.color
-                    : uni.$u.config.color[`u-${this.type}`];
+                    : this.$u.config.color[`u-${this.type}`];
             }
             if (this.type === "info") {
                 return "#c9c9c9";
@@ -264,10 +264,7 @@ export default {
         clickHandler() {
             // 非禁止并且非加载中，才能点击
             if (!this.disabled && !this.loading) {
-				// 进行节流控制，每this.throttle毫秒内，只在开始处执行
-				uni.$u.throttle(() => {
-					this.$emit("click");
-				}, this.throttleTime);
+                this.$emit("click");
             }
         },
         // 下面为对接uniapp官方按钮开放能力事件回调的对接

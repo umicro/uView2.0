@@ -19,7 +19,6 @@ export default {
         inactiveColor: '#c0c4cc',
         blockColor: '#ffffff',
         showValue: false,
-		disabled:false,
         blockStyle: () => {}
     }
 }

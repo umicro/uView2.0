@@ -79,6 +79,7 @@
 				    format="ss:SSS"
 				    :autoStart="false"
 				    millisecond
+				    @change="onChange"
 				>
 				</u-count-down>
 			</view>

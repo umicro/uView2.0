@@ -129,16 +129,6 @@ export default {
         allowSameDay: {
             type: Boolean,
             default: uni.$u.props.calendar.allowSameDay
-        },
-		// 圆角值
-		round: {
-		    type: [Boolean, String, Number],
-		    default: uni.$u.props.calendar.round
-		},
-		// 最多展示月份数量
-		monthNum: {
-			type: [Number, String],
-			default: 3
-		}	
+        }
     }
 }

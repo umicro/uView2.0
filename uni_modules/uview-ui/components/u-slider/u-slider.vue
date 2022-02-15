@@ -13,7 +13,6 @@
 			:blockSize="$u.getPx(blockSize)"
 			:blockColor="blockColor"
 			:showValue="showValue"
-			:disabled="disabled"
 			@changing="changingHandler"
 			@change="changeHandler"
 		></slider>

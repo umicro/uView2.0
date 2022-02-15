@@ -6,7 +6,7 @@
 			enable-back-to-top
 			:offset-accuracy="1"
 			:style="{
-				maxHeight: $u.addUnit(scrollViewHeight)
+				height: $u.addUnit(scrollViewHeight)
 			}"
 			@scroll="scrollHandler"
 			ref="uList"
@@ -18,7 +18,7 @@
 				<slot name="header" />
 			</cell>
 			<slot />
-			<cell v-if="$slots.footer">
+			<cell v-if="$slots.header">
 				<slot name="footer" />
 			</cell>
 		</list>
@@ -29,7 +29,7 @@
 			:scrollIntoView="scrollIntoView"
 			:offset-accuracy="1"
 			:style="{
-				maxHeight: $u.addUnit(scrollViewHeight)
+				height: $u.addUnit(scrollViewHeight)
 			}"
 			scroll-y
 			@scroll="scrollHandler"
@@ -39,7 +39,7 @@
 				<slot name="header" />
 			</view>
 			<slot />
-			<view v-if="$slots.footer">
+			<view v-if="$slots.header">
 				<slot name="footer" />
 			</view>
 		</scroll-view>
@@ -187,9 +187,7 @@
 		methods: {
 			init() {
 				// 设置列表的高度为整个屏幕的高度
-				//减去this.customNavHeight，并将this.scrollViewHeight设置为maxHeight
-				//解决当u-index-list组件放在tabbar页面时,scroll-view内容较少时，还能滚动
-				this.scrollViewHeight = this.sys.windowHeight - this.customNavHeight
+				this.scrollViewHeight = this.sys.windowHeight
 			},
 			// 索引列表被触摸
 			touchStart(e) {
@@ -303,7 +301,7 @@
 				this.activeIndex = currentIndex
 				// #ifndef APP-NVUE || MP-WEIXIN
 				// 在非nvue中，由于anchor和item都在u-index-item中，所以需要对index-item进行偏移
-				this.scrollIntoView = `u-index-item-${this.uIndexList[currentIndex].charCodeAt(0)}`
+				this.scrollIntoView = `u-index-item-${this.uIndexList[currentIndex]}`
 				// #endif
 				// #ifdef MP-WEIXIN
 				// 微信小程序下，scroll-view的scroll-into-view属性无法对slot中的内容的id生效，只能通过设置scrollTop的形式去移动滚动条

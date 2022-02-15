@@ -1,20 +1,17 @@
 <template>
 	<view class="u-page">
-		<!-- 2.0.19支持autoBack，默认为false -->
 		<u-navbar
 			title="导航栏"
 			safeAreaInsetTop
 			fixed
 			placeholder
-			:autoBack="true"
+			@leftClick="navigateBack"
 		>
 		</u-navbar>
 		<view class="u-page__item">
 			<text class="u-page__item__title">基础功能</text>
 			<u-navbar
 				title="个人中心"
-				:safeAreaInsetTop="false"
-				:fixed="false"
 				@rightClick="rightClick"
 				@leftClick="leftClick"
 			>
@@ -23,9 +20,7 @@
 		<view class="u-page__item">
 			<text class="u-page__item__title">自定义文本</text>
 			<u-navbar
-				:safeAreaInsetTop="false"
 				title="个人中心"
-				:fixed="false"
 				left-text="返回"
 				rightIcon="map"
 			>
@@ -35,7 +30,6 @@
 			<text class="u-page__item__title">自定义插槽</text>
 			<u-navbar
 				leftText="返回"
-				:fixed="false"
 				title="个人中心"
 				:safeAreaInsetTop="false"
 			>
@@ -92,12 +86,11 @@
 	page {
 		background-color: $u-bg-color;
 	}
+
 	/* #endif */
-	
+
 	.u-page {
 		padding: 0;
-		flex: 1;
-		background-color: $u-bg-color;
 
 		&__item {
 

@@ -34,7 +34,7 @@
                 'background-color': disabled ? 'transparent' : '#fff',
             }"
             v-if="count"
-            >{{ innerValue.length }}/{{ maxlength }}</text
+            >{{ value.length }}/{{ maxlength }}</text
         >
     </view>
 </template>

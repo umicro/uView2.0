@@ -17,7 +17,6 @@ export default {
         mode: 'button',
         fontSize: 12,
         bold: true,
-        bgColor: '#eeeeef',
-		keyName: 'name'
+        bgColor: '#eeeeef'
     }
 }

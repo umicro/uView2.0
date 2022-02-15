@@ -20,6 +20,6 @@ export default {
         safeAreaInsetBottom: true,
         openType: '',
         closeOnClickOverlay: true,
-        round: 0
+        round: false
     }
 }

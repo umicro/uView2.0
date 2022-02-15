@@ -1,7 +1,7 @@
 <template>
 	<view class="u-calendar-month-wrapper" ref="u-calendar-month-wrapper">
 		<view v-for="(item, index) in months" :key="index" :class="[`u-calendar-month-${index}`]"
-			:ref="`u-calendar-month-${index}`" :id="`month-${index}`">
+			:ref="`u-calendar-month-${index}`" :id="`month-${item.month}`">
 			<text v-if="index !== 0" class="u-calendar-month__title">{{ item.year }}年{{ item.month }}月</text>
 			<view class="u-calendar-month__days">
 				<view v-if="showMark" class="u-calendar-month__days__month-mark-wrapper">
@@ -280,8 +280,6 @@
 		},
 		methods: {
 			init() {
-				// 初始化默认选中
-				this.$emit('monthSelected', this.selected)
 				this.$nextTick(() => {
 					// 这里需要另一个延时，因为获取宽度后，会进行月份数据渲染，只有渲染完成之后，才有真正的高度
 					// 因为nvue下，$nextTick并不是100%可靠的
@@ -330,7 +328,7 @@
 			getMonthRectByPromise(el) {
 				// #ifndef APP-NVUE
 				// $uGetRect为uView自带的节点查询简化方法，详见文档介绍：https://www.uviewui.com/js/getRect.html
-				// 组件内部一般用this.$uGetRect，对外的为uni.$u.getRect，二者功能一致，名称不同
+				// 组件内部一般用this.$uGetRect，对外的为this.$u.getRect，二者功能一致，名称不同
 				return new Promise(resolve => {
 					this.$uGetRect(`.${el}`).then(size => {
 						resolve(size)
@@ -338,7 +336,7 @@
 				})
 				// #endif
 
-				// #ifdef APP-NVUE
+				// #ifdef APP-NVUE 
 				// nvue下，使用dom模块查询元素高度
 				// 返回一个promise，让调用此方法的主体能使用then回调
 				return new Promise(resolve => {
@@ -389,7 +387,7 @@
 								} else {
 									uni.$u.toast(`选择天数不能超过 ${this.maxRange} 天`)
 								}
-								return
+								return 
 							}
 							// 如果当前日期大于已有日期，将当前的添加到数组尾部
 							selected.push(date)

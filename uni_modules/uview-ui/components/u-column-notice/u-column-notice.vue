@@ -22,7 +22,6 @@
 			:interval="duration"
 			:autoplay="true"
 			class="u-notice__swiper"
-			@change="noticeChange"
 		>
 			<swiper-item
 				v-for="(item, index) in text"
@@ -81,7 +80,7 @@
 				immediate: true,
 				handler(newValue, oldValue) {
 					if(!uni.$u.test.array(newValue)) {
-						uni.$u.error('noticebar组件direction为column时，要求text参数为数组形式')
+						uni.$u.error('column模式要求text参数为数组')
 					}
 				}
 			}
@@ -102,16 +101,13 @@
 		},
 		data() {
 			return {
-				index:0
+
 			}
 		},
 		methods: {
-			noticeChange(e){
-				this.index = e.detail.current
-			},
 			// 点击通告栏
-			clickHandler() {
-				this.$emit('click', this.index)
+			clickHandler(index) {
+				this.$emit('click', index)
 			},
 			// 点击关闭按钮
 			close() {

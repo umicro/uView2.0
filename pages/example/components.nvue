@@ -35,7 +35,7 @@
 				// #ifdef APP-NVUE
 				// 目前安卓nvue下，由于overflow只能为hidden，所以布局上的原因，暂不支持steps和tooltip等组件
 				if(uni.$u.os() === 'android') {
-					const noSupportForAndroid = ['steps']
+					const noSupportForAndroid = ['steps', 'tooltip']
 					for(let i = 0; i < noSupportForAndroid.length; i ++) {
 						if(path.indexOf(noSupportForAndroid[i]) > -1) {
 							return uni.$u.toast('安卓nvue下暂不支持此组件')

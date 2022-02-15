@@ -1,6 +1,5 @@
 function pickExclude(obj, keys) {
-	// 某些情况下，type可能会为
-    if (!['[object Object]', '[object File]'].includes(Object.prototype.toString.call(obj))) {
+    if (!uni.$u.test.object(obj)) {
         return {}
     }
     return Object.keys(obj).reduce((prev, key) => {
@@ -16,11 +15,7 @@ function formatImage(res) {
         ...pickExclude(item, ['path']),
         type: 'image',
         url: item.path,
-        thumb: item.path,
-		size: item.size,
-		// #ifdef H5
-		name: item.name
-		// #endif
+        thumb: item.path
     }))
 }
 
@@ -30,11 +25,7 @@ function formatVideo(res) {
             ...pickExclude(res, ['tempFilePath', 'thumbTempFilePath', 'errMsg']),
             type: 'video',
             url: res.tempFilePath,
-            thumb: res.thumbTempFilePath,
-			size: res.size,
-			// #ifdef H5
-			name: res.name
-			// #endif
+            thumb: res.thumbTempFilePath
         }
     ]
 }
@@ -44,21 +35,12 @@ function formatMedia(res) {
         ...pickExclude(item, ['fileType', 'thumbTempFilePath', 'tempFilePath']),
         type: res.type,
         url: item.tempFilePath,
-        thumb: res.type === 'video' ? item.thumbTempFilePath : item.tempFilePath,
-		size: item.size
+        thumb: res.type === 'video' ? item.thumbTempFilePath : item.tempFilePath
     }))
 }
 
 function formatFile(res) {
-    return res.tempFiles.map((item) => ({ 
-		...pickExclude(item, ['path']), 
-		url: item.path, 
-		size:item.size,
-		// #ifdef H5
-		name: item.name,
-		type: item.type
-		// #endif 
-	}))
+    return res.tempFiles.map((item) => ({ ...pickExclude(item, ['path']), url: item.path }))
 }
 export function chooseFile({
     accept,
@@ -127,25 +109,6 @@ export function chooseFile({
             // #endif
             break
 				// #endif
-		default: 
-			// 此为保底选项，在accept不为上面任意一项的时候选取全部文件
-			// #ifdef MP-WEIXIN
-			wx.chooseMessageFile({
-			    count: multiple ? maxCount : 1,
-			    type: 'all',
-			    success: (res) => resolve(formatFile(res)),
-			    fail: reject
-			})
-			// #endif
-			// #ifdef H5
-			// 需要hx2.9.9以上才支持uni.chooseFile
-			uni.chooseFile({
-				count: multiple ? maxCount : 1,
-				type: 'all',
-				success: (res) => resolve(formatFile(res)),
-				fail: reject
-			})
-			// #endif
         }
     })
 }

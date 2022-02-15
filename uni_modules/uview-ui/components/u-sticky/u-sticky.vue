@@ -51,7 +51,7 @@
 					if (this.cssSticky) {
 						style.position = 'sticky'
 						style.zIndex = this.uZindex
-						style.top = uni.$u.addUnit(this.stickyTop)
+						style.top = this.$u.addUnit(this.stickyTop)
 					} else {
 						style.height = this.fixed ? this.height + 'px' : 'auto'
 					}
@@ -65,7 +65,7 @@
 					// #endif
 				}
 				style.backgroundColor = this.bgColor
-				return uni.$u.deepMerge(uni.$u.addStyle(this.customStyle), style)
+				return this.$u.deepMerge(uni.$u.addStyle(this.customStyle), style)
 			},
 			// 吸顶内容的样式
 			stickyContent() {
@@ -135,7 +135,13 @@
 				observer && observer.disconnect()
 			},
 			getStickyTop() {
-				this.stickyTop = uni.$u.getPx(this.offsetTop) + uni.$u.getPx(this.customNavHeight)
+				if (/rpx$/.test(this.customNavHeight)) {
+					// rpx单位需要转为px单位，才能直接相加
+					this.stickyTop = parseInt(this.offsetTop) + parseInt(uni.rpx2px(this.customNavHeight))
+				} else {
+					// 无论customNavHeight为数值(默认px单位)，还是12px(parseInt后为12)之类转换后都为数值，可以直接相加
+					this.stickyTop = parseInt(this.offsetTop) + parseInt(this.customNavHeight)
+				}
 			},
 			async checkSupportCssSticky() {
 				// #ifdef H5
@@ -146,7 +152,7 @@
 				// #endif
 
 				// 如果安卓版本高于8.0，依然认为是支持css sticky的(因为安卓7在某些机型，可能不支持sticky)
-				if (uni.$u.os() === 'android' && Number(uni.$u.sys().system) > 8) {
+				if (this.$u.os() === 'android' && Number(this.$u.sys().system) > 8) {
 					this.cssSticky = true
 				}
 
@@ -156,7 +162,7 @@
 				// #endif
 
 				// ios上，从ios6开始，都是支持css sticky的
-				if (uni.$u.os() === 'ios') {
+				if (this.$u.os() === 'ios') {
 					this.cssSticky = true
 				}
 

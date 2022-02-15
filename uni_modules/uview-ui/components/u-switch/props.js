@@ -30,12 +30,12 @@ export default {
             type: [Boolean, String, Number],
             default: uni.$u.props.switch.value
         },
-        // switch打开时的值
+        // 打开选择器时的值
         activeValue: {
             type: [String, Number, Boolean],
             default: uni.$u.props.switch.activeValue
         },
-        // switch关闭时的值
+        // 关闭选择器时的值
         inactiveValue: {
             type: [String, Number, Boolean],
             default: uni.$u.props.switch.inactiveValue

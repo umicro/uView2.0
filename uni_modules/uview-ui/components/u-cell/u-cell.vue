@@ -11,7 +11,7 @@
 				</view>
 				<view class="u-cell__title">
 					<slot name="title">
-						<text v-if="title" class="u-cell__title-text" :style="[titleTextStyle]"
+						<text v-if="title" class="u-cell__title-text"
 							:class="[disabled && 'u-cell--disabled', size === 'large' && 'u-cell__title-text--large']">{{ title }}</text>
 					</slot>
 					<slot name="label">
@@ -47,6 +47,7 @@
 	 * @property {String | Number}	label			标题下方的描述信息
 	 * @property {String | Number}	value			右侧的内容
 	 * @property {String}			icon			左侧图标名称，或者图片链接(本地文件建议使用绝对地址)
+	 * @property {String | Number}	titleWidth		标题的宽度，单位任意，数值默认为px单位
 	 * @property {Boolean}			disabled		是否禁用cell	
 	 * @property {Boolean}			border			是否显示下边框 (默认 true )
 	 * @property {Boolean}			center			内容是否垂直居中(主要是针对右侧的value部分) (默认 false )
@@ -57,9 +58,8 @@
 	 * @property {Boolean}			required		是否显示表单状态下的必填星号(此组件可能会内嵌入input组件) （默认 false ）
 	 * @property {String}			rightIcon		右侧的图标箭头 （默认 'arrow-right'）
 	 * @property {String}			arrowDirection	右侧箭头的方向，可选值为：left，up，down
-	 * @property {Object | String}			rightIconStyle	右侧箭头图标的样式
-	 * @property {Object | String}			titleStyle		标题的样式
-	 * @property {Object | String}			iconStyle		左侧图标样式
+	 * @property {Object}			rightIconStyle	右侧箭头图标的样式
+	 * @property {Object}			titleStyle		标题的样式
 	 * @property {String}			size			单位元的大小，可选值为 large，normal，mini 
 	 * @property {Boolean}			stop			点击cell是否阻止事件传播 (默认 true )
 	 * @property {Object}			customStyle		定义需要用到的外部样式
@@ -75,11 +75,6 @@
 			}
 		},
 		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
-		computed: {
-			titleTextStyle() {
-				return uni.$u.addStyle(this.titleStyle)
-			}
-		},
 		methods: {
 			// 点击cell
 			clickHandler(e) {

@@ -22,28 +22,6 @@
 			</view>
 		</view>
 		<view class="u-demo-block">
-			<text class="u-demo-block__title">数字键盘</text>
-			<view class="u-demo-block__content">
-				<u--input
-					placeholder="请输入内容"
-					border="surround"
-					type="number"
-					clearable
-				></u--input>
-			</view>
-		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">密码类型</text>
-			<view class="u-demo-block__content">
-				<u--input
-					placeholder="请输入内容"
-					border="surround"
-					password
-					clearable
-				></u--input>
-			</view>
-		</view>
-		<view class="u-demo-block">
 			<text class="u-demo-block__title">显示下划线</text>
 			<view class="u-demo-block__content">
 				<u--input

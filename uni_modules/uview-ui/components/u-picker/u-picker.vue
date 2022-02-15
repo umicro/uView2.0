@@ -16,11 +16,10 @@
 			></u-toolbar>
 			<picker-view
 				class="u-picker__view"
-				:indicatorStyle="`height: ${$u.addUnit(itemHeight)}`"
+				:indicatorStyle="`height: ${itemHeight}px`"
 				:value="innerIndex"
-				:immediateChange="immediateChange"
 				:style="{
-					height: `${$u.addUnit(visibleItemCount * itemHeight)}`
+					height: `${visibleItemCount * itemHeight}px`
 				}"
 				@change="changeHandler"
 			>
@@ -66,12 +65,11 @@
  * @property {String}			confirmText			确认按钮的文字（默认 '确定' ）
  * @property {String}			cancelColor			取消按钮的颜色（默认 '#909193' ）
  * @property {String}			confirmColor		确认按钮的颜色（默认 '#3c9cff' ）
- * @property {Array}			singleIndex			选择器只有一列时，默认选中项的索引，从0开始（默认 0 ）
+ * @property {String | Number}	singleIndex			选择器只有一列时，默认选中项的索引，从0开始（默认 0 ）
  * @property {String | Number}	visibleItemCount	每列中可见选项的数量（默认 5 ）
  * @property {String}			keyName				选项对象中，需要展示的属性键名（默认 'text' ）
  * @property {Boolean}			closeOnClickOverlay	是否允许点击遮罩关闭选择器（默认 false ）
  * @property {Array}			defaultIndex		各列的默认索引
- * @property {Boolean}			immediateChange		是否在手指松开时立即触发change事件（默认 false ）
  * @event {Function} close		关闭选择器时触发
  * @event {Function} cancel		点击取消按钮触发
  * @event {Function} change		当选择值变化时触发
@@ -256,7 +254,6 @@ export default {
 					/* #ifndef APP-NVUE */
 					display: block;
 					/* #endif */
-					color: $u-main-color;
 
 					&--disabled {
 						/* #ifndef APP-NVUE */

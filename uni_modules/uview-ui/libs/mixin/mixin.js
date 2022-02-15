@@ -31,24 +31,13 @@ module.exports = {
     created() {
         // 组件当中，只有created声明周期，为了能在组件使用，故也在created中将方法挂载到$u
         this.$u.getRect = this.$uGetRect
-	},
+    },
     computed: {
         // 在2.x版本中，将会把$u挂载到uni对象下，导致在模板中无法使用uni.$u.xxx形式
-        // 所以这里通过computed计算属性将其附加到this.$u上，就可以在模板或者js中使用uni.$u.xxx
-		// 只在nvue环境通过此方式引入完整的$u，其他平台会出现性能问题，非nvue则按需引入（主要原因是props过大）
-		$u() {
-			// #ifndef APP-NVUE
-			// 在非nvue端，移除props，http，mixin等对象，避免在小程序setData时数据过大影响性能
-			return uni.$u.deepMerge(uni.$u, {
-				props: undefined,
-				http: undefined,
-				mixin: undefined
-			})
-			// #endif
-			// #ifdef APP-NVUE
-			return uni.$u
-			// #endif
-		},
+        // 所以这里通过computed计算属性将其附加到this.$u上，就可以在模板或者js中使用this.$u.xxx
+        $u() {
+            return uni.$u
+        },
         /**
 		 * 生成bem规则类名
 		 * 由于微信小程序，H5，nvue之间绑定class的差异，无法通过:class="[bem()]"的形式进行同用
@@ -115,7 +104,7 @@ module.exports = {
             // 将父组件this中对应的参数，赋值给本组件(u-radio的this)的parentData对象中对应的属性
             // 之所以需要这么做，是因为所有端中，头条小程序不支持通过this.parent.xxx去监听父组件参数的变化
             // 此处并不会自动更新子组件的数据，而是依赖父组件u-radio-group去监听data的变化，手动调用更新子组件的方法去重新获取
-            this.parent = uni.$u.$parent.call(this, parentName)
+            this.parent = this.$u.$parent.call(this, parentName)
             if (this.parent.children) {
                 // 如果父组件的children不存在本组件的实例，才将本实例添加到父组件的children中
                 this.parent.children.indexOf(this) === -1 && this.parent.children.push(this)

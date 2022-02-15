@@ -12,6 +12,7 @@
 				backgroundColor: bgColor,
 				borderRadius: shape == 'round' ? '100px' : '4px',
 				borderColor: borderColor,
+				height: height + 'rpx'
 			}"
 		>
 			<template v-if="$slots.label || label !== null">
@@ -21,7 +22,6 @@
 			</template>
 			<view class="u-search__content__icon">
 				<u-icon
-					@tap="clickIcon"
 				    :size="22"
 				    :name="searchIcon"
 				    :color="searchIconColor ? searchIconColor : color"
@@ -46,7 +46,6 @@
 					textAlign: inputAlign,
 					color: color,
 					backgroundColor: bgColor,
-					height: $u.addUnit(height)
 				}, inputStyle]"
 			/>
 			<view
@@ -101,7 +100,7 @@
 	 * @property {String | Number}	height				输入框高度，单位px（默认 64 ）
 	 * @property {String | Number}	label				搜索框左边显示内容
 	 * @property {Object}			customStyle			定义需要用到的外部样式
-	 *
+	 * 
 	 * @event {Function} change 输入框内容发生变化时触发
 	 * @event {Function} search 用户确定搜索时触发，用户按回车键，或者手机键盘右下角的"搜索"键时触发
 	 * @event {Function} custom 用户点击右侧控件时触发
@@ -191,10 +190,6 @@
 			// 点击搜索框，只有disabled=true时才发出事件，因为禁止了输入，意味着是想跳转真正的搜索页
 			clickHandler() {
 				if (this.disabled) this.$emit('click');
-			},
-			// 点击左边图标
-			clickIcon() {
-				this.$emit('clickIcon');
 			}
 		}
 	}
@@ -222,8 +217,8 @@ $u-search-action-margin-left: 5px !default;
 
 /* #ifdef H5 */
 // iOS15在H5下，hx的某些版本，input type=search时，会多了一个搜索图标，进行移除
-[type="search"]::-webkit-search-decoration {
-    display: none;
+[type="search"]::-webkit-search-decoration {  
+    display: none;  
 }
 /* #endif */
 
@@ -241,7 +236,6 @@ $u-search-action-margin-left: 5px !default;
 		border-width: 1px;
 		border-color: transparent;
 		border-style: solid;
-		overflow: hidden;
 
 		&__icon {
 			@include flex;

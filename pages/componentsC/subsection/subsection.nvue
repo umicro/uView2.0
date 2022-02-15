@@ -57,11 +57,13 @@
 				current2: 0,
 				current3: 0,
 				current4: 1,
-				list: ['未付款', '待评价', '已付款'],
-				// 或者如下，也可以配置keyName参数修改对象键值
-				// list: [{name: '未付款'}, {name: '待评价'}, {name: '已付款'}],
-				current: 1
+				list: ['未付款', '待评价', '已付款']
 			}
+		},
+		onLoad() {
+			// setTimeout(() => {
+			// 	this.current1 = 2
+			// }, 3000); 
 		},
 		methods: {
 			change1(index) {

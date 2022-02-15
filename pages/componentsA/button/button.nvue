@@ -8,7 +8,6 @@
 					    text="默认按钮"
 					    size="normal"
 					    type="info"
-						@click="click"
 					></u-button>
 				</view>
 				<view class="u-page__button-item">
@@ -306,11 +305,6 @@
 				this.type = 'primary'
 				this.disabled = true
 			}, 2000)
-		},
-		methods: {
-			click() {
-				console.log('click');
-			}
 		}
 	}
 </script>

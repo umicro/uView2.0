@@ -7,7 +7,7 @@
 			<view
 				class="u-toast__content"
 				:style="[contentStyle]"
-				:class="['u-type-' + tmpConfig.type, (tmpConfig.type === 'loading' || tmpConfig.loading) ?  'u-toast__content--loading' : '']"
+				:class="['u-type-' + tmpConfig.type, tmpConfig.type === 'loading' && 'u-toast__content--loading']"
 			>
 				<u-loading-icon
 					v-if="tmpConfig.type === 'loading'"
@@ -24,7 +24,7 @@
 					:customStyle="iconStyle"
 				></u-icon>
 				<u-gap
-					v-if="tmpConfig.type === 'loading' || tmpConfig.loading"
+					v-if="tmpConfig.type === 'loading'"
 					height="12"
 					bgColor="transparent"
 				></u-gap>
@@ -84,11 +84,8 @@
 		computed: {
 			iconName() {
 				// 只有不为none，并且type为error|warning|succes|info时候，才显示图标
-				if(!this.tmpConfig.icon || this.tmpConfig.icon == 'none') {
-					return '';
-				}
 				if (['error', 'warning', 'success', 'primary'].includes(this.tmpConfig.type)) {
-					return uni.$u.type2icon(this.tmpConfig.type)
+					return this.$u.type2icon(this.tmpConfig.type)
 				} else {
 					return ''
 				}
@@ -151,7 +148,7 @@
 			// 显示toast组件，由父组件通过this.$refs.xxx.show(options)形式调用
 			show(options) {
 				// 不将结果合并到this.config变量，避免多次调用u-toast，前后的配置造成混乱
-				this.tmpConfig = uni.$u.deepMerge(this.config, options)
+				this.tmpConfig = this.$u.deepMerge(this.config, options)
 				// 清除定时器
 				this.clearTimer()
 				this.isShow = true

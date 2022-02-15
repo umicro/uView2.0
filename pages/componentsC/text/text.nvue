@@ -1,7 +1,7 @@
 <template>
 	<view class="u-page">
 		<view class="u-demo-block">
-			<text class="u-demo-block__title">基础功能</text>
+			<text class="u-demo-block__title" style="text-align: right;">基础功能</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__text-item">
 					<u--text text="我用十年青春,赴你最后之约"></u--text>
@@ -110,7 +110,7 @@
 					<u--text
 					    prefixIcon="baidu"
 					    iconStyle="font-size: 19px"
-					    text="百度一下"
+					    text="百度一下,你就知道"
 					></u--text>
 				</view>
 				<view class="u-page__text-item">
@@ -161,7 +161,6 @@
 <style lang="scss">
 	.u-page__text-item {
 		margin-right: 10px;
-		flex: 1;
 	}
 
 	.u-demo-block__content {

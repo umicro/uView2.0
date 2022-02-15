@@ -11,9 +11,7 @@ export default {
             // 价格类型
             if (mode === 'price') {
                 // 如果text不为金额进行提示
-                if (!/^\d+(\.\d+)?$/.test(text)) {
-                    uni.$u.error('金额模式下，text参数需要为金额格式');
-                }
+                !uni.$u.test.amount(text) && uni.$u.error('金额模式下，text参数需要为金额格式')
                 // 进行格式化，判断用户传入的format参数为正则，或者函数，如果没有传入format，则使用默认的金额格式化处理
                 if (uni.$u.test.func(format)) {
                     // 如果用户传入的是函数，使用函数格式化
@@ -28,7 +26,7 @@ export default {
                 if (uni.$u.test.func(format)) {
                     // 如果用户传入的是函数，使用函数格式化
                     return format(text)
-                } if (format) {
+                } if (this.formart) {
                     // 如果format非正则，非函数，则使用默认的时间格式化方法进行操作
                     return uni.$u.timeFormat(text, format)
                 }

@@ -22,7 +22,6 @@ export default {
         fontSize: 18,
         size: 35,
         disabledKeyboard: false,
-        borderColor: '#c9cacc',
-		disabledDot: true
+        borderColor: '#c9cacc'
     }
 }

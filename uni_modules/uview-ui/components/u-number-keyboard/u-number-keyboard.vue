@@ -43,14 +43,14 @@
 
 	/**
 	 * keyboard 键盘组件
-	 * @description
-	 * @tutorial
+	 * @description  
+	 * @tutorial  
 	 * @property {String}	mode		键盘的类型，number-数字键盘，card-身份证键盘
-	 * @property {Boolean}	dotDisabled	是否显示键盘的"."符号
+	 * @property {Boolean}	dotEnable	是否显示键盘的"."符号
 	 * @property {Boolean}	random		是否打乱键盘按键的顺序
 	 * @event {Function} change		点击键盘触发
 	 * @event {Function} backspace	点击退格键触发
-	 * @example
+	 * @example 
 	 */
 	export default {
 		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
@@ -70,19 +70,19 @@
 					if (!this.random) {
 						return [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 					} else {
-						return uni.$u.randomArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
+						return this.$u.randomArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
 					}
 				} else if (!this.dotDisabled && this.mode == 'number') {
 					if (!this.random) {
 						return [1, 2, 3, 4, 5, 6, 7, 8, 9, this.dot, 0];
 					} else {
-						return uni.$u.randomArray([1, 2, 3, 4, 5, 6, 7, 8, 9, this.dot, 0]);
+						return this.$u.randomArray([1, 2, 3, 4, 5, 6, 7, 8, 9, this.dot, 0]);
 					}
 				} else if (this.mode == 'card') {
 					if (!this.random) {
 						return [1, 2, 3, 4, 5, 6, 7, 8, 9, this.cardX, 0];
 					} else {
-						return uni.$u.randomArray([1, 2, 3, 4, 5, 6, 7, 8, 9, this.cardX, 0]);
+						return this.$u.randomArray([1, 2, 3, 4, 5, 6, 7, 8, 9, this.cardX, 0]);
 					}
 				}
 			},
@@ -164,7 +164,7 @@
 			border-top-right-radius: $u-number-keyboard-button-border-top-right-radius;
 			border-bottom-left-radius: $u-number-keyboard-button-border-bottom-left-radius;
 			border-bottom-right-radius: $u-number-keyboard-button-border-bottom-right-radius;
-
+			
 			&__button {
 				width: $u-number-keyboard-button-width;
 				height: $u-number-keyboard-button-height;
@@ -176,13 +176,13 @@
 				border-top-right-radius: $u-number-keyboard-button-border-top-right-radius;
 				border-bottom-left-radius: $u-number-keyboard-button-border-bottom-left-radius;
 				border-bottom-right-radius: $u-number-keyboard-button-border-bottom-right-radius;
-
+			
 				&__text {
 					font-size: $u-number-keyboard-text-font-size;
 					font-weight: $u-number-keyboard-text-font-weight;
 					color: $u-number-keyboard-text-color;
 				}
-
+			
 				&--gray {
 					background-color: $u-number-keyboard-gray-background-color;
 				}

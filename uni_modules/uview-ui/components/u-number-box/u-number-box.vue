@@ -134,14 +134,15 @@
 		computed: {
 			getCursorSpacing() {
 				// 判断传入的单位，如果为px单位，需要转成px
-				return uni.$u.getPx(this.cursorSpacing)
+				const number = parseInt(this.cursorSpacing)
+				return /rpx$/.test(String(this.cursorSpacing)) ? uni.upx2px(number) : number
 			},
 			// 按钮的样式
 			buttonStyle() {
 				return (type) => {
 					const style = {
 						backgroundColor: this.bgColor,
-						height: uni.$u.addUnit(this.buttonSize),
+						height: this.$u.addUnit(this.buttonSize),
 						color: this.color
 					}
 					if (this.isDisabled(type)) {
@@ -156,8 +157,8 @@
 				const style = {
 					color: this.color,
 					backgroundColor: this.bgColor,
-					height: uni.$u.addUnit(this.buttonSize),
-					width: uni.$u.addUnit(this.inputWidth)
+					height: this.$u.addUnit(this.buttonSize),
+					width: this.$u.addUnit(this.inputWidth)
 				}
 				return style
 			},
@@ -240,21 +241,19 @@
 			// },
 			// 输入框活动焦点
 			onFocus(event) {
-				this.$emit('focus', {
-					...event.detail,
-					name: this.name,
-				})
+				this.$emit('focus', event.detail)
 			},
 			// 输入框失去焦点
 			onBlur(event) {
 				// 对输入值进行格式化
 				const value = this.format(event.detail.value)
+				this.emitChange(value)
 				// 发出blur事件
 				this.$emit(
-					'blur',{
-						...event.detail,
-						name: this.name,
-					}
+					'blur',
+					Object.assign(Object.assign({}, event.detail), {
+						value
+					})
 				)
 			},
 			// 输入框值发生变化
@@ -283,10 +282,7 @@
 						this.$forceUpdate()
 					})
 				}
-				this.$emit('change', {
-					value,
-					name: this.name,
-				});
+				this.$emit('change', value);
 			},
 			onChange() {
 				const {

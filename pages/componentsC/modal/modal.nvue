@@ -42,7 +42,7 @@
 			:content="content"
 			:show="show3"
 			showCancelButton
-			closeOnClickOverlay
+			closeOnClickOverly
 			@confirm="confirm"
 			@cancel="cancel"
 			@close="close"
@@ -67,14 +67,14 @@
 			:content="content"
 			title="标题"
 			:show="show6"
-			closeOnClickOverlay
+			closeOnClickOverly
 			@confirm="() => show6 = false"
 			@close="() => show6 = false"
 		></u-modal>
 		<u-modal
 			title="利剑出鞘,一统江湖"
 			:show="show7"
-			closeOnClickOverlay
+			closeOnClickOverly
 			@confirm="() => show7 = false"
 		>
 			<image
@@ -86,7 +86,7 @@
 			title="标题"
 			:show="show8"
 			:content="content"
-			closeOnClickOverlay
+			closeOnClickOverly
 			showCancelButton
 		>
 			<u-button

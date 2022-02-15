@@ -49,8 +49,7 @@
 						:mode="imgMode"
 						@tap="clickHandler(index)"
 						:style="{
-							height: $u.addUnit(height),
-							borderRadius: $u.addUnit(radius)
+							height: $u.addUnit(height)
 						}"
 					></image>
 					<video
@@ -129,12 +128,6 @@
 		data() {
 			return {
 				currentIndex: 0
-			}
-		},
-		watch: {
-			current(val, preVal) {
-				if(val === preVal) return;
-				this.currentIndex = val; // 和上游数据关联上
 			}
 		},
 		computed: {

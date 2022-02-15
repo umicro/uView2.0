@@ -58,7 +58,6 @@
 	 * @property {String | Number}	size				输入框的大小，宽等于高 （默认 35 ）
 	 * @property {Boolean}			disabledKeyboard	是否隐藏原生键盘，如果想用自定义键盘的话，需设置此参数为true （默认 false ）
 	 * @property {String}			borderColor			边框和线条颜色 （默认 '#c9cacc' ）
-	 * @property {Boolean}			disabledDot			是否禁止输入"."符号 （默认 true ）
 	 * 
 	 * @event {Function}	change	输入内容发生改变时触发，具体见上方说明			value：当前输入的值
 	 * @event {Function}	finish	输入字符个数达maxlength值时触发，见上方说明	value：当前输入的值
@@ -84,7 +83,7 @@
 		computed: {
 			// 根据长度，循环输入框的个数，因为头条小程序数值不能用于v-for
 			codeLength() {
-				return new Array(Number(this.maxlength))
+				return new Array(this.maxlength)
 			},
 			// 循环item的样式
 			itemStyle() {
@@ -145,12 +144,6 @@
 			inputHandler(e) {
 				const value = e.detail.value
 				this.inputValue = value
-				// 是否允许输入“.”符号
-				if(this.disabledDot) {
-					this.$nextTick(() => {
-						this.inputValue = value.replace('.', '')
-					})
-				}
 				// 未达到maxlength之前，发送change事件，达到后发送finish事件
 				this.$emit('change', value)
 				// 修改通过v-model双向绑定的值
@@ -203,7 +196,7 @@
 			// 之所以需要input输入框，是因为有它才能唤起键盘
 			// 这里将它设置为两倍的屏幕宽度，再将左边的一半移出屏幕，为了不让用户看到输入的内容
 			position: absolute;
-			left: -750rpx;
+			left: -150rpx;
 			width: 1500rpx;
 			top: 0;
 			background-color: transparent;

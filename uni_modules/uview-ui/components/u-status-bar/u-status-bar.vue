@@ -28,7 +28,7 @@
 			style() {
 				const style = {}
 				// 状态栏高度，由于某些安卓和微信开发工具无法识别css的顶部状态栏变量，所以使用js获取的方式
-				style.height = uni.$u.addUnit(uni.$u.sys().statusBarHeight, 'px')
+				style.height = uni.$u.addUnit(uni.$u.sys().statusBarHeight)
 				style.backgroundColor = this.bgColor
 				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			}
@@ -38,9 +38,6 @@
 
 <style lang="scss" scoped>
 	.u-status-bar {
-		// nvue会默认100%，如果nvue下，显式写100%的话，会导致宽度不为100%而异常
-		/* #ifndef APP-NVUE */
 		width: 100%;
-		/* #endif */
 	}
 </style>

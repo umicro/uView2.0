@@ -81,6 +81,11 @@ export default {
             type: [Object, String],
             default: uni.$u.props.text.iconStyle
         },
+        // 是否显示金额的千分位，mode=price时有效
+        precision: {
+            type: Boolean,
+            default: uni.$u.props.text.precision
+        },
         // 文字装饰，下划线，中划线等，可选值 none|underline|line-through
         decoration: {
             tepe: String,

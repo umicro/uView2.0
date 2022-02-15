@@ -53,23 +53,6 @@
 				</view>
 			</view>
 		</view>
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">自定义图片加载插槽</text>
-			<view class="u-demo-block__content">
-				<view class="u-page__image-item">
-					<u--image
-					    :src="src1"
-					    width="80px"
-					    height="80px"
-						mode="widthFit"
-					>
-						<template v-slot:loading>
-							<u-loading-icon color="red"></u-loading-icon>
-						</template>
-					</u--image>
-				</view>
-			</view>
-		</view>
 	</view>
 </template>
 
@@ -77,14 +60,8 @@
 	export default {
 		data() {
 			return {
-				src: 'https://cdn.uviewui.com/uview/album/1.jpg',
-				src1:''
+				src: 'https://cdn.uviewui.com/uview/album/1.jpg'
 			}
-		},
-		onLoad() {
-			setTimeout(()=>{
-				this.src1 = this.src
-			},3000)
 		},
 		methods: {
 			click() {

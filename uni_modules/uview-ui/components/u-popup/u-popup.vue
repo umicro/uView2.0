@@ -4,7 +4,7 @@
 			:show="show"
 			@click="overlayClick"
 			v-if="overlay"
-			:duration="overlayDuration"
+			:duration="duration"
 			:customStyle="overlayStyle"
 			:opacity="overlayOpacity"
 		></u-overlay>
@@ -55,7 +55,6 @@
 	 * @property {Boolean}			overlay				是否显示遮罩 （默认 true ）
 	 * @property {String}			mode				弹出方向（默认 'bottom' ）
 	 * @property {String | Number}	duration			动画时长，单位ms （默认 300 ）
-	 * @property {String | Number}	overlayDuration			遮罩层动画时长，单位ms （默认 350 ）
 	 * @property {Boolean}			closeable			是否显示关闭图标（默认 false ）
 	 * @property {Object | String}	overlayStyle		自定义遮罩的样式
 	 * @property {String | Number}	overlayOpacity		遮罩透明度，0-1之间（默认 0.5）
@@ -75,9 +74,7 @@
 		name: 'u-popup',
 		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		data() {
-			return {
-				overlayDuration: this.duration + 50
-			}
+			return {}
 		},
 		watch: {
 			show(newValue, oldValue) {
@@ -98,27 +95,27 @@
 				}
 				style[this.mode] = 0
 				if (this.mode === 'left') {
-					return uni.$u.deepMerge(style, {
+					return this.$u.deepMerge(style, {
 						bottom: 0,
 						top: 0,
 					})
 				} else if (this.mode === 'right') {
-					return uni.$u.deepMerge(style, {
+					return this.$u.deepMerge(style, {
 						bottom: 0,
 						top: 0,
 					})
 				} else if (this.mode === 'top') {
-					return uni.$u.deepMerge(style, {
+					return this.$u.deepMerge(style, {
 						left: 0,
 						right: 0
 					})
 				} else if (this.mode === 'bottom') {
-					return uni.$u.deepMerge(style, {
+					return this.$u.deepMerge(style, {
 						left: 0,
 						right: 0,
 					})
 				} else if (this.mode === 'center') {
-					return uni.$u.deepMerge(style, {
+					return this.$u.deepMerge(style, {
 						alignItems: 'center',
 						'justify-content': 'center',
 						top: 0,

@@ -13,7 +13,6 @@
 				:title="item.title"
 				v-for="(item, index) in list"
 				:key="index"
-				:label="values[index]"
 				isLink
 			>
 				<image
@@ -26,14 +25,12 @@
 		</u-cell-group>
 		<u-calendar
 			:show="show1"
-			defaultDate="2022-02-15"
 			@confirm="confirm"
 			@close="close"
 		></u-calendar>
 		<u-calendar
 			:show="show2"
 			mode="multiple"
-			:defaultDate="['2022-03-01']"
 			@confirm="confirm"
 			@close="close"
 		></u-calendar>
@@ -101,7 +98,6 @@
 				show6: false,
 				show7: false,
 				show8: false,
-				values: ['','','','','','','',''],
 				customThemeDefaultDate: [`${year}-${month}-${date}`, `${year}-${month}-${date + 5}`], 
 				customTextDefaultDate: [`${year}-${month}-${date}`],
 				maxDate: `${year}-${month}-${date + 10}`,
@@ -147,37 +143,6 @@
 			},
 			confirm(e) {
 				this[`show${this.index}`] = false
-				console.log(e);
-				switch(this.index - 1) {
-					case 0:
-						this.values[this.index - 1] = e[0];
-						break;
-					case 1:
-						e.forEach((value, index) => {
-							index === 0 ? this.values[this.index - 1] = value : this.values[this.index - 1] += ';' + value
-						})
-						break;
-					case 2:
-						this.values[this.index - 1] = e[0] + '~' + e[e.length - 1];
-						break;
-					case 3:
-						this.values[this.index - 1] = e[0] + '~' + e[e.length - 1];
-						break;
-					case 4:
-						this.values[this.index - 1] = e[0] + '~' + e[e.length - 1];
-						break;
-					case 5:
-						this.values[this.index - 1] = e[0];
-						break;
-					case 6:
-						this.values[this.index - 1] = e[0];
-						break;
-					case 7:
-						e.forEach((value, index) => {
-							index === 0 ? this.values[this.index - 1] = value : this.values[this.index - 1] += ';' + value
-						})
-						break;
-				}
 			},
 			close() {
 				this[`show${this.index}`] = false

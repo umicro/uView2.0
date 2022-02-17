@@ -34,6 +34,10 @@ export default {
         required: {
             type: Boolean,
             default: uni.$u.props.formItem.required
+        },
+        leftIconStyle: {
+            type: [String, Object],
+            default: uni.$u.props.formItem.leftIconStyle,
         }
     }
 }

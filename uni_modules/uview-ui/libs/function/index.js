@@ -294,7 +294,7 @@ if (!String.prototype.padStart) {
   }
   // 其他都认为符合 RFC 2822 规范
   else {
-		// 处理平台性差异，在Safari/Webkit中，new Date仅支持/作为分割符的字符串时间
+    // 处理平台性差异，在Safari/Webkit中，new Date仅支持/作为分割符的字符串时间
     date = new Date(
       typeof dateTime === 'string'
         ? dateTime.replace(/-/g, '/')

@@ -139,7 +139,7 @@
 			// 滚动到底部时触发，非nvue有效
 			scrolltoupper(e) {
 				uni.$u.sleep(30).then(() => {
-					this.$emit('scrolltolower')
+					this.$emit('scrolltoupper')
 					// 这一句很重要，能绝对保证在性功能障碍的webview，滚动条到顶时，取消偏移值，让页面置顶
 					this.offset = 0
 				})

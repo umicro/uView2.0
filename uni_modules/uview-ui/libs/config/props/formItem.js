@@ -16,6 +16,7 @@ export default {
         labelWidth: '',
         rightIcon: '',
         leftIcon: '',
-        required: false
+        required: false,
+        leftIconStyle: '',
     }
 }

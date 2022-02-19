@@ -507,7 +507,7 @@ function priceFormat(number, decimals = 0, decimalPoint = '.', thousandsSeparato
 	const dec = (typeof decimalPoint === 'undefined') ? '.' : decimalPoint
 	let s = ''
 
-	s = (prec ? round(n, prec) : `${Math.round(n)}`).split('.')
+	s = (prec ? round(n, prec) + '' : `${Math.round(n)}`).split('.')
 	const re = /(-?\d+)(\d{3})/
 	while (re.test(s[0])) {
 		s[0] = s[0].replace(re, `$1${sep}$2`)

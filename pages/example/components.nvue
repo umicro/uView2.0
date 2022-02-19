@@ -29,11 +29,6 @@
 				}
 			},
 		},
-		mounted() {
-			console.log(uni.$u.priceFormat(1.15,2))
-			console.log(uni.$u.priceFormat(1.105,3))
-			console.log(uni.$u.priceFormat(1.105,2))
-		},
 		methods: {
 			openPage(detail) {
 				const path = detail.name

@@ -23,6 +23,7 @@ export default {
         disabled: false,
         borderColor: 'transparent',
         searchIconColor: '#909399',
+        searchIconSize: 22,
         color: '#606266',
         placeholderColor: '#909399',
         searchIcon: 'search',

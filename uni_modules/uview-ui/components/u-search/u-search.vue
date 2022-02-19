@@ -22,7 +22,7 @@
 			<view class="u-search__content__icon">
 				<u-icon
 					@tap="clickIcon"
-				    :size="22"
+				    :size="searchIconSize"
 				    :name="searchIcon"
 				    :color="searchIconColor ? searchIconColor : color"
 				></u-icon>

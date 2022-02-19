@@ -16,7 +16,7 @@
 				<text class="u-action-sheet__header__title u-line-1">{{title}}</text>
 				<view
 				    class="u-action-sheet__header__icon-wrap"
-				    @tap.stop="close"
+				    @tap.stop="close(true)"
 				>
 					<u-icon
 					    name="close"
@@ -167,9 +167,9 @@
 			},
 		},
 		methods: {
-			close() {
+			close(force) {
 				// 允许点击遮罩关闭时，才发出close事件
-				if(this.closeOnClickOverlay) {
+				if(this.closeOnClickOverlay || force) {
 					this.$emit('close')
 				}
 			},

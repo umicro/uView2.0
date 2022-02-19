@@ -1,5 +1,5 @@
 import test from './test.js'
-
+import {round} from './digit.js'
 /**
  * @description 如果value小于min，取min；如果value大于max，取max
  * @param {number} min 
@@ -506,15 +506,8 @@ function priceFormat(number, decimals = 0, decimalPoint = '.', thousandsSeparato
 	const sep = (typeof thousandsSeparator === 'undefined') ? ',' : thousandsSeparator
 	const dec = (typeof decimalPoint === 'undefined') ? '.' : decimalPoint
 	let s = ''
-	const toFixedFix = function(n, prec) {
-		const k = 10 ** (prec) 
-		// 这里写成 乘10 再除10 是因为在部分情况下浮点数运算会有精度损失问题
-		// 例如 1.15 * 100 的结果为 114.999... , parseInt后就变成了114, 显然与预期不符
-		// 注意这里 (k * 10)的小括号是必须的，用来保证强制的优先级！
-		return `${Math.ceil(parseInt(n * (k * 10))) / (k * 10)}`
-	}
 
-	s = (prec ? toFixedFix(n, prec) : `${Math.round(n)}`).split('.')
+	s = (prec ? round(n, prec) : `${Math.round(n)}`).split('.')
 	const re = /(-?\d+)(\d{3})/
 	while (re.test(s[0])) {
 		s[0] = s[0].replace(re, `$1${sep}$2`)

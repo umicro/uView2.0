@@ -1,5 +1,5 @@
 import test from './test.js'
-import {round} from './digit.js'
+import { round } from './digit.js'
 /**
  * @description 如果value小于min，取min；如果value大于max，取max
  * @param {number} min 

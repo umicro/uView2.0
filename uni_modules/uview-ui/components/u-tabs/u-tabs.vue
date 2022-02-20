@@ -21,7 +21,7 @@
 							:key="index"
 							@tap="clickHandler(item, index)"
 							:ref="`u-tabs__wrapper__nav__item-${index}`"
-							:style="[$u.addStyle(itemStyle), {flex: scrollable ? 'initial' : 'auto'}]"
+							:style="[$u.addStyle(itemStyle), {flex: scrollable ? '' : 1}]"
 							:class="[`u-tabs__wrapper__nav__item-${index}`, item.disabled && 'u-tabs__wrapper__nav__item--disabled']"
 						>
 							<text

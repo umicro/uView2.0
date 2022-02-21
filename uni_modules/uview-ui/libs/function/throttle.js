@@ -28,3 +28,21 @@ function throttle(func, wait = 500, immediate = true) {
     }
 }
 export default throttle
+
+export const newThrottle = (func, wait = 500, immediate = true) => {
+    let pendding = false
+    return (...args) => {
+        if (!pendding) {
+            pendding = true
+            if (immediate) {
+                func?.(...args)
+                setTimeout(() => pendding = false, wait)
+            } else {
+                setTimeout(() => {
+                    func?.(...args)
+                    pendding = false
+                }, wait)
+            }
+        }
+    }
+}

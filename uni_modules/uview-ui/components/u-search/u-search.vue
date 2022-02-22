@@ -91,7 +91,7 @@
 	 * @property {Boolean}			disabled			是否启用输入框（默认 false ）
 	 * @property {String}			borderColor			边框颜色，配置了颜色，才会有边框 (默认 'transparent' )
 	 * @property {String}			searchIconColor		搜索图标的颜色，默认同输入框字体颜色 (默认 '#909399' )
-	 * @property {Number | String}	searchIconSize 搜索图标的字体，默认26
+	 * @property {Number | String}	searchIconSize 搜索图标的字体，默认22
 	 * @property {String}			color				输入框字体颜色（默认 '#606266' ）
 	 * @property {String}			placeholderColor	placeholder的颜色（默认 '#909399' ）
 	 * @property {String}			searchIcon			输入框左边的图标，可以为uView图标名称或图片路径  (默认 'search' )

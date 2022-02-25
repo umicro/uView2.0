@@ -232,7 +232,8 @@ function promise(value) {
  * @param {Object} value
  */
 function image(value) {
-    const IMAGE_REGEXP = /\.(jpeg|jpg|gif|png|svg|webp|jfif|bmp|dpg)/i
+	// 由于有很多图片链接并不是.jpg等结尾，而是带有很多get参数，故不能采用判断扩展名的形式，只能简单的判断是否为http开头
+    const IMAGE_REGEXP = /^http/i
     return IMAGE_REGEXP.test(value)
 }
 

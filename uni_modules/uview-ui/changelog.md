@@ -1,3 +1,14 @@
+## 2.0.28（2022-02-22）
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. search组件新增searchIconSize属性
+2. 兼容Safari/Webkit中传入时间格式如2022-02-17 12:00:56
+3. 修复text value.js 判断日期出format错误问题
+4. priceFormat格式化金额出现精度错误
+5. priceFormat在部分情况下出现精度损失问题
+6. 优化表单rules提示
+7. 修复avatar组件src为空时，展示状态不对
+8. 其他修复
 ## 2.0.27（2022-01-28）
 # uView2.0重磅发布，利剑出鞘，一统江湖
 

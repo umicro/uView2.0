@@ -165,22 +165,15 @@ export default {
     mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
     // #endif
     data() {
-        return {
-            throttleHandler: () => {},
-        };
-    },
-    watch: {
-        throttleTime: {
-            immediate: true,
-            handler(newVal) {
-                this.throttleHandler = newThrottle(
-                    () => this.$emit("click"),
-                    newVal,
-                );
-            }
-        }
+        return {};
     },
     computed: {
+        throttleHandler() {
+            return newThrottle(
+                () => this.$emit("click"),
+                this.throttleTime,
+            )
+        },
         // 生成bem风格的类名
         bemClass() {
             // this.bem为一个computed变量，在mixin中

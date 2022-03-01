@@ -5,6 +5,7 @@
 		:closeOnClickOverlay="closeOnClickOverlay"
 		:columns="columns"
 		:title="title"
+		:itemHeight="itemHeight"
 		:defaultIndex="innerDefaultIndex"
 		:cancelText="cancelText"
 		:confirmText="confirmText"

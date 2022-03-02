@@ -242,8 +242,8 @@
 					if (String(value).indexOf(':') === -1) return uni.$u.error('时间错误，请传递如12:24的格式')
 					let [hour, minute] = value.split(':')
 					// 对时间补零，同时控制在最小值和最大值之间
-					hour = uni.$u.padZero(uni.$u.range(this.minHour, this.maxHour, Number(hour)))
-					minute = uni.$u.padZero(uni.$u.range(this.minMinute, this.maxMinute, Number(minute)))
+					hour = uni.$u.padZero(uni.$u.range(this.minHour, this.maxHour, parseInt(hour)))
+					minute = uni.$u.padZero(uni.$u.range(this.minMinute, this.maxMinute, parseInt(minute)))
 					return `${ hour }:${ minute }`
 				} else {
 					// 如果是日期格式，控制在最小日期和最大日期之间

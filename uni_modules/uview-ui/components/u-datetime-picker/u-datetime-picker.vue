@@ -5,6 +5,7 @@
 		:closeOnClickOverlay="closeOnClickOverlay"
 		:columns="columns"
 		:title="title"
+		:itemHeight="itemHeight"
 		:defaultIndex="innerDefaultIndex"
 		:cancelText="cancelText"
 		:confirmText="confirmText"
@@ -74,7 +75,7 @@
 		watch: {
 			show(newValue, oldValue) {
 				if (newValue) {
-					this.updateColumnValue(this.value)
+					this.updateColumnValue(this.innerValue)
 				}
 			},
 			propsChange() {

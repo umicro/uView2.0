@@ -25,27 +25,31 @@ const generateThrottle = (key = '') => {
   }
 }
 
-export function throttle(...args) {
-    let key = ''
-    const customKeyIndex = args.findIndex(v => typeof v === 'string' && v.includes('throttleKey:'))
+const throttle = (...args) => {
+  let key = ''
+  const customKeyIndex = args.findIndex(v => typeof v === 'string' && v.includes('throttleKey:'))
 
-    if (customKeyIndex !== -1) {
+  if (customKeyIndex !== -1) {
       key = args.splice(customKeyIndex, 1)[0].trim().split('throttleKey:')[1]
-    } else {
+  } else {
       const { stack } = new Error('generate throttle error')
       key = md5(stack)
-    }
-  
-    const throttleCb = throttleStore[key]
-  
-    if (throttleCb) {
+  }
+
+  const throttleCb = throttleStore[key]
+
+  if (throttleCb) {
       throttleCb()
       return
-    }
-  
-    const cb = generateThrottle(key)
-  
-    throttleStore[key] = cb
-  
-    cb(...args)
   }
+
+  const cb = generateThrottle(key)
+
+  throttleStore[key] = cb
+
+  cb(...args)
+}
+
+throttle.customThrottleKey = (throttleKey) => (...args) => throttle(`throttleKey:${throttleKey}`, ...args)
+
+export default throttle

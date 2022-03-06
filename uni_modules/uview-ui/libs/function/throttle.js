@@ -1,8 +1,8 @@
-import md5 from './md5.min.js'
+import md5 from '../util/md5.min.js'
 
 const throttleStore = {}
 
-const generateThrottle = (hash = '') => {
+const generateThrottle = (key = '') => {
   let pendding = false
   return (func = () => {}, wait = 500, immediate = true, ...args) => {
 
@@ -12,32 +12,40 @@ const generateThrottle = (hash = '') => {
         func?.(...args)
         setTimeout(() => {
           pendding = false
-          delete throttleStore[hash]
+          delete throttleStore[key]
         }, wait)
       } else {
         setTimeout(() => {
             func?.(...args)
             pendding = false
-            delete throttleStore[hash]
+            delete throttleStore[key]
         }, wait)
       }
     }
   }
 }
 
-export default function throttle (...args) {
-  const { stack } = new Error('generate throttle error')
-  const hash = md5(stack)
-  const throttleCb = throttleStore[hash]
+export function throttle(...args) {
+    let key = ''
+    const customKeyIndex = args.findIndex(v => typeof v === 'string' && v.includes('throttleKey:'))
 
-  if (throttleCb) {
-    throttleCb()
-    return
+    if (customKeyIndex !== -1) {
+      key = args.splice(customKeyIndex, 1)[0].trim().split('throttleKey:')[1]
+    } else {
+      const { stack } = new Error('generate throttle error')
+      key = md5(stack)
+    }
+  
+    const throttleCb = throttleStore[key]
+  
+    if (throttleCb) {
+      throttleCb()
+      return
+    }
+  
+    const cb = generateThrottle(key)
+  
+    throttleStore[key] = cb
+  
+    cb(...args)
   }
-
-  const cb = generateThrottle(hash)
-
-  throttleStore[hash] = cb
-
-  cb(...args)
-}

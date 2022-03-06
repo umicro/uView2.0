@@ -4,7 +4,6 @@ const throttleStore = {}
 
 const generateThrottle = (hash = '') => {
   let pendding = false
-  const argsRef = {}
   return (func = () => {}, wait = 500, immediate = true, ...args) => {
 
     if (!pendding) {
@@ -14,7 +13,6 @@ const generateThrottle = (hash = '') => {
         setTimeout(() => {
           pendding = false
           delete throttleStore[hash]
-          console.log(throttleStore)
         }, wait)
       } else {
         setTimeout(() => {

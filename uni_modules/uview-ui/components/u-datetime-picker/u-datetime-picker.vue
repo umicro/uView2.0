@@ -118,18 +118,34 @@
 				})
 				this.$emit('input', this.innerValue)
 			},
+			//用正则截取输出值,当出现多组数字时,抛出错误
+			intercept(e,type){
+				let judge = e.match(/\d+/g)
+				//判断是否掺杂数字
+				if(judge.length>1){
+					uni.$u.error("请勿在过滤或格式化函数时添加数字")
+					return 0
+				}else if(type&&judge[0].length==4){//判断是否是年份
+					return judge[0]
+				}else if(judge[0].length>2){
+					uni.$u.error("请勿在过滤或格式化函数时添加数字")
+					return 0
+				}else{
+					return judge[0]
+				}
+			},
 			// 列发生变化时触发
 			change(e) {
 				const { indexs, values } = e
 				let selectValue = ''
 				if(this.mode === 'time') {
 					// 根据value各列索引，从各列数组中，取出当前时间的选中值
-					selectValue = `${values[0][indexs[0]]}:${values[1][indexs[1]]}`
+					selectValue = `${this.intercept(values[0][indexs[0]])}:${this.intercept(values[1][indexs[1]])}`
 				} else {
 					// 将选择的值转为数值，比如'03'转为数值的3，'2019'转为数值的2019
-					const year = parseInt(values[0][indexs[0]])
-					const month = parseInt(values[1][indexs[1]])
-					let date = parseInt(values[2] ? values[2][indexs[2]] : 1)
+					const year = parseInt(this.intercept(values[0][indexs[0]],'year'))
+					const month = parseInt(this.intercept(values[1][indexs[1]]))
+					let date = parseInt(values[2] ? this.intercept(values[2][indexs[2]]) : 1)
 					let hour = 0, minute = 0
 					// 此月份的最大天数
 					const maxDate = dayjs(`${year}-${month}-${date}`).daysInMonth()
@@ -140,8 +156,8 @@
 					// 不允许超过maxDate值
 					date = Math.min(maxDate, date)
 					if (this.mode === 'datetime') {
-					    hour = parseInt(values[3][indexs[3]])
-					    minute = parseInt(values[4][indexs[4]])
+					    hour = parseInt(this.intercept(values[3][indexs[3]]))
+					    minute = parseInt(this.intercept(values[4][indexs[4]]))
 					}
 					// 转为时间模式
 					selectValue = Number(new Date(year, month - 1, date, hour, minute))

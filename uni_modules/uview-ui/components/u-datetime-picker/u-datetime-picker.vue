@@ -123,11 +123,13 @@
 				let judge = e.match(/\d+/g)
 				//判断是否掺杂数字
 				if(judge.length>1){
-					return console.error("请勿在过滤或格式化函数时添加数字")
+					uni.$u.error("请勿在过滤或格式化函数时添加数字")
+					return 0
 				}else if(type&&judge[0].length==4){//判断是否是年份
 					return judge[0]
 				}else if(judge[0].length>2){
-					return console.error("请勿在过滤或格式化函数时添加数字")
+					uni.$u.error("请勿在过滤或格式化函数时添加数字")
+					return 0
 				}else{
 					return judge[0]
 				}

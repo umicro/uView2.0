@@ -290,6 +290,25 @@
 				</view>
 			</view>
 		</view>
+		
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义按钮文字大小</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__button-item">
+					<u-button
+					    text="默认大小(14px)"
+					    type="success"
+					></u-button>
+				</view>
+				<view class="u-page__button-item">
+					<u-button
+					    text="自定义大小(16px)"
+					    type="success"
+						:fontSize="16"
+					></u-button>
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 

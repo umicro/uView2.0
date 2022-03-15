@@ -37,6 +37,7 @@ export default {
         text: '',
         icon: '',
         iconColor: '',
-        color: ''
+        color: '',
+		fontSize: 14
     }
 }

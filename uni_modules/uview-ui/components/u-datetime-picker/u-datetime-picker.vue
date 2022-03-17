@@ -150,7 +150,7 @@
 					let date = parseInt(values[2] ? this.intercept(values[2][indexs[2]]) : 1)
 					let hour = 0, minute = 0
 					// 此月份的最大天数
-					const maxDate = dayjs(`${year}-${month}-${date}`).daysInMonth()
+					const maxDate = dayjs(`${year}-${month}`).daysInMonth()
 					// year-month模式下，date不会出现在列中，设置为1，为了符合后边需要减1的需求
 					if (this.mode === 'year-month') {
 					    date = 1

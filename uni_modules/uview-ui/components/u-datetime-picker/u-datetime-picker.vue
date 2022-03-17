@@ -251,7 +251,7 @@
 					value = this.minDate
 				} else if (!isDateMode && !value) {
 					// 如果是时间类型，而又没有默认值的话，就用最小时间
-					value = `${uni.$u.padZero(this.minHour)}:uni.$u.padZero(this.minMinute)}`
+					value = `${uni.$u.padZero(this.minHour)}:${uni.$u.padZero(this.minMinute)}`
 				}
 				// 时间类型
 				if (!isDateMode) {

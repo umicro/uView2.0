@@ -146,7 +146,7 @@ export default {
     methods: {
         clickHandler() {
             // 如果为手机号模式，拨打电话
-            if (this.call && this.mode === 'phone' && uni.$u.test.mobile(this.text)) {
+            if (this.call && this.mode === 'phone') {
                 uni.makePhoneCall({
                     phoneNumber: this.text
                 })

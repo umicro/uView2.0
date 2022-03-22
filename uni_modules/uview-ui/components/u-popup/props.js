@@ -40,6 +40,11 @@ export default {
             type: [String, Number],
             default: uni.$u.props.popup.zIndex
         },
+        // 遮罩层层级
+		zIndexOverlay: {
+		    type: [String, Number],
+		    default: uni.$u.props.overlay.zIndex
+		},
         // 是否为iPhoneX留出底部安全距离
         safeAreaInsetBottom: {
             type: Boolean,

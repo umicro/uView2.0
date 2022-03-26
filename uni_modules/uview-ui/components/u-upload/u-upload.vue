@@ -205,11 +205,18 @@
 					disabled
 				} = this;
 				if (disabled) return;
+				// 如果用户传入的是字符串，需要格式化成数组
+				let capture;
+				try {
+					capture = uni.$u.test.array(this.capture) ? this.capture : this.capture.split(',');
+				}catch(e) {
+					capture = [];
+				}
 				chooseFile(
 						Object.assign({
 							accept: this.accept,
 							multiple: this.multiple,
-							capture: this.capture,
+							capture: capture,
 							compressed: this.compressed,
 							maxDuration: this.maxDuration,
 							sizeType: this.sizeType,

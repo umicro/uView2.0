@@ -128,7 +128,9 @@
 				width: 0,
 				// 当前选中的日期item
 				item: {},
-				selected: []
+				selected: [],
+				// 当前选中日期在本月份数据中的index
+				currIdx: null
 			}
 		},
 		watch: {
@@ -186,7 +188,7 @@
 							style.borderTopRightRadius = '3px'
 							style.borderBottomRightRadius = '3px'
 						}
-					} else if (this.mode === 'range') {
+					} else if (this.mode === 'range' || this.mode === 'weekUnit') {
 						if (this.selected.length >= 2) {
 							const len = this.selected.length - 1
 							// 第一个日期设置左上角和左下角的圆角
@@ -232,7 +234,7 @@
 					if (this.selected.some(item => this.dateSame(item, date))) {
 						style.color = '#ffffff'
 					}
-					if (this.mode === 'range') {
+					if (this.mode === 'range' || this.mode === 'weekUnit') {
 						const len = this.selected.length - 1
 						// 如果是范围选择模式，第一个和最后一个之间的日期，文字颜色设置为高亮的主题色
 						if (dayjs(date).isAfter(dayjs(this.selected[0])) && dayjs(date).isBefore(dayjs(this
@@ -249,7 +251,7 @@
 					const date = dayjs(item.date).format("YYYY-MM-DD")
 					const bottomInfo = item.bottomInfo
 					// 当为日期范围模式时，且选择的日期个数大于0时
-					if (this.mode === 'range' && this.selected.length > 0) {
+					if ((this.mode === 'range' || this.mode === 'weekUnit') && this.selected.length > 0) {
 						if (this.selected.length === 1) {
 							// 选择了一个日期时，如果当前日期为数组中的第一个日期，则显示底部文字为“开始”
 							if (this.dateSame(date, this.selected[0])) return this.startText
@@ -350,6 +352,7 @@
 			},
 			// 点击某一个日期
 			clickHandler(index1, index2, item) {
+				const self = this
 				if (this.readonly) {
 					return;
 				}
@@ -370,6 +373,38 @@
 						// 如果点击的日期不在数组中，且已有的长度小于总可选长度时，则添加到数组中去
 						if (selected.length < this.maxCount) selected.push(date)
 					}
+				} else if (this.mode === 'weekUnit') {
+					selected = []
+					const currDate = this.months.find(el => el.month === item.month)
+					let beforeCurrDate = []
+					let afterCurrDate = []
+					let currIdxCopy = null
+					
+					currDate.date.map((el, idx) => {
+							if(el.day === item.day) {
+								self.currIdx = idx
+							}
+					})
+					currIdxCopy = JSON.parse(JSON.stringify(self.currIdx))
+					if (self.currIdx !== null) {
+						for (let m = 0; m <= (7 - item.week); m++) {
+							if (self.currIdx > (currDate.date.length - 1)) break
+							beforeCurrDate.push(currDate.date[self.currIdx])
+							self.currIdx++
+						}
+					}
+					if (currIdxCopy !== null) {
+						for (let n = 1; n < item.week; n++) {
+							if (currIdxCopy < 1) break
+							afterCurrDate.push(currDate.date[currIdxCopy - 1])
+							currIdxCopy--
+						}
+					}
+					const arr = afterCurrDate.reverse().concat(beforeCurrDate)
+					arr.map(el => {
+						let date = dayjs(el.date).format("YYYY-MM-DD")
+						selected.push(date)
+					})
 				} else {
 					// 选择区间形式
 					if (selected.length === 0 || selected.length >= 2) {

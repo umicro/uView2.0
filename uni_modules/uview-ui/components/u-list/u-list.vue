@@ -30,7 +30,8 @@
 		@scrolltoupper="scrolltoupper"
 	>
 		<view :style="{
-			paddingTop: `${offset}px`
+			paddingTop: `${offset}px`,
+			transform: `translateY(-${offset}px)`
 		}">
 			<slot />
 		</view>

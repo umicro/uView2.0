@@ -1,5 +1,5 @@
 <template>
-	<view class="u-code-input">
+	<view class="u-code-input" @click="$emit('click')">
 		<view
 			class="u-code-input__item"
 			:style="[itemStyle(index)]"

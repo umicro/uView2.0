@@ -6,6 +6,8 @@
 		:columns="columns"
 		:title="title"
 		:itemHeight="itemHeight"
+		:showToolbar="showToolbar"
+		:visibleItemCount="visibleItemCount"
 		:defaultIndex="innerDefaultIndex"
 		:cancelText="cancelText"
 		:confirmText="confirmText"

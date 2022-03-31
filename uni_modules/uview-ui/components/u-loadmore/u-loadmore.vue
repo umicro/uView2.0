@@ -61,7 +61,7 @@
 	 * @property {Boolean}			icon			加载中时是否显示图标（默认 true ）
 	 * @property {String | Number}	fontSize		字体大小（默认 14 ）
 	 * @property {String}			color			字体颜色（默认 '#606266' ）
-	 * @property {String}			loadingIcon		加载前的提示语（默认 'circle' ）
+	 * @property {String}			loadingIcon		加载图标（默认 'circle' ）
 	 * @property {String}			loadmoreText	加载前的提示语（默认 '加载更多' ）
 	 * @property {String}			loadingText		加载中提示语（默认 '正在加载...' ）
 	 * @property {String}			nomoreText		没有更多的提示语（默认 '没有更多了' ）

@@ -155,9 +155,9 @@
 		},
 		methods: {
       getItemType(item) {
-        if (typeof item === 'string') return uni.$u.test.image(this.getSource(item)) ? 'image' : 'video'
+        if (typeof item === 'string') return uni.$u.test.video(this.getSource(item)) ? 'video' : 'image'
         if (typeof item === 'object' && this.keyName) {
-          if (!item.type) return uni.$u.test.image(this.getSource(item)) ? 'image' : 'video'
+          if (!item.type) return uni.$u.test.video(this.getSource(item)) ? 'video' : 'image'
           if (item.type === 'image') return 'image'
           if (item.type === 'video') return 'video'
           return 'image'

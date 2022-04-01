@@ -242,7 +242,7 @@ function image(value) {
  * @param {Object} value
  */
 function video(value) {
-    const VIDEO_REGEXP = /\.(mp4|mpg|mpeg|dat|asf|avi|rm|rmvb|mov|wmv|flv|mkv)/i
+    const VIDEO_REGEXP = /\.(mp4|mpg|mpeg|dat|asf|avi|rm|rmvb|mov|wmv|flv|mkv|m3u8)/i
     return VIDEO_REGEXP.test(value)
 }
 

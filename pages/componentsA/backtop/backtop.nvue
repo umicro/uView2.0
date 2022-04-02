@@ -10,7 +10,7 @@
 				<u-checkbox-group
 				    placement="column"
 					shape="square"
-				    @change="checkboxChange"
+				    @change="checkboxChange2"
 					v-model="value"
 				>
 					<u-checkbox

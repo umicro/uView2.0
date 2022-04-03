@@ -15,6 +15,11 @@ export default {
             type: Boolean,
             default: uni.$u.props.rate.disabled
         },
+        // 是否只读
+        readonly: {
+            type: Boolean,
+            default: uni.$u.props.rate.readonly
+        },
         // 星星的大小，单位px
         size: {
             type: [String, Number],

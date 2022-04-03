@@ -86,6 +86,7 @@
 	 * @property {String | Number}	value			用于v-model双向绑定选中的星星数量 (默认 1 )
 	 * @property {String | Number}	count			最多可选的星星数量 （默认 5 ）
 	 * @property {Boolean}			disabled		是否禁止用户操作 （默认 false ）
+	 * @property {Boolean}			readonly		是否只读 （默认 false ）
 	 * @property {String | Number}	size			星星的大小，单位px （默认 18 ）
 	 * @property {String}			inactiveColor	未选中星星的颜色 （默认 '#b2b2b2' ）
 	 * @property {String}			activeColor		选中的星星颜色 （默认 '#FA3534' ）
@@ -206,7 +207,7 @@
 			},
 			// 获取当前激活的评分图标
 			getActiveIndex(x,isClick = false) {
-				if (this.disabled) {
+				if (this.disabled || this.readonly) {
 					return;
 				}
 				// 判断当前操作的点的x坐标值，是否在允许的边界范围内

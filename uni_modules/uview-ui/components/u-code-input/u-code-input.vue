@@ -23,7 +23,9 @@
 				v-if="mode === 'line'"
 				:style="[lineStyle]"
 			></view>
-			<view v-if="codeArray.length === index" :style="{backgroundColor: color}" class="u-code-input__item__cursor"></view>
+			<!-- #ifndef APP-PLUS -->
+			<view v-if="isFocus && codeArray.length === index" :style="{backgroundColor: color}" class="u-code-input__item__cursor"></view>
+			<!-- #endif -->
 		</view>
 		<input
 			:disabled="disabledKeyboard"
@@ -36,6 +38,8 @@
 			:style="{
 				height: $u.addUnit(size) 
 			}"
+			@focus="isFocus = true"
+			@blur="isFocus = false"
 		/>
 	</view>
 </template>
@@ -70,7 +74,8 @@
 		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		data() {
 			return {
-				inputValue: ''
+				inputValue: '',
+				isFocus: this.focus
 			}
 		},
 		watch: {
@@ -203,6 +208,7 @@
 				width: 40px;
 				background-color: $u-content-color;
 			}
+			/* #ifndef APP-PLUS */
 			&__cursor {
 				position: absolute;
 				top: 50%;
@@ -212,6 +218,8 @@
 				height: $u-code-input-cursor-height;
 				animation: $u-code-input-cursor-animation-duration u-cursor-flicker infinite;
 			}
+			/* #endif */
+			
 		}
 
 		&__input {
@@ -226,6 +234,7 @@
 		}
 	}
 	
+	/* #ifndef APP-PLUS */
 	@keyframes u-cursor-flicker {
 		0% {
 		    opacity: 0;
@@ -237,4 +246,6 @@
 		    opacity: 0;
 		}
 	}
+	/* #endif */
+
 </style>

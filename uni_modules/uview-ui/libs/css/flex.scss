@@ -36,7 +36,7 @@
 
 .u-flex-y,
 .u-flex-column {
-	@include flex('column');
+	@include flex(column);
 }
 
 .u-flex-x-center {

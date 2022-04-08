@@ -119,6 +119,8 @@
 					mode: this.mode
 				})
 				this.$emit('input', this.innerValue)
+				//点击确认后，添加一个标记
+				this.selected = true
 			},
 			//用正则截取输出值,当出现多组数字时,抛出错误
 			intercept(e,type){
@@ -216,7 +218,12 @@
 					// 通过取大值，可以保证不会出现找不到索引的-1情况
 					return Math.max(0, column.findIndex(item => item === values[index]))
 				})
-				this.innerDefaultIndex = indexs
+				//若设置了默认值,且修改过值,将默认值修改为选择的值
+				if(this.defaultIndex.length&&!this.selected){
+					this.innerDefaultIndex = this.defaultIndex
+				}else{
+					this.innerDefaultIndex = indexs
+				}
 			},
 			// 更新各列的值
 			updateColumns() {

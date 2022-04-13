@@ -486,6 +486,7 @@
 			border-bottom-color: $u-upload-success-border-bottom-color;
 			border-right-color: $u-upload-success-border-right-color;
 			border-width: $u-upload-success-border-width;
+			border-style: solid;
 			align-items: center;
 			justify-content: center;
 			/* #endif */

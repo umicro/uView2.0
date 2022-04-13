@@ -225,7 +225,7 @@ function func(value) {
  * @param {Object} value
  */
 function promise(value) {
-    return object(value) && func(value.then) && func(value.catch)
+    return Object.prototype.toString.call(value) === '[object Promise]' && func(value.then) && func(value.catch)
 }
 
 /** 是否图片格式

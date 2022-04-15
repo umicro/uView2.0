@@ -14,9 +14,6 @@
 					<view
 						class="u-tabs__wrapper__nav"
 						ref="u-tabs__wrapper__nav"
-						:style="[{
-							flex: scrollable ? 0 : 1
-						}]"
 					>
 						<view
 							class="u-tabs__wrapper__nav__item"
@@ -24,11 +21,11 @@
 							:key="index"
 							@tap="clickHandler(item, index)"
 							:ref="`u-tabs__wrapper__nav__item-${index}`"
-							:style="[$u.addStyle(itemStyle)]"
+							:style="[$u.addStyle(itemStyle), {flex: scrollable ? '' : 1}]"
 							:class="[`u-tabs__wrapper__nav__item-${index}`, item.disabled && 'u-tabs__wrapper__nav__item--disabled']"
 						>
 							<text
-								:class="['ellipsis' && 'u-line-1', item.disabled && 'u-tabs__wrapper__nav__item__text--disabled']"
+								:class="[item.disabled && 'u-tabs__wrapper__nav__item__text--disabled']"
 								class="u-tabs__wrapper__nav__item__text"
 								:style="[textStyle(index)]"
 							>{{ item[keyName] }}</text>
@@ -54,7 +51,8 @@
 							:style="[{
 									width: $u.addUnit(lineWidth),
 									height: $u.addUnit(lineHeight),
-									backgroundColor: lineColor
+									background: lineColor,
+									backgroundSize: lineBgSize,
 								}]"
 						>
 							<!-- #endif -->
@@ -67,7 +65,8 @@
 										transform: `translate(${lineOffsetLeft}px)`,
 										transitionDuration: `${firstTime ? 0 : duration}ms`,
 										height: $u.addUnit(lineHeight),
-										backgroundColor: lineColor
+										background: lineColor,
+										backgroundSize: lineBgSize,
 									}]"
 							>
 								<!-- #endif -->
@@ -236,7 +235,7 @@
 			resize() {
 				// 如果不存在list，则不处理
 				if(this.list.length === 0) {
-					return 
+					return
 				}
 				Promise.all([this.getTabsRect(), this.getAllItemRect()]).then(([tabsRect, itemRect = []]) => {
 					this.tabsRect = tabsRect
@@ -278,7 +277,7 @@
 				})
 				// #endif
 
-				// #ifdef APP-NVUE 
+				// #ifdef APP-NVUE
 				// nvue下，使用dom模块查询元素高度
 				// 返回一个promise，让调用此方法的主体能使用then回调
 				return new Promise(resolve => {
@@ -322,7 +321,6 @@
 					@include flex;
 					align-items: center;
 					justify-content: center;
-					flex: 1;
 
 					&--disabled {
 						/* #ifndef APP-NVUE */
@@ -342,7 +340,7 @@
 
 				&__line {
 					height: 3px;
-					background-color: $u-primary;
+					background: $u-primary;
 					width: 30px;
 					position: absolute;
 					bottom: 2px;

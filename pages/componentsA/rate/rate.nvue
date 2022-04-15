@@ -32,10 +32,18 @@
 			<text class="u-demo-block__title">是否禁用评分</text>
 			<view class="u-demo-block__content">
 				<view class="u-page__rate-item">
-					<u-rate size="20" :disabled="true"></u-rate>
+					<u-rate size="20" disabled></u-rate>
 				</view>
 			</view>
 		</view>
+    <view class="u-demo-block">
+      <text class="u-demo-block__title">是否只读评分</text>
+      <view class="u-demo-block__content">
+        <view class="u-page__rate-item">
+          <u-rate size="20" readonly></u-rate>
+        </view>
+      </view>
+    </view>
 		<view class="u-demo-block">
 			<text class="u-demo-block__title">自定义选中星星颜色</text>
 			<view class="u-demo-block__content">

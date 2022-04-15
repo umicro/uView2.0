@@ -146,7 +146,7 @@ export default {
     methods: {
         clickHandler() {
             // 如果为手机号模式，拨打电话
-            if (this.call && this.mode === 'phone' && uni.$u.test.mobile(this.text)) {
+            if (this.call && this.mode === 'phone') {
                 uni.makePhoneCall({
                     phoneNumber: this.text
                 })
@@ -165,6 +165,9 @@ export default {
     align-items: center;
     flex-wrap: nowrap;
     flex: 1;
+	/* #ifndef APP-NVUE */
+	width: 100%;
+	/* #endif */
 
     &__price {
         font-size: 14px;

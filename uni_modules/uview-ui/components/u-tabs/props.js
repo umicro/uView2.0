@@ -35,6 +35,11 @@ export default {
             type: [String, Number],
             default: uni.$u.props.tabs.lineHeight
         },
+        // 滑块背景显示大小，当滑块背景设置为图片时使用
+        lineBgSize: {
+            type: String,
+            default: uni.$u.props.tabs.lineBgSize
+        },
         // 菜单item的样式
         itemStyle: {
             type: [String, Object],

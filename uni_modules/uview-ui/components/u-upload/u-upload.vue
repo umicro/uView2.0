@@ -1,90 +1,94 @@
 <template>
 	<view class="u-upload" :style="[$u.addStyle(customStyle)]">
-		<view class="u-upload__wrap" v-if="previewImage">
-			<view
-			    class="u-upload__wrap__preview"
-			    v-for="(item, index) in lists"
-			    :key="index"
-			>
-				<image
-				    v-if="item.isImage || (item.type && item.type === 'image')"
-				    :src="item.thumb || item.url"
-				    :mode="imageMode"
-				    class="u-upload__wrap__preview__image"
-				    @tap="onPreviewImage(item)"
-					:style="[{
-						width: $u.addUnit(width),
-						height: $u.addUnit(height)
-					}]"
-				/>
+		<view class="u-upload__wrap" >
+			<template v-if="previewImage">
 				<view
-				    v-else
-				    class="u-upload__wrap__preview__other"
+				    class="u-upload__wrap__preview"
+				    v-for="(item, index) in lists"
+				    :key="index"
 				>
-					<u-icon
-					    color="#80CBF9"
-					    size="26"
-					    :name="item.isVideo || (item.type && item.type === 'video') ? 'movie' : 'folder'"
-					></u-icon>
-					<text class="u-upload__wrap__preview__other__text">{{item.isVideo || (item.type && item.type === 'video') ? '视频' : '文件'}}</text>
-				</view>
-				<view
-				    class="u-upload__status"
-				    v-if="item.status === 'uploading' || item.status === 'failed'"
-				>
-					<view class="u-upload__status__icon">
-						<u-icon
-						    v-if="item.status === 'failed'"
-						    name="close-circle"
-						    color="#ffffff"
-						    size="25"
-						/>
-						<u-loading-icon
-						    size="22"
-						    mode="circle"
-						    color="#ffffff"
-						    v-else
-						/>
-					</view>
-					<text
-					    v-if="item.message"
-					    class="u-upload__status__message"
-					>{{ item.message }}</text>
-				</view>
-				<view
-				    class="u-upload__deletable"
-				    v-if="item.status !== 'uploading' && (deletable || item.deletable)"
-				    @tap.stop="deleteItem(index)"
-				>
-					<view class="u-upload__deletable__icon">
-						<u-icon
-						    name="close"
-						    color="#ffffff"
-						    size="10"
-						></u-icon>
-					</view>
-				</view>
-				<view
-				    class="u-upload__success"
-				    v-if="item.status === 'success'"
-				>
-					<!-- #ifdef APP-NVUE -->
 					<image
-					    :src="successIcon"
-					    class="u-upload__success__icon"
-					></image>
-					<!-- #endif -->
-					<!-- #ifndef APP-NVUE -->
-					<view class="u-upload__success__icon">
+					    v-if="item.isImage || (item.type && item.type === 'image')"
+					    :src="item.thumb || item.url"
+					    :mode="imageMode"
+					    class="u-upload__wrap__preview__image"
+					    @tap="onPreviewImage(item)"
+						:style="[{
+							width: $u.addUnit(width),
+							height: $u.addUnit(height)
+						}]"
+					/>
+					<view
+					    v-else
+					    class="u-upload__wrap__preview__other"
+					>
 						<u-icon
-						    name="checkmark"
-						    color="#ffffff"
-						    size="12"
+						    color="#80CBF9"
+						    size="26"
+						    :name="item.isVideo || (item.type && item.type === 'video') ? 'movie' : 'folder'"
 						></u-icon>
+						<text class="u-upload__wrap__preview__other__text">{{item.isVideo || (item.type && item.type === 'video') ? '视频' : '文件'}}</text>
 					</view>
-					<!-- #endif -->
+					<view
+					    class="u-upload__status"
+					    v-if="item.status === 'uploading' || item.status === 'failed'"
+					>
+						<view class="u-upload__status__icon">
+							<u-icon
+							    v-if="item.status === 'failed'"
+							    name="close-circle"
+							    color="#ffffff"
+							    size="25"
+							/>
+							<u-loading-icon
+							    size="22"
+							    mode="circle"
+							    color="#ffffff"
+							    v-else
+							/>
+						</view>
+						<text
+						    v-if="item.message"
+						    class="u-upload__status__message"
+						>{{ item.message }}</text>
+					</view>
+					<view
+					    class="u-upload__deletable"
+					    v-if="item.status !== 'uploading' && (deletable || item.deletable)"
+					    @tap.stop="deleteItem(index)"
+					>
+						<view class="u-upload__deletable__icon">
+							<u-icon
+							    name="close"
+							    color="#ffffff"
+							    size="10"
+							></u-icon>
+						</view>
+					</view>
+					<view
+					    class="u-upload__success"
+					    v-if="item.status === 'success'"
+					>
+						<!-- #ifdef APP-NVUE -->
+						<image
+						    :src="successIcon"
+						    class="u-upload__success__icon"
+						></image>
+						<!-- #endif -->
+						<!-- #ifndef APP-NVUE -->
+						<view class="u-upload__success__icon">
+							<u-icon
+							    name="checkmark"
+							    color="#ffffff"
+							    size="12"
+							></u-icon>
+						</view>
+						<!-- #endif -->
+					</view>
 				</view>
-			</view>
+				
+			</template>
+			
 			<template v-if="isInCount">
 				<view
 				    v-if="$slots.default || $slots.$default"
@@ -205,11 +209,18 @@
 					disabled
 				} = this;
 				if (disabled) return;
+				// 如果用户传入的是字符串，需要格式化成数组
+				let capture;
+				try {
+					capture = uni.$u.test.array(this.capture) ? this.capture : this.capture.split(',');
+				}catch(e) {
+					capture = [];
+				}
 				chooseFile(
 						Object.assign({
 							accept: this.accept,
 							multiple: this.multiple,
-							capture: this.capture,
+							capture: capture,
 							compressed: this.compressed,
 							maxDuration: this.maxDuration,
 							sizeType: this.sizeType,
@@ -363,6 +374,7 @@
 	$u-upload-deletable-zIndex:3 !default;
 	$u-upload-success-bottom:0 !default;
 	$u-upload-success-right:0 !default;
+	$u-upload-success-border-style:solid !default;
 	$u-upload-success-border-top-color:transparent !default;
 	$u-upload-success-border-left-color:transparent !default;
 	$u-upload-success-border-bottom-color: $u-success !default;
@@ -468,6 +480,7 @@
 			// 由于weex(nvue)为阿里巴巴的KPI(部门业绩考核)的laji产物，不支持css绘制三角形
 			// 所以在nvue下使用图片，非nvue下使用css实现
 			/* #ifndef APP-NVUE */
+			border-style: $u-upload-success-border-style;
 			border-top-color: $u-upload-success-border-top-color;
 			border-left-color: $u-upload-success-border-left-color;
 			border-bottom-color: $u-upload-success-border-bottom-color;

@@ -4,7 +4,7 @@
 			class="u-navbar__placeholder"
 			v-if="fixed && placeholder"
 			:style="{
-				height: $u.addUnit($u.getPx(height) + $u.sys().statusBarHeight),
+				height: $u.addUnit($u.getPx(height) + $u.sys().statusBarHeight,'px'),
 			}"
 		></view>
 		<view :class="[fixed && 'u-navbar--fixed']">

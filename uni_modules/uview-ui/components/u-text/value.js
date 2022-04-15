@@ -28,7 +28,7 @@ export default {
                 if (uni.$u.test.func(format)) {
                     // 如果用户传入的是函数，使用函数格式化
                     return format(text)
-                } if (this.formart) {
+                } if (format) {
                     // 如果format非正则，非函数，则使用默认的时间格式化方法进行操作
                     return uni.$u.timeFormat(text, format)
                 }
@@ -36,7 +36,7 @@ export default {
                 return uni.$u.timeFormat(text, 'yyyy-mm-dd')
             } if (mode === 'phone') {
                 // 判断是否合法的手机号
-                !uni.$u.test.mobile(text) && uni.$u.error('手机号模式下，text参数需要为手机号码格式')
+                // !uni.$u.test.mobile(text) && uni.$u.error('手机号模式下，text参数需要为手机号码格式')
                 if (uni.$u.test.func(format)) {
                     // 如果用户传入的是函数，使用函数格式化
                     return format(text)

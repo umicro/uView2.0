@@ -72,7 +72,7 @@
 	</view>
 </template>
 
-<!-- #ifndef APP-NVUE || MP-WEIXIN || H5 || APP-VUE || MP-QQ -->
+<!-- #ifdef MP-WEIXIN || H5 || APP-VUE || MP-QQ -->
 <script
 	src="./scrollWxs.wxs"
 	module="wxs"

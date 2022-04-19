@@ -28,7 +28,8 @@ uView UI，是[uni-app](https://uniapp.dcloud.io/)全面兼容nvue的uni-app生�
 ### 官方9群：828504448（已满）
 ### 官方10群：232041042（已满）
 ### 官方11群：364463526（已满）
-### [点击加12群交流反馈：229707069](https://jq.qq.com/?_wv=1027&k=k7L9eaoi)
+### 官方12群：229707069（已满）
+### [点击加13群交流反馈：879811455](https://jq.qq.com/?_wv=1027&k=vz4By4k5)
 
 ## 特性
 
@@ -67,7 +68,7 @@ uView UI，是[uni-app](https://uniapp.dcloud.io/)全面兼容nvue的uni-app生�
 
 ## 安装
 
-#### **下载地址** —— [https://ext.dcloud.net.cn/plugin?id=1593](https://ext.dcloud.net.cn/plugin?id=1593)
+#### **uni-app插件市场链接** —— [https://ext.dcloud.net.cn/plugin?id=1593](https://ext.dcloud.net.cn/plugin?id=1593)
 
 ## 快速上手
 
@@ -82,7 +83,7 @@ uView UI，是[uni-app](https://uniapp.dcloud.io/)全面兼容nvue的uni-app生�
 </template>
 ```
 
-请通过[快速上手](https://v2.uviewui.com/components/quickstart.html)了解更详细的内容
+请通过[快速上手](https://uviewui.com/components/quickstart.html)了解更详细的内容
 
 
 ## 捐赠uView的研发

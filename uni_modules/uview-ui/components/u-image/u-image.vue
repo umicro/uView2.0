@@ -3,6 +3,7 @@
 		mode="fade"
 		:show="show"
 		:duration="fade ? 1000 : 0"
+		:customStyle="`width: ${wrapStyle.width}; height: ${wrapStyle.height}`"
 	>
 		<view
 			class="u-image"

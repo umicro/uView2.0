@@ -184,17 +184,23 @@ function addUnit(value = 'auto', unit = uni?.$u?.config?.unit ?? 'px') {
 function deepClone(obj) {
 	// 对常见的“非”值，直接返回原来值
 	if ([null, undefined, NaN, false].includes(obj)) return obj
-	if (typeof obj !== 'object' && typeof obj !== 'function') {
-		// 原始类型直接返回
-		return obj
-	}
-	const o = test.array(obj) ? [] : {}
-	for (const i in obj) {
-		if (obj.hasOwnProperty(i)) {
-			o[i] = typeof obj[i] === 'object' ? deepClone(obj[i]) : obj[i]
-		}
-	}
-	return o
+	  // 如果对象已经在表里，则从表里返回
+  if (hash.has(obj)) return hash.get(obj);
+
+  // 枚举可能的类型情况
+  const result = obj instanceof Set ? new Set(obj) // Set对象直接new
+    : obj instanceof Map ? new Map(Array.from(obj, ([key, val]) => [key, deepClone(val, hash)])) // 如果是map则迭代里面的值
+      : obj instanceof Date ? new Date(obj) // 日期对象直接new
+        : obj instanceof RegExp ? new RegExp(obj.source, obj.flags) // RegExp对象则重新用source和flags进行构造
+          : obj.constructor ? new obj.constructor() // 其余的就用它的构造函数去new
+            : Object.create(null); // 保底
+
+  // 记录所有访问过的对象，防止循环引用
+  hash.set(obj, result);
+
+  // 递归克隆传入的对象
+  return Object.assign(result, ...Object.keys(obj).map(
+    key => ({ [key]: deepClone(obj[key], hash) })));
 }
 
 /**

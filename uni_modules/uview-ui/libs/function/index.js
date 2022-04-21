@@ -181,7 +181,7 @@ function addUnit(value = 'auto', unit = uni?.$u?.config?.unit ?? 'px') {
  * @param {object} obj 需要深度克隆的对象
  * @returns {*} 克隆后的对象或者原值（不是对象）
  */
-function deepClone(obj) {
+function deepClone(obj, hash = new WeakMap()) {
 	// 对常见的“非”值，直接返回原来值
 	if ([null, undefined, NaN, false].includes(obj)) return obj
 	  // 如果对象已经在表里，则从表里返回

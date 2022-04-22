@@ -185,6 +185,7 @@ function deepClone(obj, hash = new WeakMap()) {
 	// 对常见的“非”值，直接返回原来值
 	if ([null, undefined, NaN, false].includes(obj)) return obj
 	  // 如果对象已经在表里，则从表里返回
+	if (Object(obj) !== obj) return obj;
   if (hash.has(obj)) return hash.get(obj);
 
   // 枚举可能的类型情况

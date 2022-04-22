@@ -49,6 +49,11 @@ export default {
         round: {
             type: [Boolean, String, Number],
             default: uni.$u.props.actionSheet.round
-        }
+        },
+		// 是否显示右上角关闭按钮
+		isCannelButton: {
+			type: Boolean,
+			default: uni.$u.props.actionSheet.isCannelButton
+		}
     }
 }

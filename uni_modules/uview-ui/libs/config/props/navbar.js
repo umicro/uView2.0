@@ -23,7 +23,7 @@ export default {
         bgColor: '#ffffff',
         titleWidth: '400rpx',
         height: '44px',
-		leftIconSize: 20,
+		leftIconSize: '20px',
 		leftIconColor: color.mainColor,
 		autoBack: false,
 		titleStyle: ''

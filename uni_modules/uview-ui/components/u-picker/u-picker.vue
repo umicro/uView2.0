@@ -161,7 +161,7 @@ export default {
 			this.setIndexs(value)
 
 			this.$emit('change', {
-				// #ifndef MP-WEIXIN
+				// #ifndef MP-WEIXIN || MP-LARK
 				// 微信小程序不能传递this，会因为循环引用而报错
 				picker: this,
 				// #endif

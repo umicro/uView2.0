@@ -250,7 +250,7 @@ export default {
         valueChange() {
             const value = this.innerValue;
             this.$nextTick(() => {
-                this.$emit("input", this.type === 'number' ? Number(value) : value);
+                this.$emit("input", value);
                 // 标识value值的变化是由内部引起的
                 this.changeFromInner = true;
                 this.$emit("change", value);

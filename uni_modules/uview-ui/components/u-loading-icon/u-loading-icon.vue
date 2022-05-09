@@ -25,7 +25,7 @@
 			<block v-if="mode === 'spinner'">
 				<!-- #ifndef APP-NVUE -->
 				<view
-					v-for="(item, index) in array12"
+					v-for="index in array12"
 					:key="index"
 					class="u-loading-icon__dot"
 				>

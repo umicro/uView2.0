@@ -14,7 +14,7 @@ function pickExclude(obj, keys) {
 function formatImage(res) {
     return res.tempFiles.map((item) => ({
         ...pickExclude(item, ['path']),
-        type: 'image',
+        type: item.type,
         url: item.path,
         thumb: item.path,
 		size: item.size,

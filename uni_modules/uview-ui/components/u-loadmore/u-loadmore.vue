@@ -28,7 +28,7 @@
 			>
 				<u-loading-icon
 				    :color="iconColor"
-				    size="17"
+				    :size="iconSize"
 				    :mode="loadingIcon"
 				></u-loading-icon>
 			</view>
@@ -60,6 +60,7 @@
 	 * @property {String}			bgColor			组件背景颜色，在页面是非白色时会用到（默认 'transparent' ）
 	 * @property {Boolean}			icon			加载中时是否显示图标（默认 true ）
 	 * @property {String | Number}	fontSize		字体大小（默认 14 ）
+	 * @property {String | Number}	iconSize		图标大小（默认 17 ）
 	 * @property {String}			color			字体颜色（默认 '#606266' ）
 	 * @property {String}			loadingIcon		加载图标（默认 'circle' ）
 	 * @property {String}			loadmoreText	加载前的提示语（默认 '加载更多' ）

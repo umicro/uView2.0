@@ -122,6 +122,7 @@
 		border-width: 0.5px;
 		border-radius: 100px;
 		border-color: $u-border-color;
+		border-style: solid;
 		padding: 3px 7px;
 		opacity: 0.8;
 	}

@@ -6,6 +6,7 @@
 				<u-loadmore
 					status="loading"
 					:isDot="true"
+					:iconSize="17"
 				></u-loadmore>
 			</view>
 		</view>

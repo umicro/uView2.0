@@ -153,7 +153,7 @@
 			uploadFilePromise(url) {
 				return new Promise((resolve, reject) => {
 					let a = uni.uploadFile({
-						url: '', // 仅为示例，非真实的接口地址
+						url: 'http://www.example.com/upload', // 仅为示例，非真实的接口地址
 						filePath: url,
 						name: 'file',
 						formData: {

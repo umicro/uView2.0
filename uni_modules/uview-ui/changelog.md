@@ -1,3 +1,50 @@
+## 2.0.31（2022-04-19）
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. 修复`upload`在`vue`页面上传成功后没有成功标志的问题
+2. 解决演示项目中微信小程序模拟上传图片一直出于上传中问题
+3. 修复`u-code-input`组件在`nvue`页面编译到`app`平台上光标异常问题（`app`去除此功能）
+4. 修复`actionSheet`组件标题关闭按钮点击事件名称错误的问题
+5. 其他修复
+## 2.0.30（2022-04-04）
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. `u-rate`增加`readonly`属性
+2. `tabs`滑块支持设置背景图片
+3. 修复`u-subsection` `mode`为`subsection`时，滑块样式不正确的问题
+4. `u-code-input`添加光标效果动画
+5. 修复`popup`的`open`事件不触发
+6. 修复`u-flex-column`无效的问题
+7. 修复`u-datetime-picker`索引在特定场合异常问题
+8. 修复`u-datetime-picker`最小时间字符串模板错误问题
+9. `u-swiper`添加`m3u8`验证
+10. `u-swiper`修改判断image和video逻辑
+11. 修复`swiper`无法使用本地图片问题，增加`type`参数
+12. 修复`u-row-notice`格式错误问题
+13. 修复`u-switch`组件当`unit`为`rpx`时,`nodeStyle`消失的问题
+14. 修复`datetime-picker`组件`showToolbar`与`visibleItemCount`属性无效的问题
+15. 修复`upload`组件条件编译位置判断错误，导致`previewImage`属性设置为`false`时，整个组件都会被隐藏的问题
+16. 修复`u-checkbox-group`设置`shape`属性无效的问题
+17. 修复`u-upload`的`capture`传入字符串的时候不生效的问题
+18. 修复`u-action-sheet`组件，关闭事件逻辑错误的问题
+19. 修复`u-list`触顶事件的触发错误的问题
+20. 修复`u-text`只有手机号可拨打的问题
+21. 修复`u-textarea`不能换行的问题
+22. 其他修复
+## 2.0.29（2022-03-13）
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. 修复`u--text`组件设置`decoration`属性未生效的问题
+2. 修复`u-datetime-picker`使用`formatter`后返回值不正确
+3. 修复`u-datetime-picker` `intercept` 可能为undefined
+4. 修复已设置单位 uni..config.unit = 'rpx'时，线型指示器 `transform` 的位置翻倍，导致指示器超出宽度
+5. 修复mixin中bem方法生成的类名在支付宝和字节小程序中失效
+6. 修复默认值传值为空的时候，打开`u-datetime-picker`报错，不能选中第一列时间的bug
+7. 修复`u-datetime-picker`使用`formatter`后返回值不正确
+8. 修复`u-image`组件`loading`无效果的问题
+9. 修复`config.unit`属性设为`rpx`时，导航栏占用高度不足导致塌陷的问题
+10. 修复`u-datetime-picker`组件`itemHeight`无效问题
+11. 其他修复
 ## 2.0.28（2022-02-22）
 # uView2.0重磅发布，利剑出鞘，一统江湖
 

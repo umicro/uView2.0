@@ -67,6 +67,9 @@
 			}
 		},
 		computed: {
+			isActive(){
+				return this.value === this.activeValue;
+			},
 			switchStyle() {
 				let style = {}
 				// 这里需要加2，是为了腾出边框的距离，否则圆点node会和外边框紧贴在一起
@@ -78,7 +81,7 @@
 				if(this.customInactiveColor) {
 					style.borderColor = 'rgba(0, 0, 0, 0)'
 				}
-				style.backgroundColor = this.value === this.activeValue ? this.activeColor : this.inactiveColor
+				style.backgroundColor = this.isActive ? this.activeColor : this.inactiveColor
 				return style;
 			},
 			nodeStyle() {
@@ -86,7 +89,8 @@
 				// 如果自定义非激活颜色，将node圆点的尺寸减少两个像素，让其与外边框距离更大一点
 				style.width = uni.$u.addUnit(this.size - this.space)
 				style.height = uni.$u.addUnit(this.size - this.space)
-				style.transform = `translateX(${this.value === this.activeValue ? -this.space : -this.size}px)`
+				const translateX = this.isActive ? uni.$u.addUnit(this.space) : uni.$u.addUnit(this.size);
+				style.transform = `translateX(-${translateX})`
 				return style
 			},
 			bgStyle() {
@@ -96,7 +100,7 @@
 				style.height = uni.$u.addUnit(this.size)
 				style.backgroundColor = this.inactiveColor
 				// 打开时，让此元素收缩，否则反之
-				style.transform = `scale(${this.value === this.activeValue ? 0 : 1})`
+				style.transform = `scale(${this.isActive ? 0 : 1})`
 				return style
 			},
 			customInactiveColor() {
@@ -107,7 +111,7 @@
 		methods: {
 			clickHandler() {
 				if (!this.disabled && !this.loading) {
-					const oldValue = this.value === this.activeValue ? this.inactiveValue : this.activeValue
+					const oldValue = this.isActive ? this.inactiveValue : this.activeValue
 					if(!this.asyncChange) {
 						this.$emit('input', oldValue)
 					}

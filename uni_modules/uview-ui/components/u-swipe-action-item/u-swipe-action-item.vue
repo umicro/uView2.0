@@ -148,7 +148,6 @@
 		position: relative;
 		overflow: hidden;
 		/* #ifndef APP-NVUE || MP-WEIXIN */
-		touch-action: none;
 		/* #endif */
 
 		&__content {

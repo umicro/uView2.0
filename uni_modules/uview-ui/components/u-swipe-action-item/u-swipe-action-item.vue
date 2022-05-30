@@ -92,7 +92,16 @@
 			// 由于wxs无法直接读取外部的值，需要在外部值变化时，重新执行赋值逻辑
 			wxsInit(newValue, oldValue) {
 				this.queryRect()
-			}
+			},
+			// #ifndef APP-NVUE
+			show:{
+				handler(newVal){
+					if(!newVal){
+						this.closeHandler()
+					}
+				}
+			},
+			// #endif
 		},
 		computed: {
 			wxsInit() {

@@ -148,7 +148,8 @@
 		position: relative;
 		overflow: hidden;
 		/* #ifndef APP-NVUE || MP-WEIXIN */
-		/* #endif */
+    touch-action: pan-y;
+    /* #endif */
 
 		&__content {
 			background-color: #FFFFFF;

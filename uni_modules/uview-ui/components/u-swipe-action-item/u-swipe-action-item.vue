@@ -93,15 +93,15 @@
 			wxsInit(newValue, oldValue) {
 				this.queryRect()
 			},
+			// #ifndef APP-NVUE
 			show:{
 				handler(val){
 					if(!val){
-						// #ifndef APP-NVUE
 						this.closeHandler()
-						// #endif
 					}
 				}
 			}
+			// #endif
 		},
 		computed: {
 			wxsInit() {

@@ -92,7 +92,7 @@
 			// 由于wxs无法直接读取外部的值，需要在外部值变化时，重新执行赋值逻辑
 			wxsInit(newValue, oldValue) {
 				this.queryRect()
-			},
+			}, 
 			// #ifndef APP-NVUE
 			show:{
 				handler(newVal){
@@ -157,7 +157,6 @@
 		position: relative;
 		overflow: hidden;
 		/* #ifndef APP-NVUE || MP-WEIXIN */
-		touch-action: none;
 		/* #endif */
 
 		&__content {

@@ -13,6 +13,7 @@
 		:confirmText="confirmText"
 		:cancelColor="cancelColor"
 		:confirmColor="confirmColor"
+		:immediateChange="immediateChange"
 		@close="close"
 		@cancel="cancel"
 		@confirm="confirm"
@@ -38,6 +39,7 @@
 	 * @tutorial https://www.uviewui.com/components/datetimePicker.html
 	 * @property {Boolean}			show				用于控制选择器的弹出与收起 ( 默认 false )
 	 * @property {Boolean}			showToolbar			是否显示顶部的操作栏  ( 默认 true )
+	 * @property {Boolean}			immediateChange		是否在手指松开时立即触发change事件（默认 false ）
 	 * @property {String | Number}	value				绑定值
 	 * @property {String}			title				顶部标题
 	 * @property {String}			mode				展示格式 mode=date为日期选择，mode=time为时间选择，mode=year-month为年月选择，mode=datetime为日期时间选择  ( 默认 ‘datetime )

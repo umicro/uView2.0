@@ -15,8 +15,8 @@
 							:class="[item1.disabled && 'u-calendar-month__days__day__select__info--disabled']"
 							:style="[textStyle(item1)]">{{ item1.day }}</text>
 						<text v-if="getBottomInfo(index, index1, item1)"
-							class="u-calendar-month__days__day__select__buttom-info"
-							:class="[item1.disabled && 'u-calendar-month__days__day__select__buttom-info--disabled']"
+							class="u-calendar-month__days__day__select__bottom-info"
+							:class="[item1.disabled && 'u-calendar-month__days__day__select__bottom-info--disabled']"
 							:style="[textStyle(item1)]">{{ getBottomInfo(index, index1, item1) }}</text>
 						<text v-if="item1.dot" class="u-calendar-month__days__day__select__dot"></text>
 					</view>
@@ -517,7 +517,7 @@
 						right: 7px;
 					}
 
-					&__buttom-info {
+					&__bottom-info {
 						color: $u-content-color;
 						text-align: center;
 						position: absolute;

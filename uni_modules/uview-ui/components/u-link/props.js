@@ -34,6 +34,14 @@ export default {
         text: {
             type: String,
             default: uni.$u.props.link.text
+        },
+        // 该属性指定在何处显示链接的资源（仅在 H5 端可用，默认值：_blank）
+        target: {
+            type: String,
+            default: uni.$u.props.link.target,
+			validator: function(value) {
+				return ['_blank', '_self', '_parent', '_top'].indexOf(value) !== -1
+			}
         }
     }
 }

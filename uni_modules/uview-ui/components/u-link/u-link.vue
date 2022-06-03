@@ -20,6 +20,7 @@
 	 * @property {String}			mpTips		各个小程序平台把链接复制到粘贴板后的提示语（默认“链接已复制，请在浏览器打开”）
 	 * @property {String}			lineColor	下划线颜色，默认同color参数颜色 
 	 * @property {String}			text		超链接的问题，不使用slot形式传入，是因为nvue下无法修改颜色 
+	 * @property {String}			target		该属性指定在何处显示链接的资源（仅在 H5 端可用，默认值：_blank，可选值: _blank, _self, _parent, _top）
 	 * @property {Object}			customStyle	定义需要用到的外部样式
 	 * 
 	 * @example <u-link href="http://www.uviewui.com">蜀道难，难于上青天</u-link>
@@ -49,7 +50,7 @@
 				plus.runtime.openURL(this.href)
 				// #endif
 				// #ifdef H5
-				window.open(this.href)
+				window.open(this.href, this.target)
 				// #endif
 				// #ifdef MP
 				uni.setClipboardData({
@@ -69,15 +70,12 @@
 </script>
 
 <style lang="scss" scoped>
-	@import "../../libs/css/components.scss";
-	$u-link-line-height:1 !default;
+	$u-link-line-height: 1 !default;
 
 	.u-link {
 		/* #ifndef APP-NVUE */
 		line-height: $u-link-line-height;
 		/* #endif */
-		@include flex;
-		flex-wrap: wrap;
-		flex: 1;
+		width: max-content;
 	}
 </style>

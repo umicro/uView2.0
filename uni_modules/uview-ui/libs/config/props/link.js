@@ -21,6 +21,7 @@ export default {
         href: '',
         mpTips: '链接已复制，请在浏览器打开',
         lineColor: '',
-        text: ''
+        text: '',
+		target: '_blank'
     }
 }

@@ -134,7 +134,7 @@
 				// 如果是显示圆形，设置一个很多的半径值即可
 				style.borderRadius = this.shape == 'circle' ? '10000px' : uni.$u.addUnit(this.radius)
 				// 如果设置圆角，必须要有hidden，否则可能圆角无效
-				style.overflow = this.borderRadius > 0 ? 'hidden' : 'visible'
+				style.overflow = this.radius > 0 ? 'hidden' : 'visible'
 				// if (this.fade) {
 				// 	style.opacity = this.opacity
 				// 	// nvue下，这几个属性必须要分开写

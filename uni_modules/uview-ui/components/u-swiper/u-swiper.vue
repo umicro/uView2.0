@@ -183,7 +183,8 @@
 			// 切换轮播时，暂停视频播放
 			pauseVideo(index) {
 				const lastItem = this.getSource(this.list[index])
-				if (uni.$u.test.video(lastItem)) {
+				const isVideo = uni.$u.test.video(lastItem) || this.getItemType(this.list[index]) === 'video'
+				if (isVideo) {
 					// 当视频隐藏时，暂停播放
 					const video = uni.createVideoContext(`video-${index}`, this)
 					video.pause()

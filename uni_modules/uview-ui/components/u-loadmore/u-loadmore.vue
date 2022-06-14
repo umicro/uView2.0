@@ -75,6 +75,7 @@
 	 * @property {String | Number}	marginBottom	下边距 （默认 10 ）
 	 * @property {String | Number}	height			高度，单位px （默认 'auto' ）
 	 * @property {Boolean}			line			是否显示左边分割线  （默认 false ）
+	 * @property {Boolean}			dashed			是否虚线，true-实线，false-虚线  （默认 false ）
 	 * @event {Function} loadmore status为loadmore时，点击组件会发出此事件
 	 * @example <u-loadmore :status="status" icon-type="iconType" load-text="loadText" />
 	 */

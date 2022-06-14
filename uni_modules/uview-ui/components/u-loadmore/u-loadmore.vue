@@ -13,8 +13,9 @@
 	>
 		<u-line
 		    length="140rpx"
-		    color="#E6E8EB"
+		    :color="lineColor"
 		    :hairline="false"
+			:dashed="dashed"
 			v-if="line"
 		></u-line>
 		<!-- 加载中和没有更多的状态才显示两边的横线 -->
@@ -42,8 +43,9 @@
 		</view>
 		<u-line
 		    length="140rpx"
-		    color="#E6E8EB"
+		    :color="lineColor"
 			:hairline="false"
+			:dashed="dashed"
 			v-if="line"
 		></u-line>
 	</view>
@@ -68,6 +70,7 @@
 	 * @property {String}			nomoreText		没有更多的提示语（默认 '没有更多了' ）
 	 * @property {Boolean}			isDot			到上一个相邻元素的距离 （默认 false ）
 	 * @property {String}			iconColor		加载中图标的颜色 （默认 '#b7b7b7' ）
+	 * @property {String | Number}	lineColor		线条颜色（默认 #E6E8EB ）
 	 * @property {String | Number}	marginTop		上边距 （默认 10 ）
 	 * @property {String | Number}	marginBottom	下边距 （默认 10 ）
 	 * @property {String | Number}	height			高度，单位px （默认 'auto' ）

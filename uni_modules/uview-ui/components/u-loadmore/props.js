@@ -21,10 +21,10 @@ export default {
             default: uni.$u.props.loadmore.fontSize
         },
 		// 图标大小
-		iconSize: {
-		    type: [String, Number],
-		    default: uni.$u.props.loadmore.iconSize
-		},
+        iconSize: {
+            type: [String, Number],
+            default: uni.$u.props.loadmore.iconSize
+        },
         // 字体颜色
         color: {
             type: String,

@@ -25,6 +25,8 @@ export default {
         marginTop: 10,
         marginBottom: 10,
         height: 'auto',
-        line: false
+        line: false,
+		lineColor: '#E6E8EB',
+		dashed: false,
     }
 }

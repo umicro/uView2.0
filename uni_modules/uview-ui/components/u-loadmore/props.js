@@ -83,7 +83,7 @@ export default {
         },
 		// 线条颜色
 		lineColor: {
-		    type: Boolean,
+		    type: String,
 		    default: uni.$u.props.loadmore.lineColor
 		},
 		// 是否虚线，true-虚线，false-实线

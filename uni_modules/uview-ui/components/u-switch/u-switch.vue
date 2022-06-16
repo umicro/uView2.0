@@ -89,7 +89,7 @@
 				// 如果自定义非激活颜色，将node圆点的尺寸减少两个像素，让其与外边框距离更大一点
 				style.width = uni.$u.addUnit(this.size - this.space)
 				style.height = uni.$u.addUnit(this.size - this.space)
-				const translateX = this.isActive ? uni.$u.addUnit(this.space) : uni.$u.addUnit(this.size);
+				const translateX = this.isActive ? uni.$u.addUnit(this.space) : uni.$u.addUnit(this.size / 2);
 				style.transform = `translateX(-${translateX})`
 				return style
 			},

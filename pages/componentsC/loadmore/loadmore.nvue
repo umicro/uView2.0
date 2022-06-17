@@ -59,6 +59,18 @@
 				></u-loadmore>
 			</view>
 		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义线条颜色</text>
+			<view class="u-demo-block__content">
+				<u-loadmore
+					loadmoreText="看,我和别人不一样"
+					color="#1CD29B"
+					lineColor="#1CD29B"
+					dashed
+					:line="true"
+				></u-loadmore>
+			</view>
+		</view>
 	</view>
 </template>
 

@@ -31,6 +31,11 @@ export default {
             type: String,
             default: uni.$u.props.checkboxGroup.inactiveColor
         },
+		// 组件背景颜色
+		bgColor: {
+		    type: String,
+		    default: uni.$u.props.checkboxGroup.bgColor
+		},
 
         // 整个组件的尺寸，默认px
         size: {

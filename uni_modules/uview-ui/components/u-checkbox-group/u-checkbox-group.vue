@@ -19,6 +19,7 @@
 	 * @property {Boolean}			disabled		是否禁用全部checkbox （默认 false ）
 	 * @property {String}			activeColor		选中状态下的颜色，如设置此值，将会覆盖parent的activeColor值 （默认 '#2979ff' ）
 	 * @property {String}			inactiveColor	未选中的颜色 （默认 '#c8c9cc' ）
+	 * @property {String}			bgColor			组件背景颜色 （默认 '#ffffff' ）
 	 * @property {String | Number}	size			整个组件的尺寸 单位px （默认 18 ）
 	 * @property {String}			placement		布局方式，row-横向，column-纵向 （默认 'row' ）
 	 * @property {String | Number}	labelSize		label的字体大小，px单位  （默认 14 ）
@@ -40,7 +41,7 @@
 			// 所以需要手动通知子组件，这里返回一个parentData变量，供watch监听，在其中去通知每一个子组件重新从父组件(u-checkbox-group)
 			// 拉取父组件新的变化后的参数
 			parentData() {
-				return [this.value, this.disabled, this.inactiveColor, this.activeColor, this.size, this.labelDisabled, this.shape,
+				return [this.value, this.disabled, this.inactiveColor, this.bgColor, this.activeColor, this.size, this.labelDisabled, this.shape,
 					this.iconSize, this.borderBottom, this.placement
 				]
 			},

@@ -35,6 +35,11 @@ export default {
             type: String,
             default: uni.$u.props.checkbox.inactiveColor
         },
+		// 组件背景颜色
+		bgColor: {
+		    type: String,
+		    default: uni.$u.props.checkbox.bgColor
+		},
         // 图标的大小，单位px
         iconSize: {
             type: [String, Number],

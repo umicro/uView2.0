@@ -44,6 +44,7 @@
 	 * @property {String | Boolean}				disabled		是否禁用
 	 * @property {String}						activeColor		选中状态下的颜色，如设置此值，将会覆盖parent的activeColor值
 	 * @property {String}						inactiveColor	未选中的颜色
+	 * @property {String}						bgColor			组件背景颜色
 	 * @property {String | Number}				iconSize		图标的大小，单位px
 	 * @property {String}						iconColor		图标颜色
 	 * @property {String | Number}				label			label提示文字，因为nvue下，直接slot进来的文字，由于特殊的结构，无法修改样式
@@ -70,6 +71,7 @@
 					shape: 'square',
 					activeColor: null,
 					inactiveColor: null,
+					bgColor: null,
 					size: 18,
 					value: null,
 					iconColor: null,
@@ -105,6 +107,10 @@
 			elInactiveColor() {
 				return this.inactiveColor ? this.inactiveColor : (this.parentData.inactiveColor ? this.parentData.inactiveColor :
 					'#c8c9cc');
+			},
+			// 组件背景颜色
+			elBgColor() {
+				return this.bgColor ? this.bgColor : (this.parentData.bgColor ? this.parentData.bgColor : '#ffffff');
 			},
 			// label的颜色
 			elLabelColor() {
@@ -149,7 +155,7 @@
 			iconWrapStyle() {
 				// checkbox的整体样式
 				const style = {}
-				style.backgroundColor = this.isChecked && !this.elDisabled ? this.elActiveColor : '#ffffff'
+				style.backgroundColor = this.isChecked && !this.elDisabled ? this.elActiveColor : this.elBgColor
 				style.borderColor = this.isChecked && !this.elDisabled ? this.elActiveColor : this.elInactiveColor
 				style.width = uni.$u.addUnit(this.elSize)
 				style.height = uni.$u.addUnit(this.elSize)

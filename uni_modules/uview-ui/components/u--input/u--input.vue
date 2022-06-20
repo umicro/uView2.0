@@ -35,6 +35,7 @@
 		:shape="shape"
 		:customStyle="customStyle"
 		:formatter="formatter"
+		:ignoreCompositionEvent="ignoreCompositionEvent"
 		@focus="$emit('focus')"
 		@blur="e => $emit('blur', e)"
 		@keyboardheightchange="$emit('keyboardheightchange')"

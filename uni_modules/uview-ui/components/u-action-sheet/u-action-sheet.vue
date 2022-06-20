@@ -16,6 +16,7 @@
 				<view
 				    class="u-action-sheet__header__icon-wrap"
 				    @tap.stop="cancel"
+					v-if="isCannelButton"
 				>
 					<u-icon
 					    name="close"
@@ -132,6 +133,7 @@
 	 * @property {String}			sendMessageImg		会话内消息卡片图片，openType="contact"时有效
 	 * @property {Boolean}			showMessageCard		是否显示会话内消息卡片，设置此参数为 true，用户进入客服会话会在右下角显示"可能要发送的小程序"提示，用户点击后可以快速发送小程序消息，openType="contact"时有效 （默认 false ）
 	 * @property {String}			appParameter		打开 APP 时，向 APP 传递的参数，openType=launchApp 时有效
+	 * @property {Boolean} 			isCannelButton		是否显示右上角关闭按钮
 	 * 
 	 * @event {Function} select			点击ActionSheet列表项时触发 
 	 * @event {Function} close			点击取消按钮时触发

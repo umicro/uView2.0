@@ -55,7 +55,7 @@
 			<!-- #endif -->
 			<view
 				class="u-scroll-list__indicator"
-				v-if="indicator"
+				v-show="indicator"
 				:style="[$u.addStyle(indicatorStyle)]"
 			>
 				<view

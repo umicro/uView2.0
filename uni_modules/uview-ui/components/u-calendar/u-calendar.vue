@@ -210,11 +210,12 @@ export default {
 		},
 		init() {
 			// 校验maxDate，不能小于当前时间
-			if (
-				this.innerMaxDate &&
-				new Date(this.innerMaxDate).getTime() <= Date.now()
-			) {
-				return uni.$u.error('maxDate不能小于当前时间')
+			if (this.innerMaxDate) {
+				const thatInnerMaxDate = new Date(this.innerMaxDate)
+				thatInnerMaxDate.setHours(23, 59, 59, 999)
+				if (thatInnerMaxDate.getTime() < Date.now()) {
+					return uni.$u.error('maxDate不能小于当前时间')
+				}
 			}
 			// 滚动区域的高度
 			this.listHeight = this.rowHeight * 5 + 30

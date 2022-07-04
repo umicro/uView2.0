@@ -20,7 +20,7 @@
             	<input
             	    class="u-input__content__field-wrapper__field"
             	    :style="[inputStyle]"
-            	    :type="type"
+            	    :type="showPassword ? (passwordVisible ? 'text' : 'password') : type"
             	    :focus="focus"
             	    :cursor="cursor"
             	    :value="innerValue"
@@ -37,7 +37,7 @@
             	    :adjust-position="adjustPosition"
             	    :selection-end="selectionEnd"
             	    :selection-start="selectionStart"
-            	    :password="password || type === 'password' || undefined"
+            	    :password="passwordType"
                     :ignoreCompositionEvent="ignoreCompositionEvent"
             	    @input="onInput"
             	    @blur="onBlur"
@@ -46,6 +46,16 @@
             	    @keyboardheightchange="onkeyboardheightchange"
             	/>
             </view>
+			<view
+			    class="u-input__content__subfix-icon"
+			    v-if="showPwdVisible"
+				@tap="handlePasswordVisible"
+			>
+				<u-icon
+					:name="passwordIcon"
+					size="18"
+				></u-icon>
+			</view>
             <view
                 class="u-input__content__clear"
                 v-if="isShowClear"
@@ -116,6 +126,8 @@ import props from "./props.js";
  * @property {String}			shape					输入框形状，circle-圆形，square-方形 （ 默认 'square' ）
  * @property {Object}			customStyle				定义需要用到的外部样式
  * @property {Boolean}			ignoreCompositionEvent	是否忽略组件内对文本合成系统事件的处理。
+ * @property {Boolean}			showPassword	        是否显示切换密码图标 ( 默认 false )
+ * 
  * @example <u-input v-model="value" :password="true" suffix-icon="lock-fill" />
  */
 export default {
@@ -132,7 +144,8 @@ export default {
             // value绑定值的变化是由内部还是外部引起的
             changeFromInner: false,
 			// 过滤处理方法
-			innerFormatter: value => value
+			innerFormatter: value => value,
+			passwordVisible: false
         };
     },
     watch: {
@@ -203,8 +216,24 @@ export default {
             };
             return style;
         },
+		passwordIcon () {
+			return this.passwordVisible ? 'eye-fill' : 'eye-off'
+		},
+		passwordType () {
+			if (this.showPassword) {
+				return false
+			}
+			return this.password || this.type === 'password' || undefined
+		},
+        showPwdVisible () {
+            const { showPassword, readonly, innerValue, disabled } = this;
+            return showPassword && !disabled && !readonly && innerValue;
+        },
     },
     methods: {
+		handlePasswordVisible () {
+			this.passwordVisible = !this.passwordVisible
+		},
 		// 在微信小程序中，不支持将函数当做props参数，故只能通过ref形式调用
 		setFormatter(e) {
 			this.innerFormatter = e

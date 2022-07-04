@@ -182,6 +182,11 @@ export default {
 		ignoreCompositionEvent: {
 			type: Boolean,
 			default: true
+		},
+		// 是否显示切换密码图标
+		showPassword: {
+			type: Boolean,
+			default: false
 		}
 	}
 }

@@ -36,6 +36,7 @@
 		:customStyle="customStyle"
 		:formatter="formatter"
 		:ignoreCompositionEvent="ignoreCompositionEvent"
+		:showPassword="showPassword"
 		@focus="$emit('focus')"
 		@blur="e => $emit('blur', e)"
 		@keyboardheightchange="$emit('keyboardheightchange')"

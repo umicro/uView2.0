@@ -112,6 +112,7 @@
 import button from "../../libs/mixin/button.js";
 import openType from "../../libs/mixin/openType.js";
 import props from "./props.js";
+import throttle from '../../libs/function/throttle';
 /**
  * button 按钮
  * @description Button 按钮
@@ -265,9 +266,7 @@ export default {
             // 非禁止并且非加载中，才能点击
             if (!this.disabled && !this.loading) {
 				// 进行节流控制，每this.throttle毫秒内，只在开始处执行
-				uni.$u.throttle(() => {
-					this.$emit("click");
-				}, this.throttleTime);
+                uni.$u.throttle(() => this.$emit("click"), this.throttleTime)
             }
         },
         // 下面为对接uniapp官方按钮开放能力事件回调的对接

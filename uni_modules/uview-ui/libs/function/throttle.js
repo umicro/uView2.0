@@ -1,30 +1,55 @@
-let timer; let
-    flag
-/**
- * 节流原理：在一定时间内，只能触发一次
- *
- * @param {Function} func 要执行的回调函数
- * @param {Number} wait 延时的时间
- * @param {Boolean} immediate 是否立即执行
- * @return null
- */
-function throttle(func, wait = 500, immediate = true) {
-    if (immediate) {
-        if (!flag) {
-            flag = true
-            // 如果是立即执行，则在wait毫秒内开始时执行
-            typeof func === 'function' && func()
-            timer = setTimeout(() => {
-                flag = false
-            }, wait)
-        }
-    } else if (!flag) {
-        flag = true
-        // 如果是非立即执行，则在wait毫秒内的结束处执行
-        timer = setTimeout(() => {
-            flag = false
-            typeof func === 'function' && func()
+import md5 from '../util/md5.min.js'
+
+const throttleStore = {}
+
+const generateThrottle = (key = '') => {
+  let pendding = false
+  return (func = () => {}, wait = 500, immediate = true, ...args) => {
+
+    if (!pendding) {
+      pendding = true
+      if (immediate) {
+        func?.(...args)
+        setTimeout(() => {
+          pendding = false
+          delete throttleStore[key]
         }, wait)
+      } else {
+        setTimeout(() => {
+            func?.(...args)
+            pendding = false
+            delete throttleStore[key]
+        }, wait)
+      }
     }
+  }
 }
+
+const throttle = (...args) => {
+  let key = ''
+  const customKeyIndex = args.findIndex(v => typeof v === 'string' && v.includes('throttleKey:'))
+
+  if (customKeyIndex !== -1) {
+      key = args.splice(customKeyIndex, 1)[0].trim().split('throttleKey:')[1]
+  } else {
+      const { stack } = new Error('generate throttle error')
+      key = md5(stack)
+  }
+
+  const throttleCb = throttleStore[key]
+
+  if (throttleCb) {
+      throttleCb()
+      return
+  }
+
+  const cb = generateThrottle(key)
+
+  throttleStore[key] = cb
+
+  cb(...args)
+}
+
+throttle.customThrottleKey = (throttleKey) => (...args) => throttle(`throttleKey:${throttleKey}`, ...args)
+
 export default throttle

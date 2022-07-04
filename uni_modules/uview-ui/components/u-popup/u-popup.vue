@@ -34,7 +34,7 @@
 					<u-icon
 						name="close"
 						color="#909399"
-						size="18"
+						size="18px"
 						bold
 					></u-icon>
 				</view>

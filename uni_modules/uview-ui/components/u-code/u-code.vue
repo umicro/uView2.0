@@ -74,7 +74,6 @@
 				this.canGetCode = false
 				// 这里放这句，是为了一开始时就提示，否则要等setInterval的1秒后才会有提示
 				this.changeEvent(this.changeText.replace(/x|X/, this.secNum))
-				this.setTimeToStorage()
 				this.timer = setInterval(() => {
 					if (--this.secNum) {
 						// 用当前倒计时的秒数替换提示字符串中的"x"字母
@@ -88,6 +87,7 @@
 						this.canGetCode = true
 					}
 				}, 1000)
+				this.setTimeToStorage()
 			},
 			// 重置，可以让用户再次获取验证码
 			reset() {

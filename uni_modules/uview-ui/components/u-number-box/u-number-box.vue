@@ -198,8 +198,8 @@
 				value = value === '' ? 0 : +value
 				// 对比最大最小值，取在min和max之间的值
 				value = Math.max(Math.min(this.max, value), this.min)
-				// 如果设定了最大的小数位数，使用toFixed去进行格式化
-				if (this.decimalLength !== null) {
+				// 如果设定了最大的小数位数，使用toFixed去进行格式化 (前提是小数位的长度大于最大的小数位数)
+				if (this.decimalLength !== null && value.toString().split(".").length > 1 && value.toString().split(".")[1].length > this.decimalLength) {
 					value = value.toFixed(this.decimalLength)
 				}
 				return value

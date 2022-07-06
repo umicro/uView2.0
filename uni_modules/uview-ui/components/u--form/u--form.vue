@@ -52,11 +52,11 @@
 				// #endif
 				return this.$refs.uForm.validate()
 			},
-			validateField(value, callback) {
+			validateField(value, callback, event) {
 				// #ifdef MP-WEIXIN
 				this.setMpData()
 				// #endif
-				return this.$refs.uForm.validateField(value, callback)
+				return this.$refs.uForm.validateField(value, callback, event)
 			},
 			resetFields() {
 				// #ifdef MP-WEIXIN

@@ -28,6 +28,7 @@
 					v-for="(item, index) in innerColumns"
 					:key="index"
 					class="u-picker__view__column"
+					
 				>
 					<text
 						v-if="$u.test.array(item)"
@@ -39,6 +40,8 @@
 							lineHeight: $u.addUnit(itemHeight),
 							fontWeight: index1 === innerIndex[index] ? 'bold' : 'normal'
 						}"
+						@touchstart="columnTouchStart"
+						@touchend="columnTouchEnd"
 					>{{ getItemText(item1) }}</text>
 				</picker-view-column>
 			</picker-view>
@@ -48,6 +51,7 @@
 			>
 				<u-loading-icon mode="circle"></u-loading-icon>
 			</view>
+			<view class="u-picker-overlay" v-if="overlay"></view>
 		</view>
 	</u-popup>
 </template>
@@ -90,6 +94,10 @@ export default {
 			innerColumns: [],
 			// 上一次的变化列索引
 			columnIndex: 0,
+			columnTouchStartY: 0,
+			columnTouchEndY: 0,
+			overlay: false,
+			isConfirm: true
 		}
 	},
 	watch: {
@@ -129,6 +137,7 @@ export default {
 		},
 		// 点击工具栏的确定按钮
 		confirm() {
+			if(!this.isConfirm) return;
 			this.$emit('confirm', {
 				indexs: this.innerIndex,
 				value: this.innerColumns.map((item, index) => item[this.innerIndex[index]]),
@@ -137,6 +146,14 @@ export default {
 		},
 		// 选择器某一列的数据发生变化时触发
 		changeHandler(e) {
+			// 关闭遮罩
+			this.overlay = false;
+			clearTimeout(this.offOverlayTime);
+			this.isConfirm = false;
+			setTimeout(()=>{
+				this.isConfirm = true;
+			},300);
+			
 			const {
 				value
 			} = e.detail
@@ -228,6 +245,26 @@ export default {
 				await uni.$u.sleep()
 			})()
 			return this.innerColumns.map((item, index) => item[this.innerIndex[index]])
+		},
+		// 列项目触摸开始
+		columnTouchStart(e){
+			// 这是为了抹平ios的平台差异，screenY为clientY的回退方案
+			this.columnTouchStartY = e.changedTouches[0].clientY || e.changedTouches[0].screenY || 0; 
+		},
+		// 列项目触摸结束
+		columnTouchEnd(e){
+			// console.log(e.changedTouches[0].clientY);
+			// 这是为了抹平ios的平台差异，screenY为clientY的回退方案
+			this.columnTouchEndY = e.changedTouches[0].clientY || e.changedTouches[0].screenY || 0;
+			
+			let diffValue = this.columnTouchEndY - this.columnTouchStartY;
+			// 差值 正负 大于 20 则显示遮罩
+			if(diffValue > 20 || diffValue < -20){
+				this.overlay = true;
+				this.offOverlayTime = setTimeout(()=>{
+					this.overlay = false;
+				},1500);
+			}
 		}
 	},
 }
@@ -278,6 +315,19 @@ export default {
 			align-items: center;
 			background-color: rgba(255, 255, 255, 0.87);
 			z-index: 1000;
+		}
+		
+		&-overlay{
+			position: absolute;
+			background: transparent; // 遮罩层的颜色为透明
+			top: 0;
+			left: 0;
+			width: 100%;
+			/* #ifdef APP-NVUE */
+			width: 750rpx;
+			/* #endif */
+			height: 300px;
+			z-index: 10;
 		}
 	}
 </style>

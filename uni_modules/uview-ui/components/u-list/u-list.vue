@@ -79,7 +79,7 @@
 				// vue下，scroll-view在上拉加载时的偏移值
 				offset: 0,
 				sys: uni.$u.sys(),
-				// 记录u-list距离屏幕顶部的高度
+				// 记录u-list距离屏幕可用高度顶部的偏移值
 				topOfScreen: 0
 			}
 		},
@@ -89,8 +89,7 @@
 					addUnit = uni.$u.addUnit
 				if (this.width != 0) style.width = addUnit(this.width)
 				if (this.height != 0) style.height = addUnit(this.height)
-				// - 如果没有定义列表高度，则默认使用屏幕高度
-				// + 如果没有定义列表高度，则默认使用屏幕高度 减去 剩余可用高度
+				// 如果没有定义列表高度，则默认使用屏幕高度减去u-list上方元素高度
 				if (!style.height) style.height = addUnit(this.sys.windowHeight - this.topOfScreen, 'px')
 					return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
 			}
@@ -106,21 +105,21 @@
 			this.anchors = []
 		},
 		mounted() {
-			// #ifdef APP-NVUE
-			console.log('我是nvue')
-			dom.getComponentRect(this.$refs.uList, option => {  
-				this.topOfScreen = option.size.top
-			})
-			// #endif
-
-			// #ifndef APP-NVUE
-			console.log('我不是nvue')
-			this.$u.getRect('.u-list').then(res => {
-				this.topOfScreen = res.top
-			})
-			// #endif
+			this.setTopOfScreen()
 		},
 		methods: {
+			setTopOfScreen() {
+				// #ifdef APP-NVUE
+				dom.getComponentRect(this.$refs.uList, option => {  
+					this.topOfScreen = option.size.top
+				})
+				// #endif
+				// #ifndef APP-NVUE
+				this.$u.getRect('.u-list').then(res => {
+					this.topOfScreen = res.top
+				})
+				// #endif
+			},
 			updateOffsetFromChild(top) {
 				this.offset = top
 			},

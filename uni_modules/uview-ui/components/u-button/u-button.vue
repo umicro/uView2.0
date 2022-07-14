@@ -251,13 +251,13 @@ export default {
         },
         // 字体大小
         textSize() {
-            let fontSize = 14,
-                { size } = this;
-            if (size === "large") fontSize = 16;
-            if (size === "normal") fontSize = 14;
-            if (size === "small") fontSize = 12;
-            if (size === "mini") fontSize = 10;
-            return fontSize;
+            let { size } = this;
+            if (this.fontSize !== uni.$u.props.button.fontSize) return this.fontSize;
+            if (size === "large") return 16;
+            if (size === "normal") return 14;
+            if (size === "small") return 12;
+            if (size === "mini") return 10;
+            return 14;
         },
     },
     methods: {

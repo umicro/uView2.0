@@ -156,6 +156,11 @@ export default {
         color: {
             type: String,
             default: uni.$u.props.button.color
-        }
+        },
+		// 自定义按钮字体大小
+		fontSize: {
+		  type: Number,
+		  default: uni.$u.props.button.fontSize
+		}
     }
 }

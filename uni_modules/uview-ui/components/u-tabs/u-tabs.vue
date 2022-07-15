@@ -202,7 +202,10 @@
 				// 如果disabled状态，返回
 				if (item.disabled) return
 				this.innerCurrent = index
-				this.resize()
+				//选中item与未选中item的style不一致（字体大小）导致滑块位置不正确
+				this.$nextTick(() => {
+					this.resize()
+				})
 				this.$emit('change', {
 					...item,
 					index

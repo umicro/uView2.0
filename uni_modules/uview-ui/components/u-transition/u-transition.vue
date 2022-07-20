@@ -6,7 +6,7 @@
 		@tap="clickHandler"
 		:class="classes"
 		:style="[mergeStyle]"
-		@touchmove="noop"
+		@touchmove.stop.prevent="noop"
 	>
 		<slot />
 	</view>

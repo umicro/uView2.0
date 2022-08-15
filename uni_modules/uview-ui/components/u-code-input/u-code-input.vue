@@ -33,6 +33,7 @@
 			:focus="focus"
 			:value="inputValue"
 			:maxlength="maxlength"
+			:adjustPosition="adjustPosition"
 			class="u-code-input__input"
 			@input="inputHandler"
 			:style="{

@@ -1,3 +1,21 @@
+## 2.0.33（2022-06-17）
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. 修复`loadmore`组件`lineColor`类型错误问题
+2. 修复`u-parse`组件`imgtap`、`linktap`不生效问题
+## 2.0.32（2022-06-16）
+# uView2.0重磅发布，利剑出鞘，一统江湖
+1. `u-loadmore`新增自定义颜色、虚/实线
+2. 修复`u-swiper-action`组件部分平台不能上下滑动的问题
+3. 修复`u-list`回弹问题
+4. 修复`notice-bar`组件动画在低端安卓机可能会抖动的问题
+5. `u-loading-page`添加控制图标大小的属性`iconSize`
+6. 修复`u-tooltip`组件`color`参数不生效的问题
+7. 修复`u--input`组件使用`blur`事件输出为`undefined`的bug
+8. `u-code-input`组件新增键盘弹起时，是否自动上推页面参数`adjustPosition`
+9. 修复`image`组件`load`事件无回调对象问题
+10. 修复`button`组件`loadingSize`设置无效问题
+10. 其他修复
 ## 2.0.31（2022-04-19）
 # uView2.0重磅发布，利剑出鞘，一统江湖
 

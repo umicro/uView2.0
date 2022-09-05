@@ -3,8 +3,7 @@
 	<u-popup
 	    :show="show"
 	    mode="bottom"
-	    @close="close"
-	    :closeOnClickOverlay="closeOnClickOverlay"
+	    @close="closeHandler"
 	    :safeAreaInsetBottom="safeAreaInsetBottom"
 	    :round="round"
 	>
@@ -16,7 +15,7 @@
 				<text class="u-action-sheet__header__title u-line-1">{{title}}</text>
 				<view
 				    class="u-action-sheet__header__icon-wrap"
-				    @tap.stop="close"
+				    @tap.stop="cancel"
 				>
 					<u-icon
 					    name="close"
@@ -100,7 +99,7 @@
 				    :hover-stay-time="150"
 				    v-if="cancelText"
 				    class="u-action-sheet__cancel-text"
-				    @tap="close"
+				    @tap="cancel"
 				>{{cancelText}}</text>
 			</view>
 		</view>
@@ -167,11 +166,15 @@
 			},
 		},
 		methods: {
-			close() {
+			closeHandler() {
 				// 允许点击遮罩关闭时，才发出close事件
 				if(this.closeOnClickOverlay) {
 					this.$emit('close')
 				}
+			},
+			// 点击取消按钮
+			cancel() {
+				this.$emit('close')
 			},
 			selectHandler(index) {
 				const item = this.actions[index]

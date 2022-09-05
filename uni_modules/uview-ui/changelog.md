@@ -1,3 +1,79 @@
+## 2.0.33（2022-06-17）
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. 修复`loadmore`组件`lineColor`类型错误问题
+2. 修复`u-parse`组件`imgtap`、`linktap`不生效问题
+## 2.0.32（2022-06-16）
+# uView2.0重磅发布，利剑出鞘，一统江湖
+1. `u-loadmore`新增自定义颜色、虚/实线
+2. 修复`u-swiper-action`组件部分平台不能上下滑动的问题
+3. 修复`u-list`回弹问题
+4. 修复`notice-bar`组件动画在低端安卓机可能会抖动的问题
+5. `u-loading-page`添加控制图标大小的属性`iconSize`
+6. 修复`u-tooltip`组件`color`参数不生效的问题
+7. 修复`u--input`组件使用`blur`事件输出为`undefined`的bug
+8. `u-code-input`组件新增键盘弹起时，是否自动上推页面参数`adjustPosition`
+9. 修复`image`组件`load`事件无回调对象问题
+10. 修复`button`组件`loadingSize`设置无效问题
+10. 其他修复
+## 2.0.31（2022-04-19）
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. 修复`upload`在`vue`页面上传成功后没有成功标志的问题
+2. 解决演示项目中微信小程序模拟上传图片一直出于上传中问题
+3. 修复`u-code-input`组件在`nvue`页面编译到`app`平台上光标异常问题（`app`去除此功能）
+4. 修复`actionSheet`组件标题关闭按钮点击事件名称错误的问题
+5. 其他修复
+## 2.0.30（2022-04-04）
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. `u-rate`增加`readonly`属性
+2. `tabs`滑块支持设置背景图片
+3. 修复`u-subsection` `mode`为`subsection`时，滑块样式不正确的问题
+4. `u-code-input`添加光标效果动画
+5. 修复`popup`的`open`事件不触发
+6. 修复`u-flex-column`无效的问题
+7. 修复`u-datetime-picker`索引在特定场合异常问题
+8. 修复`u-datetime-picker`最小时间字符串模板错误问题
+9. `u-swiper`添加`m3u8`验证
+10. `u-swiper`修改判断image和video逻辑
+11. 修复`swiper`无法使用本地图片问题，增加`type`参数
+12. 修复`u-row-notice`格式错误问题
+13. 修复`u-switch`组件当`unit`为`rpx`时,`nodeStyle`消失的问题
+14. 修复`datetime-picker`组件`showToolbar`与`visibleItemCount`属性无效的问题
+15. 修复`upload`组件条件编译位置判断错误，导致`previewImage`属性设置为`false`时，整个组件都会被隐藏的问题
+16. 修复`u-checkbox-group`设置`shape`属性无效的问题
+17. 修复`u-upload`的`capture`传入字符串的时候不生效的问题
+18. 修复`u-action-sheet`组件，关闭事件逻辑错误的问题
+19. 修复`u-list`触顶事件的触发错误的问题
+20. 修复`u-text`只有手机号可拨打的问题
+21. 修复`u-textarea`不能换行的问题
+22. 其他修复
+## 2.0.29（2022-03-13）
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. 修复`u--text`组件设置`decoration`属性未生效的问题
+2. 修复`u-datetime-picker`使用`formatter`后返回值不正确
+3. 修复`u-datetime-picker` `intercept` 可能为undefined
+4. 修复已设置单位 uni..config.unit = 'rpx'时，线型指示器 `transform` 的位置翻倍，导致指示器超出宽度
+5. 修复mixin中bem方法生成的类名在支付宝和字节小程序中失效
+6. 修复默认值传值为空的时候，打开`u-datetime-picker`报错，不能选中第一列时间的bug
+7. 修复`u-datetime-picker`使用`formatter`后返回值不正确
+8. 修复`u-image`组件`loading`无效果的问题
+9. 修复`config.unit`属性设为`rpx`时，导航栏占用高度不足导致塌陷的问题
+10. 修复`u-datetime-picker`组件`itemHeight`无效问题
+11. 其他修复
+## 2.0.28（2022-02-22）
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. search组件新增searchIconSize属性
+2. 兼容Safari/Webkit中传入时间格式如2022-02-17 12:00:56
+3. 修复text value.js 判断日期出format错误问题
+4. priceFormat格式化金额出现精度错误
+5. priceFormat在部分情况下出现精度损失问题
+6. 优化表单rules提示
+7. 修复avatar组件src为空时，展示状态不对
+8. 其他修复
 ## 2.0.27（2022-01-28）
 # uView2.0重磅发布，利剑出鞘，一统江湖
 

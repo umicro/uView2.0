@@ -55,7 +55,7 @@
 			<!-- #endif -->
 			<view
 				class="u-scroll-list__indicator"
-				v-if="indicator"
+				v-show="indicator"
 				:style="[$u.addStyle(indicatorStyle)]"
 			>
 				<view
@@ -72,13 +72,11 @@
 	</view>
 </template>
 
-<!-- #ifndef APP-NVUE || MP-WEIXIN || H5 || APP-VUE || MP-QQ -->
 <script
 	src="./scrollWxs.wxs"
 	module="wxs"
 	lang="wxs"
 ></script>
-<!-- #endif -->
 
 <script>
 /**

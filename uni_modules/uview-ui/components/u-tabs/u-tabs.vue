@@ -14,9 +14,6 @@
 					<view
 						class="u-tabs__wrapper__nav"
 						ref="u-tabs__wrapper__nav"
-						:style="[{
-							flex: scrollable ? 0 : 1
-						}]"
 					>
 						<view
 							class="u-tabs__wrapper__nav__item"
@@ -24,7 +21,7 @@
 							:key="index"
 							@tap="clickHandler(item, index)"
 							:ref="`u-tabs__wrapper__nav__item-${index}`"
-							:style="[$u.addStyle(itemStyle)]"
+							:style="[$u.addStyle(itemStyle), {flex: scrollable ? '' : 1}]"
 							:class="[`u-tabs__wrapper__nav__item-${index}`, item.disabled && 'u-tabs__wrapper__nav__item--disabled']"
 						>
 							<text
@@ -54,7 +51,8 @@
 							:style="[{
 									width: $u.addUnit(lineWidth),
 									height: $u.addUnit(lineHeight),
-									backgroundColor: lineColor
+									background: lineColor,
+									backgroundSize: lineBgSize,
 								}]"
 						>
 							<!-- #endif -->
@@ -67,7 +65,8 @@
 										transform: `translate(${lineOffsetLeft}px)`,
 										transitionDuration: `${firstTime ? 0 : duration}ms`,
 										height: $u.addUnit(lineHeight),
-										backgroundColor: lineColor
+										background: lineColor,
+										backgroundSize: lineBgSize,
 									}]"
 							>
 								<!-- #endif -->
@@ -341,7 +340,7 @@
 
 				&__line {
 					height: 3px;
-					background-color: $u-primary;
+					background: $u-primary;
 					width: 30px;
 					position: absolute;
 					bottom: 2px;

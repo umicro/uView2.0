@@ -31,6 +31,7 @@
 		<u-loading-page
 		    :loadingText="loadingPageData.loadingText"
 		    :image="loadingPageData.image"
+			:iconSize="loadingPageData.iconSize"
 		    :loadingMode="loadingPageData.loadingMode"
 		    :bgColor="loadingPageData.bgColor"
 		    :loading="loading"
@@ -86,33 +87,34 @@
 					image: '',
 					loadingMode: '',
 					bgColor: '#ffffff',
+					iconSize: 28
 				}
 				if (indexNum == 0) {
 					//自定义提示内容
 					this.loadingPageData.loadingMode = 'semicircle'
 					this.loadingPageData.loadingText = "Hello uView"
-					this.loadingPageData.color = '#C8C8C8',
-						this.loadingPageData.loadingColor = '#C8C8C8'
+					this.loadingPageData.color = '#C8C8C8'
+					this.loadingPageData.loadingColor = '#C8C8C8'
 				} else if (indexNum == 1) {
 					// 自定义图片
-					this.loadingPageData.image =
-						"/static/uview/common/logo.png"
+					this.loadingPageData.image = "/static/uview/common/logo.png"
 					this.loadingPageData.loadingText = "uView UI"
-					this.loadingPageData.color = '#C8C8C8',
-						this.loadingPageData.loadingColor = '#C8C8C8'
+					this.loadingPageData.iconSize = 40
+					this.loadingPageData.color = '#C8C8C8'
+					this.loadingPageData.loadingColor = '#C8C8C8'
 				} else if (indexNum == 2) {
 					// 自定义加载动画模式
 					this.loadingPageData.loadingMode = 'circle'
 					this.loadingPageData.loadingText = "uView UI"
-					this.loadingPageData.color = '#C8C8C8',
-						this.loadingPageData.loadingColor = '#C8C8C8'
+					this.loadingPageData.color = '#C8C8C8'
+					this.loadingPageData.loadingColor = '#C8C8C8'
 				} else if (indexNum == 3) {
 					// 自定义背景色
 					this.loadingPageData.loadingMode = 'spinner'
 					this.loadingPageData.bgColor = 'rgba(0, 0, 0, 0.3)'
 					this.loadingPageData.loadingText = "uView UI"
-					this.loadingPageData.color = '#eee',
-						this.loadingPageData.loadingColor = '#ddd'
+					this.loadingPageData.color = '#eee'
+					this.loadingPageData.loadingColor = '#ddd'
 				}
 				this.loading = true
 				setTimeout(() => {

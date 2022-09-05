@@ -33,7 +33,7 @@
 	 * switch 开关选择器
 	 * @description 选择开关一般用于只有两个选择，且只能选其一的场景。
 	 * @tutorial https://www.uviewui.com/components/switch.html
-	 * @property {Boolean}						loading			是否处于加载中（默认 false ） 
+	 * @property {Boolean}						loading			是否处于加载中（默认 false ）
 	 * @property {Boolean}						disabled		是否禁用（默认 false ）
 	 * @property {String | Number}				size			开关尺寸，单位px （默认 25 ）
 	 * @property {String}						activeColor		打开时的背景色 （默认 '#2979ff' ）
@@ -44,7 +44,7 @@
 	 * @property {Boolean}						asyncChange		是否开启异步变更，开启后需要手动控制输入值 （默认 false ）
 	 * @property {String | Number}				space			圆点与外边框的距离 （默认 0 ）
 	 * @property {Object}						customStyle		定义需要用到的外部样式
-	 * 
+	 *
 	 * @event {Function} change 在switch打开或关闭时触发
 	 * @example <u-switch v-model="checked" active-color="red" inactive-color="#eee"></u-switch>
 	 */
@@ -56,7 +56,7 @@
 				immediate: true,
 				handler(n) {
 					if(n !== this.inactiveValue && n !== this.activeValue) {
-						uni.$u.error('v-mode绑定的值必须为inactiveValue、activeValue二者之一')
+						uni.$u.error('v-model绑定的值必须为inactiveValue、activeValue二者之一')
 					}
 				}
 			}
@@ -67,6 +67,9 @@
 			}
 		},
 		computed: {
+			isActive(){
+				return this.value === this.activeValue;
+			},
 			switchStyle() {
 				let style = {}
 				// 这里需要加2，是为了腾出边框的距离，否则圆点node会和外边框紧贴在一起
@@ -76,9 +79,9 @@
 				// 如果自定义了“非激活”演示，name边框颜色设置为透明(跟非激活颜色一致)
 				// 这里不能简单的设置为非激活的颜色，否则打开状态时，会有边框，所以需要透明
 				if(this.customInactiveColor) {
-					style.borderColor = 'rgba(0, 0, 0, 0)' 
+					style.borderColor = 'rgba(0, 0, 0, 0)'
 				}
-				style.backgroundColor = this.value === this.activeValue ? this.activeColor : this.inactiveColor
+				style.backgroundColor = this.isActive ? this.activeColor : this.inactiveColor
 				return style;
 			},
 			nodeStyle() {
@@ -86,7 +89,8 @@
 				// 如果自定义非激活颜色，将node圆点的尺寸减少两个像素，让其与外边框距离更大一点
 				style.width = uni.$u.addUnit(this.size - this.space)
 				style.height = uni.$u.addUnit(this.size - this.space)
-				style.transform = `translateX(${this.value === this.activeValue ? -this.space : -this.size}px)`
+				const translateX = this.isActive ? uni.$u.addUnit(this.space) : uni.$u.addUnit(this.size);
+				style.transform = `translateX(-${translateX})`
 				return style
 			},
 			bgStyle() {
@@ -96,7 +100,7 @@
 				style.height = uni.$u.addUnit(this.size)
 				style.backgroundColor = this.inactiveColor
 				// 打开时，让此元素收缩，否则反之
-				style.transform = `scale(${this.value === this.activeValue ? 0 : 1})`
+				style.transform = `scale(${this.isActive ? 0 : 1})`
 				return style
 			},
 			customInactiveColor() {
@@ -107,7 +111,7 @@
 		methods: {
 			clickHandler() {
 				if (!this.disabled && !this.loading) {
-					const oldValue = this.value === this.activeValue ? this.inactiveValue : this.activeValue
+					const oldValue = this.isActive ? this.inactiveValue : this.activeValue
 					if(!this.asyncChange) {
 						this.$emit('input', oldValue)
 					}

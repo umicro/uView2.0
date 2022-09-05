@@ -69,8 +69,9 @@ export default {
 				// 如果在打开状态下，进行点击的话，直接关闭单元格
 				return this.moveCellByAnimation('close') && this.unbindBindingX()
 			}
-			e.stopPropagation && e.stopPropagation() 
-			e.preventDefault && e.preventDefault()
+			// 特殊情况下，e可能不为一个对象
+			e?.stopPropagation && e.stopPropagation() 
+			e?.preventDefault && e.preventDefault()
 			this.moving = true
 			// 获取元素ref
 			const content = this.getContentRef()

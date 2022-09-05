@@ -80,6 +80,10 @@ export default {
             type: String,
             default: uni.$u.props.search.searchIcon
         },
+        searchIconSize: {
+            type: [Number, String],
+            default: uni.$u.props.search.searchIconSize
+        },
         // 组件与其他上下左右元素之间的距离，带单位的字符串形式，如"30px"、"30px 20px"等写法
         margin: {
             type: String,

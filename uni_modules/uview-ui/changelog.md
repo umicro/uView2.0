@@ -1,3 +1,16 @@
+## 2.0.34（2022-09-24）
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. `u-input`、`u-textarea`增加`ignoreCompositionEvent`属性
+2. 修复`route`方法调用可能报错的问题
+3. 修复`u-no-network`组件`z-index`无效的问题
+4. 修复`textarea`组件在h5上confirmType=""报错的问题
+5. `u-rate`适配`nvue`
+6. 优化验证手机号码的正则表达式(根据工信部发布的《电信网编号计划（2017年版）》进行修改。)
+7. `form-item`添加`labelPosition`属性
+8. `u-calendar`修复`maxDate`设置为当前日期，并且当前时间大于08：00时无法显示日期列表的问题 (#724)
+9. `u-radio`增加一个默认插槽用于自定义修改label内容 (#680)
+10. 修复`timeFormat`函数在safari重的兼容性问题 (#664)
 ## 2.0.33（2022-06-17）
 # uView2.0重磅发布，利剑出鞘，一统江湖
 

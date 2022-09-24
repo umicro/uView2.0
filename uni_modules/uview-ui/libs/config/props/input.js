@@ -30,6 +30,7 @@ export default {
 		disableDefaultPadding: false,
 		cursor: -1,
 		cursorSpacing: 30,
+		alwaysEmbed:false,
 		selectionStart: -1,
 		selectionEnd: -1,
 		adjustPosition: true,

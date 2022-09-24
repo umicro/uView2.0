@@ -1,73 +1,31 @@
 <template>
     <view class="u-input" :class="inputClass" :style="[wrapperStyle]">
         <view class="u-input__content">
-            <view
-                class="u-input__content__prefix-icon"
-                v-if="prefixIcon || $slots.prefix"
-            >
+            <view class="u-input__content__prefix-icon" v-if="prefixIcon || $slots.prefix">
                 <slot name="prefix">
-                    <u-icon
-                        :name="prefixIcon"
-                        size="18"
-                        :customStyle="prefixIconStyle"
-                    ></u-icon>
+                    <u-icon :name="prefixIcon" size="18" :customStyle="prefixIconStyle"></u-icon>
                 </slot>
             </view>
             <view class="u-input__content__field-wrapper" @tap="clickHandler">
-				<!-- 根据uni-app的input组件文档，H5和APP中只要声明了password参数(无论true还是false)，type均失效，此时
+                <!-- 根据uni-app的input组件文档，H5和APP中只要声明了password参数(无论true还是false)，type均失效，此时
 					为了防止type=number时，又存在password属性，type无效，此时需要设置password为undefined
 				 -->
-            	<input
-            	    class="u-input__content__field-wrapper__field"
-            	    :style="[inputStyle]"
-            	    :type="type"
-            	    :focus="focus"
-            	    :cursor="cursor"
-            	    :value="innerValue"
-            	    :auto-blur="autoBlur"
-            	    :disabled="disabled || readonly"
-            	    :maxlength="maxlength"
-            	    :placeholder="placeholder"
-            	    :placeholder-style="placeholderStyle"
-            	    :placeholder-class="placeholderClass"
-            	    :confirm-type="confirmType"
-            	    :confirm-hold="confirmHold"
-            	    :hold-keyboard="holdKeyboard"
-            	    :cursor-spacing="cursorSpacing"
-            	    :adjust-position="adjustPosition"
-            	    :selection-end="selectionEnd"
-            	    :selection-start="selectionStart"
-            	    :password="password || type === 'password' || undefined"
-                    :ignoreCompositionEvent="ignoreCompositionEvent"
-            	    @input="onInput"
-            	    @blur="onBlur"
-            	    @focus="onFocus"
-            	    @confirm="onConfirm"
-            	    @keyboardheightchange="onkeyboardheightchange"
-            	/>
+                <input class="u-input__content__field-wrapper__field" :style="[inputStyle]" :type="type" :focus="focus"
+                    :cursor="cursor" :value="innerValue" :auto-blur="autoBlur" :disabled="disabled || readonly"
+                    :maxlength="maxlength" :placeholder="placeholder" :placeholder-style="placeholderStyle"
+                    :placeholder-class="placeholderClass" :confirm-type="confirmType" :confirm-hold="confirmHold"
+                    :hold-keyboard="holdKeyboard" :cursor-spacing="cursorSpacing" :always-embed="alwaysEmbed"
+                    :adjust-position="adjustPosition" :selection-end="selectionEnd" :selection-start="selectionStart"
+                    :password="password || type === 'password' || undefined"
+                    :ignoreCompositionEvent="ignoreCompositionEvent" @input="onInput" @blur="onBlur" @focus="onFocus"
+                    @confirm="onConfirm" @keyboardheightchange="onkeyboardheightchange" />
             </view>
-            <view
-                class="u-input__content__clear"
-                v-if="isShowClear"
-                @tap="onClear"
-            >
-                <u-icon
-                    name="close"
-                    size="11"
-                    color="#ffffff"
-                    customStyle="line-height: 12px"
-                ></u-icon>
+            <view class="u-input__content__clear" v-if="isShowClear" @tap="onClear">
+                <u-icon name="close" size="11" color="#ffffff" customStyle="line-height: 12px"></u-icon>
             </view>
-            <view
-                class="u-input__content__subfix-icon"
-                v-if="suffixIcon || $slots.suffix"
-            >
+            <view class="u-input__content__subfix-icon" v-if="suffixIcon || $slots.suffix">
                 <slot name="suffix">
-                    <u-icon
-                        :name="suffixIcon"
-                        size="18"
-                        :customStyle="suffixIconStyle"
-                    ></u-icon>
+                    <u-icon :name="suffixIcon" size="18" :customStyle="suffixIconStyle"></u-icon>
                 </slot>
             </view>
         </view>
@@ -100,6 +58,7 @@ import props from "./props.js";
  * @property {Boolean}			disableDefaultPadding	是否去掉 iOS 下的默认内边距，仅微信小程序，且type=textarea时有效 （ 默认 false ）
  * @property {String ｜ Number}	cursor					指定focus时光标的位置（ 默认 -1 ）
  * @property {String ｜ Number}	cursorSpacing			输入框聚焦时底部与键盘的距离 （ 默认 30 ）
+ * @property {Boolean}          alwaysEmbed             强制 input 处于同层状态，默认 focus 时 input 会切到非同层状态 ,仅在 iOS 下生效(默认false)
  * @property {String ｜ Number}	selectionStart			光标起始位置，自动聚集时有效，需与selection-end搭配使用 （ 默认 -1 ）
  * @property {String ｜ Number}	selectionEnd			光标结束位置，自动聚集时有效，需与selection-start搭配使用 （ 默认 -1 ）
  * @property {Boolean}			adjustPosition			键盘弹起时，是否自动上推页面 （ 默认 true ）
@@ -131,8 +90,8 @@ export default {
             firstChange: true,
             // value绑定值的变化是由内部还是外部引起的
             changeFromInner: false,
-			// 过滤处理方法
-			innerFormatter: value => value
+            // 过滤处理方法
+            innerFormatter: value => value
         };
     },
     watch: {
@@ -199,16 +158,16 @@ export default {
             const style = {
                 color: this.color,
                 fontSize: uni.$u.addUnit(this.fontSize),
-				textAlign: this.inputAlign
+                textAlign: this.inputAlign
             };
             return style;
         },
     },
     methods: {
-		// 在微信小程序中，不支持将函数当做props参数，故只能通过ref形式调用
-		setFormatter(e) {
-			this.innerFormatter = e
-		},
+        // 在微信小程序中，不支持将函数当做props参数，故只能通过ref形式调用
+        setFormatter(e) {
+            this.innerFormatter = e
+        },
         // 当键盘输入时，触发input事件
         onInput(e) {
             let { value = "" } = e.detail || {};
@@ -218,8 +177,8 @@ export default {
             // 为了避免props的单向数据流特性，需要先将innerValue值设置为当前值，再在$nextTick中重新赋予设置后的值才有效
             this.innerValue = value
             this.$nextTick(() => {
-            	this.innerValue = formatValue;
-            	this.valueChange();
+                this.innerValue = formatValue;
+                this.valueChange();
             })
         },
         // 输入框失去焦点时触发
@@ -244,7 +203,7 @@ export default {
         },
         // 键盘高度发生变化的时候触发此事件
         // 兼容性：微信小程序2.7.0+、App 3.1.0+
-		onkeyboardheightchange() {
+        onkeyboardheightchange() {
             this.$emit("keyboardheightchange");
         },
         // 内容发生变化，进行处理
@@ -319,15 +278,15 @@ export default {
             @include flex(row);
             margin: 0;
             flex: 1;
-			
-			&__field {
-				line-height: 26px;
-				text-align: left;
-				color: $u-main-color;
-				height: 24px;
-				font-size: 15px;
-				flex: 1;
-			}
+
+            &__field {
+                line-height: 26px;
+                text-align: left;
+                color: $u-main-color;
+                height: 24px;
+                font-size: 15px;
+                flex: 1;
+            }
         }
 
         &__clear {

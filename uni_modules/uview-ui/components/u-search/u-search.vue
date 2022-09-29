@@ -50,16 +50,25 @@
 				}, inputStyle]"
 			/>
 			<view
-			    class="u-search__content__icon u-search__content__close"
-			    v-if="keyword && clearabled && focused"
-			    @tap="clear"
+				class="u-search__content__icon"
+			    :style="{
+					backgroundColor: bgColor,
+					borderTopRightRadius: shape == 'round' ? '100px' : '4px',
+					borderBottomRightRadius: shape == 'round' ? '100px' : '4px',
+					height: height + 'rpx',
+					padding: '0 16rpx',
+				}"
+				v-if="keyword && clearabled && focused"
+				@tap="clear"
 			>
-				<u-icon
-				    name="close"
-				    size="11"
-				    color="#ffffff"
-					customStyle="line-height: 12px"
-				></u-icon>
+				<view class="u-search__content__icon u-search__content__close">
+					<u-icon
+						name="close"
+						size="11"
+						color="#ffffff"
+						customStyle="line-height: 12px"
+					></u-icon>
+				</view>
 			</view>
 		</view>
 		<text
@@ -237,6 +246,7 @@ $u-search-action-margin-left: 5px !default;
 		@include flex;
 		align-items: center;
 		padding: $u-search-content-padding;
+		padding-right: 0;
 		flex: 1;
 		justify-content: space-between;
 		border-width: 1px;

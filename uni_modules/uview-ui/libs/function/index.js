@@ -172,6 +172,10 @@ function addStyle(customStyle, target = 'object') {
  */
 function addUnit(value = 'auto', unit = uni?.$u?.config?.unit ?? 'px') {
 	value = String(value)
+	// 通过setConfig配置默认单位为rpx后，涉及组件数值更新为两倍计算
+	if(unit === 'rpx'){
+		return test.number(value) ? `${value * 2}${unit}` : value
+	}
 	// 用uView内置验证规则中的number判断是否为数值
 	return test.number(value) ? `${value}${unit}` : value
 }

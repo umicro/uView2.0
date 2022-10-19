@@ -158,7 +158,7 @@
 					if (index2 === 0) {
 						// 获取当前为星期几，如果为0，则为星期天，减一为每月第一天时，需要向左偏移的item个数
 						week = (week === 0 ? 7 : week) - 1
-						style.marginLeft = uni.$u.addUnit(week * dayWidth)
+						style.marginLeft = week * dayWidth + 'px';
 					}
 					if (this.mode === 'range') {
 						// 之所以需要这么写，是因为DCloud公司的iOS客户端的开发者能力有限导致的bug

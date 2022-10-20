@@ -310,6 +310,7 @@
 			},
 			getMonthRect() {
 				// 获取每个月份数据的尺寸，用于父组件在scroll-view滚动事件中，监听当前滚动到了第几个月份
+				// #ifndef MP-WEIXIN
 				const promiseAllArr = this.months.map((item, index) => this.getMonthRectByPromise(
 					`u-calendar-month-${index}`))
 				// 一次性返回
@@ -325,6 +326,30 @@
 						// 由于微信下，无法通过this.months[i].top的形式(引用类型)去修改父组件的month的top值，所以使用事件形式对外发出
 						this.$emit('updateMonthTop', topArr)
 					})
+				// #endif
+				// #ifdef MP-WEIXIN
+				let topArr = [];
+				let height = 1;
+				let rowHeight = uni.$u.config.unit === 'rpx' ? uni.upx2px(this.rowHeight) : this.rowHeight;
+				for (let i = 0; i < this.months.length; i++) {
+					//计算第一周有多少天
+					let week = this.months[i].date[0].week;
+					week = (week === 0 ? 7 : week) - 1;
+					let firstWeekDay = 7 - week;
+					//计算行数  第一周 + 剩余行数
+					let row = 1 + (Math.ceil((this.months[i].date.length - firstWeekDay)/7));
+					if (i === 0) {
+						//无标题
+						topArr[i] = height;
+						height += row * rowHeight;
+					} else {
+						//有标题
+						topArr[i] = height;
+						height += row * rowHeight + 42;
+					}
+				}
+				this.$emit('updateMonthTop', topArr)
+				// #endif
 			},
 			// 获取每个月份区域的尺寸
 			getMonthRectByPromise(el) {

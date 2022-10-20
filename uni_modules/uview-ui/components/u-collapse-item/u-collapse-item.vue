@@ -12,21 +12,22 @@
 			:arrowDirection="expanded ? 'up' : 'down'"
 			:disabled="disabled"
 		>
-			<!-- #ifndef MP-WEIXIN -->
-			<!-- 微信小程序不支持，因为微信中不支持 <slot name="title" slot="title" />的写法 -->
 			<template slot="title">
-				<slot name="title"></slot>
+				<slot name="title1">{{title}}</slot>
+				
 			</template>
-			<template slot="icon">
-				<slot name="icon"></slot>
+			<template slot="icon" >
+				<slot name="icon1"></slot>
 			</template>
-			<template slot="value">
-				<slot name="value"></slot>
+			<template slot="value" >
+				<slot name="value1"></slot>
 			</template>
+			
 			<template slot="right-icon">
-				<slot name="right-icon"></slot>
+				<slot name="right-icon1" v-if="$slots['right-icon1']">
+				</slot>
+				<u-icon name="arrow-right"  v-else></u-icon>
 			</template>
-			<!-- #endif -->
 		</u-cell>
 		<view
 			class="u-collapse-item__content"

@@ -18,7 +18,8 @@
 				@longpress.stop="longpressHandler"
 				:style="{
 					color: color,
-					backgroundColor: bgColor && showTooltip && tooltipTop !== -10000 ? bgColor : 'transparent'
+					backgroundColor: bgColor && showTooltip && tooltipTop !== -10000 ? bgColor : 'transparent',
+					fontSize: size + 'px'
 				}"
 			>{{ text }}</text>
 			<u-transition

@@ -15,6 +15,7 @@ export default {
         borderBottom: '',
         labelPosition: '',
         labelWidth: '',
+        labelStyle: () => ({}),
         rightIcon: '',
         leftIcon: '',
         required: false,

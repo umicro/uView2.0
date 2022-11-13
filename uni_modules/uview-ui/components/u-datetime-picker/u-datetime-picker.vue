@@ -87,7 +87,7 @@
 		computed: {
 			// 如果以下这些变量发生了变化，意味着需要重新初始化各列的值
 			propsChange() {
-				return [this.mode, this.maxDate, this.minDate, this.minHour, this.maxHour, this.minMinute, this.maxMinute, this.filter, ]
+				return [this.mode, this.maxDate, this.minDate, this.minHour, this.maxHour, this.minMinute, this.maxMinute, this.filter, this.value, ]
 			}
 		},
 		mounted() {

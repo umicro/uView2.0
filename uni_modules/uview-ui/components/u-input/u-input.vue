@@ -43,7 +43,7 @@
             	    @blur="onBlur"
             	    @focus="onFocus"
             	    @confirm="onConfirm"
-            	    @keyboardheightchange="onkeyboardheightchange"
+            	    @keyboardheightchange="onKeyboardHeightChange"
             	/>
             </view>
             <view
@@ -213,10 +213,10 @@ export default {
         onInput(e) {
             let { value = "" } = e.detail || {};
             // 格式化过滤方法
-            const formatter = this.formatter || this.innerFormatter
-            const formatValue = formatter(value)
+            const formatter = this.formatter || this.innerFormatter;
+            const formatValue = formatter(value);
             // 为了避免props的单向数据流特性，需要先将innerValue值设置为当前值，再在$nextTick中重新赋予设置后的值才有效
-            this.innerValue = value
+            this.innerValue = value;
             this.$nextTick(() => {
             	this.innerValue = formatValue;
             	this.valueChange();
@@ -236,7 +236,7 @@ export default {
         // 输入框聚焦时触发
         onFocus(event) {
             this.focused = true;
-            this.$emit("focus");
+            this.$emit("focus", event);
         },
         // 点击完成按钮时触发
         onConfirm(event) {
@@ -244,8 +244,8 @@ export default {
         },
         // 键盘高度发生变化的时候触发此事件
         // 兼容性：微信小程序2.7.0+、App 3.1.0+
-		onkeyboardheightchange() {
-            this.$emit("keyboardheightchange");
+		onKeyboardHeightChange(event) {
+            this.$emit("keyboardheightchange", event);
         },
         // 内容发生变化，进行处理
         valueChange() {
@@ -319,7 +319,7 @@ export default {
             @include flex(row);
             margin: 0;
             flex: 1;
-			
+
 			&__field {
 				line-height: 26px;
 				text-align: left;

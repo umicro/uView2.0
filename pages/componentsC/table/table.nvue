@@ -4,7 +4,7 @@
 			<text class="u-demo-block__title">基础使用</text>
 			<view class="u-demo-block__content">
 				<u--form>
-					<u-form-item lable="电话"></u-form-item>
+					<u-form-item label="电话"></u-form-item>
 				</u--form>
 			</view>
 		</view>

@@ -10,7 +10,7 @@
 		}"
 		:closeOnClickOverlay="closeOnClickOverlay"
 		:safeAreaInsetBottom="false"
-		:duration="400"
+		:duration="duration"
 		@click="clickHandler"
 	>
 		<view
@@ -106,6 +106,7 @@
 	 * @property {String}			cancelColor			取消按钮的颜色 （默认 '#606266' ）
 	 * @property {Boolean}			buttonReverse		对调确认和取消的位置 （默认 false ）
 	 * @property {Boolean}			zoom				是否开启缩放模式 （默认 true ）
+	 * @property {Integer}			duration			动画时间 （默认 400 ）
 	 * @property {Boolean}			asyncClose			是否异步关闭，只对确定按钮有效，见上方说明 （默认 false ）
 	 * @property {Boolean}			closeOnClickOverlay	是否允许点击遮罩关闭Modal （默认 false ）
 	 * @property {String | Number}	negativeTop			往上偏移的值，给一个负的margin-top，往上偏移，避免和键盘重合的情况，单位任意，数值则默认为px单位 （默认 0 ）

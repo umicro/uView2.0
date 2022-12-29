@@ -57,8 +57,8 @@ export default {
         },
 		// 动画时间
 		duration: {
-			type:Number,
-			default:400
+			type: Number,
+			default: 400
 		},
         // 是否异步关闭，只对确定按钮有效
         asyncClose: {

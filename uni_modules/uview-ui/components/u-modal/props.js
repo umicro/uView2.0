@@ -55,8 +55,8 @@ export default {
             type: Boolean,
             default: uni.$u.props.modal.zoom
         },
-		//动画时间
-		duration:{
+		// 动画时间
+		duration: {
 			type:Number,
 			default:400
 		},

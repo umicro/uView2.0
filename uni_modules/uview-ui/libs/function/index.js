@@ -651,6 +651,16 @@ function pages() {
 }
 
 /**
+ * 获取页面历史栈指定层实例
+ * @param back {number} [0] - 0或者负数，表示获取历史栈的哪一层，0表示获取当前页面实例，-1 表示获取上一个页面实例。默认0。
+ */
+function getHistoryPage(back = 0) {
+	const pages = getCurrentPages()
+	const len = pages.length
+	return pages[len - 1 + back]
+}
+
+/**
  * @description 修改uView内置属性值
  * @param {object} props 修改内置props属性
  * @param {object} config 修改内置config属性
@@ -701,5 +711,6 @@ export default {
 	setProperty,
 	page,
 	pages,
+	getHistoryPage,
 	setConfig
 }

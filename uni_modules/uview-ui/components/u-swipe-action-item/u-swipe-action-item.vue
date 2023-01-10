@@ -1,5 +1,5 @@
 <template>
-	<view class="u-swipe-action-item" ref="u-swipe-action-item">
+	<view class="u-swipe-action-item" :class="[status]" ref="u-swipe-action-item">
 		<view class="u-swipe-action-item__right">
 			<slot name="button">
 				<view v-for="(item,index) in options" :key="index" class="u-swipe-action-item__right__button"

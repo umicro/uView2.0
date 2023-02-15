@@ -162,6 +162,9 @@
 			this.init()
 		},
 		methods: {
+			setInnerCurrent(i){
+				this.innerCurrent = i 
+			},
 			setLineLeft() {
 				const tabItem = this.list[this.innerCurrent];
 				if (!tabItem) {

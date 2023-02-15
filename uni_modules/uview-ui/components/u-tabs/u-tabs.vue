@@ -45,7 +45,7 @@
 							></u-badge>
 						</view>
 						<!-- #ifdef APP-NVUE -->
-						<view
+						<view v-if="lineHeight>0"
 							class="u-tabs__wrapper__nav__line"
 							ref="u-tabs__wrapper__nav__line"
 							:style="[{
@@ -57,7 +57,7 @@
 						>
 							<!-- #endif -->
 							<!-- #ifndef APP-NVUE -->
-							<view
+							<view v-if="lineHeight>0"
 								class="u-tabs__wrapper__nav__line"
 								ref="u-tabs__wrapper__nav__line"
 								:style="[{
@@ -135,11 +135,18 @@
 		computed: {
 			textStyle() {
 				return index => {
-					const style = {}
+					const style = {} 
+					var activeStyle = this.activeStyle
+					if(this.list[index].hasOwnProperty("activeStyle")){
+						activeStyle = this.list[index].activeStyle
+					} 
+					var inactiveStyle = this.inactiveStyle
+					if(this.list[index].hasOwnProperty("inactiveStyle")){
+						inactiveStyle = this.list[index].inactiveStyle
+					} 
 					// 取当期是否激活的样式
-					const customeStyle = index === this.innerCurrent ? uni.$u.addStyle(this.activeStyle) : uni.$u
-						.addStyle(
-							this.inactiveStyle)
+					const customeStyle = index === this.innerCurrent ? uni.$u.addStyle(activeStyle) : uni.$u
+						.addStyle(inactiveStyle)
 					// 如果当前菜单被禁用，则加上对应颜色，需要在此做处理，是因为nvue下，无法在style样式中通过!import覆盖标签的内联样式
 					if (this.list[index].disabled) {
 						style.color = '#c8c9cc'

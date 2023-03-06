@@ -83,7 +83,7 @@ export default {
         },
         // 文字装饰，下划线，中划线等，可选值 none|underline|line-through
         decoration: {
-            tepe: String,
+            type: String,
             default: uni.$u.props.text.decoration
         },
         // 外边距，对象、字符串，数值形式均可

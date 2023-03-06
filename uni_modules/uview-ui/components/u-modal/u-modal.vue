@@ -114,7 +114,7 @@
 	 * @event {Function} confirm	点击确认按钮时触发
 	 * @event {Function} cancel		点击取消按钮时触发
 	 * @event {Function} close		点击遮罩关闭出发，closeOnClickOverlay为true有效
-	 * @example <u-loadmore :status="status" icon-type="iconType" load-text="loadText" />
+	 * @example <u-modal :show="true" title="title" content="content"></u-modal>
 	 */
 	export default {
 		name: 'u-modal',

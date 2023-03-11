@@ -319,7 +319,7 @@
 						const topArr = []
 						for (let i = 0; i < this.months.length; i++) {
 							// 添加到months数组中，供scroll-view滚动事件中，判断当前滚动到哪个月份
-							topArr[i] = height
+							topArr[i] = height + (i === 0 ? 0 : sizes[i].height * 0.4)
 							height += sizes[i].height
 						}
 						// 由于微信下，无法通过this.months[i].top的形式(引用类型)去修改父组件的month的top值，所以使用事件形式对外发出

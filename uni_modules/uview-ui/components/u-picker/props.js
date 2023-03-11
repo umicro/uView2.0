@@ -65,6 +65,11 @@ export default {
             type: Boolean,
             default: uni.$u.props.picker.closeOnClickOverlay
         },
+        // 是否显示圆角
+        round: {
+            type: [Boolean, String, Number],
+            default: uni.$u.props.picker.round
+        },
         // 各列的默认索引
         defaultIndex: {
             type: Array,

@@ -83,12 +83,12 @@
 			},
 			// 最小的可选日期
 			minDate: {
-				type: [String, Number],
+				type: [String, Number, Object],
 				default: 0
 			},
 			// 最大可选日期
 			maxDate: {
-				type: [String, Number],
+				type: [String, Number, Object],
 				default: 0
 			},
 			// 如果没有设置maxDate，则往后推多少个月

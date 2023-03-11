@@ -42,12 +42,12 @@ export default {
         },
         // 最小的可选日期
         minDate: {
-            type: [String, Number],
+            type: [String, Number, Object],
             default: uni.$u.props.calendar.minDate
         },
         // 最大可选日期
         maxDate: {
-            type: [String, Number],
+            type: [String, Number, Object],
             default: uni.$u.props.calendar.maxDate
         },
         // 默认选中的日期，mode为multiple或range是必须为数组格式

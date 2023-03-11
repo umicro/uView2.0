@@ -167,7 +167,7 @@ export default {
 			if (this.months.length) {
 				return `${this.months[this.monthIndex].year}年${
 					this.months[this.monthIndex].month
-				}月`
+				}月` || ''
 			} else {
 				return ''
 			}

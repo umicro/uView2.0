@@ -10,7 +10,7 @@
 		<view class="u-calendar">
 			<uHeader
 				:title="title"
-				:subtitle="subtitle"
+				:subtitle="subtitle || ''"
 				:showSubtitle="showSubtitle"
 				:showTitle="showTitle"
 			></uHeader>

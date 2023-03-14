@@ -1,5 +1,5 @@
-// 此版本发布于2023-03-11
-const version = '2.0.37'
+// 此版本发布于2023-03-14
+const version = '2.0.39'
 
 // 开发环境才提示，生产环境不会提示
 if (process.env.NODE_ENV === 'development') {

@@ -1,9 +1,7 @@
 <template>
 	<view
 	    class="u-empty"
-	    :style="[emptyStyle]"
-	    v-if="show"
-	>
+	    :style="[emptyStyle]">
 		<u-icon
 		    v-if="!isSrc"
 		    :name="mode === 'message' ? 'chat' : `empty-${mode}`"
@@ -18,12 +16,11 @@
 				height: $u.addUnit(height),
 			}"
 		    :src="icon"
-		    mode="widthFix"
-		></image>
+		    mode="widthFix"></image>
 		<text
+			v-if="show"
 		    class="u-empty__text"
-		    :style="[textStyle]"
-		>{{text ? text : icons[mode]}}</text>
+		    :style="[textStyle]">{{text ? text : icons[mode]}}</text>
 		<view class="u-empty__wrap" v-if="$slots.default || $slots.$default">
 			<slot />
 		</view>

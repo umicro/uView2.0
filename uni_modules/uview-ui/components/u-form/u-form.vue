@@ -90,7 +90,7 @@
 			setRules(rules) {
 				// 判断是否有规则
 				if (Object.keys(rules).length === 0) return;
-				if (process.env.NODE_ENV === 'development' && Object.keys(this.model).length === 0) {
+				if (process.env.NODE_ENV === 'development' && !this.model) {
 					uni.$u.error('设置rules，model必须设置！如果已经设置，请刷新页面。');
 					return;
 				};

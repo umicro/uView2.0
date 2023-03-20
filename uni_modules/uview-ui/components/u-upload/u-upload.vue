@@ -113,14 +113,10 @@
 					    size="26"
 					    :color="uploadIconColor"
 					></u-icon>
-					<text
-					    v-if="uploadText"
-					    class="u-upload__button__text"
-					>{{ uploadText }}</text>
 				</view>
 			</template>
 		</view>
-
+		<text v-if="uploadText" class="u-upload__button__text">{{ uploadText }}</text>
 	</view>
 </template>
 

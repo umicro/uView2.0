@@ -17,12 +17,8 @@
 	"engines": {
 		"HBuilderX": "^3.1.0"
 	},
-	"dcloudext": {
-		"category": [
-			"前端组件",
-			"通用组件"
-		],
-		"sale": {
+    "dcloudext": {
+        "sale": {
 			"regular": {
 				"price": "0.00"
 			},
@@ -38,7 +34,8 @@
 			"data": "无",
 			"permissions": "无"
 		},
-		"npmurl": "https://www.npmjs.com/package/uview-ui"
+        "npmurl": "https://www.npmjs.com/package/uview-ui",
+        "type": "component-vue"
 	},
 	"uni_modules": {
 		"dependencies": [],

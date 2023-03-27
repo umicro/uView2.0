@@ -100,7 +100,7 @@ export default {
 	    value: {
 	        immediate: true,
 	        handler(newVal, oldVal) {
-	            this.innerValue = newVal;
+	            this.innerValue = newVal || '';
 	            /* #ifdef H5 */
 	            // 在H5中，外部value变化后，修改input中的值，不会触发@input事件，此时手动调用值变化方法
 	            if (

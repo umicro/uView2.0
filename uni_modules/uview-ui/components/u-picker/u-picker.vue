@@ -1,6 +1,7 @@
 <template>
 	<u-popup
 		:show="show"
+		:round="round"
 		@close="closeHandler"
 	>
 		<view class="u-picker">
@@ -69,6 +70,7 @@
  * @property {String | Number}	visibleItemCount	每列中可见选项的数量（默认 5 ）
  * @property {String}			keyName				选项对象中，需要展示的属性键名（默认 'text' ）
  * @property {Boolean}			closeOnClickOverlay	是否允许点击遮罩关闭选择器（默认 false ）
+ * @property {String | Number}	round				圆角值（默认 0）
  * @property {Array}			defaultIndex		各列的默认索引
  * @property {Boolean}			immediateChange		是否在手指松开时立即触发change事件（默认 false ）
  * @event {Function} close		关闭选择器时触发

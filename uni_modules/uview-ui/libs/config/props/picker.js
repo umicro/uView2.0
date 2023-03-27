@@ -23,6 +23,7 @@ export default {
         visibleItemCount: 5,
         keyName: 'text',
         closeOnClickOverlay: false,
+		round: 0,
         defaultIndex: () => [],
 		immediateChange: false
     }

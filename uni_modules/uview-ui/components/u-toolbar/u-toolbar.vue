@@ -74,6 +74,7 @@
 		@include flex;
 		justify-content: space-between;
 		align-items: center;
+		padding-top: 6px;
 
 		&__wrapper {
 			&__cancel {

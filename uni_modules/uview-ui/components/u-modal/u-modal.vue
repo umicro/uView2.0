@@ -161,12 +161,10 @@
 <style lang="scss" scoped>
 	@import "../../libs/css/components.scss";
 	$u-modal-border-radius: 6px;
-
 	.u-modal {
 		width: 650rpx;
 		border-radius: $u-modal-border-radius;
 		overflow: hidden;
-
 		&__title {
 			font-size: 16px;
 			font-weight: bold;
@@ -174,27 +172,22 @@
 			text-align: center;
 			padding-top: 25px;
 		}
-
 		&__content {
 			padding: 12px 25px 25px 25px;
 			@include flex;
 			justify-content: center;
-
 			&__text {
 				font-size: 15px;
 				color: $u-content-color;
 				flex: 1;
 			}
 		}
-
 		&__button-group {
 			@include flex;
-
 			&--confirm-button {
 				flex-direction: column;
 				padding: 0px 25px 15px 25px;
 			}
-
 			&__wrapper {
 				flex: 1;
 				@include flex;
@@ -211,11 +204,9 @@
 				&--only-confirm {
 					border-bottom-left-radius: $u-modal-border-radius;
 				}
-
 				&--hover {
 					background-color: $u-bg-color;
 				}
-
 				&__text {
 					color: $u-content-color;
 					font-size: 16px;

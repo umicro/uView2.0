@@ -38,8 +38,7 @@
 			    class="u-number-box__input"
 			    @blur="onBlur"
 			    @focus="onFocus"
-			    @input="onInput"
-			    type="number"
+			    :type="integer ? 'number' : 'digit'"
 			    :style="[inputStyle]"
 			/>
 		</slot>

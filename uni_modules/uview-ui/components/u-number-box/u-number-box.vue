@@ -220,23 +220,6 @@
 					this.currentValue = val
 				}
 			},
-			// 判断是否出于禁止操作状态
-			// isDisabled(type) {
-			// 	if (type === 'plus') {
-			// 		// 在点击增加按钮情况下，判断整体的disabled，是否单独禁用增加按钮，以及当前值是否大于最大的允许值
-			// 		return (
-			// 			this.disabled ||
-			// 			this.disablePlus ||
-			// 			this.currentValue >= this.max
-			// 		)
-			// 	}
-			// 	// 点击减少按钮同理
-			// 	return (
-			// 		this.disabled ||
-			// 		this.disableMinus ||
-			// 		this.currentValue <= this.min
-			// 	)
-			// },
 			// 输入框活动焦点
 			onFocus(event) {
 				this.$emit('focus', {
@@ -247,7 +230,9 @@
 			// 输入框失去焦点
 			onBlur(event) {
 				// 对输入值进行格式化
-				const value = this.format(event.detail.value)
+				const value = this.format(event.detail.value);
+				// 发出change事件
+				this.emitChange(value)
 				// 发出blur事件
 				this.$emit(
 					'blur',{
@@ -255,22 +240,6 @@
 						name: this.name,
 					}
 				)
-			},
-			// 输入框值发生变化
-			onInput(e) {
-				const {
-					value = ''
-				} = e.detail || {}
-				// 为空返回
-				if (value === '') return
-				let formatted = this.filter(value)
-				// 最大允许的小数长度
-				if (this.decimalLength !== null && formatted.indexOf('.') !== -1) {
-					const pair = formatted.split('.');
-					formatted = `${pair[0]}.${pair[1].slice(0, this.decimalLength)}`
-				}
-				formatted = this.format(formatted)
-				this.emitChange(formatted);
 			},
 			// 发出change事件
 			emitChange(value) {

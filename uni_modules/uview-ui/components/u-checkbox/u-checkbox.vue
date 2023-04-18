@@ -20,14 +20,20 @@
 				/>
 			</slot>
 		</view>
-		<text
+		<view
 		    @tap.stop="labelClickHandler"
 		    :style="{
 				color: elDisabled ? elInactiveColor : elLabelColor,
 				fontSize: elLabelSize,
 				lineHeight: elLabelSize
 			}"
-		>{{label}}</text>
+		>
+			<template v-if="isNvue">
+				{{label}}
+			</template>
+
+			<slot name="label" v-else>{{label}}</slot>
+		</view>
 	</view>
 </template>
 
@@ -60,6 +66,7 @@
 		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		data() {
 			return {
+				isNvue: false,
 				isChecked: false,
 				// 父组件的默认值，因为头条小程序不支持在computed中使用this.parent.shape的形式
 				// 故只能使用如此方法
@@ -173,6 +180,11 @@
 		},
 		mounted() {
 			this.init()
+
+			// #ifdef APP-NVUE
+			// 标识为是否nvue
+			this.isNvue = true;
+			// #endif
 		},
 		methods: {
 			init() {

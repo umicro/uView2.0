@@ -8,3 +8,5 @@ deploy.sh
 /.hbuilderx/
 /.vscode/
 !/unpackage/dist/build/h5
+project.config.json
+project.private.config.json

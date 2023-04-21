@@ -22,6 +22,7 @@
 	 */
 	import uvForm from '../u-form/u-form.vue';
 	import props from '../u-form/props.js'
+	import {deepMerge} from "../../libs/luch-request/utils";
 	export default {
 		// #ifdef MP-WEIXIN
 		name: 'u-form',
@@ -35,11 +36,32 @@
 		},
 		created() {
 			this.children = []
+			// 在nextTick中获取页面内的规则
+			this.$nextTick(()=>{
+				this.$refs.uForm.setRules(this.getRules()||{})
+			})
 		},
 		methods: {
 			// 手动设置校验的规则，如果规则中有函数的话，微信小程序中会过滤掉，所以只能手动调用设置规则
 			setRules(rules) {
-				this.$refs.uForm.setRules(rules)
+				this.$refs.uForm.setRules(deepMerge(rules,this.getRules()))
+			},
+			// 获取rules函数
+			getRules(){
+				let rules = {};
+				this.getRulesByFormItem(rules,this.$children);
+				return rules;
+			},
+			// 归从子组件中获取对应含有rules的内容
+			getRulesByFormItem(rules,children){
+				children?.forEach(item=>{
+					if(item.prop && item.rules && item.rules.length > 0){
+						rules[item.prop] = item.rules;
+					}
+					if(item.$children && item.$children.length > 0){
+						this.getRulesByFormItem(rules,item.$children);
+					}
+				});
 			},
 			validate() {
 				/**

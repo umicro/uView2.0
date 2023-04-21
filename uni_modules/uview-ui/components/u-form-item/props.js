@@ -43,6 +43,12 @@ export default {
         leftIconStyle: {
             type: [String, Object],
             default: uni.$u.props.formItem.leftIconStyle,
-        }
+        },
+		rules: {
+			type: [Array],
+			default: function(){
+				return []
+			}
+		}
     }
 }

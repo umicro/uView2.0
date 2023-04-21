@@ -19,6 +19,7 @@ export default {
         closeOnClickOverlay: true,
         zIndex: 10075,
         safeAreaInsetBottom: true,
+        safeAreaInsetBottomCustomClass: '',
         safeAreaInsetTop: false,
         closeIconPos: 'top-right',
         round: 0,

@@ -25,6 +25,7 @@ export default {
         height: '44px',
 		leftIconSize: 20,
 		leftIconColor: color.mainColor,
+		rightIconColor: color.mainColor,
 		autoBack: false,
 		titleStyle: ''
     }

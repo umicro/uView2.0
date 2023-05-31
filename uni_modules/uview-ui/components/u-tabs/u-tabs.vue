@@ -137,7 +137,7 @@
 				return index => {
 					const style = {}
 					// 取当期是否激活的样式
-					const customeStyle = index === this.innerCurrent ? uni.$u.addStyle(this.activeStyle) : uni.$u
+					const customeStyle = index === parseInt(this.innerCurrent) ? uni.$u.addStyle(this.activeStyle) : uni.$u
 						.addStyle(
 							this.inactiveStyle)
 					// 如果当前菜单被禁用，则加上对应颜色，需要在此做处理，是因为nvue下，无法在style样式中通过!import覆盖标签的内联样式

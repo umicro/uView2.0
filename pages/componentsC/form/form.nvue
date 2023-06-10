@@ -156,6 +156,24 @@
 							name="arrow-right"
 						></u-icon>
 					</u-form-item>
+					<u-form-item
+						v-for="(formItem, formItemInd) in model1.dynamicForm"
+						:label="`动态表单项${formItemInd + 1}`"
+						:prop="`dynamicForm.${formItemInd}.value`"
+						borderBottom
+						labelWidth="7em"
+					>
+						<u--input
+							v-model="formItem.value"
+							placeholder="请输入"
+							border="none"
+						></u--input>
+						<view slot="right" class="remove-dynamic-form-item-icon">
+							<u-icon name="trash" color="#fa3534" size="22" @click="removeDynamicFormItem(formItemInd)"></u-icon>
+						</view>
+					</u-form-item>
+
+					<u-button type="primary" :plain="true" :hairline="true" text="添加动态表单项" @click="addDynamicFormItem"></u-button>
 				</u--form>
 				<u-button
 					type="primary"
@@ -228,7 +246,10 @@
 					radiovalue1: '苹果',
 					checkboxValue1: [],
 					intro: '',
-					code: ''
+					code: '',
+					dynamicForm: [{
+						value: ''
+					}]
 				},
 				showSex: false,
 				birthday: Number(new Date()),
@@ -306,6 +327,14 @@
 						message: '请选择生日',
 						trigger: ['change']
 					},
+					dynamicForm: [{
+						value: {
+							type: 'string',
+							required: true,
+							message: '请输入',
+							trigger: ['change']
+						}
+					}]
 				},
 				radiolist1: [{
 						name: '苹果',
@@ -411,6 +440,25 @@
 				this.model1.userInfo.birthday = uni.$u.timeFormat(e.value, 'yyyy-mm-dd')
 				this.$refs.form1.validateField('userInfo.birthday')
 			},
+			addDynamicFormItem() {
+				this.model1.dynamicForm.push({
+					value: ''
+				})
+
+				this.rules.dynamicForm.push({
+					value: {
+						type: 'string',
+						required: true,
+						message: '请输入',
+						trigger: ['change']
+					}
+				})
+			},
+			removeDynamicFormItem(formItemInd) {
+				this.model1.dynamicForm.splice(formItemInd, 1)
+
+				this.rules.dynamicForm.splice(formItemInd, 1)
+			},
 			submit() {
 				// 如果有错误，会在catch中返回报错信息数组，校验通过则在then中返回true
 				this.$refs.form1.validate().then(res => {
@@ -436,6 +484,8 @@
 	}
 </script>
 
-<style lang="scss">
-
+<style scoped lang="scss">
+.remove-dynamic-form-item-icon {
+	margin-left: 10px;
+}
 </style>

@@ -1,0 +1,157 @@
+<template>
+	<view class="u-page">
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">基础使用</text>
+			<view class="u-demo-block__content">
+				<u-skeleton
+					rows="3"
+					title
+					loading
+				></u-skeleton>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义段落行数</text>
+			<view class="u-demo-block__content">
+				<u-skeleton
+					rows="2"
+					title
+					loading
+				></u-skeleton>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">设置段落宽度</text>
+			<view class="u-demo-block__content">
+				<u-skeleton
+					rows="2"
+					title
+					:rowsWidth="['100%', '35%']"
+					loading
+				></u-skeleton>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">设置段落高度</text>
+			<view class="u-demo-block__content">
+				<u-skeleton
+					rows="3"
+					title
+					:rowsWidth="['100%', '100%', '100%']"
+					:rowsHeight="['18px', '18px', '80px']"
+					loading
+				></u-skeleton>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">是否开启动画</text>
+			<u-switch
+				v-model="switch1"
+				space="2"
+				inactiveColor="#e6e6e6"
+			></u-switch>
+			<u-gap
+				height="15"
+				bgColor="#fff"
+			></u-gap>
+			<view class="u-demo-block__content">
+				<u-skeleton
+					:animate="switch1"
+					rows="3"
+					title
+					loading
+				></u-skeleton>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">展示头像</text>
+			<u-gap
+				height="15"
+				bgColor="#fff"
+			></u-gap>
+			<view class="u-demo-block__content">
+				<u-skeleton
+					:animate="switch1"
+					rows="3"
+					title
+					loading
+					avatar
+				></u-skeleton>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">切换状态</text>
+			<u-switch
+				v-model="switch2"
+				space="2"
+				inactiveColor="#e6e6e6"
+			></u-switch>
+			<u-gap
+				height="15"
+				bgColor="#fff"
+			></u-gap>
+			<view class="u-demo-block__content">
+				<u-skeleton
+					rows="2"
+					title
+					:loading="switch2"
+					avatar
+					rowsHeight="14"
+				>
+					<!-- 需要在外部多嵌套一层占位view，否则在nvue下会导致样式失效 -->
+					<view>
+						<view class="u-skeleton-slot">
+							<image
+								src="/static/uview/common/logo.png"
+								class="u-skeleton-slot__image"
+							></image>
+							<view class="u-skeleton-slot__content">
+								<u--text
+									text="利剑出鞘,一统江湖"
+									type="main"
+									size="16"
+								></u--text>
+								<u--text
+									type="tips"
+									size="14"
+									customStyle="margin-top: 5px"
+									text="众多组件覆盖开发过程的各个需求，组件功能丰富，多端兼容。让您快速集成，开箱即用"
+								></u--text>
+							</view>
+						</view>
+					</view>
+				</u-skeleton>
+			</view>
+			<u-gap height="50" bgColor="transparent"></u-gap>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				switch1: true,
+				switch2: false
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+	.u-skeleton-slot {
+		@include flex;
+		align-items: flex-start;
+
+		&__image {
+			width: 40px;
+			height: 40px;
+			border-radius: 100px;
+		}
+
+		&__content {
+			margin-left: 10px;
+			flex: 1;
+		}
+	}
+</style>

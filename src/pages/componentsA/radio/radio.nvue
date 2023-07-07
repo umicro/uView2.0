@@ -1,0 +1,330 @@
+<template>
+	<view class="u-page">
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">基本案例</text>
+			<text class="u-block__title">苹果、香蕉和橙子哪个最甜？</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__radio-item">
+					<u-radio-group
+						v-model="radiovalue1"
+						placement="column"
+						@change="groupChange"
+					>
+						<u-radio
+							:customStyle="{marginBottom: '8px'}"
+							v-for="(item, index) in radiolist1"
+							:key="index"
+							:label="item.name"
+							:name="item.name"
+							@change="radioChange"
+						>
+						</u-radio>
+					</u-radio-group>
+				</view>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义形状</text>
+			<text class="u-block__title">王者荣耀谁最帅？</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__radio-item">
+					<u-radio-group
+						v-model="radiovalue2"
+						placement="column"
+						shape="square"
+					>
+						<u-radio
+							:customStyle="{marginBottom: '8px'}"
+							v-for="(item, index) in radiolist2"
+							:key="index"
+							:label="item.name"
+							:name="item.name"
+						>
+						</u-radio>
+					</u-radio-group>
+				</view>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">是否禁用</text>
+			<text class="u-block__title">苹果、香蕉和菠萝哪个最甜？</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__radio-item">
+					<u-radio-group
+						v-model="radiovalue3"
+						placement="column"
+					>
+						<u-radio
+							:customStyle="{marginBottom: '8px'}"
+							v-for="(item, index) in radiolist3"
+							:key="index"
+							:label="item.name"
+							:name="item.name"
+							:disabled="!index"
+						>
+						</u-radio>
+					</u-radio-group>
+				</view>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">纵向排列</text>
+			<text class="u-block__title">狙击枪用哪个倍镜最好？</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__radio-item">
+					<u-radio-group
+						v-model="radiovalue4"
+						placement="column"
+						:labelDisabled="true"
+					>
+						<u-radio
+							:customStyle="{marginBottom:'8px'}"
+							v-for="(item, index) in radiolist4"
+							:key="index"
+							:label="item.name"
+							:name="item.name"
+						>
+						</u-radio>
+					</u-radio-group>
+				</view>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">自定义颜色？</text>
+			<text class="u-block__title">你比较喜欢下面哪个颜色？</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__radio-item">
+					<u-radio-group
+						v-model="radiovalue5"
+						placement="column"
+						activeColor="#19be6b"
+					>
+						<u-radio
+							:customStyle="{marginBottom: '8px'}"
+							v-for="(item, index) in radiolist5"
+							:key="index"
+							:label="item.name"
+							:name="item.name"
+						>
+						</u-radio>
+					</u-radio-group>
+				</view>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">横向排列形式？</text>
+			<text class="u-block__title">王者荣耀哪个英雄最美？</text>
+			<view class="u-demo-block__content">
+				<view class="u-page__radio-item">
+					<u-radio-group
+						v-model="radiovalue6"
+						placement="row"
+					>
+						<u-radio
+							:customStyle="{marginRight: '16px'}"
+							v-for="(item, index) in radiolist6"
+							:key="index"
+							:label="item.name"
+							:name="item.name"
+						>
+						</u-radio>
+					</u-radio-group>
+				</view>
+			</view>
+		</view>
+		<view class="u-demo-block">
+			<text class="u-demo-block__title">横向两端排列形式？</text>
+			<text class="u-block__title">你觉得阿木木可爱吗？</text>
+			<view>
+				<view class="u-page__radio-item">
+					<u-radio-group
+						v-model="radiovalue7"
+						:borderBottom="true"
+						placement="column"
+						iconPlacement="right"
+					>
+						<u-radio
+							:customStyle="{marginBottom: '16px'}"
+							v-for="(item, index) in radiolist7"
+							:key="index"
+							:label="item.name"
+							:name="item.name"
+						>
+						</u-radio>
+					</u-radio-group>
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				// 基本案列数据
+				radiolist1: [{
+						name: '苹果',
+						disabled: false
+					},
+					{
+						name: '香蕉',
+						disabled: false
+					},
+					{
+						name: '橙子',
+						disabled: false
+					}, {
+						name: '榴莲',
+						disabled: false
+					}
+				],
+				// u-radio-group的v-model绑定的值如果设置为某个radio的name，就会被默认选中
+				radiovalue1: '苹果',
+
+				// 自定义形状数据
+				radiolist2: [{
+						name: '李白',
+						disabled: false
+					},
+					{
+						name: '韩信',
+						disabled: false
+					},
+					{
+						name: '马可波罗',
+						disabled: false
+					}, {
+						name: '百里守约',
+						disabled: false
+					}
+				],
+				// u-radio-group的v-model绑定的值如果设置为某个radio的name，就会被默认选中
+				radiovalue2: '李白',
+
+				// 是否禁用数据
+				radiolist3: [{
+						name: '苹果',
+						disabled: false
+					},
+					{
+						name: '香蕉',
+						disabled: false
+					},
+					{
+						name: '菠萝',
+						disabled: false
+					}
+				],
+				// u-radio-group的v-model绑定的值如果设置为某个radio的name，就会被默认选中
+				radiovalue3: '苹果',
+
+				// 是否禁止点击提示语选中单选框数据
+				radiolist4: [{
+						name: '3倍镜',
+						disabled: false
+					},
+					{
+						name: '4倍镜',
+						disabled: false
+					},
+					{
+						name: '6倍镜',
+						disabled: false
+					},
+					{
+						name: '8倍镜',
+						disabled: false
+					}
+				],
+				// u-radio-group的v-model绑定的值如果设置为某个radio的name，就会被默认选中
+				radiovalue4: '6倍镜',
+
+				//自定义颜色数据
+				radiolist5: [{
+						name: '红色',
+						disabled: false
+					},
+					{
+						name: '绿色',
+						disabled: false
+					},
+					{
+						name: '蓝色',
+						disabled: false
+					},
+					{
+						name: '黄色',
+						disabled: false
+					}
+				],
+				// u-radio-group的v-model绑定的值如果设置为某个radio的name，就会被默认选中
+				radiovalue5: '绿色',
+
+				//横向排列形式数据
+				radiolist6: [{
+						name: '妲己',
+						disabled: false
+					},
+					{
+						name: '虞姬',
+						disabled: false
+					},
+					{
+						name: '不知火舞',
+						disabled: false
+					},
+				],
+				// u-radio-group的v-model绑定的值如果设置为某个radio的name，就会被默认选中
+				radiovalue6: '妲己',
+
+				//横向两端排列形式数据
+				radiolist7: [{
+						name: '可爱',
+						disabled: false
+					},
+					{
+						name: '一般',
+						disabled: false
+					},
+					{
+						name: '不可爱',
+						disabled: false
+					},
+				],
+				// u-radio-group的v-model绑定的值如果设置为某个radio的name，就会被默认选中
+				radiovalue7: '可爱',
+			}
+		},
+		watch: {
+			radiovalue1(newValue, oldValue) {
+				console.log('v-model', newValue);
+			}
+		},
+		methods: {
+			groupChange(n) {
+				console.log('groupChange', n);
+			},
+			radioChange(n) {
+				console.log('radioChange', n);
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+	.u-page {
+		&__style {
+			font-size: 16px;
+			color: rgb(96, 98, 102);
+			margin-bottom: 20rpx;
+			font-weight: bold;
+		}
+
+		&__title {
+			font-size: 16px;
+			color: rgb(96, 98, 102);
+			margin-bottom: 20rpx;
+		}
+	}
+</style>

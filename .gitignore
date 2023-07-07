@@ -1,10 +1,23 @@
-/unpackage/dist/build/*
-/unpackage/dist/dev/*
-/unpackage/cache/*
-/unpackage/release/*
-/node_modules/*
-/.idea/*
-deploy.sh
-/.hbuilderx/
-/.vscode/
-!/unpackage/dist/build/h5
+.DS_Store
+node_modules/
+unpackage/
+dist/
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.project
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*

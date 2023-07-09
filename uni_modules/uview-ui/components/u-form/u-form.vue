@@ -143,8 +143,7 @@
 							const propertyChain = child.prop.split(".");
 							const propertyName =
 								propertyChain[propertyChain.length - 1];
-
-							const rule = this.formRules[child.prop];
+							const rule = uni.$u.getProperty(this.formRules, child.prop)
 							// 如果不存在对应的规则，直接返回，否则校验器会报错
 							if (!rule) return;
 							// rule规则可为数组形式，也可为对象形式，此处拼接成为数组

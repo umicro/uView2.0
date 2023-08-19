@@ -108,6 +108,11 @@ export default {
 			type: [String, Number],
 			default: uni.$u.props.input.cursorSpacing
 		},
+		// 强制 input 处于同层状态，默认 focus 时 input 会切到非同层状态
+		alwaysEmbed: {
+			type: [Boolean],
+			default: uni.$u.props.input.alwaysEmbed
+		},
 		// 光标起始位置，自动聚集时有效，需与selection-end搭配使用
 		selectionStart: {
 			type: [String, Number],

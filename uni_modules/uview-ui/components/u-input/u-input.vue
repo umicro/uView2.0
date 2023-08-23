@@ -149,6 +149,14 @@ export default {
                     this.valueChange();
                 }
                 /* #endif */
+				/* #ifndef H5 */
+				if (
+					this.firstChange === false &&
+					this.changeFromInner === false
+				) {
+					uni.$u.formValidate(this, "change");
+				}
+				/* #endif */
                 this.firstChange = false;
                 // 重置changeFromInner的值为false，标识下一次引起默认为外部引起的
                 this.changeFromInner = false;

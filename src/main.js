@@ -20,7 +20,7 @@ Vue.use(uView);
 
 // #ifdef MP
 // 引入uView对小程序分享的mixin封装
-const mpShare = require('@/uni_modules/uview-ui/libs/mixin/mpShare.js')
+const mpShare = require('../node_modules/uview-ui/libs/mixin/mpShare.js')
 Vue.mixin(mpShare)
 // #endif
 

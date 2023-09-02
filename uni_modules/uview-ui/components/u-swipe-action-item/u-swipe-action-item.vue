@@ -1,5 +1,5 @@
 <template>
-	<view class="u-swipe-action-item" ref="u-swipe-action-item">
+	<view class="u-swipe-action-item" :class="[status]" ref="u-swipe-action-item">
 		<view class="u-swipe-action-item__right">
 			<slot name="button">
 				<view v-for="(item,index) in options" :key="index" class="u-swipe-action-item__right__button"
@@ -65,6 +65,7 @@
 	 * @property {String | Number}	duration		动画过渡时间，单位ms（默认 350 ）
 	 * @event {Function(index)}	open	组件打开时触发
 	 * @event {Function(index)}	close	组件关闭时触发
+	 * @event {Function(index)}	change	组件打开或关闭时触发
 	 * @example	<u-swipe-action><u-swipe-action-item :options="options1" ></u-swipe-action-item></u-swipe-action>
 	 */
 	export default {
@@ -92,6 +93,10 @@
 			// 由于wxs无法直接读取外部的值，需要在外部值变化时，重新执行赋值逻辑
 			wxsInit(newValue, oldValue) {
 				this.queryRect()
+			},
+			status(value) {
+				this.$emit(value)
+				this.$emit('change', value)
 			}
 		},
 		computed: {

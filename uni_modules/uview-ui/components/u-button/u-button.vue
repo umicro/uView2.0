@@ -19,6 +19,7 @@
         @error="error"
         @opensetting="opensetting"
         @launchapp="launchapp"
+        @agreeprivacyauthorization="agreeprivacyauthorization"
         :hover-class="!disabled && !loading ? 'u-button--active' : ''"
         class="u-button u-reset-button"
         :style="[baseColor, $u.addStyle(customStyle)]"
@@ -153,6 +154,7 @@ import props from "./props.js";
  * @event {Function}	error			当使用开放能力时，发生错误的回调
  * @event {Function}	opensetting		在打开授权设置页并关闭后回调
  * @event {Function}	launchapp		打开 APP 成功的回调
+ * @event {Function}	agreeprivacyauthorization	用户同意隐私协议事件回调
  * @example <u-button>月落</u-button>
  */
 export default {
@@ -285,6 +287,9 @@ export default {
         },
         launchapp(res) {
             this.$emit("launchapp", res);
+        },
+        agreeprivacyauthorization(res) {
+            this.$emit("agreeprivacyauthorization", res);
         },
     },
 };

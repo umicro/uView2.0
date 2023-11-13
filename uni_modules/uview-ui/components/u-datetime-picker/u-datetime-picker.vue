@@ -40,7 +40,7 @@
 	 * @property {Boolean}			showToolbar			是否显示顶部的操作栏  ( 默认 true )
 	 * @property {String | Number}	value				绑定值
 	 * @property {String}			title				顶部标题
-	 * @property {String}			mode				展示格式 mode=date为日期选择，mode=time为时间选择，mode=year-month为年月选择，mode=datetime为日期时间选择  ( 默认 ‘datetime )
+	 * @property {String}			mode				展示格式 mode=date为日期选择，mode=time为时间选择，mode=year-month为年月选择，mode=year为年选择，mode=datetime为日期时间选择  ( 默认 ‘datetime )
 	 * @property {Number}			maxDate				可选的最大时间  默认值为后10年
 	 * @property {Number}			minDate				可选的最小时间  默认值为前10年
 	 * @property {Number}			minHour				可选的最小小时，仅mode=time有效   ( 默认 0 )
@@ -146,7 +146,7 @@
 				} else {
 					// 将选择的值转为数值，比如'03'转为数值的3，'2019'转为数值的2019
 					const year = parseInt(this.intercept(values[0][indexs[0]],'year'))
-					const month = parseInt(this.intercept(values[1][indexs[1]]))
+					const month = this.mode == "year"? 1 : parseInt(this.intercept(values[1][indexs[1]]));
 					let date = parseInt(values[2] ? this.intercept(values[2][indexs[2]]) : 1)
 					let hour = 0, minute = 0
 					// 此月份的最大天数
@@ -312,6 +312,8 @@
 			        result.splice(3, 2);
 			    if (this.mode === 'year-month')
 			        result.splice(2, 3);
+			    if (this.mode === 'year')
+			        result.splice(1, 4);
 			    return result;
 			},
 			// 根据minDate、maxDate、minHour、maxHour等边界值，判断各列的开始和结束边界值

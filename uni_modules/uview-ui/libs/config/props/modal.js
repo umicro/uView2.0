@@ -25,6 +25,7 @@ export default {
         closeOnClickOverlay: false,
         negativeTop: 0,
         width: '650rpx',
-        confirmButtonShape: ''
+        confirmButtonShape: '',
+		duration:400,
     }
 }

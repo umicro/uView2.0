@@ -10,7 +10,7 @@
 		}"
 		:closeOnClickOverlay="closeOnClickOverlay"
 		:safeAreaInsetBottom="false"
-		:duration="400"
+		:duration="duration"
 		@click="clickHandler"
 	>
 		<view

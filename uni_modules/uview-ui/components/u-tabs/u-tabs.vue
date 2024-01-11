@@ -20,6 +20,7 @@
 							v-for="(item, index) in list"
 							:key="index"
 							@tap="clickHandler(item, index)"
+							@longpress="longPressHandler(item,index)"
 							:ref="`u-tabs__wrapper__nav__item-${index}`"
 							:style="[$u.addStyle(itemStyle), {flex: scrollable ? '' : 1}]"
 							:class="[`u-tabs__wrapper__nav__item-${index}`, item.disabled && 'u-tabs__wrapper__nav__item--disabled']"
@@ -204,6 +205,13 @@
 				this.innerCurrent = index
 				this.resize()
 				this.$emit('change', {
+					...item,
+					index
+				})
+			},
+			// 长按事件
+			longPressHandler(item, index) {
+				this.$emit('longPress', {
 					...item,
 					index
 				})

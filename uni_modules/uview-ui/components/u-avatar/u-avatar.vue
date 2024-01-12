@@ -162,6 +162,7 @@
 		&__image {
 			&--circle {
 				border-radius: 100px;
+				overflow: hidden;
 			}
 
 			&--square {

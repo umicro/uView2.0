@@ -149,7 +149,7 @@
 			iconWrapStyle() {
 				// checkbox的整体样式
 				const style = {}
-				style.backgroundColor = this.isChecked && !this.elDisabled ? this.elActiveColor : '#ffffff'
+				style.backgroundColor = this.isChecked && !this.elDisabled ? this.elActiveColor : this.elInactiveColor
 				style.borderColor = this.isChecked && !this.elDisabled ? this.elActiveColor : this.elInactiveColor
 				style.width = uni.$u.addUnit(this.elSize)
 				style.height = uni.$u.addUnit(this.elSize)

@@ -104,7 +104,7 @@
 			// 组件选未中激活时的颜色
 			elInactiveColor() {
 				return this.inactiveColor ? this.inactiveColor : (this.parentData.inactiveColor ? this.parentData.inactiveColor :
-					'#c8c9cc');
+					'#FFFFFF');
 			},
 			// label的颜色
 			elLabelColor() {
@@ -150,7 +150,6 @@
 				// checkbox的整体样式
 				const style = {}
 				style.backgroundColor = this.isChecked && !this.elDisabled ? this.elActiveColor : this.elInactiveColor
-				style.borderColor = this.isChecked && !this.elDisabled ? this.elActiveColor : this.elInactiveColor
 				style.width = uni.$u.addUnit(this.elSize)
 				style.height = uni.$u.addUnit(this.elSize)
 				// 如果是图标在右边的话，移除它的右边距

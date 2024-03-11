@@ -5,6 +5,11 @@ export default {
             type: [String, Number],
             default: uni.$u.props.countDown.time
         },
+        // 顺计时开始时间，单位ms （默认 new Date().getTime() 
+        startTime: {
+            type: [String, Number],
+            default: uni.$u.props.countDown.startTime
+        },
         // 时间格式，DD-日，HH-时，mm-分，ss-秒，SSS-毫秒
         format: {
             type: String,
@@ -19,6 +24,10 @@ export default {
         millisecond: {
             type: Boolean,
             default: uni.$u.props.countDown.millisecond
-        }
+        },
+		isCountDown:{
+			type: Boolean,
+			default: uni.$u.props.countDown.isCountDown
+		}
     }
 }

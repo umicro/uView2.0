@@ -18,9 +18,11 @@
 	 * @description 该组件一般使用于某个活动的截止时间上，通过数字的变化，给用户明确的时间感受，提示用户进行某一个行为操作。
 	 * @tutorial https://uviewui.com/components/countDown.html
 	 * @property {String | Number}	time		倒计时时长，单位ms （默认 0 ）
+	 * @property {String | Number}	startTime	顺计时开始时间，单位ms （默认 new Date().getTime() ）
 	 * @property {String}			format		时间格式，DD-日，HH-时，mm-分，ss-秒，SSS-毫秒  （默认 'HH:mm:ss' ）
 	 * @property {Boolean}			autoStart	是否自动开始倒计时 （默认 true ）
 	 * @property {Boolean}			millisecond	是否展示毫秒倒计时 （默认 false ）
+	 * @property {Boolean}			isCountDown	是否倒计时 （默认 true,如果是false，就是顺计时 ）
 	 * @event {Function} finish 倒计时结束时触发 
 	 * @event {Function} change 倒计时变化时触发 
 	 * @event {Function} start	开始倒计时
@@ -101,8 +103,12 @@
 			},
 			// 获取剩余的时间
 			getRemainTime() {
-				// 取最大值，防止出现小于0的剩余时间值
-				return Math.max(this.endTime - Date.now(), 0)
+				if(this.isCountDown){
+					// 取最大值，防止出现小于0的剩余时间值
+					return Math.max(this.endTime - Date.now(), 0)
+				}else{
+					return Math.max(Date.now()-this.startTime, 0)
+				}
 			},
 			// 设置剩余的时间
 			setRemainTime(remain) {
@@ -113,7 +119,7 @@
 				// 得出格式化后的时间
 				this.formattedTime = parseFormat(this.format, timeData)
 				// 如果时间已到，停止倒计时
-				if (remain <= 0) {
+				if (remain <= 0 && this.isCountDown) {
 					this.pause()
 					this.$emit('finish')
 				}

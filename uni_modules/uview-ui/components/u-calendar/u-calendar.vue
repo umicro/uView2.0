@@ -10,18 +10,15 @@
 		<view class="u-calendar">
 			<uHeader
 				:title="title"
-				:subtitle="subtitle"
+				:year="year"
+				:month="month"
+				:maxYear="maxYear"
+				:minYear="minYear"
 				:showSubtitle="showSubtitle"
 				:showTitle="showTitle"
+				@change="handleMonthYearChange"
 			></uHeader>
-			<scroll-view
-				:style="{
-                    height: $u.addUnit(listHeight)
-                }"
-				scroll-y
-				@scroll="onScroll"
-				:scroll-top="scrollTop"
-				:scrollIntoView="scrollIntoView"
+			<view
 			>
 				<uMonth
 					:color="color"
@@ -43,9 +40,9 @@
 					:allowSameDay="allowSameDay"
 					ref="month"
 					@monthSelected="monthSelected"
-					@updateMonthTop="updateMonthTop"
+					@getMonthYear ="getMonthYear"
 				></uMonth>
-			</scroll-view>
+			</view>
 			<slot name="footer" v-if="showConfirm">
 				<view class="u-calendar__confirm">
 					<u-button
@@ -125,8 +122,8 @@ export default {
 			listHeight: 0,
 			// month组件中选择的日期数组
 			selected: [],
-			scrollIntoView: '',
-			scrollTop:0,
+			year: '',
+			month: '',
 			// 过滤处理方法
 			innerFormatter: (value) => value
 		}
@@ -162,16 +159,6 @@ export default {
 		selectedChange() {
 			return [this.innerMinDate, this.innerMaxDate, this.defaultDate]
 		},
-		subtitle() {
-			// 初始化时，this.months为空数组，所以需要特别判断处理
-			if (this.months.length) {
-				return `${this.months[this.monthIndex].year}年${
-					this.months[this.monthIndex].month
-				}月`
-			} else {
-				return ''
-			}
-		},
 		buttonDisabled() {
 			// 如果为range类型，且选择的日期个数不足1个时，让底部的按钮出于disabled状态
 			if (this.mode === 'range') {
@@ -190,6 +177,19 @@ export default {
 		this.init()
 	},
 	methods: {
+		/** 
+		 * 处理年份、月度变化
+		 */
+		handleMonthYearChange({month, year}) {
+			this.$refs.month.setMonthDay({month, year})
+		},
+		/**
+		 * 设置默认日期的年月
+		 */
+		getMonthYear({month, year}) {
+			this.year = year;
+			this.month = month;
+		},
 		// 在微信小程序中，不支持将函数当做props参数，故只能通过ref形式调用
 		setFormatter(e) {
 			this.innerFormatter = e
@@ -248,6 +248,8 @@ export default {
 				dayjs(minDate)
 					.add(this.monthNum - 1, 'month')
 					.valueOf()
+			this.minYear = dayjs(minDate).year();
+			this.maxYear = dayjs(maxDate).year();
 			// 最大最小月份之间的共有多少个月份，
 			const months = uni.$u.range(
 				1,
@@ -312,63 +314,7 @@ export default {
 					year: dayjs(minDate).add(i, 'month').year()
 				})
 			}
-
 		},
-		// 滚动到默认设置的月份
-		scrollIntoDefaultMonth(selected) {
-			// 查询默认日期在可选列表的下标
-			const _index = this.months.findIndex(({
-				  year,
-				  month
-			  }) => {
-				month = uni.$u.padZero(month)
-				return `${year}-${month}` === selected
-			})
-			if (_index !== -1) {
-				// #ifndef MP-WEIXIN
-				this.$nextTick(() => {
-					this.scrollIntoView = `month-${_index}`
-				})
-				// #endif
-				// #ifdef MP-WEIXIN
-				this.scrollTop = this.months[_index].top || 0;
-				// #endif
-			}
-		},
-		// scroll-view滚动监听
-		onScroll(event) {
-			// 不允许小于0的滚动值，如果scroll-view到顶了，继续下拉，会出现负数值
-			const scrollTop = Math.max(0, event.detail.scrollTop)
-			// 将当前滚动条数值，除以滚动区域的高度，可以得出当前滚动到了哪一个月份的索引
-			for (let i = 0; i < this.months.length; i++) {
-				if (scrollTop >= (this.months[i].top || this.listHeight)) {
-					this.monthIndex = i
-				}
-			}
-		},
-		// 更新月份的top值
-		updateMonthTop(topArr = []) {
-			// 设置对应月份的top值，用于onScroll方法更新月份
-			topArr.map((item, index) => {
-				this.months[index].top = item
-			})
-
-			// 获取默认日期的下标
-			if (!this.defaultDate) {
-				// 如果没有设置默认日期，则将当天日期设置为默认选中的日期
-				const selected = dayjs().format("YYYY-MM")
-				this.scrollIntoDefaultMonth(selected)
-				return
-			}
-			let selected = dayjs().format("YYYY-MM");
-			// 单选模式，可以是字符串或数组，Date对象等
-			if (!uni.$u.test.array(this.defaultDate)) {
-				selected = dayjs(this.defaultDate).format("YYYY-MM")
-			} else {
-				selected = dayjs(this.defaultDate[0]).format("YYYY-MM");
-			}
-			this.scrollIntoDefaultMonth(selected)
-		}
 	}
 }
 </script>

@@ -4,7 +4,7 @@
 		:zoom="zoom"
 		:show="show"
 		:customStyle="{
-			borderRadius: '6px', 
+			borderRadius: '6px',
 			overflow: 'hidden',
 			marginTop: `-${$u.addUnit(negativeTop)}`
 		}"
@@ -104,6 +104,7 @@
 	 * @property {Boolean}			showCancelButton	是否显示取消按钮 （默认 false ）
 	 * @property {String}			confirmColor		确认按钮的颜色 （默认 '#2979ff' ）
 	 * @property {String}			cancelColor			取消按钮的颜色 （默认 '#606266' ）
+	 * @property {Number}			duration			弹窗动画过度时间 （默认 400 ）
 	 * @property {Boolean}			buttonReverse		对调确认和取消的位置 （默认 false ）
 	 * @property {Boolean}			zoom				是否开启缩放模式 （默认 true ）
 	 * @property {Boolean}			asyncClose			是否异步关闭，只对确定按钮有效，见上方说明 （默认 false ）
@@ -201,12 +202,12 @@
 				justify-content: center;
 				align-items: center;
 				height: 48px;
-				
+
 				&--confirm,
 				&--only-cancel {
 					border-bottom-right-radius: $u-modal-border-radius;
 				}
-				
+
 				&--cancel,
 				&--only-confirm {
 					border-bottom-left-radius: $u-modal-border-radius;

@@ -136,6 +136,7 @@
 					index,
 					name: this.name
 				})
+				this.setState('close')
 			}
 		},
 	}

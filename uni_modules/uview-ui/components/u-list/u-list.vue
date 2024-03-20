@@ -18,7 +18,7 @@
 		class="u-list"
 		:scroll-into-view="scrollIntoView"
 		:style="[listStyle]"
-		scroll-y
+		:scroll-y="scrollable"
 		:scroll-top="Number(scrollTop)"
 		:lower-threshold="Number(lowerThreshold)"
 		:upper-threshold="Number(upperThreshold)"

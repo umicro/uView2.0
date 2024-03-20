@@ -45,6 +45,11 @@ export default {
             type: Boolean,
             default: uni.$u.props.popup.safeAreaInsetBottom
         },
+        // 为iPhoneX留出的底部安全距离设置 class
+        safeAreaInsetBottomCustomClass: {
+            type: Boolean,
+            default: uni.$u.props.popup.safeAreaInsetBottomCustomClass,
+        },
         // 是否留出顶部安全距离（状态栏高度）
         safeAreaInsetTop: {
             type: Boolean,

@@ -38,7 +38,7 @@
 						bold
 					></u-icon>
 				</view>
-				<u-safe-bottom v-if="safeAreaInsetBottom"></u-safe-bottom>
+				<u-safe-bottom v-if="safeAreaInsetBottom" :custom-class="safeAreaInsetBottomCustomClass"></u-safe-bottom>
 			</view>
 		</u-transition>
 	</view>
@@ -62,6 +62,7 @@
 	 * @property {Boolean}			closeOnClickOverlay	点击遮罩是否关闭弹窗 （默认  true ）
 	 * @property {String | Number}	zIndex				层级 （默认 10075 ）
 	 * @property {Boolean}			safeAreaInsetBottom	是否为iPhoneX留出底部安全距离 （默认 true ）
+	 * @property {String | Object} 	safeAreaInsetBottomCustomClass	为iPhoneX留出的底部安全距离设置 class
 	 * @property {Boolean}			safeAreaInsetTop	是否留出顶部安全距离（状态栏高度） （默认 false ）
 	 * @property {String}			closeIconPos		自定义关闭图标位置（默认 'top-right' ）
 	 * @property {String | Number}	round				圆角值（默认 0）

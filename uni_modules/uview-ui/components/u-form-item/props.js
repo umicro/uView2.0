@@ -25,6 +25,11 @@ export default {
             type: [String, Number],
             default: uni.$u.props.formItem.labelWidth
         },
+        // label的样式，对象形式
+        labelStyle: {
+            type: Object,
+            default: uni.$u.props.formItem.labelStyle
+        },
         // 右侧图标
         rightIcon: {
             type: String,

@@ -122,6 +122,7 @@
 						prop="code"
 						labelWidth="80"
 						borderBottom
+						:labelStyle="{ color: 'OrangeRed' }"
 					>
 						<u--input
 							v-model="model1.code"

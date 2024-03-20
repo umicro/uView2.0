@@ -50,6 +50,7 @@
 							class="u-tabs__wrapper__nav__line"
 							ref="u-tabs__wrapper__nav__line"
 							:style="[{
+									transform: `scale(${ firstTime ? 0 :  1 })`,
 									width: $u.addUnit(lineWidth),
 									height: $u.addUnit(lineHeight),
 									background: lineColor,

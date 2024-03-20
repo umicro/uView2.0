@@ -8,9 +8,7 @@
 	    :safeAreaInsetBottom="safeAreaInsetBottom"
 	    @close="popupClose"
 	    :zIndex="zIndex"
-	    :customStyle="{
-			backgroundColor: 'rgb(214, 218, 220)'
-		}"
+	    :customStyle="customStyle"
 	>
 		<view class="u-keyboard">
 			<slot />

@@ -25,7 +25,7 @@ import throttle from './libs/function/throttle.js'
 import index from './libs/function/index.js'
 
 // 配置信息
-import config from './libs/config/config.js'
+import config, { showUviewInfo } from './libs/config/config.js'
 // props配置信息
 import props from './libs/config/props.js'
 // 各个需要fixed的地方的z-index配置文件
@@ -60,7 +60,11 @@ const $u = {
 // $u挂载到uni对象上
 uni.$u = $u
 
-const install = (Vue) => {
+const install = (Vue, options) => {
+    const { showUviewLog = true } = options || {}
+
+    // 可取消打印 uview 信息
+    showUviewLog && showUviewInfo()
     // 时间格式化，同时两个名称，date和timeFormat
     Vue.filter('timeFormat', (timestamp, format) => uni.$u.timeFormat(timestamp, format))
     Vue.filter('date', (timestamp, format) => uni.$u.timeFormat(timestamp, format))

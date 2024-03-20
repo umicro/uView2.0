@@ -1,10 +1,15 @@
 // 此版本发布于2024-03-17
 const version = '2.0.37'
 
-// 开发环境才提示，生产环境不会提示
-if (process.env.NODE_ENV === 'development') {
-	console.log(`\n %c uView V${version} %c https://uviewui.com/ \n\n`, 'color: #ffffff; background: #3c9cff; padding:5px 0; border-radius: 5px;');
-}
+export const showUviewInfo = () => {
+    // 开发环境才提示，生产环境不会提示
+    if (process.env.NODE_ENV === "development") {
+        console.log(
+            `\n %c uView V${version} %c https://uviewui.com/ \n\n`,
+            "color: #ffffff; background: #3c9cff; padding:5px 0; border-radius: 5px;"
+        );
+    }
+};
 
 export default {
     v: version,

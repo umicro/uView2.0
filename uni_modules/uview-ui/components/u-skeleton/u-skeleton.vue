@@ -37,6 +37,7 @@
 				    :style="{
 							 width: item.width,
 							 height: item.height,
+							 marginLeft: item.marginLeft,
 							 marginTop: item.marginTop
 						}"
 				>
@@ -64,6 +65,7 @@
 	 * @property {String | Number}			rows		段落占位图行数 (默认 0 )
 	 * @property {String | Number | Array}	rowsWidth	段落占位图的宽度，可以为百分比，数值，带单位字符串等，可通过数组传入指定每个段落行的宽度 (默认 '100%' )
 	 * @property {String | Number | Array}	rowsHeight	段落的高度 (默认 18 )
+	 * @property {String | Number | Array}	rowsLeft	段落的左边距 (默认 0 )
 	 * @property {Boolean}					title		是否展示标题占位图 (默认 true )
 	 * @property {String | Number}			titleWidth	标题的宽度 (默认 '50%' )
 	 * @property {String | Number}			titleHeight	标题的高度 (默认 18 )
@@ -96,7 +98,8 @@
 						// 需要预防超出数组边界的情况
 						rowWidth = uni.$u.test.array(this.rowsWidth) ? (this.rowsWidth[i] || (i === this.row - 1 ? '70%' : '100%')) : i ===
 						this.rows - 1 ? '70%' : this.rowsWidth,
-						rowHeight = uni.$u.test.array(this.rowsHeight) ? (this.rowsHeight[i] || '18px') : this.rowsHeight
+						rowHeight = uni.$u.test.array(this.rowsHeight) ? (this.rowsHeight[i] || '18px') : this.rowsHeight,
+						rowLeft = uni.$u.test.array(this.rowsLeft) ? (this.rowsLeft[i] || 0) : this.rowsLeft
 					// 如果有title占位图，第一个段落占位图的外边距需要大一些，如果没有title占位图，第一个段落占位图则无需外边距
 					// 之所以需要这么做，是因为weex的无能，以提升性能为借口不支持css的一些伪类
 					item.marginTop = !this.title && i === 0 ? 0 : this.title && i === 0 ? '20px' : '12px'
@@ -108,6 +111,7 @@
 						item.width = uni.$u.addUnit(rowWidth)
 					}
 					item.height = uni.$u.addUnit(rowHeight)
+					item.marginLeft = uni.$u.addUnit(rowLeft)
 					rows.push(item)
 				}
 				// console.log(rows);

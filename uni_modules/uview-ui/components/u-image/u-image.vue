@@ -29,7 +29,7 @@
 				class="u-image__loading"
 				:style="{
 					borderRadius: shape == 'circle' ? '50%' : $u.addUnit(radius),
-					backgroundColor: this.bgColor,
+					backgroundColor: bgColor,
 					width: $u.addUnit(width),
 					height: $u.addUnit(height)
 				}"
@@ -117,7 +117,7 @@
 					if (!n) {
 						// 如果传入null或者''，或者false，或者undefined，标记为错误状态
 						this.isError = true
-						
+						this.loading = false;
 					} else {
 						this.isError = false;
 						this.loading = true;

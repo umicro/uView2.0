@@ -37,7 +37,8 @@
 						:style="{
 							height: $u.addUnit(itemHeight),
 							lineHeight: $u.addUnit(itemHeight),
-							fontWeight: index1 === innerIndex[index] ? 'bold' : 'normal'
+							fontWeight: index1 === innerIndex[index] ? 'bold' : 'normal',
+							display: 'block'
 						}"
 					>{{ getItemText(item1) }}</text>
 				</picker-view-column>
@@ -189,6 +190,8 @@ export default {
 		setColumnValues(columnIndex, values) {
 			// 替换innerColumns数组中columnIndex索引的值为values，使用的是数组的splice方法
 			this.innerColumns.splice(columnIndex, 1, values)
+			// 替换完成之后将修改列之后的已选值置空
+			this.setLastIndex(this.innerIndex.slice(0,columnIndex))
 			// 拷贝一份原有的innerIndex做临时变量，将大于当前变化列的所有的列的默认索引设置为0
 			let tmpIndex = uni.$u.deepClone(this.innerIndex)
 			for (let i = 0; i < this.innerColumns.length; i++) {

@@ -4,13 +4,13 @@
 		:zoom="zoom"
 		:show="show"
 		:customStyle="{
-			borderRadius: '6px', 
+			borderRadius: '6px',
 			overflow: 'hidden',
 			marginTop: `-${$u.addUnit(negativeTop)}`
 		}"
 		:closeOnClickOverlay="closeOnClickOverlay"
 		:safeAreaInsetBottom="false"
-		:duration="400"
+		:duration="duration"
 		@click="clickHandler"
 	>
 		<view
@@ -104,6 +104,7 @@
 	 * @property {Boolean}			showCancelButton	是否显示取消按钮 （默认 false ）
 	 * @property {String}			confirmColor		确认按钮的颜色 （默认 '#2979ff' ）
 	 * @property {String}			cancelColor			取消按钮的颜色 （默认 '#606266' ）
+	 * @property {Number}			duration			弹窗动画过度时间 （默认 400 ）
 	 * @property {Boolean}			buttonReverse		对调确认和取消的位置 （默认 false ）
 	 * @property {Boolean}			zoom				是否开启缩放模式 （默认 true ）
 	 * @property {Boolean}			asyncClose			是否异步关闭，只对确定按钮有效，见上方说明 （默认 false ）
@@ -114,7 +115,7 @@
 	 * @event {Function} confirm	点击确认按钮时触发
 	 * @event {Function} cancel		点击取消按钮时触发
 	 * @event {Function} close		点击遮罩关闭出发，closeOnClickOverlay为true有效
-	 * @example <u-loadmore :status="status" icon-type="iconType" load-text="loadText" />
+	 * @example <u-modal :show="true" title="title" content="content"></u-modal>
 	 */
 	export default {
 		name: 'u-modal',
@@ -201,12 +202,12 @@
 				justify-content: center;
 				align-items: center;
 				height: 48px;
-				
+
 				&--confirm,
 				&--only-cancel {
 					border-bottom-right-radius: $u-modal-border-radius;
 				}
-				
+
 				&--cancel,
 				&--only-confirm {
 					border-bottom-left-radius: $u-modal-border-radius;

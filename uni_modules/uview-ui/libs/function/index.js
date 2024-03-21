@@ -2,8 +2,8 @@ import test from './test.js'
 import { round } from './digit.js'
 /**
  * @description 如果value小于min，取min；如果value大于max，取max
- * @param {number} min 
- * @param {number} max 
+ * @param {number} min
+ * @param {number} max
  * @param {number} value
  */
 function range(min = 0, max = 0, value = 0) {
@@ -13,7 +13,7 @@ function range(min = 0, max = 0, value = 0) {
 /**
  * @description 用于获取用户传递值的px值  如果用户传递了"xxpx"或者"xxrpx"，取出其数值部分，如果是"xxxrpx"还需要用过uni.upx2px进行转换
  * @param {number|string} value 用户传递值的px值
- * @param {boolean} unit 
+ * @param {boolean} unit
  * @returns {number|string}
  */
 function getPx(value, unit = false) {
@@ -41,7 +41,7 @@ function sleep(value = 30) {
 }
 /**
  * @description 运行期判断平台
- * @returns {string} 返回所在平台(小写) 
+ * @returns {string} 返回所在平台(小写)
  * @link 运行期判断平台 https://uniapp.dcloud.io/frame?id=判断平台
  */
 function os() {
@@ -49,7 +49,7 @@ function os() {
 }
 /**
  * @description 获取系统信息同步接口
- * @link 获取系统信息同步接口 https://uniapp.dcloud.io/api/system/info?id=getsysteminfosync 
+ * @link 获取系统信息同步接口 https://uniapp.dcloud.io/api/system/info?id=getsysteminfosync
  */
 function sys() {
 	return uni.getSystemInfoSync()
@@ -179,22 +179,34 @@ function addUnit(value = 'auto', unit = uni?.$u?.config?.unit ?? 'px') {
 /**
  * @description 深度克隆
  * @param {object} obj 需要深度克隆的对象
+ * @param cache 缓存
  * @returns {*} 克隆后的对象或者原值（不是对象）
  */
-function deepClone(obj) {
-	// 对常见的“非”值，直接返回原来值
-	if ([null, undefined, NaN, false].includes(obj)) return obj
-	if (typeof obj !== 'object' && typeof obj !== 'function') {
-		// 原始类型直接返回
-		return obj
-	}
-	const o = test.array(obj) ? [] : {}
-	for (const i in obj) {
-		if (obj.hasOwnProperty(i)) {
-			o[i] = typeof obj[i] === 'object' ? deepClone(obj[i]) : obj[i]
+function deepClone(obj, cache = new WeakMap()) {
+	if (obj === null || typeof obj !== 'object') return obj;
+	if (cache.has(obj)) return cache.get(obj);
+	let clone;
+	if (obj instanceof Date) {
+		clone = new Date(obj.getTime());
+	} else if (obj instanceof RegExp) {
+		clone = new RegExp(obj);
+	} else if (obj instanceof Map) {
+		clone = new Map(Array.from(obj, ([key, value]) => [key, deepClone(value, cache)]));
+	} else if (obj instanceof Set) {
+		clone = new Set(Array.from(obj, value => deepClone(value, cache)));
+	} else if (Array.isArray(obj)) {
+		clone = obj.map(value => deepClone(value, cache));
+	} else if (Object.prototype.toString.call(obj) === '[object Object]') {
+		clone = Object.create(Object.getPrototypeOf(obj));
+		cache.set(obj, clone);
+		for (const [key, value] of Object.entries(obj)) {
+			clone[key] = deepClone(value, cache);
 		}
+	} else {
+		clone = Object.assign({}, obj);
 	}
-	return o
+	cache.set(obj, clone);
+	return clone;
 }
 
 /**
@@ -205,24 +217,27 @@ function deepClone(obj) {
  */
 function deepMerge(target = {}, source = {}) {
 	target = deepClone(target)
-	if (typeof target !== 'object' || typeof source !== 'object') return false
+	if (typeof target !== 'object' || target === null || typeof source !== 'object' || source === null) return target;
+	const merged = Array.isArray(target) ? target.slice() : Object.assign({}, target);
 	for (const prop in source) {
-		if (!source.hasOwnProperty(prop)) continue
-		if (prop in target) {
-			if (typeof target[prop] !== 'object') {
-				target[prop] = source[prop]
-			} else if (typeof source[prop] !== 'object') {
-				target[prop] = source[prop]
-			} else if (target[prop].concat && source[prop].concat) {
-				target[prop] = target[prop].concat(source[prop])
-			} else {
-				target[prop] = deepMerge(target[prop], source[prop])
-			}
+		if (!source.hasOwnProperty(prop)) continue;
+		const sourceValue = source[prop];
+		const targetValue = merged[prop];
+		if (sourceValue instanceof Date) {
+			merged[prop] = new Date(sourceValue);
+		} else if (sourceValue instanceof RegExp) {
+			merged[prop] = new RegExp(sourceValue);
+		} else if (sourceValue instanceof Map) {
+			merged[prop] = new Map(sourceValue);
+		} else if (sourceValue instanceof Set) {
+			merged[prop] = new Set(sourceValue);
+		} else if (typeof sourceValue === 'object' && sourceValue !== null) {
+			merged[prop] = deepMerge(targetValue, sourceValue);
 		} else {
-			target[prop] = source[prop]
+			merged[prop] = sourceValue;
 		}
 	}
-	return target
+	return merged;
 }
 
 /**
@@ -327,7 +342,7 @@ if (!String.prototype.padStart) {
 /**
  * @description 时间戳转为多久之前
  * @param {String|Number} timestamp 时间戳
- * @param {String|Boolean} format 
+ * @param {String|Boolean} format
  * 格式化规则如果为时间格式字符串，超出一定时间范围，返回固定的时间格式；
  * 如果为布尔值false，无论什么时间，都返回多久以前的格式
  * @returns {string} 转化后的内容
@@ -517,7 +532,7 @@ function priceFormat(number, decimals = 0, decimalPoint = '.', thousandsSeparato
 	while (re.test(s[0])) {
 		s[0] = s[0].replace(re, `$1${sep}$2`)
 	}
-	
+
 	if ((s[1] || '').length < prec) {
 		s[1] = s[1] || ''
 		s[1] += new Array(prec - s[1].length + 1).join('0')
@@ -531,7 +546,7 @@ function priceFormat(number, decimals = 0, decimalPoint = '.', thousandsSeparato
  * 比如以30位阈值，那么300大于30，可以理解为用户想要的是300ms，而不是想花300s去执行一个动画
  * @param {String|number} value 比如: "1s"|"100ms"|1|100
  * @param {boolean} unit  提示: 如果是false 默认返回number
- * @return {string|number} 
+ * @return {string|number}
  */
 function getDuration(value, unit = true) {
 	const valueNum = parseInt(value)
@@ -651,6 +666,16 @@ function pages() {
 }
 
 /**
+ * 获取页面历史栈指定层实例
+ * @param back {number} [0] - 0或者负数，表示获取历史栈的哪一层，0表示获取当前页面实例，-1 表示获取上一个页面实例。默认0。
+ */
+function getHistoryPage(back = 0) {
+	const pages = getCurrentPages()
+	const len = pages.length
+	return pages[len - 1 + back]
+}
+
+/**
  * @description 修改uView内置属性值
  * @param {object} props 修改内置props属性
  * @param {object} config 修改内置config属性
@@ -701,5 +726,6 @@ export default {
 	setProperty,
 	page,
 	pages,
+	getHistoryPage,
 	setConfig
 }

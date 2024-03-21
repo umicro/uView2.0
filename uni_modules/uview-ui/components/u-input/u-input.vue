@@ -37,7 +37,7 @@
             	    :adjust-position="adjustPosition"
             	    :selection-end="selectionEnd"
             	    :selection-start="selectionStart"
-            	    :password="password || type === 'password' || undefined"
+            	    :password="password || type === 'password' || false"
                     :ignoreCompositionEvent="ignoreCompositionEvent"
             	    @input="onInput"
             	    @blur="onBlur"

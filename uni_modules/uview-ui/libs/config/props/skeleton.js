@@ -15,6 +15,7 @@ export default {
         rows: 0,
         rowsWidth: '100%',
         rowsHeight: 18,
+        rowsLeft: 0,
         title: true,
         titleWidth: '50%',
         titleHeight: 18,

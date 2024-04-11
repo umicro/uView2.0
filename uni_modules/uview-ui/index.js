@@ -9,6 +9,8 @@ import mixin from './libs/mixin/mixin.js'
 import mpMixin from './libs/mixin/mpMixin.js'
 // 全局挂载引入http相关请求拦截插件
 import Request from './libs/luch-request'
+// 创建luch-request 新实例方法
+import { createRequest } from './libs/util/request.js'
 
 // 路由封装
 import route from './libs/util/route.js'
@@ -45,6 +47,7 @@ const $u = {
     test,
     type: ['primary', 'success', 'error', 'warning', 'info'],
     http: new Request(),
+	createRequest, // 创建luch-request 新实例方法
     config, // uView配置信息相关，比如版本号
     zIndex,
     debounce,

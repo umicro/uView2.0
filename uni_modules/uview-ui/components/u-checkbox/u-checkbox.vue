@@ -149,8 +149,8 @@
 			iconWrapStyle() {
 				// checkbox的整体样式
 				const style = {}
-				style.backgroundColor = this.isChecked && !this.elDisabled ? this.elActiveColor : '#ffffff'
-				style.borderColor = this.isChecked && !this.elDisabled ? this.elActiveColor : this.elInactiveColor
+				style.backgroundColor = this.isChecked && !this.elDisabled ? this.elActiveColor : (this.elInactiveColor === '#c8c9cc' ?  "#ffffff" : this.elInactiveColor)
+        		style.borderColor = this.isChecked && !this.elDisabled ? this.elActiveColor : (this.elInactiveColor === 'transparent' ? "#c8c9cc" : this.elInactiveColor)
 				style.width = uni.$u.addUnit(this.elSize)
 				style.height = uni.$u.addUnit(this.elSize)
 				// 如果是图标在右边的话，移除它的右边距

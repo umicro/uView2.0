@@ -47,7 +47,7 @@
 						v-if="getItemType(item) === 'image'"
 						:src="getSource(item)"
 						:mode="imgMode"
-						@tap="clickHandler(index)"
+						@tap="clickHandler(index, item)"
 						:style="{
 							height: $u.addUnit(height),
 							borderRadius: $u.addUnit(radius)
@@ -65,7 +65,7 @@
 							height: $u.addUnit(height)
 						}"
 						controls
-						@tap="clickHandler(index)"
+						@tap="clickHandler(index, item)"
 					></video>
 					<text
 						v-if="showTitle && $u.test.object(item) && item.title && $u.test.image(getSource(item))"
@@ -194,8 +194,8 @@
 				return typeof item === 'object' && item.poster ? item.poster : ''
 			},
 			// 点击某个item
-			clickHandler(index) {
-				this.$emit('click', index)
+			clickHandler(index, item) {
+				this.$emit('click', index, item)
 			}
 		},
 	}

@@ -47,6 +47,7 @@
 						    @error="onError"
 						    @launchapp="onLaunchApp"
 						    @opensetting="onOpenSetting"
+                @chooseavatar="onChooseAvatar"
 						    :lang="lang"
 						    :session-from="sessionFrom"
 						    :send-message-title="sendMessageTitle"
@@ -141,6 +142,7 @@
 	 * @event {Function} error			当使用开放能力时，发生错误的回调，openType="error"时有效
 	 * @event {Function} launchapp		打开 APP 成功的回调，openType="launchApp"时有效
 	 * @event {Function} opensetting	在打开授权设置页后回调，openType="openSetting"时有效
+   * @event {Function} chooseavatar	微信小程序 2.21.2 自定义头像选择事件
 	 * @example <u-action-sheet :actions="list" :title="title" :show="show"></u-action-sheet>
 	 */
 	export default {

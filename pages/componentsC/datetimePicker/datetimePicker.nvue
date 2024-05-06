@@ -97,10 +97,27 @@
 			@change="change"
 			@close="close"
 		></u-datetime-picker>
+		<u-datetime-picker
+			:show="show8"
+			ref="asyncValue8"
+			v-model="value8"
+			mode="datetime"
+			closeOnClickOverlay
+			@confirm="confirm"
+			@cancel="cancel"
+			@change="change"
+			@close="close"
+		></u-datetime-picker>
 	</view>
 </template>
 <script>
 	export default {
+		onShow() {
+			// 模拟异步设置时间 asyncValue8
+			setTimeout(() => {
+				this.asyncValue8 = '2025-12-19 11:28:10'
+			}, 500)
+		},
 		data() {
 			const d = new Date()
 			const year = d.getFullYear()
@@ -115,6 +132,8 @@
 				value5: Number(new Date()),
 				value6: Number(new Date()),
 				value7: Number(new Date()),
+				// value8: Number(new Date()),
+				asyncValue8: null,
 				show1: false,
 				show2: false,
 				show3: false,
@@ -122,6 +141,7 @@
 				show5: false,
 				show6: false,
 				show7: false,
+				show8: false,
 				list: [{
 						title: '完整日期时间',
 						iconUrl: 'https://cdn.uviewui.com/uview/demo/datetime-picker/6.png'
@@ -146,8 +166,24 @@
 					}, {
 						title: '限制最大最小值',
 						iconUrl: 'https://cdn.uviewui.com/uview/demo/datetime-picker/7.png'
+					},{
+						title: '异步设置时间',
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/datetime-picker/6.png'
 					}
 				]
+			}
+		},
+		computed: {
+			value8: {
+				get() {
+					return this.asyncValue8 ? this.asyncValue8 : Number(new Date())
+					// return this.asyncValue8 || Number(new Date())
+				},
+				set(newValue, oldValue) {
+					// this.asyncValue8 = uni.$u.timeFormat(newValue, 'yyyy-mm-dd hh:MM:ss')
+					this.asyncValue8 = newValue
+					this.show8 = false;
+				}
 			}
 		},
 		methods: {

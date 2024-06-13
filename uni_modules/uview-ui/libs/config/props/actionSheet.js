@@ -20,6 +20,7 @@ export default {
         safeAreaInsetBottom: true,
         openType: '',
         closeOnClickOverlay: true,
-        round: 0
+        round: 0,
+		isCannelButton: true
     }
 }

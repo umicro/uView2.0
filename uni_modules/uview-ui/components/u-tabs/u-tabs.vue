@@ -163,9 +163,7 @@
 					return;
 				}
 				// 获取滑块该移动的位置
-				let lineOffsetLeft = this.list
-					.slice(0, this.innerCurrent)
-					.reduce((total, curr) => total + curr.rect.width, 0);
+				let lineOffsetLeft = tabItem.rect.left;
                 // 获取下划线的数值px表示法
 				const lineWidth = uni.$u.getPx(this.lineWidth);
 				this.lineOffsetLeft = lineOffsetLeft + (tabItem.rect.width - lineWidth) / 2

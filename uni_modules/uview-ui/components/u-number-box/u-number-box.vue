@@ -139,9 +139,11 @@
 			// 按钮的样式
 			buttonStyle() {
 				return (type) => {
+					const formattedButtonSize = uni.$u.addUnit(this.buttonSize);
 					const style = {
 						backgroundColor: this.bgColor,
-						height: uni.$u.addUnit(this.buttonSize),
+						width: formattedButtonSize,
+						height: formattedButtonSize,
 						color: this.color
 					}
 					if (this.isDisabled(type)) {

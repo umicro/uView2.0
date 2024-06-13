@@ -15,7 +15,7 @@
 					v-if="required || leftIcon || label"
 					:style="{
 						width: $u.addUnit(labelWidth || parentData.labelWidth),
-						marginBottom: parentData.labelPosition === 'left' ? 0 : '5px',
+						marginBottom: (labelPosition || parentData.labelPosition) === 'left' ? 0 : '5px',
 					}"
 				>
 					<!-- 为了块对齐 -->

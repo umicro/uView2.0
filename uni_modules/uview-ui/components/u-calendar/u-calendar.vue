@@ -16,8 +16,8 @@
 			></uHeader>
 			<scroll-view
 				:style="{
-                    height: $u.addUnit(listHeight)
-                }"
+					height: $u.addUnit(listHeight),
+				}"
 				scroll-y
 				@scroll="onScroll"
 				:scroll-top="scrollTop"
@@ -51,8 +51,8 @@
 					<u-button
 						shape="circle"
 						:text="
-                            buttonDisabled ? confirmDisabledText : confirmText
-                        "
+							buttonDisabled ? confirmDisabledText : confirmText
+						"
 						:color="color"
 						@click="confirm"
 						:disabled="buttonDisabled"
@@ -64,12 +64,12 @@
 </template>
 
 <script>
-import uHeader from './header.vue'
-import uMonth from './month.vue'
-import props from './props.js'
-import util from './util.js'
-import dayjs from '../../libs/util/dayjs.js'
-import Calendar from '../../libs/util/calendar.js'
+import uHeader from "./header.vue";
+import uMonth from "./month.vue";
+import props from "./props.js";
+import util from "./util.js";
+import dayjs from "../../libs/util/dayjs.js";
+import Calendar from "../../libs/util/calendar.js";
 /**
  * Calendar 日历
  * @description  此组件用于单个选择日期，范围选择日期等，日历被包裹在底部弹起的容器中.
@@ -108,12 +108,13 @@ import Calendar from '../../libs/util/calendar.js'
  * @example <u-calendar  :defaultDate="defaultDateMultiple" :show="show" mode="multiple" @confirm="confirm">
 	</u-calendar>
  * */
+
 export default {
-	name: 'u-calendar',
+	name: "u-calendar",
 	mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 	components: {
 		uHeader,
-		uMonth
+		uMonth,
 	},
 	data() {
 		return {
@@ -125,86 +126,86 @@ export default {
 			listHeight: 0,
 			// month组件中选择的日期数组
 			selected: [],
-			scrollIntoView: '',
-			scrollTop:0,
+			scrollIntoView: "",
+			scrollTop: 0,
 			// 过滤处理方法
-			innerFormatter: (value) => value
-		}
+			innerFormatter: (value) => value,
+		};
 	},
 	watch: {
 		selectedChange: {
 			immediate: true,
 			handler(n) {
-				this.setMonth()
-			}
+				this.setMonth();
+			},
 		},
 		// 打开弹窗时，设置月份数据
 		show: {
 			immediate: true,
 			handler(n) {
-				this.setMonth()
-			}
-		}
+				this.setMonth();
+			},
+		},
 	},
 	computed: {
 		// 由于maxDate和minDate可以为字符串(2021-10-10)，或者数值(时间戳)，但是dayjs如果接受字符串形式的时间戳会有问题，这里进行处理
 		innerMaxDate() {
 			return uni.$u.test.number(this.maxDate)
 				? Number(this.maxDate)
-				: this.maxDate
+				: this.maxDate;
 		},
 		innerMinDate() {
 			return uni.$u.test.number(this.minDate)
 				? Number(this.minDate)
-				: this.minDate
+				: this.minDate;
 		},
 		// 多个条件的变化，会引起选中日期的变化，这里统一管理监听
 		selectedChange() {
-			return [this.innerMinDate, this.innerMaxDate, this.defaultDate]
+			return [this.innerMinDate, this.innerMaxDate, this.defaultDate];
 		},
 		subtitle() {
 			// 初始化时，this.months为空数组，所以需要特别判断处理
 			if (this.months.length) {
 				return `${this.months[this.monthIndex].year}年${
 					this.months[this.monthIndex].month
-				}月`
+				}月`;
 			} else {
-				return ''
+				return "";
 			}
 		},
 		buttonDisabled() {
 			// 如果为range类型，且选择的日期个数不足1个时，让底部的按钮出于disabled状态
-			if (this.mode === 'range') {
+			if (this.mode === "range") {
 				if (this.selected.length <= 1) {
-					return true
+					return true;
 				} else {
-					return false
+					return false;
 				}
 			} else {
-				return false
+				return false;
 			}
-		}
+		},
 	},
 	mounted() {
-		this.start = Date.now()
-		this.init()
+		this.start = Date.now();
+		this.init();
 	},
 	methods: {
 		// 在微信小程序中，不支持将函数当做props参数，故只能通过ref形式调用
 		setFormatter(e) {
-			this.innerFormatter = e
+			this.innerFormatter = e;
 		},
 		// month组件内部选择日期后，通过事件通知给父组件
 		monthSelected(e) {
-			this.selected = e
+			this.selected = e;
 			if (!this.showConfirm) {
 				// 在不需要确认按钮的情况下，如果为单选，或者范围多选且已选长度大于2，则直接进行返还
 				if (
-					this.mode === 'multiple' ||
-					this.mode === 'single' ||
-					(this.mode === 'range' && this.selected.length >= 2)
+					this.mode === "multiple" ||
+					this.mode === "single" ||
+					(this.mode === "range" && this.selected.length >= 2)
 				) {
-					this.$emit('confirm', this.selected)
+					this.$emit("confirm", this.selected);
 				}
 			}
 		},
@@ -213,76 +214,84 @@ export default {
 			if (
 				this.innerMaxDate &&
 				this.innerMinDate &&
-				new Date(this.innerMaxDate).getTime() < new Date(this.innerMinDate).getTime()
+				new Date(this.innerMaxDate).getTime() <
+					new Date(this.innerMinDate).getTime()
 			) {
-				return uni.$u.error('maxDate不能小于minDate')
+				return uni.$u.error("maxDate不能小于minDate");
 			}
 			// 滚动区域的高度
-			this.listHeight = this.rowHeight * 5 + 30
-			this.setMonth()
+			// 修复 https://github.com/umicro/uView2.0/issues/926
+			// 处理 this.rowHeight 携带单位，无法运算Bug
+			const s = String(this.rowHeight).match(/\d+/);
+			if (s[0] !== s.input) {
+				this.listHeight = s[0] * 5 + 30 + s.input.split(s[0])[1];
+			} else {
+				this.listHeight = this.rowHeight * 5 + 30;
+			}
+			this.setMonth();
 		},
 		close() {
-			this.$emit('close')
+			this.$emit("close");
 		},
 		// 点击确定按钮
 		confirm() {
 			if (!this.buttonDisabled) {
-				this.$emit('confirm', this.selected)
+				this.$emit("confirm", this.selected);
 			}
 		},
 		// 获得两个日期之间的月份数
 		getMonths(minDate, maxDate) {
-			const minYear = dayjs(minDate).year()
-			const minMonth = dayjs(minDate).month() + 1
-			const maxYear = dayjs(maxDate).year()
-			const maxMonth = dayjs(maxDate).month() + 1
-			return (maxYear - minYear) * 12 + (maxMonth - minMonth) + 1
+			const minYear = dayjs(minDate).year();
+			const minMonth = dayjs(minDate).month() + 1;
+			const maxYear = dayjs(maxDate).year();
+			const maxMonth = dayjs(maxDate).month() + 1;
+			return (maxYear - minYear) * 12 + (maxMonth - minMonth) + 1;
 		},
 		// 设置月份数据
 		setMonth() {
 			// 最小日期的毫秒数
-			const minDate = this.innerMinDate || dayjs().valueOf()
+			const minDate = this.innerMinDate || dayjs().valueOf();
 			// 如果没有指定最大日期，则往后推3个月
 			const maxDate =
 				this.innerMaxDate ||
 				dayjs(minDate)
-					.add(this.monthNum - 1, 'month')
-					.valueOf()
+					.add(this.monthNum - 1, "month")
+					.valueOf();
 			// 最大最小月份之间的共有多少个月份，
 			const months = uni.$u.range(
 				1,
 				this.monthNum,
 				this.getMonths(minDate, maxDate)
-			)
+			);
 			// 先清空数组
-			this.months = []
+			this.months = [];
 			for (let i = 0; i < months; i++) {
 				this.months.push({
 					date: new Array(
-						dayjs(minDate).add(i, 'month').daysInMonth()
+						dayjs(minDate).add(i, "month").daysInMonth()
 					)
 						.fill(1)
 						.map((item, index) => {
 							// 日期，取值1-31
-							let day = index + 1
+							let day = index + 1;
 							// 星期，0-6，0为周日
 							const week = dayjs(minDate)
-								.add(i, 'month')
+								.add(i, "month")
 								.date(day)
-								.day()
+								.day();
 							const date = dayjs(minDate)
-								.add(i, 'month')
+								.add(i, "month")
 								.date(day)
-								.format('YYYY-MM-DD')
-							let bottomInfo = ''
+								.format("YYYY-MM-DD");
+							let bottomInfo = "";
 							if (this.showLunar) {
 								// 将日期转为农历格式
 								const lunar = Calendar.solar2lunar(
 									dayjs(date).year(),
 									dayjs(date).month() + 1,
 									dayjs(date).date()
-								)
-								bottomInfo = lunar.IDayCn
+								);
+								bottomInfo = lunar.IDayCn;
 							}
 							let config = {
 								day,
@@ -290,45 +299,41 @@ export default {
 								// 小于最小允许的日期，或者大于最大的日期，则设置为disabled状态
 								disabled:
 									dayjs(date).isBefore(
-										dayjs(minDate).format('YYYY-MM-DD')
+										dayjs(minDate).format("YYYY-MM-DD")
 									) ||
 									dayjs(date).isAfter(
-										dayjs(maxDate).format('YYYY-MM-DD')
+										dayjs(maxDate).format("YYYY-MM-DD")
 									),
 								// 返回一个日期对象，供外部的formatter获取当前日期的年月日等信息，进行加工处理
 								date: new Date(date),
 								bottomInfo,
 								dot: false,
 								month:
-									dayjs(minDate).add(i, 'month').month() + 1
-							}
+									dayjs(minDate).add(i, "month").month() + 1,
+							};
 							const formatter =
-								this.formatter || this.innerFormatter
-							return formatter(config)
+								this.formatter || this.innerFormatter;
+							return formatter(config);
 						}),
 					// 当前所属的月份
-					month: dayjs(minDate).add(i, 'month').month() + 1,
+					month: dayjs(minDate).add(i, "month").month() + 1,
 					// 当前年份
-					year: dayjs(minDate).add(i, 'month').year()
-				})
+					year: dayjs(minDate).add(i, "month").year(),
+				});
 			}
-
 		},
 		// 滚动到默认设置的月份
 		scrollIntoDefaultMonth(selected) {
 			// 查询默认日期在可选列表的下标
-			const _index = this.months.findIndex(({
-				  year,
-				  month
-			  }) => {
-				month = uni.$u.padZero(month)
-				return `${year}-${month}` === selected
-			})
+			const _index = this.months.findIndex(({ year, month }) => {
+				month = uni.$u.padZero(month);
+				return `${year}-${month}` === selected;
+			});
 			if (_index !== -1) {
 				// #ifndef MP-WEIXIN
 				this.$nextTick(() => {
-					this.scrollIntoView = `month-${_index}`
-				})
+					this.scrollIntoView = `month-${_index}`;
+				});
 				// #endif
 				// #ifdef MP-WEIXIN
 				this.scrollTop = this.months[_index].top || 0;
@@ -338,11 +343,11 @@ export default {
 		// scroll-view滚动监听
 		onScroll(event) {
 			// 不允许小于0的滚动值，如果scroll-view到顶了，继续下拉，会出现负数值
-			const scrollTop = Math.max(0, event.detail.scrollTop)
+			const scrollTop = Math.max(0, event.detail.scrollTop);
 			// 将当前滚动条数值，除以滚动区域的高度，可以得出当前滚动到了哪一个月份的索引
 			for (let i = 0; i < this.months.length; i++) {
 				if (scrollTop >= (this.months[i].top || this.listHeight)) {
-					this.monthIndex = i
+					this.monthIndex = i;
 				}
 			}
 		},
@@ -350,31 +355,31 @@ export default {
 		updateMonthTop(topArr = []) {
 			// 设置对应月份的top值，用于onScroll方法更新月份
 			topArr.map((item, index) => {
-				this.months[index].top = item
-			})
+				this.months[index].top = item;
+			});
 
 			// 获取默认日期的下标
 			if (!this.defaultDate) {
 				// 如果没有设置默认日期，则将当天日期设置为默认选中的日期
-				const selected = dayjs().format("YYYY-MM")
-				this.scrollIntoDefaultMonth(selected)
-				return
+				const selected = dayjs().format("YYYY-MM");
+				this.scrollIntoDefaultMonth(selected);
+				return;
 			}
 			let selected = dayjs().format("YYYY-MM");
 			// 单选模式，可以是字符串或数组，Date对象等
 			if (!uni.$u.test.array(this.defaultDate)) {
-				selected = dayjs(this.defaultDate).format("YYYY-MM")
+				selected = dayjs(this.defaultDate).format("YYYY-MM");
 			} else {
 				selected = dayjs(this.defaultDate[0]).format("YYYY-MM");
 			}
-			this.scrollIntoDefaultMonth(selected)
-		}
-	}
-}
+			this.scrollIntoDefaultMonth(selected);
+		},
+	},
+};
 </script>
 
 <style lang="scss" scoped>
-@import '../../libs/css/components.scss';
+@import "../../libs/css/components.scss";
 
 .u-calendar {
 	&__confirm {

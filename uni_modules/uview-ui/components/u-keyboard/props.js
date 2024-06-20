@@ -79,6 +79,11 @@ export default {
         autoChange: {
             type: Boolean,
             default: uni.$u.props.keyboard.autoChange
+        },
+        // 自定义样式，对象形式
+        customStyle: {
+            type: Object,
+            default: () => { return {} }
         }
     }
 }

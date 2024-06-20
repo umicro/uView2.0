@@ -331,7 +331,10 @@ export default {
 				})
 				// #endif
 				// #ifdef MP-WEIXIN
-				this.scrollTop = this.months[_index].top || 0;
+				this.scrollTop = 0
+				this.$nextTick(() => {
+					this.scrollTop = this.months[_index].top || 0;
+				})
 				// #endif
 			}
 		},

@@ -29,7 +29,7 @@
 				class="u-image__loading"
 				:style="{
 					borderRadius: shape == 'circle' ? '50%' : $u.addUnit(radius),
-					backgroundColor: this.bgColor,
+					backgroundColor: bgColor,
 					width: $u.addUnit(width),
 					height: $u.addUnit(height)
 				}"

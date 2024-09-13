@@ -236,7 +236,7 @@ export default {
         // 输入框聚焦时触发
         onFocus(event) {
             this.focused = true;
-            this.$emit("focus");
+            this.$emit("focus",event);
         },
         // 点击完成按钮时触发
         onConfirm(event) {

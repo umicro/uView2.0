@@ -36,7 +36,7 @@
 						</view>
 						<text
 							class="u-form-item__body__left__content__label"
-							:style="[parentData.labelStyle, {
+							:style="[parentData.labelStyle, labelStyle, {
 								justifyContent: parentData.labelAlign === 'left' ? 'flex-start' : parentData.labelAlign === 'center' ? 'center' : 'flex-end'
 							}]"
 						>{{ label }}</text>

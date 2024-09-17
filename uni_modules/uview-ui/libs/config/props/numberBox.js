@@ -18,6 +18,7 @@ export default {
         integer: false,
         disabled: false,
         disabledInput: false,
+		focus:false,
         asyncChange: false,
         inputWidth: 35,
         showMinus: true,

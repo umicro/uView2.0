@@ -203,7 +203,7 @@
 				this.lists = lists
 				this.isInCount = lists.length < maxCount
 			},
-			chooseFile() {
+			async chooseFile() {
 				const {
 					maxCount,
 					multiple,
@@ -218,6 +218,14 @@
 				}catch(e) {
 					capture = [];
 				}
+
+				// upload之前提供一个拦截函数
+				// 拦截函数需返回一个Promise
+				// 如果返回的promise的状态没有结束，则不会执行uni.chooseImage
+				if (this.interceptor && typeof this.interceptor === 'function') {
+					await this.interceptor()
+				}
+				
 				chooseFile(
 						Object.assign({
 							accept: this.accept,

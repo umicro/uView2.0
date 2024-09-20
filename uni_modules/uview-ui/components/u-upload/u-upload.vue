@@ -18,6 +18,19 @@
 							height: $u.addUnit(height)
 						}]"
 					/>
+					<video
+						v-else-if="item.isVideo || (item.type && item.type === 'video')"
+						:src="item.thumb || item.url"
+						:mode="imageMode"
+						class="u-upload__wrap__preview__image"
+						@tap="onClickPreview(item)"
+						:style="[
+              {
+                width: $u.addUnit(width),
+                height: $u.addUnit(height),
+              },
+            ]"
+					/>
 					<view
 					    v-else
 					    class="u-upload__wrap__preview__other"
@@ -25,9 +38,9 @@
 						<u-icon
 						    color="#80CBF9"
 						    size="26"
-						    :name="item.isVideo || (item.type && item.type === 'video') ? 'movie' : 'folder'"
+						    name="folder"
 						></u-icon>
-						<text class="u-upload__wrap__preview__other__text">{{item.isVideo || (item.type && item.type === 'video') ? '视频' : '文件'}}</text>
+						<text class="u-upload__wrap__preview__other__text">文件</text>
 					</view>
 					<view
 					    class="u-upload__status"
@@ -320,38 +333,27 @@
 					},
 				});
 			},
-			onPreviewVideo(event) {
-				if (!this.data.previewFullImage) return;
-				const {
-					index
-				} = event.currentTarget.dataset;
-				const {
-					lists
-				} = this.data;
-				wx.previewMedia({
-					sources: lists
-						.filter((item) => isVideoFile(item))
-						.map((item) =>
-							Object.assign(Object.assign({}, item), {
-								type: 'video'
-							})
-						),
-					current: index,
-					fail() {
-						uni.$u.toast('预览视频失败')
-					},
-				});
-			},
-			onClickPreview(event) {
-				const {
-					index
-				} = event.currentTarget.dataset;
-				const item = this.data.lists[index];
-				this.$emit(
-					'clickPreview',
-					Object.assign(Object.assign({}, item), this.getDetail(index))
-				);
-			}
+      onPreviewVideo(event) {
+        if (!this.data.previewFullImage) return;
+        const { index } = event.currentTarget.dataset;
+        const { lists } = this.data;
+        uni.previewMedia({
+          sources: lists
+          .filter((item) => isVideoFile(item))
+          .map((item) =>
+            Object.assign(Object.assign({}, item), {
+              type: "video",
+            })
+          ),
+          current: index,
+          fail() {
+            uni.$u.toast("预览视频失败");
+          },
+        });
+      },
+      onClickPreview(item) {
+        this.$emit("clickPreview", item);
+      },
 		}
 	}
 </script>

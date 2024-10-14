@@ -9,6 +9,7 @@
 			marginTop: `-${$u.addUnit(negativeTop)}`
 		}"
 		:closeOnClickOverlay="closeOnClickOverlay"
+		:overlayStyle="overlayStyle"
 		:safeAreaInsetBottom="false"
 		:duration="duration"
 		@click="clickHandler"
@@ -21,6 +22,9 @@
 		>
 			<text
 				class="u-modal__title"
+				:style="{
+					color: titleColor
+				}"
 				v-if="title"
 			>{{ title }}</text>
 			<view
@@ -97,6 +101,7 @@
 	 * @tutorial https://www.uviewui.com/components/modul.html
 	 * @property {Boolean}			show				是否显示模态框，请赋值给show （默认 false ）
 	 * @property {String}			title				标题内容
+	 * @property {String}			titleColor			标题的颜色 (默认 '#303133')
 	 * @property {String}			content				模态框内容，如传入slot内容，则此参数无效
 	 * @property {String}			confirmText			确认按钮的文字 （默认 '确认' ）
 	 * @property {String}			cancelText			取消按钮的文字 （默认 '取消' ）
@@ -112,6 +117,7 @@
 	 * @property {String | Number}	negativeTop			往上偏移的值，给一个负的margin-top，往上偏移，避免和键盘重合的情况，单位任意，数值则默认为px单位 （默认 0 ）
 	 * @property {String | Number}	width				modal宽度，不支持百分比，可以数值，px，rpx单位 （默认 '650rpx' ）
 	 * @property {String}			confirmButtonShape	确认按钮的样式,如设置，将不会显示取消按钮
+	 * @property {Object | String}	overlayStyle		自定义遮罩的样式
 	 * @event {Function} confirm	点击确认按钮时触发
 	 * @event {Function} cancel		点击取消按钮时触发
 	 * @event {Function} close		点击遮罩关闭出发，closeOnClickOverlay为true有效

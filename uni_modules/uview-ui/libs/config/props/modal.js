@@ -12,6 +12,7 @@ export default {
     modal: {
         show: false,
         title: '',
+		titleColor: '#303133',
         content: '',
         confirmText: '确认',
         cancelText: '取消',
@@ -26,6 +27,7 @@ export default {
         negativeTop: 0,
         width: '650rpx',
         confirmButtonShape: '',
-		duration:400,
+		duration: 400,
+		overlayStyle: () => {},
     }
 }

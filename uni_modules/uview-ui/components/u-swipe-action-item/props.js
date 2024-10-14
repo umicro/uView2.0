@@ -7,7 +7,7 @@ export default {
         },
         // 标识符，如果是v-for，可用index索引值
         name: {
-            type: [String, Number],
+            type: [String, Number,Object],
             default: uni.$u.props.swipeActionItem.name
         },
         // 是否禁用

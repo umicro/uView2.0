@@ -1,8 +1,10 @@
 {
+	"name": "uview2.0",
 	"id": "uview-ui",
 	"scripts": {
 		"test": "eslint . --fix",
-		"deploy": "node deploy"
+		"deploy": "node deploy",
+		"preinstall": "npx only-allow pnpm"
 	},
 	"dependencies": {
 		"anve-upload-upyun": "^1.0.8"

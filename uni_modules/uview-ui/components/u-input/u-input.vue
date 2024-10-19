@@ -241,9 +241,9 @@ export default {
 			uni.$u.formValidate(this, "blur");
 		},
 		// 输入框聚焦时触发
-		onFocus(event) {
+		onFocus(e) {
 			this.focused = true;
-			this.$emit("focus");
+			this.$emit("focus", e);
 		},
 		// 点击完成按钮时触发
 		onConfirm(event) {
@@ -251,8 +251,8 @@ export default {
 		},
 		// 键盘高度发生变化的时候触发此事件
 		// 兼容性：微信小程序2.7.0+、App 3.1.0+
-		onkeyboardheightchange() {
-			this.$emit("keyboardheightchange");
+		onkeyboardheightchange(e) {
+			this.$emit("keyboardheightchange", e);
 		},
 		// 内容发生变化，进行处理
 		valueChange() {

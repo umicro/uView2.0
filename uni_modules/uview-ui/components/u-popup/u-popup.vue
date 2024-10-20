@@ -96,7 +96,7 @@
 					position: 'fixed',
 					display: 'flex',
 				}
-				style[this.mode] = 0
+				style[this.mode] = this.offset
 				if (this.mode === 'left') {
 					return uni.$u.deepMerge(style, {
 						bottom: 0,

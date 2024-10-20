@@ -7,6 +7,7 @@
 			:duration="overlayDuration"
 			:customStyle="overlayStyle"
 			:opacity="overlayOpacity"
+			:zIndex="zIndexOverlay"
 		></u-overlay>
 		<u-transition
 			:show="show"
@@ -61,6 +62,7 @@
 	 * @property {String | Number}	overlayOpacity		遮罩透明度，0-1之间（默认 0.5）
 	 * @property {Boolean}			closeOnClickOverlay	点击遮罩是否关闭弹窗 （默认  true ）
 	 * @property {String | Number}	zIndex				层级 （默认 10075 ）
+	 * @property {String | Number}	zIndexOverlay				遮罩层层级 （默认 10070 ）
 	 * @property {Boolean}			safeAreaInsetBottom	是否为iPhoneX留出底部安全距离 （默认 true ）
 	 * @property {Boolean}			safeAreaInsetTop	是否留出顶部安全距离（状态栏高度） （默认 false ）
 	 * @property {String}			closeIconPos		自定义关闭图标位置（默认 'top-right' ）

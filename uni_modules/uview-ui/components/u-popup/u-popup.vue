@@ -76,7 +76,7 @@
 		mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
 		data() {
 			return {
-				overlayDuration: Number(this.duration) + 50
+				overlayDuration: this.duration + 50
 			}
 		},
 		watch: {

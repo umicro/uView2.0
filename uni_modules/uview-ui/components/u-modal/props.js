@@ -10,6 +10,10 @@ export default {
             type: [String],
             default: uni.$u.props.modal.title
         },
+		titleColor: {
+			type: String,
+			default: uni.$u.props.modal.titleColor
+		},
         // 弹窗内容
         content: {
             type: String,
@@ -81,9 +85,14 @@ export default {
             default: uni.$u.props.modal.confirmButtonShape
         },
 		// 弹窗动画过度时间
-		duration:{
+		duration: {
 			type:String | Number,
 			default: uni.$u.props.modal.duration
-		}
+		},
+		// 自定义遮罩的样式
+		overlayStyle: {
+		    type: [Object, String],
+		    default: uni.$u.props.modal.overlayStyle
+		},
     }
 }

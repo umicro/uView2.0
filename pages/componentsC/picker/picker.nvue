@@ -29,6 +29,7 @@
 			@change="change"
 			@cancel="cancel"
 			@confirm="confirm"
+			:immediateChange="true"
 		></u-picker>
 		<u-picker
 			:show="show2"
@@ -45,6 +46,7 @@
 			@cancel="cancel"
 			@confirm="confirm"
 			@change="changeHandler1"
+			:immediateChange="true"
 		></u-picker>
 		<u-picker
 			:show="show4"
@@ -174,7 +176,7 @@
 				uni.navigateBack()
 			},
 			change(e) {
-				// console.log('change', e);
+				// console.log(e);
 			},
 			showPicker(index) {
 				this.index = index + 1
@@ -185,7 +187,7 @@
 				this[`show${this.index}`] = false
 			},
 			confirm(e) {
-				// console.log('confirm', e);
+				console.log('confirm', e)
 				this[`show${this.index}`] = false
 			},
 			cancel() {

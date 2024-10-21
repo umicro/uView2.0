@@ -33,6 +33,7 @@
 			<input
 			    :disabled="disabledInput || disabled"
 			    :cursor-spacing="getCursorSpacing"
+				:focus="disabledInput || focus"
 			    :class="{ 'u-number-box__input--disabled': disabled || disabledInput }"
 			    v-model="currentValue"
 			    class="u-number-box__input"
@@ -88,6 +89,7 @@
 	 * @property {Boolean}			integer			是否只允许输入整数 （默认 false ）
 	 * @property {Boolean}			disabled		是否禁用，包括输入框，加减按钮 （默认 false ）
 	 * @property {Boolean}			disabledInput	是否禁用输入框 （默认 false ）
+	 * @property {Boolean}			focus			是否自动获取焦点，只有disabledInput开启时有效 （默认 false ）
 	 * @property {Boolean}			asyncChange		是否开启异步变更，开启后需要手动控制输入值 （默认 false ）
 	 * @property {String | Number}	inputWidth		输入框宽度，单位为px （默认 35 ）
 	 * @property {Boolean}			showMinus		是否显示减少按钮 （默认 true ）

@@ -111,6 +111,10 @@ export default {
         defaultIndex: {
             type: Array,
             default: uni.$u.props.datetimePicker.defaultIndex
+        },
+		immediateChange: {
+            type: Boolean,
+            default: uni.$u.props.datetimePicker.immediateChange
         }
     }
 }

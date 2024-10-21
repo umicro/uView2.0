@@ -13,6 +13,7 @@
 		:confirmText="confirmText"
 		:cancelColor="cancelColor"
 		:confirmColor="confirmColor"
+		:immediateChange="immediateChange"
 		@close="close"
 		@cancel="cancel"
 		@confirm="confirm"

@@ -40,7 +40,8 @@
 							fontWeight: index1 === innerIndex[index] ? 'bold' : 'normal',
 							display: 'block'
 						}"
-					>{{ getItemText(item1) }}</text>
+					>{{ getItemText(item1) }}
+					</text>
 				</picker-view-column>
 			</picker-view>
 			<view
@@ -72,12 +73,14 @@
  * @property {Boolean}			closeOnClickOverlay	是否允许点击遮罩关闭选择器（默认 false ）
  * @property {Array}			defaultIndex		各列的默认索引
  * @property {Boolean}			immediateChange		是否在手指松开时立即触发change事件（默认 false ）
+ * @property {Boolean}			isInput 			是否使用input输入框
  * @event {Function} close		关闭选择器时触发
  * @event {Function} cancel		点击取消按钮触发
  * @event {Function} change		当选择值变化时触发
  * @event {Function} confirm	点击确定按钮，返回当前选择的值
  */
 import props from './props.js';
+
 export default {
 	name: 'u-picker',
 	mixins: [uni.$u.mpMixin, uni.$u.mixin, props],
@@ -191,7 +194,7 @@ export default {
 			// 替换innerColumns数组中columnIndex索引的值为values，使用的是数组的splice方法
 			this.innerColumns.splice(columnIndex, 1, values)
 			// 替换完成之后将修改列之后的已选值置空
-			this.setLastIndex(this.innerIndex.slice(0,columnIndex))
+			this.setLastIndex(this.innerIndex.slice(0, columnIndex))
 			// 拷贝一份原有的innerIndex做临时变量，将大于当前变化列的所有的列的默认索引设置为0
 			let tmpIndex = uni.$u.deepClone(this.innerIndex)
 			for (let i = 0; i < this.innerColumns.length; i++) {
@@ -237,50 +240,50 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-	@import "../../libs/css/components.scss";
+@import "../../libs/css/components.scss";
 
-	.u-picker {
-		position: relative;
+.u-picker {
+	position: relative;
 
-		&__view {
+	&__view {
 
-			&__column {
+		&__column {
+			@include flex;
+			flex: 1;
+			justify-content: center;
+
+			&__item {
 				@include flex;
-				flex: 1;
 				justify-content: center;
+				align-items: center;
+				font-size: 16px;
+				text-align: center;
+				/* #ifndef APP-NVUE */
+				display: block;
+				/* #endif */
+				color: $u-main-color;
 
-				&__item {
-					@include flex;
-					justify-content: center;
-					align-items: center;
-					font-size: 16px;
-					text-align: center;
+				&--disabled {
 					/* #ifndef APP-NVUE */
-					display: block;
+					cursor: not-allowed;
 					/* #endif */
-					color: $u-main-color;
-
-					&--disabled {
-						/* #ifndef APP-NVUE */
-						cursor: not-allowed;
-						/* #endif */
-						opacity: 0.35;
-					}
+					opacity: 0.35;
 				}
 			}
 		}
-
-		&--loading {
-			position: absolute;
-			top: 0;
-			right: 0;
-			left: 0;
-			bottom: 0;
-			@include flex;
-			justify-content: center;
-			align-items: center;
-			background-color: rgba(255, 255, 255, 0.87);
-			z-index: 1000;
-		}
 	}
+
+	&--loading {
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		@include flex;
+		justify-content: center;
+		align-items: center;
+		background-color: rgba(255, 255, 255, 0.87);
+		z-index: 1000;
+	}
+}
 </style>

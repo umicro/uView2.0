@@ -55,6 +55,8 @@ export interface HttpRequestConfig<T = Tasks> {
   getTask?: (task: T, options: HttpRequestConfig<T>) => void;
   /**  全局自定义验证器 */
   validateStatus?: (statusCode: number) => boolean | void;
+  /** params 参数自定义处理 */
+  paramsSerializer?: (params: AnyObject) => string | void;
 }
 export interface HttpResponse<T = any> {
   config: HttpRequestConfig;
@@ -63,12 +65,14 @@ export interface HttpResponse<T = any> {
   data: T;
   errMsg: string;
   header: AnyObject;
+  rawData: T;
 }
 export interface HttpUploadResponse<T = any> {
   config: HttpRequestConfig;
   statusCode: number;
   data: T;
   errMsg: string;
+  rawData: T;
 }
 export interface HttpDownloadResponse extends HttpResponse {
   tempFilePath: string;

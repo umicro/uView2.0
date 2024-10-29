@@ -1,3 +1,17 @@
+## 2.0.38（2024-10-29）
+# uView2.0重磅发布，利剑出鞘，一统江湖
+
+1. 修复`picker`组件和`datetime-picker`组件的头条小程序循环引用问题
+2. 修复`image`组件的`bgColor`属性不生效问题
+3. 修复`textarea`组件部分回调事件参数丢失问题
+4. 修复`input`组件部分回调事件参数丢失问题
+5. `datetime-picker`组件支持`immediateChange`属性
+6. 修复`datetime-picker`组件`v-model`绑定异步设置无效问题
+7. 修复`popup`组件设置`duration`属性为字符串值时，遮罩的打开、关闭很缓慢问题
+8. 修复`radio`参数`iconColor`属性不生效问题
+9. 修复`tooltip`组件`size`属性不生效的问题
+10. 修复`image`组件当`src`为空时，loading状态问题
+11. 其他一些修复
 ## 2.0.37（2024-03-17）
 # uView2.0重磅发布，利剑出鞘，一统江湖
 

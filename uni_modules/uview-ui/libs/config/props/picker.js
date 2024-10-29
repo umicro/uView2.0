@@ -24,6 +24,6 @@ export default {
         keyName: 'text',
         closeOnClickOverlay: false,
         defaultIndex: () => [],
-		immediateChange: false
+		immediateChange: true
     }
 }

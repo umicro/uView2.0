@@ -189,7 +189,7 @@
 				// 设置列表的高度为整个屏幕的高度
 				//减去this.customNavHeight，并将this.scrollViewHeight设置为maxHeight
 				//解决当u-index-list组件放在tabbar页面时,scroll-view内容较少时，还能滚动
-				this.scrollViewHeight = this.sys.windowHeight - this.customNavHeight
+				this.scrollViewHeight = this.sys.windowHeight - uni.$u.getPx(this.customNavHeight)
 			},
 			// 索引列表被触摸
 			touchStart(e) {
@@ -307,7 +307,7 @@
 				// #endif
 				// #ifdef MP-WEIXIN
 				// 微信小程序下，scroll-view的scroll-into-view属性无法对slot中的内容的id生效，只能通过设置scrollTop的形式去移动滚动条
-				this.scrollTop = this.children[currentIndex].top
+				this.scrollTop = this.children[currentIndex].top - uni.$u.getPx(this.customNavHeight)
 				// #endif
 				// #ifdef APP-NVUE
 				// 在nvue中，由于cell和header为同级元素，所以实际是需要对header(anchor)进行偏移

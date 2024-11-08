@@ -1,5 +1,5 @@
 <template>
-    <view
+<view
         class="u-subsection"
         ref="u-subsection"
         :class="[`u-subsection--${mode}`]"

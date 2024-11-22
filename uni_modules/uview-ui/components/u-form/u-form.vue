@@ -171,6 +171,9 @@
 										}
 										child.message =
 											childErrors[0]?.message ?? null;
+										if(childErrors.length) {
+											this.errorType === 'toast' && uni.$u.toast(childErrors[0]?.message)
+										}
 									}
 								);
 							}

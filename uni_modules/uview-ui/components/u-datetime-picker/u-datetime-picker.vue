@@ -113,8 +113,12 @@
 			cancel() {
 				this.$emit('cancel')
 			},
-			// 点击工具栏的确定按钮
-			confirm() {
+			// 点击工具栏的确定按钮 selectPickerInfo是u-picker选取信息 用来判断没有默认值和默认下标为0的情况
+			confirm(selectPickerInfo) {					
+				if(!this.innerValue){
+					const {indexs,values} =selectPickerInfo
+					this.change({indexs,values})
+				}
 				this.$emit('confirm', {
 					value: this.innerValue,
 					mode: this.mode

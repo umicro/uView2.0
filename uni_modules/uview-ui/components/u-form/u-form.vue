@@ -91,8 +91,7 @@
 				// 判断是否有规则
 				if (Object.keys(rules).length === 0) return;
 				if (process.env.NODE_ENV === 'development' && Object.keys(this.model).length === 0) {
-					uni.$u.error('设置rules，model必须设置！如果已经设置，请刷新页面。');
-					return;
+					console.warn('设置rules，model必须设置！如果已经设置，请刷新页面。');
 				};
 				this.formRules = rules;
 				// 重新将规则赋予Validator
@@ -184,8 +183,7 @@
 			validate(callback) {
 				// 开发环境才提示，生产环境不会提示
 				if (process.env.NODE_ENV === 'development' && Object.keys(this.formRules).length === 0) {
-					uni.$u.error('未设置rules，请看文档说明！如果已经设置，请刷新页面。');
-					return;
+					console.warn('未设置rules，请看文档说明！如果已经设置，请刷新页面。');
 				}
 				return new Promise((resolve, reject) => {
 					// $nextTick是必须的，否则model的变更，可能会延后于validate方法

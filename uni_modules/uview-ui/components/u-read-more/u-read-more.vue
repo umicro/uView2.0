@@ -3,7 +3,7 @@
 		<view
 		    class="u-read-more__content"
 		    :style="{
-				height: isLongContent && status === 'close' ? $u.addUnit(showHeight) : $u.addUnit(contentHeight),
+				height: isLongContent && status === 'close' ? $u.addUnit(showHeight) : 'auto',
 				textIndent: textIndent
 			}"
 		>

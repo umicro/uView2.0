@@ -115,11 +115,11 @@
 			},
 			// 点击工具栏的确定按钮
 			confirm() {
+				this.$emit('input', this.innerValue)
 				this.$emit('confirm', {
 					value: this.innerValue,
 					mode: this.mode
 				})
-				this.$emit('input', this.innerValue)
 			},
 			//用正则截取输出值,当出现多组数字时,抛出错误
 			intercept(e,type){

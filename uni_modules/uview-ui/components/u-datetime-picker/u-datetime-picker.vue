@@ -78,7 +78,7 @@
 		watch: {
 			show(newValue, oldValue) {
 				if (newValue) {
-					this.updateColumnValue(this.innerValue)
+					this.init()
 				}
 			},
 			propsChange() {

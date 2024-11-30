@@ -44,6 +44,20 @@
 			</view>
 		</view>
 		<view class="u-demo-block">
+			<text class="u-demo-block__title">设置段落边距</text>
+			<view class="u-demo-block__content">
+				<u-skeleton
+					rows="3"
+					title
+					title-width="100%"
+					:rowsWidth="['100%', '80%', '80%']"
+					:rowsHeight="['18px', '18px', '18px']"
+					:rowsLeft="[0, '20%', '20%']"
+					loading
+				></u-skeleton>
+			</view>
+		</view>
+		<view class="u-demo-block">
 			<text class="u-demo-block__title">是否开启动画</text>
 			<u-switch
 				v-model="switch1"

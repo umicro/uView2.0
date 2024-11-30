@@ -14,7 +14,8 @@ function pickExclude(obj, keys) {
 function formatImage(res) {
     return res.tempFiles.map((item) => ({
         ...pickExclude(item, ['path']),
-        type: 'image',
+        type: item.type,
+		originFileObj : item，// 添加备份原生file
         url: item.path,
         thumb: item.path,
 		size: item.size,
@@ -28,7 +29,9 @@ function formatVideo(res) {
     return [
         {
             ...pickExclude(res, ['tempFilePath', 'thumbTempFilePath', 'errMsg']),
-            type: 'video',
+            
+        type: item.type,
+		originFileObj : item，// 添加备份原生file
             url: res.tempFilePath,
             thumb: res.thumbTempFilePath,
 			size: res.size,
@@ -42,7 +45,8 @@ function formatVideo(res) {
 function formatMedia(res) {
     return res.tempFiles.map((item) => ({
         ...pickExclude(item, ['fileType', 'thumbTempFilePath', 'tempFilePath']),
-        type: res.type,
+        type: item.type, 
+		originFileObj : item，// 添加备份原生file
         url: item.tempFilePath,
         thumb: res.type === 'video' ? item.thumbTempFilePath : item.tempFilePath,
 		size: item.size
@@ -52,7 +56,9 @@ function formatMedia(res) {
 function formatFile(res) {
     return res.tempFiles.map((item) => ({ 
 		...pickExclude(item, ['path']), 
-		url: item.path, 
+		url: item.path,  
+		type: item.type, 
+		originFileObj : item，// 添加备份原生file
 		size:item.size,
 		// #ifdef H5
 		name: item.name,

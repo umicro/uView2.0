@@ -9,10 +9,12 @@
  */
 export default {
     // u-count-down 计时器组件
-    countDown: {
-        time: 0,
-        format: 'HH:mm:ss',
-        autoStart: true,
-        millisecond: false
-    }
+	countDown: {
+		time: 0,
+		format: 'HH:mm:ss',
+		autoStart: true,
+		millisecond: false,
+		isCountDown:true,
+		startTime:Date.now()
+	}
 }

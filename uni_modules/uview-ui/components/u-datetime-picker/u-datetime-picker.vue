@@ -78,6 +78,7 @@
 		watch: {
 			show(newValue, oldValue) {
 				if (newValue) {
+					this.innerValue = this.correctValue(this.value)
 					this.updateColumnValue(this.innerValue)
 				}
 			},

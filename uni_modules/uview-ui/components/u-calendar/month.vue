@@ -144,6 +144,13 @@
 			selectedChange() {
 				return [this.minDate, this.maxDate, this.defaultDate]
 			},
+			selectedHash() {
+				let h = {}
+				this.selected.forEach(x => {
+					h[dayjs(x).format('YYYY-MM-DD')] = 1
+				})
+				return h
+			},
 			dayStyle(index1, index2, item) {
 				return (index1, index2, item) => {
 					const style = {}
@@ -174,8 +181,8 @@
 				return (index1, index2, item) => {
 					let date = dayjs(item.date).format("YYYY-MM-DD"),
 						style = {}
-					// 判断date是否在selected数组中，因为月份可能会需要补0，所以使用dateSame判断，而不用数组的includes判断
-					if (this.selected.some(item => this.dateSame(item, date))) {
+					const dateHasSeleced = !!this.selectedHash[date]
+					if (dateHasSeleced) {
 						style.backgroundColor = this.color
 					}
 					if (this.mode === 'single') {
@@ -200,8 +207,7 @@
 								style.borderBottomRightRadius = '3px'
 							}
 							// 处于第一和最后一个之间的日期，背景色设置为浅色，通过将对应颜色进行等分，再取其尾部的颜色值
-							if (dayjs(date).isAfter(dayjs(this.selected[0])) && dayjs(date).isBefore(dayjs(this
-									.selected[len]))) {
+							if (dayjs(date).isAfter(dayjs(this.selected[0])) && dayjs(date).isBefore(dayjs(this.selected[len]))) {
 								style.backgroundColor = uni.$u.colorGradient(this.color, '#ffffff', 100)[90]
 								// 增加一个透明度，让范围区间的背景色也能看到底部的mark水印字符
 								style.opacity = 0.7
@@ -213,7 +219,7 @@
 							style.borderBottomLeftRadius = '3px'
 						}
 					} else {
-						if (this.selected.some(item => this.dateSame(item, date))) {
+						if (dateHasSeleced) {
 							style.borderTopLeftRadius = '3px'
 							style.borderBottomLeftRadius = '3px'
 							style.borderTopRightRadius = '3px'
@@ -229,14 +235,14 @@
 					const date = dayjs(item.date).format("YYYY-MM-DD"),
 						style = {}
 					// 选中的日期，提示文字设置白色
-					if (this.selected.some(item => this.dateSame(item, date))) {
+					let dateHasSeleced = !!this.selectedHash[date]
+					if (dateHasSeleced) {
 						style.color = '#ffffff'
 					}
 					if (this.mode === 'range') {
 						const len = this.selected.length - 1
 						// 如果是范围选择模式，第一个和最后一个之间的日期，文字颜色设置为高亮的主题色
-						if (dayjs(date).isAfter(dayjs(this.selected[0])) && dayjs(date).isBefore(dayjs(this
-								.selected[len]))) {
+						if (dayjs(date).isAfter(dayjs(this.selected[0])) && dayjs(date).isBefore(dayjs(this.selected[len]))) {
 							style.color = this.color
 						}
 					}
@@ -362,7 +368,8 @@
 					// 单选情况下，让数组中的元素为当前点击的日期
 					selected = [date]
 				} else if (this.mode === 'multiple') {
-					if (selected.some(item => this.dateSame(item, date))) {
+					let dateHasSeleced = !!this.selectedHash[date]
+					if (dateHasSeleced) {
 						// 如果点击的日期已在数组中，则进行移除操作，也就是达到反选的效果
 						const itemIndex = selected.findIndex(item => item === date)
 						selected.splice(itemIndex, 1)
@@ -383,8 +390,8 @@
 							selected = [date]
 						} else if (dayjs(date).isAfter(existsDate)) {
 							// 当前日期减去最大可选的日期天数，如果大于起始时间，则进行提示
-							if(dayjs(dayjs(date).subtract(this.maxRange, 'day')).isAfter(dayjs(selected[0])) && this.showRangePrompt) {
-								if(this.rangePrompt) {
+							if (dayjs(dayjs(date).subtract(this.maxRange, 'day')).isAfter(dayjs(selected[0])) && this.showRangePrompt) {
+								if (this.rangePrompt) {
 									uni.$u.toast(this.rangePrompt)
 								} else {
 									uni.$u.toast(`选择天数不能超过 ${this.maxRange} 天`)

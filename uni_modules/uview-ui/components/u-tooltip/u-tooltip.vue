@@ -168,13 +168,13 @@
 					addUnit = uni.$u.addUnit
 				if (this.tooltipInfo.width / 2 > this.textInfo.left + this.textInfo.width / 2 - this.screenGap) {
 					this.indicatorStyle = {}
-					style.left = `-${addUnit(this.textInfo.left - this.screenGap)}`
+					style.left = addUnit(-(this.textInfo.left - this.screenGap))
 					this.indicatorStyle.left = addUnit(this.textInfo.width / 2 - getPx(style.left) - this.indicatorWidth /
 						2)
 				} else if (this.tooltipInfo.width / 2 > sys.windowWidth - this.textInfo.right + this.textInfo.width / 2 -
 					this.screenGap) {
 					this.indicatorStyle = {}
-					style.right = `-${addUnit(sys.windowWidth - this.textInfo.right - this.screenGap)}`
+					style.right = addUnit(-(sys.windowWidth - this.textInfo.right - this.screenGap))
 					this.indicatorStyle.right = addUnit(this.textInfo.width / 2 - getPx(style.right) - this
 						.indicatorWidth / 2)
 				} else {

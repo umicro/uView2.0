@@ -57,7 +57,7 @@ export default {
 		},
 		// 指定光标与键盘的距离
 		cursorSpacing: {
-			type: Number,
+			type: [String, Number],
 			default: uni.$u.props.textarea.cursorSpacing
 		},
 		// 指定focus时的光标位置

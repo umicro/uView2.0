@@ -119,6 +119,11 @@ export default {
         previewImage: {
             type: Boolean,
             default: uni.$u.props.upload.previewImage
+        },
+        // 在点击上传之前提供一个拦截函数返回promise
+        interceptor: {
+            type: [Boolean, Function],
+            default: false
         }
     }
 }

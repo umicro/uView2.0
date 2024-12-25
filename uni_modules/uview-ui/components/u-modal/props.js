@@ -82,7 +82,7 @@ export default {
         },
 		// 弹窗动画过度时间
 		duration:{
-			type:String | Number,
+			type:[String, Number],
 			default: uni.$u.props.modal.duration
 		}
     }

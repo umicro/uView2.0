@@ -80,10 +80,10 @@ export default {
             type: String,
             default: uni.$u.props.modal.confirmButtonShape
         },
-		// 弹窗动画过度时间
-		duration:{
-			type:[String, Number],
-			default: uni.$u.props.modal.duration
-		}
+        // 弹窗动画过度时间
+        duration: {
+            type: [String, Number],
+            default: uni.$u.props.modal.duration
+        }
     }
 }

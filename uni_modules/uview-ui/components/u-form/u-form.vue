@@ -124,7 +124,7 @@
 			// 对部分表单字段进行校验
 			async validateField(value, callback, event = null) {
 				// $nextTick是必须的，否则model的变更，可能会延后于此方法的执行
-				this.$nextTick(() => {
+				//this.$nextTick(() => {
 					// 校验错误信息，返回给回调方法，用于存放所有form-item的错误信息
 					const errorsRes = [];
 					// 如果为字符串，转为数组
@@ -178,7 +178,7 @@
 					});
 					// 执行回调函数
 					typeof callback === "function" && callback(errorsRes);
-				});
+				//});
 			},
 			// 校验全部数据
 			validate(callback) {

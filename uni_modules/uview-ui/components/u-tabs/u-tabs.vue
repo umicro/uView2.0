@@ -204,7 +204,9 @@
 				// 如果disabled状态，返回
 				if (item.disabled) return
 				this.innerCurrent = index
-				this.resize()
+				uni.$u.sleep().then(() => {
+					this.resize()
+				})
 				this.$emit('change', {
 					...item,
 					index

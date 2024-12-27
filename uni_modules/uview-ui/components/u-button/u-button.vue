@@ -20,6 +20,7 @@
         @opensetting="opensetting"
         @launchapp="launchapp"
         @agreeprivacyauthorization="agreeprivacyauthorization"
+        @chooseavatar="chooseavatar"
         :hover-class="!disabled && !loading ? 'u-button--active' : ''"
         class="u-button u-reset-button"
         :style="[baseColor, $u.addStyle(customStyle)]"
@@ -155,6 +156,7 @@ import props from "./props.js";
  * @event {Function}	opensetting		在打开授权设置页并关闭后回调
  * @event {Function}	launchapp		打开 APP 成功的回调
  * @event {Function}	agreeprivacyauthorization	用户同意隐私协议事件回调
+ * @event {Function}	chooseavatar	微信小程序 2.21.2 自定义头像选择事件
  * @example <u-button>月落</u-button>
  */
 export default {
@@ -291,6 +293,9 @@ export default {
         agreeprivacyauthorization(res) {
             this.$emit("agreeprivacyauthorization", res);
         },
+        chooseavatar(res) {
+            this.$emit("chooseavatar", res);
+        }
     },
 };
 </script>

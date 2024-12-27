@@ -20,6 +20,9 @@ export default {
         },
         onOpenSetting(event) {
             this.$emit('opensetting', event.detail)
+        },
+        onChooseAvatar(event) {
+            this.$emit('chooseavatar', event.detail)
         }
     }
 }

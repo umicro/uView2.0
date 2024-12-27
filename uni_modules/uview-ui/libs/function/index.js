@@ -173,7 +173,7 @@ function addStyle(customStyle, target = 'object') {
 function addUnit(value = 'auto', unit = uni?.$u?.config?.unit ?? 'px') {
 	value = String(value)
 	// 用uView内置验证规则中的number判断是否为数值
-	return test.number(value) ? `${value}${unit}` : value
+    return test.number(value) ? `${unit==='rpx' ? value * 2 : value}${unit}` : value
 }
 
 /**

@@ -40,6 +40,11 @@ export default {
             type: Boolean,
             default: uni.$u.props.numberBox.disabledInput
         },
+		 // 是否自动获取焦点
+		 focus: {
+            type: Boolean,
+            default: uni.$u.props.numberBox.focus
+        },
         // 是否开启异步变更，开启后需要手动控制输入值
         asyncChange: {
             type: Boolean,

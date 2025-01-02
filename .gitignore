@@ -8,3 +8,4 @@ deploy.sh
 /.hbuilderx/
 /.vscode/
 deploy
+.DS_Store

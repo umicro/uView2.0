@@ -108,7 +108,7 @@
             "subPackages" : true
         },
         "usingComponents" : true,
-		"mergeVirtualHostAttributes": true
+        "mergeVirtualHostAttributes" : true
     },
     "mp-alipay" : {
         "usingComponents" : true,

@@ -37,28 +37,26 @@
 </template>
 
 <script>
+	import { icons } from './icons'
 	export default {
 		data() {
-			// 如果使用这些图片，请勿直接引入cdn.uviewui.com的资源，因为此资源路径随时会有变动
-			// 变动后，您将会访问图片失败，如有需要，您可以将这些图片上传到自己的oss或者服务器再使用
-			const baseUrl = 'http://cdn.uviewui.com/uview/empty/'
 			return {
 				mode: 'car',
 				imgList: {
-					car: baseUrl + 'car.png',
-					address: baseUrl + 'address.png',
-					comment: baseUrl + 'comment.png',
-					coupon: baseUrl + 'coupon.png',
-					data: baseUrl + 'data.png',
-					history: baseUrl + 'history.png',
-					list: baseUrl + 'list.png',
-					message: baseUrl + 'message.png',
-					news: baseUrl + 'news.png',
-					order: baseUrl + 'order.png',
-					page: baseUrl + 'page.png',
-					permission: baseUrl + 'permission.png',
-					search: baseUrl + 'search.png',
-					wifi: baseUrl + 'wifi.png',
+					car: icons.car,
+					address: icons.address,
+					comment: icons.comment,
+					coupon: icons.coupon,
+					data: icons.data,
+					history: icons.history,
+					list: icons.list,
+					message: icons.message,
+					news: icons.news,
+					order: icons.order,
+					page: icons.page,
+					permission: icons.permission,
+					search: icons.search,
+					wifi: icons.wifi,
 				},
 				list: [{
 						imgName: 'car',

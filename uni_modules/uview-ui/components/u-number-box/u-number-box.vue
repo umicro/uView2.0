@@ -249,6 +249,13 @@
 			onBlur(event) {
 				// 对输入值进行格式化
 				const value = this.format(event.detail.value)
+				if(value !== this.currentValue){
+					//如果输入的值为空需要将值修改为最小值
+					if(this.currentValue === ''){
+						this.currentValue = value;
+					}
+					this.emitChange(value);
+				}
 				// 发出blur事件
 				this.$emit(
 					'blur',{

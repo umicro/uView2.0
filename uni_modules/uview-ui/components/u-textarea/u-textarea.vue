@@ -164,6 +164,9 @@ export default {
         },
         onInput(e) {
 			let { value = "" } = e.detail || {};
+			if (this.maxlength > 0 && value.length > this.maxlength) {
+				value = value.subtring(0, this.maxlength);
+			}
 			// 格式化过滤方法
 			const formatter = this.formatter || this.innerFormatter
 			const formatValue = formatter(value)
